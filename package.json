@@ -40,6 +40,7 @@
     "@tinacms/cli": "^2.0.5",
     "@types/alpinejs": "^3.13.11",
     "tinacms": "^3.1.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.56.0"
   }
 }
