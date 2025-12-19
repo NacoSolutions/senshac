@@ -4,7 +4,6 @@
   nodeTools = with pkgs; [
     nodejs_22
     nodePackages.pnpm
-    nodePackages.typescript
     nodePackages.typescript-language-server
   ];
 
@@ -12,6 +11,7 @@
     nixfmt-rfc-style
     fd
     ripgrep
+    wrangler
   ];
 
   scripts = {
