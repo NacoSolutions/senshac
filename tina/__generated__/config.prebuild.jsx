@@ -358,11 +358,9 @@ var pageFields = [
   }
 ];
 var config_default = defineConfig({
-  branch: "main",
-  clientId: null,
-  // Local mode - no cloud
-  token: null,
-  // Local mode - no cloud
+  branch: process.env.TINA_BRANCH || process.env.CF_PAGES_BRANCH || "main",
+  clientId: process.env.TINA_CLIENT_ID || "",
+  token: process.env.TINA_TOKEN || "",
   build: {
     outputFolder: "admin",
     publicFolder: "public"
