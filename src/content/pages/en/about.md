@@ -1,0 +1,41 @@
+---
+title: "About Us - Sens*Hac"
+description: "Interior design studio founded by Ester Cobles, specialized in commercial, gastronomic, and entertainment spaces."
+heroImage: "/images/about/senshac-about-behind-the-name.webp"
+---
+
+[[about-hero title="Ester sense hac*, please."]]
+
+[[behind-name title="Behind the Name" p1="Ester, traditionally spelled \"Esther,\" often found herself correcting others on the uncommon spelling of her name. This continuous effort to affirm her identity became a defining part of her sense of self." p2="As a statement of her individuality, Ester chose to name her practice not after her given name but after the words that have come to represent her character over the years." footnote="*The phonetic contraction sens*hac refers to the Catalan phrase \"sense hac\", meaning \"without an H.\""]]
+
+[[/about-hero]]
+
+[[about-banner src="/images/about/senshac-about-behind-the-name.webp"]]
+
+[[about-bio title="Bio" image="/images/about/senshac-about-bio.webp"]]
+
+[[bio-p]]Ester Cobles, founder of sens*hac, graduated with honors from the renowned Massana School of Arts in Barcelona. Her final project, Water: A Reality Check, won first prize in the Argó Awards, organized by the Universitat Autònoma de Barcelona. Her project also received additional recognition through various nominations and mentions in other student awards.[[/bio-p]]
+
+[[bio-p]]During her time at La Massana, she explored her creativity, consistently challenging established norms. From a young age, Ester loved drawing spaces and the interactions of people within them, inspired by painters like Edward Hopper. However, her artistic journey truly began in her late twenties after studying Earth Sciences and spending several years living in Norway.[[/bio-p]]
+
+[[bio-p]]With the aim of establishing her own brand and perspective in interior design, sens*hac was founded in recent years.[[/bio-p]]
+
+[[bio-p]]Ester honed her skills while working on residential projects at a well-known studio in Badalona, as well as through collaborations with other designers and independent projects.[[/bio-p]]
+
+[[bio-p]]She is driven by the belief that interior design is a means for communication and expression. Her creative character combined with her previous scientific education make the perfect mix to develop conceptual spaces, focusing on environments where life unfolds—spaces for connection, music, art, and gastronomy.[[/bio-p]]
+
+[[/about-bio]]
+
+[[awards-section title="Awards"]]
+
+[[award year="2021" project="Water: A Reality Check" award="1st Prize Argó Awards" link="https://www.uab.cat/web/sala-de-prensa/detalle-noticia/la-uab-entrega-los-premios-argo-a-proyectos-de-alumnos-de-cfgs-1345667994339.html?noticiaid=1345847780268"]]
+
+[[award year="2021" project="Water: A Reality Check" award="Finalist in 23rd CoDIC Award" link="https://www.codic.org/entrega-dels-23ns-premis-codic/"]]
+
+[[award year="2021" project="Water: A Reality Check" award="Honor Mention issued by Generalitat de Catalunya" link="https://educacio.gencat.cat/ca/departament/premis-extraordinaris/ensenyaments-artistics-professionals/guardonats-2020-2021/index.html"]]
+
+[[/awards-section]]
+
+[[about-mission title="Mission" p1="Our mission as a study is to create experiences that captures core brand values and endure over time." p2="A well-thought-out design improves quality of life by providing workflow, functionality, and comfort in a space. No less importantly, there is an emotional component to design, rooted in our collective perception of things as a society and our own individual experiences. Playing with all these aspects can foster a sense of belonging for your audience, as design acts as a form of communication and expression." quote="We view each space as a stage for immersive brand storytelling, deepening audience connection and elevating engagement."]]
+
+[[about-banner src="/images/about/senshac-about-our-mission.webp"]]

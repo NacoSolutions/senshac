@@ -1,0 +1,89 @@
+---
+// src/pages/[lang]/contact.astro
+import Base from '../../layouts/Base.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+const { lang } = Astro.params;
+
+const translations = {
+  es: {
+    title: 'Contacto - Sens*Hac',
+    description: 'Contacta con Sens*Hac para tu proyecto de diseño de interiores. Especializados en espacios comerciales, gastronómicos y de entretenimiento.',
+    heading: 'CONTACTO',
+    subheading: 'HABLEMOS.',
+  },
+  ca: {
+    title: 'Contacte - Sens*Hac',
+    description: 'Contacta amb Sens*Hac per al teu projecte de disseny d\'interiors. Especialitzats en espais comercials, gastronòmics i d\'entreteniment.',
+    heading: 'CONTACTE',
+    subheading: 'PARLEM.',
+  },
+  en: {
+    title: 'Contact - Sens*Hac',
+    description: 'Contact Sens*Hac for your interior design project. Specialized in commercial, gastronomy, and entertainment spaces.',
+    heading: 'CONTACT',
+    subheading: 'LET\'S TALK.',
+  },
+};
+
+const t = translations[lang as keyof typeof translations] || translations.es;
+---
+
+<Base title={t.title} description={t.description} lang={lang}>
+  <main class="min-h-screen">
+    <!-- Hero Banner -->
+    <section class="relative w-full">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="relative aspect-[16/7] overflow-hidden">
+          <img
+            src="/images/contact/senshac-contact-banner.webp"
+            alt=""
+            class="w-full h-full object-cover"
+            loading="eager"
+          />
+          <!-- White symbol overlay -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img
+              src="/images/brand/simbol-senshac-white.webp"
+              alt=""
+              class="w-24 md:w-32 h-auto"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-16">
+          <!-- Contact Info -->
+          <div>
+            <h1 class="text-sm uppercase tracking-wider text-gray-500 mb-6">{t.heading}</h1>
+            <p class="text-4xl md:text-5xl font-bold mb-8">{t.subheading}</p>
+
+            <div class="space-y-2 mb-8">
+              <a
+                href="mailto:ester@senshac.com"
+                class="block text-lg hover:text-gray-600 transition-colors"
+              >
+                ester@senshac.com
+              </a>
+              <a
+                href="tel:+34661661426"
+                class="block text-lg hover:text-gray-600 transition-colors"
+              >
+                +34 661 661 426
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div>
+            <ContactForm lang={lang} />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

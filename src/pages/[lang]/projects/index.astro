@@ -1,0 +1,106 @@
+---
+// src/pages/[lang]/projects/index.astro
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const { lang } = Astro.params;
+
+const projects = await getCollection('projects', ({ id, data }) => {
+  return id.startsWith(`${lang}/`) && !data.draft;
+});
+
+// Sort projects by date (newest first)
+projects.sort((a, b) => {
+  const dateA = a.data.completedDate || a.data.publishDate;
+  const dateB = b.data.completedDate || b.data.publishDate;
+  return new Date(dateB).getTime() - new Date(dateA).getTime();
+});
+
+const translations = {
+  es: {
+    title: 'Proyectos - Sens*Hac',
+    description: 'Explora nuestros proyectos de diseño de interiores.',
+    heading: 'Projects',
+  },
+  ca: {
+    title: 'Projectes - Sens*Hac',
+    description: 'Explora els nostres projectes de disseny d\'interiors.',
+    heading: 'Projects',
+  },
+  en: {
+    title: 'Projects - Sens*Hac',
+    description: 'Explore our interior design projects.',
+    heading: 'Projects',
+  },
+};
+
+const t = translations[lang as keyof typeof translations];
+---
+
+<Base title={t.title} description={t.description} lang={lang}>
+  <main class="min-h-screen">
+    <!-- Header Section -->
+    <section class="bg-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-8">
+        <div class="h-[90px]"></div>
+
+        <!-- Title with border bottom -->
+        <div class="border-b border-black pb-8">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-light">{t.heading}</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects List - Full width rows -->
+    <section class="bg-white">
+      <div class="projects-wrapper">
+        {projects.map((project) => {
+          const slug = project.id.replace(`${lang}/`, '');
+          return (
+            <a href={`/${lang}/projects/${slug}`} class="block group">
+              <article class="project-row grid grid-cols-1 md:grid-cols-2 border-b border-gray-200">
+                <!-- Project Image -->
+                <div class="project-image aspect-[4/3] md:aspect-auto overflow-hidden">
+                  <img
+                    src={project.data.coverImage}
+                    alt={project.data.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+
+                <!-- Project Content -->
+                <div class="project-content flex flex-col justify-center p-8 md:p-12 lg:p-16">
+                  {project.data.tags && project.data.tags.length > 0 && (
+                    <div class="project-tags flex flex-wrap gap-2 mb-4">
+                      {project.data.tags.map((tag: string) => (
+                        <span class="text-xs uppercase tracking-wider text-gray-500">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+                  <h2 class="project-title text-2xl md:text-3xl lg:text-4xl font-light group-hover:text-gray-600 transition-colors">
+                    {project.data.title}
+                  </h2>
+                </div>
+              </article>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .projects-wrapper {
+    width: 100%;
+  }
+
+  .project-row:nth-child(even) {
+    direction: rtl;
+  }
+
+  .project-row:nth-child(even) > * {
+    direction: ltr;
+  }
+</style>

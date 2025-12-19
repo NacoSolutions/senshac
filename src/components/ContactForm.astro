@@ -1,0 +1,213 @@
+---
+// src/components/ContactForm.astro
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const translations = {
+  es: {
+    name: 'Nombre',
+    company: 'Empresa',
+    email: 'Email',
+    phone: 'Teléfono',
+    projectType: 'Naturaleza del proyecto',
+    projectTypes: {
+      commercial: 'Comercial',
+      restaurant: 'Bar o Restaurante',
+      entertainment: 'Entretenimiento o locales de fiesta',
+      other: 'Otros',
+    },
+    serviceType: '¿Qué tipo de servicios buscas?',
+    serviceTypes: {
+      full: 'Paquete completo: servicios de diseño y ejecución',
+      concept: 'Concepto de negocio y desarrollo de diseño',
+      unsure: 'Aún no estoy seguro',
+    },
+    message: 'Cuéntanos más',
+    privacy: 'Acepto la política de privacidad.',
+    submit: 'enviar mensaje',
+    sending: 'Enviando...',
+    success: '¡Mensaje enviado! Te contactaremos pronto.',
+    error: 'Error al enviar. Por favor, inténtalo de nuevo.',
+  },
+  ca: {
+    name: 'Nom',
+    company: 'Empresa',
+    email: 'Email',
+    phone: 'Telèfon',
+    projectType: 'Naturalesa del projecte',
+    projectTypes: {
+      commercial: 'Comercial',
+      restaurant: 'Bar o Restaurant',
+      entertainment: 'Entreteniment o locals de festa',
+      other: 'Altres',
+    },
+    serviceType: 'Quin tipus de serveis busques?',
+    serviceTypes: {
+      full: 'Paquet complet: serveis de disseny i execució',
+      concept: 'Concepte de negoci i desenvolupament de disseny',
+      unsure: 'Encara no estic segur',
+    },
+    message: 'Explica\'ns més',
+    privacy: 'Accepto la política de privacitat.',
+    submit: 'enviar missatge',
+    sending: 'Enviant...',
+    success: 'Missatge enviat! Et contactarem aviat.',
+    error: 'Error en enviar. Si us plau, torna-ho a provar.',
+  },
+  en: {
+    name: 'Name',
+    company: 'Company',
+    email: 'Email',
+    phone: 'Phone number',
+    projectType: 'Nature of the project',
+    projectTypes: {
+      commercial: 'Commercial',
+      restaurant: 'Bar or Restaurant',
+      entertainment: 'Entertainment or party venues',
+      other: 'Others',
+    },
+    serviceType: 'What type of services are you looking for?',
+    serviceTypes: {
+      full: 'Full-package: design and execution services',
+      concept: 'Business concept and design development',
+      unsure: 'Not sure yet',
+    },
+    message: 'Tell us more',
+    privacy: 'I agree with the privacy policy.',
+    submit: 'send message',
+    sending: 'Sending...',
+    success: 'Message sent! We will contact you soon.',
+    error: 'Error sending. Please try again.',
+  },
+};
+
+const t = translations[lang as keyof typeof translations] || translations.es;
+---
+
+<form
+  class="space-y-6"
+  hx-post={`/${lang}/api/contact`}
+  hx-swap="outerHTML"
+  hx-indicator="#form-indicator"
+>
+  <!-- Name + Company row -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <input
+        type="text"
+        name="name"
+        placeholder={`${t.name}*`}
+        required
+        class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
+      />
+    </div>
+    <div>
+      <input
+        type="text"
+        name="company"
+        placeholder={t.company}
+        class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
+      />
+    </div>
+  </div>
+
+  <!-- Email + Phone row -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <input
+        type="email"
+        name="email"
+        placeholder={`${t.email}*`}
+        required
+        class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
+      />
+    </div>
+    <div>
+      <input
+        type="tel"
+        name="phone"
+        placeholder={t.phone}
+        class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
+      />
+    </div>
+  </div>
+
+  <!-- Project Type -->
+  <div>
+    <select
+      name="projectType"
+      required
+      class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
+    >
+      <option value="">{t.projectType}*</option>
+      <option value="commercial">{t.projectTypes.commercial}</option>
+      <option value="restaurant">{t.projectTypes.restaurant}</option>
+      <option value="entertainment">{t.projectTypes.entertainment}</option>
+      <option value="other">{t.projectTypes.other}</option>
+    </select>
+  </div>
+
+  <!-- Service Type -->
+  <div>
+    <select
+      name="serviceType"
+      required
+      class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
+    >
+      <option value="">{t.serviceType}*</option>
+      <option value="full">{t.serviceTypes.full}</option>
+      <option value="concept">{t.serviceTypes.concept}</option>
+      <option value="unsure">{t.serviceTypes.unsure}</option>
+    </select>
+  </div>
+
+  <!-- Message -->
+  <div>
+    <textarea
+      name="message"
+      rows="4"
+      placeholder={t.message}
+      class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent resize-none"
+    ></textarea>
+  </div>
+
+  <!-- Privacy -->
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      name="privacy"
+      id="privacy"
+      required
+      class="mt-1 w-4 h-4 border-gray-300 rounded focus:ring-black"
+    />
+    <label for="privacy" class="text-sm text-gray-600">
+      {t.privacy}
+    </label>
+  </div>
+
+  <!-- Submit -->
+  <div>
+    <button
+      type="submit"
+      class="px-8 py-4 bg-black text-white tracking-wider text-sm hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      <span class="htmx-indicator-hide">{t.submit}</span>
+      <span id="form-indicator" class="htmx-indicator">{t.sending}</span>
+    </button>
+  </div>
+</form>
+
+<style>
+  .htmx-indicator {
+    display: none;
+  }
+  .htmx-request .htmx-indicator {
+    display: inline;
+  }
+  .htmx-request .htmx-indicator-hide {
+    display: none;
+  }
+</style>

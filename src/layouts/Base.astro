@@ -1,0 +1,370 @@
+---
+// src/layouts/Base.astro
+import 'virtual:uno.css';
+import HeadSEO from '../components/HeadSEO.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  lang?: string;
+  schema?: 'LocalBusiness' | 'Article' | 'BreadcrumbList';
+  publishDate?: Date;
+  breadcrumbs?: { name: string; url: string }[];
+  headerStyle?: 'default' | 'transparent';
+}
+
+const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs, headerStyle = 'default' } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <HeadSEO
+      title={title}
+      description={description}
+      image={image}
+      schema={schema}
+      publishDate={publishDate}
+      breadcrumbs={breadcrumbs}
+      lang={lang}
+    />
+
+    <!-- Preload custom fonts -->
+    <link rel="preload" href="/fonts/jozsika-light.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/sinteca-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/sinteca-medium.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/sinteca-semibold.woff2" as="font" type="font/woff2" crossorigin />
+
+    <slot name="head" />
+  </head>
+  <body class:list={["font-sans antialiased", headerStyle === 'default' && "pt-20"]}>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2">
+      Skip to content
+    </a>
+    <Navigation lang={lang} headerStyle={headerStyle} />
+
+    <slot />
+
+    <Footer lang={lang} />
+
+    <CookieConsent lang={lang} />
+
+    <!-- Custom cursor circle -->
+    <div id="cursor-circle"></div>
+
+    <!-- Alpine.js -->
+    <script>
+      import Alpine from 'alpinejs';
+      import collapse from '@alpinejs/collapse';
+      Alpine.plugin(collapse);
+      window.Alpine = Alpine;
+      Alpine.start();
+    </script>
+
+    <!-- HTMX -->
+    <script>
+      import htmx from 'htmx.org';
+      window.htmx = htmx;
+    </script>
+
+    <!-- Hyperscript -->
+    <script>
+      import _hyperscript from 'hyperscript.org';
+      _hyperscript.browserInit();
+    </script>
+
+    <!-- Custom cursor effect - matches WordPress theme -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const circle = document.getElementById('cursor-circle');
+        if (!circle) return;
+
+        let mouseX = 0, mouseY = 0;
+        let circleX = 0, circleY = 0;
+        let scale = 1;
+
+        // Add hoverable effect to elements
+        document.querySelectorAll('a, button, .hoverable').forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            scale = 2;
+            circle.style.opacity = '1';
+          });
+          el.addEventListener('mouseleave', () => {
+            scale = 1;
+          });
+        });
+
+        // Show cursor when entering document
+        document.addEventListener('mouseenter', () => {
+          circle.style.opacity = '1';
+        });
+
+        // Hide cursor when leaving document
+        document.addEventListener('mouseleave', () => {
+          circle.style.opacity = '0';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        // Smooth animation loop
+        function animate() {
+          circleX += (mouseX - circleX) * 0.15;
+          circleY += (mouseY - circleY) * 0.15;
+          circle.style.left = circleX + 'px';
+          circle.style.top = circleY + 'px';
+          circle.style.transform = `translate(-50%, -50%) scale(${scale})`;
+          requestAnimationFrame(animate);
+        }
+        animate();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Custom fonts */
+  @font-face {
+    font-family: 'Jozsika';
+    src: url('/fonts/jozsika-light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Sinteca';
+    src: url('/fonts/sinteca-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Sinteca';
+    src: url('/fonts/sinteca-medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Sinteca';
+    src: url('/fonts/sinteca-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Apply fonts */
+  body {
+    font-family: 'Sinteca', system-ui, sans-serif;
+  }
+
+  .font-display,
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jozsika', serif;
+    font-weight: 300;
+  }
+
+  /* Custom cursor circle - solid fill */
+  #cursor-circle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: #f7f8fa;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    mix-blend-mode: difference;
+  }
+
+  /* Hide cursor circle on touch devices */
+  @media (hover: none) {
+    #cursor-circle {
+      display: none;
+    }
+  }
+
+  /* Form elements - match WordPress theme */
+  input[type=text],
+  input[type=email],
+  input[type=tel],
+  input[type=number],
+  input[type=password],
+  input[type=search],
+  input[type=url],
+  input[type=date],
+  select,
+  textarea {
+    border: none;
+    border-bottom: solid 1px #000;
+    box-shadow: none;
+    background: transparent;
+    font-family: 'Sinteca', system-ui, sans-serif;
+    font-size: 1.25rem;
+  }
+
+  input[type=text]:focus,
+  input[type=email]:focus,
+  input[type=tel]:focus,
+  input[type=number]:focus,
+  input[type=password]:focus,
+  input[type=search]:focus,
+  input[type=url]:focus,
+  input[type=date]:focus,
+  select:focus,
+  textarea:focus {
+    border: none;
+    border-bottom: solid 1px #000;
+    box-shadow: none;
+    outline: none;
+  }
+
+  select {
+    color: #000;
+  }
+
+  /* Circular checkboxes and radios */
+  input[type=checkbox],
+  input[type=radio] {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    vertical-align: text-top;
+    border: 1px solid #000;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type=checkbox]:checked,
+  input[type=radio]:checked {
+    background-color: #000;
+  }
+
+  /* Placeholder color */
+  ::placeholder {
+    color: #000;
+    opacity: 0.5;
+  }
+
+  /* Submit button */
+  input[type=submit],
+  button[type=submit] {
+    font-family: 'Jozsika', serif;
+    text-transform: lowercase;
+    font-size: 1.125rem;
+    font-weight: 300;
+    border-radius: 60px;
+  }
+
+  /* Strong/bold text */
+  b, strong {
+    font-weight: 600;
+  }
+
+  /* Custom utility classes matching WordPress theme */
+  .jozsika-font {
+    font-family: 'Jozsika', serif;
+  }
+
+  .sinteca-big-title {
+    font-family: 'Sinteca', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 5rem;
+    margin-bottom: 0;
+  }
+
+  .sinteca-medium-title {
+    font-family: 'Sinteca', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 3.25rem;
+    text-transform: uppercase;
+  }
+
+  .sinteca-small-title {
+    font-family: 'Sinteca', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 2.25rem;
+    text-transform: uppercase;
+  }
+
+  .sinteca-small-text {
+    font-family: 'Sinteca', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+  }
+
+  /* Page link with arrow */
+  .page-link {
+    font-family: 'Jozsika', serif;
+    font-size: 1.125rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .page-link::after {
+    content: "";
+    background: url(/images/icons/up-right-arrow.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* Footer page link with arrow (white) */
+  .footer-page-link {
+    font-family: 'Jozsika', serif;
+    font-size: 1.125rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .footer-page-link::after {
+    content: "";
+    background: url(/images/icons/up-right-arrow.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    filter: invert(1);
+  }
+
+  /* Mobile adjustments */
+  @media only screen and (max-width: 48em) {
+    body {
+      font-size: 1rem;
+    }
+
+    .sinteca-medium-title {
+      font-size: 2.25rem;
+    }
+
+    .sinteca-big-title {
+      font-size: 3.75rem;
+      line-height: 1;
+    }
+  }
+</style>

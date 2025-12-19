@@ -1,0 +1,9 @@
+---
+title: "Sens*Hac - Estudi de Disseny d'Interiors"
+description: "Dissenyem espais de marca que inspiren i connecten. Especialitzats en espais comercials, gastronòmics i d'entreteniment."
+headerStyle: "transparent"
+---
+
+[[hero-home image="/images/home/hero.webp" topRight="interior design studio" bottomLeft="Comunica. Captiva. Connecta." bottomLeftSub="(Eleva la teva marca)"]]
+
+[[about-home image="/images/home/about.webp" title="DISSENYEM ESPAIS DE MARCA QUE INSPIREN I CONNECTEN" description="Creem interiors impactants i funcionals que milloren el flux de treball i augmenten la rendibilitat en sectors comercials, gastronòmics i d'entreteniment." cta="coneix-nos" ctaLink="/ca/about"]]

@@ -1,0 +1,65 @@
+fragment Projects_esParts on Projects_es {
+  __typename
+  title
+  description
+  publishDate
+  completedDate
+  tags
+  coverImage
+  featured
+  draft
+  body
+}
+
+fragment Projects_caParts on Projects_ca {
+  __typename
+  title
+  description
+  publishDate
+  completedDate
+  tags
+  coverImage
+  featured
+  draft
+  body
+}
+
+fragment Projects_enParts on Projects_en {
+  __typename
+  title
+  description
+  publishDate
+  completedDate
+  tags
+  coverImage
+  featured
+  draft
+  body
+}
+
+fragment Pages_esParts on Pages_es {
+  __typename
+  title
+  description
+  heroImage
+  headerStyle
+  body
+}
+
+fragment Pages_caParts on Pages_ca {
+  __typename
+  title
+  description
+  heroImage
+  headerStyle
+  body
+}
+
+fragment Pages_enParts on Pages_en {
+  __typename
+  title
+  description
+  heroImage
+  headerStyle
+  body
+}

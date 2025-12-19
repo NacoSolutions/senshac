@@ -1,0 +1,11 @@
+# License
+
+Copyright (c) 2025. All Rights Reserved.
+
+This software and associated documentation files (the "Software") are proprietary and confidential.
+
+No part of this Software may be reproduced, distributed, transmitted, displayed, published, or broadcast in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the copyright holder.
+
+Unauthorized copying, modification, distribution, or use of this Software, via any medium, is strictly prohibited.
+
+For licensing inquiries, contact the copyright holder.

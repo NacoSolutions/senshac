@@ -1,0 +1,45 @@
+{
+  "name": "senshac",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "dev:cms": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@alpinejs/collapse": "^3.15.3",
+    "@astrojs/cloudflare": "^12.6.12",
+    "@unocss/astro": "^66.5.10",
+    "@unocss/preset-icons": "^66.5.10",
+    "@unocss/preset-uno": "^66.5.10",
+    "@unocss/reset": "^66.5.10",
+    "@unocss/transformer-directives": "^66.5.10",
+    "alpinejs": "^3.15.3",
+    "astro": "^5.16.6",
+    "hastscript": "^9.0.1",
+    "htmx.org": "^2.0.8",
+    "hyperscript.org": "^0.9.14",
+    "remark-directive": "^4.0.0",
+    "sharp": "^0.34.5",
+    "unist-util-visit": "^5.0.0",
+    "unocss": "^66.5.10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@tinacms/cli": "^2.0.5",
+    "@types/alpinejs": "^3.13.11",
+    "tinacms": "^3.1.2",
+    "typescript": "^5.9.3"
+  }
+}
