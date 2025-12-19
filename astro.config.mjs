@@ -12,6 +12,7 @@ export default defineConfig({
   output: 'server',
   adapter: cloudflare({
     imageService: 'compile',
+    sessionKVBindingName: false,
   }),
   image: {
     service: {
