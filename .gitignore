@@ -1,4 +1,5 @@
 .reference/
+.direnv/
 # build output
 dist/
 # generated types

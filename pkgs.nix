@@ -11,7 +11,6 @@
     nixfmt-rfc-style
     fd
     ripgrep
-    wrangler
   ];
 
   scripts = {

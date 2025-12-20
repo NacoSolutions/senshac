@@ -64,9 +64,7 @@ None.
 
 ## Known Issues
 
-- Decap CMS media library doesn't browse existing images (must type paths or upload new)
-- HTMX eval warning during build (from htmx.esm.js) - harmless
-- UnoCSS multiple import warning - cosmetic only
+- TinaCMS replaced Decap CMS for local development
 
 ## Notes
 

@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "dev:cms": "tinacms dev -c \"astro dev\"",
     "build": "tinacms build && astro build",
+    "deploy": "wrangler pages deploy dist --project-name senshac",
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro"

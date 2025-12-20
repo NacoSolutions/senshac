@@ -27,4 +27,18 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+  vite: {
+    ssr: {
+      external: ['node:crypto', 'node:path'],
+    },
+    build: {
+      rollupOptions: {
+        // Suppress HTMX eval warning - it's used safely for hx-on:* event handlers
+        onwarn(warning, warn) {
+          if (warning.code === 'EVAL' && warning.id?.includes('htmx')) return;
+          warn(warning);
+        },
+      },
+    },
+  },
 });
