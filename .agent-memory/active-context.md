@@ -8,10 +8,13 @@ permalink: active-context
 
 ## Current Focus
 
-TinaCMS local backend replaces Decap CMS for development. SEO endpoints (robots.txt, sitemap.xml, llms.txt) implemented. Shortcode-based content architecture with remark plugin.
+Cloudflare Workers 1101 error fixed. Contact form API endpoint complete. Ready for deployment.
 
 ## Recent Changes
 
+- [2025-12-20] Created contact form API endpoint with Resend integration
+- [2025-12-20] Fixed Cloudflare Workers 1101 error: replaced node:crypto/path with edge-compatible DJB2 hash
+- [2025-12-20] Fixed build warnings: UnoCSS fontSize format, multiple import, HTMX eval suppression
 - [2025-12-19] Refactored dev/cms scripts: positional args, fixed process detection, added restart/log actions
 - [2025-12-19] Integrated scripts into shell.nix via commands pattern (like nix-repos)
 - [2025-12-19] Replaced Decap CMS with TinaCMS for local development (tina/config.ts)

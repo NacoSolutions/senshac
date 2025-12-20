@@ -28,9 +28,6 @@ export default defineConfig({
     },
   },
   vite: {
-    ssr: {
-      external: ['node:crypto', 'node:path'],
-    },
     build: {
       rollupOptions: {
         // Suppress HTMX eval warning - it's used safely for hx-on:* event handlers

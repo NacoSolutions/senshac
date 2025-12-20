@@ -3,14 +3,24 @@ import type { AstroIntegration } from 'astro';
 import sharp from 'sharp';
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 
 const WIDTHS = [400, 800, 1200];
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
 
+/**
+ * DJB2 hash - must match syncHash in src/utils/shortcodes.ts
+ */
+function djb2Hash(str: string): string {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+  }
+  return Math.abs(hash).toString(16).slice(0, 8);
+}
+
 async function optimizeImage(inputPath: string, outputDir: string, widths: number[]): Promise<void> {
   const src = inputPath.replace(path.join(process.cwd(), 'public'), '');
-  const hash = crypto.createHash('md5').update(src).digest('hex').slice(0, 8);
+  const hash = djb2Hash(src);
   const baseName = path.basename(src, path.extname(src));
 
   for (const w of widths) {

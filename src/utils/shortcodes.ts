@@ -1,9 +1,51 @@
 // src/utils/shortcodes.ts
 // Runtime shortcode processor for Astro Content Layer
 // Remark plugins don't run with glob loader, so we process at render time
+// Note: Uses Web Crypto API for Cloudflare Workers compatibility
 
-import { createHash } from 'node:crypto';
-import { basename, extname } from 'node:path';
+/**
+ * Simple hash function using Web Crypto API (edge-compatible)
+ * Falls back to a simple string hash if crypto is unavailable
+ */
+async function simpleHash(str: string): Promise<string> {
+  if (typeof crypto !== 'undefined' && crypto.subtle) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 8);
+  }
+  // Fallback: simple string hash
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash).toString(16).slice(0, 8);
+}
+
+/**
+ * Synchronous hash for use in shortcode handlers
+ * Uses a simple but consistent hashing algorithm
+ */
+function syncHash(str: string): string {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+  }
+  return Math.abs(hash).toString(16).slice(0, 8);
+}
+
+/**
+ * Extract basename from path (edge-compatible)
+ */
+function getBasename(path: string): string {
+  const parts = path.split('/');
+  const filename = parts[parts.length - 1] || '';
+  const dotIndex = filename.lastIndexOf('.');
+  return dotIndex > 0 ? filename.slice(0, dotIndex) : filename;
+}
 
 /**
  * Generate optimized image HTML with srcset
@@ -13,8 +55,8 @@ function optimizedImg(src: string, alt = '', className = '', loading = 'lazy', w
     return `<img src="" alt="${alt}" class="${className}" loading="${loading}" decoding="async" />`;
   }
 
-  const hash = createHash('md5').update(src).digest('hex').slice(0, 8);
-  const baseName = basename(src, extname(src));
+  const hash = syncHash(src);
+  const baseName = getBasename(src);
 
   const sources = widths.map(w => ({
     width: w,

@@ -46,11 +46,12 @@ permalink: progress
 - [x] Create remark-shortcodes plugin
 - [x] Add SEO endpoints (robots.txt, sitemap.xml, llms.txt)
 - [x] Configure Decap CMS with local backend
+- [x] Create API endpoint for contact form (Resend integration)
+- [x] Fix Cloudflare Workers 1101 error (edge-compatible hashing)
 
 ### In Progress
 
-- [ ] Create API endpoint for contact form
-- [ ] Add more projects from WordPress reference
+- [ ] Deploy to Cloudflare Pages (redeploy after 1101 fix)
 
 ### Pending
 

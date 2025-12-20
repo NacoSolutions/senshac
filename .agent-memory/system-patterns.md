@@ -206,3 +206,42 @@ Reusable image carousel with Alpine.js:
 - Purpose: Browser automation, debugging, performance analysis
 - Added via: `claude mcp add chrome-devtools`
 
+
+
+## Build Configuration
+
+### UnoCSS fontSize Format
+Use tuple format for custom font sizes:
+```typescript
+fontSize: {
+  'xs': ['0.875rem', 'normal'],  // [size, lineHeight]
+  'xl': ['2rem', '1'],
+}
+```
+Object format `{ lineHeight: '...' }` causes esbuild minification warnings.
+
+### Vite SSR Externals
+Node built-in modules used in SSR utils must be externalized:
+```javascript
+vite: {
+  ssr: {
+    external: ['node:crypto', 'node:path'],
+  },
+}
+```
+
+### Suppressing Library Warnings
+HTMX uses eval for `hx-on:*` handlers (safe, by design). Suppress via Rollup:
+```javascript
+build: {
+  rollupOptions: {
+    onwarn(warning, warn) {
+      if (warning.code === 'EVAL' && warning.id?.includes('htmx')) return;
+      warn(warning);
+    },
+  },
+}
+```
+
+### UnoCSS Auto-Injection
+With `@unocss/astro` integration using `injectReset: true`, do not manually import `virtual:uno.css` - causes duplicate import warnings.
