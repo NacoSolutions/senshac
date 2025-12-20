@@ -1,19 +1,17 @@
 ---
 // src/pages/[lang]/legal-notice.astro
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-import { processContent } from '../../utils/shortcodes';
+import { getEntry } from 'astro:content';
 
 const { lang } = Astro.params;
 
-const pages = await getCollection('pages');
-const page = pages.find(p => p.id === `${lang}/legal-notice`);
+const page = await getEntry('pages', `${lang}/legal-notice`);
 
 if (!page) {
   return Astro.redirect('/404');
 }
 
-const html = processContent(page.body || '');
+const { Content } = await page.render();
 ---
 
 <Base title={page.data.title} description={page.data.description} lang={lang}>
@@ -21,7 +19,7 @@ const html = processContent(page.body || '');
     <section class="py-16 md:py-24">
       <div class="max-w-4xl mx-auto px-4">
         <article class="prose prose-lg max-w-none prose-headings:font-display prose-h1:text-4xl prose-h1:mb-8 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-8 prose-p:text-gray-600 prose-ul:text-gray-600 prose-li:marker:text-gray-400">
-          <Fragment set:html={html} />
+          <Content />
         </article>
       </div>
     </section>

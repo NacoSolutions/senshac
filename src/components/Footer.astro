@@ -1,45 +1,21 @@
 ---
 // src/components/Footer.astro
+import { getTranslations, type Translations } from '../utils/translations';
+
 interface Props {
   lang: string;
+  translations?: Translations;
 }
 
-const { lang } = Astro.props;
+const { lang, translations: propTranslations } = Astro.props;
 
-const translations = {
-  es: {
-    about: 'Nosotros',
-    projects: 'Proyectos',
-    services: 'Servicios',
-    contact: 'Contacto',
-    privacy: 'Política de Privacidad y Cookies',
-    legal: 'Aviso Legal',
-  },
-  ca: {
-    about: 'Sobre',
-    projects: 'Projectes',
-    services: 'Serveis',
-    contact: 'Contacte',
-    privacy: 'Política de Privacitat i Cookies',
-    legal: 'Avís Legal',
-  },
-  en: {
-    about: 'About',
-    projects: 'Projects',
-    services: 'Services',
-    contact: 'Contact',
-    privacy: 'Privacy and Cookies Policy',
-    legal: 'Legal Notice',
-  },
-};
-
-const t = translations[lang as keyof typeof translations] || translations.es;
+const t = propTranslations ?? await getTranslations(lang);
 
 const navLinks = [
-  { href: `/${lang}/about`, label: t.about, align: 'left' },
-  { href: `/${lang}/projects`, label: t.projects, align: 'center' },
-  { href: `/${lang}/services`, label: t.services, align: 'center' },
-  { href: `/${lang}/contact`, label: t.contact, align: 'right' },
+  { href: `/${lang}/about`, label: t.nav.about, align: 'left' },
+  { href: `/${lang}/projects`, label: t.nav.projects, align: 'center' },
+  { href: `/${lang}/services`, label: t.nav.services, align: 'center' },
+  { href: `/${lang}/contact`, label: t.nav.contact, align: 'right' },
 ];
 ---
 
@@ -154,13 +130,13 @@ const navLinks = [
           href={`/${lang}/privacy-policy`}
           class="block text-xs text-gray-500 hover:text-gray-300 transition-colors"
         >
-          {t.privacy}
+          {t.footer.privacy}
         </a>
         <a
           href={`/${lang}/legal-notice`}
           class="block text-xs text-gray-500 hover:text-gray-300 transition-colors"
         >
-          {t.legal}
+          {t.footer.legal}
         </a>
       </div>
     </div>

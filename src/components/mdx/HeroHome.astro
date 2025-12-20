@@ -1,0 +1,40 @@
+---
+// src/components/mdx/HeroHome.astro
+interface Props {
+  image: string;
+  topRight?: string;
+  bottomLeft?: string;
+  bottomLeftSub?: string;
+}
+
+const { image, topRight, bottomLeft, bottomLeftSub } = Astro.props;
+---
+
+<section class="relative h-screen w-full overflow-hidden">
+  <img
+    src={image}
+    alt=""
+    class="absolute inset-0 w-full h-full object-cover"
+    loading="eager"
+  />
+  <div class="absolute inset-0 bg-black/20"></div>
+
+  <div class="relative h-full max-w-7xl mx-auto px-4 flex flex-col justify-between py-8">
+    {topRight && (
+      <div class="self-end text-white text-sm tracking-wider uppercase">
+        {topRight}
+      </div>
+    )}
+
+    <div class="text-white">
+      {bottomLeft && (
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-display leading-tight">
+          {bottomLeft}
+        </h1>
+      )}
+      {bottomLeftSub && (
+        <p class="text-xl md:text-2xl mt-4 opacity-80">{bottomLeftSub}</p>
+      )}
+    </div>
+  </div>
+</section>

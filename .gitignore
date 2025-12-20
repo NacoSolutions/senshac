@@ -30,3 +30,4 @@ pnpm-debug.log*
 # optimized images (generated at build)
 public/_optimized/
 
+.bak

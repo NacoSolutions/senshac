@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "social": "social",
+    "menu": "menú",
+    "letsTalk": "LET'S TALK",
+    "about": "Sobre",
+    "projects": "Projectes",
+    "services": "Serveis",
+    "contact": "Contacte"
+  },
+  "footer": {
+    "privacy": "Política de Privacitat i Cookies",
+    "legal": "Avís Legal"
+  },
+  "contact": {
+    "title": "Contacte - Sens*Hac",
+    "description": "Contacta amb nosaltres per parlar del teu projecte de disseny d'interiors.",
+    "heading": "CONTACTE",
+    "subheading": "PARLEM."
+  },
+  "contactForm": {
+    "name": "Nom",
+    "company": "Empresa",
+    "email": "Email",
+    "phone": "Telèfon",
+    "projectType": "Quin tipus de projecte tens en ment?",
+    "projectTypes": {
+      "commercial": "Comercial/Retail",
+      "restaurant": "Restaurant/Bar",
+      "entertainment": "Entreteniment",
+      "other": "Altre"
+    },
+    "serviceType": "Quin tipus de serveis busques?",
+    "serviceTypes": {
+      "fullPackage": "Paquet complet (Disseny + Execució)",
+      "concept": "Només concepte de disseny",
+      "unsure": "No estic segur/a"
+    },
+    "message": "Explica'ns més sobre el teu projecte",
+    "privacy": "Accepto la política de privacitat",
+    "submit": "Enviar missatge",
+    "sending": "Enviant...",
+    "success": "Missatge enviat! Ens posarem en contacte amb tu aviat.",
+    "error": "Ha ocorregut un error. Si us plau, torna-ho a provar.",
+    "turnstileFailed": "Verificació de seguretat fallida. Si us plau, torna-ho a provar."
+  },
+  "projects": {
+    "title": "Projectes - Sens*Hac",
+    "description": "Explora el nostre portfolio de projectes de disseny d'interiors.",
+    "heading": "Projectes"
+  },
+  "cookies": {
+    "message": "Utilitzem cookies per millorar la teva experiència. En continuar navegant, acceptes la nostra",
+    "moreInfo": "Política de Privacitat",
+    "accept": "Acceptar"
+  },
+  "accessibility": {
+    "skipToContent": "Anar al contingut",
+    "selectLanguage": "Seleccionar idioma",
+    "toggleMenu": "Obrir menú",
+    "closeMenu": "Tancar menú",
+    "previousSlide": "Diapositiva anterior",
+    "nextSlide": "Següent diapositiva",
+    "goToSlide": "Anar a diapositiva"
+  }
+}

@@ -1,0 +1,29 @@
+---
+// src/components/mdx/AboutBio.astro
+interface Props {
+  title?: string;
+  image?: string;
+  paragraphs?: string[];
+}
+
+const { title, image, paragraphs = [] } = Astro.props;
+---
+
+<section class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+      {image && (
+        <div class="aspect-3/4 overflow-hidden">
+          <img src={image} alt="" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      )}
+
+      <div>
+        {title && <h2 class="text-2xl md:text-3xl font-display mb-8">{title}</h2>}
+        <div class="space-y-6 text-gray-600">
+          {paragraphs.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

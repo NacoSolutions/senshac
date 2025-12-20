@@ -1,24 +1,22 @@
 ---
 // src/pages/[lang]/projects/[slug].astro
 import Base from '../../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-import { processContent } from '../../../utils/shortcodes';
+import { getEntry } from 'astro:content';
 
 const { lang, slug } = Astro.params;
 
-const projects = await getCollection('projects');
-const project = projects.find(p => p.id === `${lang}/${slug}`);
+const project = await getEntry('projects', `${lang}/${slug}`);
 
 if (!project) {
   return Astro.redirect('/404');
 }
 
 const { data } = project;
-const html = processContent(project.body || '');
+const { Content } = await project.render();
 ---
 
 <Base title={data.title} description={data.description} lang={lang} headerStyle="transparent">
   <main class="min-h-screen">
-    <Fragment set:html={html} />
+    <Content />
   </main>
 </Base>

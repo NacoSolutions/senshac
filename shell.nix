@@ -21,10 +21,11 @@ in
       Astro + Alpine.js + HTMX + Hyperscript + UnoCSS
 
       Quick Commands:
-        dev [start|stop|status|log]   Astro dev server
-        cms [start|stop|status|log]   TinaCMS + Astro
+        dev [start|stop|restart|status|log]   Astro dev server
+        cms [start|stop|restart|status|log]   TinaCMS + Astro
         build                     Build for production
         preview                   Preview production build
+        wrangler                  Test with Cloudflare emulator
         menu                      Show all commands
 
       Run 'dev --help' or 'cms --help' for options.
@@ -63,6 +64,12 @@ in
         category = "development";
         help = "Preview production build";
         command = "pnpm preview";
+      }
+      {
+        name = "wrangler";
+        category = "development";
+        help = "Test with Cloudflare Pages emulator (build first)";
+        command = "pnpm astro build && pnpm wrangler pages dev ./dist";
       }
       {
         name = "check";

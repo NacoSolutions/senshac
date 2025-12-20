@@ -1,0 +1,19 @@
+---
+// src/components/mdx/YouTube.astro
+interface Props {
+  id: string;
+  aspectRatio?: string;
+}
+
+const { id, aspectRatio = '16/9' } = Astro.props;
+---
+
+<div class={`relative overflow-hidden my-8 aspect-${aspectRatio.replace('/', '-')}`} style={`aspect-ratio: ${aspectRatio}`}>
+  <iframe
+    src={`https://www.youtube.com/embed/${id}`}
+    class="absolute inset-0 w-full h-full"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</div>

@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "social": "social",
+    "menu": "menú",
+    "letsTalk": "LET'S TALK",
+    "about": "Nosotros",
+    "projects": "Proyectos",
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "footer": {
+    "privacy": "Política de Privacidad y Cookies",
+    "legal": "Aviso Legal"
+  },
+  "contact": {
+    "title": "Contacto - Sens*Hac",
+    "description": "Contacta con nosotros para discutir tu proyecto de diseño de interiores.",
+    "heading": "CONTACTO",
+    "subheading": "HABLEMOS."
+  },
+  "contactForm": {
+    "name": "Nombre",
+    "company": "Empresa",
+    "email": "Email",
+    "phone": "Teléfono",
+    "projectType": "¿Qué tipo de proyecto tienes en mente?",
+    "projectTypes": {
+      "commercial": "Comercial/Retail",
+      "restaurant": "Restaurante/Bar",
+      "entertainment": "Entretenimiento",
+      "other": "Otro"
+    },
+    "serviceType": "¿Qué tipo de servicios buscas?",
+    "serviceTypes": {
+      "fullPackage": "Paquete completo (Diseño + Ejecución)",
+      "concept": "Solo concepto de diseño",
+      "unsure": "No estoy seguro/a"
+    },
+    "message": "Cuéntanos más sobre tu proyecto",
+    "privacy": "Acepto la política de privacidad",
+    "submit": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado! Nos pondremos en contacto contigo pronto.",
+    "error": "Ha ocurrido un error. Por favor, inténtalo de nuevo.",
+    "turnstileFailed": "Verificación de seguridad fallida. Por favor, inténtalo de nuevo."
+  },
+  "projects": {
+    "title": "Proyectos - Sens*Hac",
+    "description": "Explora nuestro portfolio de proyectos de diseño de interiores.",
+    "heading": "Proyectos"
+  },
+  "cookies": {
+    "message": "Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra",
+    "moreInfo": "Política de Privacidad",
+    "accept": "Aceptar"
+  },
+  "accessibility": {
+    "skipToContent": "Ir al contenido",
+    "selectLanguage": "Seleccionar idioma",
+    "toggleMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "previousSlide": "Diapositiva anterior",
+    "nextSlide": "Siguiente diapositiva",
+    "goToSlide": "Ir a diapositiva"
+  }
+}

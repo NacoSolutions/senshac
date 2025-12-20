@@ -15,9 +15,13 @@ interface Props {
   publishDate?: Date;
   breadcrumbs?: { name: string; url: string }[];
   headerStyle?: 'default' | 'transparent';
+  preloadImage?: string;
 }
 
-const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs, headerStyle = 'default' } = Astro.props;
+const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs, headerStyle = 'default', preloadImage } = Astro.props;
+
+// Cloudflare Web Analytics token (cookie-free)
+const CF_WEB_ANALYTICS_TOKEN = import.meta.env.PUBLIC_CF_WEB_ANALYTICS_TOKEN;
 ---
 
 <!doctype html>
@@ -41,6 +45,8 @@ const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs
     <link rel="preload" href="/fonts/sinteca-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/sinteca-medium.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/sinteca-semibold.woff2" as="font" type="font/woff2" crossorigin />
+
+    {preloadImage && <link rel="preload" href={preloadImage} as="image" type="image/webp" fetchpriority="high" />}
 
     <slot name="head" />
   </head>
@@ -79,6 +85,15 @@ const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs
       import _hyperscript from 'hyperscript.org';
       _hyperscript.browserInit();
     </script>
+
+    <!-- Cloudflare Web Analytics (cookie-free) -->
+    {CF_WEB_ANALYTICS_TOKEN && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${CF_WEB_ANALYTICS_TOKEN}"}`}
+      />
+    )}
 
     <!-- Custom cursor effect - matches WordPress theme -->
     <script>

@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "social": "social",
+    "menu": "menu",
+    "letsTalk": "LET'S TALK",
+    "about": "About",
+    "projects": "Projects",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "footer": {
+    "privacy": "Privacy and Cookies Policy",
+    "legal": "Legal Notice"
+  },
+  "contact": {
+    "title": "Contact - Sens*Hac",
+    "description": "Get in touch with us to discuss your interior design project.",
+    "heading": "CONTACT",
+    "subheading": "LET'S TALK."
+  },
+  "contactForm": {
+    "name": "Name",
+    "company": "Company",
+    "email": "Email",
+    "phone": "Phone",
+    "projectType": "What type of project do you have in mind?",
+    "projectTypes": {
+      "commercial": "Commercial/Retail",
+      "restaurant": "Restaurant/Bar",
+      "entertainment": "Entertainment",
+      "other": "Other"
+    },
+    "serviceType": "What type of services are you looking for?",
+    "serviceTypes": {
+      "fullPackage": "Full package (Design + Execution)",
+      "concept": "Design concept only",
+      "unsure": "Not sure yet"
+    },
+    "message": "Tell us more about your project",
+    "privacy": "I accept the privacy policy",
+    "submit": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent! We'll get back to you soon.",
+    "error": "An error occurred. Please try again.",
+    "turnstileFailed": "Security verification failed. Please try again."
+  },
+  "projects": {
+    "title": "Projects - Sens*Hac",
+    "description": "Explore our portfolio of interior design projects.",
+    "heading": "Projects"
+  },
+  "cookies": {
+    "message": "We use cookies to improve your experience. By continuing to browse, you accept our",
+    "moreInfo": "Privacy Policy",
+    "accept": "Accept"
+  },
+  "accessibility": {
+    "skipToContent": "Skip to content",
+    "selectLanguage": "Select language",
+    "toggleMenu": "Toggle menu",
+    "closeMenu": "Close menu",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "goToSlide": "Go to slide"
+  }
+}

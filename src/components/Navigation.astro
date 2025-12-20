@@ -1,52 +1,25 @@
 ---
 // src/components/Navigation.astro
+import { getTranslations, type Translations } from '../utils/translations';
+
 interface Props {
   lang: string;
   headerStyle?: 'default' | 'transparent';
+  translations?: Translations;
 }
 
-const { lang, headerStyle = 'default' } = Astro.props;
+const { lang, headerStyle = 'default', translations: propTranslations } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const isTransparent = headerStyle === 'transparent';
 
-const translations = {
-  es: {
-    social: 'social',
-    menu: 'menú',
-    letsTalk: "LET'S TALK",
-    about: 'Nosotros',
-    projects: 'Proyectos',
-    services: 'Servicios',
-    contact: 'Contacto',
-  },
-  ca: {
-    social: 'social',
-    menu: 'menú',
-    letsTalk: "LET'S TALK",
-    about: 'Sobre',
-    projects: 'Projectes',
-    services: 'Serveis',
-    contact: 'Contacte',
-  },
-  en: {
-    social: 'social',
-    menu: 'menu',
-    letsTalk: "LET'S TALK",
-    about: 'About',
-    projects: 'Projects',
-    services: 'Services',
-    contact: 'Contact',
-  },
-};
-
-const t = translations[lang as keyof typeof translations] || translations.es;
+const t = propTranslations ?? await getTranslations(lang);
 
 const navItems = [
-  { href: `/${lang}/about`, label: t.about },
-  { href: `/${lang}/projects`, label: t.projects },
-  { href: `/${lang}/services`, label: t.services },
-  { href: `/${lang}/contact`, label: t.contact },
+  { href: `/${lang}/about`, label: t.nav.about },
+  { href: `/${lang}/projects`, label: t.nav.projects },
+  { href: `/${lang}/services`, label: t.nav.services },
+  { href: `/${lang}/contact`, label: t.nav.contact },
 ];
 
 const socialLinks = [
@@ -206,7 +179,7 @@ const getLocalizedPath = (targetLang: string) => {
         <div class="grid grid-cols-2 gap-8 md:gap-12">
           <!-- Social Column -->
           <div>
-            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6">{t.social}</p>
+            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6">{t.nav.social}</p>
             <div class="space-y-0">
               {socialLinks.map((link) => (
                 <a
@@ -223,7 +196,7 @@ const getLocalizedPath = (targetLang: string) => {
 
           <!-- Menu Column -->
           <div>
-            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6">{t.menu}</p>
+            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6">{t.nav.menu}</p>
             <div class="space-y-0">
               {navItems.map((item) => (
                 <a
@@ -252,7 +225,7 @@ const getLocalizedPath = (targetLang: string) => {
               alt="sens*hac"
               class="h-10 w-auto mb-4"
             />
-            <p class="text-base font-bold uppercase tracking-wider text-black">{t.letsTalk}</p>
+            <p class="text-base font-bold uppercase tracking-wider text-black">{t.nav.letsTalk}</p>
           </div>
 
           <!-- Contact Info -->

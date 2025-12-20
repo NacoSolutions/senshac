@@ -1,24 +1,21 @@
 ---
 // src/pages/[lang]/index.astro
 import Base from '../../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-import { processContent } from '../../utils/shortcodes';
+import { getEntry } from 'astro:content';
 
 const { lang } = Astro.params;
 
-const pages = await getCollection('pages');
-const page = pages.find(p => p.id === `${lang}/home`);
+const page = await getEntry('pages', `${lang}/home`);
 
 if (!page) {
   return Astro.redirect('/404');
 }
 
-// Process content at render time (remark plugins don't work with glob loader)
-const html = processContent(page.body || '');
+const { Content } = await page.render();
 ---
 
 <Base title={page.data.title} description={page.data.description} lang={lang} schema="LocalBusiness" headerStyle={page.data.headerStyle}>
   <main id="main">
-    <Fragment set:html={html} />
+    <Content />
   </main>
 </Base>

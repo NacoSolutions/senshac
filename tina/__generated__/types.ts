@@ -94,6 +94,12 @@ export type Query = {
   pages_caConnection: Pages_CaConnection;
   pages_en: Pages_En;
   pages_enConnection: Pages_EnConnection;
+  translations_es: Translations_Es;
+  translations_esConnection: Translations_EsConnection;
+  translations_ca: Translations_Ca;
+  translations_caConnection: Translations_CaConnection;
+  translations_en: Translations_En;
+  translations_enConnection: Translations_EnConnection;
 };
 
 
@@ -207,6 +213,51 @@ export type QueryPages_EnConnectionArgs = {
   filter?: InputMaybe<Pages_EnFilter>;
 };
 
+
+export type QueryTranslations_EsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryTranslations_EsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Translations_EsFilter>;
+};
+
+
+export type QueryTranslations_CaArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryTranslations_CaConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Translations_CaFilter>;
+};
+
+
+export type QueryTranslations_EnArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryTranslations_EnConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Translations_EnFilter>;
+};
+
 export type DocumentFilter = {
   projects_es?: InputMaybe<Projects_EsFilter>;
   projects_ca?: InputMaybe<Projects_CaFilter>;
@@ -214,6 +265,9 @@ export type DocumentFilter = {
   pages_es?: InputMaybe<Pages_EsFilter>;
   pages_ca?: InputMaybe<Pages_CaFilter>;
   pages_en?: InputMaybe<Pages_EnFilter>;
+  translations_es?: InputMaybe<Translations_EsFilter>;
+  translations_ca?: InputMaybe<Translations_CaFilter>;
+  translations_en?: InputMaybe<Translations_EnFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -253,7 +307,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Projects_Es | Projects_Ca | Projects_En | Pages_Es | Pages_Ca | Pages_En | Folder;
+export type DocumentNode = Projects_Es | Projects_Ca | Projects_En | Pages_Es | Pages_Ca | Pages_En | Translations_Es | Translations_Ca | Translations_En | Folder;
 
 export type Projects_Es = Node & Document & {
   __typename?: 'Projects_es';
@@ -1338,6 +1392,588 @@ export type Pages_EnConnection = Connection & {
   edges?: Maybe<Array<Maybe<Pages_EnConnectionEdges>>>;
 };
 
+export type Translations_EsNav = {
+  __typename?: 'Translations_esNav';
+  social?: Maybe<Scalars['String']['output']>;
+  menu?: Maybe<Scalars['String']['output']>;
+  letsTalk?: Maybe<Scalars['String']['output']>;
+  about?: Maybe<Scalars['String']['output']>;
+  projects?: Maybe<Scalars['String']['output']>;
+  services?: Maybe<Scalars['String']['output']>;
+  contact?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsFooter = {
+  __typename?: 'Translations_esFooter';
+  privacy?: Maybe<Scalars['String']['output']>;
+  legal?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsContact = {
+  __typename?: 'Translations_esContact';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsContactFormProjectTypes = {
+  __typename?: 'Translations_esContactFormProjectTypes';
+  commercial?: Maybe<Scalars['String']['output']>;
+  restaurant?: Maybe<Scalars['String']['output']>;
+  entertainment?: Maybe<Scalars['String']['output']>;
+  other?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsContactFormServiceTypes = {
+  __typename?: 'Translations_esContactFormServiceTypes';
+  fullPackage?: Maybe<Scalars['String']['output']>;
+  concept?: Maybe<Scalars['String']['output']>;
+  unsure?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsContactForm = {
+  __typename?: 'Translations_esContactForm';
+  name?: Maybe<Scalars['String']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  phone?: Maybe<Scalars['String']['output']>;
+  projectType?: Maybe<Scalars['String']['output']>;
+  projectTypes?: Maybe<Translations_EsContactFormProjectTypes>;
+  serviceType?: Maybe<Scalars['String']['output']>;
+  serviceTypes?: Maybe<Translations_EsContactFormServiceTypes>;
+  message?: Maybe<Scalars['String']['output']>;
+  privacy?: Maybe<Scalars['String']['output']>;
+  submit?: Maybe<Scalars['String']['output']>;
+  sending?: Maybe<Scalars['String']['output']>;
+  success?: Maybe<Scalars['String']['output']>;
+  error?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsProjects = {
+  __typename?: 'Translations_esProjects';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsCookies = {
+  __typename?: 'Translations_esCookies';
+  message?: Maybe<Scalars['String']['output']>;
+  moreInfo?: Maybe<Scalars['String']['output']>;
+  accept?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EsAccessibility = {
+  __typename?: 'Translations_esAccessibility';
+  skipToContent?: Maybe<Scalars['String']['output']>;
+  selectLanguage?: Maybe<Scalars['String']['output']>;
+  toggleMenu?: Maybe<Scalars['String']['output']>;
+  closeMenu?: Maybe<Scalars['String']['output']>;
+  previousSlide?: Maybe<Scalars['String']['output']>;
+  nextSlide?: Maybe<Scalars['String']['output']>;
+  goToSlide?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_Es = Node & Document & {
+  __typename?: 'Translations_es';
+  nav?: Maybe<Translations_EsNav>;
+  footer?: Maybe<Translations_EsFooter>;
+  contact?: Maybe<Translations_EsContact>;
+  contactForm?: Maybe<Translations_EsContactForm>;
+  projects?: Maybe<Translations_EsProjects>;
+  cookies?: Maybe<Translations_EsCookies>;
+  accessibility?: Maybe<Translations_EsAccessibility>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Translations_EsNavFilter = {
+  social?: InputMaybe<StringFilter>;
+  menu?: InputMaybe<StringFilter>;
+  letsTalk?: InputMaybe<StringFilter>;
+  about?: InputMaybe<StringFilter>;
+  projects?: InputMaybe<StringFilter>;
+  services?: InputMaybe<StringFilter>;
+  contact?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsFooterFilter = {
+  privacy?: InputMaybe<StringFilter>;
+  legal?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsContactFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subheading?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsContactFormProjectTypesFilter = {
+  commercial?: InputMaybe<StringFilter>;
+  restaurant?: InputMaybe<StringFilter>;
+  entertainment?: InputMaybe<StringFilter>;
+  other?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsContactFormServiceTypesFilter = {
+  fullPackage?: InputMaybe<StringFilter>;
+  concept?: InputMaybe<StringFilter>;
+  unsure?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsContactFormFilter = {
+  name?: InputMaybe<StringFilter>;
+  company?: InputMaybe<StringFilter>;
+  email?: InputMaybe<StringFilter>;
+  phone?: InputMaybe<StringFilter>;
+  projectType?: InputMaybe<StringFilter>;
+  projectTypes?: InputMaybe<Translations_EsContactFormProjectTypesFilter>;
+  serviceType?: InputMaybe<StringFilter>;
+  serviceTypes?: InputMaybe<Translations_EsContactFormServiceTypesFilter>;
+  message?: InputMaybe<StringFilter>;
+  privacy?: InputMaybe<StringFilter>;
+  submit?: InputMaybe<StringFilter>;
+  sending?: InputMaybe<StringFilter>;
+  success?: InputMaybe<StringFilter>;
+  error?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsProjectsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsCookiesFilter = {
+  message?: InputMaybe<StringFilter>;
+  moreInfo?: InputMaybe<StringFilter>;
+  accept?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsAccessibilityFilter = {
+  skipToContent?: InputMaybe<StringFilter>;
+  selectLanguage?: InputMaybe<StringFilter>;
+  toggleMenu?: InputMaybe<StringFilter>;
+  closeMenu?: InputMaybe<StringFilter>;
+  previousSlide?: InputMaybe<StringFilter>;
+  nextSlide?: InputMaybe<StringFilter>;
+  goToSlide?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EsFilter = {
+  nav?: InputMaybe<Translations_EsNavFilter>;
+  footer?: InputMaybe<Translations_EsFooterFilter>;
+  contact?: InputMaybe<Translations_EsContactFilter>;
+  contactForm?: InputMaybe<Translations_EsContactFormFilter>;
+  projects?: InputMaybe<Translations_EsProjectsFilter>;
+  cookies?: InputMaybe<Translations_EsCookiesFilter>;
+  accessibility?: InputMaybe<Translations_EsAccessibilityFilter>;
+};
+
+export type Translations_EsConnectionEdges = {
+  __typename?: 'Translations_esConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Translations_Es>;
+};
+
+export type Translations_EsConnection = Connection & {
+  __typename?: 'Translations_esConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Translations_EsConnectionEdges>>>;
+};
+
+export type Translations_CaNav = {
+  __typename?: 'Translations_caNav';
+  social?: Maybe<Scalars['String']['output']>;
+  menu?: Maybe<Scalars['String']['output']>;
+  letsTalk?: Maybe<Scalars['String']['output']>;
+  about?: Maybe<Scalars['String']['output']>;
+  projects?: Maybe<Scalars['String']['output']>;
+  services?: Maybe<Scalars['String']['output']>;
+  contact?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaFooter = {
+  __typename?: 'Translations_caFooter';
+  privacy?: Maybe<Scalars['String']['output']>;
+  legal?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaContact = {
+  __typename?: 'Translations_caContact';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaContactFormProjectTypes = {
+  __typename?: 'Translations_caContactFormProjectTypes';
+  commercial?: Maybe<Scalars['String']['output']>;
+  restaurant?: Maybe<Scalars['String']['output']>;
+  entertainment?: Maybe<Scalars['String']['output']>;
+  other?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaContactFormServiceTypes = {
+  __typename?: 'Translations_caContactFormServiceTypes';
+  fullPackage?: Maybe<Scalars['String']['output']>;
+  concept?: Maybe<Scalars['String']['output']>;
+  unsure?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaContactForm = {
+  __typename?: 'Translations_caContactForm';
+  name?: Maybe<Scalars['String']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  phone?: Maybe<Scalars['String']['output']>;
+  projectType?: Maybe<Scalars['String']['output']>;
+  projectTypes?: Maybe<Translations_CaContactFormProjectTypes>;
+  serviceType?: Maybe<Scalars['String']['output']>;
+  serviceTypes?: Maybe<Translations_CaContactFormServiceTypes>;
+  message?: Maybe<Scalars['String']['output']>;
+  privacy?: Maybe<Scalars['String']['output']>;
+  submit?: Maybe<Scalars['String']['output']>;
+  sending?: Maybe<Scalars['String']['output']>;
+  success?: Maybe<Scalars['String']['output']>;
+  error?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaProjects = {
+  __typename?: 'Translations_caProjects';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaCookies = {
+  __typename?: 'Translations_caCookies';
+  message?: Maybe<Scalars['String']['output']>;
+  moreInfo?: Maybe<Scalars['String']['output']>;
+  accept?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_CaAccessibility = {
+  __typename?: 'Translations_caAccessibility';
+  skipToContent?: Maybe<Scalars['String']['output']>;
+  selectLanguage?: Maybe<Scalars['String']['output']>;
+  toggleMenu?: Maybe<Scalars['String']['output']>;
+  closeMenu?: Maybe<Scalars['String']['output']>;
+  previousSlide?: Maybe<Scalars['String']['output']>;
+  nextSlide?: Maybe<Scalars['String']['output']>;
+  goToSlide?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_Ca = Node & Document & {
+  __typename?: 'Translations_ca';
+  nav?: Maybe<Translations_CaNav>;
+  footer?: Maybe<Translations_CaFooter>;
+  contact?: Maybe<Translations_CaContact>;
+  contactForm?: Maybe<Translations_CaContactForm>;
+  projects?: Maybe<Translations_CaProjects>;
+  cookies?: Maybe<Translations_CaCookies>;
+  accessibility?: Maybe<Translations_CaAccessibility>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Translations_CaNavFilter = {
+  social?: InputMaybe<StringFilter>;
+  menu?: InputMaybe<StringFilter>;
+  letsTalk?: InputMaybe<StringFilter>;
+  about?: InputMaybe<StringFilter>;
+  projects?: InputMaybe<StringFilter>;
+  services?: InputMaybe<StringFilter>;
+  contact?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaFooterFilter = {
+  privacy?: InputMaybe<StringFilter>;
+  legal?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaContactFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subheading?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaContactFormProjectTypesFilter = {
+  commercial?: InputMaybe<StringFilter>;
+  restaurant?: InputMaybe<StringFilter>;
+  entertainment?: InputMaybe<StringFilter>;
+  other?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaContactFormServiceTypesFilter = {
+  fullPackage?: InputMaybe<StringFilter>;
+  concept?: InputMaybe<StringFilter>;
+  unsure?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaContactFormFilter = {
+  name?: InputMaybe<StringFilter>;
+  company?: InputMaybe<StringFilter>;
+  email?: InputMaybe<StringFilter>;
+  phone?: InputMaybe<StringFilter>;
+  projectType?: InputMaybe<StringFilter>;
+  projectTypes?: InputMaybe<Translations_CaContactFormProjectTypesFilter>;
+  serviceType?: InputMaybe<StringFilter>;
+  serviceTypes?: InputMaybe<Translations_CaContactFormServiceTypesFilter>;
+  message?: InputMaybe<StringFilter>;
+  privacy?: InputMaybe<StringFilter>;
+  submit?: InputMaybe<StringFilter>;
+  sending?: InputMaybe<StringFilter>;
+  success?: InputMaybe<StringFilter>;
+  error?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaProjectsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaCookiesFilter = {
+  message?: InputMaybe<StringFilter>;
+  moreInfo?: InputMaybe<StringFilter>;
+  accept?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaAccessibilityFilter = {
+  skipToContent?: InputMaybe<StringFilter>;
+  selectLanguage?: InputMaybe<StringFilter>;
+  toggleMenu?: InputMaybe<StringFilter>;
+  closeMenu?: InputMaybe<StringFilter>;
+  previousSlide?: InputMaybe<StringFilter>;
+  nextSlide?: InputMaybe<StringFilter>;
+  goToSlide?: InputMaybe<StringFilter>;
+};
+
+export type Translations_CaFilter = {
+  nav?: InputMaybe<Translations_CaNavFilter>;
+  footer?: InputMaybe<Translations_CaFooterFilter>;
+  contact?: InputMaybe<Translations_CaContactFilter>;
+  contactForm?: InputMaybe<Translations_CaContactFormFilter>;
+  projects?: InputMaybe<Translations_CaProjectsFilter>;
+  cookies?: InputMaybe<Translations_CaCookiesFilter>;
+  accessibility?: InputMaybe<Translations_CaAccessibilityFilter>;
+};
+
+export type Translations_CaConnectionEdges = {
+  __typename?: 'Translations_caConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Translations_Ca>;
+};
+
+export type Translations_CaConnection = Connection & {
+  __typename?: 'Translations_caConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Translations_CaConnectionEdges>>>;
+};
+
+export type Translations_EnNav = {
+  __typename?: 'Translations_enNav';
+  social?: Maybe<Scalars['String']['output']>;
+  menu?: Maybe<Scalars['String']['output']>;
+  letsTalk?: Maybe<Scalars['String']['output']>;
+  about?: Maybe<Scalars['String']['output']>;
+  projects?: Maybe<Scalars['String']['output']>;
+  services?: Maybe<Scalars['String']['output']>;
+  contact?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnFooter = {
+  __typename?: 'Translations_enFooter';
+  privacy?: Maybe<Scalars['String']['output']>;
+  legal?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnContact = {
+  __typename?: 'Translations_enContact';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+  subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnContactFormProjectTypes = {
+  __typename?: 'Translations_enContactFormProjectTypes';
+  commercial?: Maybe<Scalars['String']['output']>;
+  restaurant?: Maybe<Scalars['String']['output']>;
+  entertainment?: Maybe<Scalars['String']['output']>;
+  other?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnContactFormServiceTypes = {
+  __typename?: 'Translations_enContactFormServiceTypes';
+  fullPackage?: Maybe<Scalars['String']['output']>;
+  concept?: Maybe<Scalars['String']['output']>;
+  unsure?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnContactForm = {
+  __typename?: 'Translations_enContactForm';
+  name?: Maybe<Scalars['String']['output']>;
+  company?: Maybe<Scalars['String']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  phone?: Maybe<Scalars['String']['output']>;
+  projectType?: Maybe<Scalars['String']['output']>;
+  projectTypes?: Maybe<Translations_EnContactFormProjectTypes>;
+  serviceType?: Maybe<Scalars['String']['output']>;
+  serviceTypes?: Maybe<Translations_EnContactFormServiceTypes>;
+  message?: Maybe<Scalars['String']['output']>;
+  privacy?: Maybe<Scalars['String']['output']>;
+  submit?: Maybe<Scalars['String']['output']>;
+  sending?: Maybe<Scalars['String']['output']>;
+  success?: Maybe<Scalars['String']['output']>;
+  error?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnProjects = {
+  __typename?: 'Translations_enProjects';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  heading?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnCookies = {
+  __typename?: 'Translations_enCookies';
+  message?: Maybe<Scalars['String']['output']>;
+  moreInfo?: Maybe<Scalars['String']['output']>;
+  accept?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_EnAccessibility = {
+  __typename?: 'Translations_enAccessibility';
+  skipToContent?: Maybe<Scalars['String']['output']>;
+  selectLanguage?: Maybe<Scalars['String']['output']>;
+  toggleMenu?: Maybe<Scalars['String']['output']>;
+  closeMenu?: Maybe<Scalars['String']['output']>;
+  previousSlide?: Maybe<Scalars['String']['output']>;
+  nextSlide?: Maybe<Scalars['String']['output']>;
+  goToSlide?: Maybe<Scalars['String']['output']>;
+};
+
+export type Translations_En = Node & Document & {
+  __typename?: 'Translations_en';
+  nav?: Maybe<Translations_EnNav>;
+  footer?: Maybe<Translations_EnFooter>;
+  contact?: Maybe<Translations_EnContact>;
+  contactForm?: Maybe<Translations_EnContactForm>;
+  projects?: Maybe<Translations_EnProjects>;
+  cookies?: Maybe<Translations_EnCookies>;
+  accessibility?: Maybe<Translations_EnAccessibility>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Translations_EnNavFilter = {
+  social?: InputMaybe<StringFilter>;
+  menu?: InputMaybe<StringFilter>;
+  letsTalk?: InputMaybe<StringFilter>;
+  about?: InputMaybe<StringFilter>;
+  projects?: InputMaybe<StringFilter>;
+  services?: InputMaybe<StringFilter>;
+  contact?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnFooterFilter = {
+  privacy?: InputMaybe<StringFilter>;
+  legal?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnContactFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  subheading?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnContactFormProjectTypesFilter = {
+  commercial?: InputMaybe<StringFilter>;
+  restaurant?: InputMaybe<StringFilter>;
+  entertainment?: InputMaybe<StringFilter>;
+  other?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnContactFormServiceTypesFilter = {
+  fullPackage?: InputMaybe<StringFilter>;
+  concept?: InputMaybe<StringFilter>;
+  unsure?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnContactFormFilter = {
+  name?: InputMaybe<StringFilter>;
+  company?: InputMaybe<StringFilter>;
+  email?: InputMaybe<StringFilter>;
+  phone?: InputMaybe<StringFilter>;
+  projectType?: InputMaybe<StringFilter>;
+  projectTypes?: InputMaybe<Translations_EnContactFormProjectTypesFilter>;
+  serviceType?: InputMaybe<StringFilter>;
+  serviceTypes?: InputMaybe<Translations_EnContactFormServiceTypesFilter>;
+  message?: InputMaybe<StringFilter>;
+  privacy?: InputMaybe<StringFilter>;
+  submit?: InputMaybe<StringFilter>;
+  sending?: InputMaybe<StringFilter>;
+  success?: InputMaybe<StringFilter>;
+  error?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnProjectsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnCookiesFilter = {
+  message?: InputMaybe<StringFilter>;
+  moreInfo?: InputMaybe<StringFilter>;
+  accept?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnAccessibilityFilter = {
+  skipToContent?: InputMaybe<StringFilter>;
+  selectLanguage?: InputMaybe<StringFilter>;
+  toggleMenu?: InputMaybe<StringFilter>;
+  closeMenu?: InputMaybe<StringFilter>;
+  previousSlide?: InputMaybe<StringFilter>;
+  nextSlide?: InputMaybe<StringFilter>;
+  goToSlide?: InputMaybe<StringFilter>;
+};
+
+export type Translations_EnFilter = {
+  nav?: InputMaybe<Translations_EnNavFilter>;
+  footer?: InputMaybe<Translations_EnFooterFilter>;
+  contact?: InputMaybe<Translations_EnContactFilter>;
+  contactForm?: InputMaybe<Translations_EnContactFormFilter>;
+  projects?: InputMaybe<Translations_EnProjectsFilter>;
+  cookies?: InputMaybe<Translations_EnCookiesFilter>;
+  accessibility?: InputMaybe<Translations_EnAccessibilityFilter>;
+};
+
+export type Translations_EnConnectionEdges = {
+  __typename?: 'Translations_enConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Translations_En>;
+};
+
+export type Translations_EnConnection = Connection & {
+  __typename?: 'Translations_enConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<Translations_EnConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -1357,6 +1993,12 @@ export type Mutation = {
   createPages_ca: Pages_Ca;
   updatePages_en: Pages_En;
   createPages_en: Pages_En;
+  updateTranslations_es: Translations_Es;
+  createTranslations_es: Translations_Es;
+  updateTranslations_ca: Translations_Ca;
+  createTranslations_ca: Translations_Ca;
+  updateTranslations_en: Translations_En;
+  createTranslations_en: Translations_En;
 };
 
 
@@ -1464,6 +2106,42 @@ export type MutationCreatePages_EnArgs = {
   params: Pages_EnMutation;
 };
 
+
+export type MutationUpdateTranslations_EsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Translations_EsMutation;
+};
+
+
+export type MutationCreateTranslations_EsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Translations_EsMutation;
+};
+
+
+export type MutationUpdateTranslations_CaArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Translations_CaMutation;
+};
+
+
+export type MutationCreateTranslations_CaArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Translations_CaMutation;
+};
+
+
+export type MutationUpdateTranslations_EnArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Translations_EnMutation;
+};
+
+
+export type MutationCreateTranslations_EnArgs = {
+  relativePath: Scalars['String']['input'];
+  params: Translations_EnMutation;
+};
+
 export type DocumentUpdateMutation = {
   projects_es?: InputMaybe<Projects_EsMutation>;
   projects_ca?: InputMaybe<Projects_CaMutation>;
@@ -1471,6 +2149,9 @@ export type DocumentUpdateMutation = {
   pages_es?: InputMaybe<Pages_EsMutation>;
   pages_ca?: InputMaybe<Pages_CaMutation>;
   pages_en?: InputMaybe<Pages_EnMutation>;
+  translations_es?: InputMaybe<Translations_EsMutation>;
+  translations_ca?: InputMaybe<Translations_CaMutation>;
+  translations_en?: InputMaybe<Translations_EnMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1481,6 +2162,9 @@ export type DocumentMutation = {
   pages_es?: InputMaybe<Pages_EsMutation>;
   pages_ca?: InputMaybe<Pages_CaMutation>;
   pages_en?: InputMaybe<Pages_EnMutation>;
+  translations_es?: InputMaybe<Translations_EsMutation>;
+  translations_ca?: InputMaybe<Translations_CaMutation>;
+  translations_en?: InputMaybe<Translations_EnMutation>;
 };
 
 export type Projects_EsMutation = {
@@ -1543,6 +2227,258 @@ export type Pages_EnMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
+export type Translations_EsNavMutation = {
+  social?: InputMaybe<Scalars['String']['input']>;
+  menu?: InputMaybe<Scalars['String']['input']>;
+  letsTalk?: InputMaybe<Scalars['String']['input']>;
+  about?: InputMaybe<Scalars['String']['input']>;
+  projects?: InputMaybe<Scalars['String']['input']>;
+  services?: InputMaybe<Scalars['String']['input']>;
+  contact?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsFooterMutation = {
+  privacy?: InputMaybe<Scalars['String']['input']>;
+  legal?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsContactMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subheading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsContactFormProjectTypesMutation = {
+  commercial?: InputMaybe<Scalars['String']['input']>;
+  restaurant?: InputMaybe<Scalars['String']['input']>;
+  entertainment?: InputMaybe<Scalars['String']['input']>;
+  other?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsContactFormServiceTypesMutation = {
+  fullPackage?: InputMaybe<Scalars['String']['input']>;
+  concept?: InputMaybe<Scalars['String']['input']>;
+  unsure?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsContactFormMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<Scalars['String']['input']>;
+  projectTypes?: InputMaybe<Translations_EsContactFormProjectTypesMutation>;
+  serviceType?: InputMaybe<Scalars['String']['input']>;
+  serviceTypes?: InputMaybe<Translations_EsContactFormServiceTypesMutation>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  privacy?: InputMaybe<Scalars['String']['input']>;
+  submit?: InputMaybe<Scalars['String']['input']>;
+  sending?: InputMaybe<Scalars['String']['input']>;
+  success?: InputMaybe<Scalars['String']['input']>;
+  error?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsProjectsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsCookiesMutation = {
+  message?: InputMaybe<Scalars['String']['input']>;
+  moreInfo?: InputMaybe<Scalars['String']['input']>;
+  accept?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsAccessibilityMutation = {
+  skipToContent?: InputMaybe<Scalars['String']['input']>;
+  selectLanguage?: InputMaybe<Scalars['String']['input']>;
+  toggleMenu?: InputMaybe<Scalars['String']['input']>;
+  closeMenu?: InputMaybe<Scalars['String']['input']>;
+  previousSlide?: InputMaybe<Scalars['String']['input']>;
+  nextSlide?: InputMaybe<Scalars['String']['input']>;
+  goToSlide?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EsMutation = {
+  nav?: InputMaybe<Translations_EsNavMutation>;
+  footer?: InputMaybe<Translations_EsFooterMutation>;
+  contact?: InputMaybe<Translations_EsContactMutation>;
+  contactForm?: InputMaybe<Translations_EsContactFormMutation>;
+  projects?: InputMaybe<Translations_EsProjectsMutation>;
+  cookies?: InputMaybe<Translations_EsCookiesMutation>;
+  accessibility?: InputMaybe<Translations_EsAccessibilityMutation>;
+};
+
+export type Translations_CaNavMutation = {
+  social?: InputMaybe<Scalars['String']['input']>;
+  menu?: InputMaybe<Scalars['String']['input']>;
+  letsTalk?: InputMaybe<Scalars['String']['input']>;
+  about?: InputMaybe<Scalars['String']['input']>;
+  projects?: InputMaybe<Scalars['String']['input']>;
+  services?: InputMaybe<Scalars['String']['input']>;
+  contact?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaFooterMutation = {
+  privacy?: InputMaybe<Scalars['String']['input']>;
+  legal?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaContactMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subheading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaContactFormProjectTypesMutation = {
+  commercial?: InputMaybe<Scalars['String']['input']>;
+  restaurant?: InputMaybe<Scalars['String']['input']>;
+  entertainment?: InputMaybe<Scalars['String']['input']>;
+  other?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaContactFormServiceTypesMutation = {
+  fullPackage?: InputMaybe<Scalars['String']['input']>;
+  concept?: InputMaybe<Scalars['String']['input']>;
+  unsure?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaContactFormMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<Scalars['String']['input']>;
+  projectTypes?: InputMaybe<Translations_CaContactFormProjectTypesMutation>;
+  serviceType?: InputMaybe<Scalars['String']['input']>;
+  serviceTypes?: InputMaybe<Translations_CaContactFormServiceTypesMutation>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  privacy?: InputMaybe<Scalars['String']['input']>;
+  submit?: InputMaybe<Scalars['String']['input']>;
+  sending?: InputMaybe<Scalars['String']['input']>;
+  success?: InputMaybe<Scalars['String']['input']>;
+  error?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaProjectsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaCookiesMutation = {
+  message?: InputMaybe<Scalars['String']['input']>;
+  moreInfo?: InputMaybe<Scalars['String']['input']>;
+  accept?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaAccessibilityMutation = {
+  skipToContent?: InputMaybe<Scalars['String']['input']>;
+  selectLanguage?: InputMaybe<Scalars['String']['input']>;
+  toggleMenu?: InputMaybe<Scalars['String']['input']>;
+  closeMenu?: InputMaybe<Scalars['String']['input']>;
+  previousSlide?: InputMaybe<Scalars['String']['input']>;
+  nextSlide?: InputMaybe<Scalars['String']['input']>;
+  goToSlide?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_CaMutation = {
+  nav?: InputMaybe<Translations_CaNavMutation>;
+  footer?: InputMaybe<Translations_CaFooterMutation>;
+  contact?: InputMaybe<Translations_CaContactMutation>;
+  contactForm?: InputMaybe<Translations_CaContactFormMutation>;
+  projects?: InputMaybe<Translations_CaProjectsMutation>;
+  cookies?: InputMaybe<Translations_CaCookiesMutation>;
+  accessibility?: InputMaybe<Translations_CaAccessibilityMutation>;
+};
+
+export type Translations_EnNavMutation = {
+  social?: InputMaybe<Scalars['String']['input']>;
+  menu?: InputMaybe<Scalars['String']['input']>;
+  letsTalk?: InputMaybe<Scalars['String']['input']>;
+  about?: InputMaybe<Scalars['String']['input']>;
+  projects?: InputMaybe<Scalars['String']['input']>;
+  services?: InputMaybe<Scalars['String']['input']>;
+  contact?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnFooterMutation = {
+  privacy?: InputMaybe<Scalars['String']['input']>;
+  legal?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnContactMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  subheading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnContactFormProjectTypesMutation = {
+  commercial?: InputMaybe<Scalars['String']['input']>;
+  restaurant?: InputMaybe<Scalars['String']['input']>;
+  entertainment?: InputMaybe<Scalars['String']['input']>;
+  other?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnContactFormServiceTypesMutation = {
+  fullPackage?: InputMaybe<Scalars['String']['input']>;
+  concept?: InputMaybe<Scalars['String']['input']>;
+  unsure?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnContactFormMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  company?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<Scalars['String']['input']>;
+  projectTypes?: InputMaybe<Translations_EnContactFormProjectTypesMutation>;
+  serviceType?: InputMaybe<Scalars['String']['input']>;
+  serviceTypes?: InputMaybe<Translations_EnContactFormServiceTypesMutation>;
+  message?: InputMaybe<Scalars['String']['input']>;
+  privacy?: InputMaybe<Scalars['String']['input']>;
+  submit?: InputMaybe<Scalars['String']['input']>;
+  sending?: InputMaybe<Scalars['String']['input']>;
+  success?: InputMaybe<Scalars['String']['input']>;
+  error?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnProjectsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnCookiesMutation = {
+  message?: InputMaybe<Scalars['String']['input']>;
+  moreInfo?: InputMaybe<Scalars['String']['input']>;
+  accept?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnAccessibilityMutation = {
+  skipToContent?: InputMaybe<Scalars['String']['input']>;
+  selectLanguage?: InputMaybe<Scalars['String']['input']>;
+  toggleMenu?: InputMaybe<Scalars['String']['input']>;
+  closeMenu?: InputMaybe<Scalars['String']['input']>;
+  previousSlide?: InputMaybe<Scalars['String']['input']>;
+  nextSlide?: InputMaybe<Scalars['String']['input']>;
+  goToSlide?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Translations_EnMutation = {
+  nav?: InputMaybe<Translations_EnNavMutation>;
+  footer?: InputMaybe<Translations_EnFooterMutation>;
+  contact?: InputMaybe<Translations_EnContactMutation>;
+  contactForm?: InputMaybe<Translations_EnContactFormMutation>;
+  projects?: InputMaybe<Translations_EnProjectsMutation>;
+  cookies?: InputMaybe<Translations_EnCookiesMutation>;
+  accessibility?: InputMaybe<Translations_EnAccessibilityMutation>;
+};
+
 export type Projects_EsPartsFragment = { __typename: 'Projects_es', title: string, description: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, coverImage: string, featured?: boolean | null, draft?: boolean | null, body?: any | null };
 
 export type Projects_CaPartsFragment = { __typename: 'Projects_ca', title: string, description: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, coverImage: string, featured?: boolean | null, draft?: boolean | null, body?: any | null };
@@ -1554,6 +2490,12 @@ export type Pages_EsPartsFragment = { __typename: 'Pages_es', title: string, des
 export type Pages_CaPartsFragment = { __typename: 'Pages_ca', title: string, description: string, heroImage?: string | null, headerStyle?: string | null, body?: any | null };
 
 export type Pages_EnPartsFragment = { __typename: 'Pages_en', title: string, description: string, heroImage?: string | null, headerStyle?: string | null, body?: any | null };
+
+export type Translations_EsPartsFragment = { __typename: 'Translations_es', nav?: { __typename: 'Translations_esNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_esFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_esContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_esContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_esContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_esContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_esProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_esCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_esAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
+
+export type Translations_CaPartsFragment = { __typename: 'Translations_ca', nav?: { __typename: 'Translations_caNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_caFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_caContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_caContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_caContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_caContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_caProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_caCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_caAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
+
+export type Translations_EnPartsFragment = { __typename: 'Translations_en', nav?: { __typename: 'Translations_enNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_enFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_enContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_enContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_enContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_enContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_enProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_enCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_enAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
 
 export type Projects_EsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1669,6 +2611,63 @@ export type Pages_EnConnectionQueryVariables = Exact<{
 
 export type Pages_EnConnectionQuery = { __typename?: 'Query', pages_enConnection: { __typename?: 'Pages_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Pages_enConnectionEdges', cursor: string, node?: { __typename: 'Pages_en', id: string, title: string, description: string, heroImage?: string | null, headerStyle?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export type Translations_EsQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Translations_EsQuery = { __typename?: 'Query', translations_es: { __typename: 'Translations_es', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_esNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_esFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_esContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_esContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_esContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_esContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_esProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_esCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_esAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
+
+export type Translations_EsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Translations_EsFilter>;
+}>;
+
+
+export type Translations_EsConnectionQuery = { __typename?: 'Query', translations_esConnection: { __typename?: 'Translations_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Translations_esConnectionEdges', cursor: string, node?: { __typename: 'Translations_es', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_esNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_esFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_esContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_esContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_esContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_esContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_esProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_esCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_esAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
+
+export type Translations_CaQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Translations_CaQuery = { __typename?: 'Query', translations_ca: { __typename: 'Translations_ca', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_caNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_caFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_caContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_caContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_caContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_caContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_caProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_caCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_caAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
+
+export type Translations_CaConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Translations_CaFilter>;
+}>;
+
+
+export type Translations_CaConnectionQuery = { __typename?: 'Query', translations_caConnection: { __typename?: 'Translations_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Translations_caConnectionEdges', cursor: string, node?: { __typename: 'Translations_ca', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_caNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_caFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_caContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_caContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_caContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_caContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_caProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_caCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_caAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
+
+export type Translations_EnQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type Translations_EnQuery = { __typename?: 'Query', translations_en: { __typename: 'Translations_en', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_enNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_enFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_enContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_enContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_enContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_enContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_enProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_enCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_enAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
+
+export type Translations_EnConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<Translations_EnFilter>;
+}>;
+
+
+export type Translations_EnConnectionQuery = { __typename?: 'Query', translations_enConnection: { __typename?: 'Translations_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Translations_enConnectionEdges', cursor: string, node?: { __typename: 'Translations_en', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_enNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_enFooter', privacy?: string | null, legal?: string | null } | null, contact?: { __typename: 'Translations_enContact', title?: string | null, description?: string | null, heading?: string | null, subheading?: string | null } | null, contactForm?: { __typename: 'Translations_enContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, projectTypes?: { __typename: 'Translations_enContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_enContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_enProjects', title?: string | null, description?: string | null, heading?: string | null } | null, cookies?: { __typename: 'Translations_enCookies', message?: string | null, moreInfo?: string | null, accept?: string | null } | null, accessibility?: { __typename: 'Translations_enAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
+
 export const Projects_EsPartsFragmentDoc = gql`
     fragment Projects_esParts on Projects_es {
   __typename
@@ -1739,6 +2738,237 @@ export const Pages_EnPartsFragmentDoc = gql`
   heroImage
   headerStyle
   body
+}
+    `;
+export const Translations_EsPartsFragmentDoc = gql`
+    fragment Translations_esParts on Translations_es {
+  __typename
+  nav {
+    __typename
+    social
+    menu
+    letsTalk
+    about
+    projects
+    services
+    contact
+  }
+  footer {
+    __typename
+    privacy
+    legal
+  }
+  contact {
+    __typename
+    title
+    description
+    heading
+    subheading
+  }
+  contactForm {
+    __typename
+    name
+    company
+    email
+    phone
+    projectType
+    projectTypes {
+      __typename
+      commercial
+      restaurant
+      entertainment
+      other
+    }
+    serviceType
+    serviceTypes {
+      __typename
+      fullPackage
+      concept
+      unsure
+    }
+    message
+    privacy
+    submit
+    sending
+    success
+    error
+  }
+  projects {
+    __typename
+    title
+    description
+    heading
+  }
+  cookies {
+    __typename
+    message
+    moreInfo
+    accept
+  }
+  accessibility {
+    __typename
+    skipToContent
+    selectLanguage
+    toggleMenu
+    closeMenu
+    previousSlide
+    nextSlide
+    goToSlide
+  }
+}
+    `;
+export const Translations_CaPartsFragmentDoc = gql`
+    fragment Translations_caParts on Translations_ca {
+  __typename
+  nav {
+    __typename
+    social
+    menu
+    letsTalk
+    about
+    projects
+    services
+    contact
+  }
+  footer {
+    __typename
+    privacy
+    legal
+  }
+  contact {
+    __typename
+    title
+    description
+    heading
+    subheading
+  }
+  contactForm {
+    __typename
+    name
+    company
+    email
+    phone
+    projectType
+    projectTypes {
+      __typename
+      commercial
+      restaurant
+      entertainment
+      other
+    }
+    serviceType
+    serviceTypes {
+      __typename
+      fullPackage
+      concept
+      unsure
+    }
+    message
+    privacy
+    submit
+    sending
+    success
+    error
+  }
+  projects {
+    __typename
+    title
+    description
+    heading
+  }
+  cookies {
+    __typename
+    message
+    moreInfo
+    accept
+  }
+  accessibility {
+    __typename
+    skipToContent
+    selectLanguage
+    toggleMenu
+    closeMenu
+    previousSlide
+    nextSlide
+    goToSlide
+  }
+}
+    `;
+export const Translations_EnPartsFragmentDoc = gql`
+    fragment Translations_enParts on Translations_en {
+  __typename
+  nav {
+    __typename
+    social
+    menu
+    letsTalk
+    about
+    projects
+    services
+    contact
+  }
+  footer {
+    __typename
+    privacy
+    legal
+  }
+  contact {
+    __typename
+    title
+    description
+    heading
+    subheading
+  }
+  contactForm {
+    __typename
+    name
+    company
+    email
+    phone
+    projectType
+    projectTypes {
+      __typename
+      commercial
+      restaurant
+      entertainment
+      other
+    }
+    serviceType
+    serviceTypes {
+      __typename
+      fullPackage
+      concept
+      unsure
+    }
+    message
+    privacy
+    submit
+    sending
+    success
+    error
+  }
+  projects {
+    __typename
+    title
+    description
+    heading
+  }
+  cookies {
+    __typename
+    message
+    moreInfo
+    accept
+  }
+  accessibility {
+    __typename
+    skipToContent
+    selectLanguage
+    toggleMenu
+    closeMenu
+    previousSlide
+    nextSlide
+    goToSlide
+  }
 }
     `;
 export const Projects_EsDocument = gql`
@@ -2083,6 +3313,177 @@ export const Pages_EnConnectionDocument = gql`
   }
 }
     ${Pages_EnPartsFragmentDoc}`;
+export const Translations_EsDocument = gql`
+    query translations_es($relativePath: String!) {
+  translations_es(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Translations_esParts
+  }
+}
+    ${Translations_EsPartsFragmentDoc}`;
+export const Translations_EsConnectionDocument = gql`
+    query translations_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_esFilter) {
+  translations_esConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Translations_esParts
+      }
+    }
+  }
+}
+    ${Translations_EsPartsFragmentDoc}`;
+export const Translations_CaDocument = gql`
+    query translations_ca($relativePath: String!) {
+  translations_ca(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Translations_caParts
+  }
+}
+    ${Translations_CaPartsFragmentDoc}`;
+export const Translations_CaConnectionDocument = gql`
+    query translations_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_caFilter) {
+  translations_caConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Translations_caParts
+      }
+    }
+  }
+}
+    ${Translations_CaPartsFragmentDoc}`;
+export const Translations_EnDocument = gql`
+    query translations_en($relativePath: String!) {
+  translations_en(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...Translations_enParts
+  }
+}
+    ${Translations_EnPartsFragmentDoc}`;
+export const Translations_EnConnectionDocument = gql`
+    query translations_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_enFilter) {
+  translations_enConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...Translations_enParts
+      }
+    }
+  }
+}
+    ${Translations_EnPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -2121,6 +3522,24 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     pages_enConnection(variables?: Pages_EnConnectionQueryVariables, options?: C): Promise<{data: Pages_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Pages_EnConnectionQueryVariables, query: string}> {
         return requester<{data: Pages_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Pages_EnConnectionQueryVariables, query: string}, Pages_EnConnectionQueryVariables>(Pages_EnConnectionDocument, variables, options);
+      },
+    translations_es(variables: Translations_EsQueryVariables, options?: C): Promise<{data: Translations_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsQueryVariables, query: string}> {
+        return requester<{data: Translations_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsQueryVariables, query: string}, Translations_EsQueryVariables>(Translations_EsDocument, variables, options);
+      },
+    translations_esConnection(variables?: Translations_EsConnectionQueryVariables, options?: C): Promise<{data: Translations_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsConnectionQueryVariables, query: string}> {
+        return requester<{data: Translations_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsConnectionQueryVariables, query: string}, Translations_EsConnectionQueryVariables>(Translations_EsConnectionDocument, variables, options);
+      },
+    translations_ca(variables: Translations_CaQueryVariables, options?: C): Promise<{data: Translations_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaQueryVariables, query: string}> {
+        return requester<{data: Translations_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaQueryVariables, query: string}, Translations_CaQueryVariables>(Translations_CaDocument, variables, options);
+      },
+    translations_caConnection(variables?: Translations_CaConnectionQueryVariables, options?: C): Promise<{data: Translations_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaConnectionQueryVariables, query: string}> {
+        return requester<{data: Translations_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaConnectionQueryVariables, query: string}, Translations_CaConnectionQueryVariables>(Translations_CaConnectionDocument, variables, options);
+      },
+    translations_en(variables: Translations_EnQueryVariables, options?: C): Promise<{data: Translations_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnQueryVariables, query: string}> {
+        return requester<{data: Translations_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnQueryVariables, query: string}, Translations_EnQueryVariables>(Translations_EnDocument, variables, options);
+      },
+    translations_enConnection(variables?: Translations_EnConnectionQueryVariables, options?: C): Promise<{data: Translations_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnConnectionQueryVariables, query: string}> {
+        return requester<{data: Translations_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnConnectionQueryVariables, query: string}, Translations_EnConnectionQueryVariables>(Translations_EnConnectionDocument, variables, options);
       }
     };
   }

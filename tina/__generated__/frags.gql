@@ -63,3 +63,231 @@ fragment Pages_enParts on Pages_en {
   headerStyle
   body
 }
+
+fragment Translations_esParts on Translations_es {
+  __typename
+  nav {
+    __typename
+    social
+    menu
+    letsTalk
+    about
+    projects
+    services
+    contact
+  }
+  footer {
+    __typename
+    privacy
+    legal
+  }
+  contact {
+    __typename
+    title
+    description
+    heading
+    subheading
+  }
+  contactForm {
+    __typename
+    name
+    company
+    email
+    phone
+    projectType
+    projectTypes {
+      __typename
+      commercial
+      restaurant
+      entertainment
+      other
+    }
+    serviceType
+    serviceTypes {
+      __typename
+      fullPackage
+      concept
+      unsure
+    }
+    message
+    privacy
+    submit
+    sending
+    success
+    error
+  }
+  projects {
+    __typename
+    title
+    description
+    heading
+  }
+  cookies {
+    __typename
+    message
+    moreInfo
+    accept
+  }
+  accessibility {
+    __typename
+    skipToContent
+    selectLanguage
+    toggleMenu
+    closeMenu
+    previousSlide
+    nextSlide
+    goToSlide
+  }
+}
+
+fragment Translations_caParts on Translations_ca {
+  __typename
+  nav {
+    __typename
+    social
+    menu
+    letsTalk
+    about
+    projects
+    services
+    contact
+  }
+  footer {
+    __typename
+    privacy
+    legal
+  }
+  contact {
+    __typename
+    title
+    description
+    heading
+    subheading
+  }
+  contactForm {
+    __typename
+    name
+    company
+    email
+    phone
+    projectType
+    projectTypes {
+      __typename
+      commercial
+      restaurant
+      entertainment
+      other
+    }
+    serviceType
+    serviceTypes {
+      __typename
+      fullPackage
+      concept
+      unsure
+    }
+    message
+    privacy
+    submit
+    sending
+    success
+    error
+  }
+  projects {
+    __typename
+    title
+    description
+    heading
+  }
+  cookies {
+    __typename
+    message
+    moreInfo
+    accept
+  }
+  accessibility {
+    __typename
+    skipToContent
+    selectLanguage
+    toggleMenu
+    closeMenu
+    previousSlide
+    nextSlide
+    goToSlide
+  }
+}
+
+fragment Translations_enParts on Translations_en {
+  __typename
+  nav {
+    __typename
+    social
+    menu
+    letsTalk
+    about
+    projects
+    services
+    contact
+  }
+  footer {
+    __typename
+    privacy
+    legal
+  }
+  contact {
+    __typename
+    title
+    description
+    heading
+    subheading
+  }
+  contactForm {
+    __typename
+    name
+    company
+    email
+    phone
+    projectType
+    projectTypes {
+      __typename
+      commercial
+      restaurant
+      entertainment
+      other
+    }
+    serviceType
+    serviceTypes {
+      __typename
+      fullPackage
+      concept
+      unsure
+    }
+    message
+    privacy
+    submit
+    sending
+    success
+    error
+  }
+  projects {
+    __typename
+    title
+    description
+    heading
+  }
+  cookies {
+    __typename
+    message
+    moreInfo
+    accept
+  }
+  accessibility {
+    __typename
+    skipToContent
+    selectLanguage
+    toggleMenu
+    closeMenu
+    previousSlide
+    nextSlide
+    goToSlide
+  }
+}

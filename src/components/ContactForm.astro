@@ -1,90 +1,19 @@
 ---
 // src/components/ContactForm.astro
+import { getTranslations, type Translations } from '../utils/translations';
+
 interface Props {
   lang: string;
+  translations?: Translations;
 }
 
-const { lang } = Astro.props;
+const { lang, translations: propTranslations } = Astro.props;
 
-const translations = {
-  es: {
-    name: 'Nombre',
-    company: 'Empresa',
-    email: 'Email',
-    phone: 'Teléfono',
-    projectType: 'Naturaleza del proyecto',
-    projectTypes: {
-      commercial: 'Comercial',
-      restaurant: 'Bar o Restaurante',
-      entertainment: 'Entretenimiento o locales de fiesta',
-      other: 'Otros',
-    },
-    serviceType: '¿Qué tipo de servicios buscas?',
-    serviceTypes: {
-      full: 'Paquete completo: servicios de diseño y ejecución',
-      concept: 'Concepto de negocio y desarrollo de diseño',
-      unsure: 'Aún no estoy seguro',
-    },
-    message: 'Cuéntanos más',
-    privacy: 'Acepto la política de privacidad.',
-    submit: 'enviar mensaje',
-    sending: 'Enviando...',
-    success: '¡Mensaje enviado! Te contactaremos pronto.',
-    error: 'Error al enviar. Por favor, inténtalo de nuevo.',
-  },
-  ca: {
-    name: 'Nom',
-    company: 'Empresa',
-    email: 'Email',
-    phone: 'Telèfon',
-    projectType: 'Naturalesa del projecte',
-    projectTypes: {
-      commercial: 'Comercial',
-      restaurant: 'Bar o Restaurant',
-      entertainment: 'Entreteniment o locals de festa',
-      other: 'Altres',
-    },
-    serviceType: 'Quin tipus de serveis busques?',
-    serviceTypes: {
-      full: 'Paquet complet: serveis de disseny i execució',
-      concept: 'Concepte de negoci i desenvolupament de disseny',
-      unsure: 'Encara no estic segur',
-    },
-    message: 'Explica\'ns més',
-    privacy: 'Accepto la política de privacitat.',
-    submit: 'enviar missatge',
-    sending: 'Enviant...',
-    success: 'Missatge enviat! Et contactarem aviat.',
-    error: 'Error en enviar. Si us plau, torna-ho a provar.',
-  },
-  en: {
-    name: 'Name',
-    company: 'Company',
-    email: 'Email',
-    phone: 'Phone number',
-    projectType: 'Nature of the project',
-    projectTypes: {
-      commercial: 'Commercial',
-      restaurant: 'Bar or Restaurant',
-      entertainment: 'Entertainment or party venues',
-      other: 'Others',
-    },
-    serviceType: 'What type of services are you looking for?',
-    serviceTypes: {
-      full: 'Full-package: design and execution services',
-      concept: 'Business concept and design development',
-      unsure: 'Not sure yet',
-    },
-    message: 'Tell us more',
-    privacy: 'I agree with the privacy policy.',
-    submit: 'send message',
-    sending: 'Sending...',
-    success: 'Message sent! We will contact you soon.',
-    error: 'Error sending. Please try again.',
-  },
-};
+const t = propTranslations ?? await getTranslations(lang);
+const f = t.contactForm;
 
-const t = translations[lang as keyof typeof translations] || translations.es;
+// Turnstile site key - use test key for development
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
 ---
 
 <form
@@ -99,7 +28,7 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       <input
         type="text"
         name="name"
-        placeholder={`${t.name}*`}
+        placeholder={`${f.name}*`}
         required
         class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
       />
@@ -108,7 +37,7 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       <input
         type="text"
         name="company"
-        placeholder={t.company}
+        placeholder={f.company}
         class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
       />
     </div>
@@ -120,7 +49,7 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       <input
         type="email"
         name="email"
-        placeholder={`${t.email}*`}
+        placeholder={`${f.email}*`}
         required
         class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
       />
@@ -129,7 +58,7 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       <input
         type="tel"
         name="phone"
-        placeholder={t.phone}
+        placeholder={f.phone}
         class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent"
       />
     </div>
@@ -142,11 +71,11 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       required
       class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
     >
-      <option value="">{t.projectType}*</option>
-      <option value="commercial">{t.projectTypes.commercial}</option>
-      <option value="restaurant">{t.projectTypes.restaurant}</option>
-      <option value="entertainment">{t.projectTypes.entertainment}</option>
-      <option value="other">{t.projectTypes.other}</option>
+      <option value="">{f.projectType}*</option>
+      <option value="commercial">{f.projectTypes.commercial}</option>
+      <option value="restaurant">{f.projectTypes.restaurant}</option>
+      <option value="entertainment">{f.projectTypes.entertainment}</option>
+      <option value="other">{f.projectTypes.other}</option>
     </select>
   </div>
 
@@ -157,10 +86,10 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       required
       class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
     >
-      <option value="">{t.serviceType}*</option>
-      <option value="full">{t.serviceTypes.full}</option>
-      <option value="concept">{t.serviceTypes.concept}</option>
-      <option value="unsure">{t.serviceTypes.unsure}</option>
+      <option value="">{f.serviceType}*</option>
+      <option value="fullPackage">{f.serviceTypes.fullPackage}</option>
+      <option value="concept">{f.serviceTypes.concept}</option>
+      <option value="unsure">{f.serviceTypes.unsure}</option>
     </select>
   </div>
 
@@ -169,7 +98,7 @@ const t = translations[lang as keyof typeof translations] || translations.es;
     <textarea
       name="message"
       rows="4"
-      placeholder={t.message}
+      placeholder={f.message}
       class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent resize-none"
     ></textarea>
   </div>
@@ -184,9 +113,19 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       class="mt-1 w-4 h-4 border-gray-300 rounded focus:ring-black"
     />
     <label for="privacy" class="text-sm text-gray-600">
-      {t.privacy}
+      {f.privacy}
     </label>
   </div>
+
+  <!-- Turnstile (invisible) -->
+  <div
+    class="cf-turnstile"
+    data-sitekey={TURNSTILE_SITE_KEY}
+    data-size="invisible"
+    data-callback="onTurnstileSuccess"
+    data-error-callback="onTurnstileError"
+  ></div>
+  <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response" />
 
   <!-- Submit -->
   <div>
@@ -194,8 +133,8 @@ const t = translations[lang as keyof typeof translations] || translations.es;
       type="submit"
       class="px-8 py-4 bg-black text-white tracking-wider text-sm hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      <span class="htmx-indicator-hide">{t.submit}</span>
-      <span id="form-indicator" class="htmx-indicator">{t.sending}</span>
+      <span class="htmx-indicator-hide">{f.submit}</span>
+      <span id="form-indicator" class="htmx-indicator">{f.sending}</span>
     </button>
   </div>
 </form>
@@ -211,3 +150,15 @@ const t = translations[lang as keyof typeof translations] || translations.es;
     display: none;
   }
 </style>
+
+<!-- Turnstile script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script is:inline>
+  // Turnstile callbacks
+  window.onTurnstileSuccess = function(token) {
+    document.getElementById('cf-turnstile-response').value = token;
+  };
+  window.onTurnstileError = function() {
+    console.error('Turnstile error');
+  };
+</script>

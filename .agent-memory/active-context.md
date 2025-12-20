@@ -8,10 +8,31 @@ permalink: active-context
 
 ## Current Focus
 
-Cloudflare Workers 1101 error fixed. Contact form API endpoint complete. Ready for deployment.
+Turnstile spam protection and Web Analytics added. Ready to push to GitHub for TinaCMS schema sync and configure Cloudflare environment variables.
 
 ## Recent Changes
 
+- [2025-12-20] Cloudflare integrations:
+  - Added Turnstile invisible widget to ContactForm.astro
+  - Added server-side Turnstile verification in contact API endpoint
+  - Added Cloudflare Web Analytics (cookie-free) to Base.astro
+  - Added turnstileFailed translations to all language JSON files
+- [2025-12-20] Translations system implementation:
+  - Created centralized JSON translation files (es/ca/en) at src/content/translations/
+  - Added translations content collection using Astro glob loader
+  - Created getTranslations() utility function with Spanish fallback
+  - Updated Navigation, Footer, ContactForm, CookieConsent to use centralized translations
+  - Added TinaCMS configuration for editing translations
+  - Deleted deprecated shortcodes.ts file
+- [2025-12-20] MDX migration (from shortcode syntax):
+  - Converted content files from shortcode syntax to MDX components
+  - Created component barrel exports in src/components/mdx/
+  - Updated TinaCMS rich-text templates for MDX blocks
+- [2025-12-20] Image performance optimization:
+  - Added public/_headers for Cloudflare cache control (1yr immutable for /_optimized/*, 1wk for /images/*)
+  - Added LCP preload support to Base layout (preloadImage prop)
+  - Added getOptimizedImagePath() export to shortcodes.ts
+  - Compressed source images (hero 522KB→72KB, bio 343KB→26KB)
 - [2025-12-20] Created contact form API endpoint with Resend integration
 - [2025-12-20] Fixed Cloudflare Workers 1101 error: replaced node:crypto/path with edge-compatible DJB2 hash
 - [2025-12-20] Fixed build warnings: UnoCSS fontSize format, multiple import, HTMX eval suppression
@@ -52,11 +73,23 @@ Cloudflare Workers 1101 error fixed. Contact form API endpoint complete. Ready f
 ## Next Steps
 
 - [x] Copy LA TROBADA project images from .reference to public/images
+- [x] Create API endpoint for contact form
+- [x] Deploy to Cloudflare Pages
+- [x] Fix image loading performance
+- [x] Migrate from shortcodes to MDX
+- [x] Implement centralized translations system
+- [x] Add Cloudflare Turnstile spam protection
+- [x] Add Cloudflare Web Analytics
+- [ ] Push to GitHub to sync TinaCMS schema
+- [ ] Configure Cloudflare environment variables:
+  - RESEND_API_KEY, CONTACT_EMAIL (for email)
+  - TURNSTILE_SECRET_KEY, PUBLIC_TURNSTILE_SITE_KEY (for Turnstile)
+  - PUBLIC_CF_WEB_ANALYTICS_TOKEN (for Web Analytics)
+- [ ] Test translations editing in TinaCMS admin
+- [ ] Test contact form in production
 - [ ] Add founder photo placeholder
-- [ ] Create API endpoint for contact form
-- [ ] Add privacy and legal pages
-- [ ] Test all pages and fix any issues
-- [ ] Deploy to Cloudflare Pages
+- [x] Add privacy and legal pages (exist: pages + content for all 3 languages)
+- [ ] Final QA across all pages
 
 ## Active Decisions
 

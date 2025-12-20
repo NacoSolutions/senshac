@@ -1,0 +1,23 @@
+---
+// src/components/mdx/Button.astro
+interface Props {
+  href: string;
+  text: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+}
+
+const { href, text, variant = 'primary' } = Astro.props;
+
+const variants = {
+  primary: 'bg-black text-white hover:bg-gray-800',
+  secondary: 'bg-gray-100 text-black hover:bg-gray-200',
+  outline: 'border border-black text-black hover:bg-black hover:text-white',
+};
+---
+
+<a
+  href={href}
+  class={`inline-block px-6 py-3 text-sm font-medium transition-colors ${variants[variant]}`}
+>
+  {text}
+</a>

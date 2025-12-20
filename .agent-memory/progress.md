@@ -6,7 +6,7 @@ permalink: progress
 
 # Progress
 
-## Status: CMS Integration Complete
+## Status: Ready for Production
 
 ### What Works
 
@@ -18,12 +18,17 @@ permalink: progress
 - Multilingual routing: es, ca, en with prefix
 - Content collections with glob loader for Markdown
 - Custom remark-shortcodes plugin ([[shortcode]] syntax)
-- Build-time image optimization with Sharp (WebP)
+- Build-time image optimization with Sharp (WebP, responsive srcset)
+- LCP image preloading via Base layout `preloadImage` prop
+- Cloudflare cache headers (_headers file)
 - JSON-LD structured data (LocalBusiness, Article)
 - SEO: robots.txt, sitemap.xml, llms.txt endpoints
 - HeadSEO with hreflang alternates
-- Decap CMS local backend (decap-server)
-- CMS config with folder-based project collections
+- TinaCMS for content editing (replaced Decap CMS)
+- Centralized translations system (JSON files, TinaCMS editable)
+- Cloudflare Turnstile spam protection (invisible CAPTCHA)
+- Cloudflare Web Analytics (cookie-free)
+- Privacy Policy and Legal Notice pages (3 languages)
 - LA TROBADA project (3 languages) with images
 
 ### Completed
@@ -45,27 +50,34 @@ permalink: progress
 - [x] Convert MDX to shortcode-based Markdown
 - [x] Create remark-shortcodes plugin
 - [x] Add SEO endpoints (robots.txt, sitemap.xml, llms.txt)
-- [x] Configure Decap CMS with local backend
+- [x] Configure TinaCMS (replaced Decap CMS)
 - [x] Create API endpoint for contact form (Resend integration)
 - [x] Fix Cloudflare Workers 1101 error (edge-compatible hashing)
+- [x] Image performance optimization (cache headers, LCP preload, compression)
+- [x] Migrate from shortcodes to MDX
+- [x] Implement centralized translations system
+- [x] Add Cloudflare Turnstile spam protection
+- [x] Add Cloudflare Web Analytics
+- [x] Create Privacy Policy and Legal Notice pages
 
 ### In Progress
 
-- [ ] Deploy to Cloudflare Pages (redeploy after 1101 fix)
+- [ ] Push to GitHub to sync TinaCMS schema
 
 ### Pending
 
+- [ ] Configure Cloudflare environment variables (Resend, Turnstile, Analytics)
+- [ ] Test translations editing in TinaCMS admin
+- [ ] Test contact form in production
 - [ ] Add founder photo placeholder
-- [ ] Add privacy and legal pages
-- [ ] Test all pages and fix any issues
-- [ ] Deploy to Cloudflare Pages
+- [ ] Final QA across all pages
 
 ## Blockers
 None.
 
 ## Known Issues
 
-- TinaCMS replaced Decap CMS for local development
+None currently.
 
 ## Notes
 

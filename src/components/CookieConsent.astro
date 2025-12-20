@@ -1,30 +1,16 @@
 ---
 // src/components/CookieConsent.astro
+import { getTranslations, type Translations } from '../utils/translations';
+
 interface Props {
   lang: string;
+  translations?: Translations;
 }
 
-const { lang } = Astro.props;
+const { lang, translations: propTranslations } = Astro.props;
 
-const translations = {
-  es: {
-    message: 'Este sitio utiliza cookies para ofrecerte una mejor experiencia de navegación. Al navegar por este sitio web, aceptas el uso de cookies.',
-    moreInfo: 'Más información',
-    accept: 'Aceptar',
-  },
-  ca: {
-    message: 'Aquest lloc utilitza cookies per oferir-te una millor experiència de navegació. En navegar per aquest lloc web, acceptes l\'ús de cookies.',
-    moreInfo: 'Més informació',
-    accept: 'Acceptar',
-  },
-  en: {
-    message: 'This site uses cookies to offer you a better browsing experience. By browsing this website, you agree to our use of cookies.',
-    moreInfo: 'More info',
-    accept: 'Accept',
-  },
-};
-
-const t = translations[lang as keyof typeof translations] || translations.es;
+const t = propTranslations ?? await getTranslations(lang);
+const c = t.cookies;
 ---
 
 <div
@@ -42,21 +28,21 @@ const t = translations[lang as keyof typeof translations] || translations.es;
 >
   <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-sm text-gray-300 text-center sm:text-left">
-      {t.message}
+      {c.message}
     </p>
     <div class="flex items-center gap-4">
       <a
         href={`/${lang}/privacy-policy`}
         class="text-sm text-gray-400 hover:text-white transition-colors underline"
       >
-        {t.moreInfo}
+        {c.moreInfo}
       </a>
       <button
         type="button"
         class="bg-white text-black px-4 py-2 text-sm hover:bg-gray-200 transition-colors"
         @click="localStorage.setItem('cookieConsent', 'true'); show = false"
       >
-        {t.accept}
+        {c.accept}
       </button>
     </div>
   </div>

@@ -8,7 +8,7 @@ const WIDTHS = [400, 800, 1200];
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp'];
 
 /**
- * DJB2 hash - must match syncHash in src/utils/shortcodes.ts
+ * DJB2 hash for generating consistent short hashes from strings
  */
 function djb2Hash(str: string): string {
   let hash = 5381;

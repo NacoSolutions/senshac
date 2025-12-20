@@ -245,3 +245,140 @@ build: {
 
 ### UnoCSS Auto-Injection
 With `@unocss/astro` integration using `injectReset: true`, do not manually import `virtual:uno.css` - causes duplicate import warnings.
+
+### Edge-Compatible Hashing
+For Cloudflare Workers compatibility, use DJB2 hash instead of Node.js crypto:
+```typescript
+function djb2Hash(str: string): string {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+  }
+  return Math.abs(hash).toString(16).slice(0, 8);
+}
+```
+Must be synchronized between build-time (`optimize-images.ts`) and runtime.
+
+## Translations System
+
+### Architecture
+Centralized JSON translations editable via TinaCMS:
+
+```
+src/content/translations/
+├── es.json    # Spanish (primary/fallback)
+├── ca.json    # Catalan
+└── en.json    # English
+```
+
+### Content Collection Config
+```typescript
+// src/content/config.ts
+import { glob } from 'astro/loaders';
+
+const translations = defineCollection({
+  loader: glob({ pattern: '*.json', base: 'src/content/translations' }),
+  schema: z.object({
+    nav: z.object({ social, menu, letsTalk, about, projects, services, contact }),
+    footer: z.object({ privacy, legal }),
+    contactForm: z.object({ ... }),
+    // ...
+  }),
+});
+```
+
+**Important:** Use `glob` loader, not `file` - file loader doesn't support glob patterns.
+
+### Utility Function
+```typescript
+// src/utils/translations.ts
+export async function getTranslations(lang: string) {
+  const entry = await getEntry('translations', lang);
+  if (!entry) {
+    const fallback = await getEntry('translations', 'es');
+    if (!fallback) throw new Error(`No translations found`);
+    return fallback.data;
+  }
+  return entry.data;
+}
+```
+
+### Component Usage Pattern
+Components accept optional `translations` prop to avoid refetching:
+```astro
+---
+import { getTranslations, type Translations } from '../utils/translations';
+
+interface Props {
+  lang: string;
+  translations?: Translations;
+}
+
+const { lang, translations: propTranslations } = Astro.props;
+const t = propTranslations ?? await getTranslations(lang);
+---
+```
+
+### TinaCMS Integration
+Translations editable under separate collections per language:
+- 🇪🇸 Translations (Spanish)
+- 🏴󠁥󠁳󠁣󠁴󠁿 Translations (Catalan)
+- 🇬🇧 Translations (English)
+
+Uses `match: { include: 'xx' }` to target specific JSON files.
+
+## Cloudflare Integrations
+
+### Turnstile (Spam Protection)
+
+Invisible CAPTCHA for contact form:
+
+```astro
+<!-- ContactForm.astro -->
+<div
+  class="cf-turnstile"
+  data-sitekey={TURNSTILE_SITE_KEY}
+  data-size="invisible"
+  data-callback="onTurnstileSuccess"
+></div>
+<input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response" />
+```
+
+Server-side verification in API:
+```typescript
+// contact.ts
+const formData = new FormData();
+formData.append('secret', TURNSTILE_SECRET_KEY);
+formData.append('response', token);
+formData.append('remoteip', request.headers.get('CF-Connecting-IP'));
+
+const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+  method: 'POST',
+  body: formData,
+});
+```
+
+Environment variables:
+- `PUBLIC_TURNSTILE_SITE_KEY` - Public site key (visible in HTML)
+- `TURNSTILE_SECRET_KEY` - Secret key (server-side only)
+
+Test keys for development:
+- Site key: `1x00000000000000000000AA` (always passes)
+- Secret key: `1x0000000000000000000000000000000AA` (always passes)
+
+### Web Analytics (Cookie-Free)
+
+```astro
+<!-- Base.astro -->
+{CF_WEB_ANALYTICS_TOKEN && (
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon={`{"token": "${CF_WEB_ANALYTICS_TOKEN}"}`}
+  />
+)}
+```
+
+Environment variable: `PUBLIC_CF_WEB_ANALYTICS_TOKEN`
+
+Get token from Cloudflare Dashboard → Analytics & Logs → Web Analytics.

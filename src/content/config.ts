@@ -3,9 +3,8 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: 'src/content/projects' }),
+  type: 'content',
   schema: z.object({
-    // Core metadata (required)
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
@@ -14,12 +13,11 @@ const projects = defineCollection({
     coverImage: z.string(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
-    // All content now handled via shortcodes in body
   }),
 });
 
 const pages = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: 'src/content/pages' }),
+  type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -29,7 +27,77 @@ const pages = defineCollection({
   }),
 });
 
+const translations = defineCollection({
+  loader: glob({ pattern: '*.json', base: 'src/content/translations' }),
+  schema: z.object({
+    nav: z.object({
+      social: z.string(),
+      menu: z.string(),
+      letsTalk: z.string(),
+      about: z.string(),
+      projects: z.string(),
+      services: z.string(),
+      contact: z.string(),
+    }),
+    footer: z.object({
+      privacy: z.string(),
+      legal: z.string(),
+    }),
+    contact: z.object({
+      title: z.string(),
+      description: z.string(),
+      heading: z.string(),
+      subheading: z.string(),
+    }),
+    contactForm: z.object({
+      name: z.string(),
+      company: z.string(),
+      email: z.string(),
+      phone: z.string(),
+      projectType: z.string(),
+      projectTypes: z.object({
+        commercial: z.string(),
+        restaurant: z.string(),
+        entertainment: z.string(),
+        other: z.string(),
+      }),
+      serviceType: z.string(),
+      serviceTypes: z.object({
+        fullPackage: z.string(),
+        concept: z.string(),
+        unsure: z.string(),
+      }),
+      message: z.string(),
+      privacy: z.string(),
+      submit: z.string(),
+      sending: z.string(),
+      success: z.string(),
+      error: z.string(),
+    }),
+    projects: z.object({
+      title: z.string(),
+      description: z.string(),
+      heading: z.string(),
+    }),
+    cookies: z.object({
+      message: z.string(),
+      moreInfo: z.string(),
+      accept: z.string(),
+    }),
+    accessibility: z.object({
+      skipToContent: z.string(),
+      selectLanguage: z.string(),
+      toggleMenu: z.string(),
+      closeMenu: z.string(),
+      previousSlide: z.string(),
+      nextSlide: z.string(),
+      goToSlide: z.string(),
+    }),
+  }),
+});
+
 export const collections = {
   projects,
   pages,
+  translations,
 };
