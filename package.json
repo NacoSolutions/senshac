@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:cms": "tinacms dev -c \"astro dev\"",
-    "build": "tinacms build && astro build",
+    "build": "tinacms build --skip-cloud-checks && astro build",
     "deploy": "wrangler pages deploy dist --project-name senshac",
     "preview": "astro preview",
     "check": "astro check",
