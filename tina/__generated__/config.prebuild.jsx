@@ -240,6 +240,117 @@ var aboutMissionTemplate = {
     { name: "quote", label: "Quote", type: "string", ui: { component: "textarea" } }
   ]
 };
+var translationFields = [
+  {
+    type: "object",
+    name: "nav",
+    label: "Navigation",
+    fields: [
+      { name: "social", label: "Social Label", type: "string" },
+      { name: "menu", label: "Menu Label", type: "string" },
+      { name: "letsTalk", label: "Let's Talk", type: "string" },
+      { name: "about", label: "About", type: "string" },
+      { name: "projects", label: "Projects", type: "string" },
+      { name: "services", label: "Services", type: "string" },
+      { name: "contact", label: "Contact", type: "string" }
+    ]
+  },
+  {
+    type: "object",
+    name: "footer",
+    label: "Footer",
+    fields: [
+      { name: "privacy", label: "Privacy Policy Link", type: "string" },
+      { name: "legal", label: "Legal Notice Link", type: "string" }
+    ]
+  },
+  {
+    type: "object",
+    name: "contact",
+    label: "Contact Page",
+    fields: [
+      { name: "title", label: "Page Title", type: "string" },
+      { name: "description", label: "Meta Description", type: "string" },
+      { name: "heading", label: "Heading", type: "string" },
+      { name: "subheading", label: "Subheading", type: "string" }
+    ]
+  },
+  {
+    type: "object",
+    name: "contactForm",
+    label: "Contact Form",
+    fields: [
+      { name: "name", label: "Name Field", type: "string" },
+      { name: "company", label: "Company Field", type: "string" },
+      { name: "email", label: "Email Field", type: "string" },
+      { name: "phone", label: "Phone Field", type: "string" },
+      { name: "projectType", label: "Project Type Label", type: "string" },
+      {
+        type: "object",
+        name: "projectTypes",
+        label: "Project Types",
+        fields: [
+          { name: "commercial", label: "Commercial", type: "string" },
+          { name: "restaurant", label: "Restaurant", type: "string" },
+          { name: "entertainment", label: "Entertainment", type: "string" },
+          { name: "other", label: "Other", type: "string" }
+        ]
+      },
+      { name: "serviceType", label: "Service Type Label", type: "string" },
+      {
+        type: "object",
+        name: "serviceTypes",
+        label: "Service Types",
+        fields: [
+          { name: "fullPackage", label: "Full Package", type: "string" },
+          { name: "concept", label: "Concept Only", type: "string" },
+          { name: "unsure", label: "Not Sure", type: "string" }
+        ]
+      },
+      { name: "message", label: "Message Field", type: "string" },
+      { name: "privacy", label: "Privacy Checkbox", type: "string" },
+      { name: "submit", label: "Submit Button", type: "string" },
+      { name: "sending", label: "Sending Text", type: "string" },
+      { name: "success", label: "Success Message", type: "string" },
+      { name: "error", label: "Error Message", type: "string" },
+      { name: "turnstileFailed", label: "Turnstile Failed Message", type: "string" }
+    ]
+  },
+  {
+    type: "object",
+    name: "projects",
+    label: "Projects Page",
+    fields: [
+      { name: "title", label: "Page Title", type: "string" },
+      { name: "description", label: "Meta Description", type: "string" },
+      { name: "heading", label: "Heading", type: "string" }
+    ]
+  },
+  {
+    type: "object",
+    name: "cookies",
+    label: "Cookie Consent",
+    fields: [
+      { name: "message", label: "Message", type: "string", ui: { component: "textarea" } },
+      { name: "moreInfo", label: "More Info Link", type: "string" },
+      { name: "accept", label: "Accept Button", type: "string" }
+    ]
+  },
+  {
+    type: "object",
+    name: "accessibility",
+    label: "Accessibility",
+    fields: [
+      { name: "skipToContent", label: "Skip to Content", type: "string" },
+      { name: "selectLanguage", label: "Select Language", type: "string" },
+      { name: "toggleMenu", label: "Toggle Menu", type: "string" },
+      { name: "closeMenu", label: "Close Menu", type: "string" },
+      { name: "previousSlide", label: "Previous Slide", type: "string" },
+      { name: "nextSlide", label: "Next Slide", type: "string" },
+      { name: "goToSlide", label: "Go to Slide", type: "string" }
+    ]
+  }
+];
 var projectTemplates = [
   bannerTemplate,
   detailsSectionTemplate,
@@ -383,6 +494,7 @@ var config_default = defineConfig({
         format: "mdx",
         fields: projectFields,
         ui: {
+          router: ({ document }) => `/es/projects/${document._sys.filename}`,
           filename: {
             slugify: (values) => values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
           }
@@ -395,6 +507,7 @@ var config_default = defineConfig({
         format: "mdx",
         fields: projectFields,
         ui: {
+          router: ({ document }) => `/ca/projects/${document._sys.filename}`,
           filename: {
             slugify: (values) => values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
           }
@@ -407,6 +520,7 @@ var config_default = defineConfig({
         format: "mdx",
         fields: projectFields,
         ui: {
+          router: ({ document }) => `/en/projects/${document._sys.filename}`,
           filename: {
             slugify: (values) => values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
           }
@@ -420,51 +534,76 @@ var config_default = defineConfig({
         label: "Pages (Spanish)",
         path: "src/content/pages/es",
         format: "mdx",
-        fields: pageFields
+        fields: pageFields,
+        ui: {
+          router: ({ document }) => {
+            const slug = document._sys.filename;
+            return slug === "home" ? "/es/" : `/es/${slug}`;
+          }
+        }
       },
       {
         name: "pages_ca",
         label: "Pages (Catalan)",
         path: "src/content/pages/ca",
         format: "mdx",
-        fields: pageFields
+        fields: pageFields,
+        ui: {
+          router: ({ document }) => {
+            const slug = document._sys.filename;
+            return slug === "home" ? "/ca/" : `/ca/${slug}`;
+          }
+        }
       },
       {
         name: "pages_en",
         label: "Pages (English)",
         path: "src/content/pages/en",
         format: "mdx",
-        fields: pageFields
+        fields: pageFields,
+        ui: {
+          router: ({ document }) => {
+            const slug = document._sys.filename;
+            return slug === "home" ? "/en/" : `/en/${slug}`;
+          }
+        }
+      },
+      // ========================================
+      // TRANSLATIONS
+      // ========================================
+      {
+        name: "translations_es",
+        label: "Translations (Spanish)",
+        path: "src/content/translations",
+        format: "json",
+        match: { include: "es" },
+        fields: translationFields,
+        ui: {
+          allowedActions: { create: false, delete: false }
+        }
+      },
+      {
+        name: "translations_ca",
+        label: "Translations (Catalan)",
+        path: "src/content/translations",
+        format: "json",
+        match: { include: "ca" },
+        fields: translationFields,
+        ui: {
+          allowedActions: { create: false, delete: false }
+        }
+      },
+      {
+        name: "translations_en",
+        label: "Translations (English)",
+        path: "src/content/translations",
+        format: "json",
+        match: { include: "en" },
+        fields: translationFields,
+        ui: {
+          allowedActions: { create: false, delete: false }
+        }
       }
-      // ========================================
-      // TRANSLATIONS - Temporarily disabled pending TinaCMS Cloud sync
-      // Translations still work via Astro content collections
-      // Re-enable once TinaCMS Cloud properly indexes the schema
-      // ========================================
-      // {
-      //   name: 'translations_es',
-      //   label: 'Translations (Spanish)',
-      //   path: 'src/content/translations',
-      //   format: 'json',
-      //   match: { include: 'es' },
-      //   fields: translationFields,
-      // },
-      // {
-      //   name: 'translations_ca',
-      //   label: 'Translations (Catalan)',
-      //   path: 'src/content/translations',
-      //   format: 'json',
-      //   match: { include: 'ca' },
-      //   fields: translationFields,
-      // },
-      // {
-      //   name: 'translations_en',
-      //   label: 'Translations (English)',
-      //   path: 'src/content/translations',
-      //   format: 'json',
-      //   match: { include: 'en' },
-      //   fields: translationFields,
-      // },
     ]
   }
 });

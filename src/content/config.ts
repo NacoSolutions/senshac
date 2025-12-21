@@ -73,6 +73,7 @@ const translations = defineCollection({
       sending: z.string(),
       success: z.string(),
       error: z.string(),
+      turnstileFailed: z.string().optional(),
     }),
     projects: z.object({
       title: z.string(),

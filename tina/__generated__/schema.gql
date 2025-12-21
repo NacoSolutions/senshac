@@ -66,6 +66,12 @@ type Query {
   pages_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Pages_caFilter): Pages_caConnection!
   pages_en(relativePath: String): Pages_en!
   pages_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Pages_enFilter): Pages_enConnection!
+  translations_es(relativePath: String): Translations_es!
+  translations_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_esFilter): Translations_esConnection!
+  translations_ca(relativePath: String): Translations_ca!
+  translations_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_caFilter): Translations_caConnection!
+  translations_en(relativePath: String): Translations_en!
+  translations_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_enFilter): Translations_enConnection!
 }
 
 input DocumentFilter {
@@ -75,6 +81,9 @@ input DocumentFilter {
   pages_es: Pages_esFilter
   pages_ca: Pages_caFilter
   pages_en: Pages_enFilter
+  translations_es: Translations_esFilter
+  translations_ca: Translations_caFilter
+  translations_en: Translations_enFilter
 }
 
 type DocumentConnectionEdges {
@@ -100,7 +109,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Projects_es | Projects_ca | Projects_en | Pages_es | Pages_ca | Pages_en | Folder
+union DocumentNode = Projects_es | Projects_ca | Projects_en | Pages_es | Pages_ca | Pages_en | Translations_es | Translations_ca | Translations_en | Folder
 
 type Projects_es implements Node & Document {
   title: String!
@@ -1167,6 +1176,558 @@ type Pages_enConnection implements Connection {
   edges: [Pages_enConnectionEdges]
 }
 
+type Translations_esNav {
+  social: String
+  menu: String
+  letsTalk: String
+  about: String
+  projects: String
+  services: String
+  contact: String
+}
+
+type Translations_esFooter {
+  privacy: String
+  legal: String
+}
+
+type Translations_esContact {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+type Translations_esContactFormProjectTypes {
+  commercial: String
+  restaurant: String
+  entertainment: String
+  other: String
+}
+
+type Translations_esContactFormServiceTypes {
+  fullPackage: String
+  concept: String
+  unsure: String
+}
+
+type Translations_esContactForm {
+  name: String
+  company: String
+  email: String
+  phone: String
+  projectType: String
+  projectTypes: Translations_esContactFormProjectTypes
+  serviceType: String
+  serviceTypes: Translations_esContactFormServiceTypes
+  message: String
+  privacy: String
+  submit: String
+  sending: String
+  success: String
+  error: String
+  turnstileFailed: String
+}
+
+type Translations_esProjects {
+  title: String
+  description: String
+  heading: String
+}
+
+type Translations_esCookies {
+  message: String
+  moreInfo: String
+  accept: String
+}
+
+type Translations_esAccessibility {
+  skipToContent: String
+  selectLanguage: String
+  toggleMenu: String
+  closeMenu: String
+  previousSlide: String
+  nextSlide: String
+  goToSlide: String
+}
+
+type Translations_es implements Node & Document {
+  nav: Translations_esNav
+  footer: Translations_esFooter
+  contact: Translations_esContact
+  contactForm: Translations_esContactForm
+  projects: Translations_esProjects
+  cookies: Translations_esCookies
+  accessibility: Translations_esAccessibility
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Translations_esNavFilter {
+  social: StringFilter
+  menu: StringFilter
+  letsTalk: StringFilter
+  about: StringFilter
+  projects: StringFilter
+  services: StringFilter
+  contact: StringFilter
+}
+
+input Translations_esFooterFilter {
+  privacy: StringFilter
+  legal: StringFilter
+}
+
+input Translations_esContactFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+  subheading: StringFilter
+}
+
+input Translations_esContactFormProjectTypesFilter {
+  commercial: StringFilter
+  restaurant: StringFilter
+  entertainment: StringFilter
+  other: StringFilter
+}
+
+input Translations_esContactFormServiceTypesFilter {
+  fullPackage: StringFilter
+  concept: StringFilter
+  unsure: StringFilter
+}
+
+input Translations_esContactFormFilter {
+  name: StringFilter
+  company: StringFilter
+  email: StringFilter
+  phone: StringFilter
+  projectType: StringFilter
+  projectTypes: Translations_esContactFormProjectTypesFilter
+  serviceType: StringFilter
+  serviceTypes: Translations_esContactFormServiceTypesFilter
+  message: StringFilter
+  privacy: StringFilter
+  submit: StringFilter
+  sending: StringFilter
+  success: StringFilter
+  error: StringFilter
+  turnstileFailed: StringFilter
+}
+
+input Translations_esProjectsFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+}
+
+input Translations_esCookiesFilter {
+  message: StringFilter
+  moreInfo: StringFilter
+  accept: StringFilter
+}
+
+input Translations_esAccessibilityFilter {
+  skipToContent: StringFilter
+  selectLanguage: StringFilter
+  toggleMenu: StringFilter
+  closeMenu: StringFilter
+  previousSlide: StringFilter
+  nextSlide: StringFilter
+  goToSlide: StringFilter
+}
+
+input Translations_esFilter {
+  nav: Translations_esNavFilter
+  footer: Translations_esFooterFilter
+  contact: Translations_esContactFilter
+  contactForm: Translations_esContactFormFilter
+  projects: Translations_esProjectsFilter
+  cookies: Translations_esCookiesFilter
+  accessibility: Translations_esAccessibilityFilter
+}
+
+type Translations_esConnectionEdges {
+  cursor: String!
+  node: Translations_es
+}
+
+type Translations_esConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Translations_esConnectionEdges]
+}
+
+type Translations_caNav {
+  social: String
+  menu: String
+  letsTalk: String
+  about: String
+  projects: String
+  services: String
+  contact: String
+}
+
+type Translations_caFooter {
+  privacy: String
+  legal: String
+}
+
+type Translations_caContact {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+type Translations_caContactFormProjectTypes {
+  commercial: String
+  restaurant: String
+  entertainment: String
+  other: String
+}
+
+type Translations_caContactFormServiceTypes {
+  fullPackage: String
+  concept: String
+  unsure: String
+}
+
+type Translations_caContactForm {
+  name: String
+  company: String
+  email: String
+  phone: String
+  projectType: String
+  projectTypes: Translations_caContactFormProjectTypes
+  serviceType: String
+  serviceTypes: Translations_caContactFormServiceTypes
+  message: String
+  privacy: String
+  submit: String
+  sending: String
+  success: String
+  error: String
+  turnstileFailed: String
+}
+
+type Translations_caProjects {
+  title: String
+  description: String
+  heading: String
+}
+
+type Translations_caCookies {
+  message: String
+  moreInfo: String
+  accept: String
+}
+
+type Translations_caAccessibility {
+  skipToContent: String
+  selectLanguage: String
+  toggleMenu: String
+  closeMenu: String
+  previousSlide: String
+  nextSlide: String
+  goToSlide: String
+}
+
+type Translations_ca implements Node & Document {
+  nav: Translations_caNav
+  footer: Translations_caFooter
+  contact: Translations_caContact
+  contactForm: Translations_caContactForm
+  projects: Translations_caProjects
+  cookies: Translations_caCookies
+  accessibility: Translations_caAccessibility
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Translations_caNavFilter {
+  social: StringFilter
+  menu: StringFilter
+  letsTalk: StringFilter
+  about: StringFilter
+  projects: StringFilter
+  services: StringFilter
+  contact: StringFilter
+}
+
+input Translations_caFooterFilter {
+  privacy: StringFilter
+  legal: StringFilter
+}
+
+input Translations_caContactFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+  subheading: StringFilter
+}
+
+input Translations_caContactFormProjectTypesFilter {
+  commercial: StringFilter
+  restaurant: StringFilter
+  entertainment: StringFilter
+  other: StringFilter
+}
+
+input Translations_caContactFormServiceTypesFilter {
+  fullPackage: StringFilter
+  concept: StringFilter
+  unsure: StringFilter
+}
+
+input Translations_caContactFormFilter {
+  name: StringFilter
+  company: StringFilter
+  email: StringFilter
+  phone: StringFilter
+  projectType: StringFilter
+  projectTypes: Translations_caContactFormProjectTypesFilter
+  serviceType: StringFilter
+  serviceTypes: Translations_caContactFormServiceTypesFilter
+  message: StringFilter
+  privacy: StringFilter
+  submit: StringFilter
+  sending: StringFilter
+  success: StringFilter
+  error: StringFilter
+  turnstileFailed: StringFilter
+}
+
+input Translations_caProjectsFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+}
+
+input Translations_caCookiesFilter {
+  message: StringFilter
+  moreInfo: StringFilter
+  accept: StringFilter
+}
+
+input Translations_caAccessibilityFilter {
+  skipToContent: StringFilter
+  selectLanguage: StringFilter
+  toggleMenu: StringFilter
+  closeMenu: StringFilter
+  previousSlide: StringFilter
+  nextSlide: StringFilter
+  goToSlide: StringFilter
+}
+
+input Translations_caFilter {
+  nav: Translations_caNavFilter
+  footer: Translations_caFooterFilter
+  contact: Translations_caContactFilter
+  contactForm: Translations_caContactFormFilter
+  projects: Translations_caProjectsFilter
+  cookies: Translations_caCookiesFilter
+  accessibility: Translations_caAccessibilityFilter
+}
+
+type Translations_caConnectionEdges {
+  cursor: String!
+  node: Translations_ca
+}
+
+type Translations_caConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Translations_caConnectionEdges]
+}
+
+type Translations_enNav {
+  social: String
+  menu: String
+  letsTalk: String
+  about: String
+  projects: String
+  services: String
+  contact: String
+}
+
+type Translations_enFooter {
+  privacy: String
+  legal: String
+}
+
+type Translations_enContact {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+type Translations_enContactFormProjectTypes {
+  commercial: String
+  restaurant: String
+  entertainment: String
+  other: String
+}
+
+type Translations_enContactFormServiceTypes {
+  fullPackage: String
+  concept: String
+  unsure: String
+}
+
+type Translations_enContactForm {
+  name: String
+  company: String
+  email: String
+  phone: String
+  projectType: String
+  projectTypes: Translations_enContactFormProjectTypes
+  serviceType: String
+  serviceTypes: Translations_enContactFormServiceTypes
+  message: String
+  privacy: String
+  submit: String
+  sending: String
+  success: String
+  error: String
+  turnstileFailed: String
+}
+
+type Translations_enProjects {
+  title: String
+  description: String
+  heading: String
+}
+
+type Translations_enCookies {
+  message: String
+  moreInfo: String
+  accept: String
+}
+
+type Translations_enAccessibility {
+  skipToContent: String
+  selectLanguage: String
+  toggleMenu: String
+  closeMenu: String
+  previousSlide: String
+  nextSlide: String
+  goToSlide: String
+}
+
+type Translations_en implements Node & Document {
+  nav: Translations_enNav
+  footer: Translations_enFooter
+  contact: Translations_enContact
+  contactForm: Translations_enContactForm
+  projects: Translations_enProjects
+  cookies: Translations_enCookies
+  accessibility: Translations_enAccessibility
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Translations_enNavFilter {
+  social: StringFilter
+  menu: StringFilter
+  letsTalk: StringFilter
+  about: StringFilter
+  projects: StringFilter
+  services: StringFilter
+  contact: StringFilter
+}
+
+input Translations_enFooterFilter {
+  privacy: StringFilter
+  legal: StringFilter
+}
+
+input Translations_enContactFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+  subheading: StringFilter
+}
+
+input Translations_enContactFormProjectTypesFilter {
+  commercial: StringFilter
+  restaurant: StringFilter
+  entertainment: StringFilter
+  other: StringFilter
+}
+
+input Translations_enContactFormServiceTypesFilter {
+  fullPackage: StringFilter
+  concept: StringFilter
+  unsure: StringFilter
+}
+
+input Translations_enContactFormFilter {
+  name: StringFilter
+  company: StringFilter
+  email: StringFilter
+  phone: StringFilter
+  projectType: StringFilter
+  projectTypes: Translations_enContactFormProjectTypesFilter
+  serviceType: StringFilter
+  serviceTypes: Translations_enContactFormServiceTypesFilter
+  message: StringFilter
+  privacy: StringFilter
+  submit: StringFilter
+  sending: StringFilter
+  success: StringFilter
+  error: StringFilter
+  turnstileFailed: StringFilter
+}
+
+input Translations_enProjectsFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+}
+
+input Translations_enCookiesFilter {
+  message: StringFilter
+  moreInfo: StringFilter
+  accept: StringFilter
+}
+
+input Translations_enAccessibilityFilter {
+  skipToContent: StringFilter
+  selectLanguage: StringFilter
+  toggleMenu: StringFilter
+  closeMenu: StringFilter
+  previousSlide: StringFilter
+  nextSlide: StringFilter
+  goToSlide: StringFilter
+}
+
+input Translations_enFilter {
+  nav: Translations_enNavFilter
+  footer: Translations_enFooterFilter
+  contact: Translations_enContactFilter
+  contactForm: Translations_enContactFormFilter
+  projects: Translations_enProjectsFilter
+  cookies: Translations_enCookiesFilter
+  accessibility: Translations_enAccessibilityFilter
+}
+
+type Translations_enConnectionEdges {
+  cursor: String!
+  node: Translations_en
+}
+
+type Translations_enConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Translations_enConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -1185,6 +1746,12 @@ type Mutation {
   createPages_ca(relativePath: String!, params: Pages_caMutation!): Pages_ca!
   updatePages_en(relativePath: String!, params: Pages_enMutation!): Pages_en!
   createPages_en(relativePath: String!, params: Pages_enMutation!): Pages_en!
+  updateTranslations_es(relativePath: String!, params: Translations_esMutation!): Translations_es!
+  createTranslations_es(relativePath: String!, params: Translations_esMutation!): Translations_es!
+  updateTranslations_ca(relativePath: String!, params: Translations_caMutation!): Translations_ca!
+  createTranslations_ca(relativePath: String!, params: Translations_caMutation!): Translations_ca!
+  updateTranslations_en(relativePath: String!, params: Translations_enMutation!): Translations_en!
+  createTranslations_en(relativePath: String!, params: Translations_enMutation!): Translations_en!
 }
 
 input DocumentUpdateMutation {
@@ -1194,6 +1761,9 @@ input DocumentUpdateMutation {
   pages_es: Pages_esMutation
   pages_ca: Pages_caMutation
   pages_en: Pages_enMutation
+  translations_es: Translations_esMutation
+  translations_ca: Translations_caMutation
+  translations_en: Translations_enMutation
   relativePath: String
 }
 
@@ -1204,6 +1774,9 @@ input DocumentMutation {
   pages_es: Pages_esMutation
   pages_ca: Pages_caMutation
   pages_en: Pages_enMutation
+  translations_es: Translations_esMutation
+  translations_ca: Translations_caMutation
+  translations_en: Translations_enMutation
 }
 
 input Projects_esMutation {
@@ -1264,6 +1837,261 @@ input Pages_enMutation {
   heroImage: String
   headerStyle: String
   body: JSON
+}
+
+input Translations_esNavMutation {
+  social: String
+  menu: String
+  letsTalk: String
+  about: String
+  projects: String
+  services: String
+  contact: String
+}
+
+input Translations_esFooterMutation {
+  privacy: String
+  legal: String
+}
+
+input Translations_esContactMutation {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+input Translations_esContactFormProjectTypesMutation {
+  commercial: String
+  restaurant: String
+  entertainment: String
+  other: String
+}
+
+input Translations_esContactFormServiceTypesMutation {
+  fullPackage: String
+  concept: String
+  unsure: String
+}
+
+input Translations_esContactFormMutation {
+  name: String
+  company: String
+  email: String
+  phone: String
+  projectType: String
+  projectTypes: Translations_esContactFormProjectTypesMutation
+  serviceType: String
+  serviceTypes: Translations_esContactFormServiceTypesMutation
+  message: String
+  privacy: String
+  submit: String
+  sending: String
+  success: String
+  error: String
+  turnstileFailed: String
+}
+
+input Translations_esProjectsMutation {
+  title: String
+  description: String
+  heading: String
+}
+
+input Translations_esCookiesMutation {
+  message: String
+  moreInfo: String
+  accept: String
+}
+
+input Translations_esAccessibilityMutation {
+  skipToContent: String
+  selectLanguage: String
+  toggleMenu: String
+  closeMenu: String
+  previousSlide: String
+  nextSlide: String
+  goToSlide: String
+}
+
+input Translations_esMutation {
+  nav: Translations_esNavMutation
+  footer: Translations_esFooterMutation
+  contact: Translations_esContactMutation
+  contactForm: Translations_esContactFormMutation
+  projects: Translations_esProjectsMutation
+  cookies: Translations_esCookiesMutation
+  accessibility: Translations_esAccessibilityMutation
+}
+
+input Translations_caNavMutation {
+  social: String
+  menu: String
+  letsTalk: String
+  about: String
+  projects: String
+  services: String
+  contact: String
+}
+
+input Translations_caFooterMutation {
+  privacy: String
+  legal: String
+}
+
+input Translations_caContactMutation {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+input Translations_caContactFormProjectTypesMutation {
+  commercial: String
+  restaurant: String
+  entertainment: String
+  other: String
+}
+
+input Translations_caContactFormServiceTypesMutation {
+  fullPackage: String
+  concept: String
+  unsure: String
+}
+
+input Translations_caContactFormMutation {
+  name: String
+  company: String
+  email: String
+  phone: String
+  projectType: String
+  projectTypes: Translations_caContactFormProjectTypesMutation
+  serviceType: String
+  serviceTypes: Translations_caContactFormServiceTypesMutation
+  message: String
+  privacy: String
+  submit: String
+  sending: String
+  success: String
+  error: String
+  turnstileFailed: String
+}
+
+input Translations_caProjectsMutation {
+  title: String
+  description: String
+  heading: String
+}
+
+input Translations_caCookiesMutation {
+  message: String
+  moreInfo: String
+  accept: String
+}
+
+input Translations_caAccessibilityMutation {
+  skipToContent: String
+  selectLanguage: String
+  toggleMenu: String
+  closeMenu: String
+  previousSlide: String
+  nextSlide: String
+  goToSlide: String
+}
+
+input Translations_caMutation {
+  nav: Translations_caNavMutation
+  footer: Translations_caFooterMutation
+  contact: Translations_caContactMutation
+  contactForm: Translations_caContactFormMutation
+  projects: Translations_caProjectsMutation
+  cookies: Translations_caCookiesMutation
+  accessibility: Translations_caAccessibilityMutation
+}
+
+input Translations_enNavMutation {
+  social: String
+  menu: String
+  letsTalk: String
+  about: String
+  projects: String
+  services: String
+  contact: String
+}
+
+input Translations_enFooterMutation {
+  privacy: String
+  legal: String
+}
+
+input Translations_enContactMutation {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+input Translations_enContactFormProjectTypesMutation {
+  commercial: String
+  restaurant: String
+  entertainment: String
+  other: String
+}
+
+input Translations_enContactFormServiceTypesMutation {
+  fullPackage: String
+  concept: String
+  unsure: String
+}
+
+input Translations_enContactFormMutation {
+  name: String
+  company: String
+  email: String
+  phone: String
+  projectType: String
+  projectTypes: Translations_enContactFormProjectTypesMutation
+  serviceType: String
+  serviceTypes: Translations_enContactFormServiceTypesMutation
+  message: String
+  privacy: String
+  submit: String
+  sending: String
+  success: String
+  error: String
+  turnstileFailed: String
+}
+
+input Translations_enProjectsMutation {
+  title: String
+  description: String
+  heading: String
+}
+
+input Translations_enCookiesMutation {
+  message: String
+  moreInfo: String
+  accept: String
+}
+
+input Translations_enAccessibilityMutation {
+  skipToContent: String
+  selectLanguage: String
+  toggleMenu: String
+  closeMenu: String
+  previousSlide: String
+  nextSlide: String
+  goToSlide: String
+}
+
+input Translations_enMutation {
+  nav: Translations_enNavMutation
+  footer: Translations_enFooterMutation
+  contact: Translations_enContactMutation
+  contactForm: Translations_enContactFormMutation
+  projects: Translations_enProjectsMutation
+  cookies: Translations_enCookiesMutation
+  accessibility: Translations_enAccessibilityMutation
 }
 
 schema {
