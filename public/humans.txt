@@ -1,5 +1,5 @@
 /* TEAM */
-Original Design & Branding: beMediatic
+Original Design & Branding: be mediàtic
 Technical Refactor & Architecture: Naco Solutions
 
 /* SITE */
