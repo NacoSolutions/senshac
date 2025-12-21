@@ -1,0 +1,15 @@
+/* TEAM */
+Original Design & Branding: beMediatic (https://bemediatic.com)
+Technical Refactor & Architecture: Naco Solutions (https://nacosolutions.com)
+Stack: Astro 5, HTMX, Alpine.js, UnoCSS
+
+/* SITE */
+Site: Sens*Hac - Interior Design Studio
+Last updated: 2024
+Software: Astro SSR on Cloudflare Pages
+CMS: TinaCMS
+
+/* THANKS */
+Cloudflare - Hosting and CDN
+Astro - Static Site Generator
+TinaCMS - Content Management
