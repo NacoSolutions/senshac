@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# TinaCMS admin - serve index.html for /admin route
+/admin /admin/index.html 200
