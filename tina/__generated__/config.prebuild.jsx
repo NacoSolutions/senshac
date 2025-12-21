@@ -488,7 +488,7 @@ var config_default = defineConfig({
       // ========================================
       {
         name: "projects_es",
-        label: "\u{1F1EA}\u{1F1F8} Projects (Spanish)",
+        label: "Projects (Spanish)",
         path: "src/content/projects/es",
         format: "mdx",
         fields: projectFields,
@@ -500,7 +500,7 @@ var config_default = defineConfig({
       },
       {
         name: "projects_ca",
-        label: "\u{1F3F4}\u{E0065}\u{E0073}\u{E0063}\u{E0074}\u{E007F} Projects (Catalan)",
+        label: "Projects (Catalan)",
         path: "src/content/projects/ca",
         format: "mdx",
         fields: projectFields,
@@ -512,7 +512,7 @@ var config_default = defineConfig({
       },
       {
         name: "projects_en",
-        label: "\u{1F1EC}\u{1F1E7} Projects (English)",
+        label: "Projects (English)",
         path: "src/content/projects/en",
         format: "mdx",
         fields: projectFields,
@@ -527,21 +527,21 @@ var config_default = defineConfig({
       // ========================================
       {
         name: "pages_es",
-        label: "\u{1F1EA}\u{1F1F8} Pages (Spanish)",
+        label: "Pages (Spanish)",
         path: "src/content/pages/es",
         format: "mdx",
         fields: pageFields
       },
       {
         name: "pages_ca",
-        label: "\u{1F3F4}\u{E0065}\u{E0073}\u{E0063}\u{E0074}\u{E007F} Pages (Catalan)",
+        label: "Pages (Catalan)",
         path: "src/content/pages/ca",
         format: "mdx",
         fields: pageFields
       },
       {
         name: "pages_en",
-        label: "\u{1F1EC}\u{1F1E7} Pages (English)",
+        label: "Pages (English)",
         path: "src/content/pages/en",
         format: "mdx",
         fields: pageFields
@@ -551,7 +551,7 @@ var config_default = defineConfig({
       // ========================================
       {
         name: "translations_es",
-        label: "\u{1F1EA}\u{1F1F8} Translations (Spanish)",
+        label: "Translations (Spanish)",
         path: "src/content/translations",
         format: "json",
         match: { include: "es" },
@@ -559,7 +559,7 @@ var config_default = defineConfig({
       },
       {
         name: "translations_ca",
-        label: "\u{1F3F4}\u{E0065}\u{E0073}\u{E0063}\u{E0074}\u{E007F} Translations (Catalan)",
+        label: "Translations (Catalan)",
         path: "src/content/translations",
         format: "json",
         match: { include: "ca" },
@@ -567,7 +567,7 @@ var config_default = defineConfig({
       },
       {
         name: "translations_en",
-        label: "\u{1F1EC}\u{1F1E7} Translations (English)",
+        label: "Translations (English)",
         path: "src/content/translations",
         format: "json",
         match: { include: "en" },
