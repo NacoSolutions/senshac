@@ -1,0 +1,20 @@
+---
+// src/components/sections/about/Awards.astro
+interface Props {
+  title?: string;
+}
+
+const { title = 'Awards' } = Astro.props;
+---
+
+<section class="py-16 md:py-24">
+  <div class="container-content">
+    <h2 class="sinteca-small-title mb-8 md:mb-12">
+      {title.toUpperCase()}
+    </h2>
+    <hr class="border-t border-neutral-300 mb-0" />
+    <div>
+      <slot />
+    </div>
+  </div>
+</section>

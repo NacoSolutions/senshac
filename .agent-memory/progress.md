@@ -62,15 +62,23 @@ permalink: progress
 
 ### In Progress
 
-- [ ] Push to GitHub to sync TinaCMS schema
+- [ ] Final QA across all pages
 
 ### Pending
 
 - [ ] Configure Cloudflare environment variables (Resend, Turnstile, Analytics)
-- [ ] Test translations editing in TinaCMS admin
 - [ ] Test contact form in production
 - [ ] Add founder photo placeholder
-- [ ] Final QA across all pages
+
+### Recently Completed
+
+- [x] TinaCMS Cloud integration working
+- [x] Admin 404 fix (public/_redirects rewrite)
+- [x] Site URL updated to senshac.pages.dev
+- [x] Translations collections re-enabled in TinaCMS
+- [x] Route mapper configured (click-to-edit)
+- [x] humans.txt attribution added
+- [x] Footer attribution (be mediàtic / Naco Solutions)
 
 ## Blockers
 None.

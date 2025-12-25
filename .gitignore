@@ -1,5 +1,6 @@
 .reference/
 .direnv/
+.wrangler/
 # build output
 dist/
 # generated types

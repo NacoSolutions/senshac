@@ -1,48 +1,51 @@
 // src/pages/llms.txt.ts
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
-
-const siteUrl = 'https://senshac.com';
+import { getCollection, getEntry } from 'astro:content';
 
 export const GET: APIRoute = async () => {
+  const siteConfig = await getEntry('site-config', 'site');
+  if (!siteConfig) {
+    return new Response('Site config not found', { status: 500 });
+  }
+
+  const site = siteConfig.data;
   const projects = await getCollection('projects');
 
-  // Get unique project slugs (use Spanish as primary)
+  // Get unique project slugs (use default locale as primary)
   const projectList = projects
-    .filter(p => p.id.startsWith('es/'))
-    .map(p => {
-      const slug = p.id.replace('es/', '');
-      return `- [${p.data.title}](${siteUrl}/es/projects/${slug})`;
-    })
+    .filter(p => p.id.startsWith(`${site.defaultLocale}/`))
+    .map(p => `- [${p.data.title}](${site.siteUrl}/${site.defaultLocale}/projects/${p.data.slug})`)
     .join('\n');
 
-  const llmsTxt = `# Sens*Hac - Interior Design Studio
+  // Build social links section from socialLinks array
+  const socialLinks = site.socialLinks
+    .map(link => `- [${link.name}](${link.url})`)
+    .join('\n');
 
-> We design branded spaces that inspire & connect.
+  // Build languages section
+  const languageLinks = site.locales
+    .map(locale => `- ${locale.toUpperCase()}: ${site.siteUrl}/${locale}/`)
+    .join('\n');
 
-Sens*Hac is a Barcelona-based interior design studio specializing in commercial, gastronomy, and entertainment spaces. Founded by Ester Cobles, we create sensory experiences through thoughtful design.
+  const llmsTxt = `# ${site.company.name} - ${site.company.description}
 
-## About
+> ${site.company.tagline}
 
-Sens*Hac creates spaces that connect brands with their audiences through design. We specialize in:
-- Commercial interiors
-- Restaurant & hospitality design
-- Entertainment venues
-- Retail spaces
+${site.company.name} is a ${site.contact.location.city}-based interior design studio. Founded by ${site.founder.name}, we create sensory experiences through thoughtful design.
 
 ## Contact
 
-- Email: ester@senshac.com
-- Phone: +34 661 661 426
-- Location: Barcelona, Spain
+- Email: ${site.contact.email}
+- Phone: ${site.contact.phone}
+- Location: ${site.contact.location.city}, ${site.contact.location.country}
 
 ## Pages
 
-- [Home](${siteUrl}/es/)
-- [About](${siteUrl}/es/about)
-- [Services](${siteUrl}/es/services)
-- [Projects](${siteUrl}/es/projects)
-- [Contact](${siteUrl}/es/contact)
+- [Home](${site.siteUrl}/${site.defaultLocale}/)
+- [About](${site.siteUrl}/${site.defaultLocale}/about)
+- [Services](${site.siteUrl}/${site.defaultLocale}/services)
+- [Projects](${site.siteUrl}/${site.defaultLocale}/projects)
+- [Contact](${site.siteUrl}/${site.defaultLocale}/contact)
 
 ## Projects
 
@@ -50,21 +53,16 @@ ${projectList}
 
 ## Languages
 
-This website is available in:
-- Spanish: ${siteUrl}/es/
-- Catalan: ${siteUrl}/ca/
-- English: ${siteUrl}/en/
+${languageLinks}
 
 ## Social
 
-- [Instagram](https://www.instagram.com/sens_hac/)
-- [Pinterest](https://www.pinterest.com/senshac_design/)
-- [LinkedIn](https://www.linkedin.com/company/senshac/)
+${socialLinks}
 
 ## Technical
 
-- Sitemap: ${siteUrl}/sitemap.xml
-- Robots: ${siteUrl}/robots.txt
+- Sitemap: ${site.siteUrl}/sitemap.xml
+- Robots: ${site.siteUrl}/robots.txt
 `;
 
   return new Response(llmsTxt, {

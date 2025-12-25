@@ -1,13 +1,14 @@
 // src/pages/sitemap.xml.ts
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
-
-const siteUrl = 'https://senshac.com';
-const locales = ['es', 'ca', 'en'];
-const defaultLocale = 'es';
+import { getCollection, getEntry } from 'astro:content';
 
 export const GET: APIRoute = async () => {
-  const pages = await getCollection('pages');
+  const siteConfig = await getEntry('site-config', 'site');
+  if (!siteConfig) {
+    return new Response('Site config not found', { status: 500 });
+  }
+
+  const { siteUrl, locales } = siteConfig.data;
   const projects = await getCollection('projects');
 
   const urls: string[] = [];
@@ -39,11 +40,11 @@ export const GET: APIRoute = async () => {
   }
 
   // Project pages
-  const projectSlugs = [...new Set(projects.map(p => p.id.split('/')[1]))];
+  const projectSlugs = [...new Set(projects.map(p => p.data.slug))];
 
   for (const slug of projectSlugs) {
     for (const locale of locales) {
-      const project = projects.find(p => p.id === `${locale}/${slug}`);
+      const project = projects.find(p => p.id === `${locale}/${slug}` || (p.id.startsWith(`${locale}/`) && p.data.slug === slug));
       if (!project) continue;
 
       const loc = `${siteUrl}/${locale}/projects/${slug}`;

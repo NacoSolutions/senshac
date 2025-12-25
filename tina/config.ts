@@ -1,272 +1,325 @@
 // tina/config.ts
-import { defineConfig, type Template, type TinaField } from 'tinacms';
+import { defineConfig, type TinaField } from 'tinacms';
 
 // ============================================================================
-// SHORTCODE TEMPLATES - Custom components for rich-text editor
+// SHARED FIELD DEFINITIONS
 // ============================================================================
 
-const bannerTemplate: Template = {
-  name: 'banner',
-  label: 'Banner Image',
-  fields: [
-    { name: 'src', label: 'Image', type: 'image', required: true },
-    { name: 'alt', label: 'Alt Text', type: 'string' },
-  ],
-};
+// Image field object (for nested use)
+const imageFields: TinaField[] = [
+  { type: 'image' as const, name: 'src', label: 'Image', required: true },
+  { type: 'string' as const, name: 'alt', label: 'Alt Text', required: true },
+];
 
-const detailsSectionTemplate: Template = {
-  name: 'detailsSection',
-  label: 'Details Section',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string', required: true },
-    { name: 'subtitle', label: 'Subtitle', type: 'string' },
-    { name: 'services', label: 'Services', type: 'string', required: true },
-    { name: 'servicesLabel', label: 'Services Label', type: 'string' },
-    { name: 'category', label: 'Category', type: 'string', required: true },
-    { name: 'categoryLabel', label: 'Category Label', type: 'string' },
-    { name: 'area', label: 'Area', type: 'string', required: true },
-    { name: 'areaLabel', label: 'Area Label', type: 'string' },
-    { name: 'location', label: 'Location', type: 'string', required: true },
-    { name: 'locationLabel', label: 'Location Label', type: 'string' },
-    { name: 'image', label: 'Details Image', type: 'image' },
-  ],
-};
+// Gallery field object (for nested use)
+const galleryFields: TinaField[] = [
+  { type: 'number' as const, name: 'cols', label: 'Columns' },
+  {
+    type: 'object' as const,
+    name: 'images',
+    label: 'Images',
+    list: true,
+    fields: imageFields,
+  },
+];
 
-const sectionTemplate: Template = {
-  name: 'section',
-  label: 'Content Section',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string', required: true },
-    { name: 'id', label: 'Section ID', type: 'string' },
-    { name: 'content', label: 'Content', type: 'rich-text' },
-  ],
-};
+// ============================================================================
+// SITE CONFIG FIELDS
+// ============================================================================
 
-const galleryTemplate: Template = {
-  name: 'gallery',
-  label: 'Image Gallery',
-  fields: [
-    { name: 'cols', label: 'Columns', type: 'string', options: ['2', '3', '4'] },
-    { name: 'gap', label: 'Gap', type: 'string' },
-    {
-      name: 'images',
-      label: 'Images',
-      type: 'object',
-      list: true,
-      fields: [
-        { name: 'src', label: 'Image', type: 'image', required: true },
-        { name: 'alt', label: 'Alt Text', type: 'string' },
-      ],
-    },
-  ],
-};
+const siteConfigFields: TinaField[] = [
+  { type: 'string' as const, name: 'siteUrl', label: 'Site URL', required: true },
+  { type: 'string' as const, name: 'locales', label: 'Locales', list: true },
+  { type: 'string' as const, name: 'defaultLocale', label: 'Default Locale', required: true },
+  {
+    type: 'object' as const,
+    name: 'company',
+    label: 'Company',
+    fields: [
+      { name: 'name', label: 'Name', type: 'string', required: true },
+      { name: 'legalName', label: 'Legal Name', type: 'string' },
+      { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' } },
+      { name: 'tagline', label: 'Tagline', type: 'string' },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'contact',
+    label: 'Contact',
+    fields: [
+      { name: 'email', label: 'Email', type: 'string', required: true },
+      { name: 'phone', label: 'Phone', type: 'string', required: true },
+      { name: 'phoneLink', label: 'Phone Link (no spaces)', type: 'string' },
+      {
+        type: 'object' as const,
+        name: 'location',
+        label: 'Location',
+        fields: [
+          { name: 'city', label: 'City', type: 'string', required: true },
+          { name: 'country', label: 'Country Code', type: 'string', required: true },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'founder',
+    label: 'Founder',
+    fields: [
+      { name: 'name', label: 'Name', type: 'string', required: true },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'socialLinks',
+    label: 'Social Links',
+    list: true,
+    fields: [
+      { name: 'name', label: 'Name', type: 'string', required: true },
+      { name: 'url', label: 'URL', type: 'string', required: true },
+      {
+        name: 'icon',
+        label: 'Icon (Iconify)',
+        type: 'string',
+        required: true,
+        description: 'UnoCSS icon class, e.g. "i-simple-icons-instagram" or "i-mdi-linkedin"',
+      },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'attribution',
+    label: 'Attribution',
+    fields: [
+      { name: 'design', label: 'Design By', type: 'string' },
+      { name: 'development', label: 'Development By', type: 'string' },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'branding',
+    label: 'Branding',
+    fields: [
+      { name: 'logo', label: 'Logo', type: 'image', required: true },
+      { name: 'logoWhite', label: 'Logo (White)', type: 'image', required: true },
+      { name: 'symbol', label: 'Symbol', type: 'image', required: true },
+      { name: 'symbolWhite', label: 'Symbol (White)', type: 'image', required: true },
+      { name: 'ogImage', label: 'Default OG Image', type: 'image', required: true },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'seo',
+    label: 'SEO',
+    fields: [
+      { name: 'priceRange', label: 'Price Range', type: 'string' },
+    ],
+  },
+];
 
-const carouselTemplate: Template = {
-  name: 'carousel',
-  label: 'Image Carousel',
-  fields: [
-    { name: 'id', label: 'Carousel ID', type: 'string', required: true },
-    {
-      name: 'slides',
-      label: 'Slides',
-      type: 'object',
-      list: true,
-      fields: [
-        { name: 'src', label: 'Image', type: 'image', required: true },
-        { name: 'alt', label: 'Alt Text', type: 'string' },
-      ],
-    },
-  ],
-};
+// ============================================================================
+// PAGE FIELDS (JSON)
+// ============================================================================
 
-const collaboratorsTemplate: Template = {
-  name: 'collaborators',
-  label: 'Collaborators Section',
-  fields: [
-    { name: 'title', label: 'Section Title', type: 'string' },
-    {
-      name: 'list',
-      label: 'Collaborators',
-      type: 'object',
-      list: true,
-      fields: [
-        { name: 'name', label: 'Name', type: 'string', required: true },
-        { name: 'role', label: 'Role', type: 'string', required: true },
-        { name: 'url', label: 'Website URL', type: 'string' },
-      ],
-    },
-    { name: 'image', label: 'Footer Image', type: 'image' },
-  ],
-};
+const homePageFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
+  { type: 'string' as const, name: 'headerStyle', label: 'Header Style', options: ['default', 'transparent'] },
+  {
+    type: 'object' as const,
+    name: 'hero',
+    label: 'Hero Section',
+    fields: [
+      { name: 'image', label: 'Background Image', type: 'image', required: true },
+      {
+        type: 'object' as const,
+        name: 'topRight',
+        label: 'Top Right Text (odd/even indent pattern)',
+        fields: [
+          { type: 'string' as const, name: 'lines', label: 'Lines', list: true },
+        ],
+      },
+      {
+        type: 'object' as const,
+        name: 'tagline',
+        label: 'Tagline',
+        fields: [
+          { type: 'string' as const, name: 'lines', label: 'Lines', list: true },
+        ],
+      },
+      { name: 'taglineSub', label: 'Tagline Subtitle', type: 'string' },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'about',
+    label: 'About Section',
+    fields: [
+      { name: 'image', label: 'Image', type: 'image' },
+      { name: 'title', label: 'Title', type: 'string' },
+      { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' } },
+      { name: 'ctaText', label: 'CTA Button Text', type: 'string' },
+      { name: 'ctaLink', label: 'CTA Button Link', type: 'string' },
+    ],
+  },
+];
 
-const figureTemplate: Template = {
-  name: 'figure',
-  label: 'Figure with Caption',
-  fields: [
-    { name: 'src', label: 'Image', type: 'image', required: true },
-    { name: 'alt', label: 'Alt Text', type: 'string' },
-    { name: 'caption', label: 'Caption', type: 'string' },
-    { name: 'width', label: 'Max Width', type: 'string' },
-  ],
-};
+const aboutPageFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
+  { type: 'image' as const, name: 'heroImage', label: 'Hero Image' },
+  {
+    type: 'object' as const,
+    name: 'hero',
+    label: 'Hero Section',
+    fields: [
+      { name: 'title', label: 'Title', type: 'string', required: true },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'behindName',
+    label: 'Behind the Name',
+    fields: [
+      { name: 'title', label: 'Title', type: 'string' },
+      { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'footnote', label: 'Footnote', type: 'string' },
+    ],
+  },
+  { type: 'image' as const, name: 'bannerImage', label: 'Banner Image' },
+  {
+    type: 'object' as const,
+    name: 'bio',
+    label: 'Biography',
+    fields: [
+      { name: 'title', label: 'Title', type: 'string' },
+      { name: 'image', label: 'Photo', type: 'image' },
+      { name: 'paragraphs', label: 'Paragraphs', type: 'string', list: true, ui: { component: 'textarea' } },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'awards',
+    label: 'Awards',
+    fields: [
+      { name: 'title', label: 'Section Title', type: 'string' },
+      {
+        name: 'items',
+        label: 'Awards List',
+        type: 'object',
+        list: true,
+        fields: [
+          { name: 'year', label: 'Year', type: 'string', required: true },
+          { name: 'project', label: 'Project', type: 'string', required: true },
+          { name: 'award', label: 'Award Name', type: 'string', required: true },
+          { name: 'link', label: 'Link', type: 'string' },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'mission',
+    label: 'Mission',
+    fields: [
+      { name: 'title', label: 'Title', type: 'string' },
+      { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'quote', label: 'Quote', type: 'string', ui: { component: 'textarea' } },
+    ],
+  },
+  { type: 'image' as const, name: 'missionImage', label: 'Mission Banner Image' },
+];
 
-const youtubeTemplate: Template = {
-  name: 'youtube',
-  label: 'YouTube Video',
-  fields: [
-    { name: 'id', label: 'Video ID', type: 'string', required: true },
-    { name: 'aspectRatio', label: 'Aspect Ratio', type: 'string' },
-  ],
-};
+const servicesPageFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
+  {
+    type: 'object' as const,
+    name: 'hero',
+    label: 'Hero Section',
+    fields: [
+      { name: 'title', label: 'Title', type: 'string', required: true },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'intro',
+    label: 'Introduction',
+    fields: [
+      { name: 'text', label: 'Text', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'image', label: 'Image', type: 'image' },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'serviceGroups',
+    label: 'Service Groups',
+    list: true,
+    fields: [
+      { name: 'title', label: 'Group Title', type: 'string', required: true },
+      {
+        name: 'items',
+        label: 'Services',
+        type: 'object',
+        list: true,
+        fields: [
+          { name: 'title', label: 'Service Title', type: 'string', required: true },
+          { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' }, required: true },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'faq',
+    label: 'FAQ Section',
+    fields: [
+      { name: 'title', label: 'Section Title', type: 'string' },
+      { name: 'image', label: 'Footer Image', type: 'image' },
+      {
+        name: 'items',
+        label: 'Questions',
+        type: 'object',
+        list: true,
+        fields: [
+          { name: 'question', label: 'Question', type: 'string', required: true },
+          { name: 'answer', label: 'Answer', type: 'string', ui: { component: 'textarea' }, required: true },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'object' as const,
+    name: 'workProcess',
+    label: 'Work Process',
+    fields: [
+      { name: 'title', label: 'Title', type: 'string' },
+      { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
+      { name: 'image', label: 'Image', type: 'image' },
+    ],
+  },
+];
 
-const buttonTemplate: Template = {
-  name: 'button',
-  label: 'Button',
-  fields: [
-    { name: 'href', label: 'Link URL', type: 'string', required: true },
-    { name: 'text', label: 'Button Text', type: 'string', required: true },
-    { name: 'variant', label: 'Style', type: 'string', options: ['primary', 'secondary', 'outline'] },
-  ],
-};
+const contactPageFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
+  { type: 'string' as const, name: 'heading', label: 'Heading', required: true },
+  { type: 'string' as const, name: 'subheading', label: 'Subheading', required: true },
+];
 
-const spacerTemplate: Template = {
-  name: 'spacer',
-  label: 'Spacer',
-  fields: [
-    { name: 'height', label: 'Height (px)', type: 'string' },
-  ],
-};
+// ============================================================================
+// LEGAL PAGE FIELDS (MDX)
+// ============================================================================
 
-// Page-specific templates
-const heroHomeTemplate: Template = {
-  name: 'heroHome',
-  label: 'Home Hero',
-  fields: [
-    { name: 'image', label: 'Background Image', type: 'image', required: true },
-    { name: 'topRight', label: 'Top Right Text', type: 'string' },
-    { name: 'bottomLeft', label: 'Bottom Left Text', type: 'string' },
-    { name: 'bottomLeftSub', label: 'Bottom Left Subtitle', type: 'string' },
-  ],
-};
-
-const aboutHomeTemplate: Template = {
-  name: 'aboutHome',
-  label: 'Home About Section',
-  fields: [
-    { name: 'image', label: 'Image', type: 'image' },
-    { name: 'title', label: 'Title', type: 'string' },
-    { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' } },
-    { name: 'cta', label: 'CTA Text', type: 'string' },
-    { name: 'ctaLink', label: 'CTA Link', type: 'string' },
-  ],
-};
-
-const heroServicesTemplate: Template = {
-  name: 'heroServices',
-  label: 'Services Hero',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string', required: true },
-    { name: 'symbolImage', label: 'Symbol Image', type: 'image' },
-  ],
-};
-
-const introServicesTemplate: Template = {
-  name: 'introServices',
-  label: 'Services Intro',
-  fields: [
-    { name: 'text', label: 'Text', type: 'string', ui: { component: 'textarea' } },
-    { name: 'image', label: 'Image', type: 'image' },
-  ],
-};
-
-const servicesGroupTemplate: Template = {
-  name: 'servicesGroup',
-  label: 'Services Group',
-  fields: [
-    { name: 'title', label: 'Group Title', type: 'string', required: true },
-    {
-      name: 'items',
-      label: 'Services',
-      type: 'object',
-      list: true,
-      fields: [
-        { name: 'title', label: 'Service Title', type: 'string', required: true },
-        { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' } },
-      ],
-    },
-  ],
-};
-
-const faqTemplate: Template = {
-  name: 'faq',
-  label: 'FAQ Item',
-  fields: [
-    { name: 'question', label: 'Question', type: 'string', required: true },
-    { name: 'answer', label: 'Answer', type: 'string', ui: { component: 'textarea' }, required: true },
-  ],
-};
-
-const workProcessTemplate: Template = {
-  name: 'workProcess',
-  label: 'Work Process Section',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string' },
-    { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' } },
-    { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' } },
-    { name: 'image', label: 'Image', type: 'image' },
-  ],
-};
-
-const aboutHeroTemplate: Template = {
-  name: 'aboutHero',
-  label: 'About Hero',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string', required: true },
-  ],
-};
-
-const behindNameTemplate: Template = {
-  name: 'behindName',
-  label: 'Behind the Name',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string' },
-    { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' } },
-    { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' } },
-    { name: 'footnote', label: 'Footnote', type: 'string' },
-  ],
-};
-
-const aboutBioTemplate: Template = {
-  name: 'aboutBio',
-  label: 'About Bio Section',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string' },
-    { name: 'image', label: 'Photo', type: 'image' },
-    { name: 'paragraphs', label: 'Bio Paragraphs', type: 'string', list: true, ui: { component: 'textarea' } },
-  ],
-};
-
-const awardTemplate: Template = {
-  name: 'award',
-  label: 'Award',
-  fields: [
-    { name: 'year', label: 'Year', type: 'string', required: true },
-    { name: 'project', label: 'Project', type: 'string', required: true },
-    { name: 'award', label: 'Award Name', type: 'string', required: true },
-    { name: 'link', label: 'Link', type: 'string' },
-  ],
-};
-
-const aboutMissionTemplate: Template = {
-  name: 'aboutMission',
-  label: 'About Mission',
-  fields: [
-    { name: 'title', label: 'Title', type: 'string' },
-    { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' } },
-    { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' } },
-    { name: 'quote', label: 'Quote', type: 'string', ui: { component: 'textarea' } },
-  ],
-};
+const legalPageFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
+  { type: 'datetime' as const, name: 'lastUpdated', label: 'Last Updated' },
+  { type: 'rich-text' as const, name: 'body', label: 'Content', isBody: true },
+];
 
 // ============================================================================
 // TRANSLATIONS FIELDS
@@ -294,17 +347,6 @@ const translationFields: TinaField[] = [
     fields: [
       { name: 'privacy', label: 'Privacy Policy Link', type: 'string' },
       { name: 'legal', label: 'Legal Notice Link', type: 'string' },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'contact',
-    label: 'Contact Page',
-    fields: [
-      { name: 'title', label: 'Page Title', type: 'string' },
-      { name: 'description', label: 'Meta Description', type: 'string' },
-      { name: 'heading', label: 'Heading', type: 'string' },
-      { name: 'subheading', label: 'Subheading', type: 'string' },
     ],
   },
   {
@@ -360,16 +402,6 @@ const translationFields: TinaField[] = [
   },
   {
     type: 'object' as const,
-    name: 'cookies',
-    label: 'Cookie Consent',
-    fields: [
-      { name: 'message', label: 'Message', type: 'string', ui: { component: 'textarea' } },
-      { name: 'moreInfo', label: 'More Info Link', type: 'string' },
-      { name: 'accept', label: 'Accept Button', type: 'string' },
-    ],
-  },
-  {
-    type: 'object' as const,
     name: 'accessibility',
     label: 'Accessibility',
     fields: [
@@ -385,131 +417,121 @@ const translationFields: TinaField[] = [
 ];
 
 // ============================================================================
-// COLLECTION TEMPLATES
+// PROJECT FIELDS (JSON - rigid layout)
 // ============================================================================
 
-// All shortcode templates for projects
-const projectTemplates = [
-  bannerTemplate,
-  detailsSectionTemplate,
-  sectionTemplate,
-  galleryTemplate,
-  carouselTemplate,
-  collaboratorsTemplate,
-  figureTemplate,
-  youtubeTemplate,
-  buttonTemplate,
-  spacerTemplate,
-];
-
-// All shortcode templates for pages (includes page-specific ones)
-const pageTemplates = [
-  ...projectTemplates,
-  heroHomeTemplate,
-  aboutHomeTemplate,
-  heroServicesTemplate,
-  introServicesTemplate,
-  servicesGroupTemplate,
-  faqTemplate,
-  workProcessTemplate,
-  aboutHeroTemplate,
-  behindNameTemplate,
-  aboutBioTemplate,
-  awardTemplate,
-  aboutMissionTemplate,
-];
-
-// Project fields with shortcode-aware body
 const projectFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Description', required: true, ui: { component: 'textarea' } },
+  { type: 'string' as const, name: 'slug', label: 'URL Slug', required: true },
+  { type: 'datetime' as const, name: 'publishDate', label: 'Publish Date', required: true },
+  { type: 'datetime' as const, name: 'completedDate', label: 'Completed Date' },
+  { type: 'string' as const, name: 'tags', label: 'Tags', list: true },
+  { type: 'boolean' as const, name: 'showTags', label: 'Show Tags on Projects List' },
+  { type: 'boolean' as const, name: 'featured', label: 'Featured' },
+  { type: 'boolean' as const, name: 'draft', label: 'Draft' },
   {
-    type: 'string' as const,
-    name: 'title',
-    label: 'Title',
-    required: true,
-    isTitle: true,
+    type: 'object' as const,
+    name: 'banner',
+    label: 'Banner',
+    fields: [
+      { type: 'image' as const, name: 'image', label: 'Cover Image', required: true },
+      { type: 'string' as const, name: 'alt', label: 'Alt Text', required: true },
+    ],
   },
   {
-    type: 'string' as const,
-    name: 'description',
-    label: 'Description',
-    required: true,
-    ui: { component: 'textarea' },
+    type: 'object' as const,
+    name: 'details',
+    label: 'Project Details',
+    fields: [
+      { type: 'string' as const, name: 'title', label: 'Title', required: true },
+      { type: 'string' as const, name: 'subtitle', label: 'Subtitle', required: true },
+      { type: 'image' as const, name: 'image', label: 'Detail Image', required: true },
+      { type: 'string' as const, name: 'services', label: 'Services', required: true },
+      { type: 'string' as const, name: 'servicesLabel', label: 'Services Label', required: true },
+      { type: 'string' as const, name: 'category', label: 'Category', required: true },
+      { type: 'string' as const, name: 'categoryLabel', label: 'Category Label', required: true },
+      { type: 'string' as const, name: 'area', label: 'Area', required: true },
+      { type: 'string' as const, name: 'areaLabel', label: 'Area Label', required: true },
+      { type: 'string' as const, name: 'location', label: 'Location', required: true },
+      { type: 'string' as const, name: 'locationLabel', label: 'Location Label', required: true },
+    ],
   },
   {
-    type: 'datetime' as const,
-    name: 'publishDate',
-    label: 'Publish Date',
-    required: true,
+    type: 'object' as const,
+    name: 'brief',
+    label: 'Brief Section',
+    fields: [
+      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
+      { type: 'string' as const, name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
+      {
+        type: 'object' as const,
+        name: 'gallery',
+        label: 'Gallery',
+        fields: galleryFields,
+      },
+    ],
   },
   {
-    type: 'datetime' as const,
-    name: 'completedDate',
-    label: 'Completed Date',
+    type: 'object' as const,
+    name: 'concept',
+    label: 'Concept Section',
+    fields: [
+      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
+      { type: 'string' as const, name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
+      {
+        type: 'object' as const,
+        name: 'gallery',
+        label: 'Gallery',
+        fields: galleryFields,
+      },
+    ],
   },
   {
-    type: 'string' as const,
-    name: 'tags',
-    label: 'Tags',
-    list: true,
+    type: 'object' as const,
+    name: 'strategy',
+    label: 'Strategy Section',
+    fields: [
+      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
+      { type: 'string' as const, name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
+      {
+        type: 'object' as const,
+        name: 'carousel',
+        label: 'Carousel Slides',
+        list: true,
+        fields: imageFields,
+      },
+      {
+        type: 'object' as const,
+        name: 'gallery',
+        label: 'Gallery',
+        fields: galleryFields,
+      },
+    ],
   },
   {
-    type: 'image' as const,
-    name: 'coverImage',
-    label: 'Cover Image',
-    required: true,
+    type: 'object' as const,
+    name: 'collaborators',
+    label: 'Collaborators Section',
+    fields: [
+      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
+      {
+        type: 'object' as const,
+        name: 'list',
+        label: 'Collaborators',
+        list: true,
+        fields: [
+          { type: 'string' as const, name: 'name', label: 'Name', required: true },
+          { type: 'string' as const, name: 'role', label: 'Role', required: true },
+        ],
+      },
+    ],
   },
   {
-    type: 'boolean' as const,
-    name: 'featured',
-    label: 'Featured',
-  },
-  {
-    type: 'boolean' as const,
-    name: 'draft',
-    label: 'Draft',
-  },
-  {
-    type: 'rich-text' as const,
-    name: 'body',
-    label: 'Content (Shortcodes)',
-    isBody: true,
-    templates: projectTemplates,
-  },
-];
-
-// Page fields with all templates
-const pageFields: TinaField[] = [
-  {
-    type: 'string' as const,
-    name: 'title',
-    label: 'Title',
-    required: true,
-    isTitle: true,
-  },
-  {
-    type: 'string' as const,
-    name: 'description',
-    label: 'Description',
-    required: true,
-    ui: { component: 'textarea' },
-  },
-  {
-    type: 'image' as const,
-    name: 'heroImage',
-    label: 'Hero Image',
-  },
-  {
-    type: 'string' as const,
-    name: 'headerStyle',
-    label: 'Header Style',
-    options: ['default', 'transparent'],
-  },
-  {
-    type: 'rich-text' as const,
-    name: 'body',
-    label: 'Content (Shortcodes)',
-    isBody: true,
-    templates: pageTemplates,
+    type: 'object' as const,
+    name: 'finalImage',
+    label: 'Final Image',
+    fields: imageFields,
   },
 ];
 
@@ -537,18 +559,227 @@ export default defineConfig({
   schema: {
     collections: [
       // ========================================
-      // PROJECTS
+      // SITE CONFIG (single file)
+      // ========================================
+      {
+        name: 'siteConfig',
+        label: 'Site Configuration',
+        path: 'src/content/config',
+        format: 'json',
+        match: { include: 'site' },
+        fields: siteConfigFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+        },
+      },
+
+      // ========================================
+      // HOME PAGES (JSON)
+      // ========================================
+      {
+        name: 'home_es',
+        label: 'Home (Spanish)',
+        path: 'src/content/pages/es',
+        format: 'json',
+        match: { include: 'home' },
+        fields: homePageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/es/',
+        },
+      },
+      {
+        name: 'home_ca',
+        label: 'Home (Catalan)',
+        path: 'src/content/pages/ca',
+        format: 'json',
+        match: { include: 'home' },
+        fields: homePageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/ca/',
+        },
+      },
+      {
+        name: 'home_en',
+        label: 'Home (English)',
+        path: 'src/content/pages/en',
+        format: 'json',
+        match: { include: 'home' },
+        fields: homePageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/en/',
+        },
+      },
+
+      // ========================================
+      // ABOUT PAGES (JSON)
+      // ========================================
+      {
+        name: 'about_es',
+        label: 'About (Spanish)',
+        path: 'src/content/pages/es',
+        format: 'json',
+        match: { include: 'about' },
+        fields: aboutPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/es/about',
+        },
+      },
+      {
+        name: 'about_ca',
+        label: 'About (Catalan)',
+        path: 'src/content/pages/ca',
+        format: 'json',
+        match: { include: 'about' },
+        fields: aboutPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/ca/about',
+        },
+      },
+      {
+        name: 'about_en',
+        label: 'About (English)',
+        path: 'src/content/pages/en',
+        format: 'json',
+        match: { include: 'about' },
+        fields: aboutPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/en/about',
+        },
+      },
+
+      // ========================================
+      // SERVICES PAGES (JSON)
+      // ========================================
+      {
+        name: 'services_es',
+        label: 'Services (Spanish)',
+        path: 'src/content/pages/es',
+        format: 'json',
+        match: { include: 'services' },
+        fields: servicesPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/es/services',
+        },
+      },
+      {
+        name: 'services_ca',
+        label: 'Services (Catalan)',
+        path: 'src/content/pages/ca',
+        format: 'json',
+        match: { include: 'services' },
+        fields: servicesPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/ca/services',
+        },
+      },
+      {
+        name: 'services_en',
+        label: 'Services (English)',
+        path: 'src/content/pages/en',
+        format: 'json',
+        match: { include: 'services' },
+        fields: servicesPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/en/services',
+        },
+      },
+
+      // ========================================
+      // CONTACT PAGES (JSON)
+      // ========================================
+      {
+        name: 'contact_es',
+        label: 'Contact (Spanish)',
+        path: 'src/content/pages/es',
+        format: 'json',
+        match: { include: 'contact' },
+        fields: contactPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/es/contact',
+        },
+      },
+      {
+        name: 'contact_ca',
+        label: 'Contact (Catalan)',
+        path: 'src/content/pages/ca',
+        format: 'json',
+        match: { include: 'contact' },
+        fields: contactPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/ca/contact',
+        },
+      },
+      {
+        name: 'contact_en',
+        label: 'Contact (English)',
+        path: 'src/content/pages/en',
+        format: 'json',
+        match: { include: 'contact' },
+        fields: contactPageFields,
+        ui: {
+          allowedActions: { create: false, delete: false },
+          router: () => '/en/contact',
+        },
+      },
+
+      // ========================================
+      // LEGAL PAGES (MDX)
+      // ========================================
+      {
+        name: 'legal_es',
+        label: 'Legal (Spanish)',
+        path: 'src/content/legal/es',
+        format: 'mdx',
+        fields: legalPageFields,
+        ui: {
+          router: ({ document }) => `/es/${document._sys.filename}`,
+        },
+      },
+      {
+        name: 'legal_ca',
+        label: 'Legal (Catalan)',
+        path: 'src/content/legal/ca',
+        format: 'mdx',
+        fields: legalPageFields,
+        ui: {
+          router: ({ document }) => `/ca/${document._sys.filename}`,
+        },
+      },
+      {
+        name: 'legal_en',
+        label: 'Legal (English)',
+        path: 'src/content/legal/en',
+        format: 'mdx',
+        fields: legalPageFields,
+        ui: {
+          router: ({ document }) => `/en/${document._sys.filename}`,
+        },
+      },
+
+      // ========================================
+      // PROJECTS (JSON - rigid layout)
       // ========================================
       {
         name: 'projects_es',
         label: 'Projects (Spanish)',
         path: 'src/content/projects/es',
-        format: 'mdx',
+        format: 'json',
         fields: projectFields,
         ui: {
           router: ({ document }) => `/es/projects/${document._sys.filename}`,
           filename: {
-            slugify: (values) => values?.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'untitled',
+            slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'untitled',
           },
         },
       },
@@ -556,12 +787,12 @@ export default defineConfig({
         name: 'projects_ca',
         label: 'Projects (Catalan)',
         path: 'src/content/projects/ca',
-        format: 'mdx',
+        format: 'json',
         fields: projectFields,
         ui: {
           router: ({ document }) => `/ca/projects/${document._sys.filename}`,
           filename: {
-            slugify: (values) => values?.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'untitled',
+            slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'untitled',
           },
         },
       },
@@ -569,55 +800,12 @@ export default defineConfig({
         name: 'projects_en',
         label: 'Projects (English)',
         path: 'src/content/projects/en',
-        format: 'mdx',
+        format: 'json',
         fields: projectFields,
         ui: {
           router: ({ document }) => `/en/projects/${document._sys.filename}`,
           filename: {
-            slugify: (values) => values?.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'untitled',
-          },
-        },
-      },
-
-      // ========================================
-      // PAGES
-      // ========================================
-      {
-        name: 'pages_es',
-        label: 'Pages (Spanish)',
-        path: 'src/content/pages/es',
-        format: 'mdx',
-        fields: pageFields,
-        ui: {
-          router: ({ document }) => {
-            const slug = document._sys.filename;
-            return slug === 'home' ? '/es/' : `/es/${slug}`;
-          },
-        },
-      },
-      {
-        name: 'pages_ca',
-        label: 'Pages (Catalan)',
-        path: 'src/content/pages/ca',
-        format: 'mdx',
-        fields: pageFields,
-        ui: {
-          router: ({ document }) => {
-            const slug = document._sys.filename;
-            return slug === 'home' ? '/ca/' : `/ca/${slug}`;
-          },
-        },
-      },
-      {
-        name: 'pages_en',
-        label: 'Pages (English)',
-        path: 'src/content/pages/en',
-        format: 'mdx',
-        fields: pageFields,
-        ui: {
-          router: ({ document }) => {
-            const slug = document._sys.filename;
-            return slug === 'home' ? '/en/' : `/en/${slug}`;
+            slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'untitled',
           },
         },
       },

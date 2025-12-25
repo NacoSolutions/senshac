@@ -1,0 +1,85 @@
+{
+  "title": "La Trobada",
+  "description": "Un homenaje a la cultura mediterránea, el sabor y la calidez. Restaurante de barrio en Badalona.",
+  "slug": "la-trobada",
+  "publishDate": "2024-01-15",
+  "completedDate": "2024-01-15",
+  "tags": ["Bar/Restaurante", "Gastronomía"],
+  "featured": true,
+  "draft": false,
+  "banner": {
+    "image": "/images/projects/la-trobada/cover.webp",
+    "alt": "La Trobada"
+  },
+  "details": {
+    "title": "La Trobada",
+    "subtitle": "Un homenaje a la cultura mediterránea, el sabor y la calidez",
+    "image": "/images/projects/la-trobada/detail.webp",
+    "services": "Diseño de interiores, Identidad visual",
+    "servicesLabel": "SERVICIOS",
+    "category": "Bar/Restaurante",
+    "categoryLabel": "CATEGORÍA",
+    "area": "<50 m²",
+    "areaLabel": "ÁREA",
+    "location": "Badalona, Barcelona",
+    "locationLabel": "UBICACIÓN"
+  },
+  "brief": {
+    "title": "BRIEF",
+    "text": "La Trobada es un homenaje a la cultura mediterránea, el sabor y la calidez. Este pequeño restaurante de barrio, operado por Inma y Jonathan, funciona como un espacio de encuentro para vecinos y amigos. El nombre 'La Trobada' (en catalán 'punto de encuentro') refleja el estilo de vida mediterráneo caracterizado por la calidez y los momentos compartidos.",
+    "gallery": {
+      "cols": 3,
+      "images": [
+        { "src": "/images/projects/la-trobada/brief/01.webp", "alt": "Vista interior La Trobada" },
+        { "src": "/images/projects/la-trobada/brief/02.webp", "alt": "Detalles La Trobada" },
+        { "src": "/images/projects/la-trobada/brief/03.webp", "alt": "Ambiente La Trobada" }
+      ]
+    }
+  },
+  "concept": {
+    "title": "CONCEPTO",
+    "text": "El concepto se centra en crear un ambiente acogedor que evoque la calidez mediterránea. La paleta de colores terrosos, materiales naturales y una iluminación cálida trabajan juntos para crear un espacio donde los comensales se sientan como en casa.",
+    "gallery": {
+      "cols": 2,
+      "images": [
+        { "src": "/images/projects/la-trobada/concept/01.webp", "alt": "Visualización concepto 1" },
+        { "src": "/images/projects/la-trobada/concept/02.webp", "alt": "Visualización concepto 2" },
+        { "src": "/images/projects/la-trobada/concept/03.webp", "alt": "Visualización concepto 3" },
+        { "src": "/images/projects/la-trobada/concept/04.webp", "alt": "Visualización concepto 4" }
+      ]
+    }
+  },
+  "strategy": {
+    "title": "ESTRATEGIA",
+    "text": "El desafío principal consistió en optimizar el flujo entre el compacto interior de 50m² y la amplia terraza adyacente. La reorganización de la cocina abordó zonas funcionales para cocción, preparación y limpieza, además de estaciones dedicadas para el personal de sala.",
+    "carousel": [
+      { "src": "/images/projects/la-trobada/strategy/01.webp", "alt": "Estrategia 1" },
+      { "src": "/images/projects/la-trobada/strategy/02.webp", "alt": "Estrategia 2" },
+      { "src": "/images/projects/la-trobada/strategy/03.webp", "alt": "Estrategia 3" },
+      { "src": "/images/projects/la-trobada/strategy/04.webp", "alt": "Estrategia 4" },
+      { "src": "/images/projects/la-trobada/strategy/05.webp", "alt": "Estrategia 5" },
+      { "src": "/images/projects/la-trobada/strategy/06.webp", "alt": "Estrategia 6" }
+    ],
+    "gallery": {
+      "cols": 2,
+      "images": [
+        { "src": "/images/projects/la-trobada/process/01.webp", "alt": "Proceso 1" },
+        { "src": "/images/projects/la-trobada/process/02.webp", "alt": "Proceso 2" }
+      ]
+    }
+  },
+  "collaborators": {
+    "title": "COLABORADORES",
+    "list": [
+      { "name": "I3dea", "role": "Renderizado" },
+      { "name": "Ceràmica Ferrés", "role": "Proveedor" },
+      { "name": "Auténtica Cerámica", "role": "Proveedor" },
+      { "name": "Vergès Design", "role": "Proveedor" },
+      { "name": "Marset Iluminación", "role": "Proveedor" }
+    ]
+  },
+  "finalImage": {
+    "src": "/images/projects/la-trobada/collab/01.webp",
+    "alt": "Colaboradores"
+  }
+}

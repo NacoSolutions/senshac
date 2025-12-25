@@ -2,6 +2,13 @@
 // src/pages/[lang]/about.astro
 import Base from '../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
+import Hero from '../../components/sections/about/Hero.astro';
+import BehindName from '../../components/sections/about/BehindName.astro';
+import Banner from '../../components/sections/common/Banner.astro';
+import Bio from '../../components/sections/about/Bio.astro';
+import Awards from '../../components/sections/about/Awards.astro';
+import Award from '../../components/sections/about/Award.astro';
+import Mission from '../../components/sections/about/Mission.astro';
 
 const { lang } = Astro.params;
 
@@ -11,11 +18,57 @@ if (!page) {
   return Astro.redirect('/404');
 }
 
-const { Content } = await page.render();
+const { title, description, heroImage, hero, behindName, bannerImage, bio, awards, mission, missionImage } = page.data as {
+  title: string;
+  description: string;
+  heroImage?: string;
+  hero: { title: string };
+  behindName: { title?: string; p1: string; p2: string; footnote?: string };
+  bannerImage?: string;
+  bio: { title?: string; image?: string; paragraphs: string[] };
+  awards: { title?: string; items: { year: string; project: string; award: string; link?: string }[] };
+  mission: { title?: string; p1: string; p2: string; quote?: string };
+  missionImage?: string;
+};
 ---
 
-<Base title={page.data.title} description={page.data.description} lang={lang}>
+<Base title={title} description={description} lang={lang}>
   <main class="min-h-screen">
-    <Content />
+    <Hero title={hero.title} />
+
+    <BehindName
+      title={behindName.title}
+      p1={behindName.p1}
+      p2={behindName.p2}
+      footnote={behindName.footnote}
+    />
+
+    {bannerImage && <Banner src={bannerImage} alt="Behind the name" />}
+
+    <Bio
+      title={bio.title}
+      image={bio.image}
+      paragraphs={bio.paragraphs}
+    />
+
+    <Awards title={awards.title}>
+      {awards.items.map((item) => (
+        <Award
+          year={item.year}
+          project={item.project}
+          award={item.award}
+          link={item.link}
+        />
+      ))}
+    </Awards>
+
+    <Mission
+      title={mission.title}
+      p1={mission.p1}
+      p2={mission.p2}
+      quote={mission.quote}
+    />
+
+    {missionImage && <Banner src={missionImage} alt="Our mission" />}
   </main>
 </Base>

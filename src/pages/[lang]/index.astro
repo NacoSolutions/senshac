@@ -2,6 +2,8 @@
 // src/pages/[lang]/index.astro
 import Base from '../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
+import Hero from '../../components/sections/home/Hero.astro';
+import About from '../../components/sections/home/About.astro';
 
 const { lang } = Astro.params;
 
@@ -11,11 +13,34 @@ if (!page) {
   return Astro.redirect('/404');
 }
 
-const { Content } = await page.render();
+const { title, description, headerStyle, hero, about } = page.data as {
+  title: string;
+  description: string;
+  headerStyle: 'default' | 'transparent';
+  hero: {
+    image: string;
+    topRight?: { lines: string[] };
+    tagline?: { lines: string[] };
+    taglineSub?: string;
+  };
+  about: { image?: string; title?: string; description?: string; ctaText?: string; ctaLink?: string };
+};
 ---
 
-<Base title={page.data.title} description={page.data.description} lang={lang} schema="LocalBusiness" headerStyle={page.data.headerStyle}>
+<Base title={title} description={description} lang={lang} schema="LocalBusiness" headerStyle={headerStyle}>
   <main id="main">
-    <Content />
+    <Hero
+      image={hero.image}
+      topRight={hero.topRight}
+      tagline={hero.tagline}
+      taglineSub={hero.taglineSub}
+    />
+    <About
+      image={about.image}
+      title={about.title}
+      description={about.description}
+      cta={about.ctaText}
+      ctaLink={about.ctaLink}
+    />
   </main>
 </Base>

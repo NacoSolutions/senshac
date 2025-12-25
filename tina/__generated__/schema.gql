@@ -54,18 +54,44 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  siteConfig(relativePath: String): SiteConfig!
+  siteConfigConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteConfigFilter): SiteConfigConnection!
+  home_es(relativePath: String): Home_es!
+  home_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Home_esFilter): Home_esConnection!
+  home_ca(relativePath: String): Home_ca!
+  home_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Home_caFilter): Home_caConnection!
+  home_en(relativePath: String): Home_en!
+  home_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Home_enFilter): Home_enConnection!
+  about_es(relativePath: String): About_es!
+  about_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: About_esFilter): About_esConnection!
+  about_ca(relativePath: String): About_ca!
+  about_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: About_caFilter): About_caConnection!
+  about_en(relativePath: String): About_en!
+  about_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: About_enFilter): About_enConnection!
+  services_es(relativePath: String): Services_es!
+  services_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Services_esFilter): Services_esConnection!
+  services_ca(relativePath: String): Services_ca!
+  services_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Services_caFilter): Services_caConnection!
+  services_en(relativePath: String): Services_en!
+  services_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Services_enFilter): Services_enConnection!
+  contact_es(relativePath: String): Contact_es!
+  contact_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Contact_esFilter): Contact_esConnection!
+  contact_ca(relativePath: String): Contact_ca!
+  contact_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Contact_caFilter): Contact_caConnection!
+  contact_en(relativePath: String): Contact_en!
+  contact_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Contact_enFilter): Contact_enConnection!
+  legal_es(relativePath: String): Legal_es!
+  legal_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Legal_esFilter): Legal_esConnection!
+  legal_ca(relativePath: String): Legal_ca!
+  legal_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Legal_caFilter): Legal_caConnection!
+  legal_en(relativePath: String): Legal_en!
+  legal_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Legal_enFilter): Legal_enConnection!
   projects_es(relativePath: String): Projects_es!
   projects_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Projects_esFilter): Projects_esConnection!
   projects_ca(relativePath: String): Projects_ca!
   projects_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Projects_caFilter): Projects_caConnection!
   projects_en(relativePath: String): Projects_en!
   projects_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Projects_enFilter): Projects_enConnection!
-  pages_es(relativePath: String): Pages_es!
-  pages_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Pages_esFilter): Pages_esConnection!
-  pages_ca(relativePath: String): Pages_ca!
-  pages_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Pages_caFilter): Pages_caConnection!
-  pages_en(relativePath: String): Pages_en!
-  pages_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Pages_enFilter): Pages_enConnection!
   translations_es(relativePath: String): Translations_es!
   translations_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_esFilter): Translations_esConnection!
   translations_ca(relativePath: String): Translations_ca!
@@ -75,12 +101,25 @@ type Query {
 }
 
 input DocumentFilter {
+  siteConfig: SiteConfigFilter
+  home_es: Home_esFilter
+  home_ca: Home_caFilter
+  home_en: Home_enFilter
+  about_es: About_esFilter
+  about_ca: About_caFilter
+  about_en: About_enFilter
+  services_es: Services_esFilter
+  services_ca: Services_caFilter
+  services_en: Services_enFilter
+  contact_es: Contact_esFilter
+  contact_ca: Contact_caFilter
+  contact_en: Contact_enFilter
+  legal_es: Legal_esFilter
+  legal_ca: Legal_caFilter
+  legal_en: Legal_enFilter
   projects_es: Projects_esFilter
   projects_ca: Projects_caFilter
   projects_en: Projects_enFilter
-  pages_es: Pages_esFilter
-  pages_ca: Pages_caFilter
-  pages_en: Pages_enFilter
   translations_es: Translations_esFilter
   translations_ca: Translations_caFilter
   translations_en: Translations_enFilter
@@ -109,18 +148,65 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Projects_es | Projects_ca | Projects_en | Pages_es | Pages_ca | Pages_en | Translations_es | Translations_ca | Translations_en | Folder
+union DocumentNode = SiteConfig | Home_es | Home_ca | Home_en | About_es | About_ca | About_en | Services_es | Services_ca | Services_en | Contact_es | Contact_ca | Contact_en | Legal_es | Legal_ca | Legal_en | Projects_es | Projects_ca | Projects_en | Translations_es | Translations_ca | Translations_en | Folder
 
-type Projects_es implements Node & Document {
-  title: String!
-  description: String!
-  publishDate: String!
-  completedDate: String
-  tags: [String]
-  coverImage: String!
-  featured: Boolean
-  draft: Boolean
-  body: JSON
+type SiteConfigCompany {
+  name: String!
+  legalName: String
+  description: String
+  tagline: String
+}
+
+type SiteConfigContactLocation {
+  city: String!
+  country: String!
+}
+
+type SiteConfigContact {
+  email: String!
+  phone: String!
+  phoneLink: String
+  location: SiteConfigContactLocation
+}
+
+type SiteConfigFounder {
+  name: String!
+}
+
+type SiteConfigSocialLinks {
+  name: String!
+  url: String!
+  icon: String!
+}
+
+type SiteConfigAttribution {
+  design: String
+  development: String
+}
+
+type SiteConfigBranding {
+  logo: String!
+  logoWhite: String!
+  symbol: String!
+  symbolWhite: String!
+  ogImage: String!
+}
+
+type SiteConfigSeo {
+  priceRange: String
+}
+
+type SiteConfig implements Node & Document {
+  siteUrl: String!
+  locales: [String]
+  defaultLocale: String!
+  company: SiteConfigCompany
+  contact: SiteConfigContact
+  founder: SiteConfigFounder
+  socialLinks: [SiteConfigSocialLinks]
+  attribution: SiteConfigAttribution
+  branding: SiteConfigBranding
+  seo: SiteConfigSeo
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -133,12 +219,38 @@ input StringFilter {
   in: [String]
 }
 
-input DatetimeFilter {
-  after: String
-  before: String
-  eq: String
-  exists: Boolean
-  in: [String]
+input SiteConfigCompanyFilter {
+  name: StringFilter
+  legalName: StringFilter
+  description: StringFilter
+  tagline: StringFilter
+}
+
+input SiteConfigContactLocationFilter {
+  city: StringFilter
+  country: StringFilter
+}
+
+input SiteConfigContactFilter {
+  email: StringFilter
+  phone: StringFilter
+  phoneLink: StringFilter
+  location: SiteConfigContactLocationFilter
+}
+
+input SiteConfigFounderFilter {
+  name: StringFilter
+}
+
+input SiteConfigSocialLinksFilter {
+  name: StringFilter
+  url: StringFilter
+  icon: StringFilter
+}
+
+input SiteConfigAttributionFilter {
+  design: StringFilter
+  development: StringFilter
 }
 
 input ImageFilter {
@@ -148,28 +260,1030 @@ input ImageFilter {
   in: [String]
 }
 
-input BooleanFilter {
-  eq: Boolean
-  exists: Boolean
+input SiteConfigBrandingFilter {
+  logo: ImageFilter
+  logoWhite: ImageFilter
+  symbol: ImageFilter
+  symbolWhite: ImageFilter
+  ogImage: ImageFilter
 }
 
-input Projects_esBodyBannerFilter {
-  src: ImageFilter
-  alt: StringFilter
+input SiteConfigSeoFilter {
+  priceRange: StringFilter
 }
 
-input Projects_esBodyDetailsSectionFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  services: StringFilter
-  servicesLabel: StringFilter
-  category: StringFilter
-  categoryLabel: StringFilter
-  area: StringFilter
-  areaLabel: StringFilter
-  location: StringFilter
-  locationLabel: StringFilter
+input SiteConfigFilter {
+  siteUrl: StringFilter
+  locales: StringFilter
+  defaultLocale: StringFilter
+  company: SiteConfigCompanyFilter
+  contact: SiteConfigContactFilter
+  founder: SiteConfigFounderFilter
+  socialLinks: SiteConfigSocialLinksFilter
+  attribution: SiteConfigAttributionFilter
+  branding: SiteConfigBrandingFilter
+  seo: SiteConfigSeoFilter
+}
+
+type SiteConfigConnectionEdges {
+  cursor: String!
+  node: SiteConfig
+}
+
+type SiteConfigConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [SiteConfigConnectionEdges]
+}
+
+type Home_esHeroTopRight {
+  lines: [String]
+}
+
+type Home_esHeroTagline {
+  lines: [String]
+}
+
+type Home_esHero {
+  image: String!
+  topRight: Home_esHeroTopRight
+  tagline: Home_esHeroTagline
+  taglineSub: String
+}
+
+type Home_esAbout {
+  image: String
+  title: String
+  description: String
+  ctaText: String
+  ctaLink: String
+}
+
+type Home_es implements Node & Document {
+  title: String!
+  description: String!
+  headerStyle: String
+  hero: Home_esHero
+  about: Home_esAbout
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Home_esHeroTopRightFilter {
+  lines: StringFilter
+}
+
+input Home_esHeroTaglineFilter {
+  lines: StringFilter
+}
+
+input Home_esHeroFilter {
   image: ImageFilter
+  topRight: Home_esHeroTopRightFilter
+  tagline: Home_esHeroTaglineFilter
+  taglineSub: StringFilter
+}
+
+input Home_esAboutFilter {
+  image: ImageFilter
+  title: StringFilter
+  description: StringFilter
+  ctaText: StringFilter
+  ctaLink: StringFilter
+}
+
+input Home_esFilter {
+  title: StringFilter
+  description: StringFilter
+  headerStyle: StringFilter
+  hero: Home_esHeroFilter
+  about: Home_esAboutFilter
+}
+
+type Home_esConnectionEdges {
+  cursor: String!
+  node: Home_es
+}
+
+type Home_esConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Home_esConnectionEdges]
+}
+
+type Home_caHeroTopRight {
+  lines: [String]
+}
+
+type Home_caHeroTagline {
+  lines: [String]
+}
+
+type Home_caHero {
+  image: String!
+  topRight: Home_caHeroTopRight
+  tagline: Home_caHeroTagline
+  taglineSub: String
+}
+
+type Home_caAbout {
+  image: String
+  title: String
+  description: String
+  ctaText: String
+  ctaLink: String
+}
+
+type Home_ca implements Node & Document {
+  title: String!
+  description: String!
+  headerStyle: String
+  hero: Home_caHero
+  about: Home_caAbout
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Home_caHeroTopRightFilter {
+  lines: StringFilter
+}
+
+input Home_caHeroTaglineFilter {
+  lines: StringFilter
+}
+
+input Home_caHeroFilter {
+  image: ImageFilter
+  topRight: Home_caHeroTopRightFilter
+  tagline: Home_caHeroTaglineFilter
+  taglineSub: StringFilter
+}
+
+input Home_caAboutFilter {
+  image: ImageFilter
+  title: StringFilter
+  description: StringFilter
+  ctaText: StringFilter
+  ctaLink: StringFilter
+}
+
+input Home_caFilter {
+  title: StringFilter
+  description: StringFilter
+  headerStyle: StringFilter
+  hero: Home_caHeroFilter
+  about: Home_caAboutFilter
+}
+
+type Home_caConnectionEdges {
+  cursor: String!
+  node: Home_ca
+}
+
+type Home_caConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Home_caConnectionEdges]
+}
+
+type Home_enHeroTopRight {
+  lines: [String]
+}
+
+type Home_enHeroTagline {
+  lines: [String]
+}
+
+type Home_enHero {
+  image: String!
+  topRight: Home_enHeroTopRight
+  tagline: Home_enHeroTagline
+  taglineSub: String
+}
+
+type Home_enAbout {
+  image: String
+  title: String
+  description: String
+  ctaText: String
+  ctaLink: String
+}
+
+type Home_en implements Node & Document {
+  title: String!
+  description: String!
+  headerStyle: String
+  hero: Home_enHero
+  about: Home_enAbout
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Home_enHeroTopRightFilter {
+  lines: StringFilter
+}
+
+input Home_enHeroTaglineFilter {
+  lines: StringFilter
+}
+
+input Home_enHeroFilter {
+  image: ImageFilter
+  topRight: Home_enHeroTopRightFilter
+  tagline: Home_enHeroTaglineFilter
+  taglineSub: StringFilter
+}
+
+input Home_enAboutFilter {
+  image: ImageFilter
+  title: StringFilter
+  description: StringFilter
+  ctaText: StringFilter
+  ctaLink: StringFilter
+}
+
+input Home_enFilter {
+  title: StringFilter
+  description: StringFilter
+  headerStyle: StringFilter
+  hero: Home_enHeroFilter
+  about: Home_enAboutFilter
+}
+
+type Home_enConnectionEdges {
+  cursor: String!
+  node: Home_en
+}
+
+type Home_enConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Home_enConnectionEdges]
+}
+
+type About_esHero {
+  title: String!
+}
+
+type About_esBehindName {
+  title: String
+  p1: String!
+  p2: String!
+  footnote: String
+}
+
+type About_esBio {
+  title: String
+  image: String
+  paragraphs: [String]
+}
+
+type About_esAwardsItems {
+  year: String!
+  project: String!
+  award: String!
+  link: String
+}
+
+type About_esAwards {
+  title: String
+  items: [About_esAwardsItems]
+}
+
+type About_esMission {
+  title: String
+  p1: String!
+  p2: String!
+  quote: String
+}
+
+type About_es implements Node & Document {
+  title: String!
+  description: String!
+  heroImage: String
+  hero: About_esHero
+  behindName: About_esBehindName
+  bannerImage: String
+  bio: About_esBio
+  awards: About_esAwards
+  mission: About_esMission
+  missionImage: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input About_esHeroFilter {
+  title: StringFilter
+}
+
+input About_esBehindNameFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  footnote: StringFilter
+}
+
+input About_esBioFilter {
+  title: StringFilter
+  image: ImageFilter
+  paragraphs: StringFilter
+}
+
+input About_esAwardsItemsFilter {
+  year: StringFilter
+  project: StringFilter
+  award: StringFilter
+  link: StringFilter
+}
+
+input About_esAwardsFilter {
+  title: StringFilter
+  items: About_esAwardsItemsFilter
+}
+
+input About_esMissionFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  quote: StringFilter
+}
+
+input About_esFilter {
+  title: StringFilter
+  description: StringFilter
+  heroImage: ImageFilter
+  hero: About_esHeroFilter
+  behindName: About_esBehindNameFilter
+  bannerImage: ImageFilter
+  bio: About_esBioFilter
+  awards: About_esAwardsFilter
+  mission: About_esMissionFilter
+  missionImage: ImageFilter
+}
+
+type About_esConnectionEdges {
+  cursor: String!
+  node: About_es
+}
+
+type About_esConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [About_esConnectionEdges]
+}
+
+type About_caHero {
+  title: String!
+}
+
+type About_caBehindName {
+  title: String
+  p1: String!
+  p2: String!
+  footnote: String
+}
+
+type About_caBio {
+  title: String
+  image: String
+  paragraphs: [String]
+}
+
+type About_caAwardsItems {
+  year: String!
+  project: String!
+  award: String!
+  link: String
+}
+
+type About_caAwards {
+  title: String
+  items: [About_caAwardsItems]
+}
+
+type About_caMission {
+  title: String
+  p1: String!
+  p2: String!
+  quote: String
+}
+
+type About_ca implements Node & Document {
+  title: String!
+  description: String!
+  heroImage: String
+  hero: About_caHero
+  behindName: About_caBehindName
+  bannerImage: String
+  bio: About_caBio
+  awards: About_caAwards
+  mission: About_caMission
+  missionImage: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input About_caHeroFilter {
+  title: StringFilter
+}
+
+input About_caBehindNameFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  footnote: StringFilter
+}
+
+input About_caBioFilter {
+  title: StringFilter
+  image: ImageFilter
+  paragraphs: StringFilter
+}
+
+input About_caAwardsItemsFilter {
+  year: StringFilter
+  project: StringFilter
+  award: StringFilter
+  link: StringFilter
+}
+
+input About_caAwardsFilter {
+  title: StringFilter
+  items: About_caAwardsItemsFilter
+}
+
+input About_caMissionFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  quote: StringFilter
+}
+
+input About_caFilter {
+  title: StringFilter
+  description: StringFilter
+  heroImage: ImageFilter
+  hero: About_caHeroFilter
+  behindName: About_caBehindNameFilter
+  bannerImage: ImageFilter
+  bio: About_caBioFilter
+  awards: About_caAwardsFilter
+  mission: About_caMissionFilter
+  missionImage: ImageFilter
+}
+
+type About_caConnectionEdges {
+  cursor: String!
+  node: About_ca
+}
+
+type About_caConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [About_caConnectionEdges]
+}
+
+type About_enHero {
+  title: String!
+}
+
+type About_enBehindName {
+  title: String
+  p1: String!
+  p2: String!
+  footnote: String
+}
+
+type About_enBio {
+  title: String
+  image: String
+  paragraphs: [String]
+}
+
+type About_enAwardsItems {
+  year: String!
+  project: String!
+  award: String!
+  link: String
+}
+
+type About_enAwards {
+  title: String
+  items: [About_enAwardsItems]
+}
+
+type About_enMission {
+  title: String
+  p1: String!
+  p2: String!
+  quote: String
+}
+
+type About_en implements Node & Document {
+  title: String!
+  description: String!
+  heroImage: String
+  hero: About_enHero
+  behindName: About_enBehindName
+  bannerImage: String
+  bio: About_enBio
+  awards: About_enAwards
+  mission: About_enMission
+  missionImage: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input About_enHeroFilter {
+  title: StringFilter
+}
+
+input About_enBehindNameFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  footnote: StringFilter
+}
+
+input About_enBioFilter {
+  title: StringFilter
+  image: ImageFilter
+  paragraphs: StringFilter
+}
+
+input About_enAwardsItemsFilter {
+  year: StringFilter
+  project: StringFilter
+  award: StringFilter
+  link: StringFilter
+}
+
+input About_enAwardsFilter {
+  title: StringFilter
+  items: About_enAwardsItemsFilter
+}
+
+input About_enMissionFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  quote: StringFilter
+}
+
+input About_enFilter {
+  title: StringFilter
+  description: StringFilter
+  heroImage: ImageFilter
+  hero: About_enHeroFilter
+  behindName: About_enBehindNameFilter
+  bannerImage: ImageFilter
+  bio: About_enBioFilter
+  awards: About_enAwardsFilter
+  mission: About_enMissionFilter
+  missionImage: ImageFilter
+}
+
+type About_enConnectionEdges {
+  cursor: String!
+  node: About_en
+}
+
+type About_enConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [About_enConnectionEdges]
+}
+
+type Services_esHero {
+  title: String!
+}
+
+type Services_esIntro {
+  text: String!
+  image: String
+}
+
+type Services_esServiceGroupsItems {
+  title: String!
+  description: String!
+}
+
+type Services_esServiceGroups {
+  title: String!
+  items: [Services_esServiceGroupsItems]
+}
+
+type Services_esFaqItems {
+  question: String!
+  answer: String!
+}
+
+type Services_esFaq {
+  title: String
+  image: String
+  items: [Services_esFaqItems]
+}
+
+type Services_esWorkProcess {
+  title: String
+  p1: String!
+  p2: String!
+  image: String
+}
+
+type Services_es implements Node & Document {
+  title: String!
+  description: String!
+  hero: Services_esHero
+  intro: Services_esIntro
+  serviceGroups: [Services_esServiceGroups]
+  faq: Services_esFaq
+  workProcess: Services_esWorkProcess
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Services_esHeroFilter {
+  title: StringFilter
+}
+
+input Services_esIntroFilter {
+  text: StringFilter
+  image: ImageFilter
+}
+
+input Services_esServiceGroupsItemsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input Services_esServiceGroupsFilter {
+  title: StringFilter
+  items: Services_esServiceGroupsItemsFilter
+}
+
+input Services_esFaqItemsFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input Services_esFaqFilter {
+  title: StringFilter
+  image: ImageFilter
+  items: Services_esFaqItemsFilter
+}
+
+input Services_esWorkProcessFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  image: ImageFilter
+}
+
+input Services_esFilter {
+  title: StringFilter
+  description: StringFilter
+  hero: Services_esHeroFilter
+  intro: Services_esIntroFilter
+  serviceGroups: Services_esServiceGroupsFilter
+  faq: Services_esFaqFilter
+  workProcess: Services_esWorkProcessFilter
+}
+
+type Services_esConnectionEdges {
+  cursor: String!
+  node: Services_es
+}
+
+type Services_esConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Services_esConnectionEdges]
+}
+
+type Services_caHero {
+  title: String!
+}
+
+type Services_caIntro {
+  text: String!
+  image: String
+}
+
+type Services_caServiceGroupsItems {
+  title: String!
+  description: String!
+}
+
+type Services_caServiceGroups {
+  title: String!
+  items: [Services_caServiceGroupsItems]
+}
+
+type Services_caFaqItems {
+  question: String!
+  answer: String!
+}
+
+type Services_caFaq {
+  title: String
+  image: String
+  items: [Services_caFaqItems]
+}
+
+type Services_caWorkProcess {
+  title: String
+  p1: String!
+  p2: String!
+  image: String
+}
+
+type Services_ca implements Node & Document {
+  title: String!
+  description: String!
+  hero: Services_caHero
+  intro: Services_caIntro
+  serviceGroups: [Services_caServiceGroups]
+  faq: Services_caFaq
+  workProcess: Services_caWorkProcess
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Services_caHeroFilter {
+  title: StringFilter
+}
+
+input Services_caIntroFilter {
+  text: StringFilter
+  image: ImageFilter
+}
+
+input Services_caServiceGroupsItemsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input Services_caServiceGroupsFilter {
+  title: StringFilter
+  items: Services_caServiceGroupsItemsFilter
+}
+
+input Services_caFaqItemsFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input Services_caFaqFilter {
+  title: StringFilter
+  image: ImageFilter
+  items: Services_caFaqItemsFilter
+}
+
+input Services_caWorkProcessFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  image: ImageFilter
+}
+
+input Services_caFilter {
+  title: StringFilter
+  description: StringFilter
+  hero: Services_caHeroFilter
+  intro: Services_caIntroFilter
+  serviceGroups: Services_caServiceGroupsFilter
+  faq: Services_caFaqFilter
+  workProcess: Services_caWorkProcessFilter
+}
+
+type Services_caConnectionEdges {
+  cursor: String!
+  node: Services_ca
+}
+
+type Services_caConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Services_caConnectionEdges]
+}
+
+type Services_enHero {
+  title: String!
+}
+
+type Services_enIntro {
+  text: String!
+  image: String
+}
+
+type Services_enServiceGroupsItems {
+  title: String!
+  description: String!
+}
+
+type Services_enServiceGroups {
+  title: String!
+  items: [Services_enServiceGroupsItems]
+}
+
+type Services_enFaqItems {
+  question: String!
+  answer: String!
+}
+
+type Services_enFaq {
+  title: String
+  image: String
+  items: [Services_enFaqItems]
+}
+
+type Services_enWorkProcess {
+  title: String
+  p1: String!
+  p2: String!
+  image: String
+}
+
+type Services_en implements Node & Document {
+  title: String!
+  description: String!
+  hero: Services_enHero
+  intro: Services_enIntro
+  serviceGroups: [Services_enServiceGroups]
+  faq: Services_enFaq
+  workProcess: Services_enWorkProcess
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Services_enHeroFilter {
+  title: StringFilter
+}
+
+input Services_enIntroFilter {
+  text: StringFilter
+  image: ImageFilter
+}
+
+input Services_enServiceGroupsItemsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input Services_enServiceGroupsFilter {
+  title: StringFilter
+  items: Services_enServiceGroupsItemsFilter
+}
+
+input Services_enFaqItemsFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input Services_enFaqFilter {
+  title: StringFilter
+  image: ImageFilter
+  items: Services_enFaqItemsFilter
+}
+
+input Services_enWorkProcessFilter {
+  title: StringFilter
+  p1: StringFilter
+  p2: StringFilter
+  image: ImageFilter
+}
+
+input Services_enFilter {
+  title: StringFilter
+  description: StringFilter
+  hero: Services_enHeroFilter
+  intro: Services_enIntroFilter
+  serviceGroups: Services_enServiceGroupsFilter
+  faq: Services_enFaqFilter
+  workProcess: Services_enWorkProcessFilter
+}
+
+type Services_enConnectionEdges {
+  cursor: String!
+  node: Services_en
+}
+
+type Services_enConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Services_enConnectionEdges]
+}
+
+type Contact_es implements Node & Document {
+  title: String!
+  description: String!
+  heading: String!
+  subheading: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Contact_esFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+  subheading: StringFilter
+}
+
+type Contact_esConnectionEdges {
+  cursor: String!
+  node: Contact_es
+}
+
+type Contact_esConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Contact_esConnectionEdges]
+}
+
+type Contact_ca implements Node & Document {
+  title: String!
+  description: String!
+  heading: String!
+  subheading: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Contact_caFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+  subheading: StringFilter
+}
+
+type Contact_caConnectionEdges {
+  cursor: String!
+  node: Contact_ca
+}
+
+type Contact_caConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Contact_caConnectionEdges]
+}
+
+type Contact_en implements Node & Document {
+  title: String!
+  description: String!
+  heading: String!
+  subheading: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Contact_enFilter {
+  title: StringFilter
+  description: StringFilter
+  heading: StringFilter
+  subheading: StringFilter
+}
+
+type Contact_enConnectionEdges {
+  cursor: String!
+  node: Contact_en
+}
+
+type Contact_enConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Contact_enConnectionEdges]
+}
+
+type Legal_es implements Node & Document {
+  title: String!
+  description: String!
+  lastUpdated: String
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input DatetimeFilter {
+  after: String
+  before: String
+  eq: String
+  exists: Boolean
+  in: [String]
 }
 
 input RichTextFilter {
@@ -178,90 +1292,310 @@ input RichTextFilter {
   exists: Boolean
 }
 
-input Projects_esBodySectionFilter {
+input Legal_esFilter {
   title: StringFilter
-  id: StringFilter
-  content: RichTextFilter
+  description: StringFilter
+  lastUpdated: DatetimeFilter
+  body: RichTextFilter
 }
 
-input Projects_esBodyGalleryImagesFilter {
+type Legal_esConnectionEdges {
+  cursor: String!
+  node: Legal_es
+}
+
+type Legal_esConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Legal_esConnectionEdges]
+}
+
+type Legal_ca implements Node & Document {
+  title: String!
+  description: String!
+  lastUpdated: String
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Legal_caFilter {
+  title: StringFilter
+  description: StringFilter
+  lastUpdated: DatetimeFilter
+  body: RichTextFilter
+}
+
+type Legal_caConnectionEdges {
+  cursor: String!
+  node: Legal_ca
+}
+
+type Legal_caConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Legal_caConnectionEdges]
+}
+
+type Legal_en implements Node & Document {
+  title: String!
+  description: String!
+  lastUpdated: String
+  body: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input Legal_enFilter {
+  title: StringFilter
+  description: StringFilter
+  lastUpdated: DatetimeFilter
+  body: RichTextFilter
+}
+
+type Legal_enConnectionEdges {
+  cursor: String!
+  node: Legal_en
+}
+
+type Legal_enConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [Legal_enConnectionEdges]
+}
+
+type Projects_esBanner {
+  image: String!
+  alt: String!
+}
+
+type Projects_esDetails {
+  title: String!
+  subtitle: String!
+  image: String!
+  services: String!
+  servicesLabel: String!
+  category: String!
+  categoryLabel: String!
+  area: String!
+  areaLabel: String!
+  location: String!
+  locationLabel: String!
+}
+
+type Projects_esBriefGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_esBriefGallery {
+  cols: Float
+  images: [Projects_esBriefGalleryImages]
+}
+
+type Projects_esBrief {
+  title: String!
+  text: String!
+  gallery: Projects_esBriefGallery
+}
+
+type Projects_esConceptGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_esConceptGallery {
+  cols: Float
+  images: [Projects_esConceptGalleryImages]
+}
+
+type Projects_esConcept {
+  title: String!
+  text: String!
+  gallery: Projects_esConceptGallery
+}
+
+type Projects_esStrategyCarousel {
+  src: String!
+  alt: String!
+}
+
+type Projects_esStrategyGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_esStrategyGallery {
+  cols: Float
+  images: [Projects_esStrategyGalleryImages]
+}
+
+type Projects_esStrategy {
+  title: String!
+  text: String!
+  carousel: [Projects_esStrategyCarousel]
+  gallery: Projects_esStrategyGallery
+}
+
+type Projects_esCollaboratorsList {
+  name: String!
+  role: String!
+}
+
+type Projects_esCollaborators {
+  title: String!
+  list: [Projects_esCollaboratorsList]
+}
+
+type Projects_esFinalImage {
+  src: String!
+  alt: String!
+}
+
+type Projects_es implements Node & Document {
+  title: String!
+  description: String!
+  slug: String!
+  publishDate: String!
+  completedDate: String
+  tags: [String]
+  showTags: Boolean
+  featured: Boolean
+  draft: Boolean
+  banner: Projects_esBanner
+  details: Projects_esDetails
+  brief: Projects_esBrief
+  concept: Projects_esConcept
+  strategy: Projects_esStrategy
+  collaborators: Projects_esCollaborators
+  finalImage: Projects_esFinalImage
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input Projects_esBannerFilter {
+  image: ImageFilter
+  alt: StringFilter
+}
+
+input Projects_esDetailsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  image: ImageFilter
+  services: StringFilter
+  servicesLabel: StringFilter
+  category: StringFilter
+  categoryLabel: StringFilter
+  area: StringFilter
+  areaLabel: StringFilter
+  location: StringFilter
+  locationLabel: StringFilter
+}
+
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input Projects_esBriefGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esBodyGalleryFilter {
-  cols: StringFilter
-  gap: StringFilter
-  images: Projects_esBodyGalleryImagesFilter
+input Projects_esBriefGalleryFilter {
+  cols: NumberFilter
+  images: Projects_esBriefGalleryImagesFilter
 }
 
-input Projects_esBodyCarouselSlidesFilter {
+input Projects_esBriefFilter {
+  title: StringFilter
+  text: StringFilter
+  gallery: Projects_esBriefGalleryFilter
+}
+
+input Projects_esConceptGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esBodyCarouselFilter {
-  id: StringFilter
-  slides: Projects_esBodyCarouselSlidesFilter
+input Projects_esConceptGalleryFilter {
+  cols: NumberFilter
+  images: Projects_esConceptGalleryImagesFilter
 }
 
-input Projects_esBodyCollaboratorsListFilter {
+input Projects_esConceptFilter {
+  title: StringFilter
+  text: StringFilter
+  gallery: Projects_esConceptGalleryFilter
+}
+
+input Projects_esStrategyCarouselFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input Projects_esStrategyGalleryImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input Projects_esStrategyGalleryFilter {
+  cols: NumberFilter
+  images: Projects_esStrategyGalleryImagesFilter
+}
+
+input Projects_esStrategyFilter {
+  title: StringFilter
+  text: StringFilter
+  carousel: Projects_esStrategyCarouselFilter
+  gallery: Projects_esStrategyGalleryFilter
+}
+
+input Projects_esCollaboratorsListFilter {
   name: StringFilter
   role: StringFilter
-  url: StringFilter
 }
 
-input Projects_esBodyCollaboratorsFilter {
+input Projects_esCollaboratorsFilter {
   title: StringFilter
-  list: Projects_esBodyCollaboratorsListFilter
-  image: ImageFilter
+  list: Projects_esCollaboratorsListFilter
 }
 
-input Projects_esBodyFigureFilter {
+input Projects_esFinalImageFilter {
   src: ImageFilter
   alt: StringFilter
-  caption: StringFilter
-  width: StringFilter
-}
-
-input Projects_esBodyYoutubeFilter {
-  id: StringFilter
-  aspectRatio: StringFilter
-}
-
-input Projects_esBodyButtonFilter {
-  href: StringFilter
-  text: StringFilter
-  variant: StringFilter
-}
-
-input Projects_esBodySpacerFilter {
-  height: StringFilter
-}
-
-input Projects_esBodyFilter {
-  banner: Projects_esBodyBannerFilter
-  detailsSection: Projects_esBodyDetailsSectionFilter
-  section: Projects_esBodySectionFilter
-  gallery: Projects_esBodyGalleryFilter
-  carousel: Projects_esBodyCarouselFilter
-  collaborators: Projects_esBodyCollaboratorsFilter
-  figure: Projects_esBodyFigureFilter
-  youtube: Projects_esBodyYoutubeFilter
-  button: Projects_esBodyButtonFilter
-  spacer: Projects_esBodySpacerFilter
 }
 
 input Projects_esFilter {
   title: StringFilter
   description: StringFilter
+  slug: StringFilter
   publishDate: DatetimeFilter
   completedDate: DatetimeFilter
   tags: StringFilter
-  coverImage: ImageFilter
+  showTags: BooleanFilter
   featured: BooleanFilter
   draft: BooleanFilter
-  body: Projects_esBodyFilter
+  banner: Projects_esBannerFilter
+  details: Projects_esDetailsFilter
+  brief: Projects_esBriefFilter
+  concept: Projects_esConceptFilter
+  strategy: Projects_esStrategyFilter
+  collaborators: Projects_esCollaboratorsFilter
+  finalImage: Projects_esFinalImageFilter
 }
 
 type Projects_esConnectionEdges {
@@ -275,29 +1609,125 @@ type Projects_esConnection implements Connection {
   edges: [Projects_esConnectionEdges]
 }
 
+type Projects_caBanner {
+  image: String!
+  alt: String!
+}
+
+type Projects_caDetails {
+  title: String!
+  subtitle: String!
+  image: String!
+  services: String!
+  servicesLabel: String!
+  category: String!
+  categoryLabel: String!
+  area: String!
+  areaLabel: String!
+  location: String!
+  locationLabel: String!
+}
+
+type Projects_caBriefGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_caBriefGallery {
+  cols: Float
+  images: [Projects_caBriefGalleryImages]
+}
+
+type Projects_caBrief {
+  title: String!
+  text: String!
+  gallery: Projects_caBriefGallery
+}
+
+type Projects_caConceptGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_caConceptGallery {
+  cols: Float
+  images: [Projects_caConceptGalleryImages]
+}
+
+type Projects_caConcept {
+  title: String!
+  text: String!
+  gallery: Projects_caConceptGallery
+}
+
+type Projects_caStrategyCarousel {
+  src: String!
+  alt: String!
+}
+
+type Projects_caStrategyGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_caStrategyGallery {
+  cols: Float
+  images: [Projects_caStrategyGalleryImages]
+}
+
+type Projects_caStrategy {
+  title: String!
+  text: String!
+  carousel: [Projects_caStrategyCarousel]
+  gallery: Projects_caStrategyGallery
+}
+
+type Projects_caCollaboratorsList {
+  name: String!
+  role: String!
+}
+
+type Projects_caCollaborators {
+  title: String!
+  list: [Projects_caCollaboratorsList]
+}
+
+type Projects_caFinalImage {
+  src: String!
+  alt: String!
+}
+
 type Projects_ca implements Node & Document {
   title: String!
   description: String!
+  slug: String!
   publishDate: String!
   completedDate: String
   tags: [String]
-  coverImage: String!
+  showTags: Boolean
   featured: Boolean
   draft: Boolean
-  body: JSON
+  banner: Projects_caBanner
+  details: Projects_caDetails
+  brief: Projects_caBrief
+  concept: Projects_caConcept
+  strategy: Projects_caStrategy
+  collaborators: Projects_caCollaborators
+  finalImage: Projects_caFinalImage
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input Projects_caBodyBannerFilter {
-  src: ImageFilter
+input Projects_caBannerFilter {
+  image: ImageFilter
   alt: StringFilter
 }
 
-input Projects_caBodyDetailsSectionFilter {
+input Projects_caDetailsFilter {
   title: StringFilter
   subtitle: StringFilter
+  image: ImageFilter
   services: StringFilter
   servicesLabel: StringFilter
   category: StringFilter
@@ -306,93 +1736,94 @@ input Projects_caBodyDetailsSectionFilter {
   areaLabel: StringFilter
   location: StringFilter
   locationLabel: StringFilter
-  image: ImageFilter
 }
 
-input Projects_caBodySectionFilter {
+input Projects_caBriefGalleryImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input Projects_caBriefGalleryFilter {
+  cols: NumberFilter
+  images: Projects_caBriefGalleryImagesFilter
+}
+
+input Projects_caBriefFilter {
   title: StringFilter
-  id: StringFilter
-  content: RichTextFilter
+  text: StringFilter
+  gallery: Projects_caBriefGalleryFilter
 }
 
-input Projects_caBodyGalleryImagesFilter {
+input Projects_caConceptGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_caBodyGalleryFilter {
-  cols: StringFilter
-  gap: StringFilter
-  images: Projects_caBodyGalleryImagesFilter
+input Projects_caConceptGalleryFilter {
+  cols: NumberFilter
+  images: Projects_caConceptGalleryImagesFilter
 }
 
-input Projects_caBodyCarouselSlidesFilter {
+input Projects_caConceptFilter {
+  title: StringFilter
+  text: StringFilter
+  gallery: Projects_caConceptGalleryFilter
+}
+
+input Projects_caStrategyCarouselFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_caBodyCarouselFilter {
-  id: StringFilter
-  slides: Projects_caBodyCarouselSlidesFilter
+input Projects_caStrategyGalleryImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
 }
 
-input Projects_caBodyCollaboratorsListFilter {
+input Projects_caStrategyGalleryFilter {
+  cols: NumberFilter
+  images: Projects_caStrategyGalleryImagesFilter
+}
+
+input Projects_caStrategyFilter {
+  title: StringFilter
+  text: StringFilter
+  carousel: Projects_caStrategyCarouselFilter
+  gallery: Projects_caStrategyGalleryFilter
+}
+
+input Projects_caCollaboratorsListFilter {
   name: StringFilter
   role: StringFilter
-  url: StringFilter
 }
 
-input Projects_caBodyCollaboratorsFilter {
+input Projects_caCollaboratorsFilter {
   title: StringFilter
-  list: Projects_caBodyCollaboratorsListFilter
-  image: ImageFilter
+  list: Projects_caCollaboratorsListFilter
 }
 
-input Projects_caBodyFigureFilter {
+input Projects_caFinalImageFilter {
   src: ImageFilter
   alt: StringFilter
-  caption: StringFilter
-  width: StringFilter
-}
-
-input Projects_caBodyYoutubeFilter {
-  id: StringFilter
-  aspectRatio: StringFilter
-}
-
-input Projects_caBodyButtonFilter {
-  href: StringFilter
-  text: StringFilter
-  variant: StringFilter
-}
-
-input Projects_caBodySpacerFilter {
-  height: StringFilter
-}
-
-input Projects_caBodyFilter {
-  banner: Projects_caBodyBannerFilter
-  detailsSection: Projects_caBodyDetailsSectionFilter
-  section: Projects_caBodySectionFilter
-  gallery: Projects_caBodyGalleryFilter
-  carousel: Projects_caBodyCarouselFilter
-  collaborators: Projects_caBodyCollaboratorsFilter
-  figure: Projects_caBodyFigureFilter
-  youtube: Projects_caBodyYoutubeFilter
-  button: Projects_caBodyButtonFilter
-  spacer: Projects_caBodySpacerFilter
 }
 
 input Projects_caFilter {
   title: StringFilter
   description: StringFilter
+  slug: StringFilter
   publishDate: DatetimeFilter
   completedDate: DatetimeFilter
   tags: StringFilter
-  coverImage: ImageFilter
+  showTags: BooleanFilter
   featured: BooleanFilter
   draft: BooleanFilter
-  body: Projects_caBodyFilter
+  banner: Projects_caBannerFilter
+  details: Projects_caDetailsFilter
+  brief: Projects_caBriefFilter
+  concept: Projects_caConceptFilter
+  strategy: Projects_caStrategyFilter
+  collaborators: Projects_caCollaboratorsFilter
+  finalImage: Projects_caFinalImageFilter
 }
 
 type Projects_caConnectionEdges {
@@ -406,29 +1837,125 @@ type Projects_caConnection implements Connection {
   edges: [Projects_caConnectionEdges]
 }
 
+type Projects_enBanner {
+  image: String!
+  alt: String!
+}
+
+type Projects_enDetails {
+  title: String!
+  subtitle: String!
+  image: String!
+  services: String!
+  servicesLabel: String!
+  category: String!
+  categoryLabel: String!
+  area: String!
+  areaLabel: String!
+  location: String!
+  locationLabel: String!
+}
+
+type Projects_enBriefGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_enBriefGallery {
+  cols: Float
+  images: [Projects_enBriefGalleryImages]
+}
+
+type Projects_enBrief {
+  title: String!
+  text: String!
+  gallery: Projects_enBriefGallery
+}
+
+type Projects_enConceptGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_enConceptGallery {
+  cols: Float
+  images: [Projects_enConceptGalleryImages]
+}
+
+type Projects_enConcept {
+  title: String!
+  text: String!
+  gallery: Projects_enConceptGallery
+}
+
+type Projects_enStrategyCarousel {
+  src: String!
+  alt: String!
+}
+
+type Projects_enStrategyGalleryImages {
+  src: String!
+  alt: String!
+}
+
+type Projects_enStrategyGallery {
+  cols: Float
+  images: [Projects_enStrategyGalleryImages]
+}
+
+type Projects_enStrategy {
+  title: String!
+  text: String!
+  carousel: [Projects_enStrategyCarousel]
+  gallery: Projects_enStrategyGallery
+}
+
+type Projects_enCollaboratorsList {
+  name: String!
+  role: String!
+}
+
+type Projects_enCollaborators {
+  title: String!
+  list: [Projects_enCollaboratorsList]
+}
+
+type Projects_enFinalImage {
+  src: String!
+  alt: String!
+}
+
 type Projects_en implements Node & Document {
   title: String!
   description: String!
+  slug: String!
   publishDate: String!
   completedDate: String
   tags: [String]
-  coverImage: String!
+  showTags: Boolean
   featured: Boolean
   draft: Boolean
-  body: JSON
+  banner: Projects_enBanner
+  details: Projects_enDetails
+  brief: Projects_enBrief
+  concept: Projects_enConcept
+  strategy: Projects_enStrategy
+  collaborators: Projects_enCollaborators
+  finalImage: Projects_enFinalImage
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input Projects_enBodyBannerFilter {
-  src: ImageFilter
+input Projects_enBannerFilter {
+  image: ImageFilter
   alt: StringFilter
 }
 
-input Projects_enBodyDetailsSectionFilter {
+input Projects_enDetailsFilter {
   title: StringFilter
   subtitle: StringFilter
+  image: ImageFilter
   services: StringFilter
   servicesLabel: StringFilter
   category: StringFilter
@@ -437,93 +1964,94 @@ input Projects_enBodyDetailsSectionFilter {
   areaLabel: StringFilter
   location: StringFilter
   locationLabel: StringFilter
-  image: ImageFilter
 }
 
-input Projects_enBodySectionFilter {
+input Projects_enBriefGalleryImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input Projects_enBriefGalleryFilter {
+  cols: NumberFilter
+  images: Projects_enBriefGalleryImagesFilter
+}
+
+input Projects_enBriefFilter {
   title: StringFilter
-  id: StringFilter
-  content: RichTextFilter
+  text: StringFilter
+  gallery: Projects_enBriefGalleryFilter
 }
 
-input Projects_enBodyGalleryImagesFilter {
+input Projects_enConceptGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_enBodyGalleryFilter {
-  cols: StringFilter
-  gap: StringFilter
-  images: Projects_enBodyGalleryImagesFilter
+input Projects_enConceptGalleryFilter {
+  cols: NumberFilter
+  images: Projects_enConceptGalleryImagesFilter
 }
 
-input Projects_enBodyCarouselSlidesFilter {
+input Projects_enConceptFilter {
+  title: StringFilter
+  text: StringFilter
+  gallery: Projects_enConceptGalleryFilter
+}
+
+input Projects_enStrategyCarouselFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_enBodyCarouselFilter {
-  id: StringFilter
-  slides: Projects_enBodyCarouselSlidesFilter
+input Projects_enStrategyGalleryImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
 }
 
-input Projects_enBodyCollaboratorsListFilter {
+input Projects_enStrategyGalleryFilter {
+  cols: NumberFilter
+  images: Projects_enStrategyGalleryImagesFilter
+}
+
+input Projects_enStrategyFilter {
+  title: StringFilter
+  text: StringFilter
+  carousel: Projects_enStrategyCarouselFilter
+  gallery: Projects_enStrategyGalleryFilter
+}
+
+input Projects_enCollaboratorsListFilter {
   name: StringFilter
   role: StringFilter
-  url: StringFilter
 }
 
-input Projects_enBodyCollaboratorsFilter {
+input Projects_enCollaboratorsFilter {
   title: StringFilter
-  list: Projects_enBodyCollaboratorsListFilter
-  image: ImageFilter
+  list: Projects_enCollaboratorsListFilter
 }
 
-input Projects_enBodyFigureFilter {
+input Projects_enFinalImageFilter {
   src: ImageFilter
   alt: StringFilter
-  caption: StringFilter
-  width: StringFilter
-}
-
-input Projects_enBodyYoutubeFilter {
-  id: StringFilter
-  aspectRatio: StringFilter
-}
-
-input Projects_enBodyButtonFilter {
-  href: StringFilter
-  text: StringFilter
-  variant: StringFilter
-}
-
-input Projects_enBodySpacerFilter {
-  height: StringFilter
-}
-
-input Projects_enBodyFilter {
-  banner: Projects_enBodyBannerFilter
-  detailsSection: Projects_enBodyDetailsSectionFilter
-  section: Projects_enBodySectionFilter
-  gallery: Projects_enBodyGalleryFilter
-  carousel: Projects_enBodyCarouselFilter
-  collaborators: Projects_enBodyCollaboratorsFilter
-  figure: Projects_enBodyFigureFilter
-  youtube: Projects_enBodyYoutubeFilter
-  button: Projects_enBodyButtonFilter
-  spacer: Projects_enBodySpacerFilter
 }
 
 input Projects_enFilter {
   title: StringFilter
   description: StringFilter
+  slug: StringFilter
   publishDate: DatetimeFilter
   completedDate: DatetimeFilter
   tags: StringFilter
-  coverImage: ImageFilter
+  showTags: BooleanFilter
   featured: BooleanFilter
   draft: BooleanFilter
-  body: Projects_enBodyFilter
+  banner: Projects_enBannerFilter
+  details: Projects_enDetailsFilter
+  brief: Projects_enBriefFilter
+  concept: Projects_enConceptFilter
+  strategy: Projects_enStrategyFilter
+  collaborators: Projects_enCollaboratorsFilter
+  finalImage: Projects_enFinalImageFilter
 }
 
 type Projects_enConnectionEdges {
@@ -535,645 +2063,6 @@ type Projects_enConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
   edges: [Projects_enConnectionEdges]
-}
-
-type Pages_es implements Node & Document {
-  title: String!
-  description: String!
-  heroImage: String
-  headerStyle: String
-  body: JSON
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Pages_esBodyBannerFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_esBodyDetailsSectionFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  services: StringFilter
-  servicesLabel: StringFilter
-  category: StringFilter
-  categoryLabel: StringFilter
-  area: StringFilter
-  areaLabel: StringFilter
-  location: StringFilter
-  locationLabel: StringFilter
-  image: ImageFilter
-}
-
-input Pages_esBodySectionFilter {
-  title: StringFilter
-  id: StringFilter
-  content: RichTextFilter
-}
-
-input Pages_esBodyGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_esBodyGalleryFilter {
-  cols: StringFilter
-  gap: StringFilter
-  images: Pages_esBodyGalleryImagesFilter
-}
-
-input Pages_esBodyCarouselSlidesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_esBodyCarouselFilter {
-  id: StringFilter
-  slides: Pages_esBodyCarouselSlidesFilter
-}
-
-input Pages_esBodyCollaboratorsListFilter {
-  name: StringFilter
-  role: StringFilter
-  url: StringFilter
-}
-
-input Pages_esBodyCollaboratorsFilter {
-  title: StringFilter
-  list: Pages_esBodyCollaboratorsListFilter
-  image: ImageFilter
-}
-
-input Pages_esBodyFigureFilter {
-  src: ImageFilter
-  alt: StringFilter
-  caption: StringFilter
-  width: StringFilter
-}
-
-input Pages_esBodyYoutubeFilter {
-  id: StringFilter
-  aspectRatio: StringFilter
-}
-
-input Pages_esBodyButtonFilter {
-  href: StringFilter
-  text: StringFilter
-  variant: StringFilter
-}
-
-input Pages_esBodySpacerFilter {
-  height: StringFilter
-}
-
-input Pages_esBodyHeroHomeFilter {
-  image: ImageFilter
-  topRight: StringFilter
-  bottomLeft: StringFilter
-  bottomLeftSub: StringFilter
-}
-
-input Pages_esBodyAboutHomeFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  cta: StringFilter
-  ctaLink: StringFilter
-}
-
-input Pages_esBodyHeroServicesFilter {
-  title: StringFilter
-  symbolImage: ImageFilter
-}
-
-input Pages_esBodyIntroServicesFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input Pages_esBodyServicesGroupItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input Pages_esBodyServicesGroupFilter {
-  title: StringFilter
-  items: Pages_esBodyServicesGroupItemsFilter
-}
-
-input Pages_esBodyFaqFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input Pages_esBodyWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
-input Pages_esBodyAboutHeroFilter {
-  title: StringFilter
-}
-
-input Pages_esBodyBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input Pages_esBodyAboutBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input Pages_esBodyAwardFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input Pages_esBodyAboutMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input Pages_esBodyFilter {
-  banner: Pages_esBodyBannerFilter
-  detailsSection: Pages_esBodyDetailsSectionFilter
-  section: Pages_esBodySectionFilter
-  gallery: Pages_esBodyGalleryFilter
-  carousel: Pages_esBodyCarouselFilter
-  collaborators: Pages_esBodyCollaboratorsFilter
-  figure: Pages_esBodyFigureFilter
-  youtube: Pages_esBodyYoutubeFilter
-  button: Pages_esBodyButtonFilter
-  spacer: Pages_esBodySpacerFilter
-  heroHome: Pages_esBodyHeroHomeFilter
-  aboutHome: Pages_esBodyAboutHomeFilter
-  heroServices: Pages_esBodyHeroServicesFilter
-  introServices: Pages_esBodyIntroServicesFilter
-  servicesGroup: Pages_esBodyServicesGroupFilter
-  faq: Pages_esBodyFaqFilter
-  workProcess: Pages_esBodyWorkProcessFilter
-  aboutHero: Pages_esBodyAboutHeroFilter
-  behindName: Pages_esBodyBehindNameFilter
-  aboutBio: Pages_esBodyAboutBioFilter
-  award: Pages_esBodyAwardFilter
-  aboutMission: Pages_esBodyAboutMissionFilter
-}
-
-input Pages_esFilter {
-  title: StringFilter
-  description: StringFilter
-  heroImage: ImageFilter
-  headerStyle: StringFilter
-  body: Pages_esBodyFilter
-}
-
-type Pages_esConnectionEdges {
-  cursor: String!
-  node: Pages_es
-}
-
-type Pages_esConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Pages_esConnectionEdges]
-}
-
-type Pages_ca implements Node & Document {
-  title: String!
-  description: String!
-  heroImage: String
-  headerStyle: String
-  body: JSON
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Pages_caBodyBannerFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_caBodyDetailsSectionFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  services: StringFilter
-  servicesLabel: StringFilter
-  category: StringFilter
-  categoryLabel: StringFilter
-  area: StringFilter
-  areaLabel: StringFilter
-  location: StringFilter
-  locationLabel: StringFilter
-  image: ImageFilter
-}
-
-input Pages_caBodySectionFilter {
-  title: StringFilter
-  id: StringFilter
-  content: RichTextFilter
-}
-
-input Pages_caBodyGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_caBodyGalleryFilter {
-  cols: StringFilter
-  gap: StringFilter
-  images: Pages_caBodyGalleryImagesFilter
-}
-
-input Pages_caBodyCarouselSlidesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_caBodyCarouselFilter {
-  id: StringFilter
-  slides: Pages_caBodyCarouselSlidesFilter
-}
-
-input Pages_caBodyCollaboratorsListFilter {
-  name: StringFilter
-  role: StringFilter
-  url: StringFilter
-}
-
-input Pages_caBodyCollaboratorsFilter {
-  title: StringFilter
-  list: Pages_caBodyCollaboratorsListFilter
-  image: ImageFilter
-}
-
-input Pages_caBodyFigureFilter {
-  src: ImageFilter
-  alt: StringFilter
-  caption: StringFilter
-  width: StringFilter
-}
-
-input Pages_caBodyYoutubeFilter {
-  id: StringFilter
-  aspectRatio: StringFilter
-}
-
-input Pages_caBodyButtonFilter {
-  href: StringFilter
-  text: StringFilter
-  variant: StringFilter
-}
-
-input Pages_caBodySpacerFilter {
-  height: StringFilter
-}
-
-input Pages_caBodyHeroHomeFilter {
-  image: ImageFilter
-  topRight: StringFilter
-  bottomLeft: StringFilter
-  bottomLeftSub: StringFilter
-}
-
-input Pages_caBodyAboutHomeFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  cta: StringFilter
-  ctaLink: StringFilter
-}
-
-input Pages_caBodyHeroServicesFilter {
-  title: StringFilter
-  symbolImage: ImageFilter
-}
-
-input Pages_caBodyIntroServicesFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input Pages_caBodyServicesGroupItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input Pages_caBodyServicesGroupFilter {
-  title: StringFilter
-  items: Pages_caBodyServicesGroupItemsFilter
-}
-
-input Pages_caBodyFaqFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input Pages_caBodyWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
-input Pages_caBodyAboutHeroFilter {
-  title: StringFilter
-}
-
-input Pages_caBodyBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input Pages_caBodyAboutBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input Pages_caBodyAwardFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input Pages_caBodyAboutMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input Pages_caBodyFilter {
-  banner: Pages_caBodyBannerFilter
-  detailsSection: Pages_caBodyDetailsSectionFilter
-  section: Pages_caBodySectionFilter
-  gallery: Pages_caBodyGalleryFilter
-  carousel: Pages_caBodyCarouselFilter
-  collaborators: Pages_caBodyCollaboratorsFilter
-  figure: Pages_caBodyFigureFilter
-  youtube: Pages_caBodyYoutubeFilter
-  button: Pages_caBodyButtonFilter
-  spacer: Pages_caBodySpacerFilter
-  heroHome: Pages_caBodyHeroHomeFilter
-  aboutHome: Pages_caBodyAboutHomeFilter
-  heroServices: Pages_caBodyHeroServicesFilter
-  introServices: Pages_caBodyIntroServicesFilter
-  servicesGroup: Pages_caBodyServicesGroupFilter
-  faq: Pages_caBodyFaqFilter
-  workProcess: Pages_caBodyWorkProcessFilter
-  aboutHero: Pages_caBodyAboutHeroFilter
-  behindName: Pages_caBodyBehindNameFilter
-  aboutBio: Pages_caBodyAboutBioFilter
-  award: Pages_caBodyAwardFilter
-  aboutMission: Pages_caBodyAboutMissionFilter
-}
-
-input Pages_caFilter {
-  title: StringFilter
-  description: StringFilter
-  heroImage: ImageFilter
-  headerStyle: StringFilter
-  body: Pages_caBodyFilter
-}
-
-type Pages_caConnectionEdges {
-  cursor: String!
-  node: Pages_ca
-}
-
-type Pages_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Pages_caConnectionEdges]
-}
-
-type Pages_en implements Node & Document {
-  title: String!
-  description: String!
-  heroImage: String
-  headerStyle: String
-  body: JSON
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Pages_enBodyBannerFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_enBodyDetailsSectionFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  services: StringFilter
-  servicesLabel: StringFilter
-  category: StringFilter
-  categoryLabel: StringFilter
-  area: StringFilter
-  areaLabel: StringFilter
-  location: StringFilter
-  locationLabel: StringFilter
-  image: ImageFilter
-}
-
-input Pages_enBodySectionFilter {
-  title: StringFilter
-  id: StringFilter
-  content: RichTextFilter
-}
-
-input Pages_enBodyGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_enBodyGalleryFilter {
-  cols: StringFilter
-  gap: StringFilter
-  images: Pages_enBodyGalleryImagesFilter
-}
-
-input Pages_enBodyCarouselSlidesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Pages_enBodyCarouselFilter {
-  id: StringFilter
-  slides: Pages_enBodyCarouselSlidesFilter
-}
-
-input Pages_enBodyCollaboratorsListFilter {
-  name: StringFilter
-  role: StringFilter
-  url: StringFilter
-}
-
-input Pages_enBodyCollaboratorsFilter {
-  title: StringFilter
-  list: Pages_enBodyCollaboratorsListFilter
-  image: ImageFilter
-}
-
-input Pages_enBodyFigureFilter {
-  src: ImageFilter
-  alt: StringFilter
-  caption: StringFilter
-  width: StringFilter
-}
-
-input Pages_enBodyYoutubeFilter {
-  id: StringFilter
-  aspectRatio: StringFilter
-}
-
-input Pages_enBodyButtonFilter {
-  href: StringFilter
-  text: StringFilter
-  variant: StringFilter
-}
-
-input Pages_enBodySpacerFilter {
-  height: StringFilter
-}
-
-input Pages_enBodyHeroHomeFilter {
-  image: ImageFilter
-  topRight: StringFilter
-  bottomLeft: StringFilter
-  bottomLeftSub: StringFilter
-}
-
-input Pages_enBodyAboutHomeFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  cta: StringFilter
-  ctaLink: StringFilter
-}
-
-input Pages_enBodyHeroServicesFilter {
-  title: StringFilter
-  symbolImage: ImageFilter
-}
-
-input Pages_enBodyIntroServicesFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input Pages_enBodyServicesGroupItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input Pages_enBodyServicesGroupFilter {
-  title: StringFilter
-  items: Pages_enBodyServicesGroupItemsFilter
-}
-
-input Pages_enBodyFaqFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input Pages_enBodyWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
-input Pages_enBodyAboutHeroFilter {
-  title: StringFilter
-}
-
-input Pages_enBodyBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input Pages_enBodyAboutBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input Pages_enBodyAwardFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input Pages_enBodyAboutMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input Pages_enBodyFilter {
-  banner: Pages_enBodyBannerFilter
-  detailsSection: Pages_enBodyDetailsSectionFilter
-  section: Pages_enBodySectionFilter
-  gallery: Pages_enBodyGalleryFilter
-  carousel: Pages_enBodyCarouselFilter
-  collaborators: Pages_enBodyCollaboratorsFilter
-  figure: Pages_enBodyFigureFilter
-  youtube: Pages_enBodyYoutubeFilter
-  button: Pages_enBodyButtonFilter
-  spacer: Pages_enBodySpacerFilter
-  heroHome: Pages_enBodyHeroHomeFilter
-  aboutHome: Pages_enBodyAboutHomeFilter
-  heroServices: Pages_enBodyHeroServicesFilter
-  introServices: Pages_enBodyIntroServicesFilter
-  servicesGroup: Pages_enBodyServicesGroupFilter
-  faq: Pages_enBodyFaqFilter
-  workProcess: Pages_enBodyWorkProcessFilter
-  aboutHero: Pages_enBodyAboutHeroFilter
-  behindName: Pages_enBodyBehindNameFilter
-  aboutBio: Pages_enBodyAboutBioFilter
-  award: Pages_enBodyAwardFilter
-  aboutMission: Pages_enBodyAboutMissionFilter
-}
-
-input Pages_enFilter {
-  title: StringFilter
-  description: StringFilter
-  heroImage: ImageFilter
-  headerStyle: StringFilter
-  body: Pages_enBodyFilter
-}
-
-type Pages_enConnectionEdges {
-  cursor: String!
-  node: Pages_en
-}
-
-type Pages_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Pages_enConnectionEdges]
 }
 
 type Translations_esNav {
@@ -1189,13 +2078,6 @@ type Translations_esNav {
 type Translations_esFooter {
   privacy: String
   legal: String
-}
-
-type Translations_esContact {
-  title: String
-  description: String
-  heading: String
-  subheading: String
 }
 
 type Translations_esContactFormProjectTypes {
@@ -1235,12 +2117,6 @@ type Translations_esProjects {
   heading: String
 }
 
-type Translations_esCookies {
-  message: String
-  moreInfo: String
-  accept: String
-}
-
 type Translations_esAccessibility {
   skipToContent: String
   selectLanguage: String
@@ -1254,10 +2130,8 @@ type Translations_esAccessibility {
 type Translations_es implements Node & Document {
   nav: Translations_esNav
   footer: Translations_esFooter
-  contact: Translations_esContact
   contactForm: Translations_esContactForm
   projects: Translations_esProjects
-  cookies: Translations_esCookies
   accessibility: Translations_esAccessibility
   id: ID!
   _sys: SystemInfo!
@@ -1277,13 +2151,6 @@ input Translations_esNavFilter {
 input Translations_esFooterFilter {
   privacy: StringFilter
   legal: StringFilter
-}
-
-input Translations_esContactFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-  subheading: StringFilter
 }
 
 input Translations_esContactFormProjectTypesFilter {
@@ -1323,12 +2190,6 @@ input Translations_esProjectsFilter {
   heading: StringFilter
 }
 
-input Translations_esCookiesFilter {
-  message: StringFilter
-  moreInfo: StringFilter
-  accept: StringFilter
-}
-
 input Translations_esAccessibilityFilter {
   skipToContent: StringFilter
   selectLanguage: StringFilter
@@ -1342,10 +2203,8 @@ input Translations_esAccessibilityFilter {
 input Translations_esFilter {
   nav: Translations_esNavFilter
   footer: Translations_esFooterFilter
-  contact: Translations_esContactFilter
   contactForm: Translations_esContactFormFilter
   projects: Translations_esProjectsFilter
-  cookies: Translations_esCookiesFilter
   accessibility: Translations_esAccessibilityFilter
 }
 
@@ -1373,13 +2232,6 @@ type Translations_caNav {
 type Translations_caFooter {
   privacy: String
   legal: String
-}
-
-type Translations_caContact {
-  title: String
-  description: String
-  heading: String
-  subheading: String
 }
 
 type Translations_caContactFormProjectTypes {
@@ -1419,12 +2271,6 @@ type Translations_caProjects {
   heading: String
 }
 
-type Translations_caCookies {
-  message: String
-  moreInfo: String
-  accept: String
-}
-
 type Translations_caAccessibility {
   skipToContent: String
   selectLanguage: String
@@ -1438,10 +2284,8 @@ type Translations_caAccessibility {
 type Translations_ca implements Node & Document {
   nav: Translations_caNav
   footer: Translations_caFooter
-  contact: Translations_caContact
   contactForm: Translations_caContactForm
   projects: Translations_caProjects
-  cookies: Translations_caCookies
   accessibility: Translations_caAccessibility
   id: ID!
   _sys: SystemInfo!
@@ -1461,13 +2305,6 @@ input Translations_caNavFilter {
 input Translations_caFooterFilter {
   privacy: StringFilter
   legal: StringFilter
-}
-
-input Translations_caContactFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-  subheading: StringFilter
 }
 
 input Translations_caContactFormProjectTypesFilter {
@@ -1507,12 +2344,6 @@ input Translations_caProjectsFilter {
   heading: StringFilter
 }
 
-input Translations_caCookiesFilter {
-  message: StringFilter
-  moreInfo: StringFilter
-  accept: StringFilter
-}
-
 input Translations_caAccessibilityFilter {
   skipToContent: StringFilter
   selectLanguage: StringFilter
@@ -1526,10 +2357,8 @@ input Translations_caAccessibilityFilter {
 input Translations_caFilter {
   nav: Translations_caNavFilter
   footer: Translations_caFooterFilter
-  contact: Translations_caContactFilter
   contactForm: Translations_caContactFormFilter
   projects: Translations_caProjectsFilter
-  cookies: Translations_caCookiesFilter
   accessibility: Translations_caAccessibilityFilter
 }
 
@@ -1557,13 +2386,6 @@ type Translations_enNav {
 type Translations_enFooter {
   privacy: String
   legal: String
-}
-
-type Translations_enContact {
-  title: String
-  description: String
-  heading: String
-  subheading: String
 }
 
 type Translations_enContactFormProjectTypes {
@@ -1603,12 +2425,6 @@ type Translations_enProjects {
   heading: String
 }
 
-type Translations_enCookies {
-  message: String
-  moreInfo: String
-  accept: String
-}
-
 type Translations_enAccessibility {
   skipToContent: String
   selectLanguage: String
@@ -1622,10 +2438,8 @@ type Translations_enAccessibility {
 type Translations_en implements Node & Document {
   nav: Translations_enNav
   footer: Translations_enFooter
-  contact: Translations_enContact
   contactForm: Translations_enContactForm
   projects: Translations_enProjects
-  cookies: Translations_enCookies
   accessibility: Translations_enAccessibility
   id: ID!
   _sys: SystemInfo!
@@ -1645,13 +2459,6 @@ input Translations_enNavFilter {
 input Translations_enFooterFilter {
   privacy: StringFilter
   legal: StringFilter
-}
-
-input Translations_enContactFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-  subheading: StringFilter
 }
 
 input Translations_enContactFormProjectTypesFilter {
@@ -1691,12 +2498,6 @@ input Translations_enProjectsFilter {
   heading: StringFilter
 }
 
-input Translations_enCookiesFilter {
-  message: StringFilter
-  moreInfo: StringFilter
-  accept: StringFilter
-}
-
 input Translations_enAccessibilityFilter {
   skipToContent: StringFilter
   selectLanguage: StringFilter
@@ -1710,10 +2511,8 @@ input Translations_enAccessibilityFilter {
 input Translations_enFilter {
   nav: Translations_enNavFilter
   footer: Translations_enFooterFilter
-  contact: Translations_enContactFilter
   contactForm: Translations_enContactFormFilter
   projects: Translations_enProjectsFilter
-  cookies: Translations_enCookiesFilter
   accessibility: Translations_enAccessibilityFilter
 }
 
@@ -1734,18 +2533,44 @@ type Mutation {
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   createFolder(collection: String, relativePath: String!): DocumentNode!
+  updateSiteConfig(relativePath: String!, params: SiteConfigMutation!): SiteConfig!
+  createSiteConfig(relativePath: String!, params: SiteConfigMutation!): SiteConfig!
+  updateHome_es(relativePath: String!, params: Home_esMutation!): Home_es!
+  createHome_es(relativePath: String!, params: Home_esMutation!): Home_es!
+  updateHome_ca(relativePath: String!, params: Home_caMutation!): Home_ca!
+  createHome_ca(relativePath: String!, params: Home_caMutation!): Home_ca!
+  updateHome_en(relativePath: String!, params: Home_enMutation!): Home_en!
+  createHome_en(relativePath: String!, params: Home_enMutation!): Home_en!
+  updateAbout_es(relativePath: String!, params: About_esMutation!): About_es!
+  createAbout_es(relativePath: String!, params: About_esMutation!): About_es!
+  updateAbout_ca(relativePath: String!, params: About_caMutation!): About_ca!
+  createAbout_ca(relativePath: String!, params: About_caMutation!): About_ca!
+  updateAbout_en(relativePath: String!, params: About_enMutation!): About_en!
+  createAbout_en(relativePath: String!, params: About_enMutation!): About_en!
+  updateServices_es(relativePath: String!, params: Services_esMutation!): Services_es!
+  createServices_es(relativePath: String!, params: Services_esMutation!): Services_es!
+  updateServices_ca(relativePath: String!, params: Services_caMutation!): Services_ca!
+  createServices_ca(relativePath: String!, params: Services_caMutation!): Services_ca!
+  updateServices_en(relativePath: String!, params: Services_enMutation!): Services_en!
+  createServices_en(relativePath: String!, params: Services_enMutation!): Services_en!
+  updateContact_es(relativePath: String!, params: Contact_esMutation!): Contact_es!
+  createContact_es(relativePath: String!, params: Contact_esMutation!): Contact_es!
+  updateContact_ca(relativePath: String!, params: Contact_caMutation!): Contact_ca!
+  createContact_ca(relativePath: String!, params: Contact_caMutation!): Contact_ca!
+  updateContact_en(relativePath: String!, params: Contact_enMutation!): Contact_en!
+  createContact_en(relativePath: String!, params: Contact_enMutation!): Contact_en!
+  updateLegal_es(relativePath: String!, params: Legal_esMutation!): Legal_es!
+  createLegal_es(relativePath: String!, params: Legal_esMutation!): Legal_es!
+  updateLegal_ca(relativePath: String!, params: Legal_caMutation!): Legal_ca!
+  createLegal_ca(relativePath: String!, params: Legal_caMutation!): Legal_ca!
+  updateLegal_en(relativePath: String!, params: Legal_enMutation!): Legal_en!
+  createLegal_en(relativePath: String!, params: Legal_enMutation!): Legal_en!
   updateProjects_es(relativePath: String!, params: Projects_esMutation!): Projects_es!
   createProjects_es(relativePath: String!, params: Projects_esMutation!): Projects_es!
   updateProjects_ca(relativePath: String!, params: Projects_caMutation!): Projects_ca!
   createProjects_ca(relativePath: String!, params: Projects_caMutation!): Projects_ca!
   updateProjects_en(relativePath: String!, params: Projects_enMutation!): Projects_en!
   createProjects_en(relativePath: String!, params: Projects_enMutation!): Projects_en!
-  updatePages_es(relativePath: String!, params: Pages_esMutation!): Pages_es!
-  createPages_es(relativePath: String!, params: Pages_esMutation!): Pages_es!
-  updatePages_ca(relativePath: String!, params: Pages_caMutation!): Pages_ca!
-  createPages_ca(relativePath: String!, params: Pages_caMutation!): Pages_ca!
-  updatePages_en(relativePath: String!, params: Pages_enMutation!): Pages_en!
-  createPages_en(relativePath: String!, params: Pages_enMutation!): Pages_en!
   updateTranslations_es(relativePath: String!, params: Translations_esMutation!): Translations_es!
   createTranslations_es(relativePath: String!, params: Translations_esMutation!): Translations_es!
   updateTranslations_ca(relativePath: String!, params: Translations_caMutation!): Translations_ca!
@@ -1755,12 +2580,25 @@ type Mutation {
 }
 
 input DocumentUpdateMutation {
+  siteConfig: SiteConfigMutation
+  home_es: Home_esMutation
+  home_ca: Home_caMutation
+  home_en: Home_enMutation
+  about_es: About_esMutation
+  about_ca: About_caMutation
+  about_en: About_enMutation
+  services_es: Services_esMutation
+  services_ca: Services_caMutation
+  services_en: Services_enMutation
+  contact_es: Contact_esMutation
+  contact_ca: Contact_caMutation
+  contact_en: Contact_enMutation
+  legal_es: Legal_esMutation
+  legal_ca: Legal_caMutation
+  legal_en: Legal_enMutation
   projects_es: Projects_esMutation
   projects_ca: Projects_caMutation
   projects_en: Projects_enMutation
-  pages_es: Pages_esMutation
-  pages_ca: Pages_caMutation
-  pages_en: Pages_enMutation
   translations_es: Translations_esMutation
   translations_ca: Translations_caMutation
   translations_en: Translations_enMutation
@@ -1768,75 +2606,831 @@ input DocumentUpdateMutation {
 }
 
 input DocumentMutation {
+  siteConfig: SiteConfigMutation
+  home_es: Home_esMutation
+  home_ca: Home_caMutation
+  home_en: Home_enMutation
+  about_es: About_esMutation
+  about_ca: About_caMutation
+  about_en: About_enMutation
+  services_es: Services_esMutation
+  services_ca: Services_caMutation
+  services_en: Services_enMutation
+  contact_es: Contact_esMutation
+  contact_ca: Contact_caMutation
+  contact_en: Contact_enMutation
+  legal_es: Legal_esMutation
+  legal_ca: Legal_caMutation
+  legal_en: Legal_enMutation
   projects_es: Projects_esMutation
   projects_ca: Projects_caMutation
   projects_en: Projects_enMutation
-  pages_es: Pages_esMutation
-  pages_ca: Pages_caMutation
-  pages_en: Pages_enMutation
   translations_es: Translations_esMutation
   translations_ca: Translations_caMutation
   translations_en: Translations_enMutation
 }
 
+input SiteConfigCompanyMutation {
+  name: String
+  legalName: String
+  description: String
+  tagline: String
+}
+
+input SiteConfigContactLocationMutation {
+  city: String
+  country: String
+}
+
+input SiteConfigContactMutation {
+  email: String
+  phone: String
+  phoneLink: String
+  location: SiteConfigContactLocationMutation
+}
+
+input SiteConfigFounderMutation {
+  name: String
+}
+
+input SiteConfigSocialLinksMutation {
+  name: String
+  url: String
+  icon: String
+}
+
+input SiteConfigAttributionMutation {
+  design: String
+  development: String
+}
+
+input SiteConfigBrandingMutation {
+  logo: String
+  logoWhite: String
+  symbol: String
+  symbolWhite: String
+  ogImage: String
+}
+
+input SiteConfigSeoMutation {
+  priceRange: String
+}
+
+input SiteConfigMutation {
+  siteUrl: String
+  locales: [String]
+  defaultLocale: String
+  company: SiteConfigCompanyMutation
+  contact: SiteConfigContactMutation
+  founder: SiteConfigFounderMutation
+  socialLinks: [SiteConfigSocialLinksMutation]
+  attribution: SiteConfigAttributionMutation
+  branding: SiteConfigBrandingMutation
+  seo: SiteConfigSeoMutation
+}
+
+input Home_esHeroTopRightMutation {
+  lines: [String]
+}
+
+input Home_esHeroTaglineMutation {
+  lines: [String]
+}
+
+input Home_esHeroMutation {
+  image: String
+  topRight: Home_esHeroTopRightMutation
+  tagline: Home_esHeroTaglineMutation
+  taglineSub: String
+}
+
+input Home_esAboutMutation {
+  image: String
+  title: String
+  description: String
+  ctaText: String
+  ctaLink: String
+}
+
+input Home_esMutation {
+  title: String
+  description: String
+  headerStyle: String
+  hero: Home_esHeroMutation
+  about: Home_esAboutMutation
+}
+
+input Home_caHeroTopRightMutation {
+  lines: [String]
+}
+
+input Home_caHeroTaglineMutation {
+  lines: [String]
+}
+
+input Home_caHeroMutation {
+  image: String
+  topRight: Home_caHeroTopRightMutation
+  tagline: Home_caHeroTaglineMutation
+  taglineSub: String
+}
+
+input Home_caAboutMutation {
+  image: String
+  title: String
+  description: String
+  ctaText: String
+  ctaLink: String
+}
+
+input Home_caMutation {
+  title: String
+  description: String
+  headerStyle: String
+  hero: Home_caHeroMutation
+  about: Home_caAboutMutation
+}
+
+input Home_enHeroTopRightMutation {
+  lines: [String]
+}
+
+input Home_enHeroTaglineMutation {
+  lines: [String]
+}
+
+input Home_enHeroMutation {
+  image: String
+  topRight: Home_enHeroTopRightMutation
+  tagline: Home_enHeroTaglineMutation
+  taglineSub: String
+}
+
+input Home_enAboutMutation {
+  image: String
+  title: String
+  description: String
+  ctaText: String
+  ctaLink: String
+}
+
+input Home_enMutation {
+  title: String
+  description: String
+  headerStyle: String
+  hero: Home_enHeroMutation
+  about: Home_enAboutMutation
+}
+
+input About_esHeroMutation {
+  title: String
+}
+
+input About_esBehindNameMutation {
+  title: String
+  p1: String
+  p2: String
+  footnote: String
+}
+
+input About_esBioMutation {
+  title: String
+  image: String
+  paragraphs: [String]
+}
+
+input About_esAwardsItemsMutation {
+  year: String
+  project: String
+  award: String
+  link: String
+}
+
+input About_esAwardsMutation {
+  title: String
+  items: [About_esAwardsItemsMutation]
+}
+
+input About_esMissionMutation {
+  title: String
+  p1: String
+  p2: String
+  quote: String
+}
+
+input About_esMutation {
+  title: String
+  description: String
+  heroImage: String
+  hero: About_esHeroMutation
+  behindName: About_esBehindNameMutation
+  bannerImage: String
+  bio: About_esBioMutation
+  awards: About_esAwardsMutation
+  mission: About_esMissionMutation
+  missionImage: String
+}
+
+input About_caHeroMutation {
+  title: String
+}
+
+input About_caBehindNameMutation {
+  title: String
+  p1: String
+  p2: String
+  footnote: String
+}
+
+input About_caBioMutation {
+  title: String
+  image: String
+  paragraphs: [String]
+}
+
+input About_caAwardsItemsMutation {
+  year: String
+  project: String
+  award: String
+  link: String
+}
+
+input About_caAwardsMutation {
+  title: String
+  items: [About_caAwardsItemsMutation]
+}
+
+input About_caMissionMutation {
+  title: String
+  p1: String
+  p2: String
+  quote: String
+}
+
+input About_caMutation {
+  title: String
+  description: String
+  heroImage: String
+  hero: About_caHeroMutation
+  behindName: About_caBehindNameMutation
+  bannerImage: String
+  bio: About_caBioMutation
+  awards: About_caAwardsMutation
+  mission: About_caMissionMutation
+  missionImage: String
+}
+
+input About_enHeroMutation {
+  title: String
+}
+
+input About_enBehindNameMutation {
+  title: String
+  p1: String
+  p2: String
+  footnote: String
+}
+
+input About_enBioMutation {
+  title: String
+  image: String
+  paragraphs: [String]
+}
+
+input About_enAwardsItemsMutation {
+  year: String
+  project: String
+  award: String
+  link: String
+}
+
+input About_enAwardsMutation {
+  title: String
+  items: [About_enAwardsItemsMutation]
+}
+
+input About_enMissionMutation {
+  title: String
+  p1: String
+  p2: String
+  quote: String
+}
+
+input About_enMutation {
+  title: String
+  description: String
+  heroImage: String
+  hero: About_enHeroMutation
+  behindName: About_enBehindNameMutation
+  bannerImage: String
+  bio: About_enBioMutation
+  awards: About_enAwardsMutation
+  mission: About_enMissionMutation
+  missionImage: String
+}
+
+input Services_esHeroMutation {
+  title: String
+}
+
+input Services_esIntroMutation {
+  text: String
+  image: String
+}
+
+input Services_esServiceGroupsItemsMutation {
+  title: String
+  description: String
+}
+
+input Services_esServiceGroupsMutation {
+  title: String
+  items: [Services_esServiceGroupsItemsMutation]
+}
+
+input Services_esFaqItemsMutation {
+  question: String
+  answer: String
+}
+
+input Services_esFaqMutation {
+  title: String
+  image: String
+  items: [Services_esFaqItemsMutation]
+}
+
+input Services_esWorkProcessMutation {
+  title: String
+  p1: String
+  p2: String
+  image: String
+}
+
+input Services_esMutation {
+  title: String
+  description: String
+  hero: Services_esHeroMutation
+  intro: Services_esIntroMutation
+  serviceGroups: [Services_esServiceGroupsMutation]
+  faq: Services_esFaqMutation
+  workProcess: Services_esWorkProcessMutation
+}
+
+input Services_caHeroMutation {
+  title: String
+}
+
+input Services_caIntroMutation {
+  text: String
+  image: String
+}
+
+input Services_caServiceGroupsItemsMutation {
+  title: String
+  description: String
+}
+
+input Services_caServiceGroupsMutation {
+  title: String
+  items: [Services_caServiceGroupsItemsMutation]
+}
+
+input Services_caFaqItemsMutation {
+  question: String
+  answer: String
+}
+
+input Services_caFaqMutation {
+  title: String
+  image: String
+  items: [Services_caFaqItemsMutation]
+}
+
+input Services_caWorkProcessMutation {
+  title: String
+  p1: String
+  p2: String
+  image: String
+}
+
+input Services_caMutation {
+  title: String
+  description: String
+  hero: Services_caHeroMutation
+  intro: Services_caIntroMutation
+  serviceGroups: [Services_caServiceGroupsMutation]
+  faq: Services_caFaqMutation
+  workProcess: Services_caWorkProcessMutation
+}
+
+input Services_enHeroMutation {
+  title: String
+}
+
+input Services_enIntroMutation {
+  text: String
+  image: String
+}
+
+input Services_enServiceGroupsItemsMutation {
+  title: String
+  description: String
+}
+
+input Services_enServiceGroupsMutation {
+  title: String
+  items: [Services_enServiceGroupsItemsMutation]
+}
+
+input Services_enFaqItemsMutation {
+  question: String
+  answer: String
+}
+
+input Services_enFaqMutation {
+  title: String
+  image: String
+  items: [Services_enFaqItemsMutation]
+}
+
+input Services_enWorkProcessMutation {
+  title: String
+  p1: String
+  p2: String
+  image: String
+}
+
+input Services_enMutation {
+  title: String
+  description: String
+  hero: Services_enHeroMutation
+  intro: Services_enIntroMutation
+  serviceGroups: [Services_enServiceGroupsMutation]
+  faq: Services_enFaqMutation
+  workProcess: Services_enWorkProcessMutation
+}
+
+input Contact_esMutation {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+input Contact_caMutation {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+input Contact_enMutation {
+  title: String
+  description: String
+  heading: String
+  subheading: String
+}
+
+input Legal_esMutation {
+  title: String
+  description: String
+  lastUpdated: String
+  body: JSON
+}
+
+input Legal_caMutation {
+  title: String
+  description: String
+  lastUpdated: String
+  body: JSON
+}
+
+input Legal_enMutation {
+  title: String
+  description: String
+  lastUpdated: String
+  body: JSON
+}
+
+input Projects_esBannerMutation {
+  image: String
+  alt: String
+}
+
+input Projects_esDetailsMutation {
+  title: String
+  subtitle: String
+  image: String
+  services: String
+  servicesLabel: String
+  category: String
+  categoryLabel: String
+  area: String
+  areaLabel: String
+  location: String
+  locationLabel: String
+}
+
+input Projects_esBriefGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_esBriefGalleryMutation {
+  cols: Float
+  images: [Projects_esBriefGalleryImagesMutation]
+}
+
+input Projects_esBriefMutation {
+  title: String
+  text: String
+  gallery: Projects_esBriefGalleryMutation
+}
+
+input Projects_esConceptGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_esConceptGalleryMutation {
+  cols: Float
+  images: [Projects_esConceptGalleryImagesMutation]
+}
+
+input Projects_esConceptMutation {
+  title: String
+  text: String
+  gallery: Projects_esConceptGalleryMutation
+}
+
+input Projects_esStrategyCarouselMutation {
+  src: String
+  alt: String
+}
+
+input Projects_esStrategyGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_esStrategyGalleryMutation {
+  cols: Float
+  images: [Projects_esStrategyGalleryImagesMutation]
+}
+
+input Projects_esStrategyMutation {
+  title: String
+  text: String
+  carousel: [Projects_esStrategyCarouselMutation]
+  gallery: Projects_esStrategyGalleryMutation
+}
+
+input Projects_esCollaboratorsListMutation {
+  name: String
+  role: String
+}
+
+input Projects_esCollaboratorsMutation {
+  title: String
+  list: [Projects_esCollaboratorsListMutation]
+}
+
+input Projects_esFinalImageMutation {
+  src: String
+  alt: String
+}
+
 input Projects_esMutation {
   title: String
   description: String
+  slug: String
   publishDate: String
   completedDate: String
   tags: [String]
-  coverImage: String
+  showTags: Boolean
   featured: Boolean
   draft: Boolean
-  body: JSON
+  banner: Projects_esBannerMutation
+  details: Projects_esDetailsMutation
+  brief: Projects_esBriefMutation
+  concept: Projects_esConceptMutation
+  strategy: Projects_esStrategyMutation
+  collaborators: Projects_esCollaboratorsMutation
+  finalImage: Projects_esFinalImageMutation
+}
+
+input Projects_caBannerMutation {
+  image: String
+  alt: String
+}
+
+input Projects_caDetailsMutation {
+  title: String
+  subtitle: String
+  image: String
+  services: String
+  servicesLabel: String
+  category: String
+  categoryLabel: String
+  area: String
+  areaLabel: String
+  location: String
+  locationLabel: String
+}
+
+input Projects_caBriefGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_caBriefGalleryMutation {
+  cols: Float
+  images: [Projects_caBriefGalleryImagesMutation]
+}
+
+input Projects_caBriefMutation {
+  title: String
+  text: String
+  gallery: Projects_caBriefGalleryMutation
+}
+
+input Projects_caConceptGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_caConceptGalleryMutation {
+  cols: Float
+  images: [Projects_caConceptGalleryImagesMutation]
+}
+
+input Projects_caConceptMutation {
+  title: String
+  text: String
+  gallery: Projects_caConceptGalleryMutation
+}
+
+input Projects_caStrategyCarouselMutation {
+  src: String
+  alt: String
+}
+
+input Projects_caStrategyGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_caStrategyGalleryMutation {
+  cols: Float
+  images: [Projects_caStrategyGalleryImagesMutation]
+}
+
+input Projects_caStrategyMutation {
+  title: String
+  text: String
+  carousel: [Projects_caStrategyCarouselMutation]
+  gallery: Projects_caStrategyGalleryMutation
+}
+
+input Projects_caCollaboratorsListMutation {
+  name: String
+  role: String
+}
+
+input Projects_caCollaboratorsMutation {
+  title: String
+  list: [Projects_caCollaboratorsListMutation]
+}
+
+input Projects_caFinalImageMutation {
+  src: String
+  alt: String
 }
 
 input Projects_caMutation {
   title: String
   description: String
+  slug: String
   publishDate: String
   completedDate: String
   tags: [String]
-  coverImage: String
+  showTags: Boolean
   featured: Boolean
   draft: Boolean
-  body: JSON
+  banner: Projects_caBannerMutation
+  details: Projects_caDetailsMutation
+  brief: Projects_caBriefMutation
+  concept: Projects_caConceptMutation
+  strategy: Projects_caStrategyMutation
+  collaborators: Projects_caCollaboratorsMutation
+  finalImage: Projects_caFinalImageMutation
+}
+
+input Projects_enBannerMutation {
+  image: String
+  alt: String
+}
+
+input Projects_enDetailsMutation {
+  title: String
+  subtitle: String
+  image: String
+  services: String
+  servicesLabel: String
+  category: String
+  categoryLabel: String
+  area: String
+  areaLabel: String
+  location: String
+  locationLabel: String
+}
+
+input Projects_enBriefGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_enBriefGalleryMutation {
+  cols: Float
+  images: [Projects_enBriefGalleryImagesMutation]
+}
+
+input Projects_enBriefMutation {
+  title: String
+  text: String
+  gallery: Projects_enBriefGalleryMutation
+}
+
+input Projects_enConceptGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_enConceptGalleryMutation {
+  cols: Float
+  images: [Projects_enConceptGalleryImagesMutation]
+}
+
+input Projects_enConceptMutation {
+  title: String
+  text: String
+  gallery: Projects_enConceptGalleryMutation
+}
+
+input Projects_enStrategyCarouselMutation {
+  src: String
+  alt: String
+}
+
+input Projects_enStrategyGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input Projects_enStrategyGalleryMutation {
+  cols: Float
+  images: [Projects_enStrategyGalleryImagesMutation]
+}
+
+input Projects_enStrategyMutation {
+  title: String
+  text: String
+  carousel: [Projects_enStrategyCarouselMutation]
+  gallery: Projects_enStrategyGalleryMutation
+}
+
+input Projects_enCollaboratorsListMutation {
+  name: String
+  role: String
+}
+
+input Projects_enCollaboratorsMutation {
+  title: String
+  list: [Projects_enCollaboratorsListMutation]
+}
+
+input Projects_enFinalImageMutation {
+  src: String
+  alt: String
 }
 
 input Projects_enMutation {
   title: String
   description: String
+  slug: String
   publishDate: String
   completedDate: String
   tags: [String]
-  coverImage: String
+  showTags: Boolean
   featured: Boolean
   draft: Boolean
-  body: JSON
-}
-
-input Pages_esMutation {
-  title: String
-  description: String
-  heroImage: String
-  headerStyle: String
-  body: JSON
-}
-
-input Pages_caMutation {
-  title: String
-  description: String
-  heroImage: String
-  headerStyle: String
-  body: JSON
-}
-
-input Pages_enMutation {
-  title: String
-  description: String
-  heroImage: String
-  headerStyle: String
-  body: JSON
+  banner: Projects_enBannerMutation
+  details: Projects_enDetailsMutation
+  brief: Projects_enBriefMutation
+  concept: Projects_enConceptMutation
+  strategy: Projects_enStrategyMutation
+  collaborators: Projects_enCollaboratorsMutation
+  finalImage: Projects_enFinalImageMutation
 }
 
 input Translations_esNavMutation {
@@ -1852,13 +3446,6 @@ input Translations_esNavMutation {
 input Translations_esFooterMutation {
   privacy: String
   legal: String
-}
-
-input Translations_esContactMutation {
-  title: String
-  description: String
-  heading: String
-  subheading: String
 }
 
 input Translations_esContactFormProjectTypesMutation {
@@ -1898,12 +3485,6 @@ input Translations_esProjectsMutation {
   heading: String
 }
 
-input Translations_esCookiesMutation {
-  message: String
-  moreInfo: String
-  accept: String
-}
-
 input Translations_esAccessibilityMutation {
   skipToContent: String
   selectLanguage: String
@@ -1917,10 +3498,8 @@ input Translations_esAccessibilityMutation {
 input Translations_esMutation {
   nav: Translations_esNavMutation
   footer: Translations_esFooterMutation
-  contact: Translations_esContactMutation
   contactForm: Translations_esContactFormMutation
   projects: Translations_esProjectsMutation
-  cookies: Translations_esCookiesMutation
   accessibility: Translations_esAccessibilityMutation
 }
 
@@ -1937,13 +3516,6 @@ input Translations_caNavMutation {
 input Translations_caFooterMutation {
   privacy: String
   legal: String
-}
-
-input Translations_caContactMutation {
-  title: String
-  description: String
-  heading: String
-  subheading: String
 }
 
 input Translations_caContactFormProjectTypesMutation {
@@ -1983,12 +3555,6 @@ input Translations_caProjectsMutation {
   heading: String
 }
 
-input Translations_caCookiesMutation {
-  message: String
-  moreInfo: String
-  accept: String
-}
-
 input Translations_caAccessibilityMutation {
   skipToContent: String
   selectLanguage: String
@@ -2002,10 +3568,8 @@ input Translations_caAccessibilityMutation {
 input Translations_caMutation {
   nav: Translations_caNavMutation
   footer: Translations_caFooterMutation
-  contact: Translations_caContactMutation
   contactForm: Translations_caContactFormMutation
   projects: Translations_caProjectsMutation
-  cookies: Translations_caCookiesMutation
   accessibility: Translations_caAccessibilityMutation
 }
 
@@ -2022,13 +3586,6 @@ input Translations_enNavMutation {
 input Translations_enFooterMutation {
   privacy: String
   legal: String
-}
-
-input Translations_enContactMutation {
-  title: String
-  description: String
-  heading: String
-  subheading: String
 }
 
 input Translations_enContactFormProjectTypesMutation {
@@ -2068,12 +3625,6 @@ input Translations_enProjectsMutation {
   heading: String
 }
 
-input Translations_enCookiesMutation {
-  message: String
-  moreInfo: String
-  accept: String
-}
-
 input Translations_enAccessibilityMutation {
   skipToContent: String
   selectLanguage: String
@@ -2087,10 +3638,8 @@ input Translations_enAccessibilityMutation {
 input Translations_enMutation {
   nav: Translations_enNavMutation
   footer: Translations_enFooterMutation
-  contact: Translations_enContactMutation
   contactForm: Translations_enContactFormMutation
   projects: Translations_enProjectsMutation
-  cookies: Translations_enCookiesMutation
   accessibility: Translations_enAccessibilityMutation
 }
 

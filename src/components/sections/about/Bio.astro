@@ -1,0 +1,70 @@
+---
+// src/components/sections/about/Bio.astro
+import OptimizedImage from '../../OptimizedImage.astro';
+
+interface Props {
+  title?: string;
+  image?: string;
+  paragraphs?: string[];
+}
+
+const { title, image, paragraphs = [] } = Astro.props;
+
+// Split paragraphs: first one is featured, rest go in two columns
+const [firstParagraph, ...remainingParagraphs] = paragraphs;
+
+// Split remaining paragraphs roughly in half for two columns
+const midpoint = Math.ceil(remainingParagraphs.length / 2);
+const leftColumnParagraphs = remainingParagraphs.slice(0, midpoint);
+const rightColumnParagraphs = remainingParagraphs.slice(midpoint);
+---
+
+<section class="py-16 md:py-24">
+  <div class="container-content">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+      <!-- Image column -->
+      {image && (
+        <div class="md:col-span-1">
+          <div class="aspect-[3/4] overflow-hidden grayscale">
+            <OptimizedImage
+              src={image}
+              alt=""
+              class="w-full h-full object-cover"
+              loading="lazy"
+              sizes="(min-width: 768px) 33vw, 100vw"
+            />
+          </div>
+        </div>
+      )}
+
+      <!-- Content column -->
+      <div class="md:col-span-2">
+        <!-- Title -->
+        {title && (
+          <h2 class="sinteca-small-title mb-6 md:mb-8">
+            {title.toUpperCase()}
+          </h2>
+        )}
+
+        <!-- Featured first paragraph (bold) -->
+        {firstParagraph && (
+          <p class="text-base md:text-lg font-semibold leading-relaxed text-neutral-900 mb-8 md:mb-10">
+            {firstParagraph}
+          </p>
+        )}
+
+        <!-- Two-column layout for remaining paragraphs -->
+        {remainingParagraphs.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-sm md:text-base leading-relaxed text-neutral-700">
+            <div class="space-y-6">
+              {leftColumnParagraphs.map((p) => <p>{p}</p>)}
+            </div>
+            <div class="space-y-6">
+              {rightColumnParagraphs.map((p) => <p>{p}</p>)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+// src/components/sections/IntroServices.astro
+import OptimizedImage from '../../OptimizedImage.astro';
+
+interface Props {
+  text?: string;
+  image?: string;
+}
+
+const { text, image } = Astro.props;
+---
+
+<section class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      {text && (
+        <p class="text-xl md:text-2xl leading-relaxed">{text}</p>
+      )}
+      {image && (
+        <div class="aspect-square overflow-hidden">
+          <OptimizedImage src={image} alt="" class="w-full h-full object-cover" loading="lazy" sizes="(min-width: 768px) 50vw, 100vw" />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

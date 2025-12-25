@@ -7,11 +7,10 @@ import optimizeImages from './src/integrations/optimize-images.ts';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://senshac.pages.dev',
+  site: 'https://preview.senshac.com',
   output: 'server',
   adapter: cloudflare({
     imageService: 'compile',
-    sessionKVBindingName: false,
   }),
   image: {
     service: {

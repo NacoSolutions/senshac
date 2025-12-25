@@ -2,6 +2,13 @@
 // src/pages/[lang]/projects/[slug].astro
 import Base from '../../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
+import Banner from '../../../components/sections/common/Banner.astro';
+import Details from '../../../components/sections/projects/Details.astro';
+import Section from '../../../components/sections/common/Section.astro';
+import Gallery from '../../../components/sections/common/Gallery.astro';
+import Carousel from '../../../components/sections/common/Carousel.astro';
+import Collaborators from '../../../components/sections/projects/Collaborators.astro';
+import Figure from '../../../components/sections/common/Figure.astro';
 
 const { lang, slug } = Astro.params;
 
@@ -12,11 +19,53 @@ if (!project) {
 }
 
 const { data } = project;
-const { Content } = await project.render();
 ---
 
 <Base title={data.title} description={data.description} lang={lang} headerStyle="transparent">
   <main class="min-h-screen">
-    <Content />
+    <Banner src={data.banner.image} alt={data.banner.alt} />
+
+    <Details
+      title={data.details.title}
+      subtitle={data.details.subtitle}
+      services={data.details.services}
+      servicesLabel={data.details.servicesLabel}
+      category={data.details.category}
+      categoryLabel={data.details.categoryLabel}
+      area={data.details.area}
+      areaLabel={data.details.areaLabel}
+      location={data.details.location}
+      locationLabel={data.details.locationLabel}
+      image={data.details.image}
+    />
+
+    <Section title={data.brief.title} id="brief">
+      <p>{data.brief.text}</p>
+      <Gallery
+        cols={String(data.brief.gallery.cols) as '2' | '3' | '4'}
+        images={data.brief.gallery.images}
+      />
+    </Section>
+
+    <Section title={data.concept.title} id="concept">
+      <p>{data.concept.text}</p>
+      <Gallery
+        cols={String(data.concept.gallery.cols) as '2' | '3' | '4'}
+        images={data.concept.gallery.images}
+      />
+    </Section>
+
+    <Section title={data.strategy.title} id="strategy">
+      <p>{data.strategy.text}</p>
+      <Carousel id="strategy-carousel" slides={data.strategy.carousel} />
+      <Gallery
+        cols={String(data.strategy.gallery.cols) as '2' | '3' | '4'}
+        images={data.strategy.gallery.images}
+      />
+    </Section>
+
+    <Collaborators title={data.collaborators.title} list={data.collaborators.list} />
+
+    <Figure src={data.finalImage.src} alt={data.finalImage.alt} />
   </main>
 </Base>

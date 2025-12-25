@@ -5,7 +5,7 @@ let
 in
 pog {
   name = "dev";
-  description = "Astro dev server management";
+  description = "TinaCMS + Astro dev server management";
   arguments = [
     {
       name = "action";
@@ -15,11 +15,11 @@ pog {
   runtimeInputs = with pkgs; [ procps gnugrep nodePackages.pnpm ];
   script = ''
     LOG_FILE="/tmp/senshac-dev.log"
-    PROC_PATTERN="astro.js dev"
+    PROC_PATTERN="tinacms.*dev"
     action="''${1:-start}"
 
     get_port() {
-      grep -oP 'http://localhost:\K[0-9]+' "$LOG_FILE" 2>/dev/null | tail -1 || echo "4321"
+      grep -oP 'Local\s+http://localhost:\K[0-9]+' "$LOG_FILE" 2>/dev/null | tail -1 || echo "4321"
     }
 
     is_running() {
@@ -27,7 +27,10 @@ pog {
     }
 
     do_stop() {
-      pkill -f "$PROC_PATTERN" 2>/dev/null || true
+      pkill -f "tinacms.*dev" 2>/dev/null || true
+      pkill -f "astro.js dev" 2>/dev/null || true
+      pkill -f "node.*astro.*dev" 2>/dev/null || true
+      pkill -f "esbuild.*senshac" 2>/dev/null || true
     }
 
     case "$action" in
@@ -36,9 +39,9 @@ pog {
           red "Dev server already running"
           exit 1
         fi
-        green "Starting Astro dev server..."
+        green "Starting TinaCMS + Astro dev server..."
         : > "$LOG_FILE"
-        nohup pnpm dev > "$LOG_FILE" 2>&1 &
+        nohup pnpm dev:cms > "$LOG_FILE" 2>&1 &
         sleep 5
         if is_running; then
           port=$(get_port)
@@ -59,9 +62,9 @@ pog {
       restart)
         do_stop
         sleep 1
-        green "Starting Astro dev server..."
+        green "Starting TinaCMS + Astro dev server..."
         : > "$LOG_FILE"
-        nohup pnpm dev > "$LOG_FILE" 2>&1 &
+        nohup pnpm dev:cms > "$LOG_FILE" 2>&1 &
         sleep 5
         if is_running; then
           port=$(get_port)

@@ -1,0 +1,54 @@
+{
+  "siteUrl": "https://preview.senshac.com",
+  "locales": ["es", "ca", "en"],
+  "defaultLocale": "es",
+  "company": {
+    "name": "Sens*Hac",
+    "legalName": "Sens*Hac",
+    "description": "Interior design studio specialized in commercial, gastronomy, and entertainment spaces.",
+    "tagline": "We design branded spaces that inspire & connect."
+  },
+  "contact": {
+    "email": "ester@senshac.com",
+    "phone": "+34 661 661 426",
+    "phoneLink": "+34661661426",
+    "location": {
+      "city": "Barcelona",
+      "country": "ES"
+    }
+  },
+  "founder": {
+    "name": "Ester Cobles"
+  },
+  "socialLinks": [
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/sens_hac/",
+      "icon": "i-simple-icons-instagram"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/company/senshac/",
+      "icon": "i-simple-icons-linkedin"
+    },
+    {
+      "name": "Pinterest",
+      "url": "https://www.pinterest.com/senshac_design/",
+      "icon": "i-simple-icons-pinterest"
+    }
+  ],
+  "attribution": {
+    "design": "©be mediàtic",
+    "development": "Naco Solutions"
+  },
+  "branding": {
+    "logo": "/images/brand/logo-senshac-optimized.webp",
+    "logoWhite": "/images/brand/logo-senshac-white-optimized.webp",
+    "symbol": "/images/brand/symbol-senshac-optimized.webp",
+    "symbolWhite": "/images/brand/symbol-senshac-white-optimized.webp",
+    "ogImage": "/images/brand/senshac-og.webp"
+  },
+  "seo": {
+    "priceRange": "$$"
+  }
+}

@@ -9,14 +9,8 @@
     "contact": "Contact"
   },
   "footer": {
-    "privacy": "Privacy and Cookies Policy",
+    "privacy": "Privacy Policy",
     "legal": "Legal Notice"
-  },
-  "contact": {
-    "title": "Contact - Sens*Hac",
-    "description": "Get in touch with us to discuss your interior design project.",
-    "heading": "CONTACT",
-    "subheading": "LET'S TALK."
   },
   "contactForm": {
     "name": "Name",
@@ -42,17 +36,14 @@
     "sending": "Sending...",
     "success": "Message sent! We'll get back to you soon.",
     "error": "An error occurred. Please try again.",
-    "turnstileFailed": "Security verification failed. Please try again."
+    "turnstileFailed": "Security verification failed. Please try again.",
+    "invalidEmail": "Invalid email.",
+    "missingFields": "Please complete all required fields."
   },
   "projects": {
     "title": "Projects - Sens*Hac",
     "description": "Explore our portfolio of interior design projects.",
     "heading": "Projects"
-  },
-  "cookies": {
-    "message": "We use cookies to improve your experience. By continuing to browse, you accept our",
-    "moreInfo": "Privacy Policy",
-    "accept": "Accept"
   },
   "accessibility": {
     "skipToContent": "Skip to content",

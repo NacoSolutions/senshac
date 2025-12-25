@@ -9,14 +9,8 @@
     "contact": "Contacto"
   },
   "footer": {
-    "privacy": "Política de Privacidad y Cookies",
+    "privacy": "Política de Privacidad",
     "legal": "Aviso Legal"
-  },
-  "contact": {
-    "title": "Contacto - Sens*Hac",
-    "description": "Contacta con nosotros para discutir tu proyecto de diseño de interiores.",
-    "heading": "CONTACTO",
-    "subheading": "HABLEMOS."
   },
   "contactForm": {
     "name": "Nombre",
@@ -42,17 +36,14 @@
     "sending": "Enviando...",
     "success": "¡Mensaje enviado! Nos pondremos en contacto contigo pronto.",
     "error": "Ha ocurrido un error. Por favor, inténtalo de nuevo.",
-    "turnstileFailed": "Verificación de seguridad fallida. Por favor, inténtalo de nuevo."
+    "turnstileFailed": "Verificación de seguridad fallida. Por favor, inténtalo de nuevo.",
+    "invalidEmail": "Email inválido.",
+    "missingFields": "Por favor, completa todos los campos obligatorios."
   },
   "projects": {
     "title": "Proyectos - Sens*Hac",
     "description": "Explora nuestro portfolio de proyectos de diseño de interiores.",
     "heading": "Proyectos"
-  },
-  "cookies": {
-    "message": "Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra",
-    "moreInfo": "Política de Privacidad",
-    "accept": "Aceptar"
   },
   "accessibility": {
     "skipToContent": "Ir al contenido",

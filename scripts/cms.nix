@@ -19,7 +19,22 @@ pog {
     action="''${1:-start}"
 
     get_port() {
-      grep -oP 'http://localhost:\K[0-9]+' "$LOG_FILE" 2>/dev/null | tail -1 || echo "4321"
+      grep -oP 'Local\s+http://localhost:\K[0-9]+' "$LOG_FILE" 2>/dev/null | tail -1
+    }
+
+    wait_for_port() {
+      local timeout=30
+      local elapsed=0
+      while [ $elapsed -lt $timeout ]; do
+        port=$(get_port)
+        if [ -n "$port" ]; then
+          echo "$port"
+          return 0
+        fi
+        sleep 1
+        elapsed=$((elapsed + 1))
+      done
+      return 1
     }
 
     is_running() {
@@ -27,8 +42,10 @@ pog {
     }
 
     do_stop() {
-      pkill -f "$PROC_PATTERN" 2>/dev/null || true
+      pkill -f "tinacms.*dev" 2>/dev/null || true
       pkill -f "astro.js dev" 2>/dev/null || true
+      pkill -f "node.*astro.*dev" 2>/dev/null || true
+      pkill -f "esbuild.*senshac" 2>/dev/null || true
     }
 
     case "$action" in
@@ -40,14 +57,12 @@ pog {
         green "Starting TinaCMS with Astro dev server..."
         : > "$LOG_FILE"
         nohup pnpm dev:cms > "$LOG_FILE" 2>&1 &
-        sleep 5
-        if is_running; then
-          port=$(get_port)
+        if port=$(wait_for_port); then
           green "CMS server started"
           echo "  Astro: http://localhost:$port/"
           echo "  CMS:   http://localhost:$port/admin/index.html"
         else
-          red "Failed to start CMS. Check $LOG_FILE"
+          red "Failed to start CMS (timeout). Check $LOG_FILE"
           exit 1
         fi
         ;;
@@ -65,14 +80,12 @@ pog {
         green "Starting TinaCMS with Astro dev server..."
         : > "$LOG_FILE"
         nohup pnpm dev:cms > "$LOG_FILE" 2>&1 &
-        sleep 5
-        if is_running; then
-          port=$(get_port)
+        if port=$(wait_for_port); then
           green "CMS server started"
           echo "  Astro: http://localhost:$port/"
           echo "  CMS:   http://localhost:$port/admin/index.html"
         else
-          red "Failed to start CMS. Check $LOG_FILE"
+          red "Failed to start CMS (timeout). Check $LOG_FILE"
           exit 1
         fi
         ;;

@@ -63,12 +63,21 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.6
         version: 0.9.6(prettier@3.7.4)(typescript@5.9.3)
+      '@iconify-json/lucide':
+        specifier: ^1.2.82
+        version: 1.2.82
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.63
+        version: 1.2.63
       '@tinacms/cli':
         specifier: ^2.0.5
         version: 2.0.5(@codemirror/language@6.0.0)(@types/node@25.0.3)(abstract-level@1.0.4)(immer@10.2.0)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@25.0.3)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.53.5)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.1)(terser@5.44.1)(use-sync-external-store@1.6.0(react@18.3.1))(yaml@2.8.2)
       '@types/alpinejs':
         specifier: ^3.13.11
         version: 3.13.11
+      '@unocss/preset-wind3':
+        specifier: ^66.5.10
+        version: 66.5.10
       tinacms:
         specifier: ^3.1.2
         version: 3.1.2(abstract-level@1.0.4)(immer@10.2.0)(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@25.0.3)(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.27.0)(slate-dom@0.114.0(slate@0.114.0))(slate@0.114.0)(sucrase@3.35.1)(typescript@5.9.3)(use-sync-external-store@1.6.0(react@18.3.1))
@@ -1350,6 +1359,12 @@ packages:
 
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
+
+  '@iconify-json/lucide@1.2.82':
+    resolution: {integrity: sha512-fHZWegspOZonl5GNTvOkHsjnTMdSslFh3EzpzUtRyLxO8bOonqk2OTU3hCl0k4VXzViMjqpRK3X1sotnuBXkFA==}
+
+  '@iconify-json/simple-icons@1.2.63':
+    resolution: {integrity: sha512-xZl2UWCwE58VlqZ+pDPmaUhE2tq8MVSTJRr4/9nzzHlDdjJ0Ud1VxNXPrwTSgESKY29iCQw3S0r2nJTSNNngHw==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -8047,6 +8062,14 @@ snapshots:
       react: 18.3.1
 
   '@iarna/toml@2.2.5': {}
+
+  '@iconify-json/lucide@1.2.82':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.63':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify/types@2.0.0': {}
 

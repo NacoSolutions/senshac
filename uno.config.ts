@@ -1,16 +1,35 @@
 // uno.config.ts
-import { defineConfig, presetUno, presetIcons } from 'unocss';
+import { defineConfig, presetIcons } from 'unocss';
+import presetWind3 from '@unocss/preset-wind3';
 import transformerDirectives from '@unocss/transformer-directives';
 
 export default defineConfig({
   presets: [
-    presetUno(),
+    presetWind3(),
     presetIcons({
       scale: 1.2,
-      cdn: 'https://esm.sh/',
+      extraProperties: {
+        'display': 'inline-block',
+        'vertical-align': 'middle',
+      },
     }),
   ],
   transformers: [transformerDirectives()],
+  // Safelist icons that come from CMS/dynamic data
+  safelist: [
+    // Social icons (from site config)
+    'i-simple-icons-instagram',
+    'i-simple-icons-linkedin',
+    'i-simple-icons-pinterest',
+    'i-simple-icons-twitter',
+    'i-simple-icons-facebook',
+    'i-simple-icons-youtube',
+    'i-simple-icons-tiktok',
+    'i-simple-icons-behance',
+    'i-simple-icons-dribbble',
+    // UI icons used in components
+    'i-lucide-arrow-up-right',
+  ],
   theme: {
     colors: {
       // Define brand colors here

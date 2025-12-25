@@ -1,9 +1,16 @@
 // src/pages/robots.txt.ts
 import type { APIRoute } from 'astro';
+import { getEntry } from 'astro:content';
 
-const siteUrl = 'https://senshac.com';
+export const GET: APIRoute = async () => {
+  const siteConfig = await getEntry('site-config', 'site');
+  if (!siteConfig) {
+    return new Response('Site config not found', { status: 500 });
+  }
 
-const robotsTxt = `# robots.txt for senshac.com
+  const { siteUrl } = siteConfig.data;
+
+  const robotsTxt = `# robots.txt
 User-agent: *
 Allow: /
 
@@ -46,7 +53,6 @@ Sitemap: ${siteUrl}/sitemap.xml
 # See: ${siteUrl}/llms.txt
 `;
 
-export const GET: APIRoute = () => {
   return new Response(robotsTxt, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',

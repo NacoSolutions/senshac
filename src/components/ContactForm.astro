@@ -152,7 +152,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000
 </style>
 
 <!-- Turnstile script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script is:inline>
   // Turnstile callbacks
   window.onTurnstileSuccess = function(token) {

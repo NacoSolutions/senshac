@@ -8,10 +8,17 @@ permalink: active-context
 
 ## Current Focus
 
-Turnstile spam protection and Web Analytics added. Ready to push to GitHub for TinaCMS schema sync and configure Cloudflare environment variables.
+TinaCMS Cloud integration complete. Admin accessible at /admin, translations editable, route mapper working for click-to-edit. Ready for final QA and production environment configuration.
 
 ## Recent Changes
 
+- [2025-12-21] TinaCMS Cloud fixes:
+  - Admin 404 fix: Created public/_redirects with `/admin /admin/index.html 200`
+  - Site URL: Updated astro.config.mjs to senshac.pages.dev
+  - Translations collections re-enabled with full field definitions
+  - Route mapper configured for projects and pages (click-to-edit linking)
+  - Attribution: humans.txt created, Footer updated (be mediàtic / Naco Solutions)
+  - Webhook-first deployment NOT required (standard auto-deploy works fine)
 - [2025-12-20] Cloudflare integrations:
   - Added Turnstile invisible widget to ContactForm.astro
   - Added server-side Turnstile verification in contact API endpoint
@@ -80,12 +87,13 @@ Turnstile spam protection and Web Analytics added. Ready to push to GitHub for T
 - [x] Implement centralized translations system
 - [x] Add Cloudflare Turnstile spam protection
 - [x] Add Cloudflare Web Analytics
-- [ ] Push to GitHub to sync TinaCMS schema
+- [x] Push to GitHub to sync TinaCMS schema
+- [x] TinaCMS Cloud integration working (admin at /admin)
+- [x] Test translations editing in TinaCMS admin
 - [ ] Configure Cloudflare environment variables:
   - RESEND_API_KEY, CONTACT_EMAIL (for email)
   - TURNSTILE_SECRET_KEY, PUBLIC_TURNSTILE_SITE_KEY (for Turnstile)
   - PUBLIC_CF_WEB_ANALYTICS_TOKEN (for Web Analytics)
-- [ ] Test translations editing in TinaCMS admin
 - [ ] Test contact form in production
 - [ ] Add founder photo placeholder
 - [x] Add privacy and legal pages (exist: pages + content for all 3 languages)

@@ -1,67 +1,719 @@
+fragment SiteConfigParts on SiteConfig {
+  __typename
+  siteUrl
+  locales
+  defaultLocale
+  company {
+    __typename
+    name
+    legalName
+    description
+    tagline
+  }
+  contact {
+    __typename
+    email
+    phone
+    phoneLink
+    location {
+      __typename
+      city
+      country
+    }
+  }
+  founder {
+    __typename
+    name
+  }
+  socialLinks {
+    __typename
+    name
+    url
+    icon
+  }
+  attribution {
+    __typename
+    design
+    development
+  }
+  branding {
+    __typename
+    logo
+    logoWhite
+    symbol
+    symbolWhite
+    ogImage
+  }
+  seo {
+    __typename
+    priceRange
+  }
+}
+
+fragment Home_esParts on Home_es {
+  __typename
+  title
+  description
+  headerStyle
+  hero {
+    __typename
+    image
+    topRight {
+      __typename
+      lines
+    }
+    tagline {
+      __typename
+      lines
+    }
+    taglineSub
+  }
+  about {
+    __typename
+    image
+    title
+    description
+    ctaText
+    ctaLink
+  }
+}
+
+fragment Home_caParts on Home_ca {
+  __typename
+  title
+  description
+  headerStyle
+  hero {
+    __typename
+    image
+    topRight {
+      __typename
+      lines
+    }
+    tagline {
+      __typename
+      lines
+    }
+    taglineSub
+  }
+  about {
+    __typename
+    image
+    title
+    description
+    ctaText
+    ctaLink
+  }
+}
+
+fragment Home_enParts on Home_en {
+  __typename
+  title
+  description
+  headerStyle
+  hero {
+    __typename
+    image
+    topRight {
+      __typename
+      lines
+    }
+    tagline {
+      __typename
+      lines
+    }
+    taglineSub
+  }
+  about {
+    __typename
+    image
+    title
+    description
+    ctaText
+    ctaLink
+  }
+}
+
+fragment About_esParts on About_es {
+  __typename
+  title
+  description
+  heroImage
+  hero {
+    __typename
+    title
+  }
+  behindName {
+    __typename
+    title
+    p1
+    p2
+    footnote
+  }
+  bannerImage
+  bio {
+    __typename
+    title
+    image
+    paragraphs
+  }
+  awards {
+    __typename
+    title
+    items {
+      __typename
+      year
+      project
+      award
+      link
+    }
+  }
+  mission {
+    __typename
+    title
+    p1
+    p2
+    quote
+  }
+  missionImage
+}
+
+fragment About_caParts on About_ca {
+  __typename
+  title
+  description
+  heroImage
+  hero {
+    __typename
+    title
+  }
+  behindName {
+    __typename
+    title
+    p1
+    p2
+    footnote
+  }
+  bannerImage
+  bio {
+    __typename
+    title
+    image
+    paragraphs
+  }
+  awards {
+    __typename
+    title
+    items {
+      __typename
+      year
+      project
+      award
+      link
+    }
+  }
+  mission {
+    __typename
+    title
+    p1
+    p2
+    quote
+  }
+  missionImage
+}
+
+fragment About_enParts on About_en {
+  __typename
+  title
+  description
+  heroImage
+  hero {
+    __typename
+    title
+  }
+  behindName {
+    __typename
+    title
+    p1
+    p2
+    footnote
+  }
+  bannerImage
+  bio {
+    __typename
+    title
+    image
+    paragraphs
+  }
+  awards {
+    __typename
+    title
+    items {
+      __typename
+      year
+      project
+      award
+      link
+    }
+  }
+  mission {
+    __typename
+    title
+    p1
+    p2
+    quote
+  }
+  missionImage
+}
+
+fragment Services_esParts on Services_es {
+  __typename
+  title
+  description
+  hero {
+    __typename
+    title
+  }
+  intro {
+    __typename
+    text
+    image
+  }
+  serviceGroups {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+    }
+  }
+  faq {
+    __typename
+    title
+    image
+    items {
+      __typename
+      question
+      answer
+    }
+  }
+  workProcess {
+    __typename
+    title
+    p1
+    p2
+    image
+  }
+}
+
+fragment Services_caParts on Services_ca {
+  __typename
+  title
+  description
+  hero {
+    __typename
+    title
+  }
+  intro {
+    __typename
+    text
+    image
+  }
+  serviceGroups {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+    }
+  }
+  faq {
+    __typename
+    title
+    image
+    items {
+      __typename
+      question
+      answer
+    }
+  }
+  workProcess {
+    __typename
+    title
+    p1
+    p2
+    image
+  }
+}
+
+fragment Services_enParts on Services_en {
+  __typename
+  title
+  description
+  hero {
+    __typename
+    title
+  }
+  intro {
+    __typename
+    text
+    image
+  }
+  serviceGroups {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+    }
+  }
+  faq {
+    __typename
+    title
+    image
+    items {
+      __typename
+      question
+      answer
+    }
+  }
+  workProcess {
+    __typename
+    title
+    p1
+    p2
+    image
+  }
+}
+
+fragment Contact_esParts on Contact_es {
+  __typename
+  title
+  description
+  heading
+  subheading
+}
+
+fragment Contact_caParts on Contact_ca {
+  __typename
+  title
+  description
+  heading
+  subheading
+}
+
+fragment Contact_enParts on Contact_en {
+  __typename
+  title
+  description
+  heading
+  subheading
+}
+
+fragment Legal_esParts on Legal_es {
+  __typename
+  title
+  description
+  lastUpdated
+  body
+}
+
+fragment Legal_caParts on Legal_ca {
+  __typename
+  title
+  description
+  lastUpdated
+  body
+}
+
+fragment Legal_enParts on Legal_en {
+  __typename
+  title
+  description
+  lastUpdated
+  body
+}
+
 fragment Projects_esParts on Projects_es {
   __typename
   title
   description
+  slug
   publishDate
   completedDate
   tags
-  coverImage
+  showTags
   featured
   draft
-  body
+  banner {
+    __typename
+    image
+    alt
+  }
+  details {
+    __typename
+    title
+    subtitle
+    image
+    services
+    servicesLabel
+    category
+    categoryLabel
+    area
+    areaLabel
+    location
+    locationLabel
+  }
+  brief {
+    __typename
+    title
+    text
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  concept {
+    __typename
+    title
+    text
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  strategy {
+    __typename
+    title
+    text
+    carousel {
+      __typename
+      src
+      alt
+    }
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  collaborators {
+    __typename
+    title
+    list {
+      __typename
+      name
+      role
+    }
+  }
+  finalImage {
+    __typename
+    src
+    alt
+  }
 }
 
 fragment Projects_caParts on Projects_ca {
   __typename
   title
   description
+  slug
   publishDate
   completedDate
   tags
-  coverImage
+  showTags
   featured
   draft
-  body
+  banner {
+    __typename
+    image
+    alt
+  }
+  details {
+    __typename
+    title
+    subtitle
+    image
+    services
+    servicesLabel
+    category
+    categoryLabel
+    area
+    areaLabel
+    location
+    locationLabel
+  }
+  brief {
+    __typename
+    title
+    text
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  concept {
+    __typename
+    title
+    text
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  strategy {
+    __typename
+    title
+    text
+    carousel {
+      __typename
+      src
+      alt
+    }
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  collaborators {
+    __typename
+    title
+    list {
+      __typename
+      name
+      role
+    }
+  }
+  finalImage {
+    __typename
+    src
+    alt
+  }
 }
 
 fragment Projects_enParts on Projects_en {
   __typename
   title
   description
+  slug
   publishDate
   completedDate
   tags
-  coverImage
+  showTags
   featured
   draft
-  body
-}
-
-fragment Pages_esParts on Pages_es {
-  __typename
-  title
-  description
-  heroImage
-  headerStyle
-  body
-}
-
-fragment Pages_caParts on Pages_ca {
-  __typename
-  title
-  description
-  heroImage
-  headerStyle
-  body
-}
-
-fragment Pages_enParts on Pages_en {
-  __typename
-  title
-  description
-  heroImage
-  headerStyle
-  body
+  banner {
+    __typename
+    image
+    alt
+  }
+  details {
+    __typename
+    title
+    subtitle
+    image
+    services
+    servicesLabel
+    category
+    categoryLabel
+    area
+    areaLabel
+    location
+    locationLabel
+  }
+  brief {
+    __typename
+    title
+    text
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  concept {
+    __typename
+    title
+    text
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  strategy {
+    __typename
+    title
+    text
+    carousel {
+      __typename
+      src
+      alt
+    }
+    gallery {
+      __typename
+      cols
+      images {
+        __typename
+        src
+        alt
+      }
+    }
+  }
+  collaborators {
+    __typename
+    title
+    list {
+      __typename
+      name
+      role
+    }
+  }
+  finalImage {
+    __typename
+    src
+    alt
+  }
 }
 
 fragment Translations_esParts on Translations_es {
@@ -80,13 +732,6 @@ fragment Translations_esParts on Translations_es {
     __typename
     privacy
     legal
-  }
-  contact {
-    __typename
-    title
-    description
-    heading
-    subheading
   }
   contactForm {
     __typename
@@ -122,12 +767,6 @@ fragment Translations_esParts on Translations_es {
     title
     description
     heading
-  }
-  cookies {
-    __typename
-    message
-    moreInfo
-    accept
   }
   accessibility {
     __typename
@@ -158,13 +797,6 @@ fragment Translations_caParts on Translations_ca {
     privacy
     legal
   }
-  contact {
-    __typename
-    title
-    description
-    heading
-    subheading
-  }
   contactForm {
     __typename
     name
@@ -199,12 +831,6 @@ fragment Translations_caParts on Translations_ca {
     title
     description
     heading
-  }
-  cookies {
-    __typename
-    message
-    moreInfo
-    accept
   }
   accessibility {
     __typename
@@ -235,13 +861,6 @@ fragment Translations_enParts on Translations_en {
     privacy
     legal
   }
-  contact {
-    __typename
-    title
-    description
-    heading
-    subheading
-  }
   contactForm {
     __typename
     name
@@ -276,12 +895,6 @@ fragment Translations_enParts on Translations_en {
     title
     description
     heading
-  }
-  cookies {
-    __typename
-    message
-    moreInfo
-    accept
   }
   accessibility {
     __typename

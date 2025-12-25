@@ -1,29 +1,6 @@
 // src/pages/[lang]/api/contact.ts
 import type { APIRoute } from 'astro';
-
-const translations = {
-  es: {
-    success: '¡Mensaje enviado! Te contactaremos pronto.',
-    error: 'Error al enviar. Por favor, inténtalo de nuevo.',
-    invalidEmail: 'Email inválido.',
-    missingFields: 'Por favor, completa todos los campos obligatorios.',
-    turnstileFailed: 'Verificación de seguridad fallida. Por favor, inténtalo de nuevo.',
-  },
-  ca: {
-    success: 'Missatge enviat! Et contactarem aviat.',
-    error: 'Error en enviar. Si us plau, torna-ho a provar.',
-    invalidEmail: 'Email invàlid.',
-    missingFields: 'Si us plau, completa tots els camps obligatoris.',
-    turnstileFailed: 'Verificació de seguretat fallida. Si us plau, torna-ho a provar.',
-  },
-  en: {
-    success: 'Message sent! We will contact you soon.',
-    error: 'Error sending. Please try again.',
-    invalidEmail: 'Invalid email.',
-    missingFields: 'Please complete all required fields.',
-    turnstileFailed: 'Security verification failed. Please try again.',
-  },
-};
+import { getEntry } from 'astro:content';
 
 // Verify Turnstile token with Cloudflare
 async function verifyTurnstile(token: string, ip: string | null): Promise<boolean> {
@@ -65,8 +42,14 @@ function isValidEmail(email: string): boolean {
 }
 
 export const POST: APIRoute = async ({ request, params }) => {
-  const lang = (params.lang as keyof typeof translations) || 'es';
-  const t = translations[lang] || translations.es;
+  const lang = params.lang || 'es';
+
+  // Get translations from content collection
+  const translations = await getEntry('translations', lang);
+  if (!translations) {
+    return new Response('Translations not found', { status: 500 });
+  }
+  const t = translations.data.contactForm;
 
   try {
     const formData = await request.formData();

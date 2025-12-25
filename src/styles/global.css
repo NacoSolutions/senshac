@@ -1,0 +1,270 @@
+/* src/styles/global.css */
+
+/*
+ * STYLE ORGANIZATION GUIDELINES
+ *
+ * What belongs in global.css:
+ * - CSS custom properties (brand colors, spacing tokens)
+ * - Font-face declarations and typography classes
+ * - Form element styling (inputs, buttons, selects)
+ * - Reusable utility classes (section backgrounds, text colors)
+ * - Custom cursor and global effects
+ *
+ * What stays in component files (use Tailwind):
+ * - Layout (grid columns, flexbox, spacing between elements)
+ * - One-off color variations (hover states, borders)
+ * - Alpine.js state-based styling (x-bind:class)
+ * - Component-specific responsive breakpoints
+ * - Positioning and z-index for specific components
+ */
+
+/* Brand colors - matching WordPress theme */
+:root {
+  --color-bg-light: #f2f2f2;
+  --color-bg-dark: #000;
+  --color-text-primary: rgba(18, 18, 18, 0.85);
+  --color-text-muted: rgba(102, 102, 102, 0.85);
+  --color-text-light: #f1f1f1;
+  --color-border: #000;
+  --color-border-light: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom fonts */
+@font-face {
+  font-family: 'Jozsika';
+  src: url('/fonts/jozsika-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sinteca';
+  src: url('/fonts/sinteca-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sinteca';
+  src: url('/fonts/sinteca-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sinteca';
+  src: url('/fonts/sinteca-semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply fonts */
+body {
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: 1.25rem; /* 20px base - matches WordPress theme */
+}
+
+/* Content container - matches WordPress theme max-width */
+.container-content {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.font-display,
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Jozsika', serif;
+  font-weight: 300;
+}
+
+/* Custom cursor circle - solid fill */
+#cursor-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  mix-blend-mode: difference;
+}
+
+/* Hide cursor circle on touch devices */
+@media (hover: none) {
+  #cursor-circle {
+    display: none;
+  }
+}
+
+/* Form elements - match WordPress theme */
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=url],
+input[type=date],
+select,
+textarea {
+  border: none;
+  border-bottom: solid 1px #000;
+  box-shadow: none;
+  background: transparent;
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: 1.25rem;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=tel]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=url]:focus,
+input[type=date]:focus,
+select:focus,
+textarea:focus {
+  border: none;
+  border-bottom: solid 1px #000;
+  box-shadow: none;
+  outline: none;
+}
+
+select {
+  color: #000;
+}
+
+/* Circular checkboxes and radios */
+input[type=checkbox],
+input[type=radio] {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  vertical-align: text-top;
+  border: 1px solid #000;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type=checkbox]:checked,
+input[type=radio]:checked {
+  background-color: #000;
+}
+
+/* Placeholder color */
+::placeholder {
+  color: #000;
+  opacity: 0.5;
+}
+
+/* Submit button */
+input[type=submit],
+button[type=submit] {
+  font-family: 'Jozsika', serif;
+  text-transform: lowercase;
+  font-size: 1.125rem;
+  font-weight: 300;
+  border-radius: 60px;
+}
+
+/* Strong/bold text */
+b, strong {
+  font-weight: 600;
+}
+
+/* Custom utility classes matching WordPress theme */
+.jozsika-font {
+  font-family: 'Jozsika', serif;
+}
+
+.sinteca-big-title {
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+
+.sinteca-medium-title {
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 3.25rem;
+  text-transform: uppercase;
+}
+
+.sinteca-small-title {
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 2.25rem;
+  text-transform: uppercase;
+}
+
+.sinteca-small-text {
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+
+/* Page link with arrow - use with .page-link-icon span */
+.page-link {
+  font-family: 'Jozsika', serif;
+  font-size: 1.125rem;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.page-link-icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* Section backgrounds */
+.bg-section-light {
+  background-color: var(--color-bg-light);
+}
+
+.bg-section-dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+}
+
+/* Text colors */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 48em) {
+  body {
+    font-size: 1rem;
+  }
+
+  .sinteca-medium-title {
+    font-size: 2.25rem;
+  }
+
+  .sinteca-big-title {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}

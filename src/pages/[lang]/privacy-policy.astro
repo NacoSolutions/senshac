@@ -5,7 +5,7 @@ import { getEntry } from 'astro:content';
 
 const { lang } = Astro.params;
 
-const page = await getEntry('pages', `${lang}/privacy-policy`);
+const page = await getEntry('legal', `${lang}/privacy-policy`);
 
 if (!page) {
   return Astro.redirect('/404');
