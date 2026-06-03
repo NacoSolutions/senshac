@@ -1,0 +1,14 @@
+id: senshac-architecture
+title: Senshac Astro portfolio architecture
+status: active
+createdAt: "2026-06-02T13:25:40.795Z"
+updatedAt: "2026-06-02T13:25:40.795Z"
+objective: Migrated from .agent-memory project-brief, system-patterns, and tech-context. Senshac is an Astro SSR portfolio on Cloudflare Pages using UnoCSS, Alpine.js for small UI islands, HTMX/Hyperscript for server interactions, Bun/Flox for development, multilingual routes, content collections, optimized images, and SEO/LLM structured data.
+constraints:
+  - "Zero-JS first: prefer HTML/CSS, then Alpine.js, then HTMX, then Hyperscript."
+  - "Use astro:assets Image for optimized project images and keep LCP hero priority explicit."
+  - "Maintain multilingual content under src/content/projects/{es,ca,en}/ and [lang] routes."
+acceptance:
+  - Astro check/build passes inside Flox with Bun.
+  - Navigation, project pages, contact flow, SEO endpoints, and TinaCMS admin remain functional.
+references:

@@ -1,0 +1,105 @@
+---
+import { tinaField } from '@tinacms/astro/tina-field';
+import OptimizedImage from '../OptimizedImage.astro';
+import type { HomeQuery } from '../../../tina/__generated__/types';
+
+type HomePageData = HomeQuery['home'];
+
+interface Props {
+  data?: HomePageData | null;
+}
+
+const { data } = Astro.props;
+const hero = data?.hero;
+const about = data?.about;
+
+function normalizeTinaImage(src?: string | null) {
+  if (!src) return '';
+
+  try {
+    const url = new URL(src);
+    if (url.hostname === 'assets.tina.io') {
+      return `/images${url.pathname.replace(/^\/[^/]+/, '')}`;
+    }
+  } catch {
+    // Relative paths are already usable by the local image optimizer.
+  }
+
+  return src;
+}
+---
+
+{data && (
+  <>
+    {hero && (
+      <section class="relative h-screen w-full overflow-hidden" data-tina-field={tinaField(data, 'hero')}>
+        <OptimizedImage
+          src={normalizeTinaImage(hero.image)}
+          alt=""
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          sizes="100vw"
+        />
+        <div class="absolute inset-0 bg-black/20"></div>
+
+        <div class="relative h-full max-w-7xl mx-auto px-4 flex flex-col justify-between py-8">
+          {hero.topRight?.lines && (
+            <div class="self-end text-white text-sm tracking-wider pt-16 md:pt-4" data-tina-field={tinaField(hero.topRight, 'lines')}>
+              <div class="leading-tight text-right">
+                {hero.topRight.lines.map((line, i) => {
+                  const isEven = i % 2 === 1;
+                  return <div class={isEven ? 'translate-x-8' : ''}>{line}</div>;
+                })}
+              </div>
+            </div>
+          )}
+
+          <div class="text-white text-left">
+            {hero.tagline?.lines && (
+              <h1 class="text-5xl md:text-7xl lg:text-[96px] font-sans font-medium leading-[1.2]" data-tina-field={tinaField(hero.tagline, 'lines')}>
+                {hero.tagline.lines.map((line) => <span class="block">{line}</span>)}
+              </h1>
+            )}
+            {hero.taglineSub && (
+              <p class="text-lg md:text-xl mt-4 font-display" data-tina-field={tinaField(hero, 'taglineSub')}>{hero.taglineSub}</p>
+            )}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {about && (
+      <section class="py-24 md:py-32" data-tina-field={tinaField(data, 'about')}>
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            {about.image && (
+              <div class="aspect-4/3 overflow-hidden" data-tina-field={tinaField(about, 'image')}>
+                <OptimizedImage src={normalizeTinaImage(about.image)} alt="" class="w-full h-full object-cover" loading="lazy" sizes="(min-width: 768px) 50vw, 100vw" />
+              </div>
+            )}
+
+            <div>
+              {about.title && (
+                <h2 class="sinteca-medium-title mb-6" data-tina-field={tinaField(about, 'title')}>
+                  {about.title}
+                </h2>
+              )}
+              {about.description && (
+                <p class="text-lg text-gray-600 mb-8" data-tina-field={tinaField(about, 'description')}>{about.description}</p>
+              )}
+              {about.ctaText && about.ctaLink && (
+                <a
+                  href={about.ctaLink}
+                  class="inline-block border-b-2 border-black pb-1 text-sm font-medium hover:opacity-70 transition-opacity"
+                  data-tina-field={tinaField(about, 'ctaText')}
+                >
+                  {about.ctaText}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+  </>
+)}

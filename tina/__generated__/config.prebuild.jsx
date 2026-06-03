@@ -498,6 +498,9 @@ var projectFields = [
     fields: imageFields
   }
 ];
+function localeFromDocument(document) {
+  return document._sys.breadcrumbs?.[0] || document._sys.path?.split("/").at(-2) || "es";
+}
 var config_default = defineConfig({
   branch: process.env.TINA_BRANCH || process.env.CF_PAGES_BRANCH || "main",
   clientId: process.env.TINA_CLIENT_ID || "",
@@ -529,231 +532,80 @@ var config_default = defineConfig({
         }
       },
       // ========================================
-      // HOME PAGES (JSON)
+      // PAGE SINGLETONS (JSON)
       // ========================================
       {
-        name: "home_es",
-        label: "Home (Spanish)",
-        path: "src/content/pages/es",
+        name: "home",
+        label: "Pages / Home",
+        path: "src/content/pages",
         format: "json",
         match: { include: "home" },
         fields: homePageFields,
         ui: {
           allowedActions: { create: false, delete: false },
-          router: () => "/es/"
+          router: ({ document }) => `/${localeFromDocument(document)}/`
         }
       },
       {
-        name: "home_ca",
-        label: "Home (Catalan)",
-        path: "src/content/pages/ca",
-        format: "json",
-        match: { include: "home" },
-        fields: homePageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/ca/"
-        }
-      },
-      {
-        name: "home_en",
-        label: "Home (English)",
-        path: "src/content/pages/en",
-        format: "json",
-        match: { include: "home" },
-        fields: homePageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/en/"
-        }
-      },
-      // ========================================
-      // ABOUT PAGES (JSON)
-      // ========================================
-      {
-        name: "about_es",
-        label: "About (Spanish)",
-        path: "src/content/pages/es",
+        name: "about",
+        label: "Pages / About",
+        path: "src/content/pages",
         format: "json",
         match: { include: "about" },
         fields: aboutPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
-          router: () => "/es/about"
+          router: ({ document }) => `/${localeFromDocument(document)}/about`
         }
       },
       {
-        name: "about_ca",
-        label: "About (Catalan)",
-        path: "src/content/pages/ca",
-        format: "json",
-        match: { include: "about" },
-        fields: aboutPageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/ca/about"
-        }
-      },
-      {
-        name: "about_en",
-        label: "About (English)",
-        path: "src/content/pages/en",
-        format: "json",
-        match: { include: "about" },
-        fields: aboutPageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/en/about"
-        }
-      },
-      // ========================================
-      // SERVICES PAGES (JSON)
-      // ========================================
-      {
-        name: "services_es",
-        label: "Services (Spanish)",
-        path: "src/content/pages/es",
+        name: "services",
+        label: "Pages / Services",
+        path: "src/content/pages",
         format: "json",
         match: { include: "services" },
         fields: servicesPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
-          router: () => "/es/services"
+          router: ({ document }) => `/${localeFromDocument(document)}/services`
         }
       },
       {
-        name: "services_ca",
-        label: "Services (Catalan)",
-        path: "src/content/pages/ca",
-        format: "json",
-        match: { include: "services" },
-        fields: servicesPageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/ca/services"
-        }
-      },
-      {
-        name: "services_en",
-        label: "Services (English)",
-        path: "src/content/pages/en",
-        format: "json",
-        match: { include: "services" },
-        fields: servicesPageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/en/services"
-        }
-      },
-      // ========================================
-      // CONTACT PAGES (JSON)
-      // ========================================
-      {
-        name: "contact_es",
-        label: "Contact (Spanish)",
-        path: "src/content/pages/es",
+        name: "contact",
+        label: "Pages / Contact",
+        path: "src/content/pages",
         format: "json",
         match: { include: "contact" },
         fields: contactPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
-          router: () => "/es/contact"
-        }
-      },
-      {
-        name: "contact_ca",
-        label: "Contact (Catalan)",
-        path: "src/content/pages/ca",
-        format: "json",
-        match: { include: "contact" },
-        fields: contactPageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/ca/contact"
-        }
-      },
-      {
-        name: "contact_en",
-        label: "Contact (English)",
-        path: "src/content/pages/en",
-        format: "json",
-        match: { include: "contact" },
-        fields: contactPageFields,
-        ui: {
-          allowedActions: { create: false, delete: false },
-          router: () => "/en/contact"
+          router: ({ document }) => `/${localeFromDocument(document)}/contact`
         }
       },
       // ========================================
       // LEGAL PAGES (MDX)
       // ========================================
       {
-        name: "legal_es",
-        label: "Legal (Spanish)",
-        path: "src/content/legal/es",
+        name: "legal",
+        label: "Legal / Pages",
+        path: "src/content/legal",
         format: "mdx",
         fields: legalPageFields,
         ui: {
-          router: ({ document }) => `/es/${document._sys.filename}`
-        }
-      },
-      {
-        name: "legal_ca",
-        label: "Legal (Catalan)",
-        path: "src/content/legal/ca",
-        format: "mdx",
-        fields: legalPageFields,
-        ui: {
-          router: ({ document }) => `/ca/${document._sys.filename}`
-        }
-      },
-      {
-        name: "legal_en",
-        label: "Legal (English)",
-        path: "src/content/legal/en",
-        format: "mdx",
-        fields: legalPageFields,
-        ui: {
-          router: ({ document }) => `/en/${document._sys.filename}`
+          router: ({ document }) => `/${localeFromDocument(document)}/${document._sys.filename}`
         }
       },
       // ========================================
       // PROJECTS (JSON - rigid layout)
       // ========================================
       {
-        name: "projects_es",
-        label: "Projects (Spanish)",
-        path: "src/content/projects/es",
+        name: "projects",
+        label: "Portfolio / Projects",
+        path: "src/content/projects",
         format: "json",
         fields: projectFields,
         ui: {
-          router: ({ document }) => `/es/projects/${document._sys.filename}`,
-          filename: {
-            slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
-          }
-        }
-      },
-      {
-        name: "projects_ca",
-        label: "Projects (Catalan)",
-        path: "src/content/projects/ca",
-        format: "json",
-        fields: projectFields,
-        ui: {
-          router: ({ document }) => `/ca/projects/${document._sys.filename}`,
-          filename: {
-            slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
-          }
-        }
-      },
-      {
-        name: "projects_en",
-        label: "Projects (English)",
-        path: "src/content/projects/en",
-        format: "json",
-        fields: projectFields,
-        ui: {
-          router: ({ document }) => `/en/projects/${document._sys.filename}`,
+          router: ({ document }) => `/${localeFromDocument(document)}/projects/${document._sys.filename}`,
           filename: {
             slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
           }
@@ -763,33 +615,10 @@ var config_default = defineConfig({
       // TRANSLATIONS
       // ========================================
       {
-        name: "translations_es",
-        label: "Translations (Spanish)",
+        name: "translations",
+        label: "System / Translations",
         path: "src/content/translations",
         format: "json",
-        match: { include: "es" },
-        fields: translationFields,
-        ui: {
-          allowedActions: { create: false, delete: false }
-        }
-      },
-      {
-        name: "translations_ca",
-        label: "Translations (Catalan)",
-        path: "src/content/translations",
-        format: "json",
-        match: { include: "ca" },
-        fields: translationFields,
-        ui: {
-          allowedActions: { create: false, delete: false }
-        }
-      },
-      {
-        name: "translations_en",
-        label: "Translations (English)",
-        path: "src/content/translations",
-        format: "json",
-        match: { include: "en" },
         fields: translationFields,
         ui: {
           allowedActions: { create: false, delete: false }

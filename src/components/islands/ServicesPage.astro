@@ -1,0 +1,120 @@
+---
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { ServicesQuery } from '../../../tina/__generated__/types';
+import OptimizedImage from '../OptimizedImage.astro';
+import Hero from '../sections/services/Hero.astro';
+import Intro from '../sections/services/Intro.astro';
+import WorkProcess from '../sections/services/WorkProcess.astro';
+
+type ServicesPageData = ServicesQuery['services'];
+
+interface Props {
+  data?: ServicesPageData | null;
+}
+
+const { data } = Astro.props;
+const hero = data?.hero;
+const intro = data?.intro;
+const serviceGroups = data?.serviceGroups?.filter((group) => group != null) ?? [];
+const faq = data?.faq;
+const faqItems = faq?.items?.filter((item) => item != null) ?? [];
+const workProcess = data?.workProcess;
+
+function normalizeTinaImage(src?: string | null) {
+  if (!src) return '';
+
+  try {
+    const url = new URL(src);
+    if (url.hostname === 'assets.tina.io') {
+      return `/images${url.pathname.replace(/^\/[^/]+/, '')}`;
+    }
+  } catch {
+    // Relative paths are already usable by the local image optimizer.
+  }
+
+  return src;
+}
+---
+
+{data && (
+  <>
+    {hero && (
+      <div data-tina-field={tinaField(data, 'hero')}>
+        <Hero title={hero.title} />
+      </div>
+    )}
+
+    {intro && (
+      <div data-tina-field={tinaField(data, 'intro')}>
+        <Intro text={intro.text} image={normalizeTinaImage(intro.image)} />
+      </div>
+    )}
+
+    {serviceGroups.length > 0 && (
+      <div class="py-16 md:py-24" data-tina-field={tinaField(data, 'serviceGroups')}>
+        <div class="max-w-6xl mx-auto px-4">
+          {serviceGroups.map((group) => {
+            const items = group.items?.filter((item) => item != null) ?? [];
+            return (
+              <section class="py-16 md:py-24 border-t border-gray-200" data-tina-field={tinaField(group, 'title')}>
+                <div class="max-w-6xl mx-auto px-4">
+                  <h2 class="text-2xl md:text-3xl font-display mb-12" data-tina-field={tinaField(group, 'title')}>{group.title}</h2>
+
+                  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {items.map((item) => (
+                      <div class="border-t border-gray-200 pt-6" data-tina-field={tinaField(item, 'title')}>
+                        <h3 class="font-medium mb-2" data-tina-field={tinaField(item, 'title')}>{item.title}</h3>
+                        {item.description && (
+                          <p class="text-sm text-gray-600" data-tina-field={tinaField(item, 'description')}>{item.description}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    {faq && (
+      <section class="py-16 md:py-24 bg-gray-50" data-tina-field={tinaField(data, 'faq')}>
+        <div class="max-w-4xl mx-auto px-4">
+          {faq.title && (
+            <h2 class="text-2xl md:text-3xl font-display mb-12" data-tina-field={tinaField(faq, 'title')}>{faq.title}</h2>
+          )}
+          <div class="border-b border-gray-200">
+            {faqItems.map((item) => (
+              <details class="border-t border-gray-200 py-6 group" data-tina-field={tinaField(item, 'question')}>
+                <summary class="flex justify-between items-center cursor-pointer list-none">
+                  <span class="font-medium pr-4" data-tina-field={tinaField(item, 'question')}>{item.question}</span>
+                  <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+                    <span class="i-lucide-plus w-4 h-4 transition-transform group-open:rotate-45" />
+                  </span>
+                </summary>
+                <p class="mt-4 text-gray-600" data-tina-field={tinaField(item, 'answer')}>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+          {faq.image && (
+            <div class="mt-16" data-tina-field={tinaField(faq, 'image')}>
+              <OptimizedImage src={normalizeTinaImage(faq.image)} alt="" class="w-full" loading="lazy" sizes="(min-width: 768px) 896px, 100vw" />
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    {workProcess && (
+      <div data-tina-field={tinaField(data, 'workProcess')}>
+        <WorkProcess
+          title={workProcess.title ?? undefined}
+          p1={workProcess.p1}
+          p2={workProcess.p2}
+          image={normalizeTinaImage(workProcess.image)}
+        />
+      </div>
+    )}
+  </>
+)}

@@ -84,48 +84,20 @@ export type Query = {
   document: DocumentNode;
   siteConfig: SiteConfig;
   siteConfigConnection: SiteConfigConnection;
-  home_es: Home_Es;
-  home_esConnection: Home_EsConnection;
-  home_ca: Home_Ca;
-  home_caConnection: Home_CaConnection;
-  home_en: Home_En;
-  home_enConnection: Home_EnConnection;
-  about_es: About_Es;
-  about_esConnection: About_EsConnection;
-  about_ca: About_Ca;
-  about_caConnection: About_CaConnection;
-  about_en: About_En;
-  about_enConnection: About_EnConnection;
-  services_es: Services_Es;
-  services_esConnection: Services_EsConnection;
-  services_ca: Services_Ca;
-  services_caConnection: Services_CaConnection;
-  services_en: Services_En;
-  services_enConnection: Services_EnConnection;
-  contact_es: Contact_Es;
-  contact_esConnection: Contact_EsConnection;
-  contact_ca: Contact_Ca;
-  contact_caConnection: Contact_CaConnection;
-  contact_en: Contact_En;
-  contact_enConnection: Contact_EnConnection;
-  legal_es: Legal_Es;
-  legal_esConnection: Legal_EsConnection;
-  legal_ca: Legal_Ca;
-  legal_caConnection: Legal_CaConnection;
-  legal_en: Legal_En;
-  legal_enConnection: Legal_EnConnection;
-  projects_es: Projects_Es;
-  projects_esConnection: Projects_EsConnection;
-  projects_ca: Projects_Ca;
-  projects_caConnection: Projects_CaConnection;
-  projects_en: Projects_En;
-  projects_enConnection: Projects_EnConnection;
-  translations_es: Translations_Es;
-  translations_esConnection: Translations_EsConnection;
-  translations_ca: Translations_Ca;
-  translations_caConnection: Translations_CaConnection;
-  translations_en: Translations_En;
-  translations_enConnection: Translations_EnConnection;
+  home: Home;
+  homeConnection: HomeConnection;
+  about: About;
+  aboutConnection: AboutConnection;
+  services: Services;
+  servicesConnection: ServicesConnection;
+  contact: Contact;
+  contactConnection: ContactConnection;
+  legal: Legal;
+  legalConnection: LegalConnection;
+  projects: Projects;
+  projectsConnection: ProjectsConnection;
+  translations: Translations;
+  translationsConnection: TranslationsConnection;
 };
 
 
@@ -165,343 +137,119 @@ export type QuerySiteConfigConnectionArgs = {
 };
 
 
-export type QueryHome_EsArgs = {
+export type QueryHomeArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryHome_EsConnectionArgs = {
+export type QueryHomeConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Home_EsFilter>;
+  filter?: InputMaybe<HomeFilter>;
 };
 
 
-export type QueryHome_CaArgs = {
+export type QueryAboutArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryHome_CaConnectionArgs = {
+export type QueryAboutConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Home_CaFilter>;
+  filter?: InputMaybe<AboutFilter>;
 };
 
 
-export type QueryHome_EnArgs = {
+export type QueryServicesArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryHome_EnConnectionArgs = {
+export type QueryServicesConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Home_EnFilter>;
+  filter?: InputMaybe<ServicesFilter>;
 };
 
 
-export type QueryAbout_EsArgs = {
+export type QueryContactArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryAbout_EsConnectionArgs = {
+export type QueryContactConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<About_EsFilter>;
+  filter?: InputMaybe<ContactFilter>;
 };
 
 
-export type QueryAbout_CaArgs = {
+export type QueryLegalArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryAbout_CaConnectionArgs = {
+export type QueryLegalConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<About_CaFilter>;
+  filter?: InputMaybe<LegalFilter>;
 };
 
 
-export type QueryAbout_EnArgs = {
+export type QueryProjectsArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryAbout_EnConnectionArgs = {
+export type QueryProjectsConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<About_EnFilter>;
+  filter?: InputMaybe<ProjectsFilter>;
 };
 
 
-export type QueryServices_EsArgs = {
+export type QueryTranslationsArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryServices_EsConnectionArgs = {
+export type QueryTranslationsConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Services_EsFilter>;
-};
-
-
-export type QueryServices_CaArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryServices_CaConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Services_CaFilter>;
-};
-
-
-export type QueryServices_EnArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryServices_EnConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Services_EnFilter>;
-};
-
-
-export type QueryContact_EsArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryContact_EsConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Contact_EsFilter>;
-};
-
-
-export type QueryContact_CaArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryContact_CaConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Contact_CaFilter>;
-};
-
-
-export type QueryContact_EnArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryContact_EnConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Contact_EnFilter>;
-};
-
-
-export type QueryLegal_EsArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryLegal_EsConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Legal_EsFilter>;
-};
-
-
-export type QueryLegal_CaArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryLegal_CaConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Legal_CaFilter>;
-};
-
-
-export type QueryLegal_EnArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryLegal_EnConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Legal_EnFilter>;
-};
-
-
-export type QueryProjects_EsArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryProjects_EsConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Projects_EsFilter>;
-};
-
-
-export type QueryProjects_CaArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryProjects_CaConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Projects_CaFilter>;
-};
-
-
-export type QueryProjects_EnArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryProjects_EnConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Projects_EnFilter>;
-};
-
-
-export type QueryTranslations_EsArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryTranslations_EsConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Translations_EsFilter>;
-};
-
-
-export type QueryTranslations_CaArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryTranslations_CaConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Translations_CaFilter>;
-};
-
-
-export type QueryTranslations_EnArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryTranslations_EnConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Translations_EnFilter>;
+  filter?: InputMaybe<TranslationsFilter>;
 };
 
 export type DocumentFilter = {
   siteConfig?: InputMaybe<SiteConfigFilter>;
-  home_es?: InputMaybe<Home_EsFilter>;
-  home_ca?: InputMaybe<Home_CaFilter>;
-  home_en?: InputMaybe<Home_EnFilter>;
-  about_es?: InputMaybe<About_EsFilter>;
-  about_ca?: InputMaybe<About_CaFilter>;
-  about_en?: InputMaybe<About_EnFilter>;
-  services_es?: InputMaybe<Services_EsFilter>;
-  services_ca?: InputMaybe<Services_CaFilter>;
-  services_en?: InputMaybe<Services_EnFilter>;
-  contact_es?: InputMaybe<Contact_EsFilter>;
-  contact_ca?: InputMaybe<Contact_CaFilter>;
-  contact_en?: InputMaybe<Contact_EnFilter>;
-  legal_es?: InputMaybe<Legal_EsFilter>;
-  legal_ca?: InputMaybe<Legal_CaFilter>;
-  legal_en?: InputMaybe<Legal_EnFilter>;
-  projects_es?: InputMaybe<Projects_EsFilter>;
-  projects_ca?: InputMaybe<Projects_CaFilter>;
-  projects_en?: InputMaybe<Projects_EnFilter>;
-  translations_es?: InputMaybe<Translations_EsFilter>;
-  translations_ca?: InputMaybe<Translations_CaFilter>;
-  translations_en?: InputMaybe<Translations_EnFilter>;
+  home?: InputMaybe<HomeFilter>;
+  about?: InputMaybe<AboutFilter>;
+  services?: InputMaybe<ServicesFilter>;
+  contact?: InputMaybe<ContactFilter>;
+  legal?: InputMaybe<LegalFilter>;
+  projects?: InputMaybe<ProjectsFilter>;
+  translations?: InputMaybe<TranslationsFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -541,7 +289,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = SiteConfig | Home_Es | Home_Ca | Home_En | About_Es | About_Ca | About_En | Services_Es | Services_Ca | Services_En | Contact_Es | Contact_Ca | Contact_En | Legal_Es | Legal_Ca | Legal_En | Projects_Es | Projects_Ca | Projects_En | Translations_Es | Translations_Ca | Translations_En | Folder;
+export type DocumentNode = SiteConfig | Home | About | Services | Contact | Legal | Projects | Translations | Folder;
 
 export type SiteConfigCompany = {
   __typename?: 'SiteConfigCompany';
@@ -700,26 +448,26 @@ export type SiteConfigConnection = Connection & {
   edges?: Maybe<Array<Maybe<SiteConfigConnectionEdges>>>;
 };
 
-export type Home_EsHeroTopRight = {
-  __typename?: 'Home_esHeroTopRight';
+export type HomeHeroTopRight = {
+  __typename?: 'HomeHeroTopRight';
   lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
-export type Home_EsHeroTagline = {
-  __typename?: 'Home_esHeroTagline';
+export type HomeHeroTagline = {
+  __typename?: 'HomeHeroTagline';
   lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
-export type Home_EsHero = {
-  __typename?: 'Home_esHero';
+export type HomeHero = {
+  __typename?: 'HomeHero';
   image: Scalars['String']['output'];
-  topRight?: Maybe<Home_EsHeroTopRight>;
-  tagline?: Maybe<Home_EsHeroTagline>;
+  topRight?: Maybe<HomeHeroTopRight>;
+  tagline?: Maybe<HomeHeroTagline>;
   taglineSub?: Maybe<Scalars['String']['output']>;
 };
 
-export type Home_EsAbout = {
-  __typename?: 'Home_esAbout';
+export type HomeAbout = {
+  __typename?: 'HomeAbout';
   image?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
@@ -727,34 +475,34 @@ export type Home_EsAbout = {
   ctaLink?: Maybe<Scalars['String']['output']>;
 };
 
-export type Home_Es = Node & Document & {
-  __typename?: 'Home_es';
+export type Home = Node & Document & {
+  __typename?: 'Home';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   headerStyle?: Maybe<Scalars['String']['output']>;
-  hero?: Maybe<Home_EsHero>;
-  about?: Maybe<Home_EsAbout>;
+  hero?: Maybe<HomeHero>;
+  about?: Maybe<HomeAbout>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type Home_EsHeroTopRightFilter = {
+export type HomeHeroTopRightFilter = {
   lines?: InputMaybe<StringFilter>;
 };
 
-export type Home_EsHeroTaglineFilter = {
+export type HomeHeroTaglineFilter = {
   lines?: InputMaybe<StringFilter>;
 };
 
-export type Home_EsHeroFilter = {
+export type HomeHeroFilter = {
   image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<Home_EsHeroTopRightFilter>;
-  tagline?: InputMaybe<Home_EsHeroTaglineFilter>;
+  topRight?: InputMaybe<HomeHeroTopRightFilter>;
+  tagline?: InputMaybe<HomeHeroTaglineFilter>;
   taglineSub?: InputMaybe<StringFilter>;
 };
 
-export type Home_EsAboutFilter = {
+export type HomeAboutFilter = {
   image?: InputMaybe<ImageFilter>;
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
@@ -762,912 +510,268 @@ export type Home_EsAboutFilter = {
   ctaLink?: InputMaybe<StringFilter>;
 };
 
-export type Home_EsFilter = {
+export type HomeFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   headerStyle?: InputMaybe<StringFilter>;
-  hero?: InputMaybe<Home_EsHeroFilter>;
-  about?: InputMaybe<Home_EsAboutFilter>;
+  hero?: InputMaybe<HomeHeroFilter>;
+  about?: InputMaybe<HomeAboutFilter>;
 };
 
-export type Home_EsConnectionEdges = {
-  __typename?: 'Home_esConnectionEdges';
+export type HomeConnectionEdges = {
+  __typename?: 'HomeConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Home_Es>;
+  node?: Maybe<Home>;
 };
 
-export type Home_EsConnection = Connection & {
-  __typename?: 'Home_esConnection';
+export type HomeConnection = Connection & {
+  __typename?: 'HomeConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Home_EsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<HomeConnectionEdges>>>;
 };
 
-export type Home_CaHeroTopRight = {
-  __typename?: 'Home_caHeroTopRight';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type Home_CaHeroTagline = {
-  __typename?: 'Home_caHeroTagline';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type Home_CaHero = {
-  __typename?: 'Home_caHero';
-  image: Scalars['String']['output'];
-  topRight?: Maybe<Home_CaHeroTopRight>;
-  tagline?: Maybe<Home_CaHeroTagline>;
-  taglineSub?: Maybe<Scalars['String']['output']>;
-};
-
-export type Home_CaAbout = {
-  __typename?: 'Home_caAbout';
-  image?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  ctaText?: Maybe<Scalars['String']['output']>;
-  ctaLink?: Maybe<Scalars['String']['output']>;
-};
-
-export type Home_Ca = Node & Document & {
-  __typename?: 'Home_ca';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  headerStyle?: Maybe<Scalars['String']['output']>;
-  hero?: Maybe<Home_CaHero>;
-  about?: Maybe<Home_CaAbout>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Home_CaHeroTopRightFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type Home_CaHeroTaglineFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type Home_CaHeroFilter = {
-  image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<Home_CaHeroTopRightFilter>;
-  tagline?: InputMaybe<Home_CaHeroTaglineFilter>;
-  taglineSub?: InputMaybe<StringFilter>;
-};
-
-export type Home_CaAboutFilter = {
-  image?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  ctaText?: InputMaybe<StringFilter>;
-  ctaLink?: InputMaybe<StringFilter>;
-};
-
-export type Home_CaFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  headerStyle?: InputMaybe<StringFilter>;
-  hero?: InputMaybe<Home_CaHeroFilter>;
-  about?: InputMaybe<Home_CaAboutFilter>;
-};
-
-export type Home_CaConnectionEdges = {
-  __typename?: 'Home_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Home_Ca>;
-};
-
-export type Home_CaConnection = Connection & {
-  __typename?: 'Home_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Home_CaConnectionEdges>>>;
-};
-
-export type Home_EnHeroTopRight = {
-  __typename?: 'Home_enHeroTopRight';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type Home_EnHeroTagline = {
-  __typename?: 'Home_enHeroTagline';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type Home_EnHero = {
-  __typename?: 'Home_enHero';
-  image: Scalars['String']['output'];
-  topRight?: Maybe<Home_EnHeroTopRight>;
-  tagline?: Maybe<Home_EnHeroTagline>;
-  taglineSub?: Maybe<Scalars['String']['output']>;
-};
-
-export type Home_EnAbout = {
-  __typename?: 'Home_enAbout';
-  image?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  ctaText?: Maybe<Scalars['String']['output']>;
-  ctaLink?: Maybe<Scalars['String']['output']>;
-};
-
-export type Home_En = Node & Document & {
-  __typename?: 'Home_en';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  headerStyle?: Maybe<Scalars['String']['output']>;
-  hero?: Maybe<Home_EnHero>;
-  about?: Maybe<Home_EnAbout>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Home_EnHeroTopRightFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type Home_EnHeroTaglineFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type Home_EnHeroFilter = {
-  image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<Home_EnHeroTopRightFilter>;
-  tagline?: InputMaybe<Home_EnHeroTaglineFilter>;
-  taglineSub?: InputMaybe<StringFilter>;
-};
-
-export type Home_EnAboutFilter = {
-  image?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  ctaText?: InputMaybe<StringFilter>;
-  ctaLink?: InputMaybe<StringFilter>;
-};
-
-export type Home_EnFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  headerStyle?: InputMaybe<StringFilter>;
-  hero?: InputMaybe<Home_EnHeroFilter>;
-  about?: InputMaybe<Home_EnAboutFilter>;
-};
-
-export type Home_EnConnectionEdges = {
-  __typename?: 'Home_enConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Home_En>;
-};
-
-export type Home_EnConnection = Connection & {
-  __typename?: 'Home_enConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Home_EnConnectionEdges>>>;
-};
-
-export type About_EsHero = {
-  __typename?: 'About_esHero';
+export type AboutHero = {
+  __typename?: 'AboutHero';
   title: Scalars['String']['output'];
 };
 
-export type About_EsBehindName = {
-  __typename?: 'About_esBehindName';
+export type AboutBehindName = {
+  __typename?: 'AboutBehindName';
   title?: Maybe<Scalars['String']['output']>;
   p1: Scalars['String']['output'];
   p2: Scalars['String']['output'];
   footnote?: Maybe<Scalars['String']['output']>;
 };
 
-export type About_EsBio = {
-  __typename?: 'About_esBio';
+export type AboutBio = {
+  __typename?: 'AboutBio';
   title?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
   paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
-export type About_EsAwardsItems = {
-  __typename?: 'About_esAwardsItems';
+export type AboutAwardsItems = {
+  __typename?: 'AboutAwardsItems';
   year: Scalars['String']['output'];
   project: Scalars['String']['output'];
   award: Scalars['String']['output'];
   link?: Maybe<Scalars['String']['output']>;
 };
 
-export type About_EsAwards = {
-  __typename?: 'About_esAwards';
+export type AboutAwards = {
+  __typename?: 'AboutAwards';
   title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<About_EsAwardsItems>>>;
+  items?: Maybe<Array<Maybe<AboutAwardsItems>>>;
 };
 
-export type About_EsMission = {
-  __typename?: 'About_esMission';
-  title?: Maybe<Scalars['String']['output']>;
-  p1: Scalars['String']['output'];
-  p2: Scalars['String']['output'];
-  quote?: Maybe<Scalars['String']['output']>;
-};
-
-export type About_Es = Node & Document & {
-  __typename?: 'About_es';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  heroImage?: Maybe<Scalars['String']['output']>;
-  hero?: Maybe<About_EsHero>;
-  behindName?: Maybe<About_EsBehindName>;
-  bannerImage?: Maybe<Scalars['String']['output']>;
-  bio?: Maybe<About_EsBio>;
-  awards?: Maybe<About_EsAwards>;
-  mission?: Maybe<About_EsMission>;
-  missionImage?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type About_EsHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type About_EsBehindNameFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  footnote?: InputMaybe<StringFilter>;
-};
-
-export type About_EsBioFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
-};
-
-export type About_EsAwardsItemsFilter = {
-  year?: InputMaybe<StringFilter>;
-  project?: InputMaybe<StringFilter>;
-  award?: InputMaybe<StringFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type About_EsAwardsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<About_EsAwardsItemsFilter>;
-};
-
-export type About_EsMissionFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-};
-
-export type About_EsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  heroImage?: InputMaybe<ImageFilter>;
-  hero?: InputMaybe<About_EsHeroFilter>;
-  behindName?: InputMaybe<About_EsBehindNameFilter>;
-  bannerImage?: InputMaybe<ImageFilter>;
-  bio?: InputMaybe<About_EsBioFilter>;
-  awards?: InputMaybe<About_EsAwardsFilter>;
-  mission?: InputMaybe<About_EsMissionFilter>;
-  missionImage?: InputMaybe<ImageFilter>;
-};
-
-export type About_EsConnectionEdges = {
-  __typename?: 'About_esConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<About_Es>;
-};
-
-export type About_EsConnection = Connection & {
-  __typename?: 'About_esConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<About_EsConnectionEdges>>>;
-};
-
-export type About_CaHero = {
-  __typename?: 'About_caHero';
-  title: Scalars['String']['output'];
-};
-
-export type About_CaBehindName = {
-  __typename?: 'About_caBehindName';
-  title?: Maybe<Scalars['String']['output']>;
-  p1: Scalars['String']['output'];
-  p2: Scalars['String']['output'];
-  footnote?: Maybe<Scalars['String']['output']>;
-};
-
-export type About_CaBio = {
-  __typename?: 'About_caBio';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type About_CaAwardsItems = {
-  __typename?: 'About_caAwardsItems';
-  year: Scalars['String']['output'];
-  project: Scalars['String']['output'];
-  award: Scalars['String']['output'];
-  link?: Maybe<Scalars['String']['output']>;
-};
-
-export type About_CaAwards = {
-  __typename?: 'About_caAwards';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<About_CaAwardsItems>>>;
-};
-
-export type About_CaMission = {
-  __typename?: 'About_caMission';
+export type AboutMission = {
+  __typename?: 'AboutMission';
   title?: Maybe<Scalars['String']['output']>;
   p1: Scalars['String']['output'];
   p2: Scalars['String']['output'];
   quote?: Maybe<Scalars['String']['output']>;
 };
 
-export type About_Ca = Node & Document & {
-  __typename?: 'About_ca';
+export type About = Node & Document & {
+  __typename?: 'About';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   heroImage?: Maybe<Scalars['String']['output']>;
-  hero?: Maybe<About_CaHero>;
-  behindName?: Maybe<About_CaBehindName>;
+  hero?: Maybe<AboutHero>;
+  behindName?: Maybe<AboutBehindName>;
   bannerImage?: Maybe<Scalars['String']['output']>;
-  bio?: Maybe<About_CaBio>;
-  awards?: Maybe<About_CaAwards>;
-  mission?: Maybe<About_CaMission>;
+  bio?: Maybe<AboutBio>;
+  awards?: Maybe<AboutAwards>;
+  mission?: Maybe<AboutMission>;
   missionImage?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type About_CaHeroFilter = {
+export type AboutHeroFilter = {
   title?: InputMaybe<StringFilter>;
 };
 
-export type About_CaBehindNameFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  footnote?: InputMaybe<StringFilter>;
-};
-
-export type About_CaBioFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
-};
-
-export type About_CaAwardsItemsFilter = {
-  year?: InputMaybe<StringFilter>;
-  project?: InputMaybe<StringFilter>;
-  award?: InputMaybe<StringFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type About_CaAwardsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<About_CaAwardsItemsFilter>;
-};
-
-export type About_CaMissionFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-};
-
-export type About_CaFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  heroImage?: InputMaybe<ImageFilter>;
-  hero?: InputMaybe<About_CaHeroFilter>;
-  behindName?: InputMaybe<About_CaBehindNameFilter>;
-  bannerImage?: InputMaybe<ImageFilter>;
-  bio?: InputMaybe<About_CaBioFilter>;
-  awards?: InputMaybe<About_CaAwardsFilter>;
-  mission?: InputMaybe<About_CaMissionFilter>;
-  missionImage?: InputMaybe<ImageFilter>;
-};
-
-export type About_CaConnectionEdges = {
-  __typename?: 'About_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<About_Ca>;
-};
-
-export type About_CaConnection = Connection & {
-  __typename?: 'About_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<About_CaConnectionEdges>>>;
-};
-
-export type About_EnHero = {
-  __typename?: 'About_enHero';
-  title: Scalars['String']['output'];
-};
-
-export type About_EnBehindName = {
-  __typename?: 'About_enBehindName';
-  title?: Maybe<Scalars['String']['output']>;
-  p1: Scalars['String']['output'];
-  p2: Scalars['String']['output'];
-  footnote?: Maybe<Scalars['String']['output']>;
-};
-
-export type About_EnBio = {
-  __typename?: 'About_enBio';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type About_EnAwardsItems = {
-  __typename?: 'About_enAwardsItems';
-  year: Scalars['String']['output'];
-  project: Scalars['String']['output'];
-  award: Scalars['String']['output'];
-  link?: Maybe<Scalars['String']['output']>;
-};
-
-export type About_EnAwards = {
-  __typename?: 'About_enAwards';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<About_EnAwardsItems>>>;
-};
-
-export type About_EnMission = {
-  __typename?: 'About_enMission';
-  title?: Maybe<Scalars['String']['output']>;
-  p1: Scalars['String']['output'];
-  p2: Scalars['String']['output'];
-  quote?: Maybe<Scalars['String']['output']>;
-};
-
-export type About_En = Node & Document & {
-  __typename?: 'About_en';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  heroImage?: Maybe<Scalars['String']['output']>;
-  hero?: Maybe<About_EnHero>;
-  behindName?: Maybe<About_EnBehindName>;
-  bannerImage?: Maybe<Scalars['String']['output']>;
-  bio?: Maybe<About_EnBio>;
-  awards?: Maybe<About_EnAwards>;
-  mission?: Maybe<About_EnMission>;
-  missionImage?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type About_EnHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type About_EnBehindNameFilter = {
+export type AboutBehindNameFilter = {
   title?: InputMaybe<StringFilter>;
   p1?: InputMaybe<StringFilter>;
   p2?: InputMaybe<StringFilter>;
   footnote?: InputMaybe<StringFilter>;
 };
 
-export type About_EnBioFilter = {
+export type AboutBioFilter = {
   title?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
   paragraphs?: InputMaybe<StringFilter>;
 };
 
-export type About_EnAwardsItemsFilter = {
+export type AboutAwardsItemsFilter = {
   year?: InputMaybe<StringFilter>;
   project?: InputMaybe<StringFilter>;
   award?: InputMaybe<StringFilter>;
   link?: InputMaybe<StringFilter>;
 };
 
-export type About_EnAwardsFilter = {
+export type AboutAwardsFilter = {
   title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<About_EnAwardsItemsFilter>;
+  items?: InputMaybe<AboutAwardsItemsFilter>;
 };
 
-export type About_EnMissionFilter = {
+export type AboutMissionFilter = {
   title?: InputMaybe<StringFilter>;
   p1?: InputMaybe<StringFilter>;
   p2?: InputMaybe<StringFilter>;
   quote?: InputMaybe<StringFilter>;
 };
 
-export type About_EnFilter = {
+export type AboutFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   heroImage?: InputMaybe<ImageFilter>;
-  hero?: InputMaybe<About_EnHeroFilter>;
-  behindName?: InputMaybe<About_EnBehindNameFilter>;
+  hero?: InputMaybe<AboutHeroFilter>;
+  behindName?: InputMaybe<AboutBehindNameFilter>;
   bannerImage?: InputMaybe<ImageFilter>;
-  bio?: InputMaybe<About_EnBioFilter>;
-  awards?: InputMaybe<About_EnAwardsFilter>;
-  mission?: InputMaybe<About_EnMissionFilter>;
+  bio?: InputMaybe<AboutBioFilter>;
+  awards?: InputMaybe<AboutAwardsFilter>;
+  mission?: InputMaybe<AboutMissionFilter>;
   missionImage?: InputMaybe<ImageFilter>;
 };
 
-export type About_EnConnectionEdges = {
-  __typename?: 'About_enConnectionEdges';
+export type AboutConnectionEdges = {
+  __typename?: 'AboutConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<About_En>;
+  node?: Maybe<About>;
 };
 
-export type About_EnConnection = Connection & {
-  __typename?: 'About_enConnection';
+export type AboutConnection = Connection & {
+  __typename?: 'AboutConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<About_EnConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<AboutConnectionEdges>>>;
 };
 
-export type Services_EsHero = {
-  __typename?: 'Services_esHero';
+export type ServicesHero = {
+  __typename?: 'ServicesHero';
   title: Scalars['String']['output'];
 };
 
-export type Services_EsIntro = {
-  __typename?: 'Services_esIntro';
+export type ServicesIntro = {
+  __typename?: 'ServicesIntro';
   text: Scalars['String']['output'];
   image?: Maybe<Scalars['String']['output']>;
 };
 
-export type Services_EsServiceGroupsItems = {
-  __typename?: 'Services_esServiceGroupsItems';
+export type ServicesServiceGroupsItems = {
+  __typename?: 'ServicesServiceGroupsItems';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
 };
 
-export type Services_EsServiceGroups = {
-  __typename?: 'Services_esServiceGroups';
+export type ServicesServiceGroups = {
+  __typename?: 'ServicesServiceGroups';
   title: Scalars['String']['output'];
-  items?: Maybe<Array<Maybe<Services_EsServiceGroupsItems>>>;
+  items?: Maybe<Array<Maybe<ServicesServiceGroupsItems>>>;
 };
 
-export type Services_EsFaqItems = {
-  __typename?: 'Services_esFaqItems';
+export type ServicesFaqItems = {
+  __typename?: 'ServicesFaqItems';
   question: Scalars['String']['output'];
   answer: Scalars['String']['output'];
 };
 
-export type Services_EsFaq = {
-  __typename?: 'Services_esFaq';
+export type ServicesFaq = {
+  __typename?: 'ServicesFaq';
   title?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<Services_EsFaqItems>>>;
+  items?: Maybe<Array<Maybe<ServicesFaqItems>>>;
 };
 
-export type Services_EsWorkProcess = {
-  __typename?: 'Services_esWorkProcess';
+export type ServicesWorkProcess = {
+  __typename?: 'ServicesWorkProcess';
   title?: Maybe<Scalars['String']['output']>;
   p1: Scalars['String']['output'];
   p2: Scalars['String']['output'];
   image?: Maybe<Scalars['String']['output']>;
 };
 
-export type Services_Es = Node & Document & {
-  __typename?: 'Services_es';
+export type Services = Node & Document & {
+  __typename?: 'Services';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
-  hero?: Maybe<Services_EsHero>;
-  intro?: Maybe<Services_EsIntro>;
-  serviceGroups?: Maybe<Array<Maybe<Services_EsServiceGroups>>>;
-  faq?: Maybe<Services_EsFaq>;
-  workProcess?: Maybe<Services_EsWorkProcess>;
+  hero?: Maybe<ServicesHero>;
+  intro?: Maybe<ServicesIntro>;
+  serviceGroups?: Maybe<Array<Maybe<ServicesServiceGroups>>>;
+  faq?: Maybe<ServicesFaq>;
+  workProcess?: Maybe<ServicesWorkProcess>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type Services_EsHeroFilter = {
+export type ServicesHeroFilter = {
   title?: InputMaybe<StringFilter>;
 };
 
-export type Services_EsIntroFilter = {
+export type ServicesIntroFilter = {
   text?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
 };
 
-export type Services_EsServiceGroupsItemsFilter = {
+export type ServicesServiceGroupsItemsFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
 };
 
-export type Services_EsServiceGroupsFilter = {
+export type ServicesServiceGroupsFilter = {
   title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<Services_EsServiceGroupsItemsFilter>;
+  items?: InputMaybe<ServicesServiceGroupsItemsFilter>;
 };
 
-export type Services_EsFaqItemsFilter = {
+export type ServicesFaqItemsFilter = {
   question?: InputMaybe<StringFilter>;
   answer?: InputMaybe<StringFilter>;
 };
 
-export type Services_EsFaqFilter = {
+export type ServicesFaqFilter = {
   title?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<Services_EsFaqItemsFilter>;
+  items?: InputMaybe<ServicesFaqItemsFilter>;
 };
 
-export type Services_EsWorkProcessFilter = {
+export type ServicesWorkProcessFilter = {
   title?: InputMaybe<StringFilter>;
   p1?: InputMaybe<StringFilter>;
   p2?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
 };
 
-export type Services_EsFilter = {
+export type ServicesFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  hero?: InputMaybe<Services_EsHeroFilter>;
-  intro?: InputMaybe<Services_EsIntroFilter>;
-  serviceGroups?: InputMaybe<Services_EsServiceGroupsFilter>;
-  faq?: InputMaybe<Services_EsFaqFilter>;
-  workProcess?: InputMaybe<Services_EsWorkProcessFilter>;
+  hero?: InputMaybe<ServicesHeroFilter>;
+  intro?: InputMaybe<ServicesIntroFilter>;
+  serviceGroups?: InputMaybe<ServicesServiceGroupsFilter>;
+  faq?: InputMaybe<ServicesFaqFilter>;
+  workProcess?: InputMaybe<ServicesWorkProcessFilter>;
 };
 
-export type Services_EsConnectionEdges = {
-  __typename?: 'Services_esConnectionEdges';
+export type ServicesConnectionEdges = {
+  __typename?: 'ServicesConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Services_Es>;
+  node?: Maybe<Services>;
 };
 
-export type Services_EsConnection = Connection & {
-  __typename?: 'Services_esConnection';
+export type ServicesConnection = Connection & {
+  __typename?: 'ServicesConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Services_EsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<ServicesConnectionEdges>>>;
 };
 
-export type Services_CaHero = {
-  __typename?: 'Services_caHero';
-  title: Scalars['String']['output'];
-};
-
-export type Services_CaIntro = {
-  __typename?: 'Services_caIntro';
-  text: Scalars['String']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type Services_CaServiceGroupsItems = {
-  __typename?: 'Services_caServiceGroupsItems';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-};
-
-export type Services_CaServiceGroups = {
-  __typename?: 'Services_caServiceGroups';
-  title: Scalars['String']['output'];
-  items?: Maybe<Array<Maybe<Services_CaServiceGroupsItems>>>;
-};
-
-export type Services_CaFaqItems = {
-  __typename?: 'Services_caFaqItems';
-  question: Scalars['String']['output'];
-  answer: Scalars['String']['output'];
-};
-
-export type Services_CaFaq = {
-  __typename?: 'Services_caFaq';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<Services_CaFaqItems>>>;
-};
-
-export type Services_CaWorkProcess = {
-  __typename?: 'Services_caWorkProcess';
-  title?: Maybe<Scalars['String']['output']>;
-  p1: Scalars['String']['output'];
-  p2: Scalars['String']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type Services_Ca = Node & Document & {
-  __typename?: 'Services_ca';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  hero?: Maybe<Services_CaHero>;
-  intro?: Maybe<Services_CaIntro>;
-  serviceGroups?: Maybe<Array<Maybe<Services_CaServiceGroups>>>;
-  faq?: Maybe<Services_CaFaq>;
-  workProcess?: Maybe<Services_CaWorkProcess>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Services_CaHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type Services_CaIntroFilter = {
-  text?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type Services_CaServiceGroupsItemsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-};
-
-export type Services_CaServiceGroupsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<Services_CaServiceGroupsItemsFilter>;
-};
-
-export type Services_CaFaqItemsFilter = {
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<StringFilter>;
-};
-
-export type Services_CaFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<Services_CaFaqItemsFilter>;
-};
-
-export type Services_CaWorkProcessFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type Services_CaFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  hero?: InputMaybe<Services_CaHeroFilter>;
-  intro?: InputMaybe<Services_CaIntroFilter>;
-  serviceGroups?: InputMaybe<Services_CaServiceGroupsFilter>;
-  faq?: InputMaybe<Services_CaFaqFilter>;
-  workProcess?: InputMaybe<Services_CaWorkProcessFilter>;
-};
-
-export type Services_CaConnectionEdges = {
-  __typename?: 'Services_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Services_Ca>;
-};
-
-export type Services_CaConnection = Connection & {
-  __typename?: 'Services_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Services_CaConnectionEdges>>>;
-};
-
-export type Services_EnHero = {
-  __typename?: 'Services_enHero';
-  title: Scalars['String']['output'];
-};
-
-export type Services_EnIntro = {
-  __typename?: 'Services_enIntro';
-  text: Scalars['String']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type Services_EnServiceGroupsItems = {
-  __typename?: 'Services_enServiceGroupsItems';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-};
-
-export type Services_EnServiceGroups = {
-  __typename?: 'Services_enServiceGroups';
-  title: Scalars['String']['output'];
-  items?: Maybe<Array<Maybe<Services_EnServiceGroupsItems>>>;
-};
-
-export type Services_EnFaqItems = {
-  __typename?: 'Services_enFaqItems';
-  question: Scalars['String']['output'];
-  answer: Scalars['String']['output'];
-};
-
-export type Services_EnFaq = {
-  __typename?: 'Services_enFaq';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<Services_EnFaqItems>>>;
-};
-
-export type Services_EnWorkProcess = {
-  __typename?: 'Services_enWorkProcess';
-  title?: Maybe<Scalars['String']['output']>;
-  p1: Scalars['String']['output'];
-  p2: Scalars['String']['output'];
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type Services_En = Node & Document & {
-  __typename?: 'Services_en';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  hero?: Maybe<Services_EnHero>;
-  intro?: Maybe<Services_EnIntro>;
-  serviceGroups?: Maybe<Array<Maybe<Services_EnServiceGroups>>>;
-  faq?: Maybe<Services_EnFaq>;
-  workProcess?: Maybe<Services_EnWorkProcess>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Services_EnHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type Services_EnIntroFilter = {
-  text?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type Services_EnServiceGroupsItemsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-};
-
-export type Services_EnServiceGroupsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<Services_EnServiceGroupsItemsFilter>;
-};
-
-export type Services_EnFaqItemsFilter = {
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<StringFilter>;
-};
-
-export type Services_EnFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<Services_EnFaqItemsFilter>;
-};
-
-export type Services_EnWorkProcessFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type Services_EnFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  hero?: InputMaybe<Services_EnHeroFilter>;
-  intro?: InputMaybe<Services_EnIntroFilter>;
-  serviceGroups?: InputMaybe<Services_EnServiceGroupsFilter>;
-  faq?: InputMaybe<Services_EnFaqFilter>;
-  workProcess?: InputMaybe<Services_EnWorkProcessFilter>;
-};
-
-export type Services_EnConnectionEdges = {
-  __typename?: 'Services_enConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Services_En>;
-};
-
-export type Services_EnConnection = Connection & {
-  __typename?: 'Services_enConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Services_EnConnectionEdges>>>;
-};
-
-export type Contact_Es = Node & Document & {
-  __typename?: 'Contact_es';
+export type Contact = Node & Document & {
+  __typename?: 'Contact';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   heading: Scalars['String']['output'];
@@ -1677,90 +781,28 @@ export type Contact_Es = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type Contact_EsFilter = {
+export type ContactFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
   subheading?: InputMaybe<StringFilter>;
 };
 
-export type Contact_EsConnectionEdges = {
-  __typename?: 'Contact_esConnectionEdges';
+export type ContactConnectionEdges = {
+  __typename?: 'ContactConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Contact_Es>;
+  node?: Maybe<Contact>;
 };
 
-export type Contact_EsConnection = Connection & {
-  __typename?: 'Contact_esConnection';
+export type ContactConnection = Connection & {
+  __typename?: 'ContactConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Contact_EsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<ContactConnectionEdges>>>;
 };
 
-export type Contact_Ca = Node & Document & {
-  __typename?: 'Contact_ca';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  heading: Scalars['String']['output'];
-  subheading: Scalars['String']['output'];
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Contact_CaFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  heading?: InputMaybe<StringFilter>;
-  subheading?: InputMaybe<StringFilter>;
-};
-
-export type Contact_CaConnectionEdges = {
-  __typename?: 'Contact_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Contact_Ca>;
-};
-
-export type Contact_CaConnection = Connection & {
-  __typename?: 'Contact_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Contact_CaConnectionEdges>>>;
-};
-
-export type Contact_En = Node & Document & {
-  __typename?: 'Contact_en';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  heading: Scalars['String']['output'];
-  subheading: Scalars['String']['output'];
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Contact_EnFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  heading?: InputMaybe<StringFilter>;
-  subheading?: InputMaybe<StringFilter>;
-};
-
-export type Contact_EnConnectionEdges = {
-  __typename?: 'Contact_enConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Contact_En>;
-};
-
-export type Contact_EnConnection = Connection & {
-  __typename?: 'Contact_enConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Contact_EnConnectionEdges>>>;
-};
-
-export type Legal_Es = Node & Document & {
-  __typename?: 'Legal_es';
+export type Legal = Node & Document & {
+  __typename?: 'Legal';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   lastUpdated?: Maybe<Scalars['String']['output']>;
@@ -1784,96 +826,34 @@ export type RichTextFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type Legal_EsFilter = {
+export type LegalFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   lastUpdated?: InputMaybe<DatetimeFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
-export type Legal_EsConnectionEdges = {
-  __typename?: 'Legal_esConnectionEdges';
+export type LegalConnectionEdges = {
+  __typename?: 'LegalConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Legal_Es>;
+  node?: Maybe<Legal>;
 };
 
-export type Legal_EsConnection = Connection & {
-  __typename?: 'Legal_esConnection';
+export type LegalConnection = Connection & {
+  __typename?: 'LegalConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Legal_EsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<LegalConnectionEdges>>>;
 };
 
-export type Legal_Ca = Node & Document & {
-  __typename?: 'Legal_ca';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  lastUpdated?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Legal_CaFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  lastUpdated?: InputMaybe<DatetimeFilter>;
-  body?: InputMaybe<RichTextFilter>;
-};
-
-export type Legal_CaConnectionEdges = {
-  __typename?: 'Legal_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Legal_Ca>;
-};
-
-export type Legal_CaConnection = Connection & {
-  __typename?: 'Legal_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Legal_CaConnectionEdges>>>;
-};
-
-export type Legal_En = Node & Document & {
-  __typename?: 'Legal_en';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  lastUpdated?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Legal_EnFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  lastUpdated?: InputMaybe<DatetimeFilter>;
-  body?: InputMaybe<RichTextFilter>;
-};
-
-export type Legal_EnConnectionEdges = {
-  __typename?: 'Legal_enConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Legal_En>;
-};
-
-export type Legal_EnConnection = Connection & {
-  __typename?: 'Legal_enConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Legal_EnConnectionEdges>>>;
-};
-
-export type Projects_EsBanner = {
-  __typename?: 'Projects_esBanner';
+export type ProjectsBanner = {
+  __typename?: 'ProjectsBanner';
   image: Scalars['String']['output'];
   alt: Scalars['String']['output'];
 };
 
-export type Projects_EsDetails = {
-  __typename?: 'Projects_esDetails';
+export type ProjectsDetails = {
+  __typename?: 'ProjectsDetails';
   title: Scalars['String']['output'];
   subtitle: Scalars['String']['output'];
   image: Scalars['String']['output'];
@@ -1887,90 +867,90 @@ export type Projects_EsDetails = {
   locationLabel: Scalars['String']['output'];
 };
 
-export type Projects_EsBriefGalleryImages = {
-  __typename?: 'Projects_esBriefGalleryImages';
+export type ProjectsBriefGalleryImages = {
+  __typename?: 'ProjectsBriefGalleryImages';
   src: Scalars['String']['output'];
   alt: Scalars['String']['output'];
 };
 
-export type Projects_EsBriefGallery = {
-  __typename?: 'Projects_esBriefGallery';
+export type ProjectsBriefGallery = {
+  __typename?: 'ProjectsBriefGallery';
   cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_EsBriefGalleryImages>>>;
+  images?: Maybe<Array<Maybe<ProjectsBriefGalleryImages>>>;
 };
 
-export type Projects_EsBrief = {
-  __typename?: 'Projects_esBrief';
+export type ProjectsBrief = {
+  __typename?: 'ProjectsBrief';
   title: Scalars['String']['output'];
   text: Scalars['String']['output'];
-  gallery?: Maybe<Projects_EsBriefGallery>;
+  gallery?: Maybe<ProjectsBriefGallery>;
 };
 
-export type Projects_EsConceptGalleryImages = {
-  __typename?: 'Projects_esConceptGalleryImages';
+export type ProjectsConceptGalleryImages = {
+  __typename?: 'ProjectsConceptGalleryImages';
   src: Scalars['String']['output'];
   alt: Scalars['String']['output'];
 };
 
-export type Projects_EsConceptGallery = {
-  __typename?: 'Projects_esConceptGallery';
+export type ProjectsConceptGallery = {
+  __typename?: 'ProjectsConceptGallery';
   cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_EsConceptGalleryImages>>>;
+  images?: Maybe<Array<Maybe<ProjectsConceptGalleryImages>>>;
 };
 
-export type Projects_EsConcept = {
-  __typename?: 'Projects_esConcept';
+export type ProjectsConcept = {
+  __typename?: 'ProjectsConcept';
   title: Scalars['String']['output'];
   text: Scalars['String']['output'];
-  gallery?: Maybe<Projects_EsConceptGallery>;
+  gallery?: Maybe<ProjectsConceptGallery>;
 };
 
-export type Projects_EsStrategyCarousel = {
-  __typename?: 'Projects_esStrategyCarousel';
+export type ProjectsStrategyCarousel = {
+  __typename?: 'ProjectsStrategyCarousel';
   src: Scalars['String']['output'];
   alt: Scalars['String']['output'];
 };
 
-export type Projects_EsStrategyGalleryImages = {
-  __typename?: 'Projects_esStrategyGalleryImages';
+export type ProjectsStrategyGalleryImages = {
+  __typename?: 'ProjectsStrategyGalleryImages';
   src: Scalars['String']['output'];
   alt: Scalars['String']['output'];
 };
 
-export type Projects_EsStrategyGallery = {
-  __typename?: 'Projects_esStrategyGallery';
+export type ProjectsStrategyGallery = {
+  __typename?: 'ProjectsStrategyGallery';
   cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_EsStrategyGalleryImages>>>;
+  images?: Maybe<Array<Maybe<ProjectsStrategyGalleryImages>>>;
 };
 
-export type Projects_EsStrategy = {
-  __typename?: 'Projects_esStrategy';
+export type ProjectsStrategy = {
+  __typename?: 'ProjectsStrategy';
   title: Scalars['String']['output'];
   text: Scalars['String']['output'];
-  carousel?: Maybe<Array<Maybe<Projects_EsStrategyCarousel>>>;
-  gallery?: Maybe<Projects_EsStrategyGallery>;
+  carousel?: Maybe<Array<Maybe<ProjectsStrategyCarousel>>>;
+  gallery?: Maybe<ProjectsStrategyGallery>;
 };
 
-export type Projects_EsCollaboratorsList = {
-  __typename?: 'Projects_esCollaboratorsList';
+export type ProjectsCollaboratorsList = {
+  __typename?: 'ProjectsCollaboratorsList';
   name: Scalars['String']['output'];
   role: Scalars['String']['output'];
 };
 
-export type Projects_EsCollaborators = {
-  __typename?: 'Projects_esCollaborators';
+export type ProjectsCollaborators = {
+  __typename?: 'ProjectsCollaborators';
   title: Scalars['String']['output'];
-  list?: Maybe<Array<Maybe<Projects_EsCollaboratorsList>>>;
+  list?: Maybe<Array<Maybe<ProjectsCollaboratorsList>>>;
 };
 
-export type Projects_EsFinalImage = {
-  __typename?: 'Projects_esFinalImage';
+export type ProjectsFinalImage = {
+  __typename?: 'ProjectsFinalImage';
   src: Scalars['String']['output'];
   alt: Scalars['String']['output'];
 };
 
-export type Projects_Es = Node & Document & {
-  __typename?: 'Projects_es';
+export type Projects = Node & Document & {
+  __typename?: 'Projects';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
   slug: Scalars['String']['output'];
@@ -1980,13 +960,13 @@ export type Projects_Es = Node & Document & {
   showTags?: Maybe<Scalars['Boolean']['output']>;
   featured?: Maybe<Scalars['Boolean']['output']>;
   draft?: Maybe<Scalars['Boolean']['output']>;
-  banner?: Maybe<Projects_EsBanner>;
-  details?: Maybe<Projects_EsDetails>;
-  brief?: Maybe<Projects_EsBrief>;
-  concept?: Maybe<Projects_EsConcept>;
-  strategy?: Maybe<Projects_EsStrategy>;
-  collaborators?: Maybe<Projects_EsCollaborators>;
-  finalImage?: Maybe<Projects_EsFinalImage>;
+  banner?: Maybe<ProjectsBanner>;
+  details?: Maybe<ProjectsDetails>;
+  brief?: Maybe<ProjectsBrief>;
+  concept?: Maybe<ProjectsConcept>;
+  strategy?: Maybe<ProjectsStrategy>;
+  collaborators?: Maybe<ProjectsCollaborators>;
+  finalImage?: Maybe<ProjectsFinalImage>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -1997,12 +977,12 @@ export type BooleanFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type Projects_EsBannerFilter = {
+export type ProjectsBannerFilter = {
   image?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsDetailsFilter = {
+export type ProjectsDetailsFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
@@ -2026,76 +1006,76 @@ export type NumberFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
 
-export type Projects_EsBriefGalleryImagesFilter = {
+export type ProjectsBriefGalleryImagesFilter = {
   src?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsBriefGalleryFilter = {
+export type ProjectsBriefGalleryFilter = {
   cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_EsBriefGalleryImagesFilter>;
+  images?: InputMaybe<ProjectsBriefGalleryImagesFilter>;
 };
 
-export type Projects_EsBriefFilter = {
+export type ProjectsBriefFilter = {
   title?: InputMaybe<StringFilter>;
   text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<Projects_EsBriefGalleryFilter>;
+  gallery?: InputMaybe<ProjectsBriefGalleryFilter>;
 };
 
-export type Projects_EsConceptGalleryImagesFilter = {
+export type ProjectsConceptGalleryImagesFilter = {
   src?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsConceptGalleryFilter = {
+export type ProjectsConceptGalleryFilter = {
   cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_EsConceptGalleryImagesFilter>;
+  images?: InputMaybe<ProjectsConceptGalleryImagesFilter>;
 };
 
-export type Projects_EsConceptFilter = {
+export type ProjectsConceptFilter = {
   title?: InputMaybe<StringFilter>;
   text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<Projects_EsConceptGalleryFilter>;
+  gallery?: InputMaybe<ProjectsConceptGalleryFilter>;
 };
 
-export type Projects_EsStrategyCarouselFilter = {
+export type ProjectsStrategyCarouselFilter = {
   src?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsStrategyGalleryImagesFilter = {
+export type ProjectsStrategyGalleryImagesFilter = {
   src?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsStrategyGalleryFilter = {
+export type ProjectsStrategyGalleryFilter = {
   cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_EsStrategyGalleryImagesFilter>;
+  images?: InputMaybe<ProjectsStrategyGalleryImagesFilter>;
 };
 
-export type Projects_EsStrategyFilter = {
+export type ProjectsStrategyFilter = {
   title?: InputMaybe<StringFilter>;
   text?: InputMaybe<StringFilter>;
-  carousel?: InputMaybe<Projects_EsStrategyCarouselFilter>;
-  gallery?: InputMaybe<Projects_EsStrategyGalleryFilter>;
+  carousel?: InputMaybe<ProjectsStrategyCarouselFilter>;
+  gallery?: InputMaybe<ProjectsStrategyGalleryFilter>;
 };
 
-export type Projects_EsCollaboratorsListFilter = {
+export type ProjectsCollaboratorsListFilter = {
   name?: InputMaybe<StringFilter>;
   role?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsCollaboratorsFilter = {
+export type ProjectsCollaboratorsFilter = {
   title?: InputMaybe<StringFilter>;
-  list?: InputMaybe<Projects_EsCollaboratorsListFilter>;
+  list?: InputMaybe<ProjectsCollaboratorsListFilter>;
 };
 
-export type Projects_EsFinalImageFilter = {
+export type ProjectsFinalImageFilter = {
   src?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type Projects_EsFilter = {
+export type ProjectsFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   slug?: InputMaybe<StringFilter>;
@@ -2105,522 +1085,30 @@ export type Projects_EsFilter = {
   showTags?: InputMaybe<BooleanFilter>;
   featured?: InputMaybe<BooleanFilter>;
   draft?: InputMaybe<BooleanFilter>;
-  banner?: InputMaybe<Projects_EsBannerFilter>;
-  details?: InputMaybe<Projects_EsDetailsFilter>;
-  brief?: InputMaybe<Projects_EsBriefFilter>;
-  concept?: InputMaybe<Projects_EsConceptFilter>;
-  strategy?: InputMaybe<Projects_EsStrategyFilter>;
-  collaborators?: InputMaybe<Projects_EsCollaboratorsFilter>;
-  finalImage?: InputMaybe<Projects_EsFinalImageFilter>;
+  banner?: InputMaybe<ProjectsBannerFilter>;
+  details?: InputMaybe<ProjectsDetailsFilter>;
+  brief?: InputMaybe<ProjectsBriefFilter>;
+  concept?: InputMaybe<ProjectsConceptFilter>;
+  strategy?: InputMaybe<ProjectsStrategyFilter>;
+  collaborators?: InputMaybe<ProjectsCollaboratorsFilter>;
+  finalImage?: InputMaybe<ProjectsFinalImageFilter>;
 };
 
-export type Projects_EsConnectionEdges = {
-  __typename?: 'Projects_esConnectionEdges';
+export type ProjectsConnectionEdges = {
+  __typename?: 'ProjectsConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Projects_Es>;
+  node?: Maybe<Projects>;
 };
 
-export type Projects_EsConnection = Connection & {
-  __typename?: 'Projects_esConnection';
+export type ProjectsConnection = Connection & {
+  __typename?: 'ProjectsConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Projects_EsConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<ProjectsConnectionEdges>>>;
 };
 
-export type Projects_CaBanner = {
-  __typename?: 'Projects_caBanner';
-  image: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_CaDetails = {
-  __typename?: 'Projects_caDetails';
-  title: Scalars['String']['output'];
-  subtitle: Scalars['String']['output'];
-  image: Scalars['String']['output'];
-  services: Scalars['String']['output'];
-  servicesLabel: Scalars['String']['output'];
-  category: Scalars['String']['output'];
-  categoryLabel: Scalars['String']['output'];
-  area: Scalars['String']['output'];
-  areaLabel: Scalars['String']['output'];
-  location: Scalars['String']['output'];
-  locationLabel: Scalars['String']['output'];
-};
-
-export type Projects_CaBriefGalleryImages = {
-  __typename?: 'Projects_caBriefGalleryImages';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_CaBriefGallery = {
-  __typename?: 'Projects_caBriefGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_CaBriefGalleryImages>>>;
-};
-
-export type Projects_CaBrief = {
-  __typename?: 'Projects_caBrief';
-  title: Scalars['String']['output'];
-  text: Scalars['String']['output'];
-  gallery?: Maybe<Projects_CaBriefGallery>;
-};
-
-export type Projects_CaConceptGalleryImages = {
-  __typename?: 'Projects_caConceptGalleryImages';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_CaConceptGallery = {
-  __typename?: 'Projects_caConceptGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_CaConceptGalleryImages>>>;
-};
-
-export type Projects_CaConcept = {
-  __typename?: 'Projects_caConcept';
-  title: Scalars['String']['output'];
-  text: Scalars['String']['output'];
-  gallery?: Maybe<Projects_CaConceptGallery>;
-};
-
-export type Projects_CaStrategyCarousel = {
-  __typename?: 'Projects_caStrategyCarousel';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_CaStrategyGalleryImages = {
-  __typename?: 'Projects_caStrategyGalleryImages';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_CaStrategyGallery = {
-  __typename?: 'Projects_caStrategyGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_CaStrategyGalleryImages>>>;
-};
-
-export type Projects_CaStrategy = {
-  __typename?: 'Projects_caStrategy';
-  title: Scalars['String']['output'];
-  text: Scalars['String']['output'];
-  carousel?: Maybe<Array<Maybe<Projects_CaStrategyCarousel>>>;
-  gallery?: Maybe<Projects_CaStrategyGallery>;
-};
-
-export type Projects_CaCollaboratorsList = {
-  __typename?: 'Projects_caCollaboratorsList';
-  name: Scalars['String']['output'];
-  role: Scalars['String']['output'];
-};
-
-export type Projects_CaCollaborators = {
-  __typename?: 'Projects_caCollaborators';
-  title: Scalars['String']['output'];
-  list?: Maybe<Array<Maybe<Projects_CaCollaboratorsList>>>;
-};
-
-export type Projects_CaFinalImage = {
-  __typename?: 'Projects_caFinalImage';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_Ca = Node & Document & {
-  __typename?: 'Projects_ca';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  slug: Scalars['String']['output'];
-  publishDate: Scalars['String']['output'];
-  completedDate?: Maybe<Scalars['String']['output']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  showTags?: Maybe<Scalars['Boolean']['output']>;
-  featured?: Maybe<Scalars['Boolean']['output']>;
-  draft?: Maybe<Scalars['Boolean']['output']>;
-  banner?: Maybe<Projects_CaBanner>;
-  details?: Maybe<Projects_CaDetails>;
-  brief?: Maybe<Projects_CaBrief>;
-  concept?: Maybe<Projects_CaConcept>;
-  strategy?: Maybe<Projects_CaStrategy>;
-  collaborators?: Maybe<Projects_CaCollaborators>;
-  finalImage?: Maybe<Projects_CaFinalImage>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Projects_CaBannerFilter = {
-  image?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaDetailsFilter = {
-  title?: InputMaybe<StringFilter>;
-  subtitle?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  services?: InputMaybe<StringFilter>;
-  servicesLabel?: InputMaybe<StringFilter>;
-  category?: InputMaybe<StringFilter>;
-  categoryLabel?: InputMaybe<StringFilter>;
-  area?: InputMaybe<StringFilter>;
-  areaLabel?: InputMaybe<StringFilter>;
-  location?: InputMaybe<StringFilter>;
-  locationLabel?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaBriefGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaBriefGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_CaBriefGalleryImagesFilter>;
-};
-
-export type Projects_CaBriefFilter = {
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<Projects_CaBriefGalleryFilter>;
-};
-
-export type Projects_CaConceptGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaConceptGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_CaConceptGalleryImagesFilter>;
-};
-
-export type Projects_CaConceptFilter = {
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<Projects_CaConceptGalleryFilter>;
-};
-
-export type Projects_CaStrategyCarouselFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaStrategyGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaStrategyGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_CaStrategyGalleryImagesFilter>;
-};
-
-export type Projects_CaStrategyFilter = {
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  carousel?: InputMaybe<Projects_CaStrategyCarouselFilter>;
-  gallery?: InputMaybe<Projects_CaStrategyGalleryFilter>;
-};
-
-export type Projects_CaCollaboratorsListFilter = {
-  name?: InputMaybe<StringFilter>;
-  role?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaCollaboratorsFilter = {
-  title?: InputMaybe<StringFilter>;
-  list?: InputMaybe<Projects_CaCollaboratorsListFilter>;
-};
-
-export type Projects_CaFinalImageFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_CaFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  slug?: InputMaybe<StringFilter>;
-  publishDate?: InputMaybe<DatetimeFilter>;
-  completedDate?: InputMaybe<DatetimeFilter>;
-  tags?: InputMaybe<StringFilter>;
-  showTags?: InputMaybe<BooleanFilter>;
-  featured?: InputMaybe<BooleanFilter>;
-  draft?: InputMaybe<BooleanFilter>;
-  banner?: InputMaybe<Projects_CaBannerFilter>;
-  details?: InputMaybe<Projects_CaDetailsFilter>;
-  brief?: InputMaybe<Projects_CaBriefFilter>;
-  concept?: InputMaybe<Projects_CaConceptFilter>;
-  strategy?: InputMaybe<Projects_CaStrategyFilter>;
-  collaborators?: InputMaybe<Projects_CaCollaboratorsFilter>;
-  finalImage?: InputMaybe<Projects_CaFinalImageFilter>;
-};
-
-export type Projects_CaConnectionEdges = {
-  __typename?: 'Projects_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Projects_Ca>;
-};
-
-export type Projects_CaConnection = Connection & {
-  __typename?: 'Projects_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Projects_CaConnectionEdges>>>;
-};
-
-export type Projects_EnBanner = {
-  __typename?: 'Projects_enBanner';
-  image: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_EnDetails = {
-  __typename?: 'Projects_enDetails';
-  title: Scalars['String']['output'];
-  subtitle: Scalars['String']['output'];
-  image: Scalars['String']['output'];
-  services: Scalars['String']['output'];
-  servicesLabel: Scalars['String']['output'];
-  category: Scalars['String']['output'];
-  categoryLabel: Scalars['String']['output'];
-  area: Scalars['String']['output'];
-  areaLabel: Scalars['String']['output'];
-  location: Scalars['String']['output'];
-  locationLabel: Scalars['String']['output'];
-};
-
-export type Projects_EnBriefGalleryImages = {
-  __typename?: 'Projects_enBriefGalleryImages';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_EnBriefGallery = {
-  __typename?: 'Projects_enBriefGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_EnBriefGalleryImages>>>;
-};
-
-export type Projects_EnBrief = {
-  __typename?: 'Projects_enBrief';
-  title: Scalars['String']['output'];
-  text: Scalars['String']['output'];
-  gallery?: Maybe<Projects_EnBriefGallery>;
-};
-
-export type Projects_EnConceptGalleryImages = {
-  __typename?: 'Projects_enConceptGalleryImages';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_EnConceptGallery = {
-  __typename?: 'Projects_enConceptGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_EnConceptGalleryImages>>>;
-};
-
-export type Projects_EnConcept = {
-  __typename?: 'Projects_enConcept';
-  title: Scalars['String']['output'];
-  text: Scalars['String']['output'];
-  gallery?: Maybe<Projects_EnConceptGallery>;
-};
-
-export type Projects_EnStrategyCarousel = {
-  __typename?: 'Projects_enStrategyCarousel';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_EnStrategyGalleryImages = {
-  __typename?: 'Projects_enStrategyGalleryImages';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_EnStrategyGallery = {
-  __typename?: 'Projects_enStrategyGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<Projects_EnStrategyGalleryImages>>>;
-};
-
-export type Projects_EnStrategy = {
-  __typename?: 'Projects_enStrategy';
-  title: Scalars['String']['output'];
-  text: Scalars['String']['output'];
-  carousel?: Maybe<Array<Maybe<Projects_EnStrategyCarousel>>>;
-  gallery?: Maybe<Projects_EnStrategyGallery>;
-};
-
-export type Projects_EnCollaboratorsList = {
-  __typename?: 'Projects_enCollaboratorsList';
-  name: Scalars['String']['output'];
-  role: Scalars['String']['output'];
-};
-
-export type Projects_EnCollaborators = {
-  __typename?: 'Projects_enCollaborators';
-  title: Scalars['String']['output'];
-  list?: Maybe<Array<Maybe<Projects_EnCollaboratorsList>>>;
-};
-
-export type Projects_EnFinalImage = {
-  __typename?: 'Projects_enFinalImage';
-  src: Scalars['String']['output'];
-  alt: Scalars['String']['output'];
-};
-
-export type Projects_En = Node & Document & {
-  __typename?: 'Projects_en';
-  title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
-  slug: Scalars['String']['output'];
-  publishDate: Scalars['String']['output'];
-  completedDate?: Maybe<Scalars['String']['output']>;
-  tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  showTags?: Maybe<Scalars['Boolean']['output']>;
-  featured?: Maybe<Scalars['Boolean']['output']>;
-  draft?: Maybe<Scalars['Boolean']['output']>;
-  banner?: Maybe<Projects_EnBanner>;
-  details?: Maybe<Projects_EnDetails>;
-  brief?: Maybe<Projects_EnBrief>;
-  concept?: Maybe<Projects_EnConcept>;
-  strategy?: Maybe<Projects_EnStrategy>;
-  collaborators?: Maybe<Projects_EnCollaborators>;
-  finalImage?: Maybe<Projects_EnFinalImage>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Projects_EnBannerFilter = {
-  image?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnDetailsFilter = {
-  title?: InputMaybe<StringFilter>;
-  subtitle?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  services?: InputMaybe<StringFilter>;
-  servicesLabel?: InputMaybe<StringFilter>;
-  category?: InputMaybe<StringFilter>;
-  categoryLabel?: InputMaybe<StringFilter>;
-  area?: InputMaybe<StringFilter>;
-  areaLabel?: InputMaybe<StringFilter>;
-  location?: InputMaybe<StringFilter>;
-  locationLabel?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnBriefGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnBriefGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_EnBriefGalleryImagesFilter>;
-};
-
-export type Projects_EnBriefFilter = {
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<Projects_EnBriefGalleryFilter>;
-};
-
-export type Projects_EnConceptGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnConceptGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_EnConceptGalleryImagesFilter>;
-};
-
-export type Projects_EnConceptFilter = {
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<Projects_EnConceptGalleryFilter>;
-};
-
-export type Projects_EnStrategyCarouselFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnStrategyGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnStrategyGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<Projects_EnStrategyGalleryImagesFilter>;
-};
-
-export type Projects_EnStrategyFilter = {
-  title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  carousel?: InputMaybe<Projects_EnStrategyCarouselFilter>;
-  gallery?: InputMaybe<Projects_EnStrategyGalleryFilter>;
-};
-
-export type Projects_EnCollaboratorsListFilter = {
-  name?: InputMaybe<StringFilter>;
-  role?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnCollaboratorsFilter = {
-  title?: InputMaybe<StringFilter>;
-  list?: InputMaybe<Projects_EnCollaboratorsListFilter>;
-};
-
-export type Projects_EnFinalImageFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type Projects_EnFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  slug?: InputMaybe<StringFilter>;
-  publishDate?: InputMaybe<DatetimeFilter>;
-  completedDate?: InputMaybe<DatetimeFilter>;
-  tags?: InputMaybe<StringFilter>;
-  showTags?: InputMaybe<BooleanFilter>;
-  featured?: InputMaybe<BooleanFilter>;
-  draft?: InputMaybe<BooleanFilter>;
-  banner?: InputMaybe<Projects_EnBannerFilter>;
-  details?: InputMaybe<Projects_EnDetailsFilter>;
-  brief?: InputMaybe<Projects_EnBriefFilter>;
-  concept?: InputMaybe<Projects_EnConceptFilter>;
-  strategy?: InputMaybe<Projects_EnStrategyFilter>;
-  collaborators?: InputMaybe<Projects_EnCollaboratorsFilter>;
-  finalImage?: InputMaybe<Projects_EnFinalImageFilter>;
-};
-
-export type Projects_EnConnectionEdges = {
-  __typename?: 'Projects_enConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Projects_En>;
-};
-
-export type Projects_EnConnection = Connection & {
-  __typename?: 'Projects_enConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Projects_EnConnectionEdges>>>;
-};
-
-export type Translations_EsNav = {
-  __typename?: 'Translations_esNav';
+export type TranslationsNav = {
+  __typename?: 'TranslationsNav';
   social?: Maybe<Scalars['String']['output']>;
   menu?: Maybe<Scalars['String']['output']>;
   letsTalk?: Maybe<Scalars['String']['output']>;
@@ -2630,37 +1118,37 @@ export type Translations_EsNav = {
   contact?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_EsFooter = {
-  __typename?: 'Translations_esFooter';
+export type TranslationsFooter = {
+  __typename?: 'TranslationsFooter';
   privacy?: Maybe<Scalars['String']['output']>;
   legal?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_EsContactFormProjectTypes = {
-  __typename?: 'Translations_esContactFormProjectTypes';
+export type TranslationsContactFormProjectTypes = {
+  __typename?: 'TranslationsContactFormProjectTypes';
   commercial?: Maybe<Scalars['String']['output']>;
   restaurant?: Maybe<Scalars['String']['output']>;
   entertainment?: Maybe<Scalars['String']['output']>;
   other?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_EsContactFormServiceTypes = {
-  __typename?: 'Translations_esContactFormServiceTypes';
+export type TranslationsContactFormServiceTypes = {
+  __typename?: 'TranslationsContactFormServiceTypes';
   fullPackage?: Maybe<Scalars['String']['output']>;
   concept?: Maybe<Scalars['String']['output']>;
   unsure?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_EsContactForm = {
-  __typename?: 'Translations_esContactForm';
+export type TranslationsContactForm = {
+  __typename?: 'TranslationsContactForm';
   name?: Maybe<Scalars['String']['output']>;
   company?: Maybe<Scalars['String']['output']>;
   email?: Maybe<Scalars['String']['output']>;
   phone?: Maybe<Scalars['String']['output']>;
   projectType?: Maybe<Scalars['String']['output']>;
-  projectTypes?: Maybe<Translations_EsContactFormProjectTypes>;
+  projectTypes?: Maybe<TranslationsContactFormProjectTypes>;
   serviceType?: Maybe<Scalars['String']['output']>;
-  serviceTypes?: Maybe<Translations_EsContactFormServiceTypes>;
+  serviceTypes?: Maybe<TranslationsContactFormServiceTypes>;
   message?: Maybe<Scalars['String']['output']>;
   privacy?: Maybe<Scalars['String']['output']>;
   submit?: Maybe<Scalars['String']['output']>;
@@ -2670,15 +1158,15 @@ export type Translations_EsContactForm = {
   turnstileFailed?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_EsProjects = {
-  __typename?: 'Translations_esProjects';
+export type TranslationsProjects = {
+  __typename?: 'TranslationsProjects';
   title?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_EsAccessibility = {
-  __typename?: 'Translations_esAccessibility';
+export type TranslationsAccessibility = {
+  __typename?: 'TranslationsAccessibility';
   skipToContent?: Maybe<Scalars['String']['output']>;
   selectLanguage?: Maybe<Scalars['String']['output']>;
   toggleMenu?: Maybe<Scalars['String']['output']>;
@@ -2688,19 +1176,19 @@ export type Translations_EsAccessibility = {
   goToSlide?: Maybe<Scalars['String']['output']>;
 };
 
-export type Translations_Es = Node & Document & {
-  __typename?: 'Translations_es';
-  nav?: Maybe<Translations_EsNav>;
-  footer?: Maybe<Translations_EsFooter>;
-  contactForm?: Maybe<Translations_EsContactForm>;
-  projects?: Maybe<Translations_EsProjects>;
-  accessibility?: Maybe<Translations_EsAccessibility>;
+export type Translations = Node & Document & {
+  __typename?: 'Translations';
+  nav?: Maybe<TranslationsNav>;
+  footer?: Maybe<TranslationsFooter>;
+  contactForm?: Maybe<TranslationsContactForm>;
+  projects?: Maybe<TranslationsProjects>;
+  accessibility?: Maybe<TranslationsAccessibility>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type Translations_EsNavFilter = {
+export type TranslationsNavFilter = {
   social?: InputMaybe<StringFilter>;
   menu?: InputMaybe<StringFilter>;
   letsTalk?: InputMaybe<StringFilter>;
@@ -2710,33 +1198,33 @@ export type Translations_EsNavFilter = {
   contact?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsFooterFilter = {
+export type TranslationsFooterFilter = {
   privacy?: InputMaybe<StringFilter>;
   legal?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsContactFormProjectTypesFilter = {
+export type TranslationsContactFormProjectTypesFilter = {
   commercial?: InputMaybe<StringFilter>;
   restaurant?: InputMaybe<StringFilter>;
   entertainment?: InputMaybe<StringFilter>;
   other?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsContactFormServiceTypesFilter = {
+export type TranslationsContactFormServiceTypesFilter = {
   fullPackage?: InputMaybe<StringFilter>;
   concept?: InputMaybe<StringFilter>;
   unsure?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsContactFormFilter = {
+export type TranslationsContactFormFilter = {
   name?: InputMaybe<StringFilter>;
   company?: InputMaybe<StringFilter>;
   email?: InputMaybe<StringFilter>;
   phone?: InputMaybe<StringFilter>;
   projectType?: InputMaybe<StringFilter>;
-  projectTypes?: InputMaybe<Translations_EsContactFormProjectTypesFilter>;
+  projectTypes?: InputMaybe<TranslationsContactFormProjectTypesFilter>;
   serviceType?: InputMaybe<StringFilter>;
-  serviceTypes?: InputMaybe<Translations_EsContactFormServiceTypesFilter>;
+  serviceTypes?: InputMaybe<TranslationsContactFormServiceTypesFilter>;
   message?: InputMaybe<StringFilter>;
   privacy?: InputMaybe<StringFilter>;
   submit?: InputMaybe<StringFilter>;
@@ -2746,13 +1234,13 @@ export type Translations_EsContactFormFilter = {
   turnstileFailed?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsProjectsFilter = {
+export type TranslationsProjectsFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   heading?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsAccessibilityFilter = {
+export type TranslationsAccessibilityFilter = {
   skipToContent?: InputMaybe<StringFilter>;
   selectLanguage?: InputMaybe<StringFilter>;
   toggleMenu?: InputMaybe<StringFilter>;
@@ -2762,353 +1250,25 @@ export type Translations_EsAccessibilityFilter = {
   goToSlide?: InputMaybe<StringFilter>;
 };
 
-export type Translations_EsFilter = {
-  nav?: InputMaybe<Translations_EsNavFilter>;
-  footer?: InputMaybe<Translations_EsFooterFilter>;
-  contactForm?: InputMaybe<Translations_EsContactFormFilter>;
-  projects?: InputMaybe<Translations_EsProjectsFilter>;
-  accessibility?: InputMaybe<Translations_EsAccessibilityFilter>;
+export type TranslationsFilter = {
+  nav?: InputMaybe<TranslationsNavFilter>;
+  footer?: InputMaybe<TranslationsFooterFilter>;
+  contactForm?: InputMaybe<TranslationsContactFormFilter>;
+  projects?: InputMaybe<TranslationsProjectsFilter>;
+  accessibility?: InputMaybe<TranslationsAccessibilityFilter>;
 };
 
-export type Translations_EsConnectionEdges = {
-  __typename?: 'Translations_esConnectionEdges';
+export type TranslationsConnectionEdges = {
+  __typename?: 'TranslationsConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Translations_Es>;
+  node?: Maybe<Translations>;
 };
 
-export type Translations_EsConnection = Connection & {
-  __typename?: 'Translations_esConnection';
+export type TranslationsConnection = Connection & {
+  __typename?: 'TranslationsConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Translations_EsConnectionEdges>>>;
-};
-
-export type Translations_CaNav = {
-  __typename?: 'Translations_caNav';
-  social?: Maybe<Scalars['String']['output']>;
-  menu?: Maybe<Scalars['String']['output']>;
-  letsTalk?: Maybe<Scalars['String']['output']>;
-  about?: Maybe<Scalars['String']['output']>;
-  projects?: Maybe<Scalars['String']['output']>;
-  services?: Maybe<Scalars['String']['output']>;
-  contact?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_CaFooter = {
-  __typename?: 'Translations_caFooter';
-  privacy?: Maybe<Scalars['String']['output']>;
-  legal?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_CaContactFormProjectTypes = {
-  __typename?: 'Translations_caContactFormProjectTypes';
-  commercial?: Maybe<Scalars['String']['output']>;
-  restaurant?: Maybe<Scalars['String']['output']>;
-  entertainment?: Maybe<Scalars['String']['output']>;
-  other?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_CaContactFormServiceTypes = {
-  __typename?: 'Translations_caContactFormServiceTypes';
-  fullPackage?: Maybe<Scalars['String']['output']>;
-  concept?: Maybe<Scalars['String']['output']>;
-  unsure?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_CaContactForm = {
-  __typename?: 'Translations_caContactForm';
-  name?: Maybe<Scalars['String']['output']>;
-  company?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
-  projectType?: Maybe<Scalars['String']['output']>;
-  projectTypes?: Maybe<Translations_CaContactFormProjectTypes>;
-  serviceType?: Maybe<Scalars['String']['output']>;
-  serviceTypes?: Maybe<Translations_CaContactFormServiceTypes>;
-  message?: Maybe<Scalars['String']['output']>;
-  privacy?: Maybe<Scalars['String']['output']>;
-  submit?: Maybe<Scalars['String']['output']>;
-  sending?: Maybe<Scalars['String']['output']>;
-  success?: Maybe<Scalars['String']['output']>;
-  error?: Maybe<Scalars['String']['output']>;
-  turnstileFailed?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_CaProjects = {
-  __typename?: 'Translations_caProjects';
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  heading?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_CaAccessibility = {
-  __typename?: 'Translations_caAccessibility';
-  skipToContent?: Maybe<Scalars['String']['output']>;
-  selectLanguage?: Maybe<Scalars['String']['output']>;
-  toggleMenu?: Maybe<Scalars['String']['output']>;
-  closeMenu?: Maybe<Scalars['String']['output']>;
-  previousSlide?: Maybe<Scalars['String']['output']>;
-  nextSlide?: Maybe<Scalars['String']['output']>;
-  goToSlide?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_Ca = Node & Document & {
-  __typename?: 'Translations_ca';
-  nav?: Maybe<Translations_CaNav>;
-  footer?: Maybe<Translations_CaFooter>;
-  contactForm?: Maybe<Translations_CaContactForm>;
-  projects?: Maybe<Translations_CaProjects>;
-  accessibility?: Maybe<Translations_CaAccessibility>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Translations_CaNavFilter = {
-  social?: InputMaybe<StringFilter>;
-  menu?: InputMaybe<StringFilter>;
-  letsTalk?: InputMaybe<StringFilter>;
-  about?: InputMaybe<StringFilter>;
-  projects?: InputMaybe<StringFilter>;
-  services?: InputMaybe<StringFilter>;
-  contact?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaFooterFilter = {
-  privacy?: InputMaybe<StringFilter>;
-  legal?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaContactFormProjectTypesFilter = {
-  commercial?: InputMaybe<StringFilter>;
-  restaurant?: InputMaybe<StringFilter>;
-  entertainment?: InputMaybe<StringFilter>;
-  other?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaContactFormServiceTypesFilter = {
-  fullPackage?: InputMaybe<StringFilter>;
-  concept?: InputMaybe<StringFilter>;
-  unsure?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaContactFormFilter = {
-  name?: InputMaybe<StringFilter>;
-  company?: InputMaybe<StringFilter>;
-  email?: InputMaybe<StringFilter>;
-  phone?: InputMaybe<StringFilter>;
-  projectType?: InputMaybe<StringFilter>;
-  projectTypes?: InputMaybe<Translations_CaContactFormProjectTypesFilter>;
-  serviceType?: InputMaybe<StringFilter>;
-  serviceTypes?: InputMaybe<Translations_CaContactFormServiceTypesFilter>;
-  message?: InputMaybe<StringFilter>;
-  privacy?: InputMaybe<StringFilter>;
-  submit?: InputMaybe<StringFilter>;
-  sending?: InputMaybe<StringFilter>;
-  success?: InputMaybe<StringFilter>;
-  error?: InputMaybe<StringFilter>;
-  turnstileFailed?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaProjectsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  heading?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaAccessibilityFilter = {
-  skipToContent?: InputMaybe<StringFilter>;
-  selectLanguage?: InputMaybe<StringFilter>;
-  toggleMenu?: InputMaybe<StringFilter>;
-  closeMenu?: InputMaybe<StringFilter>;
-  previousSlide?: InputMaybe<StringFilter>;
-  nextSlide?: InputMaybe<StringFilter>;
-  goToSlide?: InputMaybe<StringFilter>;
-};
-
-export type Translations_CaFilter = {
-  nav?: InputMaybe<Translations_CaNavFilter>;
-  footer?: InputMaybe<Translations_CaFooterFilter>;
-  contactForm?: InputMaybe<Translations_CaContactFormFilter>;
-  projects?: InputMaybe<Translations_CaProjectsFilter>;
-  accessibility?: InputMaybe<Translations_CaAccessibilityFilter>;
-};
-
-export type Translations_CaConnectionEdges = {
-  __typename?: 'Translations_caConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Translations_Ca>;
-};
-
-export type Translations_CaConnection = Connection & {
-  __typename?: 'Translations_caConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Translations_CaConnectionEdges>>>;
-};
-
-export type Translations_EnNav = {
-  __typename?: 'Translations_enNav';
-  social?: Maybe<Scalars['String']['output']>;
-  menu?: Maybe<Scalars['String']['output']>;
-  letsTalk?: Maybe<Scalars['String']['output']>;
-  about?: Maybe<Scalars['String']['output']>;
-  projects?: Maybe<Scalars['String']['output']>;
-  services?: Maybe<Scalars['String']['output']>;
-  contact?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_EnFooter = {
-  __typename?: 'Translations_enFooter';
-  privacy?: Maybe<Scalars['String']['output']>;
-  legal?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_EnContactFormProjectTypes = {
-  __typename?: 'Translations_enContactFormProjectTypes';
-  commercial?: Maybe<Scalars['String']['output']>;
-  restaurant?: Maybe<Scalars['String']['output']>;
-  entertainment?: Maybe<Scalars['String']['output']>;
-  other?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_EnContactFormServiceTypes = {
-  __typename?: 'Translations_enContactFormServiceTypes';
-  fullPackage?: Maybe<Scalars['String']['output']>;
-  concept?: Maybe<Scalars['String']['output']>;
-  unsure?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_EnContactForm = {
-  __typename?: 'Translations_enContactForm';
-  name?: Maybe<Scalars['String']['output']>;
-  company?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
-  projectType?: Maybe<Scalars['String']['output']>;
-  projectTypes?: Maybe<Translations_EnContactFormProjectTypes>;
-  serviceType?: Maybe<Scalars['String']['output']>;
-  serviceTypes?: Maybe<Translations_EnContactFormServiceTypes>;
-  message?: Maybe<Scalars['String']['output']>;
-  privacy?: Maybe<Scalars['String']['output']>;
-  submit?: Maybe<Scalars['String']['output']>;
-  sending?: Maybe<Scalars['String']['output']>;
-  success?: Maybe<Scalars['String']['output']>;
-  error?: Maybe<Scalars['String']['output']>;
-  turnstileFailed?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_EnProjects = {
-  __typename?: 'Translations_enProjects';
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  heading?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_EnAccessibility = {
-  __typename?: 'Translations_enAccessibility';
-  skipToContent?: Maybe<Scalars['String']['output']>;
-  selectLanguage?: Maybe<Scalars['String']['output']>;
-  toggleMenu?: Maybe<Scalars['String']['output']>;
-  closeMenu?: Maybe<Scalars['String']['output']>;
-  previousSlide?: Maybe<Scalars['String']['output']>;
-  nextSlide?: Maybe<Scalars['String']['output']>;
-  goToSlide?: Maybe<Scalars['String']['output']>;
-};
-
-export type Translations_En = Node & Document & {
-  __typename?: 'Translations_en';
-  nav?: Maybe<Translations_EnNav>;
-  footer?: Maybe<Translations_EnFooter>;
-  contactForm?: Maybe<Translations_EnContactForm>;
-  projects?: Maybe<Translations_EnProjects>;
-  accessibility?: Maybe<Translations_EnAccessibility>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type Translations_EnNavFilter = {
-  social?: InputMaybe<StringFilter>;
-  menu?: InputMaybe<StringFilter>;
-  letsTalk?: InputMaybe<StringFilter>;
-  about?: InputMaybe<StringFilter>;
-  projects?: InputMaybe<StringFilter>;
-  services?: InputMaybe<StringFilter>;
-  contact?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnFooterFilter = {
-  privacy?: InputMaybe<StringFilter>;
-  legal?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnContactFormProjectTypesFilter = {
-  commercial?: InputMaybe<StringFilter>;
-  restaurant?: InputMaybe<StringFilter>;
-  entertainment?: InputMaybe<StringFilter>;
-  other?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnContactFormServiceTypesFilter = {
-  fullPackage?: InputMaybe<StringFilter>;
-  concept?: InputMaybe<StringFilter>;
-  unsure?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnContactFormFilter = {
-  name?: InputMaybe<StringFilter>;
-  company?: InputMaybe<StringFilter>;
-  email?: InputMaybe<StringFilter>;
-  phone?: InputMaybe<StringFilter>;
-  projectType?: InputMaybe<StringFilter>;
-  projectTypes?: InputMaybe<Translations_EnContactFormProjectTypesFilter>;
-  serviceType?: InputMaybe<StringFilter>;
-  serviceTypes?: InputMaybe<Translations_EnContactFormServiceTypesFilter>;
-  message?: InputMaybe<StringFilter>;
-  privacy?: InputMaybe<StringFilter>;
-  submit?: InputMaybe<StringFilter>;
-  sending?: InputMaybe<StringFilter>;
-  success?: InputMaybe<StringFilter>;
-  error?: InputMaybe<StringFilter>;
-  turnstileFailed?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnProjectsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  heading?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnAccessibilityFilter = {
-  skipToContent?: InputMaybe<StringFilter>;
-  selectLanguage?: InputMaybe<StringFilter>;
-  toggleMenu?: InputMaybe<StringFilter>;
-  closeMenu?: InputMaybe<StringFilter>;
-  previousSlide?: InputMaybe<StringFilter>;
-  nextSlide?: InputMaybe<StringFilter>;
-  goToSlide?: InputMaybe<StringFilter>;
-};
-
-export type Translations_EnFilter = {
-  nav?: InputMaybe<Translations_EnNavFilter>;
-  footer?: InputMaybe<Translations_EnFooterFilter>;
-  contactForm?: InputMaybe<Translations_EnContactFormFilter>;
-  projects?: InputMaybe<Translations_EnProjectsFilter>;
-  accessibility?: InputMaybe<Translations_EnAccessibilityFilter>;
-};
-
-export type Translations_EnConnectionEdges = {
-  __typename?: 'Translations_enConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<Translations_En>;
-};
-
-export type Translations_EnConnection = Connection & {
-  __typename?: 'Translations_enConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<Translations_EnConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<TranslationsConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -3120,48 +1280,20 @@ export type Mutation = {
   createFolder: DocumentNode;
   updateSiteConfig: SiteConfig;
   createSiteConfig: SiteConfig;
-  updateHome_es: Home_Es;
-  createHome_es: Home_Es;
-  updateHome_ca: Home_Ca;
-  createHome_ca: Home_Ca;
-  updateHome_en: Home_En;
-  createHome_en: Home_En;
-  updateAbout_es: About_Es;
-  createAbout_es: About_Es;
-  updateAbout_ca: About_Ca;
-  createAbout_ca: About_Ca;
-  updateAbout_en: About_En;
-  createAbout_en: About_En;
-  updateServices_es: Services_Es;
-  createServices_es: Services_Es;
-  updateServices_ca: Services_Ca;
-  createServices_ca: Services_Ca;
-  updateServices_en: Services_En;
-  createServices_en: Services_En;
-  updateContact_es: Contact_Es;
-  createContact_es: Contact_Es;
-  updateContact_ca: Contact_Ca;
-  createContact_ca: Contact_Ca;
-  updateContact_en: Contact_En;
-  createContact_en: Contact_En;
-  updateLegal_es: Legal_Es;
-  createLegal_es: Legal_Es;
-  updateLegal_ca: Legal_Ca;
-  createLegal_ca: Legal_Ca;
-  updateLegal_en: Legal_En;
-  createLegal_en: Legal_En;
-  updateProjects_es: Projects_Es;
-  createProjects_es: Projects_Es;
-  updateProjects_ca: Projects_Ca;
-  createProjects_ca: Projects_Ca;
-  updateProjects_en: Projects_En;
-  createProjects_en: Projects_En;
-  updateTranslations_es: Translations_Es;
-  createTranslations_es: Translations_Es;
-  updateTranslations_ca: Translations_Ca;
-  createTranslations_ca: Translations_Ca;
-  updateTranslations_en: Translations_En;
-  createTranslations_en: Translations_En;
+  updateHome: Home;
+  createHome: Home;
+  updateAbout: About;
+  createAbout: About;
+  updateServices: Services;
+  createServices: Services;
+  updateContact: Contact;
+  createContact: Contact;
+  updateLegal: Legal;
+  createLegal: Legal;
+  updateProjects: Projects;
+  createProjects: Projects;
+  updateTranslations: Translations;
+  createTranslations: Translations;
 };
 
 
@@ -3210,306 +1342,110 @@ export type MutationCreateSiteConfigArgs = {
 };
 
 
-export type MutationUpdateHome_EsArgs = {
+export type MutationUpdateHomeArgs = {
   relativePath: Scalars['String']['input'];
-  params: Home_EsMutation;
+  params: HomeMutation;
 };
 
 
-export type MutationCreateHome_EsArgs = {
+export type MutationCreateHomeArgs = {
   relativePath: Scalars['String']['input'];
-  params: Home_EsMutation;
+  params: HomeMutation;
 };
 
 
-export type MutationUpdateHome_CaArgs = {
+export type MutationUpdateAboutArgs = {
   relativePath: Scalars['String']['input'];
-  params: Home_CaMutation;
+  params: AboutMutation;
 };
 
 
-export type MutationCreateHome_CaArgs = {
+export type MutationCreateAboutArgs = {
   relativePath: Scalars['String']['input'];
-  params: Home_CaMutation;
+  params: AboutMutation;
 };
 
 
-export type MutationUpdateHome_EnArgs = {
+export type MutationUpdateServicesArgs = {
   relativePath: Scalars['String']['input'];
-  params: Home_EnMutation;
+  params: ServicesMutation;
 };
 
 
-export type MutationCreateHome_EnArgs = {
+export type MutationCreateServicesArgs = {
   relativePath: Scalars['String']['input'];
-  params: Home_EnMutation;
+  params: ServicesMutation;
 };
 
 
-export type MutationUpdateAbout_EsArgs = {
+export type MutationUpdateContactArgs = {
   relativePath: Scalars['String']['input'];
-  params: About_EsMutation;
+  params: ContactMutation;
 };
 
 
-export type MutationCreateAbout_EsArgs = {
+export type MutationCreateContactArgs = {
   relativePath: Scalars['String']['input'];
-  params: About_EsMutation;
+  params: ContactMutation;
 };
 
 
-export type MutationUpdateAbout_CaArgs = {
+export type MutationUpdateLegalArgs = {
   relativePath: Scalars['String']['input'];
-  params: About_CaMutation;
+  params: LegalMutation;
 };
 
 
-export type MutationCreateAbout_CaArgs = {
+export type MutationCreateLegalArgs = {
   relativePath: Scalars['String']['input'];
-  params: About_CaMutation;
+  params: LegalMutation;
 };
 
 
-export type MutationUpdateAbout_EnArgs = {
+export type MutationUpdateProjectsArgs = {
   relativePath: Scalars['String']['input'];
-  params: About_EnMutation;
+  params: ProjectsMutation;
 };
 
 
-export type MutationCreateAbout_EnArgs = {
+export type MutationCreateProjectsArgs = {
   relativePath: Scalars['String']['input'];
-  params: About_EnMutation;
+  params: ProjectsMutation;
 };
 
 
-export type MutationUpdateServices_EsArgs = {
+export type MutationUpdateTranslationsArgs = {
   relativePath: Scalars['String']['input'];
-  params: Services_EsMutation;
+  params: TranslationsMutation;
 };
 
 
-export type MutationCreateServices_EsArgs = {
+export type MutationCreateTranslationsArgs = {
   relativePath: Scalars['String']['input'];
-  params: Services_EsMutation;
-};
-
-
-export type MutationUpdateServices_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Services_CaMutation;
-};
-
-
-export type MutationCreateServices_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Services_CaMutation;
-};
-
-
-export type MutationUpdateServices_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Services_EnMutation;
-};
-
-
-export type MutationCreateServices_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Services_EnMutation;
-};
-
-
-export type MutationUpdateContact_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Contact_EsMutation;
-};
-
-
-export type MutationCreateContact_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Contact_EsMutation;
-};
-
-
-export type MutationUpdateContact_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Contact_CaMutation;
-};
-
-
-export type MutationCreateContact_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Contact_CaMutation;
-};
-
-
-export type MutationUpdateContact_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Contact_EnMutation;
-};
-
-
-export type MutationCreateContact_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Contact_EnMutation;
-};
-
-
-export type MutationUpdateLegal_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Legal_EsMutation;
-};
-
-
-export type MutationCreateLegal_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Legal_EsMutation;
-};
-
-
-export type MutationUpdateLegal_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Legal_CaMutation;
-};
-
-
-export type MutationCreateLegal_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Legal_CaMutation;
-};
-
-
-export type MutationUpdateLegal_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Legal_EnMutation;
-};
-
-
-export type MutationCreateLegal_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Legal_EnMutation;
-};
-
-
-export type MutationUpdateProjects_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Projects_EsMutation;
-};
-
-
-export type MutationCreateProjects_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Projects_EsMutation;
-};
-
-
-export type MutationUpdateProjects_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Projects_CaMutation;
-};
-
-
-export type MutationCreateProjects_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Projects_CaMutation;
-};
-
-
-export type MutationUpdateProjects_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Projects_EnMutation;
-};
-
-
-export type MutationCreateProjects_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Projects_EnMutation;
-};
-
-
-export type MutationUpdateTranslations_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Translations_EsMutation;
-};
-
-
-export type MutationCreateTranslations_EsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Translations_EsMutation;
-};
-
-
-export type MutationUpdateTranslations_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Translations_CaMutation;
-};
-
-
-export type MutationCreateTranslations_CaArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Translations_CaMutation;
-};
-
-
-export type MutationUpdateTranslations_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Translations_EnMutation;
-};
-
-
-export type MutationCreateTranslations_EnArgs = {
-  relativePath: Scalars['String']['input'];
-  params: Translations_EnMutation;
+  params: TranslationsMutation;
 };
 
 export type DocumentUpdateMutation = {
   siteConfig?: InputMaybe<SiteConfigMutation>;
-  home_es?: InputMaybe<Home_EsMutation>;
-  home_ca?: InputMaybe<Home_CaMutation>;
-  home_en?: InputMaybe<Home_EnMutation>;
-  about_es?: InputMaybe<About_EsMutation>;
-  about_ca?: InputMaybe<About_CaMutation>;
-  about_en?: InputMaybe<About_EnMutation>;
-  services_es?: InputMaybe<Services_EsMutation>;
-  services_ca?: InputMaybe<Services_CaMutation>;
-  services_en?: InputMaybe<Services_EnMutation>;
-  contact_es?: InputMaybe<Contact_EsMutation>;
-  contact_ca?: InputMaybe<Contact_CaMutation>;
-  contact_en?: InputMaybe<Contact_EnMutation>;
-  legal_es?: InputMaybe<Legal_EsMutation>;
-  legal_ca?: InputMaybe<Legal_CaMutation>;
-  legal_en?: InputMaybe<Legal_EnMutation>;
-  projects_es?: InputMaybe<Projects_EsMutation>;
-  projects_ca?: InputMaybe<Projects_CaMutation>;
-  projects_en?: InputMaybe<Projects_EnMutation>;
-  translations_es?: InputMaybe<Translations_EsMutation>;
-  translations_ca?: InputMaybe<Translations_CaMutation>;
-  translations_en?: InputMaybe<Translations_EnMutation>;
+  home?: InputMaybe<HomeMutation>;
+  about?: InputMaybe<AboutMutation>;
+  services?: InputMaybe<ServicesMutation>;
+  contact?: InputMaybe<ContactMutation>;
+  legal?: InputMaybe<LegalMutation>;
+  projects?: InputMaybe<ProjectsMutation>;
+  translations?: InputMaybe<TranslationsMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   siteConfig?: InputMaybe<SiteConfigMutation>;
-  home_es?: InputMaybe<Home_EsMutation>;
-  home_ca?: InputMaybe<Home_CaMutation>;
-  home_en?: InputMaybe<Home_EnMutation>;
-  about_es?: InputMaybe<About_EsMutation>;
-  about_ca?: InputMaybe<About_CaMutation>;
-  about_en?: InputMaybe<About_EnMutation>;
-  services_es?: InputMaybe<Services_EsMutation>;
-  services_ca?: InputMaybe<Services_CaMutation>;
-  services_en?: InputMaybe<Services_EnMutation>;
-  contact_es?: InputMaybe<Contact_EsMutation>;
-  contact_ca?: InputMaybe<Contact_CaMutation>;
-  contact_en?: InputMaybe<Contact_EnMutation>;
-  legal_es?: InputMaybe<Legal_EsMutation>;
-  legal_ca?: InputMaybe<Legal_CaMutation>;
-  legal_en?: InputMaybe<Legal_EnMutation>;
-  projects_es?: InputMaybe<Projects_EsMutation>;
-  projects_ca?: InputMaybe<Projects_CaMutation>;
-  projects_en?: InputMaybe<Projects_EnMutation>;
-  translations_es?: InputMaybe<Translations_EsMutation>;
-  translations_ca?: InputMaybe<Translations_CaMutation>;
-  translations_en?: InputMaybe<Translations_EnMutation>;
+  home?: InputMaybe<HomeMutation>;
+  about?: InputMaybe<AboutMutation>;
+  services?: InputMaybe<ServicesMutation>;
+  contact?: InputMaybe<ContactMutation>;
+  legal?: InputMaybe<LegalMutation>;
+  projects?: InputMaybe<ProjectsMutation>;
+  translations?: InputMaybe<TranslationsMutation>;
 };
 
 export type SiteConfigCompanyMutation = {
@@ -3571,22 +1507,22 @@ export type SiteConfigMutation = {
   seo?: InputMaybe<SiteConfigSeoMutation>;
 };
 
-export type Home_EsHeroTopRightMutation = {
+export type HomeHeroTopRightMutation = {
   lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type Home_EsHeroTaglineMutation = {
+export type HomeHeroTaglineMutation = {
   lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type Home_EsHeroMutation = {
+export type HomeHeroMutation = {
   image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<Home_EsHeroTopRightMutation>;
-  tagline?: InputMaybe<Home_EsHeroTaglineMutation>;
+  topRight?: InputMaybe<HomeHeroTopRightMutation>;
+  tagline?: InputMaybe<HomeHeroTaglineMutation>;
   taglineSub?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Home_EsAboutMutation = {
+export type HomeAboutMutation = {
   image?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -3594,412 +1530,130 @@ export type Home_EsAboutMutation = {
   ctaLink?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Home_EsMutation = {
+export type HomeMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   headerStyle?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<Home_EsHeroMutation>;
-  about?: InputMaybe<Home_EsAboutMutation>;
+  hero?: InputMaybe<HomeHeroMutation>;
+  about?: InputMaybe<HomeAboutMutation>;
 };
 
-export type Home_CaHeroTopRightMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Home_CaHeroTaglineMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Home_CaHeroMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<Home_CaHeroTopRightMutation>;
-  tagline?: InputMaybe<Home_CaHeroTaglineMutation>;
-  taglineSub?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Home_CaAboutMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  ctaText?: InputMaybe<Scalars['String']['input']>;
-  ctaLink?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Home_CaMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  headerStyle?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<Home_CaHeroMutation>;
-  about?: InputMaybe<Home_CaAboutMutation>;
-};
-
-export type Home_EnHeroTopRightMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Home_EnHeroTaglineMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type Home_EnHeroMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<Home_EnHeroTopRightMutation>;
-  tagline?: InputMaybe<Home_EnHeroTaglineMutation>;
-  taglineSub?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Home_EnAboutMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  ctaText?: InputMaybe<Scalars['String']['input']>;
-  ctaLink?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Home_EnMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  headerStyle?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<Home_EnHeroMutation>;
-  about?: InputMaybe<Home_EnAboutMutation>;
-};
-
-export type About_EsHeroMutation = {
+export type AboutHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type About_EsBehindNameMutation = {
+export type AboutBehindNameMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   p1?: InputMaybe<Scalars['String']['input']>;
   p2?: InputMaybe<Scalars['String']['input']>;
   footnote?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type About_EsBioMutation = {
+export type AboutBioMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type About_EsAwardsItemsMutation = {
+export type AboutAwardsItemsMutation = {
   year?: InputMaybe<Scalars['String']['input']>;
   project?: InputMaybe<Scalars['String']['input']>;
   award?: InputMaybe<Scalars['String']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type About_EsAwardsMutation = {
+export type AboutAwardsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<About_EsAwardsItemsMutation>>>;
+  items?: InputMaybe<Array<InputMaybe<AboutAwardsItemsMutation>>>;
 };
 
-export type About_EsMissionMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_EsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  heroImage?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<About_EsHeroMutation>;
-  behindName?: InputMaybe<About_EsBehindNameMutation>;
-  bannerImage?: InputMaybe<Scalars['String']['input']>;
-  bio?: InputMaybe<About_EsBioMutation>;
-  awards?: InputMaybe<About_EsAwardsMutation>;
-  mission?: InputMaybe<About_EsMissionMutation>;
-  missionImage?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_CaHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_CaBehindNameMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  footnote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_CaBioMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type About_CaAwardsItemsMutation = {
-  year?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<Scalars['String']['input']>;
-  award?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_CaAwardsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<About_CaAwardsItemsMutation>>>;
-};
-
-export type About_CaMissionMutation = {
+export type AboutMissionMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   p1?: InputMaybe<Scalars['String']['input']>;
   p2?: InputMaybe<Scalars['String']['input']>;
   quote?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type About_CaMutation = {
+export type AboutMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   heroImage?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<About_CaHeroMutation>;
-  behindName?: InputMaybe<About_CaBehindNameMutation>;
+  hero?: InputMaybe<AboutHeroMutation>;
+  behindName?: InputMaybe<AboutBehindNameMutation>;
   bannerImage?: InputMaybe<Scalars['String']['input']>;
-  bio?: InputMaybe<About_CaBioMutation>;
-  awards?: InputMaybe<About_CaAwardsMutation>;
-  mission?: InputMaybe<About_CaMissionMutation>;
+  bio?: InputMaybe<AboutBioMutation>;
+  awards?: InputMaybe<AboutAwardsMutation>;
+  mission?: InputMaybe<AboutMissionMutation>;
   missionImage?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type About_EnHeroMutation = {
+export type ServicesHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type About_EnBehindNameMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  footnote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_EnBioMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type About_EnAwardsItemsMutation = {
-  year?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<Scalars['String']['input']>;
-  award?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_EnAwardsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<About_EnAwardsItemsMutation>>>;
-};
-
-export type About_EnMissionMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type About_EnMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  heroImage?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<About_EnHeroMutation>;
-  behindName?: InputMaybe<About_EnBehindNameMutation>;
-  bannerImage?: InputMaybe<Scalars['String']['input']>;
-  bio?: InputMaybe<About_EnBioMutation>;
-  awards?: InputMaybe<About_EnAwardsMutation>;
-  mission?: InputMaybe<About_EnMissionMutation>;
-  missionImage?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EsHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EsIntroMutation = {
+export type ServicesIntroMutation = {
   text?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Services_EsServiceGroupsItemsMutation = {
+export type ServicesServiceGroupsItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Services_EsServiceGroupsMutation = {
+export type ServicesServiceGroupsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Services_EsServiceGroupsItemsMutation>>>;
+  items?: InputMaybe<Array<InputMaybe<ServicesServiceGroupsItemsMutation>>>;
 };
 
-export type Services_EsFaqItemsMutation = {
+export type ServicesFaqItemsMutation = {
   question?: InputMaybe<Scalars['String']['input']>;
   answer?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Services_EsFaqMutation = {
+export type ServicesFaqMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Services_EsFaqItemsMutation>>>;
+  items?: InputMaybe<Array<InputMaybe<ServicesFaqItemsMutation>>>;
 };
 
-export type Services_EsWorkProcessMutation = {
+export type ServicesWorkProcessMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   p1?: InputMaybe<Scalars['String']['input']>;
   p2?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Services_EsMutation = {
+export type ServicesMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<Services_EsHeroMutation>;
-  intro?: InputMaybe<Services_EsIntroMutation>;
-  serviceGroups?: InputMaybe<Array<InputMaybe<Services_EsServiceGroupsMutation>>>;
-  faq?: InputMaybe<Services_EsFaqMutation>;
-  workProcess?: InputMaybe<Services_EsWorkProcessMutation>;
+  hero?: InputMaybe<ServicesHeroMutation>;
+  intro?: InputMaybe<ServicesIntroMutation>;
+  serviceGroups?: InputMaybe<Array<InputMaybe<ServicesServiceGroupsMutation>>>;
+  faq?: InputMaybe<ServicesFaqMutation>;
+  workProcess?: InputMaybe<ServicesWorkProcessMutation>;
 };
 
-export type Services_CaHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_CaIntroMutation = {
-  text?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_CaServiceGroupsItemsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_CaServiceGroupsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Services_CaServiceGroupsItemsMutation>>>;
-};
-
-export type Services_CaFaqItemsMutation = {
-  question?: InputMaybe<Scalars['String']['input']>;
-  answer?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_CaFaqMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Services_CaFaqItemsMutation>>>;
-};
-
-export type Services_CaWorkProcessMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_CaMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<Services_CaHeroMutation>;
-  intro?: InputMaybe<Services_CaIntroMutation>;
-  serviceGroups?: InputMaybe<Array<InputMaybe<Services_CaServiceGroupsMutation>>>;
-  faq?: InputMaybe<Services_CaFaqMutation>;
-  workProcess?: InputMaybe<Services_CaWorkProcessMutation>;
-};
-
-export type Services_EnHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EnIntroMutation = {
-  text?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EnServiceGroupsItemsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EnServiceGroupsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Services_EnServiceGroupsItemsMutation>>>;
-};
-
-export type Services_EnFaqItemsMutation = {
-  question?: InputMaybe<Scalars['String']['input']>;
-  answer?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EnFaqMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<Services_EnFaqItemsMutation>>>;
-};
-
-export type Services_EnWorkProcessMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Services_EnMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  hero?: InputMaybe<Services_EnHeroMutation>;
-  intro?: InputMaybe<Services_EnIntroMutation>;
-  serviceGroups?: InputMaybe<Array<InputMaybe<Services_EnServiceGroupsMutation>>>;
-  faq?: InputMaybe<Services_EnFaqMutation>;
-  workProcess?: InputMaybe<Services_EnWorkProcessMutation>;
-};
-
-export type Contact_EsMutation = {
+export type ContactMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   subheading?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Contact_CaMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  heading?: InputMaybe<Scalars['String']['input']>;
-  subheading?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Contact_EnMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  heading?: InputMaybe<Scalars['String']['input']>;
-  subheading?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Legal_EsMutation = {
+export type LegalMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   lastUpdated?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type Legal_CaMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  lastUpdated?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type Legal_EnMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  lastUpdated?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
-};
-
-export type Projects_EsBannerMutation = {
+export type ProjectsBannerMutation = {
   image?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsDetailsMutation = {
+export type ProjectsDetailsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
@@ -4013,76 +1667,76 @@ export type Projects_EsDetailsMutation = {
   locationLabel?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsBriefGalleryImagesMutation = {
+export type ProjectsBriefGalleryImagesMutation = {
   src?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsBriefGalleryMutation = {
+export type ProjectsBriefGalleryMutation = {
   cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_EsBriefGalleryImagesMutation>>>;
+  images?: InputMaybe<Array<InputMaybe<ProjectsBriefGalleryImagesMutation>>>;
 };
 
-export type Projects_EsBriefMutation = {
+export type ProjectsBriefMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<Projects_EsBriefGalleryMutation>;
+  gallery?: InputMaybe<ProjectsBriefGalleryMutation>;
 };
 
-export type Projects_EsConceptGalleryImagesMutation = {
+export type ProjectsConceptGalleryImagesMutation = {
   src?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsConceptGalleryMutation = {
+export type ProjectsConceptGalleryMutation = {
   cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_EsConceptGalleryImagesMutation>>>;
+  images?: InputMaybe<Array<InputMaybe<ProjectsConceptGalleryImagesMutation>>>;
 };
 
-export type Projects_EsConceptMutation = {
+export type ProjectsConceptMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<Projects_EsConceptGalleryMutation>;
+  gallery?: InputMaybe<ProjectsConceptGalleryMutation>;
 };
 
-export type Projects_EsStrategyCarouselMutation = {
+export type ProjectsStrategyCarouselMutation = {
   src?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsStrategyGalleryImagesMutation = {
+export type ProjectsStrategyGalleryImagesMutation = {
   src?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsStrategyGalleryMutation = {
+export type ProjectsStrategyGalleryMutation = {
   cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_EsStrategyGalleryImagesMutation>>>;
+  images?: InputMaybe<Array<InputMaybe<ProjectsStrategyGalleryImagesMutation>>>;
 };
 
-export type Projects_EsStrategyMutation = {
+export type ProjectsStrategyMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   text?: InputMaybe<Scalars['String']['input']>;
-  carousel?: InputMaybe<Array<InputMaybe<Projects_EsStrategyCarouselMutation>>>;
-  gallery?: InputMaybe<Projects_EsStrategyGalleryMutation>;
+  carousel?: InputMaybe<Array<InputMaybe<ProjectsStrategyCarouselMutation>>>;
+  gallery?: InputMaybe<ProjectsStrategyGalleryMutation>;
 };
 
-export type Projects_EsCollaboratorsListMutation = {
+export type ProjectsCollaboratorsListMutation = {
   name?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsCollaboratorsMutation = {
+export type ProjectsCollaboratorsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  list?: InputMaybe<Array<InputMaybe<Projects_EsCollaboratorsListMutation>>>;
+  list?: InputMaybe<Array<InputMaybe<ProjectsCollaboratorsListMutation>>>;
 };
 
-export type Projects_EsFinalImageMutation = {
+export type ProjectsFinalImageMutation = {
   src?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Projects_EsMutation = {
+export type ProjectsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -4092,230 +1746,16 @@ export type Projects_EsMutation = {
   showTags?: InputMaybe<Scalars['Boolean']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
   draft?: InputMaybe<Scalars['Boolean']['input']>;
-  banner?: InputMaybe<Projects_EsBannerMutation>;
-  details?: InputMaybe<Projects_EsDetailsMutation>;
-  brief?: InputMaybe<Projects_EsBriefMutation>;
-  concept?: InputMaybe<Projects_EsConceptMutation>;
-  strategy?: InputMaybe<Projects_EsStrategyMutation>;
-  collaborators?: InputMaybe<Projects_EsCollaboratorsMutation>;
-  finalImage?: InputMaybe<Projects_EsFinalImageMutation>;
+  banner?: InputMaybe<ProjectsBannerMutation>;
+  details?: InputMaybe<ProjectsDetailsMutation>;
+  brief?: InputMaybe<ProjectsBriefMutation>;
+  concept?: InputMaybe<ProjectsConceptMutation>;
+  strategy?: InputMaybe<ProjectsStrategyMutation>;
+  collaborators?: InputMaybe<ProjectsCollaboratorsMutation>;
+  finalImage?: InputMaybe<ProjectsFinalImageMutation>;
 };
 
-export type Projects_CaBannerMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaDetailsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  services?: InputMaybe<Scalars['String']['input']>;
-  servicesLabel?: InputMaybe<Scalars['String']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  categoryLabel?: InputMaybe<Scalars['String']['input']>;
-  area?: InputMaybe<Scalars['String']['input']>;
-  areaLabel?: InputMaybe<Scalars['String']['input']>;
-  location?: InputMaybe<Scalars['String']['input']>;
-  locationLabel?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaBriefGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaBriefGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_CaBriefGalleryImagesMutation>>>;
-};
-
-export type Projects_CaBriefMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<Projects_CaBriefGalleryMutation>;
-};
-
-export type Projects_CaConceptGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaConceptGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_CaConceptGalleryImagesMutation>>>;
-};
-
-export type Projects_CaConceptMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<Projects_CaConceptGalleryMutation>;
-};
-
-export type Projects_CaStrategyCarouselMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaStrategyGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaStrategyGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_CaStrategyGalleryImagesMutation>>>;
-};
-
-export type Projects_CaStrategyMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  carousel?: InputMaybe<Array<InputMaybe<Projects_CaStrategyCarouselMutation>>>;
-  gallery?: InputMaybe<Projects_CaStrategyGalleryMutation>;
-};
-
-export type Projects_CaCollaboratorsListMutation = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  role?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaCollaboratorsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  list?: InputMaybe<Array<InputMaybe<Projects_CaCollaboratorsListMutation>>>;
-};
-
-export type Projects_CaFinalImageMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_CaMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  publishDate?: InputMaybe<Scalars['String']['input']>;
-  completedDate?: InputMaybe<Scalars['String']['input']>;
-  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  showTags?: InputMaybe<Scalars['Boolean']['input']>;
-  featured?: InputMaybe<Scalars['Boolean']['input']>;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  banner?: InputMaybe<Projects_CaBannerMutation>;
-  details?: InputMaybe<Projects_CaDetailsMutation>;
-  brief?: InputMaybe<Projects_CaBriefMutation>;
-  concept?: InputMaybe<Projects_CaConceptMutation>;
-  strategy?: InputMaybe<Projects_CaStrategyMutation>;
-  collaborators?: InputMaybe<Projects_CaCollaboratorsMutation>;
-  finalImage?: InputMaybe<Projects_CaFinalImageMutation>;
-};
-
-export type Projects_EnBannerMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnDetailsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  services?: InputMaybe<Scalars['String']['input']>;
-  servicesLabel?: InputMaybe<Scalars['String']['input']>;
-  category?: InputMaybe<Scalars['String']['input']>;
-  categoryLabel?: InputMaybe<Scalars['String']['input']>;
-  area?: InputMaybe<Scalars['String']['input']>;
-  areaLabel?: InputMaybe<Scalars['String']['input']>;
-  location?: InputMaybe<Scalars['String']['input']>;
-  locationLabel?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnBriefGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnBriefGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_EnBriefGalleryImagesMutation>>>;
-};
-
-export type Projects_EnBriefMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<Projects_EnBriefGalleryMutation>;
-};
-
-export type Projects_EnConceptGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnConceptGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_EnConceptGalleryImagesMutation>>>;
-};
-
-export type Projects_EnConceptMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<Projects_EnConceptGalleryMutation>;
-};
-
-export type Projects_EnStrategyCarouselMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnStrategyGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnStrategyGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<Projects_EnStrategyGalleryImagesMutation>>>;
-};
-
-export type Projects_EnStrategyMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  carousel?: InputMaybe<Array<InputMaybe<Projects_EnStrategyCarouselMutation>>>;
-  gallery?: InputMaybe<Projects_EnStrategyGalleryMutation>;
-};
-
-export type Projects_EnCollaboratorsListMutation = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  role?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnCollaboratorsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  list?: InputMaybe<Array<InputMaybe<Projects_EnCollaboratorsListMutation>>>;
-};
-
-export type Projects_EnFinalImageMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Projects_EnMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  publishDate?: InputMaybe<Scalars['String']['input']>;
-  completedDate?: InputMaybe<Scalars['String']['input']>;
-  tags?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  showTags?: InputMaybe<Scalars['Boolean']['input']>;
-  featured?: InputMaybe<Scalars['Boolean']['input']>;
-  draft?: InputMaybe<Scalars['Boolean']['input']>;
-  banner?: InputMaybe<Projects_EnBannerMutation>;
-  details?: InputMaybe<Projects_EnDetailsMutation>;
-  brief?: InputMaybe<Projects_EnBriefMutation>;
-  concept?: InputMaybe<Projects_EnConceptMutation>;
-  strategy?: InputMaybe<Projects_EnStrategyMutation>;
-  collaborators?: InputMaybe<Projects_EnCollaboratorsMutation>;
-  finalImage?: InputMaybe<Projects_EnFinalImageMutation>;
-};
-
-export type Translations_EsNavMutation = {
+export type TranslationsNavMutation = {
   social?: InputMaybe<Scalars['String']['input']>;
   menu?: InputMaybe<Scalars['String']['input']>;
   letsTalk?: InputMaybe<Scalars['String']['input']>;
@@ -4325,33 +1765,33 @@ export type Translations_EsNavMutation = {
   contact?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsFooterMutation = {
+export type TranslationsFooterMutation = {
   privacy?: InputMaybe<Scalars['String']['input']>;
   legal?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsContactFormProjectTypesMutation = {
+export type TranslationsContactFormProjectTypesMutation = {
   commercial?: InputMaybe<Scalars['String']['input']>;
   restaurant?: InputMaybe<Scalars['String']['input']>;
   entertainment?: InputMaybe<Scalars['String']['input']>;
   other?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsContactFormServiceTypesMutation = {
+export type TranslationsContactFormServiceTypesMutation = {
   fullPackage?: InputMaybe<Scalars['String']['input']>;
   concept?: InputMaybe<Scalars['String']['input']>;
   unsure?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsContactFormMutation = {
+export type TranslationsContactFormMutation = {
   name?: InputMaybe<Scalars['String']['input']>;
   company?: InputMaybe<Scalars['String']['input']>;
   email?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
   projectType?: InputMaybe<Scalars['String']['input']>;
-  projectTypes?: InputMaybe<Translations_EsContactFormProjectTypesMutation>;
+  projectTypes?: InputMaybe<TranslationsContactFormProjectTypesMutation>;
   serviceType?: InputMaybe<Scalars['String']['input']>;
-  serviceTypes?: InputMaybe<Translations_EsContactFormServiceTypesMutation>;
+  serviceTypes?: InputMaybe<TranslationsContactFormServiceTypesMutation>;
   message?: InputMaybe<Scalars['String']['input']>;
   privacy?: InputMaybe<Scalars['String']['input']>;
   submit?: InputMaybe<Scalars['String']['input']>;
@@ -4361,13 +1801,13 @@ export type Translations_EsContactFormMutation = {
   turnstileFailed?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsProjectsMutation = {
+export type TranslationsProjectsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsAccessibilityMutation = {
+export type TranslationsAccessibilityMutation = {
   skipToContent?: InputMaybe<Scalars['String']['input']>;
   selectLanguage?: InputMaybe<Scalars['String']['input']>;
   toggleMenu?: InputMaybe<Scalars['String']['input']>;
@@ -4377,197 +1817,29 @@ export type Translations_EsAccessibilityMutation = {
   goToSlide?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type Translations_EsMutation = {
-  nav?: InputMaybe<Translations_EsNavMutation>;
-  footer?: InputMaybe<Translations_EsFooterMutation>;
-  contactForm?: InputMaybe<Translations_EsContactFormMutation>;
-  projects?: InputMaybe<Translations_EsProjectsMutation>;
-  accessibility?: InputMaybe<Translations_EsAccessibilityMutation>;
-};
-
-export type Translations_CaNavMutation = {
-  social?: InputMaybe<Scalars['String']['input']>;
-  menu?: InputMaybe<Scalars['String']['input']>;
-  letsTalk?: InputMaybe<Scalars['String']['input']>;
-  about?: InputMaybe<Scalars['String']['input']>;
-  projects?: InputMaybe<Scalars['String']['input']>;
-  services?: InputMaybe<Scalars['String']['input']>;
-  contact?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaFooterMutation = {
-  privacy?: InputMaybe<Scalars['String']['input']>;
-  legal?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaContactFormProjectTypesMutation = {
-  commercial?: InputMaybe<Scalars['String']['input']>;
-  restaurant?: InputMaybe<Scalars['String']['input']>;
-  entertainment?: InputMaybe<Scalars['String']['input']>;
-  other?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaContactFormServiceTypesMutation = {
-  fullPackage?: InputMaybe<Scalars['String']['input']>;
-  concept?: InputMaybe<Scalars['String']['input']>;
-  unsure?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaContactFormMutation = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  company?: InputMaybe<Scalars['String']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-  projectType?: InputMaybe<Scalars['String']['input']>;
-  projectTypes?: InputMaybe<Translations_CaContactFormProjectTypesMutation>;
-  serviceType?: InputMaybe<Scalars['String']['input']>;
-  serviceTypes?: InputMaybe<Translations_CaContactFormServiceTypesMutation>;
-  message?: InputMaybe<Scalars['String']['input']>;
-  privacy?: InputMaybe<Scalars['String']['input']>;
-  submit?: InputMaybe<Scalars['String']['input']>;
-  sending?: InputMaybe<Scalars['String']['input']>;
-  success?: InputMaybe<Scalars['String']['input']>;
-  error?: InputMaybe<Scalars['String']['input']>;
-  turnstileFailed?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaProjectsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  heading?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaAccessibilityMutation = {
-  skipToContent?: InputMaybe<Scalars['String']['input']>;
-  selectLanguage?: InputMaybe<Scalars['String']['input']>;
-  toggleMenu?: InputMaybe<Scalars['String']['input']>;
-  closeMenu?: InputMaybe<Scalars['String']['input']>;
-  previousSlide?: InputMaybe<Scalars['String']['input']>;
-  nextSlide?: InputMaybe<Scalars['String']['input']>;
-  goToSlide?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_CaMutation = {
-  nav?: InputMaybe<Translations_CaNavMutation>;
-  footer?: InputMaybe<Translations_CaFooterMutation>;
-  contactForm?: InputMaybe<Translations_CaContactFormMutation>;
-  projects?: InputMaybe<Translations_CaProjectsMutation>;
-  accessibility?: InputMaybe<Translations_CaAccessibilityMutation>;
-};
-
-export type Translations_EnNavMutation = {
-  social?: InputMaybe<Scalars['String']['input']>;
-  menu?: InputMaybe<Scalars['String']['input']>;
-  letsTalk?: InputMaybe<Scalars['String']['input']>;
-  about?: InputMaybe<Scalars['String']['input']>;
-  projects?: InputMaybe<Scalars['String']['input']>;
-  services?: InputMaybe<Scalars['String']['input']>;
-  contact?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnFooterMutation = {
-  privacy?: InputMaybe<Scalars['String']['input']>;
-  legal?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnContactFormProjectTypesMutation = {
-  commercial?: InputMaybe<Scalars['String']['input']>;
-  restaurant?: InputMaybe<Scalars['String']['input']>;
-  entertainment?: InputMaybe<Scalars['String']['input']>;
-  other?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnContactFormServiceTypesMutation = {
-  fullPackage?: InputMaybe<Scalars['String']['input']>;
-  concept?: InputMaybe<Scalars['String']['input']>;
-  unsure?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnContactFormMutation = {
-  name?: InputMaybe<Scalars['String']['input']>;
-  company?: InputMaybe<Scalars['String']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
-  phone?: InputMaybe<Scalars['String']['input']>;
-  projectType?: InputMaybe<Scalars['String']['input']>;
-  projectTypes?: InputMaybe<Translations_EnContactFormProjectTypesMutation>;
-  serviceType?: InputMaybe<Scalars['String']['input']>;
-  serviceTypes?: InputMaybe<Translations_EnContactFormServiceTypesMutation>;
-  message?: InputMaybe<Scalars['String']['input']>;
-  privacy?: InputMaybe<Scalars['String']['input']>;
-  submit?: InputMaybe<Scalars['String']['input']>;
-  sending?: InputMaybe<Scalars['String']['input']>;
-  success?: InputMaybe<Scalars['String']['input']>;
-  error?: InputMaybe<Scalars['String']['input']>;
-  turnstileFailed?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnProjectsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  heading?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnAccessibilityMutation = {
-  skipToContent?: InputMaybe<Scalars['String']['input']>;
-  selectLanguage?: InputMaybe<Scalars['String']['input']>;
-  toggleMenu?: InputMaybe<Scalars['String']['input']>;
-  closeMenu?: InputMaybe<Scalars['String']['input']>;
-  previousSlide?: InputMaybe<Scalars['String']['input']>;
-  nextSlide?: InputMaybe<Scalars['String']['input']>;
-  goToSlide?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Translations_EnMutation = {
-  nav?: InputMaybe<Translations_EnNavMutation>;
-  footer?: InputMaybe<Translations_EnFooterMutation>;
-  contactForm?: InputMaybe<Translations_EnContactFormMutation>;
-  projects?: InputMaybe<Translations_EnProjectsMutation>;
-  accessibility?: InputMaybe<Translations_EnAccessibilityMutation>;
+export type TranslationsMutation = {
+  nav?: InputMaybe<TranslationsNavMutation>;
+  footer?: InputMaybe<TranslationsFooterMutation>;
+  contactForm?: InputMaybe<TranslationsContactFormMutation>;
+  projects?: InputMaybe<TranslationsProjectsMutation>;
+  accessibility?: InputMaybe<TranslationsAccessibilityMutation>;
 };
 
 export type SiteConfigPartsFragment = { __typename: 'SiteConfig', siteUrl: string, locales?: Array<string | null> | null, defaultLocale: string, company?: { __typename: 'SiteConfigCompany', name: string, legalName?: string | null, description?: string | null, tagline?: string | null } | null, contact?: { __typename: 'SiteConfigContact', email: string, phone: string, phoneLink?: string | null, location?: { __typename: 'SiteConfigContactLocation', city: string, country: string } | null } | null, founder?: { __typename: 'SiteConfigFounder', name: string } | null, socialLinks?: Array<{ __typename: 'SiteConfigSocialLinks', name: string, url: string, icon: string } | null> | null, attribution?: { __typename: 'SiteConfigAttribution', design?: string | null, development?: string | null } | null, branding?: { __typename: 'SiteConfigBranding', logo: string, logoWhite: string, symbol: string, symbolWhite: string, ogImage: string } | null, seo?: { __typename: 'SiteConfigSeo', priceRange?: string | null } | null };
 
-export type Home_EsPartsFragment = { __typename: 'Home_es', title: string, description: string, headerStyle?: string | null, hero?: { __typename: 'Home_esHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_esHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_esHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_esAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null };
+export type HomePartsFragment = { __typename: 'Home', title: string, description: string, headerStyle?: string | null, hero?: { __typename: 'HomeHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'HomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'HomeHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'HomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null };
 
-export type Home_CaPartsFragment = { __typename: 'Home_ca', title: string, description: string, headerStyle?: string | null, hero?: { __typename: 'Home_caHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_caHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_caHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_caAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null };
+export type AboutPartsFragment = { __typename: 'About', title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, hero?: { __typename: 'AboutHero', title: string } | null, behindName?: { __typename: 'AboutBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'AboutBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'AboutAwards', title?: string | null, items?: Array<{ __typename: 'AboutAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'AboutMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null };
 
-export type Home_EnPartsFragment = { __typename: 'Home_en', title: string, description: string, headerStyle?: string | null, hero?: { __typename: 'Home_enHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_enHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_enHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_enAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null };
+export type ServicesPartsFragment = { __typename: 'Services', title: string, description: string, hero?: { __typename: 'ServicesHero', title: string } | null, intro?: { __typename: 'ServicesIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'ServicesServiceGroups', title: string, items?: Array<{ __typename: 'ServicesServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'ServicesFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'ServicesWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null };
 
-export type About_EsPartsFragment = { __typename: 'About_es', title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, hero?: { __typename: 'About_esHero', title: string } | null, behindName?: { __typename: 'About_esBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_esBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_esAwards', title?: string | null, items?: Array<{ __typename: 'About_esAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_esMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null };
+export type ContactPartsFragment = { __typename: 'Contact', title: string, description: string, heading: string, subheading: string };
 
-export type About_CaPartsFragment = { __typename: 'About_ca', title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, hero?: { __typename: 'About_caHero', title: string } | null, behindName?: { __typename: 'About_caBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_caBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_caAwards', title?: string | null, items?: Array<{ __typename: 'About_caAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_caMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null };
+export type LegalPartsFragment = { __typename: 'Legal', title: string, description: string, lastUpdated?: string | null, body?: any | null };
 
-export type About_EnPartsFragment = { __typename: 'About_en', title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, hero?: { __typename: 'About_enHero', title: string } | null, behindName?: { __typename: 'About_enBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_enBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_enAwards', title?: string | null, items?: Array<{ __typename: 'About_enAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_enMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null };
+export type ProjectsPartsFragment = { __typename: 'Projects', title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, banner?: { __typename: 'ProjectsBanner', image: string, alt: string } | null, details?: { __typename: 'ProjectsDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'ProjectsBrief', title: string, text: string, gallery?: { __typename: 'ProjectsBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'ProjectsConcept', title: string, text: string, gallery?: { __typename: 'ProjectsConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'ProjectsStrategy', title: string, text: string, carousel?: Array<{ __typename: 'ProjectsStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'ProjectsStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'ProjectsCollaborators', title: string, list?: Array<{ __typename: 'ProjectsCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'ProjectsFinalImage', src: string, alt: string } | null };
 
-export type Services_EsPartsFragment = { __typename: 'Services_es', title: string, description: string, hero?: { __typename: 'Services_esHero', title: string } | null, intro?: { __typename: 'Services_esIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_esServiceGroups', title: string, items?: Array<{ __typename: 'Services_esServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_esFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_esFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_esWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null };
-
-export type Services_CaPartsFragment = { __typename: 'Services_ca', title: string, description: string, hero?: { __typename: 'Services_caHero', title: string } | null, intro?: { __typename: 'Services_caIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_caServiceGroups', title: string, items?: Array<{ __typename: 'Services_caServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_caFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_caFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_caWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null };
-
-export type Services_EnPartsFragment = { __typename: 'Services_en', title: string, description: string, hero?: { __typename: 'Services_enHero', title: string } | null, intro?: { __typename: 'Services_enIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_enServiceGroups', title: string, items?: Array<{ __typename: 'Services_enServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_enFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_enFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_enWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null };
-
-export type Contact_EsPartsFragment = { __typename: 'Contact_es', title: string, description: string, heading: string, subheading: string };
-
-export type Contact_CaPartsFragment = { __typename: 'Contact_ca', title: string, description: string, heading: string, subheading: string };
-
-export type Contact_EnPartsFragment = { __typename: 'Contact_en', title: string, description: string, heading: string, subheading: string };
-
-export type Legal_EsPartsFragment = { __typename: 'Legal_es', title: string, description: string, lastUpdated?: string | null, body?: any | null };
-
-export type Legal_CaPartsFragment = { __typename: 'Legal_ca', title: string, description: string, lastUpdated?: string | null, body?: any | null };
-
-export type Legal_EnPartsFragment = { __typename: 'Legal_en', title: string, description: string, lastUpdated?: string | null, body?: any | null };
-
-export type Projects_EsPartsFragment = { __typename: 'Projects_es', title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, banner?: { __typename: 'Projects_esBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_esDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_esBrief', title: string, text: string, gallery?: { __typename: 'Projects_esBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_esConcept', title: string, text: string, gallery?: { __typename: 'Projects_esConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_esStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_esStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_esStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_esCollaborators', title: string, list?: Array<{ __typename: 'Projects_esCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_esFinalImage', src: string, alt: string } | null };
-
-export type Projects_CaPartsFragment = { __typename: 'Projects_ca', title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, banner?: { __typename: 'Projects_caBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_caDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_caBrief', title: string, text: string, gallery?: { __typename: 'Projects_caBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_caConcept', title: string, text: string, gallery?: { __typename: 'Projects_caConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_caStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_caStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_caStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_caCollaborators', title: string, list?: Array<{ __typename: 'Projects_caCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_caFinalImage', src: string, alt: string } | null };
-
-export type Projects_EnPartsFragment = { __typename: 'Projects_en', title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, banner?: { __typename: 'Projects_enBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_enDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_enBrief', title: string, text: string, gallery?: { __typename: 'Projects_enBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_enConcept', title: string, text: string, gallery?: { __typename: 'Projects_enConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_enStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_enStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_enStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_enCollaborators', title: string, list?: Array<{ __typename: 'Projects_enCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_enFinalImage', src: string, alt: string } | null };
-
-export type Translations_EsPartsFragment = { __typename: 'Translations_es', nav?: { __typename: 'Translations_esNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_esFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_esContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_esContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_esContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_esProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_esAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
-
-export type Translations_CaPartsFragment = { __typename: 'Translations_ca', nav?: { __typename: 'Translations_caNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_caFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_caContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_caContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_caContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_caProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_caAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
-
-export type Translations_EnPartsFragment = { __typename: 'Translations_en', nav?: { __typename: 'Translations_enNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_enFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_enContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_enContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_enContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_enProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_enAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
+export type TranslationsPartsFragment = { __typename: 'Translations', nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'TranslationsContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'TranslationsContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
 
 export type SiteConfigQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -4588,404 +1860,138 @@ export type SiteConfigConnectionQueryVariables = Exact<{
 
 export type SiteConfigConnectionQuery = { __typename?: 'Query', siteConfigConnection: { __typename?: 'SiteConfigConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SiteConfigConnectionEdges', cursor: string, node?: { __typename: 'SiteConfig', id: string, siteUrl: string, locales?: Array<string | null> | null, defaultLocale: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, company?: { __typename: 'SiteConfigCompany', name: string, legalName?: string | null, description?: string | null, tagline?: string | null } | null, contact?: { __typename: 'SiteConfigContact', email: string, phone: string, phoneLink?: string | null, location?: { __typename: 'SiteConfigContactLocation', city: string, country: string } | null } | null, founder?: { __typename: 'SiteConfigFounder', name: string } | null, socialLinks?: Array<{ __typename: 'SiteConfigSocialLinks', name: string, url: string, icon: string } | null> | null, attribution?: { __typename: 'SiteConfigAttribution', design?: string | null, development?: string | null } | null, branding?: { __typename: 'SiteConfigBranding', logo: string, logoWhite: string, symbol: string, symbolWhite: string, ogImage: string } | null, seo?: { __typename: 'SiteConfigSeo', priceRange?: string | null } | null } | null } | null> | null } };
 
-export type Home_EsQueryVariables = Exact<{
+export type HomeQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Home_EsQuery = { __typename?: 'Query', home_es: { __typename: 'Home_es', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Home_esHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_esHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_esHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_esAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } };
+export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomeHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'HomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'HomeHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'HomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } };
 
-export type Home_EsConnectionQueryVariables = Exact<{
+export type HomeConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Home_EsFilter>;
+  filter?: InputMaybe<HomeFilter>;
 }>;
 
 
-export type Home_EsConnectionQuery = { __typename?: 'Query', home_esConnection: { __typename?: 'Home_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Home_esConnectionEdges', cursor: string, node?: { __typename: 'Home_es', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Home_esHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_esHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_esHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_esAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } | null } | null> | null } };
+export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'HomeHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'HomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'HomeHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'HomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } | null } | null> | null } };
 
-export type Home_CaQueryVariables = Exact<{
+export type AboutQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Home_CaQuery = { __typename?: 'Query', home_ca: { __typename: 'Home_ca', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Home_caHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_caHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_caHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_caAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } };
+export type AboutQuery = { __typename?: 'Query', about: { __typename: 'About', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'AboutHero', title: string } | null, behindName?: { __typename: 'AboutBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'AboutBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'AboutAwards', title?: string | null, items?: Array<{ __typename: 'AboutAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'AboutMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } };
 
-export type Home_CaConnectionQueryVariables = Exact<{
+export type AboutConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Home_CaFilter>;
+  filter?: InputMaybe<AboutFilter>;
 }>;
 
 
-export type Home_CaConnectionQuery = { __typename?: 'Query', home_caConnection: { __typename?: 'Home_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Home_caConnectionEdges', cursor: string, node?: { __typename: 'Home_ca', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Home_caHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_caHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_caHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_caAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } | null } | null> | null } };
+export type AboutConnectionQuery = { __typename?: 'Query', aboutConnection: { __typename?: 'AboutConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutConnectionEdges', cursor: string, node?: { __typename: 'About', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'AboutHero', title: string } | null, behindName?: { __typename: 'AboutBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'AboutBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'AboutAwards', title?: string | null, items?: Array<{ __typename: 'AboutAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'AboutMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } | null } | null> | null } };
 
-export type Home_EnQueryVariables = Exact<{
+export type ServicesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Home_EnQuery = { __typename?: 'Query', home_en: { __typename: 'Home_en', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Home_enHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_enHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_enHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_enAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } };
+export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'ServicesHero', title: string } | null, intro?: { __typename: 'ServicesIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'ServicesServiceGroups', title: string, items?: Array<{ __typename: 'ServicesServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'ServicesFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'ServicesWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } };
 
-export type Home_EnConnectionQueryVariables = Exact<{
+export type ServicesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Home_EnFilter>;
+  filter?: InputMaybe<ServicesFilter>;
 }>;
 
 
-export type Home_EnConnectionQuery = { __typename?: 'Query', home_enConnection: { __typename?: 'Home_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Home_enConnectionEdges', cursor: string, node?: { __typename: 'Home_en', id: string, title: string, description: string, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Home_enHero', image: string, taglineSub?: string | null, topRight?: { __typename: 'Home_enHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'Home_enHeroTagline', lines?: Array<string | null> | null } | null } | null, about?: { __typename: 'Home_enAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | null } | null } | null> | null } };
+export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'ServicesHero', title: string } | null, intro?: { __typename: 'ServicesIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'ServicesServiceGroups', title: string, items?: Array<{ __typename: 'ServicesServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'ServicesFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'ServicesWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } | null } | null> | null } };
 
-export type About_EsQueryVariables = Exact<{
+export type ContactQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type About_EsQuery = { __typename?: 'Query', about_es: { __typename: 'About_es', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'About_esHero', title: string } | null, behindName?: { __typename: 'About_esBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_esBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_esAwards', title?: string | null, items?: Array<{ __typename: 'About_esAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_esMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } };
+export type ContactQuery = { __typename?: 'Query', contact: { __typename: 'Contact', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type About_EsConnectionQueryVariables = Exact<{
+export type ContactConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<About_EsFilter>;
+  filter?: InputMaybe<ContactFilter>;
 }>;
 
 
-export type About_EsConnectionQuery = { __typename?: 'Query', about_esConnection: { __typename?: 'About_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'About_esConnectionEdges', cursor: string, node?: { __typename: 'About_es', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'About_esHero', title: string } | null, behindName?: { __typename: 'About_esBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_esBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_esAwards', title?: string | null, items?: Array<{ __typename: 'About_esAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_esMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } | null } | null> | null } };
+export type ContactConnectionQuery = { __typename?: 'Query', contactConnection: { __typename?: 'ContactConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactConnectionEdges', cursor: string, node?: { __typename: 'Contact', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type About_CaQueryVariables = Exact<{
+export type LegalQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type About_CaQuery = { __typename?: 'Query', about_ca: { __typename: 'About_ca', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'About_caHero', title: string } | null, behindName?: { __typename: 'About_caBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_caBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_caAwards', title?: string | null, items?: Array<{ __typename: 'About_caAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_caMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } };
+export type LegalQuery = { __typename?: 'Query', legal: { __typename: 'Legal', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
-export type About_CaConnectionQueryVariables = Exact<{
+export type LegalConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<About_CaFilter>;
+  filter?: InputMaybe<LegalFilter>;
 }>;
 
 
-export type About_CaConnectionQuery = { __typename?: 'Query', about_caConnection: { __typename?: 'About_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'About_caConnectionEdges', cursor: string, node?: { __typename: 'About_ca', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'About_caHero', title: string } | null, behindName?: { __typename: 'About_caBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_caBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_caAwards', title?: string | null, items?: Array<{ __typename: 'About_caAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_caMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } | null } | null> | null } };
+export type LegalConnectionQuery = { __typename?: 'Query', legalConnection: { __typename?: 'LegalConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LegalConnectionEdges', cursor: string, node?: { __typename: 'Legal', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type About_EnQueryVariables = Exact<{
+export type ProjectsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type About_EnQuery = { __typename?: 'Query', about_en: { __typename: 'About_en', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'About_enHero', title: string } | null, behindName?: { __typename: 'About_enBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_enBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_enAwards', title?: string | null, items?: Array<{ __typename: 'About_enAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_enMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } };
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename: 'Projects', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'ProjectsBanner', image: string, alt: string } | null, details?: { __typename: 'ProjectsDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'ProjectsBrief', title: string, text: string, gallery?: { __typename: 'ProjectsBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'ProjectsConcept', title: string, text: string, gallery?: { __typename: 'ProjectsConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'ProjectsStrategy', title: string, text: string, carousel?: Array<{ __typename: 'ProjectsStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'ProjectsStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'ProjectsCollaborators', title: string, list?: Array<{ __typename: 'ProjectsCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'ProjectsFinalImage', src: string, alt: string } | null } };
 
-export type About_EnConnectionQueryVariables = Exact<{
+export type ProjectsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<About_EnFilter>;
+  filter?: InputMaybe<ProjectsFilter>;
 }>;
 
 
-export type About_EnConnectionQuery = { __typename?: 'Query', about_enConnection: { __typename?: 'About_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'About_enConnectionEdges', cursor: string, node?: { __typename: 'About_en', id: string, title: string, description: string, heroImage?: string | null, bannerImage?: string | null, missionImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'About_enHero', title: string } | null, behindName?: { __typename: 'About_enBehindName', title?: string | null, p1: string, p2: string, footnote?: string | null } | null, bio?: { __typename: 'About_enBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | null, awards?: { __typename: 'About_enAwards', title?: string | null, items?: Array<{ __typename: 'About_enAwardsItems', year: string, project: string, award: string, link?: string | null } | null> | null } | null, mission?: { __typename: 'About_enMission', title?: string | null, p1: string, p2: string, quote?: string | null } | null } | null } | null> | null } };
+export type ProjectsConnectionQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectsConnectionEdges', cursor: string, node?: { __typename: 'Projects', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'ProjectsBanner', image: string, alt: string } | null, details?: { __typename: 'ProjectsDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'ProjectsBrief', title: string, text: string, gallery?: { __typename: 'ProjectsBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'ProjectsConcept', title: string, text: string, gallery?: { __typename: 'ProjectsConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'ProjectsStrategy', title: string, text: string, carousel?: Array<{ __typename: 'ProjectsStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'ProjectsStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'ProjectsCollaborators', title: string, list?: Array<{ __typename: 'ProjectsCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'ProjectsFinalImage', src: string, alt: string } | null } | null } | null> | null } };
 
-export type Services_EsQueryVariables = Exact<{
+export type TranslationsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type Services_EsQuery = { __typename?: 'Query', services_es: { __typename: 'Services_es', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Services_esHero', title: string } | null, intro?: { __typename: 'Services_esIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_esServiceGroups', title: string, items?: Array<{ __typename: 'Services_esServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_esFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_esFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_esWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } };
+export type TranslationsQuery = { __typename?: 'Query', translations: { __typename: 'Translations', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'TranslationsContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'TranslationsContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
 
-export type Services_EsConnectionQueryVariables = Exact<{
+export type TranslationsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Services_EsFilter>;
+  filter?: InputMaybe<TranslationsFilter>;
 }>;
 
 
-export type Services_EsConnectionQuery = { __typename?: 'Query', services_esConnection: { __typename?: 'Services_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Services_esConnectionEdges', cursor: string, node?: { __typename: 'Services_es', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Services_esHero', title: string } | null, intro?: { __typename: 'Services_esIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_esServiceGroups', title: string, items?: Array<{ __typename: 'Services_esServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_esFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_esFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_esWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } | null } | null> | null } };
-
-export type Services_CaQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Services_CaQuery = { __typename?: 'Query', services_ca: { __typename: 'Services_ca', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Services_caHero', title: string } | null, intro?: { __typename: 'Services_caIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_caServiceGroups', title: string, items?: Array<{ __typename: 'Services_caServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_caFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_caFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_caWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } };
-
-export type Services_CaConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Services_CaFilter>;
-}>;
-
-
-export type Services_CaConnectionQuery = { __typename?: 'Query', services_caConnection: { __typename?: 'Services_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Services_caConnectionEdges', cursor: string, node?: { __typename: 'Services_ca', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Services_caHero', title: string } | null, intro?: { __typename: 'Services_caIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_caServiceGroups', title: string, items?: Array<{ __typename: 'Services_caServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_caFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_caFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_caWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } | null } | null> | null } };
-
-export type Services_EnQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Services_EnQuery = { __typename?: 'Query', services_en: { __typename: 'Services_en', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Services_enHero', title: string } | null, intro?: { __typename: 'Services_enIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_enServiceGroups', title: string, items?: Array<{ __typename: 'Services_enServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_enFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_enFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_enWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } };
-
-export type Services_EnConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Services_EnFilter>;
-}>;
-
-
-export type Services_EnConnectionQuery = { __typename?: 'Query', services_enConnection: { __typename?: 'Services_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Services_enConnectionEdges', cursor: string, node?: { __typename: 'Services_en', id: string, title: string, description: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'Services_enHero', title: string } | null, intro?: { __typename: 'Services_enIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'Services_enServiceGroups', title: string, items?: Array<{ __typename: 'Services_enServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'Services_enFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'Services_enFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'Services_enWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null } | null } | null> | null } };
-
-export type Contact_EsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Contact_EsQuery = { __typename?: 'Query', contact_es: { __typename: 'Contact_es', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Contact_EsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Contact_EsFilter>;
-}>;
-
-
-export type Contact_EsConnectionQuery = { __typename?: 'Query', contact_esConnection: { __typename?: 'Contact_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Contact_esConnectionEdges', cursor: string, node?: { __typename: 'Contact_es', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Contact_CaQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Contact_CaQuery = { __typename?: 'Query', contact_ca: { __typename: 'Contact_ca', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Contact_CaConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Contact_CaFilter>;
-}>;
-
-
-export type Contact_CaConnectionQuery = { __typename?: 'Query', contact_caConnection: { __typename?: 'Contact_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Contact_caConnectionEdges', cursor: string, node?: { __typename: 'Contact_ca', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Contact_EnQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Contact_EnQuery = { __typename?: 'Query', contact_en: { __typename: 'Contact_en', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Contact_EnConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Contact_EnFilter>;
-}>;
-
-
-export type Contact_EnConnectionQuery = { __typename?: 'Query', contact_enConnection: { __typename?: 'Contact_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Contact_enConnectionEdges', cursor: string, node?: { __typename: 'Contact_en', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Legal_EsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Legal_EsQuery = { __typename?: 'Query', legal_es: { __typename: 'Legal_es', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Legal_EsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Legal_EsFilter>;
-}>;
-
-
-export type Legal_EsConnectionQuery = { __typename?: 'Query', legal_esConnection: { __typename?: 'Legal_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Legal_esConnectionEdges', cursor: string, node?: { __typename: 'Legal_es', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Legal_CaQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Legal_CaQuery = { __typename?: 'Query', legal_ca: { __typename: 'Legal_ca', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Legal_CaConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Legal_CaFilter>;
-}>;
-
-
-export type Legal_CaConnectionQuery = { __typename?: 'Query', legal_caConnection: { __typename?: 'Legal_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Legal_caConnectionEdges', cursor: string, node?: { __typename: 'Legal_ca', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Legal_EnQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Legal_EnQuery = { __typename?: 'Query', legal_en: { __typename: 'Legal_en', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type Legal_EnConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Legal_EnFilter>;
-}>;
-
-
-export type Legal_EnConnectionQuery = { __typename?: 'Query', legal_enConnection: { __typename?: 'Legal_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Legal_enConnectionEdges', cursor: string, node?: { __typename: 'Legal_en', id: string, title: string, description: string, lastUpdated?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type Projects_EsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Projects_EsQuery = { __typename?: 'Query', projects_es: { __typename: 'Projects_es', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'Projects_esBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_esDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_esBrief', title: string, text: string, gallery?: { __typename: 'Projects_esBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_esConcept', title: string, text: string, gallery?: { __typename: 'Projects_esConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_esStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_esStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_esStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_esCollaborators', title: string, list?: Array<{ __typename: 'Projects_esCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_esFinalImage', src: string, alt: string } | null } };
-
-export type Projects_EsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Projects_EsFilter>;
-}>;
-
-
-export type Projects_EsConnectionQuery = { __typename?: 'Query', projects_esConnection: { __typename?: 'Projects_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Projects_esConnectionEdges', cursor: string, node?: { __typename: 'Projects_es', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'Projects_esBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_esDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_esBrief', title: string, text: string, gallery?: { __typename: 'Projects_esBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_esConcept', title: string, text: string, gallery?: { __typename: 'Projects_esConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_esStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_esStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_esStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_esStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_esCollaborators', title: string, list?: Array<{ __typename: 'Projects_esCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_esFinalImage', src: string, alt: string } | null } | null } | null> | null } };
-
-export type Projects_CaQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Projects_CaQuery = { __typename?: 'Query', projects_ca: { __typename: 'Projects_ca', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'Projects_caBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_caDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_caBrief', title: string, text: string, gallery?: { __typename: 'Projects_caBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_caConcept', title: string, text: string, gallery?: { __typename: 'Projects_caConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_caStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_caStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_caStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_caCollaborators', title: string, list?: Array<{ __typename: 'Projects_caCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_caFinalImage', src: string, alt: string } | null } };
-
-export type Projects_CaConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Projects_CaFilter>;
-}>;
-
-
-export type Projects_CaConnectionQuery = { __typename?: 'Query', projects_caConnection: { __typename?: 'Projects_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Projects_caConnectionEdges', cursor: string, node?: { __typename: 'Projects_ca', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'Projects_caBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_caDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_caBrief', title: string, text: string, gallery?: { __typename: 'Projects_caBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_caConcept', title: string, text: string, gallery?: { __typename: 'Projects_caConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_caStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_caStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_caStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_caStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_caCollaborators', title: string, list?: Array<{ __typename: 'Projects_caCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_caFinalImage', src: string, alt: string } | null } | null } | null> | null } };
-
-export type Projects_EnQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Projects_EnQuery = { __typename?: 'Query', projects_en: { __typename: 'Projects_en', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'Projects_enBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_enDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_enBrief', title: string, text: string, gallery?: { __typename: 'Projects_enBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_enConcept', title: string, text: string, gallery?: { __typename: 'Projects_enConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_enStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_enStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_enStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_enCollaborators', title: string, list?: Array<{ __typename: 'Projects_enCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_enFinalImage', src: string, alt: string } | null } };
-
-export type Projects_EnConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Projects_EnFilter>;
-}>;
-
-
-export type Projects_EnConnectionQuery = { __typename?: 'Query', projects_enConnection: { __typename?: 'Projects_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Projects_enConnectionEdges', cursor: string, node?: { __typename: 'Projects_en', id: string, title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, banner?: { __typename: 'Projects_enBanner', image: string, alt: string } | null, details?: { __typename: 'Projects_enDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'Projects_enBrief', title: string, text: string, gallery?: { __typename: 'Projects_enBriefGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'Projects_enConcept', title: string, text: string, gallery?: { __typename: 'Projects_enConceptGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'Projects_enStrategy', title: string, text: string, carousel?: Array<{ __typename: 'Projects_enStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'Projects_enStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'Projects_enStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'Projects_enCollaborators', title: string, list?: Array<{ __typename: 'Projects_enCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'Projects_enFinalImage', src: string, alt: string } | null } | null } | null> | null } };
-
-export type Translations_EsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Translations_EsQuery = { __typename?: 'Query', translations_es: { __typename: 'Translations_es', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_esNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_esFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_esContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_esContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_esContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_esProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_esAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
-
-export type Translations_EsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Translations_EsFilter>;
-}>;
-
-
-export type Translations_EsConnectionQuery = { __typename?: 'Query', translations_esConnection: { __typename?: 'Translations_esConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Translations_esConnectionEdges', cursor: string, node?: { __typename: 'Translations_es', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_esNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_esFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_esContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_esContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_esContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_esProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_esAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
-
-export type Translations_CaQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Translations_CaQuery = { __typename?: 'Query', translations_ca: { __typename: 'Translations_ca', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_caNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_caFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_caContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_caContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_caContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_caProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_caAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
-
-export type Translations_CaConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Translations_CaFilter>;
-}>;
-
-
-export type Translations_CaConnectionQuery = { __typename?: 'Query', translations_caConnection: { __typename?: 'Translations_caConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Translations_caConnectionEdges', cursor: string, node?: { __typename: 'Translations_ca', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_caNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_caFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_caContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_caContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_caContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_caProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_caAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
-
-export type Translations_EnQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type Translations_EnQuery = { __typename?: 'Query', translations_en: { __typename: 'Translations_en', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_enNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_enFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_enContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_enContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_enContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_enProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_enAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
-
-export type Translations_EnConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<Translations_EnFilter>;
-}>;
-
-
-export type Translations_EnConnectionQuery = { __typename?: 'Query', translations_enConnection: { __typename?: 'Translations_enConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'Translations_enConnectionEdges', cursor: string, node?: { __typename: 'Translations_en', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'Translations_enNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'Translations_enFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'Translations_enContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'Translations_enContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'Translations_enContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'Translations_enProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'Translations_enAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
+export type TranslationsConnectionQuery = { __typename?: 'Query', translationsConnection: { __typename?: 'TranslationsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TranslationsConnectionEdges', cursor: string, node?: { __typename: 'Translations', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'TranslationsContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'TranslationsContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
 
 export const SiteConfigPartsFragmentDoc = gql`
     fragment SiteConfigParts on SiteConfig {
@@ -5040,8 +2046,8 @@ export const SiteConfigPartsFragmentDoc = gql`
   }
 }
     `;
-export const Home_EsPartsFragmentDoc = gql`
-    fragment Home_esParts on Home_es {
+export const HomePartsFragmentDoc = gql`
+    fragment HomeParts on Home {
   __typename
   title
   description
@@ -5069,66 +2075,8 @@ export const Home_EsPartsFragmentDoc = gql`
   }
 }
     `;
-export const Home_CaPartsFragmentDoc = gql`
-    fragment Home_caParts on Home_ca {
-  __typename
-  title
-  description
-  headerStyle
-  hero {
-    __typename
-    image
-    topRight {
-      __typename
-      lines
-    }
-    tagline {
-      __typename
-      lines
-    }
-    taglineSub
-  }
-  about {
-    __typename
-    image
-    title
-    description
-    ctaText
-    ctaLink
-  }
-}
-    `;
-export const Home_EnPartsFragmentDoc = gql`
-    fragment Home_enParts on Home_en {
-  __typename
-  title
-  description
-  headerStyle
-  hero {
-    __typename
-    image
-    topRight {
-      __typename
-      lines
-    }
-    tagline {
-      __typename
-      lines
-    }
-    taglineSub
-  }
-  about {
-    __typename
-    image
-    title
-    description
-    ctaText
-    ctaLink
-  }
-}
-    `;
-export const About_EsPartsFragmentDoc = gql`
-    fragment About_esParts on About_es {
+export const AboutPartsFragmentDoc = gql`
+    fragment AboutParts on About {
   __typename
   title
   description
@@ -5172,98 +2120,8 @@ export const About_EsPartsFragmentDoc = gql`
   missionImage
 }
     `;
-export const About_CaPartsFragmentDoc = gql`
-    fragment About_caParts on About_ca {
-  __typename
-  title
-  description
-  heroImage
-  hero {
-    __typename
-    title
-  }
-  behindName {
-    __typename
-    title
-    p1
-    p2
-    footnote
-  }
-  bannerImage
-  bio {
-    __typename
-    title
-    image
-    paragraphs
-  }
-  awards {
-    __typename
-    title
-    items {
-      __typename
-      year
-      project
-      award
-      link
-    }
-  }
-  mission {
-    __typename
-    title
-    p1
-    p2
-    quote
-  }
-  missionImage
-}
-    `;
-export const About_EnPartsFragmentDoc = gql`
-    fragment About_enParts on About_en {
-  __typename
-  title
-  description
-  heroImage
-  hero {
-    __typename
-    title
-  }
-  behindName {
-    __typename
-    title
-    p1
-    p2
-    footnote
-  }
-  bannerImage
-  bio {
-    __typename
-    title
-    image
-    paragraphs
-  }
-  awards {
-    __typename
-    title
-    items {
-      __typename
-      year
-      project
-      award
-      link
-    }
-  }
-  mission {
-    __typename
-    title
-    p1
-    p2
-    quote
-  }
-  missionImage
-}
-    `;
-export const Services_EsPartsFragmentDoc = gql`
-    fragment Services_esParts on Services_es {
+export const ServicesPartsFragmentDoc = gql`
+    fragment ServicesParts on Services {
   __typename
   title
   description
@@ -5304,92 +2162,8 @@ export const Services_EsPartsFragmentDoc = gql`
   }
 }
     `;
-export const Services_CaPartsFragmentDoc = gql`
-    fragment Services_caParts on Services_ca {
-  __typename
-  title
-  description
-  hero {
-    __typename
-    title
-  }
-  intro {
-    __typename
-    text
-    image
-  }
-  serviceGroups {
-    __typename
-    title
-    items {
-      __typename
-      title
-      description
-    }
-  }
-  faq {
-    __typename
-    title
-    image
-    items {
-      __typename
-      question
-      answer
-    }
-  }
-  workProcess {
-    __typename
-    title
-    p1
-    p2
-    image
-  }
-}
-    `;
-export const Services_EnPartsFragmentDoc = gql`
-    fragment Services_enParts on Services_en {
-  __typename
-  title
-  description
-  hero {
-    __typename
-    title
-  }
-  intro {
-    __typename
-    text
-    image
-  }
-  serviceGroups {
-    __typename
-    title
-    items {
-      __typename
-      title
-      description
-    }
-  }
-  faq {
-    __typename
-    title
-    image
-    items {
-      __typename
-      question
-      answer
-    }
-  }
-  workProcess {
-    __typename
-    title
-    p1
-    p2
-    image
-  }
-}
-    `;
-export const Contact_EsPartsFragmentDoc = gql`
-    fragment Contact_esParts on Contact_es {
+export const ContactPartsFragmentDoc = gql`
+    fragment ContactParts on Contact {
   __typename
   title
   description
@@ -5397,26 +2171,8 @@ export const Contact_EsPartsFragmentDoc = gql`
   subheading
 }
     `;
-export const Contact_CaPartsFragmentDoc = gql`
-    fragment Contact_caParts on Contact_ca {
-  __typename
-  title
-  description
-  heading
-  subheading
-}
-    `;
-export const Contact_EnPartsFragmentDoc = gql`
-    fragment Contact_enParts on Contact_en {
-  __typename
-  title
-  description
-  heading
-  subheading
-}
-    `;
-export const Legal_EsPartsFragmentDoc = gql`
-    fragment Legal_esParts on Legal_es {
+export const LegalPartsFragmentDoc = gql`
+    fragment LegalParts on Legal {
   __typename
   title
   description
@@ -5424,26 +2180,8 @@ export const Legal_EsPartsFragmentDoc = gql`
   body
 }
     `;
-export const Legal_CaPartsFragmentDoc = gql`
-    fragment Legal_caParts on Legal_ca {
-  __typename
-  title
-  description
-  lastUpdated
-  body
-}
-    `;
-export const Legal_EnPartsFragmentDoc = gql`
-    fragment Legal_enParts on Legal_en {
-  __typename
-  title
-  description
-  lastUpdated
-  body
-}
-    `;
-export const Projects_EsPartsFragmentDoc = gql`
-    fragment Projects_esParts on Projects_es {
+export const ProjectsPartsFragmentDoc = gql`
+    fragment ProjectsParts on Projects {
   __typename
   title
   description
@@ -5536,326 +2274,8 @@ export const Projects_EsPartsFragmentDoc = gql`
   }
 }
     `;
-export const Projects_CaPartsFragmentDoc = gql`
-    fragment Projects_caParts on Projects_ca {
-  __typename
-  title
-  description
-  slug
-  publishDate
-  completedDate
-  tags
-  showTags
-  featured
-  draft
-  banner {
-    __typename
-    image
-    alt
-  }
-  details {
-    __typename
-    title
-    subtitle
-    image
-    services
-    servicesLabel
-    category
-    categoryLabel
-    area
-    areaLabel
-    location
-    locationLabel
-  }
-  brief {
-    __typename
-    title
-    text
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
-    }
-  }
-  concept {
-    __typename
-    title
-    text
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
-    }
-  }
-  strategy {
-    __typename
-    title
-    text
-    carousel {
-      __typename
-      src
-      alt
-    }
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
-    }
-  }
-  collaborators {
-    __typename
-    title
-    list {
-      __typename
-      name
-      role
-    }
-  }
-  finalImage {
-    __typename
-    src
-    alt
-  }
-}
-    `;
-export const Projects_EnPartsFragmentDoc = gql`
-    fragment Projects_enParts on Projects_en {
-  __typename
-  title
-  description
-  slug
-  publishDate
-  completedDate
-  tags
-  showTags
-  featured
-  draft
-  banner {
-    __typename
-    image
-    alt
-  }
-  details {
-    __typename
-    title
-    subtitle
-    image
-    services
-    servicesLabel
-    category
-    categoryLabel
-    area
-    areaLabel
-    location
-    locationLabel
-  }
-  brief {
-    __typename
-    title
-    text
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
-    }
-  }
-  concept {
-    __typename
-    title
-    text
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
-    }
-  }
-  strategy {
-    __typename
-    title
-    text
-    carousel {
-      __typename
-      src
-      alt
-    }
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
-    }
-  }
-  collaborators {
-    __typename
-    title
-    list {
-      __typename
-      name
-      role
-    }
-  }
-  finalImage {
-    __typename
-    src
-    alt
-  }
-}
-    `;
-export const Translations_EsPartsFragmentDoc = gql`
-    fragment Translations_esParts on Translations_es {
-  __typename
-  nav {
-    __typename
-    social
-    menu
-    letsTalk
-    about
-    projects
-    services
-    contact
-  }
-  footer {
-    __typename
-    privacy
-    legal
-  }
-  contactForm {
-    __typename
-    name
-    company
-    email
-    phone
-    projectType
-    projectTypes {
-      __typename
-      commercial
-      restaurant
-      entertainment
-      other
-    }
-    serviceType
-    serviceTypes {
-      __typename
-      fullPackage
-      concept
-      unsure
-    }
-    message
-    privacy
-    submit
-    sending
-    success
-    error
-    turnstileFailed
-  }
-  projects {
-    __typename
-    title
-    description
-    heading
-  }
-  accessibility {
-    __typename
-    skipToContent
-    selectLanguage
-    toggleMenu
-    closeMenu
-    previousSlide
-    nextSlide
-    goToSlide
-  }
-}
-    `;
-export const Translations_CaPartsFragmentDoc = gql`
-    fragment Translations_caParts on Translations_ca {
-  __typename
-  nav {
-    __typename
-    social
-    menu
-    letsTalk
-    about
-    projects
-    services
-    contact
-  }
-  footer {
-    __typename
-    privacy
-    legal
-  }
-  contactForm {
-    __typename
-    name
-    company
-    email
-    phone
-    projectType
-    projectTypes {
-      __typename
-      commercial
-      restaurant
-      entertainment
-      other
-    }
-    serviceType
-    serviceTypes {
-      __typename
-      fullPackage
-      concept
-      unsure
-    }
-    message
-    privacy
-    submit
-    sending
-    success
-    error
-    turnstileFailed
-  }
-  projects {
-    __typename
-    title
-    description
-    heading
-  }
-  accessibility {
-    __typename
-    skipToContent
-    selectLanguage
-    toggleMenu
-    closeMenu
-    previousSlide
-    nextSlide
-    goToSlide
-  }
-}
-    `;
-export const Translations_EnPartsFragmentDoc = gql`
-    fragment Translations_enParts on Translations_en {
+export const TranslationsPartsFragmentDoc = gql`
+    fragment TranslationsParts on Translations {
   __typename
   nav {
     __typename
@@ -5976,9 +2396,9 @@ export const SiteConfigConnectionDocument = gql`
   }
 }
     ${SiteConfigPartsFragmentDoc}`;
-export const Home_EsDocument = gql`
-    query home_es($relativePath: String!) {
-  home_es(relativePath: $relativePath) {
+export const HomeDocument = gql`
+    query home($relativePath: String!) {
+  home(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -5991,13 +2411,13 @@ export const Home_EsDocument = gql`
       }
       id
     }
-    ...Home_esParts
+    ...HomeParts
   }
 }
-    ${Home_EsPartsFragmentDoc}`;
-export const Home_EsConnectionDocument = gql`
-    query home_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Home_esFilter) {
-  home_esConnection(
+    ${HomePartsFragmentDoc}`;
+export const HomeConnectionDocument = gql`
+    query homeConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HomeFilter) {
+  homeConnection(
     before: $before
     after: $after
     first: $first
@@ -6027,15 +2447,15 @@ export const Home_EsConnectionDocument = gql`
           }
           id
         }
-        ...Home_esParts
+        ...HomeParts
       }
     }
   }
 }
-    ${Home_EsPartsFragmentDoc}`;
-export const Home_CaDocument = gql`
-    query home_ca($relativePath: String!) {
-  home_ca(relativePath: $relativePath) {
+    ${HomePartsFragmentDoc}`;
+export const AboutDocument = gql`
+    query about($relativePath: String!) {
+  about(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -6048,13 +2468,13 @@ export const Home_CaDocument = gql`
       }
       id
     }
-    ...Home_caParts
+    ...AboutParts
   }
 }
-    ${Home_CaPartsFragmentDoc}`;
-export const Home_CaConnectionDocument = gql`
-    query home_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Home_caFilter) {
-  home_caConnection(
+    ${AboutPartsFragmentDoc}`;
+export const AboutConnectionDocument = gql`
+    query aboutConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AboutFilter) {
+  aboutConnection(
     before: $before
     after: $after
     first: $first
@@ -6084,15 +2504,15 @@ export const Home_CaConnectionDocument = gql`
           }
           id
         }
-        ...Home_caParts
+        ...AboutParts
       }
     }
   }
 }
-    ${Home_CaPartsFragmentDoc}`;
-export const Home_EnDocument = gql`
-    query home_en($relativePath: String!) {
-  home_en(relativePath: $relativePath) {
+    ${AboutPartsFragmentDoc}`;
+export const ServicesDocument = gql`
+    query services($relativePath: String!) {
+  services(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -6105,13 +2525,13 @@ export const Home_EnDocument = gql`
       }
       id
     }
-    ...Home_enParts
+    ...ServicesParts
   }
 }
-    ${Home_EnPartsFragmentDoc}`;
-export const Home_EnConnectionDocument = gql`
-    query home_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Home_enFilter) {
-  home_enConnection(
+    ${ServicesPartsFragmentDoc}`;
+export const ServicesConnectionDocument = gql`
+    query servicesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ServicesFilter) {
+  servicesConnection(
     before: $before
     after: $after
     first: $first
@@ -6141,15 +2561,15 @@ export const Home_EnConnectionDocument = gql`
           }
           id
         }
-        ...Home_enParts
+        ...ServicesParts
       }
     }
   }
 }
-    ${Home_EnPartsFragmentDoc}`;
-export const About_EsDocument = gql`
-    query about_es($relativePath: String!) {
-  about_es(relativePath: $relativePath) {
+    ${ServicesPartsFragmentDoc}`;
+export const ContactDocument = gql`
+    query contact($relativePath: String!) {
+  contact(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -6162,13 +2582,13 @@ export const About_EsDocument = gql`
       }
       id
     }
-    ...About_esParts
+    ...ContactParts
   }
 }
-    ${About_EsPartsFragmentDoc}`;
-export const About_EsConnectionDocument = gql`
-    query about_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: About_esFilter) {
-  about_esConnection(
+    ${ContactPartsFragmentDoc}`;
+export const ContactConnectionDocument = gql`
+    query contactConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ContactFilter) {
+  contactConnection(
     before: $before
     after: $after
     first: $first
@@ -6198,15 +2618,15 @@ export const About_EsConnectionDocument = gql`
           }
           id
         }
-        ...About_esParts
+        ...ContactParts
       }
     }
   }
 }
-    ${About_EsPartsFragmentDoc}`;
-export const About_CaDocument = gql`
-    query about_ca($relativePath: String!) {
-  about_ca(relativePath: $relativePath) {
+    ${ContactPartsFragmentDoc}`;
+export const LegalDocument = gql`
+    query legal($relativePath: String!) {
+  legal(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -6219,13 +2639,13 @@ export const About_CaDocument = gql`
       }
       id
     }
-    ...About_caParts
+    ...LegalParts
   }
 }
-    ${About_CaPartsFragmentDoc}`;
-export const About_CaConnectionDocument = gql`
-    query about_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: About_caFilter) {
-  about_caConnection(
+    ${LegalPartsFragmentDoc}`;
+export const LegalConnectionDocument = gql`
+    query legalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: LegalFilter) {
+  legalConnection(
     before: $before
     after: $after
     first: $first
@@ -6255,15 +2675,15 @@ export const About_CaConnectionDocument = gql`
           }
           id
         }
-        ...About_caParts
+        ...LegalParts
       }
     }
   }
 }
-    ${About_CaPartsFragmentDoc}`;
-export const About_EnDocument = gql`
-    query about_en($relativePath: String!) {
-  about_en(relativePath: $relativePath) {
+    ${LegalPartsFragmentDoc}`;
+export const ProjectsDocument = gql`
+    query projects($relativePath: String!) {
+  projects(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -6276,13 +2696,13 @@ export const About_EnDocument = gql`
       }
       id
     }
-    ...About_enParts
+    ...ProjectsParts
   }
 }
-    ${About_EnPartsFragmentDoc}`;
-export const About_EnConnectionDocument = gql`
-    query about_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: About_enFilter) {
-  about_enConnection(
+    ${ProjectsPartsFragmentDoc}`;
+export const ProjectsConnectionDocument = gql`
+    query projectsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ProjectsFilter) {
+  projectsConnection(
     before: $before
     after: $after
     first: $first
@@ -6312,15 +2732,15 @@ export const About_EnConnectionDocument = gql`
           }
           id
         }
-        ...About_enParts
+        ...ProjectsParts
       }
     }
   }
 }
-    ${About_EnPartsFragmentDoc}`;
-export const Services_EsDocument = gql`
-    query services_es($relativePath: String!) {
-  services_es(relativePath: $relativePath) {
+    ${ProjectsPartsFragmentDoc}`;
+export const TranslationsDocument = gql`
+    query translations($relativePath: String!) {
+  translations(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -6333,13 +2753,13 @@ export const Services_EsDocument = gql`
       }
       id
     }
-    ...Services_esParts
+    ...TranslationsParts
   }
 }
-    ${Services_EsPartsFragmentDoc}`;
-export const Services_EsConnectionDocument = gql`
-    query services_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Services_esFilter) {
-  services_esConnection(
+    ${TranslationsPartsFragmentDoc}`;
+export const TranslationsConnectionDocument = gql`
+    query translationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TranslationsFilter) {
+  translationsConnection(
     before: $before
     after: $after
     first: $first
@@ -6369,810 +2789,12 @@ export const Services_EsConnectionDocument = gql`
           }
           id
         }
-        ...Services_esParts
+        ...TranslationsParts
       }
     }
   }
 }
-    ${Services_EsPartsFragmentDoc}`;
-export const Services_CaDocument = gql`
-    query services_ca($relativePath: String!) {
-  services_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Services_caParts
-  }
-}
-    ${Services_CaPartsFragmentDoc}`;
-export const Services_CaConnectionDocument = gql`
-    query services_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Services_caFilter) {
-  services_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Services_caParts
-      }
-    }
-  }
-}
-    ${Services_CaPartsFragmentDoc}`;
-export const Services_EnDocument = gql`
-    query services_en($relativePath: String!) {
-  services_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Services_enParts
-  }
-}
-    ${Services_EnPartsFragmentDoc}`;
-export const Services_EnConnectionDocument = gql`
-    query services_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Services_enFilter) {
-  services_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Services_enParts
-      }
-    }
-  }
-}
-    ${Services_EnPartsFragmentDoc}`;
-export const Contact_EsDocument = gql`
-    query contact_es($relativePath: String!) {
-  contact_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Contact_esParts
-  }
-}
-    ${Contact_EsPartsFragmentDoc}`;
-export const Contact_EsConnectionDocument = gql`
-    query contact_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Contact_esFilter) {
-  contact_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Contact_esParts
-      }
-    }
-  }
-}
-    ${Contact_EsPartsFragmentDoc}`;
-export const Contact_CaDocument = gql`
-    query contact_ca($relativePath: String!) {
-  contact_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Contact_caParts
-  }
-}
-    ${Contact_CaPartsFragmentDoc}`;
-export const Contact_CaConnectionDocument = gql`
-    query contact_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Contact_caFilter) {
-  contact_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Contact_caParts
-      }
-    }
-  }
-}
-    ${Contact_CaPartsFragmentDoc}`;
-export const Contact_EnDocument = gql`
-    query contact_en($relativePath: String!) {
-  contact_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Contact_enParts
-  }
-}
-    ${Contact_EnPartsFragmentDoc}`;
-export const Contact_EnConnectionDocument = gql`
-    query contact_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Contact_enFilter) {
-  contact_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Contact_enParts
-      }
-    }
-  }
-}
-    ${Contact_EnPartsFragmentDoc}`;
-export const Legal_EsDocument = gql`
-    query legal_es($relativePath: String!) {
-  legal_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Legal_esParts
-  }
-}
-    ${Legal_EsPartsFragmentDoc}`;
-export const Legal_EsConnectionDocument = gql`
-    query legal_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Legal_esFilter) {
-  legal_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Legal_esParts
-      }
-    }
-  }
-}
-    ${Legal_EsPartsFragmentDoc}`;
-export const Legal_CaDocument = gql`
-    query legal_ca($relativePath: String!) {
-  legal_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Legal_caParts
-  }
-}
-    ${Legal_CaPartsFragmentDoc}`;
-export const Legal_CaConnectionDocument = gql`
-    query legal_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Legal_caFilter) {
-  legal_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Legal_caParts
-      }
-    }
-  }
-}
-    ${Legal_CaPartsFragmentDoc}`;
-export const Legal_EnDocument = gql`
-    query legal_en($relativePath: String!) {
-  legal_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Legal_enParts
-  }
-}
-    ${Legal_EnPartsFragmentDoc}`;
-export const Legal_EnConnectionDocument = gql`
-    query legal_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Legal_enFilter) {
-  legal_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Legal_enParts
-      }
-    }
-  }
-}
-    ${Legal_EnPartsFragmentDoc}`;
-export const Projects_EsDocument = gql`
-    query projects_es($relativePath: String!) {
-  projects_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Projects_esParts
-  }
-}
-    ${Projects_EsPartsFragmentDoc}`;
-export const Projects_EsConnectionDocument = gql`
-    query projects_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Projects_esFilter) {
-  projects_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Projects_esParts
-      }
-    }
-  }
-}
-    ${Projects_EsPartsFragmentDoc}`;
-export const Projects_CaDocument = gql`
-    query projects_ca($relativePath: String!) {
-  projects_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Projects_caParts
-  }
-}
-    ${Projects_CaPartsFragmentDoc}`;
-export const Projects_CaConnectionDocument = gql`
-    query projects_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Projects_caFilter) {
-  projects_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Projects_caParts
-      }
-    }
-  }
-}
-    ${Projects_CaPartsFragmentDoc}`;
-export const Projects_EnDocument = gql`
-    query projects_en($relativePath: String!) {
-  projects_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Projects_enParts
-  }
-}
-    ${Projects_EnPartsFragmentDoc}`;
-export const Projects_EnConnectionDocument = gql`
-    query projects_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Projects_enFilter) {
-  projects_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Projects_enParts
-      }
-    }
-  }
-}
-    ${Projects_EnPartsFragmentDoc}`;
-export const Translations_EsDocument = gql`
-    query translations_es($relativePath: String!) {
-  translations_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Translations_esParts
-  }
-}
-    ${Translations_EsPartsFragmentDoc}`;
-export const Translations_EsConnectionDocument = gql`
-    query translations_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_esFilter) {
-  translations_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Translations_esParts
-      }
-    }
-  }
-}
-    ${Translations_EsPartsFragmentDoc}`;
-export const Translations_CaDocument = gql`
-    query translations_ca($relativePath: String!) {
-  translations_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Translations_caParts
-  }
-}
-    ${Translations_CaPartsFragmentDoc}`;
-export const Translations_CaConnectionDocument = gql`
-    query translations_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_caFilter) {
-  translations_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Translations_caParts
-      }
-    }
-  }
-}
-    ${Translations_CaPartsFragmentDoc}`;
-export const Translations_EnDocument = gql`
-    query translations_en($relativePath: String!) {
-  translations_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Translations_enParts
-  }
-}
-    ${Translations_EnPartsFragmentDoc}`;
-export const Translations_EnConnectionDocument = gql`
-    query translations_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_enFilter) {
-  translations_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Translations_enParts
-      }
-    }
-  }
-}
-    ${Translations_EnPartsFragmentDoc}`;
+    ${TranslationsPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -7182,131 +2804,47 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     siteConfigConnection(variables?: SiteConfigConnectionQueryVariables, options?: C): Promise<{data: SiteConfigConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteConfigConnectionQueryVariables, query: string}> {
         return requester<{data: SiteConfigConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteConfigConnectionQueryVariables, query: string}, SiteConfigConnectionQueryVariables>(SiteConfigConnectionDocument, variables, options);
       },
-    home_es(variables: Home_EsQueryVariables, options?: C): Promise<{data: Home_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EsQueryVariables, query: string}> {
-        return requester<{data: Home_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EsQueryVariables, query: string}, Home_EsQueryVariables>(Home_EsDocument, variables, options);
+    home(variables: HomeQueryVariables, options?: C): Promise<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}> {
+        return requester<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}, HomeQueryVariables>(HomeDocument, variables, options);
       },
-    home_esConnection(variables?: Home_EsConnectionQueryVariables, options?: C): Promise<{data: Home_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: Home_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EsConnectionQueryVariables, query: string}, Home_EsConnectionQueryVariables>(Home_EsConnectionDocument, variables, options);
+    homeConnection(variables?: HomeConnectionQueryVariables, options?: C): Promise<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}> {
+        return requester<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}, HomeConnectionQueryVariables>(HomeConnectionDocument, variables, options);
       },
-    home_ca(variables: Home_CaQueryVariables, options?: C): Promise<{data: Home_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_CaQueryVariables, query: string}> {
-        return requester<{data: Home_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_CaQueryVariables, query: string}, Home_CaQueryVariables>(Home_CaDocument, variables, options);
+    about(variables: AboutQueryVariables, options?: C): Promise<{data: AboutQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutQueryVariables, query: string}> {
+        return requester<{data: AboutQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutQueryVariables, query: string}, AboutQueryVariables>(AboutDocument, variables, options);
       },
-    home_caConnection(variables?: Home_CaConnectionQueryVariables, options?: C): Promise<{data: Home_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: Home_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_CaConnectionQueryVariables, query: string}, Home_CaConnectionQueryVariables>(Home_CaConnectionDocument, variables, options);
+    aboutConnection(variables?: AboutConnectionQueryVariables, options?: C): Promise<{data: AboutConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutConnectionQueryVariables, query: string}> {
+        return requester<{data: AboutConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutConnectionQueryVariables, query: string}, AboutConnectionQueryVariables>(AboutConnectionDocument, variables, options);
       },
-    home_en(variables: Home_EnQueryVariables, options?: C): Promise<{data: Home_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EnQueryVariables, query: string}> {
-        return requester<{data: Home_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EnQueryVariables, query: string}, Home_EnQueryVariables>(Home_EnDocument, variables, options);
+    services(variables: ServicesQueryVariables, options?: C): Promise<{data: ServicesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesQueryVariables, query: string}> {
+        return requester<{data: ServicesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesQueryVariables, query: string}, ServicesQueryVariables>(ServicesDocument, variables, options);
       },
-    home_enConnection(variables?: Home_EnConnectionQueryVariables, options?: C): Promise<{data: Home_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: Home_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Home_EnConnectionQueryVariables, query: string}, Home_EnConnectionQueryVariables>(Home_EnConnectionDocument, variables, options);
+    servicesConnection(variables?: ServicesConnectionQueryVariables, options?: C): Promise<{data: ServicesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesConnectionQueryVariables, query: string}> {
+        return requester<{data: ServicesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesConnectionQueryVariables, query: string}, ServicesConnectionQueryVariables>(ServicesConnectionDocument, variables, options);
       },
-    about_es(variables: About_EsQueryVariables, options?: C): Promise<{data: About_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EsQueryVariables, query: string}> {
-        return requester<{data: About_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EsQueryVariables, query: string}, About_EsQueryVariables>(About_EsDocument, variables, options);
+    contact(variables: ContactQueryVariables, options?: C): Promise<{data: ContactQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactQueryVariables, query: string}> {
+        return requester<{data: ContactQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactQueryVariables, query: string}, ContactQueryVariables>(ContactDocument, variables, options);
       },
-    about_esConnection(variables?: About_EsConnectionQueryVariables, options?: C): Promise<{data: About_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: About_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EsConnectionQueryVariables, query: string}, About_EsConnectionQueryVariables>(About_EsConnectionDocument, variables, options);
+    contactConnection(variables?: ContactConnectionQueryVariables, options?: C): Promise<{data: ContactConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactConnectionQueryVariables, query: string}> {
+        return requester<{data: ContactConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactConnectionQueryVariables, query: string}, ContactConnectionQueryVariables>(ContactConnectionDocument, variables, options);
       },
-    about_ca(variables: About_CaQueryVariables, options?: C): Promise<{data: About_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_CaQueryVariables, query: string}> {
-        return requester<{data: About_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_CaQueryVariables, query: string}, About_CaQueryVariables>(About_CaDocument, variables, options);
+    legal(variables: LegalQueryVariables, options?: C): Promise<{data: LegalQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalQueryVariables, query: string}> {
+        return requester<{data: LegalQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalQueryVariables, query: string}, LegalQueryVariables>(LegalDocument, variables, options);
       },
-    about_caConnection(variables?: About_CaConnectionQueryVariables, options?: C): Promise<{data: About_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: About_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_CaConnectionQueryVariables, query: string}, About_CaConnectionQueryVariables>(About_CaConnectionDocument, variables, options);
+    legalConnection(variables?: LegalConnectionQueryVariables, options?: C): Promise<{data: LegalConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalConnectionQueryVariables, query: string}> {
+        return requester<{data: LegalConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LegalConnectionQueryVariables, query: string}, LegalConnectionQueryVariables>(LegalConnectionDocument, variables, options);
       },
-    about_en(variables: About_EnQueryVariables, options?: C): Promise<{data: About_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EnQueryVariables, query: string}> {
-        return requester<{data: About_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EnQueryVariables, query: string}, About_EnQueryVariables>(About_EnDocument, variables, options);
+    projects(variables: ProjectsQueryVariables, options?: C): Promise<{data: ProjectsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProjectsQueryVariables, query: string}> {
+        return requester<{data: ProjectsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProjectsQueryVariables, query: string}, ProjectsQueryVariables>(ProjectsDocument, variables, options);
       },
-    about_enConnection(variables?: About_EnConnectionQueryVariables, options?: C): Promise<{data: About_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: About_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: About_EnConnectionQueryVariables, query: string}, About_EnConnectionQueryVariables>(About_EnConnectionDocument, variables, options);
+    projectsConnection(variables?: ProjectsConnectionQueryVariables, options?: C): Promise<{data: ProjectsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProjectsConnectionQueryVariables, query: string}> {
+        return requester<{data: ProjectsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ProjectsConnectionQueryVariables, query: string}, ProjectsConnectionQueryVariables>(ProjectsConnectionDocument, variables, options);
       },
-    services_es(variables: Services_EsQueryVariables, options?: C): Promise<{data: Services_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EsQueryVariables, query: string}> {
-        return requester<{data: Services_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EsQueryVariables, query: string}, Services_EsQueryVariables>(Services_EsDocument, variables, options);
+    translations(variables: TranslationsQueryVariables, options?: C): Promise<{data: TranslationsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TranslationsQueryVariables, query: string}> {
+        return requester<{data: TranslationsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TranslationsQueryVariables, query: string}, TranslationsQueryVariables>(TranslationsDocument, variables, options);
       },
-    services_esConnection(variables?: Services_EsConnectionQueryVariables, options?: C): Promise<{data: Services_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: Services_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EsConnectionQueryVariables, query: string}, Services_EsConnectionQueryVariables>(Services_EsConnectionDocument, variables, options);
-      },
-    services_ca(variables: Services_CaQueryVariables, options?: C): Promise<{data: Services_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_CaQueryVariables, query: string}> {
-        return requester<{data: Services_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_CaQueryVariables, query: string}, Services_CaQueryVariables>(Services_CaDocument, variables, options);
-      },
-    services_caConnection(variables?: Services_CaConnectionQueryVariables, options?: C): Promise<{data: Services_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: Services_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_CaConnectionQueryVariables, query: string}, Services_CaConnectionQueryVariables>(Services_CaConnectionDocument, variables, options);
-      },
-    services_en(variables: Services_EnQueryVariables, options?: C): Promise<{data: Services_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EnQueryVariables, query: string}> {
-        return requester<{data: Services_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EnQueryVariables, query: string}, Services_EnQueryVariables>(Services_EnDocument, variables, options);
-      },
-    services_enConnection(variables?: Services_EnConnectionQueryVariables, options?: C): Promise<{data: Services_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: Services_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Services_EnConnectionQueryVariables, query: string}, Services_EnConnectionQueryVariables>(Services_EnConnectionDocument, variables, options);
-      },
-    contact_es(variables: Contact_EsQueryVariables, options?: C): Promise<{data: Contact_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EsQueryVariables, query: string}> {
-        return requester<{data: Contact_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EsQueryVariables, query: string}, Contact_EsQueryVariables>(Contact_EsDocument, variables, options);
-      },
-    contact_esConnection(variables?: Contact_EsConnectionQueryVariables, options?: C): Promise<{data: Contact_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: Contact_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EsConnectionQueryVariables, query: string}, Contact_EsConnectionQueryVariables>(Contact_EsConnectionDocument, variables, options);
-      },
-    contact_ca(variables: Contact_CaQueryVariables, options?: C): Promise<{data: Contact_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_CaQueryVariables, query: string}> {
-        return requester<{data: Contact_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_CaQueryVariables, query: string}, Contact_CaQueryVariables>(Contact_CaDocument, variables, options);
-      },
-    contact_caConnection(variables?: Contact_CaConnectionQueryVariables, options?: C): Promise<{data: Contact_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: Contact_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_CaConnectionQueryVariables, query: string}, Contact_CaConnectionQueryVariables>(Contact_CaConnectionDocument, variables, options);
-      },
-    contact_en(variables: Contact_EnQueryVariables, options?: C): Promise<{data: Contact_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EnQueryVariables, query: string}> {
-        return requester<{data: Contact_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EnQueryVariables, query: string}, Contact_EnQueryVariables>(Contact_EnDocument, variables, options);
-      },
-    contact_enConnection(variables?: Contact_EnConnectionQueryVariables, options?: C): Promise<{data: Contact_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: Contact_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Contact_EnConnectionQueryVariables, query: string}, Contact_EnConnectionQueryVariables>(Contact_EnConnectionDocument, variables, options);
-      },
-    legal_es(variables: Legal_EsQueryVariables, options?: C): Promise<{data: Legal_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EsQueryVariables, query: string}> {
-        return requester<{data: Legal_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EsQueryVariables, query: string}, Legal_EsQueryVariables>(Legal_EsDocument, variables, options);
-      },
-    legal_esConnection(variables?: Legal_EsConnectionQueryVariables, options?: C): Promise<{data: Legal_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: Legal_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EsConnectionQueryVariables, query: string}, Legal_EsConnectionQueryVariables>(Legal_EsConnectionDocument, variables, options);
-      },
-    legal_ca(variables: Legal_CaQueryVariables, options?: C): Promise<{data: Legal_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_CaQueryVariables, query: string}> {
-        return requester<{data: Legal_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_CaQueryVariables, query: string}, Legal_CaQueryVariables>(Legal_CaDocument, variables, options);
-      },
-    legal_caConnection(variables?: Legal_CaConnectionQueryVariables, options?: C): Promise<{data: Legal_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: Legal_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_CaConnectionQueryVariables, query: string}, Legal_CaConnectionQueryVariables>(Legal_CaConnectionDocument, variables, options);
-      },
-    legal_en(variables: Legal_EnQueryVariables, options?: C): Promise<{data: Legal_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EnQueryVariables, query: string}> {
-        return requester<{data: Legal_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EnQueryVariables, query: string}, Legal_EnQueryVariables>(Legal_EnDocument, variables, options);
-      },
-    legal_enConnection(variables?: Legal_EnConnectionQueryVariables, options?: C): Promise<{data: Legal_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: Legal_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Legal_EnConnectionQueryVariables, query: string}, Legal_EnConnectionQueryVariables>(Legal_EnConnectionDocument, variables, options);
-      },
-    projects_es(variables: Projects_EsQueryVariables, options?: C): Promise<{data: Projects_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EsQueryVariables, query: string}> {
-        return requester<{data: Projects_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EsQueryVariables, query: string}, Projects_EsQueryVariables>(Projects_EsDocument, variables, options);
-      },
-    projects_esConnection(variables?: Projects_EsConnectionQueryVariables, options?: C): Promise<{data: Projects_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: Projects_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EsConnectionQueryVariables, query: string}, Projects_EsConnectionQueryVariables>(Projects_EsConnectionDocument, variables, options);
-      },
-    projects_ca(variables: Projects_CaQueryVariables, options?: C): Promise<{data: Projects_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_CaQueryVariables, query: string}> {
-        return requester<{data: Projects_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_CaQueryVariables, query: string}, Projects_CaQueryVariables>(Projects_CaDocument, variables, options);
-      },
-    projects_caConnection(variables?: Projects_CaConnectionQueryVariables, options?: C): Promise<{data: Projects_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: Projects_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_CaConnectionQueryVariables, query: string}, Projects_CaConnectionQueryVariables>(Projects_CaConnectionDocument, variables, options);
-      },
-    projects_en(variables: Projects_EnQueryVariables, options?: C): Promise<{data: Projects_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EnQueryVariables, query: string}> {
-        return requester<{data: Projects_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EnQueryVariables, query: string}, Projects_EnQueryVariables>(Projects_EnDocument, variables, options);
-      },
-    projects_enConnection(variables?: Projects_EnConnectionQueryVariables, options?: C): Promise<{data: Projects_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: Projects_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Projects_EnConnectionQueryVariables, query: string}, Projects_EnConnectionQueryVariables>(Projects_EnConnectionDocument, variables, options);
-      },
-    translations_es(variables: Translations_EsQueryVariables, options?: C): Promise<{data: Translations_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsQueryVariables, query: string}> {
-        return requester<{data: Translations_EsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsQueryVariables, query: string}, Translations_EsQueryVariables>(Translations_EsDocument, variables, options);
-      },
-    translations_esConnection(variables?: Translations_EsConnectionQueryVariables, options?: C): Promise<{data: Translations_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsConnectionQueryVariables, query: string}> {
-        return requester<{data: Translations_EsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EsConnectionQueryVariables, query: string}, Translations_EsConnectionQueryVariables>(Translations_EsConnectionDocument, variables, options);
-      },
-    translations_ca(variables: Translations_CaQueryVariables, options?: C): Promise<{data: Translations_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaQueryVariables, query: string}> {
-        return requester<{data: Translations_CaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaQueryVariables, query: string}, Translations_CaQueryVariables>(Translations_CaDocument, variables, options);
-      },
-    translations_caConnection(variables?: Translations_CaConnectionQueryVariables, options?: C): Promise<{data: Translations_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaConnectionQueryVariables, query: string}> {
-        return requester<{data: Translations_CaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_CaConnectionQueryVariables, query: string}, Translations_CaConnectionQueryVariables>(Translations_CaConnectionDocument, variables, options);
-      },
-    translations_en(variables: Translations_EnQueryVariables, options?: C): Promise<{data: Translations_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnQueryVariables, query: string}> {
-        return requester<{data: Translations_EnQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnQueryVariables, query: string}, Translations_EnQueryVariables>(Translations_EnDocument, variables, options);
-      },
-    translations_enConnection(variables?: Translations_EnConnectionQueryVariables, options?: C): Promise<{data: Translations_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnConnectionQueryVariables, query: string}> {
-        return requester<{data: Translations_EnConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: Translations_EnConnectionQueryVariables, query: string}, Translations_EnConnectionQueryVariables>(Translations_EnConnectionDocument, variables, options);
+    translationsConnection(variables?: TranslationsConnectionQueryVariables, options?: C): Promise<{data: TranslationsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TranslationsConnectionQueryVariables, query: string}> {
+        return requester<{data: TranslationsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TranslationsConnectionQueryVariables, query: string}, TranslationsConnectionQueryVariables>(TranslationsConnectionDocument, variables, options);
       }
     };
   }
@@ -7355,7 +2893,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/2.4/content/7a1540b8-e9a1-493f-8cc5-83d85b2c335d/github/main",
         queries,
       })
     )

@@ -53,8 +53,8 @@ query siteConfigConnection($before: String, $after: String, $first: Float, $last
   }
 }
 
-query home_es($relativePath: String!) {
-  home_es(relativePath: $relativePath) {
+query home($relativePath: String!) {
+  home(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -67,12 +67,12 @@ query home_es($relativePath: String!) {
       }
       id
     }
-    ...Home_esParts
+    ...HomeParts
   }
 }
 
-query home_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Home_esFilter) {
-  home_esConnection(
+query homeConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HomeFilter) {
+  homeConnection(
     before: $before
     after: $after
     first: $first
@@ -102,14 +102,14 @@ query home_esConnection($before: String, $after: String, $first: Float, $last: F
           }
           id
         }
-        ...Home_esParts
+        ...HomeParts
       }
     }
   }
 }
 
-query home_ca($relativePath: String!) {
-  home_ca(relativePath: $relativePath) {
+query about($relativePath: String!) {
+  about(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -122,12 +122,12 @@ query home_ca($relativePath: String!) {
       }
       id
     }
-    ...Home_caParts
+    ...AboutParts
   }
 }
 
-query home_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Home_caFilter) {
-  home_caConnection(
+query aboutConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AboutFilter) {
+  aboutConnection(
     before: $before
     after: $after
     first: $first
@@ -157,14 +157,14 @@ query home_caConnection($before: String, $after: String, $first: Float, $last: F
           }
           id
         }
-        ...Home_caParts
+        ...AboutParts
       }
     }
   }
 }
 
-query home_en($relativePath: String!) {
-  home_en(relativePath: $relativePath) {
+query services($relativePath: String!) {
+  services(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -177,12 +177,12 @@ query home_en($relativePath: String!) {
       }
       id
     }
-    ...Home_enParts
+    ...ServicesParts
   }
 }
 
-query home_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Home_enFilter) {
-  home_enConnection(
+query servicesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ServicesFilter) {
+  servicesConnection(
     before: $before
     after: $after
     first: $first
@@ -212,14 +212,14 @@ query home_enConnection($before: String, $after: String, $first: Float, $last: F
           }
           id
         }
-        ...Home_enParts
+        ...ServicesParts
       }
     }
   }
 }
 
-query about_es($relativePath: String!) {
-  about_es(relativePath: $relativePath) {
+query contact($relativePath: String!) {
+  contact(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -232,12 +232,12 @@ query about_es($relativePath: String!) {
       }
       id
     }
-    ...About_esParts
+    ...ContactParts
   }
 }
 
-query about_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: About_esFilter) {
-  about_esConnection(
+query contactConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ContactFilter) {
+  contactConnection(
     before: $before
     after: $after
     first: $first
@@ -267,14 +267,14 @@ query about_esConnection($before: String, $after: String, $first: Float, $last: 
           }
           id
         }
-        ...About_esParts
+        ...ContactParts
       }
     }
   }
 }
 
-query about_ca($relativePath: String!) {
-  about_ca(relativePath: $relativePath) {
+query legal($relativePath: String!) {
+  legal(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -287,12 +287,12 @@ query about_ca($relativePath: String!) {
       }
       id
     }
-    ...About_caParts
+    ...LegalParts
   }
 }
 
-query about_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: About_caFilter) {
-  about_caConnection(
+query legalConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: LegalFilter) {
+  legalConnection(
     before: $before
     after: $after
     first: $first
@@ -322,14 +322,14 @@ query about_caConnection($before: String, $after: String, $first: Float, $last: 
           }
           id
         }
-        ...About_caParts
+        ...LegalParts
       }
     }
   }
 }
 
-query about_en($relativePath: String!) {
-  about_en(relativePath: $relativePath) {
+query projects($relativePath: String!) {
+  projects(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -342,12 +342,12 @@ query about_en($relativePath: String!) {
       }
       id
     }
-    ...About_enParts
+    ...ProjectsParts
   }
 }
 
-query about_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: About_enFilter) {
-  about_enConnection(
+query projectsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ProjectsFilter) {
+  projectsConnection(
     before: $before
     after: $after
     first: $first
@@ -377,14 +377,14 @@ query about_enConnection($before: String, $after: String, $first: Float, $last: 
           }
           id
         }
-        ...About_enParts
+        ...ProjectsParts
       }
     }
   }
 }
 
-query services_es($relativePath: String!) {
-  services_es(relativePath: $relativePath) {
+query translations($relativePath: String!) {
+  translations(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -397,12 +397,12 @@ query services_es($relativePath: String!) {
       }
       id
     }
-    ...Services_esParts
+    ...TranslationsParts
   }
 }
 
-query services_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Services_esFilter) {
-  services_esConnection(
+query translationsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TranslationsFilter) {
+  translationsConnection(
     before: $before
     after: $after
     first: $first
@@ -432,777 +432,7 @@ query services_esConnection($before: String, $after: String, $first: Float, $las
           }
           id
         }
-        ...Services_esParts
-      }
-    }
-  }
-}
-
-query services_ca($relativePath: String!) {
-  services_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Services_caParts
-  }
-}
-
-query services_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Services_caFilter) {
-  services_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Services_caParts
-      }
-    }
-  }
-}
-
-query services_en($relativePath: String!) {
-  services_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Services_enParts
-  }
-}
-
-query services_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Services_enFilter) {
-  services_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Services_enParts
-      }
-    }
-  }
-}
-
-query contact_es($relativePath: String!) {
-  contact_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Contact_esParts
-  }
-}
-
-query contact_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Contact_esFilter) {
-  contact_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Contact_esParts
-      }
-    }
-  }
-}
-
-query contact_ca($relativePath: String!) {
-  contact_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Contact_caParts
-  }
-}
-
-query contact_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Contact_caFilter) {
-  contact_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Contact_caParts
-      }
-    }
-  }
-}
-
-query contact_en($relativePath: String!) {
-  contact_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Contact_enParts
-  }
-}
-
-query contact_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Contact_enFilter) {
-  contact_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Contact_enParts
-      }
-    }
-  }
-}
-
-query legal_es($relativePath: String!) {
-  legal_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Legal_esParts
-  }
-}
-
-query legal_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Legal_esFilter) {
-  legal_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Legal_esParts
-      }
-    }
-  }
-}
-
-query legal_ca($relativePath: String!) {
-  legal_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Legal_caParts
-  }
-}
-
-query legal_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Legal_caFilter) {
-  legal_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Legal_caParts
-      }
-    }
-  }
-}
-
-query legal_en($relativePath: String!) {
-  legal_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Legal_enParts
-  }
-}
-
-query legal_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Legal_enFilter) {
-  legal_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Legal_enParts
-      }
-    }
-  }
-}
-
-query projects_es($relativePath: String!) {
-  projects_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Projects_esParts
-  }
-}
-
-query projects_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Projects_esFilter) {
-  projects_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Projects_esParts
-      }
-    }
-  }
-}
-
-query projects_ca($relativePath: String!) {
-  projects_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Projects_caParts
-  }
-}
-
-query projects_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Projects_caFilter) {
-  projects_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Projects_caParts
-      }
-    }
-  }
-}
-
-query projects_en($relativePath: String!) {
-  projects_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Projects_enParts
-  }
-}
-
-query projects_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Projects_enFilter) {
-  projects_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Projects_enParts
-      }
-    }
-  }
-}
-
-query translations_es($relativePath: String!) {
-  translations_es(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Translations_esParts
-  }
-}
-
-query translations_esConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_esFilter) {
-  translations_esConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Translations_esParts
-      }
-    }
-  }
-}
-
-query translations_ca($relativePath: String!) {
-  translations_ca(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Translations_caParts
-  }
-}
-
-query translations_caConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_caFilter) {
-  translations_caConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Translations_caParts
-      }
-    }
-  }
-}
-
-query translations_en($relativePath: String!) {
-  translations_en(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...Translations_enParts
-  }
-}
-
-query translations_enConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: Translations_enFilter) {
-  translations_enConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...Translations_enParts
+        ...TranslationsParts
       }
     }
   }

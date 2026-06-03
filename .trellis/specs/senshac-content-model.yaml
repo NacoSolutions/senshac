@@ -1,0 +1,12 @@
+id: senshac-content-model
+title: Senshac content and brand model
+status: active
+createdAt: "2026-06-02T13:25:40.836Z"
+updatedAt: "2026-06-02T13:25:40.836Z"
+objective: Migrated from .agent-memory content-migration and product-context. Preserve Sens*Hac brand identity, multilingual navigation, Ester Cobles founder story, services/process content, LA TROBADA project details, contact form fields, and WordPress reference assets while keeping the site high-performance and accessible.
+constraints:
+  - Use Spanish, Catalan, and English content consistently.
+  - Keep question-based headings and semantic HTML for AI snippets.
+acceptance:
+  - Brand/contact/project/service facts are represented in content or tracked as Seeds follow-up work.
+references:

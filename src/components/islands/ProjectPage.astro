@@ -1,0 +1,161 @@
+---
+import { tinaField } from '@tinacms/astro/tina-field';
+import type { ProjectsQuery } from '../../../tina/__generated__/types';
+import Banner from '../sections/common/Banner.astro';
+import Carousel from '../sections/common/Carousel.astro';
+import Figure from '../sections/common/Figure.astro';
+import Gallery from '../sections/common/Gallery.astro';
+import Section from '../sections/common/Section.astro';
+import Collaborators from '../sections/projects/Collaborators.astro';
+import Details from '../sections/projects/Details.astro';
+
+type ProjectPageData = ProjectsQuery['projects'];
+
+interface Props {
+  data?: ProjectPageData | null;
+}
+
+const { data } = Astro.props;
+
+function normalizeTinaImage(src?: string | null) {
+  if (!src) return '';
+
+  try {
+    const url = new URL(src);
+    if (url.hostname === 'assets.tina.io') {
+      return `/images${url.pathname.replace(/^\/[^/]+/, '')}`;
+    }
+  } catch {
+    // Relative paths are already usable by the local image optimizer.
+  }
+
+  return src;
+}
+
+function normalizeImageItem<T extends { src: string } | null>(item: T): T {
+  if (!item) return item;
+  return { ...item, src: normalizeTinaImage(item.src) };
+}
+
+const banner = data?.banner ? { ...data.banner, image: normalizeTinaImage(data.banner.image) } : null;
+const details = data?.details ? { ...data.details, image: normalizeTinaImage(data.details.image) } : null;
+const briefGallery = data?.brief?.gallery
+  ? {
+      cols: data.brief.gallery.cols,
+      images: data.brief.gallery.images?.map(normalizeImageItem).filter((image) => image != null) ?? [],
+    }
+  : null;
+const conceptGallery = data?.concept?.gallery
+  ? {
+      cols: data.concept.gallery.cols,
+      images: data.concept.gallery.images?.map(normalizeImageItem).filter((image) => image != null) ?? [],
+    }
+  : null;
+const strategyCarousel = data?.strategy?.carousel?.map(normalizeImageItem).filter((image) => image != null) ?? [];
+const strategyGallery = data?.strategy?.gallery
+  ? {
+      cols: data.strategy.gallery.cols,
+      images: data.strategy.gallery.images?.map(normalizeImageItem).filter((image) => image != null) ?? [],
+    }
+  : null;
+const collaborators = data?.collaborators
+  ? {
+      title: data.collaborators.title,
+      list: data.collaborators.list?.filter((collaborator) => collaborator != null) ?? [],
+    }
+  : null;
+const finalImage = data?.finalImage ? { ...data.finalImage, src: normalizeTinaImage(data.finalImage.src) } : null;
+---
+
+{data && (
+  <>
+    {banner && (
+      <div data-tina-field={tinaField(data, 'banner')}>
+        <Banner src={banner.image} alt={banner.alt} />
+      </div>
+    )}
+
+    {details && (
+      <div data-tina-field={tinaField(data, 'details')}>
+        <Details
+          title={details.title}
+          subtitle={details.subtitle}
+          services={details.services}
+          servicesLabel={details.servicesLabel}
+          category={details.category}
+          categoryLabel={details.categoryLabel}
+          area={details.area}
+          areaLabel={details.areaLabel}
+          location={details.location}
+          locationLabel={details.locationLabel}
+          image={details.image}
+        />
+      </div>
+    )}
+
+    {data.brief && (
+      <div data-tina-field={tinaField(data, 'brief')}>
+        <Section title={data.brief.title} id="brief">
+          <p data-tina-field={tinaField(data.brief, 'text')}>{data.brief.text}</p>
+          {briefGallery && (
+            <div data-tina-field={tinaField(data.brief, 'gallery')}>
+              <Gallery
+                cols={String(briefGallery.cols ?? 2) as '2' | '3' | '4'}
+                images={briefGallery.images}
+              />
+            </div>
+          )}
+        </Section>
+      </div>
+    )}
+
+    {data.concept && (
+      <div data-tina-field={tinaField(data, 'concept')}>
+        <Section title={data.concept.title} id="concept">
+          <p data-tina-field={tinaField(data.concept, 'text')}>{data.concept.text}</p>
+          {conceptGallery && (
+            <div data-tina-field={tinaField(data.concept, 'gallery')}>
+              <Gallery
+                cols={String(conceptGallery.cols ?? 2) as '2' | '3' | '4'}
+                images={conceptGallery.images}
+              />
+            </div>
+          )}
+        </Section>
+      </div>
+    )}
+
+    {data.strategy && (
+      <div data-tina-field={tinaField(data, 'strategy')}>
+        <Section title={data.strategy.title} id="strategy">
+          <p data-tina-field={tinaField(data.strategy, 'text')}>{data.strategy.text}</p>
+          {strategyCarousel.length > 0 && (
+            <div data-tina-field={tinaField(data.strategy, 'carousel')}>
+              <Carousel id="strategy-carousel" slides={strategyCarousel} />
+            </div>
+          )}
+          {strategyGallery && (
+            <div data-tina-field={tinaField(data.strategy, 'gallery')}>
+              <Gallery
+                cols={String(strategyGallery.cols ?? 2) as '2' | '3' | '4'}
+                images={strategyGallery.images}
+              />
+            </div>
+          )}
+        </Section>
+      </div>
+    )}
+
+    {collaborators && (
+      <div data-tina-field={tinaField(data, 'collaborators')}>
+        <Collaborators title={collaborators.title} list={collaborators.list} />
+      </div>
+    )}
+
+    {finalImage && (
+      <div data-tina-field={tinaField(data, 'finalImage')}>
+        <Figure src={finalImage.src} alt={finalImage.alt} />
+      </div>
+    )}
+  </>
+)}

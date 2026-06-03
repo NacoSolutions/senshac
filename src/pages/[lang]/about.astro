@@ -2,6 +2,7 @@
 // src/pages/[lang]/about.astro
 import Base from '../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import Hero from '../../components/sections/about/Hero.astro';
 import BehindName from '../../components/sections/about/BehindName.astro';
 import Banner from '../../components/sections/common/Banner.astro';
@@ -9,6 +10,9 @@ import Bio from '../../components/sections/about/Bio.astro';
 import Awards from '../../components/sections/about/Awards.astro';
 import Award from '../../components/sections/about/Award.astro';
 import Mission from '../../components/sections/about/Mission.astro';
+import AboutPage from '../../components/islands/AboutPage.astro';
+import { getAbout, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+import { createIslands } from '../../lib/tina-islands';
 
 const { lang } = Astro.params;
 
@@ -18,10 +22,9 @@ if (!page) {
   return Astro.redirect('/404');
 }
 
-const { title, description, heroImage, hero, behindName, bannerImage, bio, awards, mission, missionImage } = page.data as {
+const { title, description, hero, behindName, bannerImage, bio, awards, mission, missionImage } = page.data as {
   title: string;
   description: string;
-  heroImage?: string;
   hero: { title: string };
   behindName: { title?: string; p1: string; p2: string; footnote?: string };
   bannerImage?: string;
@@ -30,45 +33,57 @@ const { title, description, heroImage, hero, behindName, bannerImage, bio, award
   mission: { title?: string; p1: string; p2: string; quote?: string };
   missionImage?: string;
 };
+
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+const islands = createIslands(tinaEnv);
+const relativePath = pageRelativePath(lang, 'about.json');
+const tinaAbout = await getAbout(relativePath, tinaEnv);
+const tinaAboutData = tinaAbout.data.about;
 ---
 
 <Base title={title} description={description} lang={lang}>
-  <main class="min-h-screen">
-    <Hero title={hero.title} />
+  {tinaAboutData ? (
+    <TinaIsland name="about" wrapper={islands.about.wrapper} params={{ relativePath }} primary>
+      <AboutPage data={tinaAboutData} />
+    </TinaIsland>
+  ) : (
+    <main class="min-h-screen">
+      <Hero title={hero.title} />
 
-    <BehindName
-      title={behindName.title}
-      p1={behindName.p1}
-      p2={behindName.p2}
-      footnote={behindName.footnote}
-    />
+      <BehindName
+        title={behindName.title}
+        p1={behindName.p1}
+        p2={behindName.p2}
+        footnote={behindName.footnote}
+      />
 
-    {bannerImage && <Banner src={bannerImage} alt="Behind the name" />}
+      {bannerImage && <Banner src={bannerImage} alt="Behind the name" />}
 
-    <Bio
-      title={bio.title}
-      image={bio.image}
-      paragraphs={bio.paragraphs}
-    />
+      <Bio
+        title={bio.title}
+        image={bio.image}
+        paragraphs={bio.paragraphs}
+      />
 
-    <Awards title={awards.title}>
-      {awards.items.map((item) => (
-        <Award
-          year={item.year}
-          project={item.project}
-          award={item.award}
-          link={item.link}
-        />
-      ))}
-    </Awards>
+      <Awards title={awards.title}>
+        {awards.items.map((item) => (
+          <Award
+            year={item.year}
+            project={item.project}
+            award={item.award}
+            link={item.link}
+          />
+        ))}
+      </Awards>
 
-    <Mission
-      title={mission.title}
-      p1={mission.p1}
-      p2={mission.p2}
-      quote={mission.quote}
-    />
+      <Mission
+        title={mission.title}
+        p1={mission.p1}
+        p2={mission.p2}
+        quote={mission.quote}
+      />
 
-    {missionImage && <Banner src={missionImage} alt="Our mission" />}
-  </main>
+      {missionImage && <Banner src={missionImage} alt="Our mission" />}
+    </main>
+  )}
 </Base>

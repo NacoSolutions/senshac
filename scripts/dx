@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="${FLOX_ENV_PROJECT:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
+
+exec direnv exec "$repo" "$@"

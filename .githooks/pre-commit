@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v betterleaks >/dev/null 2>&1; then
+  echo "betterleaks is not on PATH. Run this commit from the Flox environment." >&2
+  exit 1
+fi
+
+if git diff --cached --quiet --exit-code; then
+  exit 0
+fi
+
+echo "Running betterleaks on staged changes..."
+betterleaks git --staged --redact --no-banner --no-color --log-level warn .

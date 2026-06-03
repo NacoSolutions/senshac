@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import UnoCSS from '@unocss/astro';
 import mdx from '@astrojs/mdx';
+import tina from '@tinacms/astro/integration';
 import optimizeImages from './src/integrations/optimize-images.ts';
 
 // https://astro.build/config
@@ -17,7 +18,7 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
     },
   },
-  integrations: [UnoCSS({ injectReset: true }), mdx(), optimizeImages()],
+  integrations: [tina(), UnoCSS({ injectReset: true }), mdx(), optimizeImages()],
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'ca', 'en'],

@@ -1,0 +1,20 @@
+id: tina-visual-editing
+title: TinaCMS visual editing for Astro
+seed: senshac-796f
+status: active
+createdAt: "2026-06-02T21:39:32.381Z"
+updatedAt: "2026-06-02T21:39:32.381Z"
+objective: Enable TinaCMS visual/contextual editing on preview.senshac.com for Astro-rendered content without converting the site to React. Editors should be able to open Tina admin, see the routed page preview, click editable page regions, and see live updates while editing supported fields.
+constraints:
+  - Use @tinacms/astro rather than React useTina; keep the site Astro-first and preserve Cloudflare Pages SSR deployment.
+  - Do not expose Tina tokens in generated files, dist output, logs, or git history; keep Betterleaks scans clean.
+  - Start with one representative page before expanding to all templates.
+acceptance:
+  - Spanish home page has click-to-edit markers and live preview for hero/title/image/intro content.
+  - At least one project detail page has click-to-edit markers and live preview for title, description, cover image, and gallery metadata.
+  - Tina admin on preview.senshac.com routes to the page preview and reflects edits without requiring a full rebuild.
+  - bun run check, bun run build, Betterleaks git, and nonignored worktree Betterleaks scan pass.
+references:
+  - "https://tina.io/docs/contextual-editing/astro"
+  - "https://tina.io/docs/frameworks/astro"
+  - "https://tina.io/docs/contextual-editing/tinafield"

@@ -1,0 +1,16 @@
+id: tina-visual-editing-rollout
+title: Roll out TinaCMS visual editing
+seed: senshac-796f
+spec: tina-visual-editing
+status: draft
+createdAt: "2026-06-02T21:39:41.358Z"
+updatedAt: "2026-06-02T21:39:41.358Z"
+summary: Implement the @tinacms/astro visual editing path incrementally, beginning with the Spanish home page and then applying the renderer/marker pattern to reusable page templates.
+steps:
+  - Install and configure @tinacms/astro in the Flox/Bun project; update astro.config.mjs with the Tina integration.
+  - Add Tina data loader utilities using requestWithMetadata() for one home page route while preserving existing Astro content behavior outside edit mode.
+  - "Create the /tina-island/[name] endpoint and initial Astro island renderer for the home hero/content region."
+  - Wrap the Spanish home page editable regions with TinaIsland and add tinaField() data markers to headings, text, images, and repeatable content.
+  - Verify /admin preview on preview.senshac.com can route to /es/ and live-update fields without exposing token literals.
+  - Extend the pattern to project detail pages and shared page templates after the pilot page is stable.
+  - Run bun run check, bun run build, Betterleaks history scan, Betterleaks nonignored worktree scan, and a manual Tina save/preview test.

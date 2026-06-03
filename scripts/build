@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export NODE_OPTIONS="${NODE_OPTIONS:---max-old-space-size=4096}"
+
+if [ -n "${FLOX_ENV_PROJECT:-}" ]; then
+  flox_lib="$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.dev/lib"
+  if [ -d "$flox_lib" ]; then
+    export LD_LIBRARY_PATH="$flox_lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+  fi
+fi
+
+tinacms build --skip-cloud-checks
+
+if [ -n "${TINA_TOKEN:-}" ]; then
+  perl -0pi -e 'my $t = $ENV{TINA_TOKEN}; s/'"'"'\Q$t\E'"'"'/process.env.TINA_TOKEN || ""/g; s/"\Q$t\E"/process.env.TINA_TOKEN || ""/g; s/\Q$t\E/process.env.TINA_TOKEN || ""/g' \
+    tina/__generated__/client.ts \
+    tina/__generated__/types.ts \
+    tina/__generated__/types.js 2>/dev/null || true
+  perl -0pi -e 's/\Q$ENV{TINA_TOKEN}\E//g' public/admin/index.html 2>/dev/null || true
+fi
+
+perl -0pi -e "s|cacheDir: '[^']*/tina/__generated__/.cache/[^']*'|cacheDir: 'tina/__generated__/.cache'|g" tina/__generated__/client.ts 2>/dev/null || true
+perl -0pi -e 's/[ \t]+(\r?\n)/$1/g' public/admin/index.html tina/__generated__/client.ts 2>/dev/null || true
+perl -0pi -e 's/<script(?![^>]*data-cfasync)/<script data-cfasync="false"/g' public/admin/index.html 2>/dev/null || true
+
+astro build

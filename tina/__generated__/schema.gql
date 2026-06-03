@@ -56,73 +56,31 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   siteConfig(relativePath: String): SiteConfig!
   siteConfigConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteConfigFilter): SiteConfigConnection!
-  home_es(relativePath: String): Home_es!
-  home_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Home_esFilter): Home_esConnection!
-  home_ca(relativePath: String): Home_ca!
-  home_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Home_caFilter): Home_caConnection!
-  home_en(relativePath: String): Home_en!
-  home_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Home_enFilter): Home_enConnection!
-  about_es(relativePath: String): About_es!
-  about_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: About_esFilter): About_esConnection!
-  about_ca(relativePath: String): About_ca!
-  about_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: About_caFilter): About_caConnection!
-  about_en(relativePath: String): About_en!
-  about_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: About_enFilter): About_enConnection!
-  services_es(relativePath: String): Services_es!
-  services_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Services_esFilter): Services_esConnection!
-  services_ca(relativePath: String): Services_ca!
-  services_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Services_caFilter): Services_caConnection!
-  services_en(relativePath: String): Services_en!
-  services_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Services_enFilter): Services_enConnection!
-  contact_es(relativePath: String): Contact_es!
-  contact_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Contact_esFilter): Contact_esConnection!
-  contact_ca(relativePath: String): Contact_ca!
-  contact_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Contact_caFilter): Contact_caConnection!
-  contact_en(relativePath: String): Contact_en!
-  contact_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Contact_enFilter): Contact_enConnection!
-  legal_es(relativePath: String): Legal_es!
-  legal_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Legal_esFilter): Legal_esConnection!
-  legal_ca(relativePath: String): Legal_ca!
-  legal_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Legal_caFilter): Legal_caConnection!
-  legal_en(relativePath: String): Legal_en!
-  legal_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Legal_enFilter): Legal_enConnection!
-  projects_es(relativePath: String): Projects_es!
-  projects_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Projects_esFilter): Projects_esConnection!
-  projects_ca(relativePath: String): Projects_ca!
-  projects_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Projects_caFilter): Projects_caConnection!
-  projects_en(relativePath: String): Projects_en!
-  projects_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Projects_enFilter): Projects_enConnection!
-  translations_es(relativePath: String): Translations_es!
-  translations_esConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_esFilter): Translations_esConnection!
-  translations_ca(relativePath: String): Translations_ca!
-  translations_caConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_caFilter): Translations_caConnection!
-  translations_en(relativePath: String): Translations_en!
-  translations_enConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: Translations_enFilter): Translations_enConnection!
+  home(relativePath: String): Home!
+  homeConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomeFilter): HomeConnection!
+  about(relativePath: String): About!
+  aboutConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AboutFilter): AboutConnection!
+  services(relativePath: String): Services!
+  servicesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ServicesFilter): ServicesConnection!
+  contact(relativePath: String): Contact!
+  contactConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactFilter): ContactConnection!
+  legal(relativePath: String): Legal!
+  legalConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: LegalFilter): LegalConnection!
+  projects(relativePath: String): Projects!
+  projectsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ProjectsFilter): ProjectsConnection!
+  translations(relativePath: String): Translations!
+  translationsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TranslationsFilter): TranslationsConnection!
 }
 
 input DocumentFilter {
   siteConfig: SiteConfigFilter
-  home_es: Home_esFilter
-  home_ca: Home_caFilter
-  home_en: Home_enFilter
-  about_es: About_esFilter
-  about_ca: About_caFilter
-  about_en: About_enFilter
-  services_es: Services_esFilter
-  services_ca: Services_caFilter
-  services_en: Services_enFilter
-  contact_es: Contact_esFilter
-  contact_ca: Contact_caFilter
-  contact_en: Contact_enFilter
-  legal_es: Legal_esFilter
-  legal_ca: Legal_caFilter
-  legal_en: Legal_enFilter
-  projects_es: Projects_esFilter
-  projects_ca: Projects_caFilter
-  projects_en: Projects_enFilter
-  translations_es: Translations_esFilter
-  translations_ca: Translations_caFilter
-  translations_en: Translations_enFilter
+  home: HomeFilter
+  about: AboutFilter
+  services: ServicesFilter
+  contact: ContactFilter
+  legal: LegalFilter
+  projects: ProjectsFilter
+  translations: TranslationsFilter
 }
 
 type DocumentConnectionEdges {
@@ -148,7 +106,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = SiteConfig | Home_es | Home_ca | Home_en | About_es | About_ca | About_en | Services_es | Services_ca | Services_en | Contact_es | Contact_ca | Contact_en | Legal_es | Legal_ca | Legal_en | Projects_es | Projects_ca | Projects_en | Translations_es | Translations_ca | Translations_en | Folder
+union DocumentNode = SiteConfig | Home | About | Services | Contact | Legal | Projects | Translations | Folder
 
 type SiteConfigCompany {
   name: String!
@@ -296,22 +254,22 @@ type SiteConfigConnection implements Connection {
   edges: [SiteConfigConnectionEdges]
 }
 
-type Home_esHeroTopRight {
+type HomeHeroTopRight {
   lines: [String]
 }
 
-type Home_esHeroTagline {
+type HomeHeroTagline {
   lines: [String]
 }
 
-type Home_esHero {
+type HomeHero {
   image: String!
-  topRight: Home_esHeroTopRight
-  tagline: Home_esHeroTagline
+  topRight: HomeHeroTopRight
+  tagline: HomeHeroTagline
   taglineSub: String
 }
 
-type Home_esAbout {
+type HomeAbout {
   image: String
   title: String
   description: String
@@ -319,33 +277,33 @@ type Home_esAbout {
   ctaLink: String
 }
 
-type Home_es implements Node & Document {
+type Home implements Node & Document {
   title: String!
   description: String!
   headerStyle: String
-  hero: Home_esHero
-  about: Home_esAbout
+  hero: HomeHero
+  about: HomeAbout
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input Home_esHeroTopRightFilter {
+input HomeHeroTopRightFilter {
   lines: StringFilter
 }
 
-input Home_esHeroTaglineFilter {
+input HomeHeroTaglineFilter {
   lines: StringFilter
 }
 
-input Home_esHeroFilter {
+input HomeHeroFilter {
   image: ImageFilter
-  topRight: Home_esHeroTopRightFilter
-  tagline: Home_esHeroTaglineFilter
+  topRight: HomeHeroTopRightFilter
+  tagline: HomeHeroTaglineFilter
   taglineSub: StringFilter
 }
 
-input Home_esAboutFilter {
+input HomeAboutFilter {
   image: ImageFilter
   title: StringFilter
   description: StringFilter
@@ -353,838 +311,246 @@ input Home_esAboutFilter {
   ctaLink: StringFilter
 }
 
-input Home_esFilter {
+input HomeFilter {
   title: StringFilter
   description: StringFilter
   headerStyle: StringFilter
-  hero: Home_esHeroFilter
-  about: Home_esAboutFilter
+  hero: HomeHeroFilter
+  about: HomeAboutFilter
 }
 
-type Home_esConnectionEdges {
+type HomeConnectionEdges {
   cursor: String!
-  node: Home_es
+  node: Home
 }
 
-type Home_esConnection implements Connection {
+type HomeConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [Home_esConnectionEdges]
+  edges: [HomeConnectionEdges]
 }
 
-type Home_caHeroTopRight {
-  lines: [String]
-}
-
-type Home_caHeroTagline {
-  lines: [String]
-}
-
-type Home_caHero {
-  image: String!
-  topRight: Home_caHeroTopRight
-  tagline: Home_caHeroTagline
-  taglineSub: String
-}
-
-type Home_caAbout {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-type Home_ca implements Node & Document {
-  title: String!
-  description: String!
-  headerStyle: String
-  hero: Home_caHero
-  about: Home_caAbout
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Home_caHeroTopRightFilter {
-  lines: StringFilter
-}
-
-input Home_caHeroTaglineFilter {
-  lines: StringFilter
-}
-
-input Home_caHeroFilter {
-  image: ImageFilter
-  topRight: Home_caHeroTopRightFilter
-  tagline: Home_caHeroTaglineFilter
-  taglineSub: StringFilter
-}
-
-input Home_caAboutFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  ctaText: StringFilter
-  ctaLink: StringFilter
-}
-
-input Home_caFilter {
-  title: StringFilter
-  description: StringFilter
-  headerStyle: StringFilter
-  hero: Home_caHeroFilter
-  about: Home_caAboutFilter
-}
-
-type Home_caConnectionEdges {
-  cursor: String!
-  node: Home_ca
-}
-
-type Home_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Home_caConnectionEdges]
-}
-
-type Home_enHeroTopRight {
-  lines: [String]
-}
-
-type Home_enHeroTagline {
-  lines: [String]
-}
-
-type Home_enHero {
-  image: String!
-  topRight: Home_enHeroTopRight
-  tagline: Home_enHeroTagline
-  taglineSub: String
-}
-
-type Home_enAbout {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-type Home_en implements Node & Document {
-  title: String!
-  description: String!
-  headerStyle: String
-  hero: Home_enHero
-  about: Home_enAbout
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Home_enHeroTopRightFilter {
-  lines: StringFilter
-}
-
-input Home_enHeroTaglineFilter {
-  lines: StringFilter
-}
-
-input Home_enHeroFilter {
-  image: ImageFilter
-  topRight: Home_enHeroTopRightFilter
-  tagline: Home_enHeroTaglineFilter
-  taglineSub: StringFilter
-}
-
-input Home_enAboutFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  ctaText: StringFilter
-  ctaLink: StringFilter
-}
-
-input Home_enFilter {
-  title: StringFilter
-  description: StringFilter
-  headerStyle: StringFilter
-  hero: Home_enHeroFilter
-  about: Home_enAboutFilter
-}
-
-type Home_enConnectionEdges {
-  cursor: String!
-  node: Home_en
-}
-
-type Home_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Home_enConnectionEdges]
-}
-
-type About_esHero {
+type AboutHero {
   title: String!
 }
 
-type About_esBehindName {
+type AboutBehindName {
   title: String
   p1: String!
   p2: String!
   footnote: String
 }
 
-type About_esBio {
+type AboutBio {
   title: String
   image: String
   paragraphs: [String]
 }
 
-type About_esAwardsItems {
+type AboutAwardsItems {
   year: String!
   project: String!
   award: String!
   link: String
 }
 
-type About_esAwards {
+type AboutAwards {
   title: String
-  items: [About_esAwardsItems]
+  items: [AboutAwardsItems]
 }
 
-type About_esMission {
-  title: String
-  p1: String!
-  p2: String!
-  quote: String
-}
-
-type About_es implements Node & Document {
-  title: String!
-  description: String!
-  heroImage: String
-  hero: About_esHero
-  behindName: About_esBehindName
-  bannerImage: String
-  bio: About_esBio
-  awards: About_esAwards
-  mission: About_esMission
-  missionImage: String
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input About_esHeroFilter {
-  title: StringFilter
-}
-
-input About_esBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input About_esBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input About_esAwardsItemsFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input About_esAwardsFilter {
-  title: StringFilter
-  items: About_esAwardsItemsFilter
-}
-
-input About_esMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input About_esFilter {
-  title: StringFilter
-  description: StringFilter
-  heroImage: ImageFilter
-  hero: About_esHeroFilter
-  behindName: About_esBehindNameFilter
-  bannerImage: ImageFilter
-  bio: About_esBioFilter
-  awards: About_esAwardsFilter
-  mission: About_esMissionFilter
-  missionImage: ImageFilter
-}
-
-type About_esConnectionEdges {
-  cursor: String!
-  node: About_es
-}
-
-type About_esConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [About_esConnectionEdges]
-}
-
-type About_caHero {
-  title: String!
-}
-
-type About_caBehindName {
-  title: String
-  p1: String!
-  p2: String!
-  footnote: String
-}
-
-type About_caBio {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-type About_caAwardsItems {
-  year: String!
-  project: String!
-  award: String!
-  link: String
-}
-
-type About_caAwards {
-  title: String
-  items: [About_caAwardsItems]
-}
-
-type About_caMission {
+type AboutMission {
   title: String
   p1: String!
   p2: String!
   quote: String
 }
 
-type About_ca implements Node & Document {
+type About implements Node & Document {
   title: String!
   description: String!
   heroImage: String
-  hero: About_caHero
-  behindName: About_caBehindName
+  hero: AboutHero
+  behindName: AboutBehindName
   bannerImage: String
-  bio: About_caBio
-  awards: About_caAwards
-  mission: About_caMission
+  bio: AboutBio
+  awards: AboutAwards
+  mission: AboutMission
   missionImage: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input About_caHeroFilter {
+input AboutHeroFilter {
   title: StringFilter
 }
 
-input About_caBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input About_caBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input About_caAwardsItemsFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input About_caAwardsFilter {
-  title: StringFilter
-  items: About_caAwardsItemsFilter
-}
-
-input About_caMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input About_caFilter {
-  title: StringFilter
-  description: StringFilter
-  heroImage: ImageFilter
-  hero: About_caHeroFilter
-  behindName: About_caBehindNameFilter
-  bannerImage: ImageFilter
-  bio: About_caBioFilter
-  awards: About_caAwardsFilter
-  mission: About_caMissionFilter
-  missionImage: ImageFilter
-}
-
-type About_caConnectionEdges {
-  cursor: String!
-  node: About_ca
-}
-
-type About_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [About_caConnectionEdges]
-}
-
-type About_enHero {
-  title: String!
-}
-
-type About_enBehindName {
-  title: String
-  p1: String!
-  p2: String!
-  footnote: String
-}
-
-type About_enBio {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-type About_enAwardsItems {
-  year: String!
-  project: String!
-  award: String!
-  link: String
-}
-
-type About_enAwards {
-  title: String
-  items: [About_enAwardsItems]
-}
-
-type About_enMission {
-  title: String
-  p1: String!
-  p2: String!
-  quote: String
-}
-
-type About_en implements Node & Document {
-  title: String!
-  description: String!
-  heroImage: String
-  hero: About_enHero
-  behindName: About_enBehindName
-  bannerImage: String
-  bio: About_enBio
-  awards: About_enAwards
-  mission: About_enMission
-  missionImage: String
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input About_enHeroFilter {
-  title: StringFilter
-}
-
-input About_enBehindNameFilter {
+input AboutBehindNameFilter {
   title: StringFilter
   p1: StringFilter
   p2: StringFilter
   footnote: StringFilter
 }
 
-input About_enBioFilter {
+input AboutBioFilter {
   title: StringFilter
   image: ImageFilter
   paragraphs: StringFilter
 }
 
-input About_enAwardsItemsFilter {
+input AboutAwardsItemsFilter {
   year: StringFilter
   project: StringFilter
   award: StringFilter
   link: StringFilter
 }
 
-input About_enAwardsFilter {
+input AboutAwardsFilter {
   title: StringFilter
-  items: About_enAwardsItemsFilter
+  items: AboutAwardsItemsFilter
 }
 
-input About_enMissionFilter {
+input AboutMissionFilter {
   title: StringFilter
   p1: StringFilter
   p2: StringFilter
   quote: StringFilter
 }
 
-input About_enFilter {
+input AboutFilter {
   title: StringFilter
   description: StringFilter
   heroImage: ImageFilter
-  hero: About_enHeroFilter
-  behindName: About_enBehindNameFilter
+  hero: AboutHeroFilter
+  behindName: AboutBehindNameFilter
   bannerImage: ImageFilter
-  bio: About_enBioFilter
-  awards: About_enAwardsFilter
-  mission: About_enMissionFilter
+  bio: AboutBioFilter
+  awards: AboutAwardsFilter
+  mission: AboutMissionFilter
   missionImage: ImageFilter
 }
 
-type About_enConnectionEdges {
+type AboutConnectionEdges {
   cursor: String!
-  node: About_en
+  node: About
 }
 
-type About_enConnection implements Connection {
+type AboutConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [About_enConnectionEdges]
+  edges: [AboutConnectionEdges]
 }
 
-type Services_esHero {
+type ServicesHero {
   title: String!
 }
 
-type Services_esIntro {
+type ServicesIntro {
   text: String!
   image: String
 }
 
-type Services_esServiceGroupsItems {
+type ServicesServiceGroupsItems {
   title: String!
   description: String!
 }
 
-type Services_esServiceGroups {
+type ServicesServiceGroups {
   title: String!
-  items: [Services_esServiceGroupsItems]
+  items: [ServicesServiceGroupsItems]
 }
 
-type Services_esFaqItems {
+type ServicesFaqItems {
   question: String!
   answer: String!
 }
 
-type Services_esFaq {
+type ServicesFaq {
   title: String
   image: String
-  items: [Services_esFaqItems]
+  items: [ServicesFaqItems]
 }
 
-type Services_esWorkProcess {
+type ServicesWorkProcess {
   title: String
   p1: String!
   p2: String!
   image: String
 }
 
-type Services_es implements Node & Document {
+type Services implements Node & Document {
   title: String!
   description: String!
-  hero: Services_esHero
-  intro: Services_esIntro
-  serviceGroups: [Services_esServiceGroups]
-  faq: Services_esFaq
-  workProcess: Services_esWorkProcess
+  hero: ServicesHero
+  intro: ServicesIntro
+  serviceGroups: [ServicesServiceGroups]
+  faq: ServicesFaq
+  workProcess: ServicesWorkProcess
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input Services_esHeroFilter {
+input ServicesHeroFilter {
   title: StringFilter
 }
 
-input Services_esIntroFilter {
+input ServicesIntroFilter {
   text: StringFilter
   image: ImageFilter
 }
 
-input Services_esServiceGroupsItemsFilter {
+input ServicesServiceGroupsItemsFilter {
   title: StringFilter
   description: StringFilter
 }
 
-input Services_esServiceGroupsFilter {
+input ServicesServiceGroupsFilter {
   title: StringFilter
-  items: Services_esServiceGroupsItemsFilter
+  items: ServicesServiceGroupsItemsFilter
 }
 
-input Services_esFaqItemsFilter {
+input ServicesFaqItemsFilter {
   question: StringFilter
   answer: StringFilter
 }
 
-input Services_esFaqFilter {
+input ServicesFaqFilter {
   title: StringFilter
   image: ImageFilter
-  items: Services_esFaqItemsFilter
+  items: ServicesFaqItemsFilter
 }
 
-input Services_esWorkProcessFilter {
+input ServicesWorkProcessFilter {
   title: StringFilter
   p1: StringFilter
   p2: StringFilter
   image: ImageFilter
 }
 
-input Services_esFilter {
+input ServicesFilter {
   title: StringFilter
   description: StringFilter
-  hero: Services_esHeroFilter
-  intro: Services_esIntroFilter
-  serviceGroups: Services_esServiceGroupsFilter
-  faq: Services_esFaqFilter
-  workProcess: Services_esWorkProcessFilter
+  hero: ServicesHeroFilter
+  intro: ServicesIntroFilter
+  serviceGroups: ServicesServiceGroupsFilter
+  faq: ServicesFaqFilter
+  workProcess: ServicesWorkProcessFilter
 }
 
-type Services_esConnectionEdges {
+type ServicesConnectionEdges {
   cursor: String!
-  node: Services_es
+  node: Services
 }
 
-type Services_esConnection implements Connection {
+type ServicesConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [Services_esConnectionEdges]
+  edges: [ServicesConnectionEdges]
 }
 
-type Services_caHero {
-  title: String!
-}
-
-type Services_caIntro {
-  text: String!
-  image: String
-}
-
-type Services_caServiceGroupsItems {
-  title: String!
-  description: String!
-}
-
-type Services_caServiceGroups {
-  title: String!
-  items: [Services_caServiceGroupsItems]
-}
-
-type Services_caFaqItems {
-  question: String!
-  answer: String!
-}
-
-type Services_caFaq {
-  title: String
-  image: String
-  items: [Services_caFaqItems]
-}
-
-type Services_caWorkProcess {
-  title: String
-  p1: String!
-  p2: String!
-  image: String
-}
-
-type Services_ca implements Node & Document {
-  title: String!
-  description: String!
-  hero: Services_caHero
-  intro: Services_caIntro
-  serviceGroups: [Services_caServiceGroups]
-  faq: Services_caFaq
-  workProcess: Services_caWorkProcess
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Services_caHeroFilter {
-  title: StringFilter
-}
-
-input Services_caIntroFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input Services_caServiceGroupsItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input Services_caServiceGroupsFilter {
-  title: StringFilter
-  items: Services_caServiceGroupsItemsFilter
-}
-
-input Services_caFaqItemsFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input Services_caFaqFilter {
-  title: StringFilter
-  image: ImageFilter
-  items: Services_caFaqItemsFilter
-}
-
-input Services_caWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
-input Services_caFilter {
-  title: StringFilter
-  description: StringFilter
-  hero: Services_caHeroFilter
-  intro: Services_caIntroFilter
-  serviceGroups: Services_caServiceGroupsFilter
-  faq: Services_caFaqFilter
-  workProcess: Services_caWorkProcessFilter
-}
-
-type Services_caConnectionEdges {
-  cursor: String!
-  node: Services_ca
-}
-
-type Services_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Services_caConnectionEdges]
-}
-
-type Services_enHero {
-  title: String!
-}
-
-type Services_enIntro {
-  text: String!
-  image: String
-}
-
-type Services_enServiceGroupsItems {
-  title: String!
-  description: String!
-}
-
-type Services_enServiceGroups {
-  title: String!
-  items: [Services_enServiceGroupsItems]
-}
-
-type Services_enFaqItems {
-  question: String!
-  answer: String!
-}
-
-type Services_enFaq {
-  title: String
-  image: String
-  items: [Services_enFaqItems]
-}
-
-type Services_enWorkProcess {
-  title: String
-  p1: String!
-  p2: String!
-  image: String
-}
-
-type Services_en implements Node & Document {
-  title: String!
-  description: String!
-  hero: Services_enHero
-  intro: Services_enIntro
-  serviceGroups: [Services_enServiceGroups]
-  faq: Services_enFaq
-  workProcess: Services_enWorkProcess
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Services_enHeroFilter {
-  title: StringFilter
-}
-
-input Services_enIntroFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input Services_enServiceGroupsItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input Services_enServiceGroupsFilter {
-  title: StringFilter
-  items: Services_enServiceGroupsItemsFilter
-}
-
-input Services_enFaqItemsFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input Services_enFaqFilter {
-  title: StringFilter
-  image: ImageFilter
-  items: Services_enFaqItemsFilter
-}
-
-input Services_enWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
-input Services_enFilter {
-  title: StringFilter
-  description: StringFilter
-  hero: Services_enHeroFilter
-  intro: Services_enIntroFilter
-  serviceGroups: Services_enServiceGroupsFilter
-  faq: Services_enFaqFilter
-  workProcess: Services_enWorkProcessFilter
-}
-
-type Services_enConnectionEdges {
-  cursor: String!
-  node: Services_en
-}
-
-type Services_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Services_enConnectionEdges]
-}
-
-type Contact_es implements Node & Document {
+type Contact implements Node & Document {
   title: String!
   description: String!
   heading: String!
@@ -1194,81 +560,25 @@ type Contact_es implements Node & Document {
   _values: JSON!
 }
 
-input Contact_esFilter {
+input ContactFilter {
   title: StringFilter
   description: StringFilter
   heading: StringFilter
   subheading: StringFilter
 }
 
-type Contact_esConnectionEdges {
+type ContactConnectionEdges {
   cursor: String!
-  node: Contact_es
+  node: Contact
 }
 
-type Contact_esConnection implements Connection {
+type ContactConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [Contact_esConnectionEdges]
+  edges: [ContactConnectionEdges]
 }
 
-type Contact_ca implements Node & Document {
-  title: String!
-  description: String!
-  heading: String!
-  subheading: String!
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Contact_caFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-  subheading: StringFilter
-}
-
-type Contact_caConnectionEdges {
-  cursor: String!
-  node: Contact_ca
-}
-
-type Contact_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Contact_caConnectionEdges]
-}
-
-type Contact_en implements Node & Document {
-  title: String!
-  description: String!
-  heading: String!
-  subheading: String!
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Contact_enFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-  subheading: StringFilter
-}
-
-type Contact_enConnectionEdges {
-  cursor: String!
-  node: Contact_en
-}
-
-type Contact_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Contact_enConnectionEdges]
-}
-
-type Legal_es implements Node & Document {
+type Legal implements Node & Document {
   title: String!
   description: String!
   lastUpdated: String
@@ -1292,86 +602,30 @@ input RichTextFilter {
   exists: Boolean
 }
 
-input Legal_esFilter {
+input LegalFilter {
   title: StringFilter
   description: StringFilter
   lastUpdated: DatetimeFilter
   body: RichTextFilter
 }
 
-type Legal_esConnectionEdges {
+type LegalConnectionEdges {
   cursor: String!
-  node: Legal_es
+  node: Legal
 }
 
-type Legal_esConnection implements Connection {
+type LegalConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [Legal_esConnectionEdges]
+  edges: [LegalConnectionEdges]
 }
 
-type Legal_ca implements Node & Document {
-  title: String!
-  description: String!
-  lastUpdated: String
-  body: JSON
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Legal_caFilter {
-  title: StringFilter
-  description: StringFilter
-  lastUpdated: DatetimeFilter
-  body: RichTextFilter
-}
-
-type Legal_caConnectionEdges {
-  cursor: String!
-  node: Legal_ca
-}
-
-type Legal_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Legal_caConnectionEdges]
-}
-
-type Legal_en implements Node & Document {
-  title: String!
-  description: String!
-  lastUpdated: String
-  body: JSON
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Legal_enFilter {
-  title: StringFilter
-  description: StringFilter
-  lastUpdated: DatetimeFilter
-  body: RichTextFilter
-}
-
-type Legal_enConnectionEdges {
-  cursor: String!
-  node: Legal_en
-}
-
-type Legal_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Legal_enConnectionEdges]
-}
-
-type Projects_esBanner {
+type ProjectsBanner {
   image: String!
   alt: String!
 }
 
-type Projects_esDetails {
+type ProjectsDetails {
   title: String!
   subtitle: String!
   image: String!
@@ -1385,76 +639,76 @@ type Projects_esDetails {
   locationLabel: String!
 }
 
-type Projects_esBriefGalleryImages {
+type ProjectsBriefGalleryImages {
   src: String!
   alt: String!
 }
 
-type Projects_esBriefGallery {
+type ProjectsBriefGallery {
   cols: Float
-  images: [Projects_esBriefGalleryImages]
+  images: [ProjectsBriefGalleryImages]
 }
 
-type Projects_esBrief {
+type ProjectsBrief {
   title: String!
   text: String!
-  gallery: Projects_esBriefGallery
+  gallery: ProjectsBriefGallery
 }
 
-type Projects_esConceptGalleryImages {
+type ProjectsConceptGalleryImages {
   src: String!
   alt: String!
 }
 
-type Projects_esConceptGallery {
+type ProjectsConceptGallery {
   cols: Float
-  images: [Projects_esConceptGalleryImages]
+  images: [ProjectsConceptGalleryImages]
 }
 
-type Projects_esConcept {
+type ProjectsConcept {
   title: String!
   text: String!
-  gallery: Projects_esConceptGallery
+  gallery: ProjectsConceptGallery
 }
 
-type Projects_esStrategyCarousel {
+type ProjectsStrategyCarousel {
   src: String!
   alt: String!
 }
 
-type Projects_esStrategyGalleryImages {
+type ProjectsStrategyGalleryImages {
   src: String!
   alt: String!
 }
 
-type Projects_esStrategyGallery {
+type ProjectsStrategyGallery {
   cols: Float
-  images: [Projects_esStrategyGalleryImages]
+  images: [ProjectsStrategyGalleryImages]
 }
 
-type Projects_esStrategy {
+type ProjectsStrategy {
   title: String!
   text: String!
-  carousel: [Projects_esStrategyCarousel]
-  gallery: Projects_esStrategyGallery
+  carousel: [ProjectsStrategyCarousel]
+  gallery: ProjectsStrategyGallery
 }
 
-type Projects_esCollaboratorsList {
+type ProjectsCollaboratorsList {
   name: String!
   role: String!
 }
 
-type Projects_esCollaborators {
+type ProjectsCollaborators {
   title: String!
-  list: [Projects_esCollaboratorsList]
+  list: [ProjectsCollaboratorsList]
 }
 
-type Projects_esFinalImage {
+type ProjectsFinalImage {
   src: String!
   alt: String!
 }
 
-type Projects_es implements Node & Document {
+type Projects implements Node & Document {
   title: String!
   description: String!
   slug: String!
@@ -1464,13 +718,13 @@ type Projects_es implements Node & Document {
   showTags: Boolean
   featured: Boolean
   draft: Boolean
-  banner: Projects_esBanner
-  details: Projects_esDetails
-  brief: Projects_esBrief
-  concept: Projects_esConcept
-  strategy: Projects_esStrategy
-  collaborators: Projects_esCollaborators
-  finalImage: Projects_esFinalImage
+  banner: ProjectsBanner
+  details: ProjectsDetails
+  brief: ProjectsBrief
+  concept: ProjectsConcept
+  strategy: ProjectsStrategy
+  collaborators: ProjectsCollaborators
+  finalImage: ProjectsFinalImage
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -1481,12 +735,12 @@ input BooleanFilter {
   exists: Boolean
 }
 
-input Projects_esBannerFilter {
+input ProjectsBannerFilter {
   image: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esDetailsFilter {
+input ProjectsDetailsFilter {
   title: StringFilter
   subtitle: StringFilter
   image: ImageFilter
@@ -1510,76 +764,76 @@ input NumberFilter {
   in: [Float]
 }
 
-input Projects_esBriefGalleryImagesFilter {
+input ProjectsBriefGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esBriefGalleryFilter {
+input ProjectsBriefGalleryFilter {
   cols: NumberFilter
-  images: Projects_esBriefGalleryImagesFilter
+  images: ProjectsBriefGalleryImagesFilter
 }
 
-input Projects_esBriefFilter {
+input ProjectsBriefFilter {
   title: StringFilter
   text: StringFilter
-  gallery: Projects_esBriefGalleryFilter
+  gallery: ProjectsBriefGalleryFilter
 }
 
-input Projects_esConceptGalleryImagesFilter {
+input ProjectsConceptGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esConceptGalleryFilter {
+input ProjectsConceptGalleryFilter {
   cols: NumberFilter
-  images: Projects_esConceptGalleryImagesFilter
+  images: ProjectsConceptGalleryImagesFilter
 }
 
-input Projects_esConceptFilter {
+input ProjectsConceptFilter {
   title: StringFilter
   text: StringFilter
-  gallery: Projects_esConceptGalleryFilter
+  gallery: ProjectsConceptGalleryFilter
 }
 
-input Projects_esStrategyCarouselFilter {
+input ProjectsStrategyCarouselFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esStrategyGalleryImagesFilter {
+input ProjectsStrategyGalleryImagesFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esStrategyGalleryFilter {
+input ProjectsStrategyGalleryFilter {
   cols: NumberFilter
-  images: Projects_esStrategyGalleryImagesFilter
+  images: ProjectsStrategyGalleryImagesFilter
 }
 
-input Projects_esStrategyFilter {
+input ProjectsStrategyFilter {
   title: StringFilter
   text: StringFilter
-  carousel: Projects_esStrategyCarouselFilter
-  gallery: Projects_esStrategyGalleryFilter
+  carousel: ProjectsStrategyCarouselFilter
+  gallery: ProjectsStrategyGalleryFilter
 }
 
-input Projects_esCollaboratorsListFilter {
+input ProjectsCollaboratorsListFilter {
   name: StringFilter
   role: StringFilter
 }
 
-input Projects_esCollaboratorsFilter {
+input ProjectsCollaboratorsFilter {
   title: StringFilter
-  list: Projects_esCollaboratorsListFilter
+  list: ProjectsCollaboratorsListFilter
 }
 
-input Projects_esFinalImageFilter {
+input ProjectsFinalImageFilter {
   src: ImageFilter
   alt: StringFilter
 }
 
-input Projects_esFilter {
+input ProjectsFilter {
   title: StringFilter
   description: StringFilter
   slug: StringFilter
@@ -1589,483 +843,27 @@ input Projects_esFilter {
   showTags: BooleanFilter
   featured: BooleanFilter
   draft: BooleanFilter
-  banner: Projects_esBannerFilter
-  details: Projects_esDetailsFilter
-  brief: Projects_esBriefFilter
-  concept: Projects_esConceptFilter
-  strategy: Projects_esStrategyFilter
-  collaborators: Projects_esCollaboratorsFilter
-  finalImage: Projects_esFinalImageFilter
+  banner: ProjectsBannerFilter
+  details: ProjectsDetailsFilter
+  brief: ProjectsBriefFilter
+  concept: ProjectsConceptFilter
+  strategy: ProjectsStrategyFilter
+  collaborators: ProjectsCollaboratorsFilter
+  finalImage: ProjectsFinalImageFilter
 }
 
-type Projects_esConnectionEdges {
+type ProjectsConnectionEdges {
   cursor: String!
-  node: Projects_es
+  node: Projects
 }
 
-type Projects_esConnection implements Connection {
+type ProjectsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [Projects_esConnectionEdges]
+  edges: [ProjectsConnectionEdges]
 }
 
-type Projects_caBanner {
-  image: String!
-  alt: String!
-}
-
-type Projects_caDetails {
-  title: String!
-  subtitle: String!
-  image: String!
-  services: String!
-  servicesLabel: String!
-  category: String!
-  categoryLabel: String!
-  area: String!
-  areaLabel: String!
-  location: String!
-  locationLabel: String!
-}
-
-type Projects_caBriefGalleryImages {
-  src: String!
-  alt: String!
-}
-
-type Projects_caBriefGallery {
-  cols: Float
-  images: [Projects_caBriefGalleryImages]
-}
-
-type Projects_caBrief {
-  title: String!
-  text: String!
-  gallery: Projects_caBriefGallery
-}
-
-type Projects_caConceptGalleryImages {
-  src: String!
-  alt: String!
-}
-
-type Projects_caConceptGallery {
-  cols: Float
-  images: [Projects_caConceptGalleryImages]
-}
-
-type Projects_caConcept {
-  title: String!
-  text: String!
-  gallery: Projects_caConceptGallery
-}
-
-type Projects_caStrategyCarousel {
-  src: String!
-  alt: String!
-}
-
-type Projects_caStrategyGalleryImages {
-  src: String!
-  alt: String!
-}
-
-type Projects_caStrategyGallery {
-  cols: Float
-  images: [Projects_caStrategyGalleryImages]
-}
-
-type Projects_caStrategy {
-  title: String!
-  text: String!
-  carousel: [Projects_caStrategyCarousel]
-  gallery: Projects_caStrategyGallery
-}
-
-type Projects_caCollaboratorsList {
-  name: String!
-  role: String!
-}
-
-type Projects_caCollaborators {
-  title: String!
-  list: [Projects_caCollaboratorsList]
-}
-
-type Projects_caFinalImage {
-  src: String!
-  alt: String!
-}
-
-type Projects_ca implements Node & Document {
-  title: String!
-  description: String!
-  slug: String!
-  publishDate: String!
-  completedDate: String
-  tags: [String]
-  showTags: Boolean
-  featured: Boolean
-  draft: Boolean
-  banner: Projects_caBanner
-  details: Projects_caDetails
-  brief: Projects_caBrief
-  concept: Projects_caConcept
-  strategy: Projects_caStrategy
-  collaborators: Projects_caCollaborators
-  finalImage: Projects_caFinalImage
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Projects_caBannerFilter {
-  image: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_caDetailsFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  image: ImageFilter
-  services: StringFilter
-  servicesLabel: StringFilter
-  category: StringFilter
-  categoryLabel: StringFilter
-  area: StringFilter
-  areaLabel: StringFilter
-  location: StringFilter
-  locationLabel: StringFilter
-}
-
-input Projects_caBriefGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_caBriefGalleryFilter {
-  cols: NumberFilter
-  images: Projects_caBriefGalleryImagesFilter
-}
-
-input Projects_caBriefFilter {
-  title: StringFilter
-  text: StringFilter
-  gallery: Projects_caBriefGalleryFilter
-}
-
-input Projects_caConceptGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_caConceptGalleryFilter {
-  cols: NumberFilter
-  images: Projects_caConceptGalleryImagesFilter
-}
-
-input Projects_caConceptFilter {
-  title: StringFilter
-  text: StringFilter
-  gallery: Projects_caConceptGalleryFilter
-}
-
-input Projects_caStrategyCarouselFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_caStrategyGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_caStrategyGalleryFilter {
-  cols: NumberFilter
-  images: Projects_caStrategyGalleryImagesFilter
-}
-
-input Projects_caStrategyFilter {
-  title: StringFilter
-  text: StringFilter
-  carousel: Projects_caStrategyCarouselFilter
-  gallery: Projects_caStrategyGalleryFilter
-}
-
-input Projects_caCollaboratorsListFilter {
-  name: StringFilter
-  role: StringFilter
-}
-
-input Projects_caCollaboratorsFilter {
-  title: StringFilter
-  list: Projects_caCollaboratorsListFilter
-}
-
-input Projects_caFinalImageFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_caFilter {
-  title: StringFilter
-  description: StringFilter
-  slug: StringFilter
-  publishDate: DatetimeFilter
-  completedDate: DatetimeFilter
-  tags: StringFilter
-  showTags: BooleanFilter
-  featured: BooleanFilter
-  draft: BooleanFilter
-  banner: Projects_caBannerFilter
-  details: Projects_caDetailsFilter
-  brief: Projects_caBriefFilter
-  concept: Projects_caConceptFilter
-  strategy: Projects_caStrategyFilter
-  collaborators: Projects_caCollaboratorsFilter
-  finalImage: Projects_caFinalImageFilter
-}
-
-type Projects_caConnectionEdges {
-  cursor: String!
-  node: Projects_ca
-}
-
-type Projects_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Projects_caConnectionEdges]
-}
-
-type Projects_enBanner {
-  image: String!
-  alt: String!
-}
-
-type Projects_enDetails {
-  title: String!
-  subtitle: String!
-  image: String!
-  services: String!
-  servicesLabel: String!
-  category: String!
-  categoryLabel: String!
-  area: String!
-  areaLabel: String!
-  location: String!
-  locationLabel: String!
-}
-
-type Projects_enBriefGalleryImages {
-  src: String!
-  alt: String!
-}
-
-type Projects_enBriefGallery {
-  cols: Float
-  images: [Projects_enBriefGalleryImages]
-}
-
-type Projects_enBrief {
-  title: String!
-  text: String!
-  gallery: Projects_enBriefGallery
-}
-
-type Projects_enConceptGalleryImages {
-  src: String!
-  alt: String!
-}
-
-type Projects_enConceptGallery {
-  cols: Float
-  images: [Projects_enConceptGalleryImages]
-}
-
-type Projects_enConcept {
-  title: String!
-  text: String!
-  gallery: Projects_enConceptGallery
-}
-
-type Projects_enStrategyCarousel {
-  src: String!
-  alt: String!
-}
-
-type Projects_enStrategyGalleryImages {
-  src: String!
-  alt: String!
-}
-
-type Projects_enStrategyGallery {
-  cols: Float
-  images: [Projects_enStrategyGalleryImages]
-}
-
-type Projects_enStrategy {
-  title: String!
-  text: String!
-  carousel: [Projects_enStrategyCarousel]
-  gallery: Projects_enStrategyGallery
-}
-
-type Projects_enCollaboratorsList {
-  name: String!
-  role: String!
-}
-
-type Projects_enCollaborators {
-  title: String!
-  list: [Projects_enCollaboratorsList]
-}
-
-type Projects_enFinalImage {
-  src: String!
-  alt: String!
-}
-
-type Projects_en implements Node & Document {
-  title: String!
-  description: String!
-  slug: String!
-  publishDate: String!
-  completedDate: String
-  tags: [String]
-  showTags: Boolean
-  featured: Boolean
-  draft: Boolean
-  banner: Projects_enBanner
-  details: Projects_enDetails
-  brief: Projects_enBrief
-  concept: Projects_enConcept
-  strategy: Projects_enStrategy
-  collaborators: Projects_enCollaborators
-  finalImage: Projects_enFinalImage
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Projects_enBannerFilter {
-  image: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_enDetailsFilter {
-  title: StringFilter
-  subtitle: StringFilter
-  image: ImageFilter
-  services: StringFilter
-  servicesLabel: StringFilter
-  category: StringFilter
-  categoryLabel: StringFilter
-  area: StringFilter
-  areaLabel: StringFilter
-  location: StringFilter
-  locationLabel: StringFilter
-}
-
-input Projects_enBriefGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_enBriefGalleryFilter {
-  cols: NumberFilter
-  images: Projects_enBriefGalleryImagesFilter
-}
-
-input Projects_enBriefFilter {
-  title: StringFilter
-  text: StringFilter
-  gallery: Projects_enBriefGalleryFilter
-}
-
-input Projects_enConceptGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_enConceptGalleryFilter {
-  cols: NumberFilter
-  images: Projects_enConceptGalleryImagesFilter
-}
-
-input Projects_enConceptFilter {
-  title: StringFilter
-  text: StringFilter
-  gallery: Projects_enConceptGalleryFilter
-}
-
-input Projects_enStrategyCarouselFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_enStrategyGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_enStrategyGalleryFilter {
-  cols: NumberFilter
-  images: Projects_enStrategyGalleryImagesFilter
-}
-
-input Projects_enStrategyFilter {
-  title: StringFilter
-  text: StringFilter
-  carousel: Projects_enStrategyCarouselFilter
-  gallery: Projects_enStrategyGalleryFilter
-}
-
-input Projects_enCollaboratorsListFilter {
-  name: StringFilter
-  role: StringFilter
-}
-
-input Projects_enCollaboratorsFilter {
-  title: StringFilter
-  list: Projects_enCollaboratorsListFilter
-}
-
-input Projects_enFinalImageFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input Projects_enFilter {
-  title: StringFilter
-  description: StringFilter
-  slug: StringFilter
-  publishDate: DatetimeFilter
-  completedDate: DatetimeFilter
-  tags: StringFilter
-  showTags: BooleanFilter
-  featured: BooleanFilter
-  draft: BooleanFilter
-  banner: Projects_enBannerFilter
-  details: Projects_enDetailsFilter
-  brief: Projects_enBriefFilter
-  concept: Projects_enConceptFilter
-  strategy: Projects_enStrategyFilter
-  collaborators: Projects_enCollaboratorsFilter
-  finalImage: Projects_enFinalImageFilter
-}
-
-type Projects_enConnectionEdges {
-  cursor: String!
-  node: Projects_en
-}
-
-type Projects_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Projects_enConnectionEdges]
-}
-
-type Translations_esNav {
+type TranslationsNav {
   social: String
   menu: String
   letsTalk: String
@@ -2075,33 +873,33 @@ type Translations_esNav {
   contact: String
 }
 
-type Translations_esFooter {
+type TranslationsFooter {
   privacy: String
   legal: String
 }
 
-type Translations_esContactFormProjectTypes {
+type TranslationsContactFormProjectTypes {
   commercial: String
   restaurant: String
   entertainment: String
   other: String
 }
 
-type Translations_esContactFormServiceTypes {
+type TranslationsContactFormServiceTypes {
   fullPackage: String
   concept: String
   unsure: String
 }
 
-type Translations_esContactForm {
+type TranslationsContactForm {
   name: String
   company: String
   email: String
   phone: String
   projectType: String
-  projectTypes: Translations_esContactFormProjectTypes
+  projectTypes: TranslationsContactFormProjectTypes
   serviceType: String
-  serviceTypes: Translations_esContactFormServiceTypes
+  serviceTypes: TranslationsContactFormServiceTypes
   message: String
   privacy: String
   submit: String
@@ -2111,13 +909,13 @@ type Translations_esContactForm {
   turnstileFailed: String
 }
 
-type Translations_esProjects {
+type TranslationsProjects {
   title: String
   description: String
   heading: String
 }
 
-type Translations_esAccessibility {
+type TranslationsAccessibility {
   skipToContent: String
   selectLanguage: String
   toggleMenu: String
@@ -2127,18 +925,18 @@ type Translations_esAccessibility {
   goToSlide: String
 }
 
-type Translations_es implements Node & Document {
-  nav: Translations_esNav
-  footer: Translations_esFooter
-  contactForm: Translations_esContactForm
-  projects: Translations_esProjects
-  accessibility: Translations_esAccessibility
+type Translations implements Node & Document {
+  nav: TranslationsNav
+  footer: TranslationsFooter
+  contactForm: TranslationsContactForm
+  projects: TranslationsProjects
+  accessibility: TranslationsAccessibility
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input Translations_esNavFilter {
+input TranslationsNavFilter {
   social: StringFilter
   menu: StringFilter
   letsTalk: StringFilter
@@ -2148,33 +946,33 @@ input Translations_esNavFilter {
   contact: StringFilter
 }
 
-input Translations_esFooterFilter {
+input TranslationsFooterFilter {
   privacy: StringFilter
   legal: StringFilter
 }
 
-input Translations_esContactFormProjectTypesFilter {
+input TranslationsContactFormProjectTypesFilter {
   commercial: StringFilter
   restaurant: StringFilter
   entertainment: StringFilter
   other: StringFilter
 }
 
-input Translations_esContactFormServiceTypesFilter {
+input TranslationsContactFormServiceTypesFilter {
   fullPackage: StringFilter
   concept: StringFilter
   unsure: StringFilter
 }
 
-input Translations_esContactFormFilter {
+input TranslationsContactFormFilter {
   name: StringFilter
   company: StringFilter
   email: StringFilter
   phone: StringFilter
   projectType: StringFilter
-  projectTypes: Translations_esContactFormProjectTypesFilter
+  projectTypes: TranslationsContactFormProjectTypesFilter
   serviceType: StringFilter
-  serviceTypes: Translations_esContactFormServiceTypesFilter
+  serviceTypes: TranslationsContactFormServiceTypesFilter
   message: StringFilter
   privacy: StringFilter
   submit: StringFilter
@@ -2184,13 +982,13 @@ input Translations_esContactFormFilter {
   turnstileFailed: StringFilter
 }
 
-input Translations_esProjectsFilter {
+input TranslationsProjectsFilter {
   title: StringFilter
   description: StringFilter
   heading: StringFilter
 }
 
-input Translations_esAccessibilityFilter {
+input TranslationsAccessibilityFilter {
   skipToContent: StringFilter
   selectLanguage: StringFilter
   toggleMenu: StringFilter
@@ -2200,331 +998,23 @@ input Translations_esAccessibilityFilter {
   goToSlide: StringFilter
 }
 
-input Translations_esFilter {
-  nav: Translations_esNavFilter
-  footer: Translations_esFooterFilter
-  contactForm: Translations_esContactFormFilter
-  projects: Translations_esProjectsFilter
-  accessibility: Translations_esAccessibilityFilter
+input TranslationsFilter {
+  nav: TranslationsNavFilter
+  footer: TranslationsFooterFilter
+  contactForm: TranslationsContactFormFilter
+  projects: TranslationsProjectsFilter
+  accessibility: TranslationsAccessibilityFilter
 }
 
-type Translations_esConnectionEdges {
+type TranslationsConnectionEdges {
   cursor: String!
-  node: Translations_es
+  node: Translations
 }
 
-type Translations_esConnection implements Connection {
+type TranslationsConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [Translations_esConnectionEdges]
-}
-
-type Translations_caNav {
-  social: String
-  menu: String
-  letsTalk: String
-  about: String
-  projects: String
-  services: String
-  contact: String
-}
-
-type Translations_caFooter {
-  privacy: String
-  legal: String
-}
-
-type Translations_caContactFormProjectTypes {
-  commercial: String
-  restaurant: String
-  entertainment: String
-  other: String
-}
-
-type Translations_caContactFormServiceTypes {
-  fullPackage: String
-  concept: String
-  unsure: String
-}
-
-type Translations_caContactForm {
-  name: String
-  company: String
-  email: String
-  phone: String
-  projectType: String
-  projectTypes: Translations_caContactFormProjectTypes
-  serviceType: String
-  serviceTypes: Translations_caContactFormServiceTypes
-  message: String
-  privacy: String
-  submit: String
-  sending: String
-  success: String
-  error: String
-  turnstileFailed: String
-}
-
-type Translations_caProjects {
-  title: String
-  description: String
-  heading: String
-}
-
-type Translations_caAccessibility {
-  skipToContent: String
-  selectLanguage: String
-  toggleMenu: String
-  closeMenu: String
-  previousSlide: String
-  nextSlide: String
-  goToSlide: String
-}
-
-type Translations_ca implements Node & Document {
-  nav: Translations_caNav
-  footer: Translations_caFooter
-  contactForm: Translations_caContactForm
-  projects: Translations_caProjects
-  accessibility: Translations_caAccessibility
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Translations_caNavFilter {
-  social: StringFilter
-  menu: StringFilter
-  letsTalk: StringFilter
-  about: StringFilter
-  projects: StringFilter
-  services: StringFilter
-  contact: StringFilter
-}
-
-input Translations_caFooterFilter {
-  privacy: StringFilter
-  legal: StringFilter
-}
-
-input Translations_caContactFormProjectTypesFilter {
-  commercial: StringFilter
-  restaurant: StringFilter
-  entertainment: StringFilter
-  other: StringFilter
-}
-
-input Translations_caContactFormServiceTypesFilter {
-  fullPackage: StringFilter
-  concept: StringFilter
-  unsure: StringFilter
-}
-
-input Translations_caContactFormFilter {
-  name: StringFilter
-  company: StringFilter
-  email: StringFilter
-  phone: StringFilter
-  projectType: StringFilter
-  projectTypes: Translations_caContactFormProjectTypesFilter
-  serviceType: StringFilter
-  serviceTypes: Translations_caContactFormServiceTypesFilter
-  message: StringFilter
-  privacy: StringFilter
-  submit: StringFilter
-  sending: StringFilter
-  success: StringFilter
-  error: StringFilter
-  turnstileFailed: StringFilter
-}
-
-input Translations_caProjectsFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-}
-
-input Translations_caAccessibilityFilter {
-  skipToContent: StringFilter
-  selectLanguage: StringFilter
-  toggleMenu: StringFilter
-  closeMenu: StringFilter
-  previousSlide: StringFilter
-  nextSlide: StringFilter
-  goToSlide: StringFilter
-}
-
-input Translations_caFilter {
-  nav: Translations_caNavFilter
-  footer: Translations_caFooterFilter
-  contactForm: Translations_caContactFormFilter
-  projects: Translations_caProjectsFilter
-  accessibility: Translations_caAccessibilityFilter
-}
-
-type Translations_caConnectionEdges {
-  cursor: String!
-  node: Translations_ca
-}
-
-type Translations_caConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Translations_caConnectionEdges]
-}
-
-type Translations_enNav {
-  social: String
-  menu: String
-  letsTalk: String
-  about: String
-  projects: String
-  services: String
-  contact: String
-}
-
-type Translations_enFooter {
-  privacy: String
-  legal: String
-}
-
-type Translations_enContactFormProjectTypes {
-  commercial: String
-  restaurant: String
-  entertainment: String
-  other: String
-}
-
-type Translations_enContactFormServiceTypes {
-  fullPackage: String
-  concept: String
-  unsure: String
-}
-
-type Translations_enContactForm {
-  name: String
-  company: String
-  email: String
-  phone: String
-  projectType: String
-  projectTypes: Translations_enContactFormProjectTypes
-  serviceType: String
-  serviceTypes: Translations_enContactFormServiceTypes
-  message: String
-  privacy: String
-  submit: String
-  sending: String
-  success: String
-  error: String
-  turnstileFailed: String
-}
-
-type Translations_enProjects {
-  title: String
-  description: String
-  heading: String
-}
-
-type Translations_enAccessibility {
-  skipToContent: String
-  selectLanguage: String
-  toggleMenu: String
-  closeMenu: String
-  previousSlide: String
-  nextSlide: String
-  goToSlide: String
-}
-
-type Translations_en implements Node & Document {
-  nav: Translations_enNav
-  footer: Translations_enFooter
-  contactForm: Translations_enContactForm
-  projects: Translations_enProjects
-  accessibility: Translations_enAccessibility
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input Translations_enNavFilter {
-  social: StringFilter
-  menu: StringFilter
-  letsTalk: StringFilter
-  about: StringFilter
-  projects: StringFilter
-  services: StringFilter
-  contact: StringFilter
-}
-
-input Translations_enFooterFilter {
-  privacy: StringFilter
-  legal: StringFilter
-}
-
-input Translations_enContactFormProjectTypesFilter {
-  commercial: StringFilter
-  restaurant: StringFilter
-  entertainment: StringFilter
-  other: StringFilter
-}
-
-input Translations_enContactFormServiceTypesFilter {
-  fullPackage: StringFilter
-  concept: StringFilter
-  unsure: StringFilter
-}
-
-input Translations_enContactFormFilter {
-  name: StringFilter
-  company: StringFilter
-  email: StringFilter
-  phone: StringFilter
-  projectType: StringFilter
-  projectTypes: Translations_enContactFormProjectTypesFilter
-  serviceType: StringFilter
-  serviceTypes: Translations_enContactFormServiceTypesFilter
-  message: StringFilter
-  privacy: StringFilter
-  submit: StringFilter
-  sending: StringFilter
-  success: StringFilter
-  error: StringFilter
-  turnstileFailed: StringFilter
-}
-
-input Translations_enProjectsFilter {
-  title: StringFilter
-  description: StringFilter
-  heading: StringFilter
-}
-
-input Translations_enAccessibilityFilter {
-  skipToContent: StringFilter
-  selectLanguage: StringFilter
-  toggleMenu: StringFilter
-  closeMenu: StringFilter
-  previousSlide: StringFilter
-  nextSlide: StringFilter
-  goToSlide: StringFilter
-}
-
-input Translations_enFilter {
-  nav: Translations_enNavFilter
-  footer: Translations_enFooterFilter
-  contactForm: Translations_enContactFormFilter
-  projects: Translations_enProjectsFilter
-  accessibility: Translations_enAccessibilityFilter
-}
-
-type Translations_enConnectionEdges {
-  cursor: String!
-  node: Translations_en
-}
-
-type Translations_enConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [Translations_enConnectionEdges]
+  edges: [TranslationsConnectionEdges]
 }
 
 type Mutation {
@@ -2535,99 +1025,43 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updateSiteConfig(relativePath: String!, params: SiteConfigMutation!): SiteConfig!
   createSiteConfig(relativePath: String!, params: SiteConfigMutation!): SiteConfig!
-  updateHome_es(relativePath: String!, params: Home_esMutation!): Home_es!
-  createHome_es(relativePath: String!, params: Home_esMutation!): Home_es!
-  updateHome_ca(relativePath: String!, params: Home_caMutation!): Home_ca!
-  createHome_ca(relativePath: String!, params: Home_caMutation!): Home_ca!
-  updateHome_en(relativePath: String!, params: Home_enMutation!): Home_en!
-  createHome_en(relativePath: String!, params: Home_enMutation!): Home_en!
-  updateAbout_es(relativePath: String!, params: About_esMutation!): About_es!
-  createAbout_es(relativePath: String!, params: About_esMutation!): About_es!
-  updateAbout_ca(relativePath: String!, params: About_caMutation!): About_ca!
-  createAbout_ca(relativePath: String!, params: About_caMutation!): About_ca!
-  updateAbout_en(relativePath: String!, params: About_enMutation!): About_en!
-  createAbout_en(relativePath: String!, params: About_enMutation!): About_en!
-  updateServices_es(relativePath: String!, params: Services_esMutation!): Services_es!
-  createServices_es(relativePath: String!, params: Services_esMutation!): Services_es!
-  updateServices_ca(relativePath: String!, params: Services_caMutation!): Services_ca!
-  createServices_ca(relativePath: String!, params: Services_caMutation!): Services_ca!
-  updateServices_en(relativePath: String!, params: Services_enMutation!): Services_en!
-  createServices_en(relativePath: String!, params: Services_enMutation!): Services_en!
-  updateContact_es(relativePath: String!, params: Contact_esMutation!): Contact_es!
-  createContact_es(relativePath: String!, params: Contact_esMutation!): Contact_es!
-  updateContact_ca(relativePath: String!, params: Contact_caMutation!): Contact_ca!
-  createContact_ca(relativePath: String!, params: Contact_caMutation!): Contact_ca!
-  updateContact_en(relativePath: String!, params: Contact_enMutation!): Contact_en!
-  createContact_en(relativePath: String!, params: Contact_enMutation!): Contact_en!
-  updateLegal_es(relativePath: String!, params: Legal_esMutation!): Legal_es!
-  createLegal_es(relativePath: String!, params: Legal_esMutation!): Legal_es!
-  updateLegal_ca(relativePath: String!, params: Legal_caMutation!): Legal_ca!
-  createLegal_ca(relativePath: String!, params: Legal_caMutation!): Legal_ca!
-  updateLegal_en(relativePath: String!, params: Legal_enMutation!): Legal_en!
-  createLegal_en(relativePath: String!, params: Legal_enMutation!): Legal_en!
-  updateProjects_es(relativePath: String!, params: Projects_esMutation!): Projects_es!
-  createProjects_es(relativePath: String!, params: Projects_esMutation!): Projects_es!
-  updateProjects_ca(relativePath: String!, params: Projects_caMutation!): Projects_ca!
-  createProjects_ca(relativePath: String!, params: Projects_caMutation!): Projects_ca!
-  updateProjects_en(relativePath: String!, params: Projects_enMutation!): Projects_en!
-  createProjects_en(relativePath: String!, params: Projects_enMutation!): Projects_en!
-  updateTranslations_es(relativePath: String!, params: Translations_esMutation!): Translations_es!
-  createTranslations_es(relativePath: String!, params: Translations_esMutation!): Translations_es!
-  updateTranslations_ca(relativePath: String!, params: Translations_caMutation!): Translations_ca!
-  createTranslations_ca(relativePath: String!, params: Translations_caMutation!): Translations_ca!
-  updateTranslations_en(relativePath: String!, params: Translations_enMutation!): Translations_en!
-  createTranslations_en(relativePath: String!, params: Translations_enMutation!): Translations_en!
+  updateHome(relativePath: String!, params: HomeMutation!): Home!
+  createHome(relativePath: String!, params: HomeMutation!): Home!
+  updateAbout(relativePath: String!, params: AboutMutation!): About!
+  createAbout(relativePath: String!, params: AboutMutation!): About!
+  updateServices(relativePath: String!, params: ServicesMutation!): Services!
+  createServices(relativePath: String!, params: ServicesMutation!): Services!
+  updateContact(relativePath: String!, params: ContactMutation!): Contact!
+  createContact(relativePath: String!, params: ContactMutation!): Contact!
+  updateLegal(relativePath: String!, params: LegalMutation!): Legal!
+  createLegal(relativePath: String!, params: LegalMutation!): Legal!
+  updateProjects(relativePath: String!, params: ProjectsMutation!): Projects!
+  createProjects(relativePath: String!, params: ProjectsMutation!): Projects!
+  updateTranslations(relativePath: String!, params: TranslationsMutation!): Translations!
+  createTranslations(relativePath: String!, params: TranslationsMutation!): Translations!
 }
 
 input DocumentUpdateMutation {
   siteConfig: SiteConfigMutation
-  home_es: Home_esMutation
-  home_ca: Home_caMutation
-  home_en: Home_enMutation
-  about_es: About_esMutation
-  about_ca: About_caMutation
-  about_en: About_enMutation
-  services_es: Services_esMutation
-  services_ca: Services_caMutation
-  services_en: Services_enMutation
-  contact_es: Contact_esMutation
-  contact_ca: Contact_caMutation
-  contact_en: Contact_enMutation
-  legal_es: Legal_esMutation
-  legal_ca: Legal_caMutation
-  legal_en: Legal_enMutation
-  projects_es: Projects_esMutation
-  projects_ca: Projects_caMutation
-  projects_en: Projects_enMutation
-  translations_es: Translations_esMutation
-  translations_ca: Translations_caMutation
-  translations_en: Translations_enMutation
+  home: HomeMutation
+  about: AboutMutation
+  services: ServicesMutation
+  contact: ContactMutation
+  legal: LegalMutation
+  projects: ProjectsMutation
+  translations: TranslationsMutation
   relativePath: String
 }
 
 input DocumentMutation {
   siteConfig: SiteConfigMutation
-  home_es: Home_esMutation
-  home_ca: Home_caMutation
-  home_en: Home_enMutation
-  about_es: About_esMutation
-  about_ca: About_caMutation
-  about_en: About_enMutation
-  services_es: Services_esMutation
-  services_ca: Services_caMutation
-  services_en: Services_enMutation
-  contact_es: Contact_esMutation
-  contact_ca: Contact_caMutation
-  contact_en: Contact_enMutation
-  legal_es: Legal_esMutation
-  legal_ca: Legal_caMutation
-  legal_en: Legal_enMutation
-  projects_es: Projects_esMutation
-  projects_ca: Projects_caMutation
-  projects_en: Projects_enMutation
-  translations_es: Translations_esMutation
-  translations_ca: Translations_caMutation
-  translations_en: Translations_enMutation
+  home: HomeMutation
+  about: AboutMutation
+  services: ServicesMutation
+  contact: ContactMutation
+  legal: LegalMutation
+  projects: ProjectsMutation
+  translations: TranslationsMutation
 }
 
 input SiteConfigCompanyMutation {
@@ -2689,22 +1123,22 @@ input SiteConfigMutation {
   seo: SiteConfigSeoMutation
 }
 
-input Home_esHeroTopRightMutation {
+input HomeHeroTopRightMutation {
   lines: [String]
 }
 
-input Home_esHeroTaglineMutation {
+input HomeHeroTaglineMutation {
   lines: [String]
 }
 
-input Home_esHeroMutation {
+input HomeHeroMutation {
   image: String
-  topRight: Home_esHeroTopRightMutation
-  tagline: Home_esHeroTaglineMutation
+  topRight: HomeHeroTopRightMutation
+  tagline: HomeHeroTaglineMutation
   taglineSub: String
 }
 
-input Home_esAboutMutation {
+input HomeAboutMutation {
   image: String
   title: String
   description: String
@@ -2712,412 +1146,130 @@ input Home_esAboutMutation {
   ctaLink: String
 }
 
-input Home_esMutation {
+input HomeMutation {
   title: String
   description: String
   headerStyle: String
-  hero: Home_esHeroMutation
-  about: Home_esAboutMutation
+  hero: HomeHeroMutation
+  about: HomeAboutMutation
 }
 
-input Home_caHeroTopRightMutation {
-  lines: [String]
-}
-
-input Home_caHeroTaglineMutation {
-  lines: [String]
-}
-
-input Home_caHeroMutation {
-  image: String
-  topRight: Home_caHeroTopRightMutation
-  tagline: Home_caHeroTaglineMutation
-  taglineSub: String
-}
-
-input Home_caAboutMutation {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-input Home_caMutation {
-  title: String
-  description: String
-  headerStyle: String
-  hero: Home_caHeroMutation
-  about: Home_caAboutMutation
-}
-
-input Home_enHeroTopRightMutation {
-  lines: [String]
-}
-
-input Home_enHeroTaglineMutation {
-  lines: [String]
-}
-
-input Home_enHeroMutation {
-  image: String
-  topRight: Home_enHeroTopRightMutation
-  tagline: Home_enHeroTaglineMutation
-  taglineSub: String
-}
-
-input Home_enAboutMutation {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-input Home_enMutation {
-  title: String
-  description: String
-  headerStyle: String
-  hero: Home_enHeroMutation
-  about: Home_enAboutMutation
-}
-
-input About_esHeroMutation {
+input AboutHeroMutation {
   title: String
 }
 
-input About_esBehindNameMutation {
+input AboutBehindNameMutation {
   title: String
   p1: String
   p2: String
   footnote: String
 }
 
-input About_esBioMutation {
+input AboutBioMutation {
   title: String
   image: String
   paragraphs: [String]
 }
 
-input About_esAwardsItemsMutation {
+input AboutAwardsItemsMutation {
   year: String
   project: String
   award: String
   link: String
 }
 
-input About_esAwardsMutation {
+input AboutAwardsMutation {
   title: String
-  items: [About_esAwardsItemsMutation]
+  items: [AboutAwardsItemsMutation]
 }
 
-input About_esMissionMutation {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-input About_esMutation {
-  title: String
-  description: String
-  heroImage: String
-  hero: About_esHeroMutation
-  behindName: About_esBehindNameMutation
-  bannerImage: String
-  bio: About_esBioMutation
-  awards: About_esAwardsMutation
-  mission: About_esMissionMutation
-  missionImage: String
-}
-
-input About_caHeroMutation {
-  title: String
-}
-
-input About_caBehindNameMutation {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-input About_caBioMutation {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-input About_caAwardsItemsMutation {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-input About_caAwardsMutation {
-  title: String
-  items: [About_caAwardsItemsMutation]
-}
-
-input About_caMissionMutation {
+input AboutMissionMutation {
   title: String
   p1: String
   p2: String
   quote: String
 }
 
-input About_caMutation {
+input AboutMutation {
   title: String
   description: String
   heroImage: String
-  hero: About_caHeroMutation
-  behindName: About_caBehindNameMutation
+  hero: AboutHeroMutation
+  behindName: AboutBehindNameMutation
   bannerImage: String
-  bio: About_caBioMutation
-  awards: About_caAwardsMutation
-  mission: About_caMissionMutation
+  bio: AboutBioMutation
+  awards: AboutAwardsMutation
+  mission: AboutMissionMutation
   missionImage: String
 }
 
-input About_enHeroMutation {
+input ServicesHeroMutation {
   title: String
 }
 
-input About_enBehindNameMutation {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-input About_enBioMutation {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-input About_enAwardsItemsMutation {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-input About_enAwardsMutation {
-  title: String
-  items: [About_enAwardsItemsMutation]
-}
-
-input About_enMissionMutation {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-input About_enMutation {
-  title: String
-  description: String
-  heroImage: String
-  hero: About_enHeroMutation
-  behindName: About_enBehindNameMutation
-  bannerImage: String
-  bio: About_enBioMutation
-  awards: About_enAwardsMutation
-  mission: About_enMissionMutation
-  missionImage: String
-}
-
-input Services_esHeroMutation {
-  title: String
-}
-
-input Services_esIntroMutation {
+input ServicesIntroMutation {
   text: String
   image: String
 }
 
-input Services_esServiceGroupsItemsMutation {
+input ServicesServiceGroupsItemsMutation {
   title: String
   description: String
 }
 
-input Services_esServiceGroupsMutation {
+input ServicesServiceGroupsMutation {
   title: String
-  items: [Services_esServiceGroupsItemsMutation]
+  items: [ServicesServiceGroupsItemsMutation]
 }
 
-input Services_esFaqItemsMutation {
+input ServicesFaqItemsMutation {
   question: String
   answer: String
 }
 
-input Services_esFaqMutation {
+input ServicesFaqMutation {
   title: String
   image: String
-  items: [Services_esFaqItemsMutation]
+  items: [ServicesFaqItemsMutation]
 }
 
-input Services_esWorkProcessMutation {
+input ServicesWorkProcessMutation {
   title: String
   p1: String
   p2: String
   image: String
 }
 
-input Services_esMutation {
+input ServicesMutation {
   title: String
   description: String
-  hero: Services_esHeroMutation
-  intro: Services_esIntroMutation
-  serviceGroups: [Services_esServiceGroupsMutation]
-  faq: Services_esFaqMutation
-  workProcess: Services_esWorkProcessMutation
+  hero: ServicesHeroMutation
+  intro: ServicesIntroMutation
+  serviceGroups: [ServicesServiceGroupsMutation]
+  faq: ServicesFaqMutation
+  workProcess: ServicesWorkProcessMutation
 }
 
-input Services_caHeroMutation {
-  title: String
-}
-
-input Services_caIntroMutation {
-  text: String
-  image: String
-}
-
-input Services_caServiceGroupsItemsMutation {
-  title: String
-  description: String
-}
-
-input Services_caServiceGroupsMutation {
-  title: String
-  items: [Services_caServiceGroupsItemsMutation]
-}
-
-input Services_caFaqItemsMutation {
-  question: String
-  answer: String
-}
-
-input Services_caFaqMutation {
-  title: String
-  image: String
-  items: [Services_caFaqItemsMutation]
-}
-
-input Services_caWorkProcessMutation {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
-input Services_caMutation {
-  title: String
-  description: String
-  hero: Services_caHeroMutation
-  intro: Services_caIntroMutation
-  serviceGroups: [Services_caServiceGroupsMutation]
-  faq: Services_caFaqMutation
-  workProcess: Services_caWorkProcessMutation
-}
-
-input Services_enHeroMutation {
-  title: String
-}
-
-input Services_enIntroMutation {
-  text: String
-  image: String
-}
-
-input Services_enServiceGroupsItemsMutation {
-  title: String
-  description: String
-}
-
-input Services_enServiceGroupsMutation {
-  title: String
-  items: [Services_enServiceGroupsItemsMutation]
-}
-
-input Services_enFaqItemsMutation {
-  question: String
-  answer: String
-}
-
-input Services_enFaqMutation {
-  title: String
-  image: String
-  items: [Services_enFaqItemsMutation]
-}
-
-input Services_enWorkProcessMutation {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
-input Services_enMutation {
-  title: String
-  description: String
-  hero: Services_enHeroMutation
-  intro: Services_enIntroMutation
-  serviceGroups: [Services_enServiceGroupsMutation]
-  faq: Services_enFaqMutation
-  workProcess: Services_enWorkProcessMutation
-}
-
-input Contact_esMutation {
+input ContactMutation {
   title: String
   description: String
   heading: String
   subheading: String
 }
 
-input Contact_caMutation {
-  title: String
-  description: String
-  heading: String
-  subheading: String
-}
-
-input Contact_enMutation {
-  title: String
-  description: String
-  heading: String
-  subheading: String
-}
-
-input Legal_esMutation {
+input LegalMutation {
   title: String
   description: String
   lastUpdated: String
   body: JSON
 }
 
-input Legal_caMutation {
-  title: String
-  description: String
-  lastUpdated: String
-  body: JSON
-}
-
-input Legal_enMutation {
-  title: String
-  description: String
-  lastUpdated: String
-  body: JSON
-}
-
-input Projects_esBannerMutation {
+input ProjectsBannerMutation {
   image: String
   alt: String
 }
 
-input Projects_esDetailsMutation {
+input ProjectsDetailsMutation {
   title: String
   subtitle: String
   image: String
@@ -3131,76 +1283,76 @@ input Projects_esDetailsMutation {
   locationLabel: String
 }
 
-input Projects_esBriefGalleryImagesMutation {
+input ProjectsBriefGalleryImagesMutation {
   src: String
   alt: String
 }
 
-input Projects_esBriefGalleryMutation {
+input ProjectsBriefGalleryMutation {
   cols: Float
-  images: [Projects_esBriefGalleryImagesMutation]
+  images: [ProjectsBriefGalleryImagesMutation]
 }
 
-input Projects_esBriefMutation {
+input ProjectsBriefMutation {
   title: String
   text: String
-  gallery: Projects_esBriefGalleryMutation
+  gallery: ProjectsBriefGalleryMutation
 }
 
-input Projects_esConceptGalleryImagesMutation {
+input ProjectsConceptGalleryImagesMutation {
   src: String
   alt: String
 }
 
-input Projects_esConceptGalleryMutation {
+input ProjectsConceptGalleryMutation {
   cols: Float
-  images: [Projects_esConceptGalleryImagesMutation]
+  images: [ProjectsConceptGalleryImagesMutation]
 }
 
-input Projects_esConceptMutation {
+input ProjectsConceptMutation {
   title: String
   text: String
-  gallery: Projects_esConceptGalleryMutation
+  gallery: ProjectsConceptGalleryMutation
 }
 
-input Projects_esStrategyCarouselMutation {
+input ProjectsStrategyCarouselMutation {
   src: String
   alt: String
 }
 
-input Projects_esStrategyGalleryImagesMutation {
+input ProjectsStrategyGalleryImagesMutation {
   src: String
   alt: String
 }
 
-input Projects_esStrategyGalleryMutation {
+input ProjectsStrategyGalleryMutation {
   cols: Float
-  images: [Projects_esStrategyGalleryImagesMutation]
+  images: [ProjectsStrategyGalleryImagesMutation]
 }
 
-input Projects_esStrategyMutation {
+input ProjectsStrategyMutation {
   title: String
   text: String
-  carousel: [Projects_esStrategyCarouselMutation]
-  gallery: Projects_esStrategyGalleryMutation
+  carousel: [ProjectsStrategyCarouselMutation]
+  gallery: ProjectsStrategyGalleryMutation
 }
 
-input Projects_esCollaboratorsListMutation {
+input ProjectsCollaboratorsListMutation {
   name: String
   role: String
 }
 
-input Projects_esCollaboratorsMutation {
+input ProjectsCollaboratorsMutation {
   title: String
-  list: [Projects_esCollaboratorsListMutation]
+  list: [ProjectsCollaboratorsListMutation]
 }
 
-input Projects_esFinalImageMutation {
+input ProjectsFinalImageMutation {
   src: String
   alt: String
 }
 
-input Projects_esMutation {
+input ProjectsMutation {
   title: String
   description: String
   slug: String
@@ -3210,230 +1362,16 @@ input Projects_esMutation {
   showTags: Boolean
   featured: Boolean
   draft: Boolean
-  banner: Projects_esBannerMutation
-  details: Projects_esDetailsMutation
-  brief: Projects_esBriefMutation
-  concept: Projects_esConceptMutation
-  strategy: Projects_esStrategyMutation
-  collaborators: Projects_esCollaboratorsMutation
-  finalImage: Projects_esFinalImageMutation
+  banner: ProjectsBannerMutation
+  details: ProjectsDetailsMutation
+  brief: ProjectsBriefMutation
+  concept: ProjectsConceptMutation
+  strategy: ProjectsStrategyMutation
+  collaborators: ProjectsCollaboratorsMutation
+  finalImage: ProjectsFinalImageMutation
 }
 
-input Projects_caBannerMutation {
-  image: String
-  alt: String
-}
-
-input Projects_caDetailsMutation {
-  title: String
-  subtitle: String
-  image: String
-  services: String
-  servicesLabel: String
-  category: String
-  categoryLabel: String
-  area: String
-  areaLabel: String
-  location: String
-  locationLabel: String
-}
-
-input Projects_caBriefGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input Projects_caBriefGalleryMutation {
-  cols: Float
-  images: [Projects_caBriefGalleryImagesMutation]
-}
-
-input Projects_caBriefMutation {
-  title: String
-  text: String
-  gallery: Projects_caBriefGalleryMutation
-}
-
-input Projects_caConceptGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input Projects_caConceptGalleryMutation {
-  cols: Float
-  images: [Projects_caConceptGalleryImagesMutation]
-}
-
-input Projects_caConceptMutation {
-  title: String
-  text: String
-  gallery: Projects_caConceptGalleryMutation
-}
-
-input Projects_caStrategyCarouselMutation {
-  src: String
-  alt: String
-}
-
-input Projects_caStrategyGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input Projects_caStrategyGalleryMutation {
-  cols: Float
-  images: [Projects_caStrategyGalleryImagesMutation]
-}
-
-input Projects_caStrategyMutation {
-  title: String
-  text: String
-  carousel: [Projects_caStrategyCarouselMutation]
-  gallery: Projects_caStrategyGalleryMutation
-}
-
-input Projects_caCollaboratorsListMutation {
-  name: String
-  role: String
-}
-
-input Projects_caCollaboratorsMutation {
-  title: String
-  list: [Projects_caCollaboratorsListMutation]
-}
-
-input Projects_caFinalImageMutation {
-  src: String
-  alt: String
-}
-
-input Projects_caMutation {
-  title: String
-  description: String
-  slug: String
-  publishDate: String
-  completedDate: String
-  tags: [String]
-  showTags: Boolean
-  featured: Boolean
-  draft: Boolean
-  banner: Projects_caBannerMutation
-  details: Projects_caDetailsMutation
-  brief: Projects_caBriefMutation
-  concept: Projects_caConceptMutation
-  strategy: Projects_caStrategyMutation
-  collaborators: Projects_caCollaboratorsMutation
-  finalImage: Projects_caFinalImageMutation
-}
-
-input Projects_enBannerMutation {
-  image: String
-  alt: String
-}
-
-input Projects_enDetailsMutation {
-  title: String
-  subtitle: String
-  image: String
-  services: String
-  servicesLabel: String
-  category: String
-  categoryLabel: String
-  area: String
-  areaLabel: String
-  location: String
-  locationLabel: String
-}
-
-input Projects_enBriefGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input Projects_enBriefGalleryMutation {
-  cols: Float
-  images: [Projects_enBriefGalleryImagesMutation]
-}
-
-input Projects_enBriefMutation {
-  title: String
-  text: String
-  gallery: Projects_enBriefGalleryMutation
-}
-
-input Projects_enConceptGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input Projects_enConceptGalleryMutation {
-  cols: Float
-  images: [Projects_enConceptGalleryImagesMutation]
-}
-
-input Projects_enConceptMutation {
-  title: String
-  text: String
-  gallery: Projects_enConceptGalleryMutation
-}
-
-input Projects_enStrategyCarouselMutation {
-  src: String
-  alt: String
-}
-
-input Projects_enStrategyGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input Projects_enStrategyGalleryMutation {
-  cols: Float
-  images: [Projects_enStrategyGalleryImagesMutation]
-}
-
-input Projects_enStrategyMutation {
-  title: String
-  text: String
-  carousel: [Projects_enStrategyCarouselMutation]
-  gallery: Projects_enStrategyGalleryMutation
-}
-
-input Projects_enCollaboratorsListMutation {
-  name: String
-  role: String
-}
-
-input Projects_enCollaboratorsMutation {
-  title: String
-  list: [Projects_enCollaboratorsListMutation]
-}
-
-input Projects_enFinalImageMutation {
-  src: String
-  alt: String
-}
-
-input Projects_enMutation {
-  title: String
-  description: String
-  slug: String
-  publishDate: String
-  completedDate: String
-  tags: [String]
-  showTags: Boolean
-  featured: Boolean
-  draft: Boolean
-  banner: Projects_enBannerMutation
-  details: Projects_enDetailsMutation
-  brief: Projects_enBriefMutation
-  concept: Projects_enConceptMutation
-  strategy: Projects_enStrategyMutation
-  collaborators: Projects_enCollaboratorsMutation
-  finalImage: Projects_enFinalImageMutation
-}
-
-input Translations_esNavMutation {
+input TranslationsNavMutation {
   social: String
   menu: String
   letsTalk: String
@@ -3443,33 +1381,33 @@ input Translations_esNavMutation {
   contact: String
 }
 
-input Translations_esFooterMutation {
+input TranslationsFooterMutation {
   privacy: String
   legal: String
 }
 
-input Translations_esContactFormProjectTypesMutation {
+input TranslationsContactFormProjectTypesMutation {
   commercial: String
   restaurant: String
   entertainment: String
   other: String
 }
 
-input Translations_esContactFormServiceTypesMutation {
+input TranslationsContactFormServiceTypesMutation {
   fullPackage: String
   concept: String
   unsure: String
 }
 
-input Translations_esContactFormMutation {
+input TranslationsContactFormMutation {
   name: String
   company: String
   email: String
   phone: String
   projectType: String
-  projectTypes: Translations_esContactFormProjectTypesMutation
+  projectTypes: TranslationsContactFormProjectTypesMutation
   serviceType: String
-  serviceTypes: Translations_esContactFormServiceTypesMutation
+  serviceTypes: TranslationsContactFormServiceTypesMutation
   message: String
   privacy: String
   submit: String
@@ -3479,13 +1417,13 @@ input Translations_esContactFormMutation {
   turnstileFailed: String
 }
 
-input Translations_esProjectsMutation {
+input TranslationsProjectsMutation {
   title: String
   description: String
   heading: String
 }
 
-input Translations_esAccessibilityMutation {
+input TranslationsAccessibilityMutation {
   skipToContent: String
   selectLanguage: String
   toggleMenu: String
@@ -3495,152 +1433,12 @@ input Translations_esAccessibilityMutation {
   goToSlide: String
 }
 
-input Translations_esMutation {
-  nav: Translations_esNavMutation
-  footer: Translations_esFooterMutation
-  contactForm: Translations_esContactFormMutation
-  projects: Translations_esProjectsMutation
-  accessibility: Translations_esAccessibilityMutation
-}
-
-input Translations_caNavMutation {
-  social: String
-  menu: String
-  letsTalk: String
-  about: String
-  projects: String
-  services: String
-  contact: String
-}
-
-input Translations_caFooterMutation {
-  privacy: String
-  legal: String
-}
-
-input Translations_caContactFormProjectTypesMutation {
-  commercial: String
-  restaurant: String
-  entertainment: String
-  other: String
-}
-
-input Translations_caContactFormServiceTypesMutation {
-  fullPackage: String
-  concept: String
-  unsure: String
-}
-
-input Translations_caContactFormMutation {
-  name: String
-  company: String
-  email: String
-  phone: String
-  projectType: String
-  projectTypes: Translations_caContactFormProjectTypesMutation
-  serviceType: String
-  serviceTypes: Translations_caContactFormServiceTypesMutation
-  message: String
-  privacy: String
-  submit: String
-  sending: String
-  success: String
-  error: String
-  turnstileFailed: String
-}
-
-input Translations_caProjectsMutation {
-  title: String
-  description: String
-  heading: String
-}
-
-input Translations_caAccessibilityMutation {
-  skipToContent: String
-  selectLanguage: String
-  toggleMenu: String
-  closeMenu: String
-  previousSlide: String
-  nextSlide: String
-  goToSlide: String
-}
-
-input Translations_caMutation {
-  nav: Translations_caNavMutation
-  footer: Translations_caFooterMutation
-  contactForm: Translations_caContactFormMutation
-  projects: Translations_caProjectsMutation
-  accessibility: Translations_caAccessibilityMutation
-}
-
-input Translations_enNavMutation {
-  social: String
-  menu: String
-  letsTalk: String
-  about: String
-  projects: String
-  services: String
-  contact: String
-}
-
-input Translations_enFooterMutation {
-  privacy: String
-  legal: String
-}
-
-input Translations_enContactFormProjectTypesMutation {
-  commercial: String
-  restaurant: String
-  entertainment: String
-  other: String
-}
-
-input Translations_enContactFormServiceTypesMutation {
-  fullPackage: String
-  concept: String
-  unsure: String
-}
-
-input Translations_enContactFormMutation {
-  name: String
-  company: String
-  email: String
-  phone: String
-  projectType: String
-  projectTypes: Translations_enContactFormProjectTypesMutation
-  serviceType: String
-  serviceTypes: Translations_enContactFormServiceTypesMutation
-  message: String
-  privacy: String
-  submit: String
-  sending: String
-  success: String
-  error: String
-  turnstileFailed: String
-}
-
-input Translations_enProjectsMutation {
-  title: String
-  description: String
-  heading: String
-}
-
-input Translations_enAccessibilityMutation {
-  skipToContent: String
-  selectLanguage: String
-  toggleMenu: String
-  closeMenu: String
-  previousSlide: String
-  nextSlide: String
-  goToSlide: String
-}
-
-input Translations_enMutation {
-  nav: Translations_enNavMutation
-  footer: Translations_enFooterMutation
-  contactForm: Translations_enContactFormMutation
-  projects: Translations_enProjectsMutation
-  accessibility: Translations_enAccessibilityMutation
+input TranslationsMutation {
+  nav: TranslationsNavMutation
+  footer: TranslationsFooterMutation
+  contactForm: TranslationsContactFormMutation
+  projects: TranslationsProjectsMutation
+  accessibility: TranslationsAccessibilityMutation
 }
 
 schema {

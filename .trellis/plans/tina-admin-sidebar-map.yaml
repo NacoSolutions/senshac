@@ -1,0 +1,15 @@
+id: tina-admin-sidebar-map
+title: TinaCMS admin sidebar collection map
+seed: senshac-c404
+spec: tina-visual-editing
+status: done
+createdAt: "2026-06-03T18:42:42.373Z"
+updatedAt: "2026-06-03T18:42:49.845Z"
+completedAt: "2026-06-03T18:42:49.844Z"
+completionSummary: Target TinaCMS sidebar map defined for senshac-c404. Follow-up implementation remains in dependent Seeds.
+summary: "Target admin organization: collapse per-locale Tina collections into content-type collections so the sidebar is small and editor-oriented. Proposed groups by label prefix: Site / Configuration; Pages / Home, Pages / About, Pages / Services, Pages / Contact; Portfolio / Projects; Legal / Pages; System / Translations. Each content-type collection spans es/ca/en files with match.include patterns and locale-aware routers. Implementation remains split into follow-up Seeds."
+steps:
+  - Confirm Tina config can express reduced sidebar using one collection per content type and label prefixes.
+  - "Use locale-aware routers based on document system path/breadcrumbs so visual editing opens /{lang}/ routes."
+  - Keep create/delete disabled for singleton page, translation, and site config collections.
+  - "Leave implementation to dependent Seeds: page, project, legal, translation consolidation; then generated types, loaders, island registry, routes, admin verification, preview verification."
