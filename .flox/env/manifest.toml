@@ -38,6 +38,7 @@ Astro + Alpine.js + HTMX + Hyperscript + UnoCSS
 
 Quick Commands:
   dx <command>                          Run through direnv exec .
+  fx <command>                          Project workflow shortcuts
   dev [start|stop|restart|status|log]   Astro dev server
   cms [start|stop|restart|status|log]   TinaCMS + Astro
   bun run build                         Build for production

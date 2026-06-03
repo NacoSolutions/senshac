@@ -38,6 +38,7 @@ bun run dev
 ```
 
 The Flox environment also provides the project helper CLIs: `sd`, `ml`, `cn`, and `tl`.
+It also exposes `dx` for `direnv exec . <command>` and `fx` for common project workflows.
 
 For local Tina/contact-form configuration, copy `.env.example` to `.env.local` and fill in real values. `.env.local` is ignored by git and loaded by `.envrc` when direnv is enabled.
 
@@ -45,6 +46,12 @@ For local Tina/contact-form configuration, copy `.env.example` to `.env.local` a
 
 | Command | Description |
 |---------|-------------|
+| `dx <command>` | Run a command through the direnv-loaded repo environment |
+| `fx ready` | Show ready Seeds work |
+| `fx check` | Run Astro check |
+| `fx build` | Run the production build |
+| `fx deploy` | Deploy `dist/` to Cloudflare Pages |
+| `fx smoke [base]` | Smoke-test localized routes and Tina admin labels |
 | `dev [action]` | Astro dev server (start/stop/restart/status/log) |
 | `cms [action]` | TinaCMS + Astro (start/stop/restart/status/log) |
 | `bun run build` | Run TinaCMS generation, scrub generated token literals, then build Astro for Cloudflare |
@@ -59,9 +66,15 @@ Production builds use Bun, Astro, and Wrangler:
 ```bash
 flox activate
 bun install
-bun run check
-bun run build
-bun run deploy
+fx check
+fx build
+fx deploy
+```
+
+Cloudflare Pages Git deployments must use this build command:
+
+```bash
+bun install --frozen-lockfile && bun run build
 ```
 
 `bun run build` writes the Cloudflare Pages artifact to `dist/`. Expected deploy output includes:

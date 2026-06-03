@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="${FLOX_ENV_PROJECT:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
+
+usage() {
+  cat <<'EOF'
+Usage: fx <command> [args]
+
+Commands:
+  run <command>   Run an arbitrary command through direnv exec .
+  check           Run Astro check
+  build           Run production build
+  deploy          Deploy dist to Cloudflare Pages
+  ready           Show ready Seeds work
+  smoke [base]    Smoke test localized routes and Tina admin labels
+  help            Show this help
+EOF
+}
+
+dx() {
+  direnv exec "$repo" "$@"
+}
+
+cmd="${1:-help}"
+case "$cmd" in
+  run)
+    shift
+    if [ "$#" -eq 0 ]; then
+      usage >&2
+      exit 2
+    fi
+    exec direnv exec "$repo" "$@"
+    ;;
+  check)
+    dx bun run check
+    ;;
+  build)
+    dx bun run build
+    ;;
+  deploy)
+    dx bun run deploy
+    ;;
+  ready)
+    dx sd ready
+    ;;
+  smoke)
+    base="${2:-https://preview.senshac.com}"
+    dx bash -s -- "$base" <<'EOF'
+set -euo pipefail
+
+base="$1"
+routes=(
+  /
+  /es/
+  /es/about/
+  /es/services/
+  /es/projects/la-trobada/
+  /ca/
+  /ca/about/
+  /ca/services/
+  /ca/projects/la-trobada/
+  /en/
+  /en/about/
+  /en/services/
+  /en/projects/la-trobada/
+)
+
+for path in "${routes[@]}"; do
+  body="$(mktemp)"
+  status="$(curl -LsS -o "$body" -w "%{http_code}" "$base$path")"
+  title="$(rg -o "<title>[^<]+" "$body" | sed "s/<title>//" | head -1 || true)"
+  rm -f "$body"
+  printf "%s\t%s\t%s\n" "$path" "$status" "$title"
+  [ "$status" = "200" ]
+done
+
+admin_html="$(mktemp)"
+admin_js="$(mktemp)"
+curl -LsS -o "$admin_html" "$base/admin/index.html"
+asset="$(rg -o 'assets/index-[A-Za-z0-9._-]+\.js' "$admin_html" | head -1 || true)"
+if [ -z "$asset" ]; then
+  echo "admin asset missing" >&2
+  exit 1
+fi
+curl -LsS -o "$admin_js" "$base/admin/$asset"
+grep -Fq "Pages / Home" "$admin_js"
+grep -Fq "Portfolio / Projects" "$admin_js"
+if grep -Fq "Home (Spanish)" "$admin_js"; then
+  echo "old Tina labels still present" >&2
+  exit 1
+fi
+rm -f "$admin_html" "$admin_js"
+echo "admin labels ok"
+EOF
+    ;;
+  help|-h|--help)
+    usage
+    ;;
+  *)
+    echo "Unknown fx command: $cmd" >&2
+    usage >&2
+    exit 2
+    ;;
+esac

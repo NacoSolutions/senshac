@@ -118,6 +118,12 @@ Project memory has moved out of `.agent-memory/` into the git-native tool stores
 
 Run `sd prime`, `tl prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
 
+## Environment Commands
+
+- `dx <command>` — short wrapper for `direnv exec . <command>`.
+- `fx <command>` — project workflow shortcut suite; start with `fx ready`, `fx check`, `fx build`, `fx deploy`, and `fx smoke [base]`.
+- Cloudflare Pages Git deployments use `bun install --frozen-lockfile && bun run build` so dependencies exist before Tina generation.
+
 <!-- seeds:start -->
 ## Issue Tracking (Seeds)
 <!-- seeds-onboard-v:1 -->
