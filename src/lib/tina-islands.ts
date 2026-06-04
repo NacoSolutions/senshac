@@ -46,21 +46,31 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       }),
     },
     header: {
-      fetch: (_request, params) => getTranslations(params.get('relativePath') ?? 'es.json', env),
+      fetch: async (_request, params) => {
+        const transData = await getTranslations(params.get('relativePath') ?? 'es.json', env);
+        const siteData = await getSiteConfigTina('site.json', env);
+        return { translations: transData, site: siteData };
+      },
       component: HeaderIsland,
       wrapper: { tag: 'div', className: 'relative z-50' },
-      propsFromData: (data, params) => ({
-        data: (data as QueryResult<TranslationsQuery>).data.translations,
+      propsFromData: (data: any, params) => ({
+        data: data?.data?.translations,
+        siteData: data?.data?.siteConfig,
         lang: params?.get('lang') ?? 'es',
         headerStyle: params?.get('headerStyle') ?? 'default',
       }),
     },
     footer: {
-      fetch: (_request, params) => getTranslations(params.get('relativePath') ?? 'es.json', env),
+      fetch: async (_request, params) => {
+        const transData = await getTranslations(params.get('relativePath') ?? 'es.json', env);
+        const siteData = await getSiteConfigTina('site.json', env);
+        return { translations: transData, site: siteData };
+      },
       component: FooterIsland,
       wrapper: { tag: 'div' },
-      propsFromData: (data, params) => ({
-        data: (data as QueryResult<TranslationsQuery>).data.translations,
+      propsFromData: (data: any, params) => ({
+        data: data?.data?.translations,
+        siteData: data?.data?.siteConfig,
         lang: params?.get('lang') ?? 'es',
       }),
     },

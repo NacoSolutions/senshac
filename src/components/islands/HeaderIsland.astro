@@ -1,14 +1,27 @@
 ---
-// src/components/islands/HeaderIsland.astro
 import Header from '../Header.astro';
 import type { Translations } from '../../utils/translations';
+import { getTranslations } from '../../lib/tina-data';
+import { getSiteConfigTina, getTinaRuntimeEnv } from '../../lib/tina-data';
+import type { SiteConfigQuery } from '../../../tina/__generated__/types';
 
 interface Props {
-  data: Translations;
+  data?: Translations;
+  siteData?: SiteConfigQuery['siteConfig'];
   lang: string;
   headerStyle?: 'default' | 'transparent';
 }
 
-const { data, lang, headerStyle = 'default' } = Astro.props;
+let { data, siteData, lang, headerStyle = 'default' } = Astro.props;
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+
+if (!data) {
+  const transRes = await getTranslations(`${lang}.json`, tinaEnv);
+  data = transRes.data.translations;
+}
+if (!siteData) {
+  const siteRes = await getSiteConfigTina('site.json', tinaEnv);
+  siteData = siteRes.data.siteConfig;
+}
 ---
-<Header lang={lang} headerStyle={headerStyle} translations={data} />
+<Header lang={lang} headerStyle={headerStyle} translations={data!} siteData={siteData!} />

@@ -8,7 +8,7 @@ import '../styles/global.css';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import HeaderIsland from '../components/islands/HeaderIsland.astro';
 import FooterIsland from '../components/islands/FooterIsland.astro';
-import { getTinaRuntimeEnv, getTranslations } from '../lib/tina-data';
+import { getTinaRuntimeEnv, getTranslations, getSiteConfigTina } from '../lib/tina-data';
 import { createIslands } from '../lib/tina-islands';
 interface Props {
   title: string;
@@ -29,6 +29,9 @@ const islands = createIslands(tinaEnv);
 const translationsPath = `${lang}.json`;
 const tinaTranslationsRes = await getTranslations(translationsPath, tinaEnv);
 const tinaTranslationsData = tinaTranslationsRes.data.translations;
+
+const tinaSiteRes = await getSiteConfigTina('site.json', tinaEnv);
+const tinaSiteData = tinaSiteRes.data.siteConfig;
 ---
 
 <!doctype html>
@@ -68,13 +71,13 @@ const tinaTranslationsData = tinaTranslationsRes.data.translations;
       Skip to content
     </a>
     <TinaIsland name="header" wrapper={islands.header.wrapper} params={{ relativePath: translationsPath, lang, headerStyle }}>
-      <HeaderIsland data={tinaTranslationsData} lang={lang} headerStyle={headerStyle} />
+      <HeaderIsland data={tinaTranslationsData} siteData={tinaSiteData} lang={lang} headerStyle={headerStyle} />
     </TinaIsland>
 
     <slot />
 
     <TinaIsland name="footer" wrapper={islands.footer.wrapper} params={{ relativePath: translationsPath, lang }}>
-      <FooterIsland data={tinaTranslationsData} lang={lang} />
+      <FooterIsland data={tinaTranslationsData} siteData={tinaSiteData} lang={lang} />
     </TinaIsland>
 
     <!-- Custom cursor circle -->

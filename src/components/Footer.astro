@@ -4,15 +4,18 @@ import { getTranslations, type Translations } from '../utils/translations';
 import { getSiteConfig } from '../utils/site-config';
 import { tinaField } from '@tinacms/astro';
 
+import type { SiteConfigQuery } from '../../tina/__generated__/types';
+
 interface Props {
   lang: string;
   translations?: Translations;
+  siteData?: SiteConfigQuery['siteConfig'];
 }
 
-const { lang, translations: propTranslations } = Astro.props;
+const { lang, translations: propTranslations, siteData: propSiteData } = Astro.props;
 
 const t = propTranslations ?? await getTranslations(lang);
-const site = await getSiteConfig();
+const site = propSiteData ?? await getSiteConfig();
 
 const navLinks = [
   { href: `/${lang}/about`, label: t.nav.about },
@@ -30,48 +33,52 @@ const socialLinks = site.socialLinks;
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div class="flex flex-col-reverse sm:flex-row sm:justify-between gap-8 pt-16 pb-8">
       <!-- Logo -->
-      <a href={`/${lang}/`}>
-        <img
-          src={site.branding.symbolWhite}
-          alt={site.company.name.toLowerCase()}
-          class="h-12 w-auto"
-          width="48"
-          height="48"
-        />
-      </a>
+        <a href={`/${lang}/`} aria-label={site.company.name}>
+          <img
+            src={site.branding.symbolWhite}
+            alt={site.company.name.toLowerCase()}
+            class="h-12 w-auto"
+            width="48"
+            height="48"
+            data-tina-field={tinaField(site.branding, 'symbolWhite')}
+          />
+        </a>
 
       <!-- Social + Contact -->
       <div class="flex flex-col items-start sm:items-end">
-        <!-- Social Icons -->
-        <div class="flex gap-4 mb-2">
-          {socialLinks.map((link) => (
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-white hover:text-gray-300 transition-colors"
-              aria-label={link.name}
-            >
-              <span class:list={[link.icon, "w-5 h-5"]} />
-            </a>
-          ))}
-        </div>
+          <!-- Social Icons -->
+          <div class="flex gap-4 mb-2">
+            {socialLinks.map((link, index) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-white hover:text-gray-300 transition-colors"
+                aria-label={link.name}
+                data-tina-field={tinaField(site.socialLinks, index)}
+              >
+                <span class:list={[link.icon, "w-5 h-5"]} />
+              </a>
+            ))}
+          </div>
 
         <!-- Contact Info -->
-        <div class="text-lg text-white">
-          <a
-            href={`mailto:${site.contact.email}`}
-            class="block hover:text-gray-300 transition-colors"
-          >
-            {site.contact.email}
-          </a>
-          <a
-            href={`tel:${site.contact.phoneLink || site.contact.phone.replace(/\s/g, '')}`}
-            class="block hover:text-gray-300 transition-colors"
-          >
-            {site.contact.phone}
-          </a>
-        </div>
+          <div class="text-lg text-white">
+            <a
+              href={`mailto:${site.contact.email}`}
+              class="block hover:text-gray-300 transition-colors"
+              data-tina-field={tinaField(site.contact, 'email')}
+            >
+              {site.contact.email}
+            </a>
+            <a
+              href={`tel:${site.contact.phoneLink || site.contact.phone.replace(/\s/g, '')}`}
+              class="block hover:text-gray-300 transition-colors"
+              data-tina-field={tinaField(site.contact, 'phone')}
+            >
+              {site.contact.phone}
+            </a>
+          </div>
       </div>
     </div>
   </div>
@@ -97,10 +104,10 @@ const socialLinks = site.socialLinks;
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div class="flex flex-wrap justify-between gap-4 py-4">
       <!-- Attribution -->
-      <div class="text-sm text-white/70">
-        {site.attribution?.design && <p>Design by {site.attribution.design}</p>}
-        {site.attribution?.development && <p>Development by {site.attribution.development}</p>}
-      </div>
+        <div class="text-sm text-white/70">
+          {site.attribution?.design && <p data-tina-field={tinaField(site.attribution, 'design')}>Design by {site.attribution.design}</p>}
+          {site.attribution?.development && <p data-tina-field={tinaField(site.attribution, 'development')}>Development by {site.attribution.development}</p>}
+        </div>
 
       <!-- Legal Links -->
       <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm">

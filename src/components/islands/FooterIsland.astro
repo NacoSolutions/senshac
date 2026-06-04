@@ -1,13 +1,25 @@
 ---
-// src/components/islands/FooterIsland.astro
 import Footer from '../Footer.astro';
 import type { Translations } from '../../utils/translations';
+import { getTranslations, getSiteConfigTina, getTinaRuntimeEnv } from '../../lib/tina-data';
+import type { SiteConfigQuery } from '../../../tina/__generated__/types';
 
 interface Props {
-  data: Translations;
+  data?: Translations;
+  siteData?: SiteConfigQuery['siteConfig'];
   lang: string;
 }
 
-const { data, lang } = Astro.props;
+let { data, siteData, lang } = Astro.props;
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+
+if (!data) {
+  const transRes = await getTranslations(`${lang}.json`, tinaEnv);
+  data = transRes.data.translations;
+}
+if (!siteData) {
+  const siteRes = await getSiteConfigTina('site.json', tinaEnv);
+  siteData = siteRes.data.siteConfig;
+}
 ---
-<Footer lang={lang} translations={data} />
+<Footer lang={lang} translations={data!} siteData={siteData!} />

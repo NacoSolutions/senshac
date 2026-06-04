@@ -3,20 +3,22 @@
 import { getTranslations, type Translations } from '../utils/translations';
 import { getSiteConfig } from '../utils/site-config';
 import { tinaField } from '@tinacms/astro';
+import type { SiteConfigQuery } from '../../tina/__generated__/types';
 
 interface Props {
   lang: string;
   headerStyle?: 'default' | 'transparent';
   translations?: Translations;
+  siteData?: SiteConfigQuery['siteConfig'];
 }
 
-const { lang, headerStyle = 'default', translations: propTranslations } = Astro.props;
+const { lang, headerStyle = 'default', translations: propTranslations, siteData: propSiteData } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const isTransparent = headerStyle === 'transparent';
 
 const t = propTranslations ?? await getTranslations(lang);
-const site = await getSiteConfig();
+const site = propSiteData ?? await getSiteConfig();
 
 const navItems = [
   { href: `/${lang}/about`, label: t.nav.about, field: 'about' as const },
@@ -63,6 +65,7 @@ const getLocalizedPath = (targetLang: string) => {
           class="h-8 w-auto"
           width="173"
           height="32"
+          data-tina-field={tinaField(site.branding, 'logoWhite')}
         />
         <img
           x-show="!isTransparent || scrolled || menuOpen"
@@ -72,6 +75,7 @@ const getLocalizedPath = (targetLang: string) => {
           width="173"
           height="32"
           x-cloak={isTransparent}
+          data-tina-field={tinaField(site.branding, 'logo')}
         />
       </a>
 
@@ -177,12 +181,13 @@ const getLocalizedPath = (targetLang: string) => {
           <div>
             <p class="text-sm text-gray-400 uppercase tracking-wider mb-6" data-tina-field={tinaField(t.nav, 'social')}>{t.nav.social}</p>
             <div class="space-y-0">
-              {socialLinks.map((link) => (
+              {socialLinks.map((link, index) => (
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="block py-3 text-lg md:text-xl text-black border-b border-gray-200 hover:text-gray-600 transition-colors"
+                  data-tina-field={tinaField(site.socialLinks, index)}
                 >
                   {link.name}
                 </a>
@@ -223,6 +228,7 @@ const getLocalizedPath = (targetLang: string) => {
               class="h-10 w-auto mb-4"
               width="40"
               height="40"
+              data-tina-field={tinaField(site.branding, 'symbol')}
             />
             <p class="text-base font-bold uppercase tracking-wider text-black" data-tina-field={tinaField(t.nav, 'letsTalk')}>{t.nav.letsTalk}</p>
           </div>
@@ -232,12 +238,14 @@ const getLocalizedPath = (targetLang: string) => {
             <a
               href={`mailto:${site.contact.email}`}
               class="block text-base text-black hover:text-gray-600 transition-colors"
+              data-tina-field={tinaField(site.contact, 'email')}
             >
               {site.contact.email}
             </a>
             <a
               href={`tel:${site.contact.phoneLink || site.contact.phone.replace(/\s/g, '')}`}
               class="block text-base text-black hover:text-gray-600 transition-colors"
+              data-tina-field={tinaField(site.contact, 'phone')}
             >
               {site.contact.phone}
             </a>

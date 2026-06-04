@@ -91,6 +91,6 @@ export function getLegal(relativePath: string, env?: TinaRuntimeEnv) {
 export function getSiteConfigTina(relativePath: string, env?: TinaRuntimeEnv) {
   return requestWithMetadata<SiteConfigQuery>(
     getClient(env).queries.siteConfig({ relativePath }),
-    { priority: 'secondary' }
+    { priority: 'primary' }
   );
 }
