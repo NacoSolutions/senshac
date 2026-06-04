@@ -1,13 +1,15 @@
 import type { QueryResult } from '@tinacms/astro';
 import type { IslandRegistry } from '@tinacms/astro/experimental';
-import type { AboutQuery, HomeQuery, ProjectsQuery, ServicesQuery, TranslationsQuery } from '../../tina/__generated__/types';
+import type { AboutQuery, HomeQuery, ProjectsQuery, ServicesQuery, TranslationsQuery, ContactQuery, LegalQuery } from '../../tina/__generated__/types';
 import AboutPage from '../components/islands/AboutPage.astro';
 import HomePage from '../components/islands/HomePage.astro';
 import ProjectPage from '../components/islands/ProjectPage.astro';
 import ServicesPage from '../components/islands/ServicesPage.astro';
 import HeaderIsland from '../components/islands/HeaderIsland.astro';
 import FooterIsland from '../components/islands/FooterIsland.astro';
-import { getAbout, getHome, getProject, getServices, getTranslations, type TinaRuntimeEnv } from './tina-data';
+import ContactPage from '../components/islands/ContactPage.astro';
+import LegalPage from '../components/islands/LegalPage.astro';
+import { getAbout, getHome, getProject, getServices, getTranslations, getContact, getLegal, type TinaRuntimeEnv } from './tina-data';
 
 export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
   return {
@@ -60,6 +62,23 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       propsFromData: (data, params) => ({
         data: (data as QueryResult<TranslationsQuery>).data.translations,
         lang: params?.get('lang') ?? 'es',
+      }),
+    },
+    contact: {
+      fetch: (_request, params) => getContact(params.get('relativePath') ?? 'es/contact.json', env),
+      component: ContactPage,
+      wrapper: { tag: 'main', className: 'min-h-screen' },
+      propsFromData: (data, params) => ({
+        data: (data as QueryResult<ContactQuery>).data.contact,
+        lang: params?.get('lang') ?? 'es',
+      }),
+    },
+    legal: {
+      fetch: (_request, params) => getLegal(params.get('relativePath') ?? 'es/privacy-policy.mdx', env),
+      component: LegalPage,
+      wrapper: { tag: 'main', className: 'min-h-screen' },
+      propsFromData: (data) => ({
+        data: (data as QueryResult<LegalQuery>).data.legal,
       }),
     },
   };

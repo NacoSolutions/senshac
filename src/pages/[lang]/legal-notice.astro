@@ -1,27 +1,25 @@
 ---
 // src/pages/[lang]/legal-notice.astro
 import Base from '../../layouts/Base.astro';
-import { getEntry } from 'astro:content';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import LegalPage from '../../components/islands/LegalPage.astro';
+import { getLegal, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+import { createIslands } from '../../lib/tina-islands';
 
-const { lang } = Astro.params;
+const { lang = 'es' } = Astro.params;
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+const relativePath = pageRelativePath(lang, 'legal-notice.mdx');
 
-const page = await getEntry('legal', `${lang}/legal-notice`);
-
-if (!page) {
+const res = await getLegal(relativePath, tinaEnv);
+if (!res.data.legal) {
   return Astro.redirect('/404');
 }
 
-const { Content } = await page.render();
+const tinaData = res.data.legal;
+const islands = createIslands(tinaEnv);
 ---
-
-<Base title={page.data.title} description={page.data.description} lang={lang}>
-  <main class="min-h-screen">
-    <section class="py-16 md:py-24">
-      <div class="max-w-4xl mx-auto px-4">
-        <article class="prose prose-lg max-w-none prose-headings:font-display prose-h1:text-4xl prose-h1:mb-8 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-8 prose-p:text-gray-600 prose-ul:text-gray-600 prose-li:marker:text-gray-400">
-          <Content />
-        </article>
-      </div>
-    </section>
-  </main>
+<Base title={tinaData.title} description={tinaData.description} lang={lang}>
+  <TinaIsland name="legal" wrapper={islands.legal.wrapper} params={{ relativePath, lang }}>
+    <LegalPage data={tinaData} />
+  </TinaIsland>
 </Base>
