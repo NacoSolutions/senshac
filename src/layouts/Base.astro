@@ -166,5 +166,22 @@ const tinaSiteData = tinaSiteRes.data.siteConfig;
         animate();
       });
     </script>
+    <script is:inline>
+      // Allow click-through navigation in TinaCMS iframe by holding Alt or Meta/Ctrl
+      document.addEventListener('click', function(e) {
+        if (e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) {
+          const link = e.target.closest('a');
+          if (link && link.href) {
+            e.stopPropagation(); // Prevent TinaCMS from intercepting
+            e.preventDefault();  // Stop default so we can control navigation
+            if (link.target === '_blank') {
+              window.open(link.href, '_blank');
+            } else {
+              window.location.href = link.href;
+            }
+          }
+        }
+      }, true); // Use capture phase to run before Tina's listeners
+    </script>
   </body>
 </html>
