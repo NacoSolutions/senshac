@@ -10,7 +10,25 @@
   },
   "footer": {
     "privacy": "Privacy Policy",
-    "legal": "Legal Notice"
+    "legal": "Legal Notice",
+    "links": [
+      {
+        "label": "About",
+        "href": "/en/about"
+      },
+      {
+        "label": "Projects",
+        "href": "/en/projects"
+      },
+      {
+        "label": "Services",
+        "href": "/en/services"
+      },
+      {
+        "label": "Contact",
+        "href": "/en/contact"
+      }
+    ]
   },
   "contactForm": {
     "name": "Name",

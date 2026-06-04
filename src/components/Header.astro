@@ -187,9 +187,8 @@ const getLocalizedPath = (targetLang: string) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   class="block py-3 text-lg md:text-xl text-black border-b border-gray-200 hover:text-gray-600 transition-colors"
-                  data-tina-field={tinaField(site.socialLinks, index)}
                 >
-                  {link.name}
+                  <span data-tina-field={tinaField(site.socialLinks, index)}>{link.name}</span>
                 </a>
               ))}
             </div>
@@ -238,16 +237,14 @@ const getLocalizedPath = (targetLang: string) => {
             <a
               href={`mailto:${site.contact.email}`}
               class="block text-base text-black hover:text-gray-600 transition-colors"
-              data-tina-field={tinaField(site.contact, 'email')}
             >
-              {site.contact.email}
+              <span data-tina-field={tinaField(site.contact, 'email')}>{site.contact.email}</span>
             </a>
             <a
               href={`tel:${site.contact.phoneLink || site.contact.phone.replace(/\s/g, '')}`}
               class="block text-base text-black hover:text-gray-600 transition-colors"
-              data-tina-field={tinaField(site.contact, 'phone')}
             >
-              {site.contact.phone}
+              <span data-tina-field={tinaField(site.contact, 'phone')}>{site.contact.phone}</span>
             </a>
           </div>
         </div>

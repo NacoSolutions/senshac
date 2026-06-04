@@ -1,16 +1,22 @@
 ---
 // src/components/ContactForm.astro
-import { getTranslations, type Translations } from '../utils/translations';
+import { getTranslations, getTinaRuntimeEnv } from '../lib/tina-data';
 import { tinaField } from '@tinacms/astro';
+import type { TranslationsQuery } from '../../tina/__generated__/types';
 
 interface Props {
   lang: string;
-  translations?: Translations;
+  translations?: TranslationsQuery['translations'];
 }
 
 const { lang, translations: propTranslations } = Astro.props;
 
-const t = propTranslations ?? await getTranslations(lang);
+let t = propTranslations;
+if (!t) {
+  const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+  const transRes = await getTranslations(`${lang}.json`, tinaEnv);
+  t = transRes.data.translations;
+}
 const f = t.contactForm;
 
 // Turnstile site key - use test key for development

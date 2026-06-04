@@ -347,6 +347,19 @@ const translationFields: TinaField[] = [
     fields: [
       { name: 'privacy', label: 'Privacy Policy Link', type: 'string' },
       { name: 'legal', label: 'Legal Notice Link', type: 'string' },
+      {
+        name: 'links',
+        label: 'Navigation Links',
+        type: 'object',
+        list: true,
+        ui: {
+          itemProps: (item) => ({ label: item?.label }),
+        },
+        fields: [
+          { name: 'label', label: 'Label', type: 'string', required: true },
+          { name: 'href', label: 'URL Path (include lang prefix if needed, e.g. /es/about)', type: 'string', required: true },
+        ],
+      },
     ],
   },
   {

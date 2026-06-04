@@ -17,12 +17,7 @@ const { lang, translations: propTranslations, siteData: propSiteData } = Astro.p
 const t = propTranslations ?? await getTranslations(lang);
 const site = propSiteData ?? await getSiteConfig();
 
-const navLinks = [
-  { href: `/${lang}/about`, label: t.nav.about },
-  { href: `/${lang}/projects`, label: t.nav.projects },
-  { href: `/${lang}/services`, label: t.nav.services },
-  { href: `/${lang}/contact`, label: t.nav.contact },
-];
+const navLinks = t.footer.links || [];
 
 // Use social links from site config
 const socialLinks = site.socialLinks;
@@ -55,9 +50,10 @@ const socialLinks = site.socialLinks;
                 rel="noopener noreferrer"
                 class="text-white hover:text-gray-300 transition-colors"
                 aria-label={link.name}
-                data-tina-field={tinaField(site.socialLinks, index)}
               >
-                <span class:list={[link.icon, "w-5 h-5"]} />
+                <span data-tina-field={tinaField(site.socialLinks, index)} class="inline-block">
+                  <span class:list={[link.icon, "w-5 h-5 block"]} />
+                </span>
               </a>
             ))}
           </div>
@@ -67,16 +63,14 @@ const socialLinks = site.socialLinks;
             <a
               href={`mailto:${site.contact.email}`}
               class="block hover:text-gray-300 transition-colors"
-              data-tina-field={tinaField(site.contact, 'email')}
             >
-              {site.contact.email}
+              <span data-tina-field={tinaField(site.contact, 'email')}>{site.contact.email}</span>
             </a>
             <a
               href={`tel:${site.contact.phoneLink || site.contact.phone.replace(/\s/g, '')}`}
               class="block hover:text-gray-300 transition-colors"
-              data-tina-field={tinaField(site.contact, 'phone')}
             >
-              {site.contact.phone}
+              <span data-tina-field={tinaField(site.contact, 'phone')}>{site.contact.phone}</span>
             </a>
           </div>
       </div>
@@ -86,17 +80,17 @@ const socialLinks = site.socialLinks;
   <!-- Section 2: Navigation Links -->
   <div class="border-t border-b border-white/20">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="flex flex-wrap justify-between gap-4 py-8">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="page-link text-white/50 hover:text-white transition-colors"
-          >
-            {link.label}
-            <span class="page-link-icon i-lucide-arrow-up-right" />
-          </a>
-        ))}
-      </div>
+        <div class="flex flex-wrap justify-between gap-4 py-8">
+          {navLinks.map((link: any, index: number) => (
+            <a
+              href={link.href}
+              class="page-link text-white/50 hover:text-white transition-colors"
+            >
+              <span data-tina-field={tinaField(t.footer.links, index)}>{link.label}</span>
+              <span class="page-link-icon i-lucide-arrow-up-right" />
+            </a>
+          ))}
+        </div>
     </div>
   </div>
 
