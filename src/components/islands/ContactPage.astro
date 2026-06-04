@@ -4,6 +4,7 @@ import ContactForm from '../ContactForm.astro';
 import OptimizedImage from '../OptimizedImage.astro';
 import { getSiteConfig } from '../../utils/site-config';
 import type { ContactQuery } from '../../../tina/__generated__/types';
+import { tinaField } from '@tinacms/astro';
 
 interface Props {
   data: ContactQuery['contact'];
@@ -43,8 +44,8 @@ const { heading, subheading } = data;
     <div class="grid md:grid-cols-2 gap-16">
       <!-- Contact Info -->
       <div>
-        <h1 class="text-sm uppercase tracking-wider text-gray-500 mb-6">{heading}</h1>
-        <p class="text-4xl md:text-5xl font-bold mb-8">{subheading}</p>
+        <h1 class="text-sm uppercase tracking-wider text-gray-500 mb-6" data-tina-field={tinaField(data, 'heading')}>{heading}</h1>
+        <p class="text-4xl md:text-5xl font-bold mb-8" data-tina-field={tinaField(data, 'subheading')}>{subheading}</p>
 
         <div class="space-y-2 mb-8">
           <a

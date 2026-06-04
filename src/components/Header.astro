@@ -2,6 +2,7 @@
 // src/components/Header.astro
 import { getTranslations, type Translations } from '../utils/translations';
 import { getSiteConfig } from '../utils/site-config';
+import { tinaField } from '@tinacms/astro';
 
 interface Props {
   lang: string;
@@ -18,10 +19,10 @@ const t = propTranslations ?? await getTranslations(lang);
 const site = await getSiteConfig();
 
 const navItems = [
-  { href: `/${lang}/about`, label: t.nav.about },
-  { href: `/${lang}/projects`, label: t.nav.projects },
-  { href: `/${lang}/services`, label: t.nav.services },
-  { href: `/${lang}/contact`, label: t.nav.contact },
+  { href: `/${lang}/about`, label: t.nav.about, field: 'about' as const },
+  { href: `/${lang}/projects`, label: t.nav.projects, field: 'projects' as const },
+  { href: `/${lang}/services`, label: t.nav.services, field: 'services' as const },
+  { href: `/${lang}/contact`, label: t.nav.contact, field: 'contact' as const },
 ];
 
 // Use social links from site config
@@ -174,7 +175,7 @@ const getLocalizedPath = (targetLang: string) => {
         <div class="grid grid-cols-2 gap-8 md:gap-12">
           <!-- Social Column -->
           <div>
-            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6">{t.nav.social}</p>
+            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6" data-tina-field={tinaField(t.nav, 'social')}>{t.nav.social}</p>
             <div class="space-y-0">
               {socialLinks.map((link) => (
                 <a
@@ -191,7 +192,7 @@ const getLocalizedPath = (targetLang: string) => {
 
           <!-- Menu Column -->
           <div>
-            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6">{t.nav.menu}</p>
+            <p class="text-sm text-gray-400 uppercase tracking-wider mb-6" data-tina-field={tinaField(t.nav, 'menu')}>{t.nav.menu}</p>
             <div class="space-y-0">
               {navItems.map((item) => (
                 <a
@@ -201,6 +202,7 @@ const getLocalizedPath = (targetLang: string) => {
                     currentPath.startsWith(item.href) && "font-medium"
                   ]}
                   x-on:click="menuOpen = false"
+                  data-tina-field={tinaField(t.nav, item.field)}
                 >
                   {item.label}
                 </a>
@@ -222,7 +224,7 @@ const getLocalizedPath = (targetLang: string) => {
               width="40"
               height="40"
             />
-            <p class="text-base font-bold uppercase tracking-wider text-black">{t.nav.letsTalk}</p>
+            <p class="text-base font-bold uppercase tracking-wider text-black" data-tina-field={tinaField(t.nav, 'letsTalk')}>{t.nav.letsTalk}</p>
           </div>
 
           <!-- Contact Info -->

@@ -2,6 +2,7 @@
 // src/components/Footer.astro
 import { getTranslations, type Translations } from '../utils/translations';
 import { getSiteConfig } from '../utils/site-config';
+import { tinaField } from '@tinacms/astro';
 
 interface Props {
   lang: string;
@@ -106,12 +107,14 @@ const socialLinks = site.socialLinks;
         <a
           href={`/${lang}/privacy-policy`}
           class="text-white/70 hover:text-white transition-colors py-1"
+          data-tina-field={tinaField(t.footer, 'privacy')}
         >
           {t.footer.privacy}
         </a>
         <a
           href={`/${lang}/legal-notice`}
           class="text-white/70 hover:text-white transition-colors py-1"
+          data-tina-field={tinaField(t.footer, 'legal')}
         >
           {t.footer.legal}
         </a>
