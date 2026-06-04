@@ -1,0 +1,56 @@
+---
+export const partial = true;
+
+import { PREVIEW_CONTENT_TYPE } from '@tinacms/bridge/preview';
+import HomePage from '../../components/islands/HomePage.astro';
+import AboutPage from '../../components/islands/AboutPage.astro';
+import ServicesPage from '../../components/islands/ServicesPage.astro';
+import ProjectPage from '../../components/islands/ProjectPage.astro';
+
+if (Astro.request.method !== 'POST') {
+  return new Response('Method Not Allowed', { status: 405 });
+}
+const contentType = Astro.request.headers.get('content-type') ?? '';
+if (!contentType.includes(PREVIEW_CONTENT_TYPE)) {
+  return new Response('Not Found', { status: 404 });
+}
+
+// TinaCMS passes the updated data directly in the POST body.
+const payload = await Astro.request.json();
+const name = Astro.params.name;
+const url = new URL(Astro.request.url);
+const search = url.search;
+
+// Helper to escape attributes for safety
+function escapeAttr(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+const marker = escapeAttr(`/tina-island/${name}${search}`);
+---
+
+{name === 'home' && (
+  <main data-tina-island={marker}>
+    <HomePage data={payload?.data?.home} />
+  </main>
+)}
+{name === 'about' && (
+  <main class="min-h-screen" data-tina-island={marker}>
+    <AboutPage data={payload?.data?.about} />
+  </main>
+)}
+{name === 'services' && (
+  <main class="min-h-screen" data-tina-island={marker}>
+    <ServicesPage data={payload?.data?.services} />
+  </main>
+)}
+{name === 'project' && (
+  <main class="min-h-screen" data-tina-island={marker}>
+    <ProjectPage data={payload?.data?.projects} />
+  </main>
+)}
