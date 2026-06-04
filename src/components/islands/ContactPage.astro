@@ -6,16 +6,31 @@ import { getSiteConfig } from '../../utils/site-config';
 import type { ContactQuery, SiteConfigQuery } from '../../../tina/__generated__/types';
 import { tinaField } from '@tinacms/astro';
 
+import { getSiteConfigTina, getContact, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+
 interface Props {
-  data: ContactQuery['contact'];
-  siteData: SiteConfigQuery['siteConfig'];
+  data?: ContactQuery['contact'];
+  siteData?: SiteConfigQuery['siteConfig'];
   lang: string;
 }
 
-const { data, siteData, lang } = Astro.props;
+let { data, siteData, lang } = Astro.props;
 const site = await getSiteConfig(); // Keep this just in case anything else uses static site data (like branding image)
 
-const { heading, subheading } = data;
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+
+if (!data) {
+  const relativePath = pageRelativePath(lang, 'contact.json');
+  const res = await getContact(relativePath, tinaEnv);
+  data = res.data.contact;
+}
+
+if (!siteData) {
+  const siteRes = await getSiteConfigTina('site.json', tinaEnv);
+  siteData = siteRes.data.siteConfig;
+}
+
+const { heading, subheading } = data!;
 ---
 <section class="relative w-full">
   <div class="max-w-6xl mx-auto px-4">

@@ -65,16 +65,12 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       }),
     },
     contact: {
-      fetch: async (_request, params) => {
-        const contactData = await getContact(params.get('relativePath') ?? 'es/contact.json', env);
-        const siteData = await getSiteConfigTina('site.json', env);
-        return { contact: contactData, site: siteData };
-      },
+      fetch: (_request, params) => getContact(params.get('relativePath') ?? 'es/contact.json', env),
       component: ContactPage,
       wrapper: { tag: 'main', className: 'min-h-screen' },
       propsFromData: (data: any, params) => ({
-        data: data.contact.data.contact,
-        siteData: data.site.data.siteConfig,
+        data: data?.data?.contact,
+        siteData: data?.data?.siteConfig,
         lang: params?.get('lang') ?? 'es',
       }),
     },
