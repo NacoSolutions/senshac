@@ -1,0 +1,14 @@
+---
+// src/components/islands/HeaderIsland.astro
+import Header from '../Header.astro';
+import type { Translations } from '../../utils/translations';
+
+interface Props {
+  data: Translations;
+  lang: string;
+  headerStyle?: 'default' | 'transparent';
+}
+
+const { data, lang, headerStyle = 'default' } = Astro.props;
+---
+<Header lang={lang} headerStyle={headerStyle} translations={data} />

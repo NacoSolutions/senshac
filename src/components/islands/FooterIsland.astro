@@ -1,0 +1,13 @@
+---
+// src/components/islands/FooterIsland.astro
+import Footer from '../Footer.astro';
+import type { Translations } from '../../utils/translations';
+
+interface Props {
+  data: Translations;
+  lang: string;
+}
+
+const { data, lang } = Astro.props;
+---
+<Footer lang={lang} translations={data} />

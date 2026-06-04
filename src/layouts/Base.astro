@@ -5,7 +5,11 @@ import SEO from '../components/SEO.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import HeaderIsland from '../components/islands/HeaderIsland.astro';
+import FooterIsland from '../components/islands/FooterIsland.astro';
+import { getTinaRuntimeEnv, getTranslations } from '../lib/tina-data';
+import { createIslands } from '../lib/tina-islands';
 interface Props {
   title: string;
   description: string;
@@ -19,6 +23,12 @@ interface Props {
 }
 
 const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs, headerStyle = 'default', preloadImage } = Astro.props;
+
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+const islands = createIslands(tinaEnv);
+const translationsPath = `${lang}.json`;
+const tinaTranslationsRes = await getTranslations(translationsPath, tinaEnv);
+const tinaTranslationsData = tinaTranslationsRes.data.translations;
 ---
 
 <!doctype html>
@@ -57,11 +67,15 @@ const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-black focus:text-white focus:px-4 focus:py-2">
       Skip to content
     </a>
-    <Header lang={lang} headerStyle={headerStyle} />
+    <TinaIsland name="header" wrapper={islands.header.wrapper} params={{ relativePath: translationsPath, lang, headerStyle }}>
+      <HeaderIsland data={tinaTranslationsData} lang={lang} headerStyle={headerStyle} />
+    </TinaIsland>
 
     <slot />
 
-    <Footer lang={lang} />
+    <TinaIsland name="footer" wrapper={islands.footer.wrapper} params={{ relativePath: translationsPath, lang }}>
+      <FooterIsland data={tinaTranslationsData} lang={lang} />
+    </TinaIsland>
 
     <!-- Custom cursor circle -->
     <div id="cursor-circle"></div>

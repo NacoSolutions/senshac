@@ -1,6 +1,6 @@
 import { requestWithMetadata } from '@tinacms/astro';
 import { createClient } from 'tinacms/dist/client';
-import { queries, type AboutQuery, type HomeQuery, type ProjectsQuery, type ServicesQuery } from '../../tina/__generated__/types';
+import { queries, type AboutQuery, type HomeQuery, type ProjectsQuery, type ServicesQuery, type TranslationsQuery } from '../../tina/__generated__/types';
 
 export interface TinaRuntimeEnv {
   TINA_BRANCH?: string;
@@ -63,6 +63,13 @@ export function getServices(relativePath: string, env?: TinaRuntimeEnv) {
 export function getProject(relativePath: string, env?: TinaRuntimeEnv) {
   return requestWithMetadata<ProjectsQuery>(
     getClient(env).queries.projects({ relativePath }),
+    { priority: 'primary' }
+  );
+}
+
+export function getTranslations(relativePath: string, env?: TinaRuntimeEnv) {
+  return requestWithMetadata<TranslationsQuery>(
+    getClient(env).queries.translations({ relativePath }),
     { priority: 'primary' }
   );
 }

@@ -1,11 +1,13 @@
 import type { QueryResult } from '@tinacms/astro';
 import type { IslandRegistry } from '@tinacms/astro/experimental';
-import type { AboutQuery, HomeQuery, ProjectsQuery, ServicesQuery } from '../../tina/__generated__/types';
+import type { AboutQuery, HomeQuery, ProjectsQuery, ServicesQuery, TranslationsQuery } from '../../tina/__generated__/types';
 import AboutPage from '../components/islands/AboutPage.astro';
 import HomePage from '../components/islands/HomePage.astro';
 import ProjectPage from '../components/islands/ProjectPage.astro';
 import ServicesPage from '../components/islands/ServicesPage.astro';
-import { getAbout, getHome, getProject, getServices, type TinaRuntimeEnv } from './tina-data';
+import HeaderIsland from '../components/islands/HeaderIsland.astro';
+import FooterIsland from '../components/islands/FooterIsland.astro';
+import { getAbout, getHome, getProject, getServices, getTranslations, type TinaRuntimeEnv } from './tina-data';
 
 export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
   return {
@@ -39,6 +41,25 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       wrapper: { tag: 'main', className: 'min-h-screen' },
       propsFromData: (data) => ({
         data: (data as QueryResult<ProjectsQuery>).data.projects,
+      }),
+    },
+    header: {
+      fetch: (_request, params) => getTranslations(params.get('relativePath') ?? 'es.json', env),
+      component: HeaderIsland,
+      wrapper: { tag: 'div', className: 'relative z-50' },
+      propsFromData: (data, params) => ({
+        data: (data as QueryResult<TranslationsQuery>).data.translations,
+        lang: params?.get('lang') ?? 'es',
+        headerStyle: params?.get('headerStyle') ?? 'default',
+      }),
+    },
+    footer: {
+      fetch: (_request, params) => getTranslations(params.get('relativePath') ?? 'es.json', env),
+      component: FooterIsland,
+      wrapper: { tag: 'div' },
+      propsFromData: (data, params) => ({
+        data: (data as QueryResult<TranslationsQuery>).data.translations,
+        lang: params?.get('lang') ?? 'es',
       }),
     },
   };
