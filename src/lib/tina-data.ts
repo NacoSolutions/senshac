@@ -14,6 +14,16 @@ export function getTinaRuntimeEnv(locals: App.Locals): TinaRuntimeEnv | undefine
 }
 
 function getClient(env?: TinaRuntimeEnv) {
+  // Use local GraphQL server during development
+  if (import.meta.env.DEV) {
+    return createClient({
+      url: 'http://localhost:4001/graphql',
+      clientId: '',
+      token: '',
+      queries,
+    });
+  }
+
   const branch = env?.TINA_BRANCH || env?.CF_PAGES_BRANCH || import.meta.env.TINA_BRANCH || import.meta.env.CF_PAGES_BRANCH || 'main';
   const clientId = env?.TINA_CLIENT_ID || import.meta.env.TINA_CLIENT_ID || '';
   const token = env?.TINA_TOKEN || import.meta.env.TINA_TOKEN || '';
