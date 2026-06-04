@@ -26,6 +26,12 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+  redirects: {
+    '/admin': '/admin/index.html',
+    '/es/admin': '/admin/index.html',
+    '/en/admin': '/admin/index.html',
+    '/ca/admin': '/admin/index.html'
+  },
   vite: {
     build: {
       rollupOptions: {
