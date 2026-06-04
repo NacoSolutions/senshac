@@ -585,7 +585,7 @@ export default defineConfig({
         label: 'Pages / Home',
         path: 'src/content/pages',
         format: 'json',
-        match: { include: 'home' },
+        match: { include: '**/home' },
         fields: homePageFields,
         ui: {
           allowedActions: { create: false, delete: false },
@@ -597,7 +597,7 @@ export default defineConfig({
         label: 'Pages / About',
         path: 'src/content/pages',
         format: 'json',
-        match: { include: 'about' },
+        match: { include: '**/about' },
         fields: aboutPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
@@ -609,7 +609,7 @@ export default defineConfig({
         label: 'Pages / Services',
         path: 'src/content/pages',
         format: 'json',
-        match: { include: 'services' },
+        match: { include: '**/services' },
         fields: servicesPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
@@ -621,7 +621,7 @@ export default defineConfig({
         label: 'Pages / Contact',
         path: 'src/content/pages',
         format: 'json',
-        match: { include: 'contact' },
+        match: { include: '**/contact' },
         fields: contactPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
