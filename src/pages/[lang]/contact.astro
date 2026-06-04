@@ -1,9 +1,8 @@
 ---
-// src/pages/[lang]/contact.astro
 import Base from '../../layouts/Base.astro';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
 import ContactPage from '../../components/islands/ContactPage.astro';
-import { getContact, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+import { getContact, getSiteConfigTina, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
 import { createIslands } from '../../lib/tina-islands';
 
 const { lang = 'es' } = Astro.params;
@@ -11,6 +10,7 @@ const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const relativePath = pageRelativePath(lang, 'contact.json');
 
 const res = await getContact(relativePath, tinaEnv);
+const siteRes = await getSiteConfigTina('site.json', tinaEnv);
 if (!res.data.contact) {
   return Astro.redirect('/404');
 }
@@ -20,6 +20,6 @@ const islands = createIslands(tinaEnv);
 ---
 <Base title={tinaData.title} description={tinaData.description} lang={lang}>
   <TinaIsland name="contact" wrapper={islands.contact.wrapper} params={{ relativePath, lang }}>
-    <ContactPage data={tinaData} lang={lang} />
+    <ContactPage data={tinaData} siteData={siteRes.data.siteConfig} lang={lang} />
   </TinaIsland>
 </Base>

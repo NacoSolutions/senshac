@@ -9,7 +9,7 @@ import HeaderIsland from '../components/islands/HeaderIsland.astro';
 import FooterIsland from '../components/islands/FooterIsland.astro';
 import ContactPage from '../components/islands/ContactPage.astro';
 import LegalPage from '../components/islands/LegalPage.astro';
-import { getAbout, getHome, getProject, getServices, getTranslations, getContact, getLegal, type TinaRuntimeEnv } from './tina-data';
+import { getAbout, getHome, getProject, getServices, getTranslations, getContact, getLegal, getSiteConfigTina, type TinaRuntimeEnv } from './tina-data';
 
 export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
   return {
@@ -65,11 +65,16 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       }),
     },
     contact: {
-      fetch: (_request, params) => getContact(params.get('relativePath') ?? 'es/contact.json', env),
+      fetch: async (_request, params) => {
+        const contactData = await getContact(params.get('relativePath') ?? 'es/contact.json', env);
+        const siteData = await getSiteConfigTina('site.json', env);
+        return { contact: contactData, site: siteData };
+      },
       component: ContactPage,
       wrapper: { tag: 'main', className: 'min-h-screen' },
-      propsFromData: (data, params) => ({
-        data: (data as QueryResult<ContactQuery>).data.contact,
+      propsFromData: (data: any, params) => ({
+        data: data.contact.data.contact,
+        siteData: data.site.data.siteConfig,
         lang: params?.get('lang') ?? 'es',
       }),
     },

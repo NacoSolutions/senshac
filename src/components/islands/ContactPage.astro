@@ -3,16 +3,17 @@
 import ContactForm from '../ContactForm.astro';
 import OptimizedImage from '../OptimizedImage.astro';
 import { getSiteConfig } from '../../utils/site-config';
-import type { ContactQuery } from '../../../tina/__generated__/types';
+import type { ContactQuery, SiteConfigQuery } from '../../../tina/__generated__/types';
 import { tinaField } from '@tinacms/astro';
 
 interface Props {
   data: ContactQuery['contact'];
+  siteData: SiteConfigQuery['siteConfig'];
   lang: string;
 }
 
-const { data, lang } = Astro.props;
-const site = await getSiteConfig();
+const { data, siteData, lang } = Astro.props;
+const site = await getSiteConfig(); // Keep this just in case anything else uses static site data (like branding image)
 
 const { heading, subheading } = data;
 ---
@@ -49,16 +50,18 @@ const { heading, subheading } = data;
 
         <div class="space-y-2 mb-8">
           <a
-            href={`mailto:${site.contact.email}`}
+            href={`mailto:${siteData.contact.email}`}
             class="block text-lg hover:text-gray-600 transition-colors"
+            data-tina-field={tinaField(siteData.contact, 'email')}
           >
-            {site.contact.email}
+            {siteData.contact.email}
           </a>
           <a
-            href={`tel:${site.contact.phoneLink || site.contact.phone.replace(/\s/g, '')}`}
+            href={`tel:${siteData.contact.phoneLink || siteData.contact.phone.replace(/\s/g, '')}`}
             class="block text-lg hover:text-gray-600 transition-colors"
+            data-tina-field={tinaField(siteData.contact, 'phone')}
           >
-            {site.contact.phone}
+            {siteData.contact.phone}
           </a>
         </div>
       </div>
