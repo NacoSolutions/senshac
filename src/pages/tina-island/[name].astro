@@ -2,10 +2,8 @@
 export const partial = true;
 
 import { PREVIEW_CONTENT_TYPE } from '@tinacms/bridge/preview';
-import HomePage from '../../components/islands/HomePage.astro';
-import AboutPage from '../../components/islands/AboutPage.astro';
-import ServicesPage from '../../components/islands/ServicesPage.astro';
-import ProjectPage from '../../components/islands/ProjectPage.astro';
+import { getTinaRuntimeEnv } from '../../lib/tina-data';
+import { createIslands } from '../../lib/tina-islands';
 
 if (Astro.request.method !== 'POST') {
   return new Response('Method Not Allowed', { status: 405 });
@@ -15,11 +13,28 @@ if (!contentType.includes(PREVIEW_CONTENT_TYPE)) {
   return new Response('Not Found', { status: 404 });
 }
 
-// TinaCMS passes the updated data directly in the POST body.
-const payload = await Astro.request.json();
-const name = Astro.params.name;
+const name = Astro.params.name ?? '';
 const url = new URL(Astro.request.url);
-const search = url.search;
+
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+const islands = createIslands(tinaEnv);
+const island = islands[name];
+
+if (!island) {
+  return new Response(`Unknown island "${name}"`, { status: 404 });
+}
+
+// TinaCMS passes the updated data as an envelope keyed by query id: { "hash": { home: { ... } } }
+const envelope = await Astro.request.json();
+const payloadData = Object.values(envelope)[0];
+
+if (!payloadData) {
+  return new Response('Island render failed: empty envelope', { status: 400 });
+}
+
+// We mock the QueryResult so `propsFromData` can extract the exact property it needs.
+const mockQueryResult = { data: payloadData };
+const resolvedProps = island.propsFromData(mockQueryResult, url.searchParams);
 
 // Helper to escape attributes for safety
 function escapeAttr(str: string): string {
@@ -31,26 +46,17 @@ function escapeAttr(str: string): string {
     .replace(/>/g, '&gt;');
 }
 
-const marker = escapeAttr(`/tina-island/${name}${search}`);
+const marker = escapeAttr(`${url.pathname}${url.search}`);
+const Component = island.component;
+const className = island.wrapper.className;
 ---
 
-{name === 'home' && (
-  <main data-tina-island={marker}>
-    <HomePage data={payload?.data?.home} />
+{island.wrapper.tag === 'main' ? (
+  <main class={className} data-tina-island={marker}>
+    <Component {...resolvedProps} />
   </main>
-)}
-{name === 'about' && (
-  <main class="min-h-screen" data-tina-island={marker}>
-    <AboutPage data={payload?.data?.about} />
-  </main>
-)}
-{name === 'services' && (
-  <main class="min-h-screen" data-tina-island={marker}>
-    <ServicesPage data={payload?.data?.services} />
-  </main>
-)}
-{name === 'project' && (
-  <main class="min-h-screen" data-tina-island={marker}>
-    <ProjectPage data={payload?.data?.projects} />
-  </main>
+) : (
+  <div class={className} data-tina-island={marker}>
+    <Component {...resolvedProps} />
+  </div>
 )}
