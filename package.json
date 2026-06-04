@@ -41,10 +41,10 @@
     "@astrojs/check": "^0.9.6",
     "@iconify-json/lucide": "^1.2.82",
     "@iconify-json/simple-icons": "^1.2.63",
-    "@tinacms/cli": "^2.0.5",
+    "@tinacms/cli": "^2.4.3",
     "@types/alpinejs": "^3.13.11",
     "@unocss/preset-wind3": "^66.5.10",
-    "tinacms": "^3.1.2",
+    "tinacms": "^3.9.0",
     "typescript": "^5.9.3",
     "wrangler": "^4.56.0"
   }
