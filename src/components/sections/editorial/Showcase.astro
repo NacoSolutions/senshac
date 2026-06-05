@@ -1,0 +1,69 @@
+---
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Item {
+  title?: string;
+  link?: string;
+  image?: string;
+  imageAlt?: string;
+  placeholderLabel?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  mediaType?: 'image' | 'video';
+  image?: string;
+  imageAlt?: string;
+  placeholderLabel?: string;
+  items?: Item[];
+}
+
+const {
+  eyebrow,
+  title,
+  ctaText,
+  ctaLink,
+  mediaType = 'image',
+  image,
+  imageAlt,
+  placeholderLabel,
+  items = [],
+} = Astro.props;
+---
+
+<section class="editorial-section">
+  <div class="editorial-shell">
+    {eyebrow && <p class="editorial-eyebrow">{eyebrow}</p>}
+    {title && <h2 class="editorial-heading editorial-heading--compact">{title}</h2>}
+
+    {items.length > 0 ? (
+      <div class="editorial-showcase-grid">
+        {items.map((item) => (
+          <a href={item.link || '#'} class="editorial-showcase-card">
+            <MediaPlaceholder
+              image={item.image}
+              alt={item.imageAlt}
+              label={item.placeholderLabel}
+              aspect="landscape"
+            />
+            <span>{item.title}</span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <MediaPlaceholder
+        image={image}
+        alt={imageAlt}
+        kind={mediaType}
+        label={placeholderLabel}
+        aspect="wide"
+      />
+    )}
+
+    {ctaText && ctaLink && <a class="editorial-link editorial-showcase__link" href={ctaLink}>{ctaText}</a>}
+  </div>
+</section>
+

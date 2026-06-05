@@ -43,13 +43,16 @@ if (!t) {
     <section class="bg-white py-12 md:py-16">
       <div class="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
         <div class="space-y-16 md:space-y-24">
-          {projects.map((project) => (
+          {projects.map((project) => {
+            const bannerBlock = project.data.blocks?.find((b: any) => b._template === 'projectBanner' || b._template === 'bannerImage');
+            const bannerImage = bannerBlock?.image || '';
+            return (
             <a href={`/${lang}/projects/${project.data.slug}`} class="block group">
               <article class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
                 <!-- Project Image -->
                 <div class="aspect-[4/3] overflow-hidden">
                   <OptimizedImage
-                    src={project.data.banner.image}
+                    src={bannerImage}
                     alt={project.data.title}
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
@@ -72,7 +75,8 @@ if (!t) {
                 </div>
               </article>
             </a>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

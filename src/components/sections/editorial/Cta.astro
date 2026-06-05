@@ -1,0 +1,15 @@
+---
+interface Props {
+  text?: string;
+  link?: string;
+}
+
+const { text, link } = Astro.props;
+---
+
+<section class="editorial-cta">
+  <div class="editorial-shell">
+    <a href={link || '#'}>{text}</a>
+  </div>
+</section>
+

@@ -3,25 +3,39 @@
     "social": "social",
     "menu": "menu",
     "letsTalk": "LET'S TALK",
-    "about": "About",
-    "projects": "Projects",
-    "services": "Services",
-    "contact": "Contact"
+    "links": [
+      {
+        "label": "Studio",
+        "href": "/en/about"
+      },
+      {
+        "label": "Work",
+        "href": "/en/projects"
+      },
+      {
+        "label": "Method",
+        "href": "/en/services"
+      },
+      {
+        "label": "Contact",
+        "href": "/en/contact"
+      }
+    ]
   },
   "footer": {
     "privacy": "Privacy Policy",
     "legal": "Legal Notice",
     "links": [
       {
-        "label": "About",
+        "label": "Studio",
         "href": "/en/about"
       },
       {
-        "label": "Projects",
+        "label": "Work",
         "href": "/en/projects"
       },
       {
-        "label": "Services",
+        "label": "Method",
         "href": "/en/services"
       },
       {
@@ -80,9 +94,9 @@
     "missingFields": "Please complete all required fields."
   },
   "projects": {
-    "title": "Projects - Sens*Hac",
+    "title": "Work - Sens*Hac",
     "description": "Explore our portfolio of interior design projects.",
-    "heading": "Projects"
+    "heading": "Work"
   },
   "accessibility": {
     "skipToContent": "Skip to content",

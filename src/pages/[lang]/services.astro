@@ -3,13 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import Hero from '../../components/sections/services/Hero.astro';
-import Intro from '../../components/sections/services/Intro.astro';
-import ServicesSection from '../../components/sections/services/Services.astro';
-import Service from '../../components/sections/services/Service.astro';
-import FAQs from '../../components/sections/services/FAQs.astro';
-import FAQ from '../../components/sections/services/FAQ.astro';
-import WorkProcess from '../../components/sections/services/WorkProcess.astro';
+import BlocksRenderer from '../../components/BlocksRenderer.astro';
 import ServicesPage from '../../components/islands/ServicesPage.astro';
 import { getServices, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
 import { createIslands } from '../../lib/tina-islands';
@@ -22,14 +16,10 @@ if (!page) {
   return Astro.redirect('/404');
 }
 
-const { title, description, hero, intro, serviceGroups, faq, workProcess } = page.data as {
+const { title, description, blocks } = page.data as {
   title: string;
   description: string;
-  hero: { title: string };
-  intro: { text: string; image?: string };
-  serviceGroups: { title: string; items: { title: string; description: string }[] }[];
-  faq: { title?: string; image?: string; items: { question: string; answer: string }[] };
-  workProcess: { title?: string; p1: string; p2: string; image?: string };
+  blocks?: any[];
 };
 
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
@@ -45,29 +35,10 @@ const tinaServicesData = tinaServices.data.services;
       <ServicesPage data={tinaServicesData} />
     </TinaIsland>
   ) : (
-    <main class="min-h-screen">
-      <Hero title={hero.title} />
-
-      <Intro text={intro.text} image={intro.image} />
-
-      <ServicesSection>
-        {serviceGroups.map((group) => (
-          <Service title={group.title} items={group.items} />
-        ))}
-      </ServicesSection>
-
-      <FAQs title={faq.title} image={faq.image}>
-        {faq.items.map((item) => (
-          <FAQ question={item.question} answer={item.answer} />
-        ))}
-      </FAQs>
-
-      <WorkProcess
-        title={workProcess.title}
-        p1={workProcess.p1}
-        p2={workProcess.p2}
-        image={workProcess.image}
-      />
+    <main class="min-h-screen pt-24 pb-16">
+      {blocks && blocks.map((block: any, index: number) => (
+        <BlocksRenderer block={block} index={index} parentData={page.data} />
+      ))}
     </main>
   )}
 </Base>

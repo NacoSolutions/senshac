@@ -1,6 +1,11 @@
 {
   "title": "Contacte - Sens*Hac",
   "description": "Contacta amb nosaltres per parlar del teu projecte de disseny d'interiors.",
-  "heading": "CONTACTE",
-  "subheading": "PARLEM."
+  "blocks": [
+    {
+      "_template": "contactForm",
+      "heading": "CONTACTE",
+      "subheading": "PARLEM."
+    }
+  ]
 }

@@ -3,14 +3,46 @@
     "social": "social",
     "menu": "menú",
     "letsTalk": "LET'S TALK",
-    "about": "Sobre",
-    "projects": "Projectes",
-    "services": "Serveis",
-    "contact": "Contacte"
+    "links": [
+      {
+        "label": "Estudi",
+        "href": "/ca/about"
+      },
+      {
+        "label": "Treballs",
+        "href": "/ca/projects"
+      },
+      {
+        "label": "Mètode",
+        "href": "/ca/services"
+      },
+      {
+        "label": "Contacte",
+        "href": "/ca/contact"
+      }
+    ]
   },
   "footer": {
     "privacy": "Política de Privacitat",
-    "legal": "Avís Legal"
+    "legal": "Avís Legal",
+    "links": [
+      {
+        "label": "Estudi",
+        "href": "/ca/about"
+      },
+      {
+        "label": "Treballs",
+        "href": "/ca/projects"
+      },
+      {
+        "label": "Mètode",
+        "href": "/ca/services"
+      },
+      {
+        "label": "Contacte",
+        "href": "/ca/contact"
+      }
+    ]
   },
   "contactForm": {
     "name": "Nom",
@@ -18,18 +50,39 @@
     "email": "Email",
     "phone": "Telèfon",
     "projectType": "Quin tipus de projecte tens en ment?",
-    "projectTypes": {
-      "commercial": "Comercial/Retail",
-      "restaurant": "Restaurant/Bar",
-      "entertainment": "Entreteniment",
-      "other": "Altre"
-    },
+    "projectTypes": [
+      {
+        "value": "commercial",
+        "label": "Comercial/Retail"
+      },
+      {
+        "value": "restaurant",
+        "label": "Restaurant/Bar"
+      },
+      {
+        "value": "entertainment",
+        "label": "Entreteniment"
+      },
+      {
+        "value": "other",
+        "label": "Altre"
+      }
+    ],
     "serviceType": "Quin tipus de serveis busques?",
-    "serviceTypes": {
-      "fullPackage": "Paquet complet (Disseny + Execució)",
-      "concept": "Només concepte de disseny",
-      "unsure": "No estic segur/a"
-    },
+    "serviceTypes": [
+      {
+        "value": "fullPackage",
+        "label": "Paquet complet (Disseny + Execució)"
+      },
+      {
+        "value": "concept",
+        "label": "Només concepte de disseny"
+      },
+      {
+        "value": "unsure",
+        "label": "No estic segur/a"
+      }
+    ],
     "message": "Explica'ns més sobre el teu projecte",
     "privacy": "Accepto la política de privacitat",
     "submit": "Enviar missatge",
@@ -41,9 +94,9 @@
     "missingFields": "Si us plau, completa tots els camps obligatoris."
   },
   "projects": {
-    "title": "Projectes - Sens*Hac",
+    "title": "Treballs - Sens*Hac",
     "description": "Explora el nostre portfolio de projectes de disseny d'interiors.",
-    "heading": "Projectes"
+    "heading": "Treballs"
   },
   "accessibility": {
     "skipToContent": "Anar al contingut",

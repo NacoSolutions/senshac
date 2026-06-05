@@ -1,92 +1,16 @@
 ---
-// src/components/islands/ContactPage.astro
-import ContactForm from '../ContactForm.astro';
-import OptimizedImage from '../OptimizedImage.astro';
-import { getSiteConfig } from '../../utils/site-config';
-import type { ContactQuery, SiteConfigQuery } from '../../../tina/__generated__/types';
-import { tinaField } from '@tinacms/astro';
+import type { ContactQuery } from '../../../tina/__generated__/types';
+import BlocksRenderer from '../BlocksRenderer.astro';
 
-import { getSiteConfigTina, getContact, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+type ContactPageData = ContactQuery['contact'];
 
 interface Props {
-  data?: ContactQuery['contact'];
-  siteData?: SiteConfigQuery['siteConfig'];
-  lang: string;
+  data?: ContactPageData | null;
 }
 
-let { data, siteData, lang } = Astro.props;
-const site = await getSiteConfig(); // Keep this just in case anything else uses static site data (like branding image)
-
-const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-
-if (!data) {
-  const relativePath = pageRelativePath(lang, 'contact.json');
-  const res = await getContact(relativePath, tinaEnv);
-  data = res.data.contact;
-}
-
-if (!siteData) {
-  const siteRes = await getSiteConfigTina('site.json', tinaEnv);
-  siteData = siteRes.data.siteConfig;
-}
-
-const { heading, subheading } = data!;
+const { data } = Astro.props;
 ---
-<section class="relative w-full">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="relative aspect-[16/7] overflow-hidden">
-      <div data-tina-field={tinaField(data, 'bannerImage')} class="w-full h-full">
-        <OptimizedImage
-          src={data.bannerImage || "/images/contact/senshac-contact-banner.webp"}
-          alt=""
-          class="w-full h-full object-cover"
-          loading="eager"
-          sizes="(min-width: 768px) 1152px, 100vw"
-        />
-      </div>
-      <!-- White symbol overlay -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <img
-          src={site.branding.symbolWhite}
-          alt=""
-          class="w-24 md:w-32 h-auto"
-        />
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Contact Section -->
-<section class="py-16 md:py-24">
-  <div class="max-w-6xl mx-auto px-4">
-    <div class="grid md:grid-cols-2 gap-16">
-      <!-- Contact Info -->
-      <div>
-        <h1 class="text-sm uppercase tracking-wider text-gray-500 mb-6" data-tina-field={tinaField(data, 'heading')}>{heading}</h1>
-        <p class="text-4xl md:text-5xl font-bold mb-8" data-tina-field={tinaField(data, 'subheading')}>{subheading}</p>
-
-        <div class="space-y-2 mb-8">
-          <a
-            href={`mailto:${siteData.contact.email}`}
-            class="block text-lg hover:text-gray-600 transition-colors"
-            data-tina-field={tinaField(siteData.contact, 'email')}
-          >
-            {siteData.contact.email}
-          </a>
-          <a
-            href={`tel:${siteData.contact.phoneLink || siteData.contact.phone.replace(/\s/g, '')}`}
-            class="block text-lg hover:text-gray-600 transition-colors"
-            data-tina-field={tinaField(siteData.contact, 'phone')}
-          >
-            {siteData.contact.phone}
-          </a>
-        </div>
-      </div>
-
-      <!-- Contact Form -->
-      <div>
-        <ContactForm lang={lang} />
-      </div>
-    </div>
-  </div>
-</section>
+{data && data.blocks && data.blocks.map((block: any, index: number) => (
+  <BlocksRenderer block={block} index={index} parentData={data} />
+))}

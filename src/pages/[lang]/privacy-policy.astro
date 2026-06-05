@@ -18,7 +18,7 @@ if (!res.data.legal) {
 const tinaData = res.data.legal;
 const islands = createIslands(tinaEnv);
 ---
-<Base title={tinaData.title} description={tinaData.description} lang={lang}>
+<Base title={tinaData.title} description={tinaData.description || ''} lang={lang}>
   <TinaIsland name="legal" wrapper={islands.legal.wrapper} params={{ relativePath, lang }}>
     <LegalPage data={tinaData} />
   </TinaIsland>

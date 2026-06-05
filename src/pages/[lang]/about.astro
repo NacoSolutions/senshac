@@ -3,13 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import Hero from '../../components/sections/about/Hero.astro';
-import BehindName from '../../components/sections/about/BehindName.astro';
-import Banner from '../../components/sections/common/Banner.astro';
-import Bio from '../../components/sections/about/Bio.astro';
-import Awards from '../../components/sections/about/Awards.astro';
-import Award from '../../components/sections/about/Award.astro';
-import Mission from '../../components/sections/about/Mission.astro';
+import BlocksRenderer from '../../components/BlocksRenderer.astro';
 import AboutPage from '../../components/islands/AboutPage.astro';
 import { getAbout, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
 import { createIslands } from '../../lib/tina-islands';
@@ -22,16 +16,10 @@ if (!page) {
   return Astro.redirect('/404');
 }
 
-const { title, description, hero, behindName, bannerImage, bio, awards, mission, missionImage } = page.data as {
+const { title, description, blocks } = page.data as {
   title: string;
   description: string;
-  hero: { title: string };
-  behindName: { title?: string; p1: string; p2: string; footnote?: string };
-  bannerImage?: string;
-  bio: { title?: string; image?: string; paragraphs: string[] };
-  awards: { title?: string; items: { year: string; project: string; award: string; link?: string }[] };
-  mission: { title?: string; p1: string; p2: string; quote?: string };
-  missionImage?: string;
+  blocks?: any[];
 };
 
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
@@ -47,43 +35,10 @@ const tinaAboutData = tinaAbout.data.about;
       <AboutPage data={tinaAboutData} />
     </TinaIsland>
   ) : (
-    <main class="min-h-screen">
-      <Hero title={hero.title} />
-
-      <BehindName
-        title={behindName.title}
-        p1={behindName.p1}
-        p2={behindName.p2}
-        footnote={behindName.footnote}
-      />
-
-      {bannerImage && <Banner src={bannerImage} alt="Behind the name" />}
-
-      <Bio
-        title={bio.title}
-        image={bio.image}
-        paragraphs={bio.paragraphs}
-      />
-
-      <Awards title={awards.title}>
-        {awards.items.map((item) => (
-          <Award
-            year={item.year}
-            project={item.project}
-            award={item.award}
-            link={item.link}
-          />
-        ))}
-      </Awards>
-
-      <Mission
-        title={mission.title}
-        p1={mission.p1}
-        p2={mission.p2}
-        quote={mission.quote}
-      />
-
-      {missionImage && <Banner src={missionImage} alt="Our mission" />}
+    <main class="min-h-screen pt-24 pb-16">
+      {blocks && blocks.map((block: any, index: number) => (
+        <BlocksRenderer block={block} index={index} parentData={page.data} />
+      ))}
     </main>
   )}
 </Base>

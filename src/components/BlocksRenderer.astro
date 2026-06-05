@@ -10,14 +10,29 @@ import AboutHero from './sections/about/Hero.astro';
 import BehindName from './sections/about/BehindName.astro';
 import Bio from './sections/about/Bio.astro';
 import Awards from './sections/about/Awards.astro';
+import Award from './sections/about/Award.astro';
 import Mission from './sections/about/Mission.astro';
 
 // Services Sections
 import ServicesHero from './sections/services/Hero.astro';
 import ServicesIntro from './sections/services/Intro.astro';
 import ServiceGroups from './sections/services/Services.astro';
+import Service from './sections/services/Service.astro';
 import FAQ from './sections/services/FAQs.astro';
+import FAQItem from './sections/services/FAQ.astro';
 import WorkProcess from './sections/services/WorkProcess.astro';
+
+// Contact Sections
+import ContactFormBlock from './sections/contact/ContactBlock.astro';
+
+// Editorial Sections
+import EditorialHero from './sections/editorial/Hero.astro';
+import EditorialCopy from './sections/editorial/Copy.astro';
+import EditorialAccordion from './sections/editorial/Accordion.astro';
+import EditorialRows from './sections/editorial/Rows.astro';
+import EditorialCta from './sections/editorial/Cta.astro';
+import EditorialShowcase from './sections/editorial/Showcase.astro';
+import EditorialMission from './sections/editorial/Mission.astro';
 
 // Project Sections
 import ProjectDetails from './sections/projects/Details.astro';
@@ -35,6 +50,15 @@ interface Props {
 }
 
 const { block, index, parentData } = Astro.props;
+let template = block._template;
+
+if (!template && block.__typename) {
+  const match = block.__typename.match(/Blocks(.*)$/);
+  if (match) {
+    const pascal = match[1];
+    template = pascal.charAt(0).toLowerCase() + pascal.slice(1);
+  }
+}
 
 // Helper to normalize image paths for optimization
 function normalizeTinaImage(src?: string | null) {
@@ -50,12 +74,11 @@ function normalizeTinaImage(src?: string | null) {
   return src;
 }
 
-const template = block._template;
 ---
 
 <div data-tina-field={tinaField(parentData.blocks, index)}>
-  {template === 'homeHero' && <HomeHero hero={block} />}
-  {template === 'homeAbout' && <HomeAbout about={block} />}
+  {template === 'homeHero' && <HomeHero {...block} />}
+  {template === 'homeAbout' && <HomeAbout {...block} cta={block.ctaText} />}
   
   {template === 'aboutHero' && <AboutHero title={block.title} />}
   {template === 'behindName' && (
@@ -74,7 +97,13 @@ const template = block._template;
       paragraphs={block.paragraphs}
     />
   )}
-  {template === 'awards' && <Awards awards={block} />}
+  {template === 'awards' && (
+    <Awards {...block}>
+      {block.items && block.items.map((item: any) => (
+        <Award {...item} />
+      ))}
+    </Awards>
+  )}
   {template === 'mission' && (
     <Mission
       title={block.title}
@@ -91,8 +120,20 @@ const template = block._template;
       image={normalizeTinaImage(block.image)}
     />
   )}
-  {template === 'serviceGroups' && <ServiceGroups groups={block.groups} />}
-  {template === 'faq' && <FAQ faq={block} />}
+  {template === 'serviceGroups' && (
+    <ServiceGroups>
+      {block.groups && block.groups.map((group: any) => (
+        <Service title={group.title} items={group.items} />
+      ))}
+    </ServiceGroups>
+  )}
+  {template === 'faq' && (
+    <FAQ {...block}>
+      {block.items && block.items.map((item: any) => (
+        <FAQItem question={item.question} answer={item.answer} />
+      ))}
+    </FAQ>
+  )}
   {template === 'workProcess' && (
     <WorkProcess
       title={block.title}
@@ -101,6 +142,20 @@ const template = block._template;
       image={normalizeTinaImage(block.image)}
     />
   )}
+
+  {template === 'editorialHero' && <EditorialHero {...block} image={normalizeTinaImage(block.image)} />}
+  {template === 'editorialCopy' && <EditorialCopy {...block} />}
+  {template === 'editorialAccordion' && <EditorialAccordion {...block} />}
+  {template === 'editorialRows' && <EditorialRows {...block} />}
+  {template === 'editorialCta' && <EditorialCta {...block} />}
+  {template === 'editorialShowcase' && (
+    <EditorialShowcase
+      {...block}
+      image={normalizeTinaImage(block.image)}
+      items={block.items?.map((item: any) => ({ ...item, image: normalizeTinaImage(item.image) }))}
+    />
+  )}
+  {template === 'editorialMission' && <EditorialMission {...block} image={normalizeTinaImage(block.image)} />}
 
   {template === 'projectBanner' && (
     <div class="w-full aspect-video overflow-hidden">
@@ -112,7 +167,8 @@ const template = block._template;
       />
     </div>
   )}
-  {template === 'projectDetails' && <ProjectDetails details={block} />}
+  {template === 'contactForm' && <ContactFormBlock {...block} />}
+  {template === 'projectDetails' && <ProjectDetails {...block} />}
   {template === 'projectBrief' && (
     <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
       <h2 class="text-3xl font-bold mb-6">{block.title}</h2>

@@ -54,23 +54,7 @@ const homePageSchema = z.object({
   title: z.string(),
   description: z.string(),
   headerStyle: z.enum(['default', 'transparent']).default('transparent'),
-  hero: z.object({
-    image: z.string(),
-    topRight: z.object({
-      lines: z.array(z.string()),
-    }).optional(),
-    tagline: z.object({
-      lines: z.array(z.string()),
-    }).optional(),
-    taglineSub: z.string().optional(),
-  }),
-  about: z.object({
-    image: z.string().optional(),
-    title: z.string().optional(),
-    description: z.string().optional(),
-    ctaText: z.string().optional(),
-    ctaLink: z.string().optional(),
-  }),
+  blocks: z.array(z.any()).optional(),
 });
 
 // About page content
@@ -78,71 +62,14 @@ const aboutPageSchema = z.object({
   title: z.string(),
   description: z.string(),
   heroImage: z.string().optional(),
-  hero: z.object({
-    title: z.string(),
-  }),
-  behindName: z.object({
-    title: z.string().optional(),
-    p1: z.string(),
-    p2: z.string(),
-    footnote: z.string().optional(),
-  }),
-  bannerImage: z.string().optional(),
-  bio: z.object({
-    title: z.string().optional(),
-    image: z.string().optional(),
-    paragraphs: z.array(z.string()),
-  }),
-  awards: z.object({
-    title: z.string().optional(),
-    items: z.array(z.object({
-      year: z.string(),
-      project: z.string(),
-      award: z.string(),
-      link: z.string().optional(),
-    })),
-  }),
-  mission: z.object({
-    title: z.string().optional(),
-    p1: z.string(),
-    p2: z.string(),
-    quote: z.string().optional(),
-  }),
-  missionImage: z.string().optional(),
+  blocks: z.array(z.any()).optional(),
 });
 
 // Services page content
 const servicesPageSchema = z.object({
   title: z.string(),
   description: z.string(),
-  hero: z.object({
-    title: z.string(),
-  }),
-  intro: z.object({
-    text: z.string(),
-    image: z.string().optional(),
-  }),
-  serviceGroups: z.array(z.object({
-    title: z.string(),
-    items: z.array(z.object({
-      title: z.string(),
-      description: z.string(),
-    })),
-  })),
-  faq: z.object({
-    title: z.string().optional(),
-    image: z.string().optional(),
-    items: z.array(z.object({
-      question: z.string(),
-      answer: z.string(),
-    })),
-  }),
-  workProcess: z.object({
-    title: z.string().optional(),
-    p1: z.string(),
-    p2: z.string(),
-    image: z.string().optional(),
-  }),
+  blocks: z.array(z.any()).optional(),
 });
 
 // Contact page content
@@ -180,7 +107,7 @@ const gallerySchema = z.object({
   images: z.array(imageSchema),
 });
 
-// Project schema (rigid layout with fixed sections)
+// Project schema
 const projectSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -191,47 +118,7 @@ const projectSchema = z.object({
   showTags: z.boolean().default(false),
   featured: z.boolean().default(false),
   draft: z.boolean().default(false),
-  banner: z.object({
-    image: z.string(),
-    alt: z.string(),
-  }),
-  details: z.object({
-    title: z.string(),
-    subtitle: z.string(),
-    image: z.string(),
-    services: z.string(),
-    servicesLabel: z.string(),
-    category: z.string(),
-    categoryLabel: z.string(),
-    area: z.string(),
-    areaLabel: z.string(),
-    location: z.string(),
-    locationLabel: z.string(),
-  }),
-  brief: z.object({
-    title: z.string(),
-    text: z.string(),
-    gallery: gallerySchema,
-  }),
-  concept: z.object({
-    title: z.string(),
-    text: z.string(),
-    gallery: gallerySchema,
-  }),
-  strategy: z.object({
-    title: z.string(),
-    text: z.string(),
-    carousel: z.array(imageSchema),
-    gallery: gallerySchema,
-  }),
-  collaborators: z.object({
-    title: z.string(),
-    list: z.array(z.object({
-      name: z.string(),
-      role: z.string(),
-    })),
-  }),
-  finalImage: imageSchema,
+  blocks: z.array(z.any()).optional(),
 });
 
 const projects = defineCollection({
@@ -251,14 +138,18 @@ const translations = defineCollection({
       social: z.string(),
       menu: z.string(),
       letsTalk: z.string(),
-      about: z.string(),
-      projects: z.string(),
-      services: z.string(),
-      contact: z.string(),
+      links: z.array(z.object({
+        label: z.string(),
+        href: z.string()
+      })).optional(),
     }),
     footer: z.object({
       privacy: z.string(),
       legal: z.string(),
+      links: z.array(z.object({
+        label: z.string(),
+        href: z.string()
+      })).optional(),
     }),
     contactForm: z.object({
       name: z.string(),
@@ -266,18 +157,15 @@ const translations = defineCollection({
       email: z.string(),
       phone: z.string(),
       projectType: z.string(),
-      projectTypes: z.object({
-        commercial: z.string(),
-        restaurant: z.string(),
-        entertainment: z.string(),
-        other: z.string(),
-      }),
+      projectTypes: z.array(z.object({
+        value: z.string(),
+        label: z.string(),
+      })).optional(),
       serviceType: z.string(),
-      serviceTypes: z.object({
-        fullPackage: z.string(),
-        concept: z.string(),
-        unsure: z.string(),
-      }),
+      serviceTypes: z.array(z.object({
+        value: z.string(),
+        label: z.string(),
+      })).optional(),
       message: z.string(),
       privacy: z.string(),
       submit: z.string(),

@@ -18,6 +18,7 @@ function getClient(env?: TinaRuntimeEnv) {
   if (import.meta.env.DEV) {
     return createClient({
       url: 'http://localhost:4001/graphql',
+      // @ts-expect-error - TinaClientArgs type mismatch
       clientId: '',
       token: '',
       queries,

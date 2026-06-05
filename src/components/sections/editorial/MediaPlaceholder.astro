@@ -1,0 +1,45 @@
+---
+import OptimizedImage from '../../OptimizedImage.astro';
+
+interface Props {
+  image?: string | null;
+  alt?: string;
+  label?: string;
+  kind?: 'image' | 'video';
+  aspect?: 'landscape' | 'portrait' | 'wide';
+  eager?: boolean;
+}
+
+const {
+  image,
+  alt = '',
+  label = 'Media pending',
+  kind = 'image',
+  aspect = 'landscape',
+  eager = false,
+} = Astro.props;
+
+const aspectClass = {
+  landscape: 'aspect-[4/3]',
+  portrait: 'aspect-[3/4]',
+  wide: 'aspect-[16/9]',
+}[aspect];
+---
+
+<div class:list={['editorial-media', aspectClass]}>
+  {image && kind === 'image' ? (
+    <OptimizedImage
+      src={image}
+      alt={alt}
+      class="h-full w-full object-cover"
+      loading={eager ? 'eager' : 'lazy'}
+      sizes="(min-width: 768px) 60vw, 100vw"
+    />
+  ) : (
+    <div class="editorial-placeholder" role="img" aria-label={label}>
+      <span class="editorial-placeholder__type">{kind}</span>
+      <span>{label}</span>
+    </div>
+  )}
+</div>
+

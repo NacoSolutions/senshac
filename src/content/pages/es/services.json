@@ -1,112 +1,120 @@
 {
-  "title": "Servicios - Sens*Hac",
-  "description": "Servicios de dise\u00f1o de interiores: desarrollo de concepto, identidad de marca, modelado 3D, cumplimiento normativo y coordinaci\u00f3n de proyectos.",
+  "title": "Método - Sens*Hac",
+  "description": "Nuestro método de interiorismo estratégico, desde el diagnóstico de marca hasta la apertura.",
   "blocks": [
     {
-      "title": "Creamos interiores personalizados y \u00fanicos que generan impacto medible",
-      "_template": "servicesHero"
+      "_template": "editorialCopy",
+      "title": "NUESTRO MÉTODO:\nDE LA ESTRATEGIA A\nLA APERTURA.",
+      "headingLevel": "h1"
     },
     {
-      "text": "Colaboramos estrechamente con propietarios de negocios para construir una imagen de marca cohesiva que alinea producto, percepci\u00f3n y experiencia del cliente.",
-      "image": "/images/services/hero.webp",
-      "_template": "servicesIntro"
-    },
-    {
-      "_template": "serviceGroups",
-      "groups": [
+      "_template": "editorialAccordion",
+      "items": [
         {
-          "title": "SERVICIOS DE DISE\u00d1O",
-          "items": [
+          "number": "01",
+          "title": "Diagnóstico y estrategia de marca",
+          "summary": "Analizamos el contexto de tu negocio, tu público objetivo y tus metas comerciales. Establecemos una base sólida que integra la esencia de tu marca con las necesidades funcionales del local antes de proyectar.",
+          "details": [
             {
-              "title": "Concepto de Dise\u00f1o y Estrategia",
-              "description": "Desarrollamos estrategias que se convierten en ventas, fidelizan clientes y apoyan la escalabilidad."
+              "label": "Auditoría de negocio",
+              "text": "Identificación de desafíos comerciales y objetivos de crecimiento."
             },
             {
-              "title": "Soluciones de Dise\u00f1o a Medida",
-              "description": "Ofrecemos soluciones de dise\u00f1o personalizadas que satisfacen tus necesidades espec\u00edficas."
-            },
-            {
-              "title": "Marca e Identidad Visual",
-              "description": "Creamos branding cohesivo e identidad visual para mejorar tu presencia en el mercado."
-            },
-            {
-              "title": "Red de Profesionales del Sector",
-              "description": "Red conocida de profesionales cualificados capaces de ejecutar tus dise\u00f1os personalizados."
-            },
-            {
-              "title": "Modelado 3D",
-              "description": "Proporcionamos representaciones 3D detalladas de tu espacio para mejor visualizaci\u00f3n."
-            },
-            {
-              "title": "Opciones de FF&E",
-              "description": "Acceso a una amplia gama de mobiliario, accesorios y equipamiento."
+              "label": "Viabilidad espacial",
+              "text": "Estudio preliminar de la capacidad del local para asegurar que responde a tu modelo de negocio."
             }
           ]
         },
         {
-          "title": "SERVICIOS DE EJECUCI\u00d3N",
-          "items": [
+          "number": "02",
+          "title": "Concepto creativo",
+          "summary": "Traducimos tu estrategia en una experiencia espacial memorable. En esta fase nace la identidad única, el recorrido del cliente y la atmósfera visual que hará que tu negocio destaque.",
+          "details": [
             {
-              "title": "Estudio de Cumplimiento Normativo",
-              "description": "Aplicamos todas las regulaciones requeridas para tu proyecto de forma integrada en el dise\u00f1o."
+              "label": "Identidad",
+              "text": "Aplicación del branding y tus valores a la arquitectura interior."
             },
             {
-              "title": "Desarrollo de Presupuesto",
-              "description": "Creamos presupuestos detallados para garantizar transparencia financiera."
+              "label": "Diseño de flujos",
+              "text": "Planificación de la distribución operativa, recorrido de venta y zonas calientes."
             },
             {
-              "title": "Documentaci\u00f3n y Planos",
-              "description": "Preparamos toda la documentaci\u00f3n, dibujos y planos necesarios para el proceso de ejecuci\u00f3n."
+              "label": "Diseño a medida y FF&E",
+              "text": "Conceptualización de mobiliario, iluminación y selección de materiales."
             },
             {
-              "title": "Coordinaci\u00f3n y Supervisi\u00f3n",
-              "description": "Supervisamos y coordinamos a todas las partes involucradas en el proceso de ejecuci\u00f3n para una entrega sin problemas."
+              "label": "Modelado 3D",
+              "text": "Representaciones digitales de alta fidelidad para visualizar y aprobar el espacio."
+            }
+          ]
+        },
+        {
+          "number": "03",
+          "title": "Desarrollo técnico",
+          "summary": "Convertimos la visión creativa en un proyecto ejecutable. Elaboramos la documentación necesaria y coordinamos las validaciones técnicas para garantizar que el diseño sea viable, seguro y fiel a tu inversión.",
+          "details": [
+            {
+              "label": "Planos técnicos ejecutivos",
+              "text": "Planimetría detallada para constructores e industriales."
+            },
+            {
+              "label": "Elaboración de presupuestos",
+              "text": "Desglose económico de materiales, mobiliario e industriales."
+            },
+            {
+              "label": "Diseño técnico adaptado",
+              "text": "Adecuación del proyecto a los requisitos técnicos y normativos del local."
+            }
+          ]
+        },
+        {
+          "number": "04",
+          "title": "Supervisión de obra y coordinación de montaje",
+          "summary": "Acompañamos la ejecución para que la transición del papel a la realidad sea fiel al diseño, resolviendo imprevistos y coordinando el montaje.",
+          "details": [
+            {
+              "label": "Un solo interlocutor",
+              "text": "Centralizamos la comunicación entre tus necesidades y el equipo técnico."
+            },
+            {
+              "label": "Supervisión en obra",
+              "text": "Visitas periódicas para comprobar detalles técnicos y acabados."
+            },
+            {
+              "label": "Control de calidad final",
+              "text": "Verificamos la calidad y la fidelidad estética proyectada para tu marca."
             }
           ]
         }
       ]
     },
     {
-      "title": "FAQ'S",
-      "image": "/images/services/faqs.webp",
-      "items": [
-        {
-          "question": "Tengo un proyecto en mente, \u00bfpuedo programar una consulta gratuita?",
-          "answer": "\u00a1Por supuesto! Tu primera consulta es gratuita por una raz\u00f3n. Entendemos que probablemente tengas preguntas, y esta reuni\u00f3n es una oportunidad para que obtengamos una imagen clara de tus necesidades y expectativas para el proyecto, as\u00ed como para resolver cualquier duda que puedas tener."
-        },
-        {
-          "question": "\u00bfCu\u00e1ndo deber\u00eda contratar servicios de dise\u00f1o de interiores?",
-          "answer": "Cuanto antes, mejor. El dise\u00f1o de interiores forma la base del concepto creativo, guiando todas las decisiones de ejecuci\u00f3n. Como elemento fundamental que impulsa el proyecto, el dise\u00f1o del espacio requiere colaboraci\u00f3n con todas las partes involucradas desde el principio."
-        },
-        {
-          "question": "\u00bfOfrec\u00e9is servicios m\u00e1s all\u00e1 del dise\u00f1o de interiores?",
-          "answer": "Trabajamos estrechamente con colaboradores externos, incluyendo estudios de arquitectura, empresas de ingenier\u00eda para licencias, dise\u00f1adores gr\u00e1ficos y especialistas en comunicaci\u00f3n y marketing."
-        },
-        {
-          "question": "\u00bfCu\u00e1nto tiempo se tarda en completar un proyecto de dise\u00f1o de interiores?",
-          "answer": "Desarrollar un concepto de dise\u00f1o suele llevar de 1 a 3 meses, dependiendo del alcance, la escala y la capacidad de respuesta del cliente. Para la fase de ejecuci\u00f3n, el plazo depende principalmente de la complejidad del proyecto. Elaboraremos un cronograma basado en todas las consideraciones del proyecto. Si tienes una fecha l\u00edmite espec\u00edfica, d\u00ednoslo para que podamos planificar en consecuencia."
-        },
-        {
-          "question": "\u00bfC\u00f3mo es la estructura de honorarios?",
-          "answer": "Somos un estudio basado en servicios y nos centramos en el valor que aportamos al cliente. Nuestros honorarios no est\u00e1n vinculados a los costes de construcci\u00f3n o materiales. Los honorarios de coordinaci\u00f3n y supervisi\u00f3n son independientes y est\u00e1n claramente detallados en el contrato para garantizar transparencia presupuestaria."
-        },
-        {
-          "question": "\u00bfCon qu\u00e9 proveedores trabaj\u00e1is? \u00bfPuedo comprar mis propios materiales?",
-          "answer": "Como parte de nuestro servicio, ofrecemos una amplia gama de opciones. Recomendamos proveedores bas\u00e1ndonos en calidad, servicio postventa y consideraciones presupuestarias. Para garantizar sostenibilidad, tiempos de entrega eficientes y servicio receptivo, priorizamos trabajar con empresas nacionales. Gestionar todos los aspectos log\u00edsticos internamente es esencial para cumplir plazos y prevenir errores en escalado o calidad. Este enfoque ayuda a nuestros clientes a evitar errores costosos y elimina la frustraci\u00f3n de gastos inesperados. Por lo tanto, cuando optas por el paquete de servicio completo, gestionamos todas las compras para garantizar un proceso sin problemas."
-        },
-        {
-          "question": "\u00bfQu\u00e9 pasa si solo estoy interesado en desarrollar un concepto de dise\u00f1o?",
-          "answer": "Aunque muchos clientes prefieren la comodidad de un paquete de servicio completo que incluye tanto dise\u00f1o como ejecuci\u00f3n, tambi\u00e9n ofrecemos la flexibilidad de desarrollar exclusivamente un concepto de dise\u00f1o."
-        }
-      ],
-      "_template": "faq"
+      "_template": "editorialCta",
+      "text": "Agenda una llamada",
+      "link": "/es/contact"
     },
     {
-      "title": "PROCESO DE TRABAJO",
-      "p1": "Al inicio de un proyecto, comenzamos creando un estudio de caso que examina el contexto, las referencias disponibles y los escenarios potenciales. Este m\u00e9todo nos permite establecer una estrategia bien definida y dise\u00f1ar un concepto atractivo que fusiona la marca con el espacio y las tendencias actuales del mercado. A medida que avanzamos hacia la fase de dise\u00f1o, nos enfocamos en aportar soluciones viables, junto con materiales duraderos y sostenibles, para garantizar resultados pr\u00e1cticos y duraderos para cada proyecto.",
-      "p2": "Por lo tanto, tratamos el dise\u00f1o de interiores como un elemento fundamental en el complejo proceso creativo y ejecutivo. Al colaborar con una amplia gama de profesionales\u2014desde arquitectos y t\u00e9cnicos hasta artesanos y oficios\u2014garantizamos que cada detalle se alinee con nuestra visi\u00f3n y objetivos unificados. Este proceso exhaustivo garantiza un resultado cohesivo que integra todos los elementos, creando una experiencia de marca valiosa. Nuestro enfoque siempre est\u00e1 en fomentar conexiones s\u00f3lidas con tu p\u00fablico objetivo, generar inter\u00e9s y maximizar la rentabilidad de tu negocio.",
-      "image": "/images/services/work-process.webp",
-      "_template": "workProcess"
+      "_template": "editorialRows",
+      "intro": "Te ofrecemos la flexibilidad de contratar el proceso por fases para que elijas el nivel de acompañamiento que deseas en tu proyecto:",
+      "items": [
+        {
+          "title": "Consultoría estratégica",
+          "text": "Sesión intensiva de dos horas. Auditamos tu local para darte directrices claras sobre marca, distribución y flujos de venta."
+        },
+        {
+          "title": "Concepto creativo",
+          "text": "Incluye las fases I y II. Desarrollamos la estrategia, la distribución espacial y la infoarquitectura 3D."
+        },
+        {
+          "title": "Proyecto integral",
+          "text": "Abarcamos el proceso completo, desde la estrategia inicial hasta la ejecución del proyecto."
+        }
+      ]
+    },
+    {
+      "_template": "editorialCta",
+      "text": "Solicita una propuesta personalizada",
+      "link": "/es/contact"
     }
   ]
 }

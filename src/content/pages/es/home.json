@@ -1,34 +1,88 @@
 {
-  "title": "Sens*Hac - Estudio de Dise\u00f1o de Interiores",
-  "description": "Dise\u00f1amos espacios de marca que inspiran y conectan. Especializados en espacios comerciales, gastron\u00f3micos y de entretenimiento.",
-  "headerStyle": "transparent",
+  "title": "Sens*Hac - Estudio de Interiorismo Estratégico",
+  "description": "Diseñamos espacios con identidad de marca que elevan el valor y la rentabilidad de tu negocio.",
+  "headerStyle": "default",
   "blocks": [
     {
-      "image": "/images/home/hero.webp",
-      "topRight": {
-        "lines": [
-          "interior",
-          "design",
-          "studio\u00ae"
-        ]
-      },
-      "tagline": {
-        "lines": [
-          "Comunica.",
-          "Cautiva.",
-          "Conecta."
-        ]
-      },
-      "taglineSub": "(Eleva tu marca)",
-      "_template": "homeHero"
+      "_template": "editorialHero",
+      "title": "DISEÑAMOS\nESPACIOS CON\nIDENTIDAD DE\nMARCA",
+      "intro": "Somos un estudio boutique de interiorismo estratégico especializado en crear interiores de alto impacto para negocios.",
+      "ctaText": "sobre el estudio",
+      "ctaLink": "/es/about",
+      "mediaType": "image",
+      "placeholderLabel": "Imagen de proyecto pendiente"
     },
     {
-      "image": "/images/home/about.webp",
-      "title": "DISE\u00d1AMOS ESPACIOS DE MARCA QUE INSPIRAN Y CONECTAN",
-      "description": "Creamos interiores impactantes y funcionales que mejoran el flujo de trabajo y aumentan la rentabilidad en sectores comerciales, gastron\u00f3micos y de entretenimiento.",
-      "ctaText": "con\u00f3cenos",
-      "ctaLink": "/es/about",
-      "_template": "homeAbout"
+      "_template": "editorialCopy",
+      "title": "Unimos Espacio, Identidad de Marca & Estrategia.",
+      "body": "Colaboramos estrechamente con fundadores y emprendedores para construir una imagen cohesiva que alinea producto, percepción y experiencia de usuario en el espacio. Creamos espacios identitarios con un lenguaje visual propio, donde la arquitectura interior se convierte en una extensión natural de tu identidad, tus valores y aquello que te hace único."
+    },
+    {
+      "_template": "editorialShowcase",
+      "mediaType": "video",
+      "placeholderLabel": "Vídeo de marca pendiente"
+    },
+    {
+      "_template": "editorialAccordion",
+      "intro": "Si tienes un producto o servicio que te hace diferente, no compitas por precio. Diseñamos tu espacio para convertirlo en tu mejor activo estratégico y elevar el valor de tu negocio:",
+      "items": [
+        {
+          "number": "01",
+          "title": "Posicionamiento y visibilidad para tu marca",
+          "summary": "Tu espacio comunica quién eres, qué te hace diferente y te posiciona en el mercado sin necesidad de explicaciones."
+        },
+        {
+          "number": "02",
+          "title": "Aumentamos tu valor percibido",
+          "summary": "Creamos entornos que elevan el valor de tu producto o servicio, para que tus márgenes tengan sentido."
+        },
+        {
+          "number": "03",
+          "title": "Mejoramos tu rentabilidad",
+          "summary": "Diseñamos espacios inteligentes que facilitan el flujo operativo, guían la venta y potencian la fidelización de tu cliente target."
+        }
+      ]
+    },
+    {
+      "_template": "editorialRows",
+      "title": "Somos tu aliado si buscas:",
+      "items": [
+        {
+          "title": "Optimizar tu rentabilidad",
+          "text": "Tu canal físico actual no rinde como debería y necesitas que el espacio impulse las ventas."
+        },
+        {
+          "title": "Dar el salto al canal físico",
+          "text": "Lideras un e-commerce consolidado o vas a inaugurar tu primer local exigiendo un impacto inmediato."
+        },
+        {
+          "title": "Reposicionar tu marca",
+          "text": "Sientes que tu espacio no hace justicia a la calidad de tu producto y quieres atraer a un perfil de cliente de mayor valor."
+        }
+      ]
+    },
+    {
+      "_template": "editorialCta",
+      "text": "Cuéntanos tu proyecto",
+      "link": "/es/contact"
+    },
+    {
+      "_template": "editorialShowcase",
+      "eyebrow": "Novedades",
+      "items": [
+        {
+          "title": "La Trobada",
+          "link": "/es/projects/la-trobada",
+          "placeholderLabel": "Imagen de proyecto pendiente"
+        },
+        {
+          "title": "Novedades",
+          "link": "/es/projects",
+          "placeholderLabel": "Imagen de proyecto pendiente"
+        }
+      ],
+      "ctaText": "Ver trabajos",
+      "ctaLink": "/es/projects"
     }
   ]
 }
