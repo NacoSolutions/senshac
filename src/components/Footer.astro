@@ -15,9 +15,9 @@ interface Props {
 const { lang, translations: propTranslations, siteData: propSiteData } = Astro.props;
 
 const t = propTranslations ?? await getTranslations(lang);
-const site = propSiteData ?? await getSiteConfig();
+const site = (propSiteData ?? await getSiteConfig()) as any;
 
-const navLinks = t.footer.links || [];
+const navLinks = (t.footer as any).links || [];
 
 // Use social links from site config
 const socialLinks = site.socialLinks;
@@ -43,7 +43,7 @@ const socialLinks = site.socialLinks;
       <div class="flex flex-col items-start sm:items-end">
           <!-- Social Icons -->
           <div class="flex gap-4 mb-2">
-            {socialLinks.map((link, index) => (
+            {socialLinks.map((link: any, index: number) => (
               <a
                 href={link.url}
                 target="_blank"
@@ -81,12 +81,12 @@ const socialLinks = site.socialLinks;
   <div class="border-t border-b border-white/20">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
         <div class="flex flex-wrap justify-between gap-4 py-8">
-          {navLinks.map((link: any, index: number) => (
+          {navLinks.map((link: { href: string; label: string }, index: number) => (
             <a
               href={link.href}
               class="page-link text-white/50 hover:text-white transition-colors"
             >
-              <span data-tina-field={tinaField(t.footer.links, index)}>{link.label}</span>
+              <span data-tina-field={tinaField((t.footer as any).links, index)}>{link.label}</span>
               <span class="page-link-icon i-lucide-arrow-up-right" />
             </a>
           ))}

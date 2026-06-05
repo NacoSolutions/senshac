@@ -17,7 +17,7 @@ const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 
 if (!data) {
   const transRes = await getTranslations(`${lang}.json`, tinaEnv);
-  data = transRes.data.translations;
+  data = transRes.data.translations as any;
 }
 if (!siteData) {
   const siteRes = await getSiteConfigTina('site.json', tinaEnv);

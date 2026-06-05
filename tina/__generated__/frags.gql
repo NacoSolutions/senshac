@@ -143,6 +143,81 @@ fragment HomeParts on Home {
       p2
       image
     }
+    ... on HomeBlocksContactForm {
+      bannerImage
+      heading
+      subheading
+    }
+    ... on HomeBlocksEditorialHero {
+      title
+      intro
+      ctaText
+      ctaLink
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+    }
+    ... on HomeBlocksEditorialCopy {
+      eyebrow
+      title
+      headingLevel
+      body
+    }
+    ... on HomeBlocksEditorialAccordion {
+      intro
+      items {
+        __typename
+        number
+        title
+        summary
+        open
+        details {
+          __typename
+          label
+          text
+        }
+      }
+    }
+    ... on HomeBlocksEditorialRows {
+      title
+      intro
+      items {
+        __typename
+        title
+        text
+      }
+    }
+    ... on HomeBlocksEditorialCta {
+      text
+      link
+    }
+    ... on HomeBlocksEditorialShowcase {
+      eyebrow
+      title
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+      ctaText
+      ctaLink
+      items {
+        __typename
+        title
+        link
+        image
+        imageAlt
+        placeholderLabel
+      }
+    }
+    ... on HomeBlocksEditorialMission {
+      label
+      paragraphs
+      statement
+      image
+      imageAlt
+      placeholderLabel
+    }
   }
 }
 
@@ -239,6 +314,81 @@ fragment AboutParts on About {
       p2
       image
     }
+    ... on AboutBlocksContactForm {
+      bannerImage
+      heading
+      subheading
+    }
+    ... on AboutBlocksEditorialHero {
+      title
+      intro
+      ctaText
+      ctaLink
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+    }
+    ... on AboutBlocksEditorialCopy {
+      eyebrow
+      title
+      headingLevel
+      body
+    }
+    ... on AboutBlocksEditorialAccordion {
+      intro
+      items {
+        __typename
+        number
+        title
+        summary
+        open
+        details {
+          __typename
+          label
+          text
+        }
+      }
+    }
+    ... on AboutBlocksEditorialRows {
+      title
+      intro
+      items {
+        __typename
+        title
+        text
+      }
+    }
+    ... on AboutBlocksEditorialCta {
+      text
+      link
+    }
+    ... on AboutBlocksEditorialShowcase {
+      eyebrow
+      title
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+      ctaText
+      ctaLink
+      items {
+        __typename
+        title
+        link
+        image
+        imageAlt
+        placeholderLabel
+      }
+    }
+    ... on AboutBlocksEditorialMission {
+      label
+      paragraphs
+      statement
+      image
+      imageAlt
+      placeholderLabel
+    }
   }
 }
 
@@ -334,6 +484,81 @@ fragment ServicesParts on Services {
       p2
       image
     }
+    ... on ServicesBlocksContactForm {
+      bannerImage
+      heading
+      subheading
+    }
+    ... on ServicesBlocksEditorialHero {
+      title
+      intro
+      ctaText
+      ctaLink
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+    }
+    ... on ServicesBlocksEditorialCopy {
+      eyebrow
+      title
+      headingLevel
+      body
+    }
+    ... on ServicesBlocksEditorialAccordion {
+      intro
+      items {
+        __typename
+        number
+        title
+        summary
+        open
+        details {
+          __typename
+          label
+          text
+        }
+      }
+    }
+    ... on ServicesBlocksEditorialRows {
+      title
+      intro
+      items {
+        __typename
+        title
+        text
+      }
+    }
+    ... on ServicesBlocksEditorialCta {
+      text
+      link
+    }
+    ... on ServicesBlocksEditorialShowcase {
+      eyebrow
+      title
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+      ctaText
+      ctaLink
+      items {
+        __typename
+        title
+        link
+        image
+        imageAlt
+        placeholderLabel
+      }
+    }
+    ... on ServicesBlocksEditorialMission {
+      label
+      paragraphs
+      statement
+      image
+      imageAlt
+      placeholderLabel
+    }
   }
 }
 
@@ -341,9 +566,170 @@ fragment ContactParts on Contact {
   __typename
   title
   description
-  bannerImage
-  heading
-  subheading
+  blocks {
+    __typename
+    ... on ContactBlocksHomeHero {
+      image
+      topRight {
+        __typename
+        lines
+      }
+      tagline {
+        __typename
+        lines
+      }
+      taglineSub
+    }
+    ... on ContactBlocksHomeAbout {
+      image
+      title
+      description
+      ctaText
+      ctaLink
+    }
+    ... on ContactBlocksAboutHero {
+      title
+    }
+    ... on ContactBlocksBehindName {
+      title
+      p1
+      p2
+      footnote
+    }
+    ... on ContactBlocksBannerImage {
+      image
+      alt
+    }
+    ... on ContactBlocksBio {
+      title
+      image
+      paragraphs
+    }
+    ... on ContactBlocksAwards {
+      title
+      items {
+        __typename
+        year
+        project
+        award
+        link
+      }
+    }
+    ... on ContactBlocksMission {
+      title
+      p1
+      p2
+      quote
+    }
+    ... on ContactBlocksServicesHero {
+      title
+    }
+    ... on ContactBlocksServicesIntro {
+      text
+      image
+    }
+    ... on ContactBlocksServiceGroups {
+      groups {
+        __typename
+        title
+        items {
+          __typename
+          title
+          description
+        }
+      }
+    }
+    ... on ContactBlocksFaq {
+      title
+      image
+      items {
+        __typename
+        question
+        answer
+      }
+    }
+    ... on ContactBlocksWorkProcess {
+      title
+      p1
+      p2
+      image
+    }
+    ... on ContactBlocksContactForm {
+      bannerImage
+      heading
+      subheading
+    }
+    ... on ContactBlocksEditorialHero {
+      title
+      intro
+      ctaText
+      ctaLink
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+    }
+    ... on ContactBlocksEditorialCopy {
+      eyebrow
+      title
+      headingLevel
+      body
+    }
+    ... on ContactBlocksEditorialAccordion {
+      intro
+      items {
+        __typename
+        number
+        title
+        summary
+        open
+        details {
+          __typename
+          label
+          text
+        }
+      }
+    }
+    ... on ContactBlocksEditorialRows {
+      title
+      intro
+      items {
+        __typename
+        title
+        text
+      }
+    }
+    ... on ContactBlocksEditorialCta {
+      text
+      link
+    }
+    ... on ContactBlocksEditorialShowcase {
+      eyebrow
+      title
+      mediaType
+      image
+      imageAlt
+      placeholderLabel
+      ctaText
+      ctaLink
+      items {
+        __typename
+        title
+        link
+        image
+        imageAlt
+        placeholderLabel
+      }
+    }
+    ... on ContactBlocksEditorialMission {
+      label
+      paragraphs
+      statement
+      image
+      imageAlt
+      placeholderLabel
+    }
+  }
 }
 
 fragment LegalParts on Legal {
@@ -454,10 +840,11 @@ fragment TranslationsParts on Translations {
     social
     menu
     letsTalk
-    about
-    projects
-    services
-    contact
+    links {
+      __typename
+      label
+      href
+    }
   }
   footer {
     __typename
@@ -494,6 +881,8 @@ fragment TranslationsParts on Translations {
     success
     error
     turnstileFailed
+    invalidEmail
+    missingFields
   }
   projects {
     __typename

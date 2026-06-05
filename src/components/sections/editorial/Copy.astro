@@ -1,0 +1,19 @@
+---
+interface Props {
+  title?: string;
+  body?: string;
+  eyebrow?: string;
+  headingLevel?: 'h1' | 'h2';
+}
+
+const { title, body, eyebrow, headingLevel = 'h2' } = Astro.props;
+---
+
+<section class="editorial-section">
+  <div class="editorial-shell editorial-copy">
+    {eyebrow && <p class="editorial-eyebrow">{eyebrow}</p>}
+    {title && headingLevel === 'h1' && <h1 class="editorial-heading editorial-heading--page">{title}</h1>}
+    {title && headingLevel !== 'h1' && <h2 class="editorial-heading">{title}</h2>}
+    {body && <p class="editorial-body editorial-copy__body">{body}</p>}
+  </div>
+</section>

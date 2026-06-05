@@ -1,0 +1,52 @@
+---
+interface Detail {
+  label?: string;
+  text?: string;
+}
+
+interface Item {
+  number?: string;
+  title?: string;
+  summary?: string;
+  details?: Detail[];
+  open?: boolean;
+}
+
+interface Props {
+  intro?: string;
+  items?: Item[];
+}
+
+const { intro, items = [] } = Astro.props;
+---
+
+<section class="editorial-section">
+  <div class="editorial-shell">
+    {intro && <p class="editorial-lede editorial-accordion__intro">{intro}</p>}
+    <div class="editorial-accordion">
+      {items.map((item) => (
+        <details class="editorial-accordion__item" open={item.open}>
+          <summary>
+            <span class="editorial-accordion__number">{item.number}</span>
+            <span class="editorial-accordion__title">{item.title}</span>
+            <span class="editorial-accordion__toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="editorial-accordion__panel">
+            {item.summary && <p class="editorial-body">{item.summary}</p>}
+            {item.details && item.details.length > 0 && (
+              <div class="editorial-accordion__details">
+                {item.details.map((detail) => (
+                  <div>
+                    {detail.label && <h3>{detail.label}</h3>}
+                    {detail.text && <p>{detail.text}</p>}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+

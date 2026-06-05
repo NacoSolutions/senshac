@@ -1,25 +1,46 @@
 ---
+// src/pages/[lang]/contact.astro
 import Base from '../../layouts/Base.astro';
+import { getEntry } from 'astro:content';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import BlocksRenderer from '../../components/BlocksRenderer.astro';
 import ContactPage from '../../components/islands/ContactPage.astro';
-import { getContact, getSiteConfigTina, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+import { getContact, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
 import { createIslands } from '../../lib/tina-islands';
 
-const { lang = 'es' } = Astro.params;
-const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-const relativePath = pageRelativePath(lang, 'contact.json');
+const { lang } = Astro.params;
 
-const res = await getContact(relativePath, tinaEnv);
-const siteRes = await getSiteConfigTina('site.json', tinaEnv);
-if (!res.data.contact) {
+const page = await getEntry('pages', `${lang}/contact`);
+
+if (!page) {
   return Astro.redirect('/404');
 }
 
-const tinaData = res.data.contact;
+const { title, description, blocks } = page.data as {
+  title: string;
+  description: string;
+  blocks?: any[];
+};
+
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+
+const relativePath = pageRelativePath(lang, 'contact.json');
+const tinaContact = await getContact(relativePath, tinaEnv);
+
+const tinaContactData = tinaContact.data.contact;
 const islands = createIslands(tinaEnv);
 ---
-<Base title={tinaData.title} description={tinaData.description} lang={lang}>
-  <TinaIsland name="contact" wrapper={islands.contact.wrapper} params={{ relativePath, lang }}>
-    <ContactPage data={tinaData} siteData={siteRes.data.siteConfig} lang={lang} />
-  </TinaIsland>
+
+<Base title={title} description={description} lang={lang!} headerStyle="transparent">
+  {tinaEnv ? (
+    <TinaIsland name="contact" wrapper={islands.contact.wrapper} params={{ relativePath, lang: lang! }} primary>
+      <ContactPage data={tinaContactData} />
+    </TinaIsland>
+  ) : (
+    <main class="min-h-screen">
+      {blocks && blocks.map((block: any, index: number) => (
+        <BlocksRenderer block={block} index={index} parentData={page.data} />
+      ))}
+    </main>
+  )}
 </Base>

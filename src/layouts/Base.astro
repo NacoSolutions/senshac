@@ -71,13 +71,13 @@ const tinaSiteData = tinaSiteRes.data.siteConfig;
       Skip to content
     </a>
     <TinaIsland name="header" wrapper={islands.header.wrapper} params={{ relativePath: translationsPath, lang, headerStyle }}>
-      <HeaderIsland data={tinaTranslationsData} siteData={tinaSiteData} lang={lang} headerStyle={headerStyle} />
+      {tinaTranslationsData && tinaSiteData && <HeaderIsland data={tinaTranslationsData as any} siteData={tinaSiteData as any} lang={lang} headerStyle={headerStyle} />}
     </TinaIsland>
 
     <slot />
 
     <TinaIsland name="footer" wrapper={islands.footer.wrapper} params={{ relativePath: translationsPath, lang }}>
-      <FooterIsland data={tinaTranslationsData} siteData={tinaSiteData} lang={lang} />
+      {tinaTranslationsData && tinaSiteData && <FooterIsland data={tinaTranslationsData as any} siteData={tinaSiteData as any} lang={lang} />}
     </TinaIsland>
 
     <!-- Custom cursor circle -->

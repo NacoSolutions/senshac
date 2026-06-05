@@ -12,6 +12,8 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-{data && data.blocks && data.blocks.map((block: any, index: number) => (
-  <BlocksRenderer block={block} index={index} parentData={data} />
-))}
+<div id="main">
+  {data && data.blocks && data.blocks.map((block: any, index: number) => (
+    <BlocksRenderer block={block} index={index} parentData={data} />
+  ))}
+</div>

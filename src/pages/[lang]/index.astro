@@ -3,8 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import { getEntry } from 'astro:content';
 import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import Hero from '../../components/sections/home/Hero.astro';
-import About from '../../components/sections/home/About.astro';
+import BlocksRenderer from '../../components/BlocksRenderer.astro';
 import HomePage from '../../components/islands/HomePage.astro';
 import { getHome, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
 import { createIslands } from '../../lib/tina-islands';
@@ -17,17 +16,11 @@ if (!page) {
   return Astro.redirect('/404');
 }
 
-const { title, description, headerStyle, hero, about } = page.data as {
+const { title, description, headerStyle, blocks } = page.data as {
   title: string;
   description: string;
   headerStyle: 'default' | 'transparent';
-  hero: {
-    image: string;
-    topRight?: { lines: string[] };
-    tagline?: { lines: string[] };
-    taglineSub?: string;
-  };
-  about: { image?: string; title?: string; description?: string; ctaText?: string; ctaLink?: string };
+  blocks?: any[];
 };
 
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
@@ -44,19 +37,9 @@ const tinaHomeData = tinaHome.data.home;
     </TinaIsland>
   ) : (
     <main id="main">
-      <Hero
-        image={hero.image}
-        topRight={hero.topRight}
-        tagline={hero.tagline}
-        taglineSub={hero.taglineSub}
-      />
-      <About
-        image={about.image}
-        title={about.title}
-        description={about.description}
-        cta={about.ctaText}
-        ctaLink={about.ctaLink}
-      />
+      {blocks && blocks.map((block: any, index: number) => (
+        <BlocksRenderer block={block} index={index} parentData={page.data} />
+      ))}
     </main>
   )}
 </Base>

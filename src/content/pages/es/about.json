@@ -1,71 +1,16 @@
 {
-  "title": "Sobre Nosotros - Sens*Hac",
-  "description": "Estudio de dise\u00f1o de interiores fundado por Ester Cobles, especializado en espacios comerciales, gastron\u00f3micos y de entretenimiento.",
-  "heroImage": "/images/about/senshac-about-behind-the-name.webp",
+  "title": "Estudio - Sens*Hac",
+  "description": "Estudio boutique de interiorismo estratégico para retail, hospitality y wellness.",
   "blocks": [
     {
-      "title": "Ester sense hac*, por favor.",
-      "_template": "aboutHero"
-    },
-    {
-      "title": "Detr\u00e1s del Nombre",
-      "p1": "Ester, tradicionalmente escrito \"Esther\", a menudo se encontraba corrigiendo a otros sobre la ortograf\u00eda poco com\u00fan de su nombre. Este esfuerzo continuo por afirmar su identidad se convirti\u00f3 en una parte definitoria de su sentido del yo.",
-      "p2": "Como una declaraci\u00f3n de su individualidad, Ester eligi\u00f3 nombrar su estudio no con su nombre de pila, sino con las palabras que han llegado a representar su car\u00e1cter a lo largo de los a\u00f1os.",
-      "footnote": "*La contracci\u00f3n fon\u00e9tica sens*hac se refiere a la frase catalana \"sense hac\", que significa \"sin H\".",
-      "_template": "behindName"
-    },
-    {
-      "_template": "bannerImage",
-      "image": "/images/about/senshac-about-behind-the-name.webp",
-      "alt": "Banner image"
-    },
-    {
-      "title": "Bio",
-      "image": "/images/about/senshac-about-bio.webp",
+      "_template": "editorialMission",
+      "label": "Misión",
       "paragraphs": [
-        "Ester Cobles, fundadora de sens*hac, se gradu\u00f3 con honores de la reconocida Escuela de Artes Massana de Barcelona. Su proyecto final, Water: A Reality Check, gan\u00f3 el primer premio en los Premios Arg\u00f3, organizados por la Universitat Aut\u00f2noma de Barcelona. Su proyecto tambi\u00e9n recibi\u00f3 reconocimiento adicional a trav\u00e9s de varias nominaciones y menciones en otros premios estudiantiles.",
-        "Durante su tiempo en La Massana, explor\u00f3 su creatividad, desafiando constantemente las normas establecidas. Desde peque\u00f1a, a Ester le encantaba dibujar espacios y las interacciones de las personas dentro de ellos, inspirada por pintores como Edward Hopper. Sin embargo, su viaje art\u00edstico realmente comenz\u00f3 a finales de sus veinte a\u00f1os, despu\u00e9s de estudiar Ciencias de la Tierra y pasar varios a\u00f1os viviendo en Noruega.",
-        "Con el objetivo de establecer su propia marca y perspectiva en el dise\u00f1o de interiores, sens*hac fue fundado en los \u00faltimos a\u00f1os.",
-        "Ester perfeccion\u00f3 sus habilidades mientras trabajaba en proyectos residenciales en un conocido estudio en Badalona, as\u00ed como a trav\u00e9s de colaboraciones con otros dise\u00f1adores y proyectos independientes.",
-        "Est\u00e1 impulsada por la creencia de que el dise\u00f1o de interiores es un medio para la comunicaci\u00f3n y la expresi\u00f3n. Su car\u00e1cter creativo combinado con su educaci\u00f3n cient\u00edfica previa forman la mezcla perfecta para desarrollar espacios conceptuales, centr\u00e1ndose en entornos donde se desarrolla la vida\u2014espacios para la conexi\u00f3n, la m\u00fasica, el arte y la gastronom\u00eda."
+        "Nuestra misión es proyectar espacios identitarios que traducen la esencia y los valores de tu marca en experiencias memorables diseñadas para perdurar.",
+        "Concebimos cada espacio como el escenario donde tu marca cobra vida, se siente y se experimenta, generando una auténtica conexión con tu cliente ideal. Integramos tus flujos de trabajo y tu estrategia de venta en el entorno para impulsar la rentabilidad en los sectores retail, hospitality y wellness."
       ],
-      "_template": "bio"
-    },
-    {
-      "title": "Premios",
-      "items": [
-        {
-          "year": "2021",
-          "project": "Water: A Reality Check",
-          "award": "1er Premio Premios Arg\u00f3",
-          "link": "https://www.uab.cat/web/sala-de-prensa/detalle-noticia/la-uab-entrega-los-premios-argo-a-proyectos-de-alumnos-de-cfgs-1345667994339.html?noticiaid=1345847780268"
-        },
-        {
-          "year": "2021",
-          "project": "Water: A Reality Check",
-          "award": "Finalista en el 23\u00ba Premio CoDIC",
-          "link": "https://www.codic.org/entrega-dels-23ns-premis-codic/"
-        },
-        {
-          "year": "2021",
-          "project": "Water: A Reality Check",
-          "award": "Menci\u00f3n de Honor de la Generalitat de Catalunya",
-          "link": "https://educacio.gencat.cat/ca/departament/premis-extraordinaris/ensenyaments-artistics-professionals/guardonats-2020-2021/index.html"
-        }
-      ],
-      "_template": "awards"
-    },
-    {
-      "title": "Misi\u00f3n",
-      "p1": "Nuestra misi\u00f3n como estudio es crear experiencias que capturen los valores fundamentales de la marca y perduren en el tiempo.",
-      "p2": "Un dise\u00f1o bien pensado mejora la calidad de vida al proporcionar flujo de trabajo, funcionalidad y comodidad en un espacio. No menos importante, hay un componente emocional en el dise\u00f1o, arraigado en nuestra percepci\u00f3n colectiva de las cosas como sociedad y nuestras propias experiencias individuales. Jugar con todos estos aspectos puede fomentar un sentido de pertenencia para tu audiencia, ya que el dise\u00f1o act\u00faa como una forma de comunicaci\u00f3n y expresi\u00f3n.",
-      "quote": "Vemos cada espacio como un escenario para una narraci\u00f3n de marca inmersiva, profundizando la conexi\u00f3n con la audiencia y elevando el compromiso.",
-      "_template": "mission"
-    },
-    {
-      "_template": "bannerImage",
-      "image": "/images/about/senshac-about-our-mission.webp",
-      "alt": "Mission image"
+      "statement": "TU ESPACIO HABLA POR TI.\nCONVIÉRTELO EN TU\nACTIVO MÁS RENTABLE.",
+      "placeholderLabel": "Retrato del estudio pendiente"
     }
   ]
 }

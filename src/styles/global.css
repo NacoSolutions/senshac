@@ -268,3 +268,329 @@ b, strong {
     line-height: 1;
   }
 }
+
+/* PDF-driven editorial system */
+.editorial-shell {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+}
+
+.editorial-section {
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.editorial-display {
+  max-width: 13ch;
+  margin: 0;
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: clamp(2.75rem, 6.5vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.94;
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+.editorial-heading {
+  max-width: 22ch;
+  margin: 0 0 clamp(2rem, 5vw, 4rem);
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1;
+  text-transform: none;
+  white-space: pre-line;
+}
+
+.editorial-heading--compact {
+  font-size: clamp(1.8rem, 3vw, 3.25rem);
+}
+
+.editorial-heading--page {
+  max-width: 17ch;
+  font-size: clamp(2.75rem, 6vw, 6rem);
+  line-height: 0.94;
+}
+
+.editorial-eyebrow {
+  margin: 0 0 2rem;
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.editorial-lede,
+.editorial-body {
+  margin: 0;
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.editorial-lede {
+  max-width: 31rem;
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+}
+
+.editorial-link {
+  display: inline-block;
+  margin-top: 2rem;
+  border-bottom: 1px solid currentColor;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.editorial-hero {
+  padding-top: clamp(3rem, 7vw, 7rem);
+}
+
+.editorial-hero__grid {
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.editorial-hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.editorial-copy {
+  display: grid;
+  gap: 2rem;
+}
+
+.editorial-copy__body {
+  max-width: 52rem;
+}
+
+.editorial-media {
+  overflow: hidden;
+  width: 100%;
+  background: #dedede;
+}
+
+.editorial-placeholder {
+  display: flex;
+  height: 100%;
+  min-height: 18rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border: 1px solid #b8b8b8;
+  color: #555;
+  font-size: 0.85rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.editorial-placeholder__type {
+  color: #888;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.editorial-accordion__intro {
+  margin-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+
+.editorial-accordion {
+  border-top: 1px solid #111;
+}
+
+.editorial-accordion__item {
+  border-bottom: 1px solid #111;
+}
+
+.editorial-accordion__item summary {
+  display: grid;
+  grid-template-columns: 3rem 1fr 1.5rem;
+  align-items: start;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.editorial-accordion__item summary::-webkit-details-marker {
+  display: none;
+}
+
+.editorial-accordion__number {
+  font-size: 0.85rem;
+}
+
+.editorial-accordion__title {
+  font-size: clamp(1.15rem, 2.3vw, 2rem);
+  font-weight: 500;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.editorial-accordion__toggle::before,
+.editorial-accordion__toggle::after {
+  display: block;
+  width: 1rem;
+  height: 1px;
+  margin-top: 0.55rem;
+  background: currentColor;
+  content: '';
+}
+
+.editorial-accordion__toggle::after {
+  transform: translateY(-1px) rotate(90deg);
+  transition: transform 150ms ease;
+}
+
+details[open] .editorial-accordion__toggle::after {
+  transform: translateY(-1px) rotate(0);
+}
+
+.editorial-accordion__panel {
+  max-width: 53rem;
+  padding: 0 1rem 2.5rem 4rem;
+}
+
+.editorial-accordion__details {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.editorial-accordion__details h3 {
+  margin: 0 0 0.25rem;
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.editorial-accordion__details p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.editorial-rows {
+  border-top: 1px solid #111;
+}
+
+.editorial-rows__intro {
+  max-width: 52rem;
+  margin-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+
+.editorial-rows__item {
+  display: grid;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid #111;
+}
+
+.editorial-rows__item h3,
+.editorial-rows__item p {
+  margin: 0;
+  font-family: 'Sinteca', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.editorial-rows__item h3 {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.editorial-cta {
+  padding-block: 2rem;
+  border-block: 1px solid #111;
+  text-align: center;
+}
+
+.editorial-cta a {
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.editorial-showcase-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.editorial-showcase-card {
+  display: grid;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.editorial-showcase__link {
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.editorial-mission__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.editorial-mission__copy {
+  display: grid;
+  max-width: 48rem;
+  gap: 1.5rem;
+}
+
+.editorial-mission__statement {
+  padding-top: 2rem;
+}
+
+.editorial-mission__statement .editorial-media {
+  margin-top: clamp(3rem, 7vw, 7rem);
+}
+
+@media (min-width: 48rem) {
+  .editorial-hero__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+  }
+
+  .editorial-copy {
+    grid-template-columns: minmax(16rem, 0.7fr) minmax(24rem, 1.3fr);
+    align-items: start;
+  }
+
+  .editorial-copy .editorial-eyebrow {
+    grid-column: 1 / -1;
+  }
+
+  .editorial-rows__item {
+    grid-template-columns: minmax(13rem, 0.7fr) minmax(22rem, 1.3fr);
+    gap: clamp(2rem, 6vw, 7rem);
+  }
+
+  .editorial-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .editorial-mission__grid {
+    grid-template-columns: minmax(9rem, 0.35fr) minmax(28rem, 1.65fr);
+    gap: clamp(3rem, 8vw, 9rem);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .editorial-section {
+    padding-block: 3.5rem;
+  }
+
+  .editorial-accordion__item summary {
+    grid-template-columns: 2rem 1fr 1.25rem;
+  }
+
+  .editorial-accordion__panel {
+    padding-left: 3rem;
+  }
+}

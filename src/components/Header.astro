@@ -18,22 +18,20 @@ const currentPath = Astro.url.pathname;
 const isTransparent = headerStyle === 'transparent';
 
 const t = propTranslations ?? await getTranslations(lang);
-const site = propSiteData ?? await getSiteConfig();
+const site = (propSiteData ?? await getSiteConfig()) as any;
 
-const navItems = [
-  { href: `/${lang}/about`, label: t.nav.about, field: 'about' as const },
-  { href: `/${lang}/projects`, label: t.nav.projects, field: 'projects' as const },
-  { href: `/${lang}/services`, label: t.nav.services, field: 'services' as const },
-  { href: `/${lang}/contact`, label: t.nav.contact, field: 'contact' as const },
-];
+const navItems = (t.nav.links || []).map((item: any) => ({
+  href: item.href,
+  label: item.label,
+}));
 
 // Use social links from site config
 const socialLinks = site.socialLinks;
 
 // Infer languages from locales config
-const languages = site.locales.map((code: string) => ({
+const languages = (site.locales || []).map((code: string | null) => ({
   code,
-  label: code.toUpperCase(),
+  label: code?.toUpperCase() || '',
 }));
 
 const getLocalizedPath = (targetLang: string) => {
@@ -60,8 +58,8 @@ const getLocalizedPath = (targetLang: string) => {
       <a href={`/${lang}/`} class="flex-shrink-0">
         <img
           x-show="isTransparent && !scrolled && !menuOpen"
-          src={site.branding.logoWhite}
-          alt={site.company.name.toLowerCase()}
+          src={site.branding?.logoWhite || ''}
+          alt={site.company?.name?.toLowerCase() || ''}
           class="h-8 w-auto"
           width="173"
           height="32"
@@ -69,8 +67,8 @@ const getLocalizedPath = (targetLang: string) => {
         />
         <img
           x-show="!isTransparent || scrolled || menuOpen"
-          src={site.branding.logo}
-          alt={site.company.name.toLowerCase()}
+          src={site.branding?.logo || ''}
+          alt={site.company?.name?.toLowerCase() || ''}
           class="h-8 w-auto"
           width="173"
           height="32"
@@ -105,7 +103,7 @@ const getLocalizedPath = (targetLang: string) => {
             x-transition:leave-end="opacity-0 scale-95"
             x-cloak
           >
-            {languages.filter(l => l.code !== lang).map((l) => (
+            {languages.filter((l: any) => l.code !== lang).map((l: any) => (
               <a
                 href={getLocalizedPath(l.code)}
                 class="block px-4 py-2 text-sm uppercase text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
@@ -181,14 +179,14 @@ const getLocalizedPath = (targetLang: string) => {
           <div>
             <p class="text-sm text-gray-400 uppercase tracking-wider mb-6" data-tina-field={tinaField(t.nav, 'social')}>{t.nav.social}</p>
             <div class="space-y-0">
-              {socialLinks.map((link, index) => (
+              {socialLinks.map((link: any, index: number) => (
                 <a
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="block py-3 text-lg md:text-xl text-black border-b border-gray-200 hover:text-gray-600 transition-colors"
                 >
-                  <span data-tina-field={tinaField(site.socialLinks, index)}>{link.name}</span>
+                  <span data-tina-field={tinaField(site.socialLinks as any, index)}>{link.name}</span>
                 </a>
               ))}
             </div>
@@ -198,7 +196,7 @@ const getLocalizedPath = (targetLang: string) => {
           <div>
             <p class="text-sm text-gray-400 uppercase tracking-wider mb-6" data-tina-field={tinaField(t.nav, 'menu')}>{t.nav.menu}</p>
             <div class="space-y-0">
-              {navItems.map((item) => (
+              {navItems.map((item: any, index: number) => (
                 <a
                   href={item.href}
                   class:list={[
@@ -206,7 +204,7 @@ const getLocalizedPath = (targetLang: string) => {
                     currentPath.startsWith(item.href) && "font-medium"
                   ]}
                   x-on:click="menuOpen = false"
-                  data-tina-field={tinaField(t.nav, item.field)}
+                  data-tina-field={tinaField(t.nav.links as any, index)}
                 >
                   {item.label}
                 </a>

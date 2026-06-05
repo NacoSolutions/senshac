@@ -1,0 +1,44 @@
+---
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Props {
+  title?: string;
+  intro?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  image?: string;
+  imageAlt?: string;
+  mediaType?: 'image' | 'video';
+  placeholderLabel?: string;
+}
+
+const {
+  title,
+  intro,
+  ctaText,
+  ctaLink,
+  image,
+  imageAlt,
+  mediaType = 'image',
+  placeholderLabel,
+} = Astro.props;
+---
+
+<section class="editorial-section editorial-hero">
+  <div class="editorial-shell editorial-hero__grid">
+    <MediaPlaceholder
+      image={image}
+      alt={imageAlt}
+      kind={mediaType}
+      label={placeholderLabel}
+      aspect="portrait"
+      eager
+    />
+    <div class="editorial-hero__content">
+      <h1 class="editorial-display">{title}</h1>
+      {intro && <p class="editorial-lede">{intro}</p>}
+      {ctaText && ctaLink && <a class="editorial-link" href={ctaLink}>+ {ctaText}</a>}
+    </div>
+  </div>
+</section>
+

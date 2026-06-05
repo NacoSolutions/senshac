@@ -1,0 +1,30 @@
+---
+interface Item {
+  title?: string;
+  text?: string;
+}
+
+interface Props {
+  title?: string;
+  intro?: string;
+  items?: Item[];
+}
+
+const { title, intro, items = [] } = Astro.props;
+---
+
+<section class="editorial-section">
+  <div class="editorial-shell">
+    {title && <h2 class="editorial-heading editorial-heading--compact">{title}</h2>}
+    {intro && <p class="editorial-body editorial-rows__intro">{intro}</p>}
+    <div class="editorial-rows">
+      {items.map((item) => (
+        <article class="editorial-rows__item">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
