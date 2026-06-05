@@ -1,73 +1,112 @@
 {
   "title": "Servicios - Sens*Hac",
-  "description": "Servicios de diseño de interiores: desarrollo de concepto, identidad de marca, modelado 3D, cumplimiento normativo y coordinación de proyectos.",
-  "hero": {
-    "title": "Creamos interiores personalizados y únicos que generan impacto medible"
-  },
-  "intro": {
-    "text": "Colaboramos estrechamente con propietarios de negocios para construir una imagen de marca cohesiva que alinea producto, percepción y experiencia del cliente.",
-    "image": "/images/services/hero.webp"
-  },
-  "serviceGroups": [
+  "description": "Servicios de dise\u00f1o de interiores: desarrollo de concepto, identidad de marca, modelado 3D, cumplimiento normativo y coordinaci\u00f3n de proyectos.",
+  "blocks": [
     {
-      "title": "SERVICIOS DE DISEÑO",
-      "items": [
-        { "title": "Concepto de Diseño y Estrategia", "description": "Desarrollamos estrategias que se convierten en ventas, fidelizan clientes y apoyan la escalabilidad." },
-        { "title": "Soluciones de Diseño a Medida", "description": "Ofrecemos soluciones de diseño personalizadas que satisfacen tus necesidades específicas." },
-        { "title": "Marca e Identidad Visual", "description": "Creamos branding cohesivo e identidad visual para mejorar tu presencia en el mercado." },
-        { "title": "Red de Profesionales del Sector", "description": "Red conocida de profesionales cualificados capaces de ejecutar tus diseños personalizados." },
-        { "title": "Modelado 3D", "description": "Proporcionamos representaciones 3D detalladas de tu espacio para mejor visualización." },
-        { "title": "Opciones de FF&E", "description": "Acceso a una amplia gama de mobiliario, accesorios y equipamiento." }
+      "title": "Creamos interiores personalizados y \u00fanicos que generan impacto medible",
+      "_template": "servicesHero"
+    },
+    {
+      "text": "Colaboramos estrechamente con propietarios de negocios para construir una imagen de marca cohesiva que alinea producto, percepci\u00f3n y experiencia del cliente.",
+      "image": "/images/services/hero.webp",
+      "_template": "servicesIntro"
+    },
+    {
+      "_template": "serviceGroups",
+      "groups": [
+        {
+          "title": "SERVICIOS DE DISE\u00d1O",
+          "items": [
+            {
+              "title": "Concepto de Dise\u00f1o y Estrategia",
+              "description": "Desarrollamos estrategias que se convierten en ventas, fidelizan clientes y apoyan la escalabilidad."
+            },
+            {
+              "title": "Soluciones de Dise\u00f1o a Medida",
+              "description": "Ofrecemos soluciones de dise\u00f1o personalizadas que satisfacen tus necesidades espec\u00edficas."
+            },
+            {
+              "title": "Marca e Identidad Visual",
+              "description": "Creamos branding cohesivo e identidad visual para mejorar tu presencia en el mercado."
+            },
+            {
+              "title": "Red de Profesionales del Sector",
+              "description": "Red conocida de profesionales cualificados capaces de ejecutar tus dise\u00f1os personalizados."
+            },
+            {
+              "title": "Modelado 3D",
+              "description": "Proporcionamos representaciones 3D detalladas de tu espacio para mejor visualizaci\u00f3n."
+            },
+            {
+              "title": "Opciones de FF&E",
+              "description": "Acceso a una amplia gama de mobiliario, accesorios y equipamiento."
+            }
+          ]
+        },
+        {
+          "title": "SERVICIOS DE EJECUCI\u00d3N",
+          "items": [
+            {
+              "title": "Estudio de Cumplimiento Normativo",
+              "description": "Aplicamos todas las regulaciones requeridas para tu proyecto de forma integrada en el dise\u00f1o."
+            },
+            {
+              "title": "Desarrollo de Presupuesto",
+              "description": "Creamos presupuestos detallados para garantizar transparencia financiera."
+            },
+            {
+              "title": "Documentaci\u00f3n y Planos",
+              "description": "Preparamos toda la documentaci\u00f3n, dibujos y planos necesarios para el proceso de ejecuci\u00f3n."
+            },
+            {
+              "title": "Coordinaci\u00f3n y Supervisi\u00f3n",
+              "description": "Supervisamos y coordinamos a todas las partes involucradas en el proceso de ejecuci\u00f3n para una entrega sin problemas."
+            }
+          ]
+        }
       ]
     },
     {
-      "title": "SERVICIOS DE EJECUCIÓN",
+      "title": "FAQ'S",
+      "image": "/images/services/faqs.webp",
       "items": [
-        { "title": "Estudio de Cumplimiento Normativo", "description": "Aplicamos todas las regulaciones requeridas para tu proyecto de forma integrada en el diseño." },
-        { "title": "Desarrollo de Presupuesto", "description": "Creamos presupuestos detallados para garantizar transparencia financiera." },
-        { "title": "Documentación y Planos", "description": "Preparamos toda la documentación, dibujos y planos necesarios para el proceso de ejecución." },
-        { "title": "Coordinación y Supervisión", "description": "Supervisamos y coordinamos a todas las partes involucradas en el proceso de ejecución para una entrega sin problemas." }
-      ]
+        {
+          "question": "Tengo un proyecto en mente, \u00bfpuedo programar una consulta gratuita?",
+          "answer": "\u00a1Por supuesto! Tu primera consulta es gratuita por una raz\u00f3n. Entendemos que probablemente tengas preguntas, y esta reuni\u00f3n es una oportunidad para que obtengamos una imagen clara de tus necesidades y expectativas para el proyecto, as\u00ed como para resolver cualquier duda que puedas tener."
+        },
+        {
+          "question": "\u00bfCu\u00e1ndo deber\u00eda contratar servicios de dise\u00f1o de interiores?",
+          "answer": "Cuanto antes, mejor. El dise\u00f1o de interiores forma la base del concepto creativo, guiando todas las decisiones de ejecuci\u00f3n. Como elemento fundamental que impulsa el proyecto, el dise\u00f1o del espacio requiere colaboraci\u00f3n con todas las partes involucradas desde el principio."
+        },
+        {
+          "question": "\u00bfOfrec\u00e9is servicios m\u00e1s all\u00e1 del dise\u00f1o de interiores?",
+          "answer": "Trabajamos estrechamente con colaboradores externos, incluyendo estudios de arquitectura, empresas de ingenier\u00eda para licencias, dise\u00f1adores gr\u00e1ficos y especialistas en comunicaci\u00f3n y marketing."
+        },
+        {
+          "question": "\u00bfCu\u00e1nto tiempo se tarda en completar un proyecto de dise\u00f1o de interiores?",
+          "answer": "Desarrollar un concepto de dise\u00f1o suele llevar de 1 a 3 meses, dependiendo del alcance, la escala y la capacidad de respuesta del cliente. Para la fase de ejecuci\u00f3n, el plazo depende principalmente de la complejidad del proyecto. Elaboraremos un cronograma basado en todas las consideraciones del proyecto. Si tienes una fecha l\u00edmite espec\u00edfica, d\u00ednoslo para que podamos planificar en consecuencia."
+        },
+        {
+          "question": "\u00bfC\u00f3mo es la estructura de honorarios?",
+          "answer": "Somos un estudio basado en servicios y nos centramos en el valor que aportamos al cliente. Nuestros honorarios no est\u00e1n vinculados a los costes de construcci\u00f3n o materiales. Los honorarios de coordinaci\u00f3n y supervisi\u00f3n son independientes y est\u00e1n claramente detallados en el contrato para garantizar transparencia presupuestaria."
+        },
+        {
+          "question": "\u00bfCon qu\u00e9 proveedores trabaj\u00e1is? \u00bfPuedo comprar mis propios materiales?",
+          "answer": "Como parte de nuestro servicio, ofrecemos una amplia gama de opciones. Recomendamos proveedores bas\u00e1ndonos en calidad, servicio postventa y consideraciones presupuestarias. Para garantizar sostenibilidad, tiempos de entrega eficientes y servicio receptivo, priorizamos trabajar con empresas nacionales. Gestionar todos los aspectos log\u00edsticos internamente es esencial para cumplir plazos y prevenir errores en escalado o calidad. Este enfoque ayuda a nuestros clientes a evitar errores costosos y elimina la frustraci\u00f3n de gastos inesperados. Por lo tanto, cuando optas por el paquete de servicio completo, gestionamos todas las compras para garantizar un proceso sin problemas."
+        },
+        {
+          "question": "\u00bfQu\u00e9 pasa si solo estoy interesado en desarrollar un concepto de dise\u00f1o?",
+          "answer": "Aunque muchos clientes prefieren la comodidad de un paquete de servicio completo que incluye tanto dise\u00f1o como ejecuci\u00f3n, tambi\u00e9n ofrecemos la flexibilidad de desarrollar exclusivamente un concepto de dise\u00f1o."
+        }
+      ],
+      "_template": "faq"
+    },
+    {
+      "title": "PROCESO DE TRABAJO",
+      "p1": "Al inicio de un proyecto, comenzamos creando un estudio de caso que examina el contexto, las referencias disponibles y los escenarios potenciales. Este m\u00e9todo nos permite establecer una estrategia bien definida y dise\u00f1ar un concepto atractivo que fusiona la marca con el espacio y las tendencias actuales del mercado. A medida que avanzamos hacia la fase de dise\u00f1o, nos enfocamos en aportar soluciones viables, junto con materiales duraderos y sostenibles, para garantizar resultados pr\u00e1cticos y duraderos para cada proyecto.",
+      "p2": "Por lo tanto, tratamos el dise\u00f1o de interiores como un elemento fundamental en el complejo proceso creativo y ejecutivo. Al colaborar con una amplia gama de profesionales\u2014desde arquitectos y t\u00e9cnicos hasta artesanos y oficios\u2014garantizamos que cada detalle se alinee con nuestra visi\u00f3n y objetivos unificados. Este proceso exhaustivo garantiza un resultado cohesivo que integra todos los elementos, creando una experiencia de marca valiosa. Nuestro enfoque siempre est\u00e1 en fomentar conexiones s\u00f3lidas con tu p\u00fablico objetivo, generar inter\u00e9s y maximizar la rentabilidad de tu negocio.",
+      "image": "/images/services/work-process.webp",
+      "_template": "workProcess"
     }
-  ],
-  "faq": {
-    "title": "FAQ'S",
-    "image": "/images/services/faqs.webp",
-    "items": [
-      {
-        "question": "Tengo un proyecto en mente, ¿puedo programar una consulta gratuita?",
-        "answer": "¡Por supuesto! Tu primera consulta es gratuita por una razón. Entendemos que probablemente tengas preguntas, y esta reunión es una oportunidad para que obtengamos una imagen clara de tus necesidades y expectativas para el proyecto, así como para resolver cualquier duda que puedas tener."
-      },
-      {
-        "question": "¿Cuándo debería contratar servicios de diseño de interiores?",
-        "answer": "Cuanto antes, mejor. El diseño de interiores forma la base del concepto creativo, guiando todas las decisiones de ejecución. Como elemento fundamental que impulsa el proyecto, el diseño del espacio requiere colaboración con todas las partes involucradas desde el principio."
-      },
-      {
-        "question": "¿Ofrecéis servicios más allá del diseño de interiores?",
-        "answer": "Trabajamos estrechamente con colaboradores externos, incluyendo estudios de arquitectura, empresas de ingeniería para licencias, diseñadores gráficos y especialistas en comunicación y marketing."
-      },
-      {
-        "question": "¿Cuánto tiempo se tarda en completar un proyecto de diseño de interiores?",
-        "answer": "Desarrollar un concepto de diseño suele llevar de 1 a 3 meses, dependiendo del alcance, la escala y la capacidad de respuesta del cliente. Para la fase de ejecución, el plazo depende principalmente de la complejidad del proyecto. Elaboraremos un cronograma basado en todas las consideraciones del proyecto. Si tienes una fecha límite específica, dínoslo para que podamos planificar en consecuencia."
-      },
-      {
-        "question": "¿Cómo es la estructura de honorarios?",
-        "answer": "Somos un estudio basado en servicios y nos centramos en el valor que aportamos al cliente. Nuestros honorarios no están vinculados a los costes de construcción o materiales. Los honorarios de coordinación y supervisión son independientes y están claramente detallados en el contrato para garantizar transparencia presupuestaria."
-      },
-      {
-        "question": "¿Con qué proveedores trabajáis? ¿Puedo comprar mis propios materiales?",
-        "answer": "Como parte de nuestro servicio, ofrecemos una amplia gama de opciones. Recomendamos proveedores basándonos en calidad, servicio postventa y consideraciones presupuestarias. Para garantizar sostenibilidad, tiempos de entrega eficientes y servicio receptivo, priorizamos trabajar con empresas nacionales. Gestionar todos los aspectos logísticos internamente es esencial para cumplir plazos y prevenir errores en escalado o calidad. Este enfoque ayuda a nuestros clientes a evitar errores costosos y elimina la frustración de gastos inesperados. Por lo tanto, cuando optas por el paquete de servicio completo, gestionamos todas las compras para garantizar un proceso sin problemas."
-      },
-      {
-        "question": "¿Qué pasa si solo estoy interesado en desarrollar un concepto de diseño?",
-        "answer": "Aunque muchos clientes prefieren la comodidad de un paquete de servicio completo que incluye tanto diseño como ejecución, también ofrecemos la flexibilidad de desarrollar exclusivamente un concepto de diseño."
-      }
-    ]
-  },
-  "workProcess": {
-    "title": "PROCESO DE TRABAJO",
-    "p1": "Al inicio de un proyecto, comenzamos creando un estudio de caso que examina el contexto, las referencias disponibles y los escenarios potenciales. Este método nos permite establecer una estrategia bien definida y diseñar un concepto atractivo que fusiona la marca con el espacio y las tendencias actuales del mercado. A medida que avanzamos hacia la fase de diseño, nos enfocamos en aportar soluciones viables, junto con materiales duraderos y sostenibles, para garantizar resultados prácticos y duraderos para cada proyecto.",
-    "p2": "Por lo tanto, tratamos el diseño de interiores como un elemento fundamental en el complejo proceso creativo y ejecutivo. Al colaborar con una amplia gama de profesionales—desde arquitectos y técnicos hasta artesanos y oficios—garantizamos que cada detalle se alinee con nuestra visión y objetivos unificados. Este proceso exhaustivo garantiza un resultado cohesivo que integra todos los elementos, creando una experiencia de marca valiosa. Nuestro enfoque siempre está en fomentar conexiones sólidas con tu público objetivo, generar interés y maximizar la rentabilidad de tu negocio.",
-    "image": "/images/services/work-process.webp"
-  }
+  ]
 }

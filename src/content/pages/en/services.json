@@ -1,73 +1,112 @@
 {
   "title": "Services - Sens*Hac",
   "description": "Interior design services: concept development, brand identity, 3D modeling, regulatory compliance, and project coordination.",
-  "hero": {
-    "title": "We craft tailored, one-of-a-kind interiors that deliver measurable impact"
-  },
-  "intro": {
-    "text": "Partnering closely with business owners, we build a cohesive brand image that aligns product, perception, and customer experience.",
-    "image": "/images/services/hero.webp"
-  },
-  "serviceGroups": [
+  "blocks": [
     {
-      "title": "DESIGN SERVICES",
-      "items": [
-        { "title": "Design Concept & Strategy", "description": "Develop strategies that convert into sales, build customer loyalty, and support scalability." },
-        { "title": "Bespoke Design Solutions", "description": "Offer tailored design solutions that meet your specific needs." },
-        { "title": "Brand & Visual Identity", "description": "Create cohesive branding and visual identity to enhance market presence." },
-        { "title": "Industry Professionals Network", "description": "Known network of skilled professionals capable of executing your customized designs." },
-        { "title": "3D Modeling", "description": "Provide detailed 3D representations of your space for better visualization." },
-        { "title": "FF&E Options", "description": "Access to a wide range of furniture, fixtures, and equipment." }
+      "title": "We craft tailored, one-of-a-kind interiors that deliver measurable impact",
+      "_template": "servicesHero"
+    },
+    {
+      "text": "Partnering closely with business owners, we build a cohesive brand image that aligns product, perception, and customer experience.",
+      "image": "/images/services/hero.webp",
+      "_template": "servicesIntro"
+    },
+    {
+      "_template": "serviceGroups",
+      "groups": [
+        {
+          "title": "DESIGN SERVICES",
+          "items": [
+            {
+              "title": "Design Concept & Strategy",
+              "description": "Develop strategies that convert into sales, build customer loyalty, and support scalability."
+            },
+            {
+              "title": "Bespoke Design Solutions",
+              "description": "Offer tailored design solutions that meet your specific needs."
+            },
+            {
+              "title": "Brand & Visual Identity",
+              "description": "Create cohesive branding and visual identity to enhance market presence."
+            },
+            {
+              "title": "Industry Professionals Network",
+              "description": "Known network of skilled professionals capable of executing your customized designs."
+            },
+            {
+              "title": "3D Modeling",
+              "description": "Provide detailed 3D representations of your space for better visualization."
+            },
+            {
+              "title": "FF&E Options",
+              "description": "Access to a wide range of furniture, fixtures, and equipment."
+            }
+          ]
+        },
+        {
+          "title": "EXECUTION SERVICES",
+          "items": [
+            {
+              "title": "Regulatory Compliance Study",
+              "description": "Apply all the required regulations for your project seamlessly into the design."
+            },
+            {
+              "title": "Budget Development",
+              "description": "Create detailed budgets to ensure financial transparency."
+            },
+            {
+              "title": "Documentation and Plans",
+              "description": "Prepare all necessary documentation, drawings, and plans for the execution process."
+            },
+            {
+              "title": "Coordination and Supervision",
+              "description": "Oversee and coordinate all parties involved in the execution process for seamless delivery."
+            }
+          ]
+        }
       ]
     },
     {
-      "title": "EXECUTION SERVICES",
+      "title": "FAQ'S",
+      "image": "/images/services/faqs.webp",
       "items": [
-        { "title": "Regulatory Compliance Study", "description": "Apply all the required regulations for your project seamlessly into the design." },
-        { "title": "Budget Development", "description": "Create detailed budgets to ensure financial transparency." },
-        { "title": "Documentation and Plans", "description": "Prepare all necessary documentation, drawings, and plans for the execution process." },
-        { "title": "Coordination and Supervision", "description": "Oversee and coordinate all parties involved in the execution process for seamless delivery." }
-      ]
+        {
+          "question": "I have a project in mind, can I schedule a free consultation?",
+          "answer": "Absolutely! Your first consultation is free for a reason. We understand you likely have questions, and this meeting is an opportunity for us to get a clear picture of your needs and expectations for the project, as well as to address any doubts you may have."
+        },
+        {
+          "question": "When should I hire interior design services?",
+          "answer": "The earlier, the better. Interior design forms the foundation of the creative concept, guiding all execution decisions. As the pivotal element driving the project, the design of the space requires collaboration with all involved parties from the outset."
+        },
+        {
+          "question": "Do you offer services beyond interior design?",
+          "answer": "We work tightly with external collaborators, including architectural firms, engineering companies for licensing, graphic designers, and communication and marketing specialists."
+        },
+        {
+          "question": "How long does it take to complete an interior design project?",
+          "answer": "Developing a design concept usually takes 1 to 3 months, depending on the scope, scale, and client responsiveness. For the execution phase, the timeline depends primarily on the project's complexity. We will elaborate a timeline based on all the project considerations. If you have a specific deadline, let us know so we can plan accordingly."
+        },
+        {
+          "question": "How is the fee structure?",
+          "answer": "We are a service-based studio and we focus on the value we bring to the client. Our fees are not linked to construction or material costs. Coordination and supervision fees are independent and clearly outlined in the agreement contract to ensure budget transparency."
+        },
+        {
+          "question": "What providers do you work with? Can I purchase my own materials?",
+          "answer": "As part of our service, we offer a wide range of options. We recommend providers based on quality, after-sales support, and budget considerations. To ensure sustainability, efficient delivery times, and responsive service, we prioritize working with national companies. Managing all logistical aspects internally is essential for meeting deadlines and preventing errors in scaling or quality. This approach helps our clients to avoid costly mistakes and eliminates the frustration of unexpected expenses. Therefore, when you opt for the full-service package, we handle all purchases to ensure a seamless process."
+        },
+        {
+          "question": "What if I am just interested in developing a design concept?",
+          "answer": "While many clients prefer the convenience of a full-service package that includes both design and execution, we also offer the flexibility to develop exclusively a design concept."
+        }
+      ],
+      "_template": "faq"
+    },
+    {
+      "title": "WORK PROCESS",
+      "p1": "At the start of a project, we begin by creating a case study that examines the context, available references, and potential scenarios. This method allows us to establish a well-defined strategy and devise an engaging concept that blends the brand with the space and current market trends. As we move into the design phase, we focus on bringing feasible solutions, along with durable and sustainable materials, to ensure practical, lasting results for each project.",
+      "p2": "Therefore, we treat interior design as a pivotal element in the complex creative and executive process. By collaborating with a wide range of professionals\u2014from architects and technicians to artisans and craftsmen \u2014 we ensure that every detail aligns with our unified vision and objectives. This thorough process guarantees a cohesive outcome that integrates all elements, creating a valuable brand experience. Our focus is always on fostering strong connections with your target audience, driving interest, and maximizing profitability for your business.",
+      "image": "/images/services/work-process.webp",
+      "_template": "workProcess"
     }
-  ],
-  "faq": {
-    "title": "FAQ'S",
-    "image": "/images/services/faqs.webp",
-    "items": [
-      {
-        "question": "I have a project in mind, can I schedule a free consultation?",
-        "answer": "Absolutely! Your first consultation is free for a reason. We understand you likely have questions, and this meeting is an opportunity for us to get a clear picture of your needs and expectations for the project, as well as to address any doubts you may have."
-      },
-      {
-        "question": "When should I hire interior design services?",
-        "answer": "The earlier, the better. Interior design forms the foundation of the creative concept, guiding all execution decisions. As the pivotal element driving the project, the design of the space requires collaboration with all involved parties from the outset."
-      },
-      {
-        "question": "Do you offer services beyond interior design?",
-        "answer": "We work tightly with external collaborators, including architectural firms, engineering companies for licensing, graphic designers, and communication and marketing specialists."
-      },
-      {
-        "question": "How long does it take to complete an interior design project?",
-        "answer": "Developing a design concept usually takes 1 to 3 months, depending on the scope, scale, and client responsiveness. For the execution phase, the timeline depends primarily on the project's complexity. We will elaborate a timeline based on all the project considerations. If you have a specific deadline, let us know so we can plan accordingly."
-      },
-      {
-        "question": "How is the fee structure?",
-        "answer": "We are a service-based studio and we focus on the value we bring to the client. Our fees are not linked to construction or material costs. Coordination and supervision fees are independent and clearly outlined in the agreement contract to ensure budget transparency."
-      },
-      {
-        "question": "What providers do you work with? Can I purchase my own materials?",
-        "answer": "As part of our service, we offer a wide range of options. We recommend providers based on quality, after-sales support, and budget considerations. To ensure sustainability, efficient delivery times, and responsive service, we prioritize working with national companies. Managing all logistical aspects internally is essential for meeting deadlines and preventing errors in scaling or quality. This approach helps our clients to avoid costly mistakes and eliminates the frustration of unexpected expenses. Therefore, when you opt for the full-service package, we handle all purchases to ensure a seamless process."
-      },
-      {
-        "question": "What if I am just interested in developing a design concept?",
-        "answer": "While many clients prefer the convenience of a full-service package that includes both design and execution, we also offer the flexibility to develop exclusively a design concept."
-      }
-    ]
-  },
-  "workProcess": {
-    "title": "WORK PROCESS",
-    "p1": "At the start of a project, we begin by creating a case study that examines the context, available references, and potential scenarios. This method allows us to establish a well-defined strategy and devise an engaging concept that blends the brand with the space and current market trends. As we move into the design phase, we focus on bringing feasible solutions, along with durable and sustainable materials, to ensure practical, lasting results for each project.",
-    "p2": "Therefore, we treat interior design as a pivotal element in the complex creative and executive process. By collaborating with a wide range of professionals—from architects and technicians to artisans and craftsmen — we ensure that every detail aligns with our unified vision and objectives. This thorough process guarantees a cohesive outcome that integrates all elements, creating a valuable brand experience. Our focus is always on fostering strong connections with your target audience, driving interest, and maximizing profitability for your business.",
-    "image": "/images/services/work-process.webp"
-  }
+  ]
 }

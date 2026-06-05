@@ -553,6 +553,7 @@ type ServicesConnection implements Connection {
 type Contact implements Node & Document {
   title: String!
   description: String!
+  bannerImage: String
   heading: String!
   subheading: String!
   id: ID!
@@ -563,6 +564,7 @@ type Contact implements Node & Document {
 input ContactFilter {
   title: StringFilter
   description: StringFilter
+  bannerImage: ImageFilter
   heading: StringFilter
   subheading: StringFilter
 }
@@ -873,22 +875,25 @@ type TranslationsNav {
   contact: String
 }
 
+type TranslationsFooterLinks {
+  label: String!
+  href: String!
+}
+
 type TranslationsFooter {
   privacy: String
   legal: String
+  links: [TranslationsFooterLinks]
 }
 
 type TranslationsContactFormProjectTypes {
-  commercial: String
-  restaurant: String
-  entertainment: String
-  other: String
+  value: String!
+  label: String!
 }
 
 type TranslationsContactFormServiceTypes {
-  fullPackage: String
-  concept: String
-  unsure: String
+  value: String!
+  label: String!
 }
 
 type TranslationsContactForm {
@@ -897,9 +902,9 @@ type TranslationsContactForm {
   email: String
   phone: String
   projectType: String
-  projectTypes: TranslationsContactFormProjectTypes
+  projectTypes: [TranslationsContactFormProjectTypes]
   serviceType: String
-  serviceTypes: TranslationsContactFormServiceTypes
+  serviceTypes: [TranslationsContactFormServiceTypes]
   message: String
   privacy: String
   submit: String
@@ -946,22 +951,25 @@ input TranslationsNavFilter {
   contact: StringFilter
 }
 
+input TranslationsFooterLinksFilter {
+  label: StringFilter
+  href: StringFilter
+}
+
 input TranslationsFooterFilter {
   privacy: StringFilter
   legal: StringFilter
+  links: TranslationsFooterLinksFilter
 }
 
 input TranslationsContactFormProjectTypesFilter {
-  commercial: StringFilter
-  restaurant: StringFilter
-  entertainment: StringFilter
-  other: StringFilter
+  value: StringFilter
+  label: StringFilter
 }
 
 input TranslationsContactFormServiceTypesFilter {
-  fullPackage: StringFilter
-  concept: StringFilter
-  unsure: StringFilter
+  value: StringFilter
+  label: StringFilter
 }
 
 input TranslationsContactFormFilter {
@@ -1253,6 +1261,7 @@ input ServicesMutation {
 input ContactMutation {
   title: String
   description: String
+  bannerImage: String
   heading: String
   subheading: String
 }
@@ -1381,22 +1390,25 @@ input TranslationsNavMutation {
   contact: String
 }
 
+input TranslationsFooterLinksMutation {
+  label: String
+  href: String
+}
+
 input TranslationsFooterMutation {
   privacy: String
   legal: String
+  links: [TranslationsFooterLinksMutation]
 }
 
 input TranslationsContactFormProjectTypesMutation {
-  commercial: String
-  restaurant: String
-  entertainment: String
-  other: String
+  value: String
+  label: String
 }
 
 input TranslationsContactFormServiceTypesMutation {
-  fullPackage: String
-  concept: String
-  unsure: String
+  value: String
+  label: String
 }
 
 input TranslationsContactFormMutation {
@@ -1405,9 +1417,9 @@ input TranslationsContactFormMutation {
   email: String
   phone: String
   projectType: String
-  projectTypes: TranslationsContactFormProjectTypesMutation
+  projectTypes: [TranslationsContactFormProjectTypesMutation]
   serviceType: String
-  serviceTypes: TranslationsContactFormServiceTypesMutation
+  serviceTypes: [TranslationsContactFormServiceTypesMutation]
   message: String
   privacy: String
   submit: String

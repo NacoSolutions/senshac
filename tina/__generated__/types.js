@@ -179,6 +179,7 @@ export const ContactPartsFragmentDoc = gql`
   __typename
   title
   description
+  bannerImage
   heading
   subheading
 }
@@ -303,6 +304,11 @@ export const TranslationsPartsFragmentDoc = gql`
     __typename
     privacy
     legal
+    links {
+      __typename
+      label
+      href
+    }
   }
   contactForm {
     __typename
@@ -313,17 +319,14 @@ export const TranslationsPartsFragmentDoc = gql`
     projectType
     projectTypes {
       __typename
-      commercial
-      restaurant
-      entertainment
-      other
+      value
+      label
     }
     serviceType
     serviceTypes {
       __typename
-      fullPackage
-      concept
-      unsure
+      value
+      label
     }
     message
     privacy
@@ -879,7 +882,7 @@ const generateRequester = (client) => {
 export const ExperimentalGetTinaClient = () => getSdk(
   generateRequester(
     createClient({
-      url: "https://content.tinajs.io/2.4/content/7a1540b8-e9a1-493f-8cc5-83d85b2c335d/github/main",
+      url: "http://localhost:4001/graphql",
       queries
     })
   )
