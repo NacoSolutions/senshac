@@ -1,0 +1,14 @@
+id: pdf-editorial-redesign
+title: PDF editorial redesign
+seed: senshac-be3e
+status: done
+createdAt: "2026-06-05T10:02:26.546Z"
+updatedAt: "2026-06-05T10:16:31.349Z"
+completedAt: "2026-06-05T10:16:31.348Z"
+completionSummary: Implemented localized PDF-driven Home, Method, and Studio layouts with Tina-editable editorial blocks, native accordions, placeholder media, stable routes, regenerated schema, and desktop/mobile smoke checks.
+summary: Rebuild Home, Method, and Studio from WEB.pdf while preserving Tina visual editing and using media placeholders.
+steps:
+  - Add reusable editorial Tina blocks and Astro renderers
+  - Migrate ES, CA, and EN Home/Services/About content to the new blocks
+  - Rename visible navigation to Studio, Work, and Method without changing URLs
+  - Regenerate Tina artifacts and verify desktop/mobile rendering
