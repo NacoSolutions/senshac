@@ -25,20 +25,22 @@ const {
 ---
 
 <section class="editorial-section editorial-hero">
-  <div class="editorial-shell editorial-hero__grid">
+  <div class="editorial-hero__media">
     <MediaPlaceholder
       image={image}
       alt={imageAlt}
       kind={mediaType}
       label={placeholderLabel}
-      aspect="portrait"
+      aspect="wide"
       eager
     />
-    <div class="editorial-hero__content">
+  </div>
+  <div class="editorial-hero__shade" aria-hidden="true"></div>
+  <div class="editorial-shell editorial-hero__content">
+    <div>
       <h1 class="editorial-display">{title}</h1>
       {intro && <p class="editorial-lede">{intro}</p>}
       {ctaText && ctaLink && <a class="editorial-link" href={ctaLink}>+ {ctaText}</a>}
     </div>
   </div>
 </section>
-

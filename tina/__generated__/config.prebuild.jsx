@@ -624,7 +624,7 @@ var translationFields = [
         },
         fields: [
           { name: "label", label: "Label", type: "string" },
-          { name: "href", label: "URL Path (include lang prefix if needed, e.g. /es/about)", type: "string" }
+          { name: "href", label: "URL Path (include lang prefix if needed, e.g. /es/studio)", type: "string" }
         ]
       }
     ]
@@ -646,7 +646,7 @@ var translationFields = [
         },
         fields: [
           { name: "label", label: "Label", type: "string" },
-          { name: "href", label: "URL Path (include lang prefix if needed, e.g. /es/about)", type: "string" }
+          { name: "href", label: "URL Path (include lang prefix if needed, e.g. /es/studio)", type: "string" }
         ]
       }
     ]
@@ -771,26 +771,26 @@ var config_default = defineConfig({
       },
       {
         name: "about",
-        label: "Pages / About",
+        label: "Pages / Studio",
         path: "src/content/pages",
         format: "json",
         match: { include: "*/about" },
         fields: aboutPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
-          router: ({ document }) => `/${localeFromDocument(document)}/about`
+          router: ({ document }) => `/${localeFromDocument(document)}/studio`
         }
       },
       {
         name: "services",
-        label: "Pages / Services",
+        label: "Pages / Methods",
         path: "src/content/pages",
         format: "json",
         match: { include: "*/services" },
         fields: servicesPageFields,
         ui: {
           allowedActions: { create: false, delete: false },
-          router: ({ document }) => `/${localeFromDocument(document)}/services`
+          router: ({ document }) => `/${localeFromDocument(document)}/methods`
         }
       },
       {
@@ -828,7 +828,7 @@ var config_default = defineConfig({
         format: "json",
         fields: projectFields,
         ui: {
-          router: ({ document }) => `/${localeFromDocument(document)}/projects/${document._sys.filename}`,
+          router: ({ document }) => `/${localeFromDocument(document)}/works/${document._sys.filename}`,
           filename: {
             slugify: (values) => values?.slug || values?.title?.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "untitled"
           }

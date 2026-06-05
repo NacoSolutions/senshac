@@ -1,14 +1,14 @@
 {
   "title": "Sens*Hac - Estudio de Interiorismo Estratégico",
   "description": "Diseñamos espacios con identidad de marca que elevan el valor y la rentabilidad de tu negocio.",
-  "headerStyle": "default",
+  "headerStyle": "transparent",
   "blocks": [
     {
       "_template": "editorialHero",
       "title": "DISEÑAMOS\nESPACIOS CON\nIDENTIDAD DE\nMARCA",
       "intro": "Somos un estudio boutique de interiorismo estratégico especializado en crear interiores de alto impacto para negocios.",
       "ctaText": "sobre el estudio",
-      "ctaLink": "/es/about",
+      "ctaLink": "/es/studio",
       "mediaType": "image",
       "placeholderLabel": "Imagen de proyecto pendiente"
     },
@@ -72,17 +72,17 @@
       "items": [
         {
           "title": "La Trobada",
-          "link": "/es/projects/la-trobada",
+          "link": "/es/works/la-trobada",
           "placeholderLabel": "Imagen de proyecto pendiente"
         },
         {
           "title": "Novedades",
-          "link": "/es/projects",
+          "link": "/es/works",
           "placeholderLabel": "Imagen de proyecto pendiente"
         }
       ],
       "ctaText": "Ver trabajos",
-      "ctaLink": "/es/projects"
+      "ctaLink": "/es/works"
     }
   ]
 }
