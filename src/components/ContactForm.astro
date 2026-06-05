@@ -77,33 +77,32 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000
 
   <!-- Project Type -->
   <div>
-    <select
-      name="projectType"
-      required
-      class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
-      data-tina-field={tinaField(f, 'projectType')}
-    >
-      <option value="">{f.projectType}*</option>
-      <option value="commercial">{f.projectTypes.commercial}</option>
-      <option value="restaurant">{f.projectTypes.restaurant}</option>
-      <option value="entertainment">{f.projectTypes.entertainment}</option>
-      <option value="other">{f.projectTypes.other}</option>
-    </select>
+      <select
+        name="projectType"
+        required
+        class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
+        data-tina-field={tinaField(f, 'projectType')}
+      >
+        <option value="">{f.projectType}*</option>
+        {f.projectTypes?.map((pt: any, index: number) => (
+          <option value={pt.value} data-tina-field={tinaField(f.projectTypes, index)}>{pt.label}</option>
+        ))}
+      </select>
   </div>
 
   <!-- Service Type -->
   <div>
-    <select
-      name="serviceType"
-      required
-      class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
-      data-tina-field={tinaField(f, 'serviceType')}
-    >
-      <option value="">{f.serviceType}*</option>
-      <option value="fullPackage">{f.serviceTypes.fullPackage}</option>
-      <option value="concept">{f.serviceTypes.concept}</option>
-      <option value="unsure">{f.serviceTypes.unsure}</option>
-    </select>
+      <select
+        name="serviceType"
+        required
+        class="w-full px-4 py-3 border-b border-gray-300 focus:outline-none focus:border-black transition-colors bg-transparent text-gray-500"
+        data-tina-field={tinaField(f, 'serviceType')}
+      >
+        <option value="">{f.serviceType}*</option>
+        {f.serviceTypes?.map((st: any, index: number) => (
+          <option value={st.value} data-tina-field={tinaField(f.serviceTypes, index)}>{st.label}</option>
+        ))}
+      </select>
   </div>
 
   <!-- Message -->

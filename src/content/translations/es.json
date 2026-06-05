@@ -36,18 +36,39 @@
     "email": "Email",
     "phone": "Teléfono",
     "projectType": "¿Qué tipo de proyecto tienes en mente?",
-    "projectTypes": {
-      "commercial": "Comercial/Retail",
-      "restaurant": "Restaurante/Bar",
-      "entertainment": "Entretenimiento",
-      "other": "Otro"
-    },
+    "projectTypes": [
+      {
+        "value": "commercial",
+        "label": "Comercial/Retail"
+      },
+      {
+        "value": "restaurant",
+        "label": "Restaurante/Bar"
+      },
+      {
+        "value": "entertainment",
+        "label": "Entretenimiento"
+      },
+      {
+        "value": "other",
+        "label": "Otro"
+      }
+    ],
     "serviceType": "¿Qué tipo de servicios buscas?",
-    "serviceTypes": {
-      "fullPackage": "Paquete completo (Diseño + Ejecución)",
-      "concept": "Solo concepto de diseño",
-      "unsure": "No estoy seguro/a"
-    },
+    "serviceTypes": [
+      {
+        "value": "fullPackage",
+        "label": "Paquete completo (Diseño + Ejecución)"
+      },
+      {
+        "value": "concept",
+        "label": "Solo concepto de diseño"
+      },
+      {
+        "value": "unsure",
+        "label": "No estoy seguro/a"
+      }
+    ],
     "message": "Cuéntanos más sobre tu proyecto",
     "privacy": "Acepto la política de privacidad",
     "submit": "Enviar mensaje",

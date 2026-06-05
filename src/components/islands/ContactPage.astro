@@ -35,13 +35,15 @@ const { heading, subheading } = data!;
 <section class="relative w-full">
   <div class="max-w-6xl mx-auto px-4">
     <div class="relative aspect-[16/7] overflow-hidden">
-      <OptimizedImage
-        src="/images/contact/senshac-contact-banner.webp"
-        alt=""
-        class="w-full h-full object-cover"
-        loading="eager"
-        sizes="(min-width: 768px) 1152px, 100vw"
-      />
+      <div data-tina-field={tinaField(data, 'bannerImage')} class="w-full h-full">
+        <OptimizedImage
+          src={data.bannerImage || "/images/contact/senshac-contact-banner.webp"}
+          alt=""
+          class="w-full h-full object-cover"
+          loading="eager"
+          sizes="(min-width: 768px) 1152px, 100vw"
+        />
+      </div>
       <!-- White symbol overlay -->
       <div class="absolute inset-0 flex items-center justify-center">
         <img

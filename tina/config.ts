@@ -306,6 +306,7 @@ const servicesPageFields: TinaField[] = [
 const contactPageFields: TinaField[] = [
   { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
   { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
+  { type: 'image' as const, name: 'bannerImage', label: 'Banner Image' },
   { type: 'string' as const, name: 'heading', label: 'Heading', required: true },
   { type: 'string' as const, name: 'subheading', label: 'Subheading', required: true },
 ];
@@ -376,11 +377,11 @@ const translationFields: TinaField[] = [
         type: 'object' as const,
         name: 'projectTypes',
         label: 'Project Types',
+        list: true,
+        ui: { itemProps: (item) => ({ label: item?.label }) },
         fields: [
-          { name: 'commercial', label: 'Commercial', type: 'string' },
-          { name: 'restaurant', label: 'Restaurant', type: 'string' },
-          { name: 'entertainment', label: 'Entertainment', type: 'string' },
-          { name: 'other', label: 'Other', type: 'string' },
+          { name: 'value', label: 'Value (sent in email)', type: 'string', required: true },
+          { name: 'label', label: 'Label (shown in dropdown)', type: 'string', required: true },
         ],
       },
       { name: 'serviceType', label: 'Service Type Label', type: 'string' },
@@ -388,10 +389,11 @@ const translationFields: TinaField[] = [
         type: 'object' as const,
         name: 'serviceTypes',
         label: 'Service Types',
+        list: true,
+        ui: { itemProps: (item) => ({ label: item?.label }) },
         fields: [
-          { name: 'fullPackage', label: 'Full Package', type: 'string' },
-          { name: 'concept', label: 'Concept Only', type: 'string' },
-          { name: 'unsure', label: 'Not Sure', type: 'string' },
+          { name: 'value', label: 'Value (sent in email)', type: 'string', required: true },
+          { name: 'label', label: 'Label (shown in dropdown)', type: 'string', required: true },
         ],
       },
       { name: 'message', label: 'Message Field', type: 'string' },
