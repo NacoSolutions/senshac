@@ -14,13 +14,13 @@ export const GET: APIRoute = async () => {
   const urls: string[] = [];
 
   // Static pages per locale
-  const staticPages = ['', '/about', '/services', '/contact', '/projects', '/legal-notice', '/privacy-policy'];
+  const staticPages = ['', '/studio', '/methods', '/contact', '/works', '/legal-notice', '/privacy-policy'];
 
   for (const locale of locales) {
     for (const page of staticPages) {
       const loc = `${siteUrl}/${locale}${page}`;
       const lastmod = new Date().toISOString().split('T')[0];
-      const priority = page === '' ? '1.0' : page === '/projects' ? '0.9' : '0.8';
+      const priority = page === '' ? '1.0' : page === '/works' ? '0.9' : '0.8';
 
       // Build xhtml:link alternates
       const alternates = locales.map(alt => {
@@ -47,13 +47,13 @@ export const GET: APIRoute = async () => {
       const project = projects.find(p => p.id === `${locale}/${slug}` || (p.id.startsWith(`${locale}/`) && p.data.slug === slug));
       if (!project) continue;
 
-      const loc = `${siteUrl}/${locale}/projects/${slug}`;
+      const loc = `${siteUrl}/${locale}/works/${slug}`;
       const lastmod = project.data.publishDate
         ? new Date(project.data.publishDate).toISOString().split('T')[0]
         : new Date().toISOString().split('T')[0];
 
       const alternates = locales.map(alt => {
-        const href = `${siteUrl}/${alt}/projects/${slug}`;
+        const href = `${siteUrl}/${alt}/works/${slug}`;
         return `<xhtml:link rel="alternate" hreflang="${alt}" href="${href}" />`;
       }).join('\n      ');
 

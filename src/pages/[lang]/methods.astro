@@ -1,0 +1,44 @@
+---
+// src/pages/[lang]/methods.astro
+import Base from '../../layouts/Base.astro';
+import { getEntry } from 'astro:content';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import BlocksRenderer from '../../components/BlocksRenderer.astro';
+import ServicesPage from '../../components/islands/ServicesPage.astro';
+import { getServices, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
+import { createIslands } from '../../lib/tina-islands';
+
+const { lang } = Astro.params;
+
+const page = await getEntry('pages', `${lang}/services`);
+
+if (!page) {
+  return Astro.redirect('/404');
+}
+
+const { title, description, blocks } = page.data as {
+  title: string;
+  description: string;
+  blocks?: any[];
+};
+
+const tinaEnv = getTinaRuntimeEnv(Astro.locals);
+const islands = createIslands(tinaEnv);
+const relativePath = pageRelativePath(lang, 'services.json');
+const tinaServices = await getServices(relativePath, tinaEnv);
+const tinaServicesData = tinaServices.data.services;
+---
+
+<Base title={title} description={description} lang={lang}>
+  {tinaServicesData ? (
+    <TinaIsland name="services" wrapper={islands.services.wrapper} params={{ relativePath }} primary>
+      <ServicesPage data={tinaServicesData} />
+    </TinaIsland>
+  ) : (
+    <main class="min-h-screen pt-24 pb-16">
+      {blocks && blocks.map((block: any, index: number) => (
+        <BlocksRenderer block={block} index={index} parentData={page.data} />
+      ))}
+    </main>
+  )}
+</Base>

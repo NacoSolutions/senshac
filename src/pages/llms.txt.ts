@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
   // Get unique project slugs (use default locale as primary)
   const projectList = projects
     .filter(p => p.id.startsWith(`${site.defaultLocale}/`))
-    .map(p => `- [${p.data.title}](${site.siteUrl}/${site.defaultLocale}/projects/${p.data.slug})`)
+    .map(p => `- [${p.data.title}](${site.siteUrl}/${site.defaultLocale}/works/${p.data.slug})`)
     .join('\n');
 
   // Build social links section from socialLinks array
@@ -42,9 +42,9 @@ ${site.company.name} is a ${site.contact.location.city}-based interior design st
 ## Pages
 
 - [Home](${site.siteUrl}/${site.defaultLocale}/)
-- [About](${site.siteUrl}/${site.defaultLocale}/about)
-- [Services](${site.siteUrl}/${site.defaultLocale}/services)
-- [Projects](${site.siteUrl}/${site.defaultLocale}/projects)
+- [Studio](${site.siteUrl}/${site.defaultLocale}/studio)
+- [Methods](${site.siteUrl}/${site.defaultLocale}/methods)
+- [Works](${site.siteUrl}/${site.defaultLocale}/works)
 - [Contact](${site.siteUrl}/${site.defaultLocale}/contact)
 
 ## Projects

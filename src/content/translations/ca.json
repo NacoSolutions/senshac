@@ -6,15 +6,15 @@
     "links": [
       {
         "label": "Estudi",
-        "href": "/ca/about"
+        "href": "/ca/studio"
       },
       {
         "label": "Treballs",
-        "href": "/ca/projects"
+        "href": "/ca/works"
       },
       {
         "label": "Mètode",
-        "href": "/ca/services"
+        "href": "/ca/methods"
       },
       {
         "label": "Contacte",
@@ -28,15 +28,15 @@
     "links": [
       {
         "label": "Estudi",
-        "href": "/ca/about"
+        "href": "/ca/studio"
       },
       {
         "label": "Treballs",
-        "href": "/ca/projects"
+        "href": "/ca/works"
       },
       {
         "label": "Mètode",
-        "href": "/ca/services"
+        "href": "/ca/methods"
       },
       {
         "label": "Contacte",

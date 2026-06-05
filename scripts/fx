@@ -53,17 +53,17 @@ base="$1"
 routes=(
   /
   /es/
-  /es/about/
-  /es/services/
-  /es/projects/la-trobada/
+  /es/studio/
+  /es/methods/
+  /es/works/la-trobada/
   /ca/
-  /ca/about/
-  /ca/services/
-  /ca/projects/la-trobada/
+  /ca/studio/
+  /ca/methods/
+  /ca/works/la-trobada/
   /en/
-  /en/about/
-  /en/services/
-  /en/projects/la-trobada/
+  /en/studio/
+  /en/methods/
+  /en/works/la-trobada/
 )
 
 for path in "${routes[@]}"; do
