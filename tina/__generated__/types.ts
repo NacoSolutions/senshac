@@ -774,6 +774,7 @@ export type Contact = Node & Document & {
   __typename?: 'Contact';
   title: Scalars['String']['output'];
   description: Scalars['String']['output'];
+  bannerImage?: Maybe<Scalars['String']['output']>;
   heading: Scalars['String']['output'];
   subheading: Scalars['String']['output'];
   id: Scalars['ID']['output'];
@@ -784,6 +785,7 @@ export type Contact = Node & Document & {
 export type ContactFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
+  bannerImage?: InputMaybe<ImageFilter>;
   heading?: InputMaybe<StringFilter>;
   subheading?: InputMaybe<StringFilter>;
 };
@@ -1118,25 +1120,29 @@ export type TranslationsNav = {
   contact?: Maybe<Scalars['String']['output']>;
 };
 
+export type TranslationsFooterLinks = {
+  __typename?: 'TranslationsFooterLinks';
+  label: Scalars['String']['output'];
+  href: Scalars['String']['output'];
+};
+
 export type TranslationsFooter = {
   __typename?: 'TranslationsFooter';
   privacy?: Maybe<Scalars['String']['output']>;
   legal?: Maybe<Scalars['String']['output']>;
+  links?: Maybe<Array<Maybe<TranslationsFooterLinks>>>;
 };
 
 export type TranslationsContactFormProjectTypes = {
   __typename?: 'TranslationsContactFormProjectTypes';
-  commercial?: Maybe<Scalars['String']['output']>;
-  restaurant?: Maybe<Scalars['String']['output']>;
-  entertainment?: Maybe<Scalars['String']['output']>;
-  other?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
+  label: Scalars['String']['output'];
 };
 
 export type TranslationsContactFormServiceTypes = {
   __typename?: 'TranslationsContactFormServiceTypes';
-  fullPackage?: Maybe<Scalars['String']['output']>;
-  concept?: Maybe<Scalars['String']['output']>;
-  unsure?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
+  label: Scalars['String']['output'];
 };
 
 export type TranslationsContactForm = {
@@ -1146,9 +1152,9 @@ export type TranslationsContactForm = {
   email?: Maybe<Scalars['String']['output']>;
   phone?: Maybe<Scalars['String']['output']>;
   projectType?: Maybe<Scalars['String']['output']>;
-  projectTypes?: Maybe<TranslationsContactFormProjectTypes>;
+  projectTypes?: Maybe<Array<Maybe<TranslationsContactFormProjectTypes>>>;
   serviceType?: Maybe<Scalars['String']['output']>;
-  serviceTypes?: Maybe<TranslationsContactFormServiceTypes>;
+  serviceTypes?: Maybe<Array<Maybe<TranslationsContactFormServiceTypes>>>;
   message?: Maybe<Scalars['String']['output']>;
   privacy?: Maybe<Scalars['String']['output']>;
   submit?: Maybe<Scalars['String']['output']>;
@@ -1198,22 +1204,25 @@ export type TranslationsNavFilter = {
   contact?: InputMaybe<StringFilter>;
 };
 
+export type TranslationsFooterLinksFilter = {
+  label?: InputMaybe<StringFilter>;
+  href?: InputMaybe<StringFilter>;
+};
+
 export type TranslationsFooterFilter = {
   privacy?: InputMaybe<StringFilter>;
   legal?: InputMaybe<StringFilter>;
+  links?: InputMaybe<TranslationsFooterLinksFilter>;
 };
 
 export type TranslationsContactFormProjectTypesFilter = {
-  commercial?: InputMaybe<StringFilter>;
-  restaurant?: InputMaybe<StringFilter>;
-  entertainment?: InputMaybe<StringFilter>;
-  other?: InputMaybe<StringFilter>;
+  value?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
 };
 
 export type TranslationsContactFormServiceTypesFilter = {
-  fullPackage?: InputMaybe<StringFilter>;
-  concept?: InputMaybe<StringFilter>;
-  unsure?: InputMaybe<StringFilter>;
+  value?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
 };
 
 export type TranslationsContactFormFilter = {
@@ -1637,6 +1646,7 @@ export type ServicesMutation = {
 export type ContactMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  bannerImage?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   subheading?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1765,22 +1775,25 @@ export type TranslationsNavMutation = {
   contact?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type TranslationsFooterLinksMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  href?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type TranslationsFooterMutation = {
   privacy?: InputMaybe<Scalars['String']['input']>;
   legal?: InputMaybe<Scalars['String']['input']>;
+  links?: InputMaybe<Array<InputMaybe<TranslationsFooterLinksMutation>>>;
 };
 
 export type TranslationsContactFormProjectTypesMutation = {
-  commercial?: InputMaybe<Scalars['String']['input']>;
-  restaurant?: InputMaybe<Scalars['String']['input']>;
-  entertainment?: InputMaybe<Scalars['String']['input']>;
-  other?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TranslationsContactFormServiceTypesMutation = {
-  fullPackage?: InputMaybe<Scalars['String']['input']>;
-  concept?: InputMaybe<Scalars['String']['input']>;
-  unsure?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TranslationsContactFormMutation = {
@@ -1789,9 +1802,9 @@ export type TranslationsContactFormMutation = {
   email?: InputMaybe<Scalars['String']['input']>;
   phone?: InputMaybe<Scalars['String']['input']>;
   projectType?: InputMaybe<Scalars['String']['input']>;
-  projectTypes?: InputMaybe<TranslationsContactFormProjectTypesMutation>;
+  projectTypes?: InputMaybe<Array<InputMaybe<TranslationsContactFormProjectTypesMutation>>>;
   serviceType?: InputMaybe<Scalars['String']['input']>;
-  serviceTypes?: InputMaybe<TranslationsContactFormServiceTypesMutation>;
+  serviceTypes?: InputMaybe<Array<InputMaybe<TranslationsContactFormServiceTypesMutation>>>;
   message?: InputMaybe<Scalars['String']['input']>;
   privacy?: InputMaybe<Scalars['String']['input']>;
   submit?: InputMaybe<Scalars['String']['input']>;
@@ -1833,13 +1846,13 @@ export type AboutPartsFragment = { __typename: 'About', title: string, descripti
 
 export type ServicesPartsFragment = { __typename: 'Services', title: string, description: string, hero?: { __typename: 'ServicesHero', title: string } | null, intro?: { __typename: 'ServicesIntro', text: string, image?: string | null } | null, serviceGroups?: Array<{ __typename: 'ServicesServiceGroups', title: string, items?: Array<{ __typename: 'ServicesServiceGroupsItems', title: string, description: string } | null> | null } | null> | null, faq?: { __typename: 'ServicesFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesFaqItems', question: string, answer: string } | null> | null } | null, workProcess?: { __typename: 'ServicesWorkProcess', title?: string | null, p1: string, p2: string, image?: string | null } | null };
 
-export type ContactPartsFragment = { __typename: 'Contact', title: string, description: string, heading: string, subheading: string };
+export type ContactPartsFragment = { __typename: 'Contact', title: string, description: string, bannerImage?: string | null, heading: string, subheading: string };
 
 export type LegalPartsFragment = { __typename: 'Legal', title: string, description: string, lastUpdated?: string | null, body?: any | null };
 
 export type ProjectsPartsFragment = { __typename: 'Projects', title: string, description: string, slug: string, publishDate: string, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, banner?: { __typename: 'ProjectsBanner', image: string, alt: string } | null, details?: { __typename: 'ProjectsDetails', title: string, subtitle: string, image: string, services: string, servicesLabel: string, category: string, categoryLabel: string, area: string, areaLabel: string, location: string, locationLabel: string } | null, brief?: { __typename: 'ProjectsBrief', title: string, text: string, gallery?: { __typename: 'ProjectsBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBriefGalleryImages', src: string, alt: string } | null> | null } | null } | null, concept?: { __typename: 'ProjectsConcept', title: string, text: string, gallery?: { __typename: 'ProjectsConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsConceptGalleryImages', src: string, alt: string } | null> | null } | null } | null, strategy?: { __typename: 'ProjectsStrategy', title: string, text: string, carousel?: Array<{ __typename: 'ProjectsStrategyCarousel', src: string, alt: string } | null> | null, gallery?: { __typename: 'ProjectsStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsStrategyGalleryImages', src: string, alt: string } | null> | null } | null } | null, collaborators?: { __typename: 'ProjectsCollaborators', title: string, list?: Array<{ __typename: 'ProjectsCollaboratorsList', name: string, role: string } | null> | null } | null, finalImage?: { __typename: 'ProjectsFinalImage', src: string, alt: string } | null };
 
-export type TranslationsPartsFragment = { __typename: 'Translations', nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'TranslationsContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'TranslationsContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
+export type TranslationsPartsFragment = { __typename: 'Translations', nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null, links?: Array<{ __typename: 'TranslationsFooterLinks', label: string, href: string } | null> | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: Array<{ __typename: 'TranslationsContactFormProjectTypes', value: string, label: string } | null> | null, serviceTypes?: Array<{ __typename: 'TranslationsContactFormServiceTypes', value: string, label: string } | null> | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
 
 export type SiteConfigQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1922,7 +1935,7 @@ export type ContactQueryVariables = Exact<{
 }>;
 
 
-export type ContactQuery = { __typename?: 'Query', contact: { __typename: 'Contact', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ContactQuery = { __typename?: 'Query', contact: { __typename: 'Contact', id: string, title: string, description: string, bannerImage?: string | null, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type ContactConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1934,7 +1947,7 @@ export type ContactConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ContactConnectionQuery = { __typename?: 'Query', contactConnection: { __typename?: 'ContactConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactConnectionEdges', cursor: string, node?: { __typename: 'Contact', id: string, title: string, description: string, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ContactConnectionQuery = { __typename?: 'Query', contactConnection: { __typename?: 'ContactConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactConnectionEdges', cursor: string, node?: { __typename: 'Contact', id: string, title: string, description: string, bannerImage?: string | null, heading: string, subheading: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type LegalQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1979,7 +1992,7 @@ export type TranslationsQueryVariables = Exact<{
 }>;
 
 
-export type TranslationsQuery = { __typename?: 'Query', translations: { __typename: 'Translations', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'TranslationsContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'TranslationsContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
+export type TranslationsQuery = { __typename?: 'Query', translations: { __typename: 'Translations', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null, links?: Array<{ __typename: 'TranslationsFooterLinks', label: string, href: string } | null> | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: Array<{ __typename: 'TranslationsContactFormProjectTypes', value: string, label: string } | null> | null, serviceTypes?: Array<{ __typename: 'TranslationsContactFormServiceTypes', value: string, label: string } | null> | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } };
 
 export type TranslationsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -1991,7 +2004,7 @@ export type TranslationsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TranslationsConnectionQuery = { __typename?: 'Query', translationsConnection: { __typename?: 'TranslationsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TranslationsConnectionEdges', cursor: string, node?: { __typename: 'Translations', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: { __typename: 'TranslationsContactFormProjectTypes', commercial?: string | null, restaurant?: string | null, entertainment?: string | null, other?: string | null } | null, serviceTypes?: { __typename: 'TranslationsContactFormServiceTypes', fullPackage?: string | null, concept?: string | null, unsure?: string | null } | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
+export type TranslationsConnectionQuery = { __typename?: 'Query', translationsConnection: { __typename?: 'TranslationsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TranslationsConnectionEdges', cursor: string, node?: { __typename: 'Translations', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, about?: string | null, projects?: string | null, services?: string | null, contact?: string | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null, links?: Array<{ __typename: 'TranslationsFooterLinks', label: string, href: string } | null> | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, projectTypes?: Array<{ __typename: 'TranslationsContactFormProjectTypes', value: string, label: string } | null> | null, serviceTypes?: Array<{ __typename: 'TranslationsContactFormServiceTypes', value: string, label: string } | null> | null } | null, projects?: { __typename: 'TranslationsProjects', title?: string | null, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null } | null } | null> | null } };
 
 export const SiteConfigPartsFragmentDoc = gql`
     fragment SiteConfigParts on SiteConfig {
@@ -2167,6 +2180,7 @@ export const ContactPartsFragmentDoc = gql`
   __typename
   title
   description
+  bannerImage
   heading
   subheading
 }
@@ -2291,6 +2305,11 @@ export const TranslationsPartsFragmentDoc = gql`
     __typename
     privacy
     legal
+    links {
+      __typename
+      label
+      href
+    }
   }
   contactForm {
     __typename
@@ -2301,17 +2320,14 @@ export const TranslationsPartsFragmentDoc = gql`
     projectType
     projectTypes {
       __typename
-      commercial
-      restaurant
-      entertainment
-      other
+      value
+      label
     }
     serviceType
     serviceTypes {
       __typename
-      fullPackage
-      concept
-      unsure
+      value
+      label
     }
     message
     privacy
@@ -2893,7 +2909,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/2.4/content/7a1540b8-e9a1-493f-8cc5-83d85b2c335d/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

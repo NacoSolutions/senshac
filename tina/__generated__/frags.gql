@@ -55,26 +55,94 @@ fragment HomeParts on Home {
   title
   description
   headerStyle
-  hero {
+  blocks {
     __typename
-    image
-    topRight {
-      __typename
-      lines
+    ... on HomeBlocksHomeHero {
+      image
+      topRight {
+        __typename
+        lines
+      }
+      tagline {
+        __typename
+        lines
+      }
+      taglineSub
     }
-    tagline {
-      __typename
-      lines
+    ... on HomeBlocksHomeAbout {
+      image
+      title
+      description
+      ctaText
+      ctaLink
     }
-    taglineSub
-  }
-  about {
-    __typename
-    image
-    title
-    description
-    ctaText
-    ctaLink
+    ... on HomeBlocksAboutHero {
+      title
+    }
+    ... on HomeBlocksBehindName {
+      title
+      p1
+      p2
+      footnote
+    }
+    ... on HomeBlocksBannerImage {
+      image
+      alt
+    }
+    ... on HomeBlocksBio {
+      title
+      image
+      paragraphs
+    }
+    ... on HomeBlocksAwards {
+      title
+      items {
+        __typename
+        year
+        project
+        award
+        link
+      }
+    }
+    ... on HomeBlocksMission {
+      title
+      p1
+      p2
+      quote
+    }
+    ... on HomeBlocksServicesHero {
+      title
+    }
+    ... on HomeBlocksServicesIntro {
+      text
+      image
+    }
+    ... on HomeBlocksServiceGroups {
+      groups {
+        __typename
+        title
+        items {
+          __typename
+          title
+          description
+        }
+      }
+    }
+    ... on HomeBlocksFaq {
+      title
+      image
+      items {
+        __typename
+        question
+        answer
+      }
+    }
+    ... on HomeBlocksWorkProcess {
+      title
+      p1
+      p2
+      image
+    }
   }
 }
 
@@ -83,83 +151,189 @@ fragment AboutParts on About {
   title
   description
   heroImage
-  hero {
+  blocks {
     __typename
-    title
-  }
-  behindName {
-    __typename
-    title
-    p1
-    p2
-    footnote
-  }
-  bannerImage
-  bio {
-    __typename
-    title
-    image
-    paragraphs
-  }
-  awards {
-    __typename
-    title
-    items {
-      __typename
-      year
-      project
-      award
-      link
+    ... on AboutBlocksHomeHero {
+      image
+      topRight {
+        __typename
+        lines
+      }
+      tagline {
+        __typename
+        lines
+      }
+      taglineSub
+    }
+    ... on AboutBlocksHomeAbout {
+      image
+      title
+      description
+      ctaText
+      ctaLink
+    }
+    ... on AboutBlocksAboutHero {
+      title
+    }
+    ... on AboutBlocksBehindName {
+      title
+      p1
+      p2
+      footnote
+    }
+    ... on AboutBlocksBannerImage {
+      image
+      alt
+    }
+    ... on AboutBlocksBio {
+      title
+      image
+      paragraphs
+    }
+    ... on AboutBlocksAwards {
+      title
+      items {
+        __typename
+        year
+        project
+        award
+        link
+      }
+    }
+    ... on AboutBlocksMission {
+      title
+      p1
+      p2
+      quote
+    }
+    ... on AboutBlocksServicesHero {
+      title
+    }
+    ... on AboutBlocksServicesIntro {
+      text
+      image
+    }
+    ... on AboutBlocksServiceGroups {
+      groups {
+        __typename
+        title
+        items {
+          __typename
+          title
+          description
+        }
+      }
+    }
+    ... on AboutBlocksFaq {
+      title
+      image
+      items {
+        __typename
+        question
+        answer
+      }
+    }
+    ... on AboutBlocksWorkProcess {
+      title
+      p1
+      p2
+      image
     }
   }
-  mission {
-    __typename
-    title
-    p1
-    p2
-    quote
-  }
-  missionImage
 }
 
 fragment ServicesParts on Services {
   __typename
   title
   description
-  hero {
+  blocks {
     __typename
-    title
-  }
-  intro {
-    __typename
-    text
-    image
-  }
-  serviceGroups {
-    __typename
-    title
-    items {
-      __typename
+    ... on ServicesBlocksHomeHero {
+      image
+      topRight {
+        __typename
+        lines
+      }
+      tagline {
+        __typename
+        lines
+      }
+      taglineSub
+    }
+    ... on ServicesBlocksHomeAbout {
+      image
       title
       description
+      ctaText
+      ctaLink
     }
-  }
-  faq {
-    __typename
-    title
-    image
-    items {
-      __typename
-      question
-      answer
+    ... on ServicesBlocksAboutHero {
+      title
     }
-  }
-  workProcess {
-    __typename
-    title
-    p1
-    p2
-    image
+    ... on ServicesBlocksBehindName {
+      title
+      p1
+      p2
+      footnote
+    }
+    ... on ServicesBlocksBannerImage {
+      image
+      alt
+    }
+    ... on ServicesBlocksBio {
+      title
+      image
+      paragraphs
+    }
+    ... on ServicesBlocksAwards {
+      title
+      items {
+        __typename
+        year
+        project
+        award
+        link
+      }
+    }
+    ... on ServicesBlocksMission {
+      title
+      p1
+      p2
+      quote
+    }
+    ... on ServicesBlocksServicesHero {
+      title
+    }
+    ... on ServicesBlocksServicesIntro {
+      text
+      image
+    }
+    ... on ServicesBlocksServiceGroups {
+      groups {
+        __typename
+        title
+        items {
+          __typename
+          title
+          description
+        }
+      }
+    }
+    ... on ServicesBlocksFaq {
+      title
+      image
+      items {
+        __typename
+        question
+        answer
+      }
+    }
+    ... on ServicesBlocksWorkProcess {
+      title
+      p1
+      p2
+      image
+    }
   }
 }
 
@@ -167,6 +341,7 @@ fragment ContactParts on Contact {
   __typename
   title
   description
+  bannerImage
   heading
   subheading
 }
@@ -190,85 +365,85 @@ fragment ProjectsParts on Projects {
   showTags
   featured
   draft
-  banner {
+  blocks {
     __typename
-    image
-    alt
-  }
-  details {
-    __typename
-    title
-    subtitle
-    image
-    services
-    servicesLabel
-    category
-    categoryLabel
-    area
-    areaLabel
-    location
-    locationLabel
-  }
-  brief {
-    __typename
-    title
-    text
-    gallery {
-      __typename
-      cols
-      images {
+    ... on ProjectsBlocksProjectBanner {
+      image
+      alt
+    }
+    ... on ProjectsBlocksProjectDetails {
+      title
+      subtitle
+      image
+      services
+      servicesLabel
+      category
+      categoryLabel
+      area
+      areaLabel
+      location
+      locationLabel
+    }
+    ... on ProjectsBlocksProjectBrief {
+      title
+      text
+      gallery {
+        __typename
+        cols
+        images {
+          __typename
+          src
+          alt
+        }
+      }
+    }
+    ... on ProjectsBlocksProjectConcept {
+      title
+      text
+      gallery {
+        __typename
+        cols
+        images {
+          __typename
+          src
+          alt
+        }
+      }
+    }
+    ... on ProjectsBlocksProjectStrategy {
+      title
+      text
+      carousel {
         __typename
         src
         alt
       }
-    }
-  }
-  concept {
-    __typename
-    title
-    text
-    gallery {
-      __typename
-      cols
-      images {
+      gallery {
         __typename
-        src
-        alt
+        cols
+        images {
+          __typename
+          src
+          alt
+        }
       }
     }
-  }
-  strategy {
-    __typename
-    title
-    text
-    carousel {
-      __typename
+    ... on ProjectsBlocksProjectCollaborators {
+      title
+      list {
+        __typename
+        name
+        role
+      }
+    }
+    ... on ProjectsBlocksProjectFinalImage {
       src
       alt
     }
-    gallery {
-      __typename
-      cols
-      images {
-        __typename
-        src
-        alt
-      }
+    ... on ProjectsBlocksBannerImage {
+      image
+      alt
     }
-  }
-  collaborators {
-    __typename
-    title
-    list {
-      __typename
-      name
-      role
-    }
-  }
-  finalImage {
-    __typename
-    src
-    alt
   }
 }
 
@@ -288,6 +463,11 @@ fragment TranslationsParts on Translations {
     __typename
     privacy
     legal
+    links {
+      __typename
+      label
+      href
+    }
   }
   contactForm {
     __typename
@@ -298,17 +478,14 @@ fragment TranslationsParts on Translations {
     projectType
     projectTypes {
       __typename
-      commercial
-      restaurant
-      entertainment
-      other
+      value
+      label
     }
     serviceType
     serviceTypes {
       __typename
-      fullPackage
-      concept
-      unsure
+      value
+      label
     }
     message
     privacy

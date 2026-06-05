@@ -117,190 +117,366 @@ const siteConfigFields: TinaField[] = [
   },
 ];
 
+
 // ============================================================================
-// PAGE FIELDS (JSON)
+// BLOCK TEMPLATES
 // ============================================================================
+
+const homeHeroBlock: TinaField = {
+  name: 'homeHero',
+  label: 'Home Hero',
+  type: 'object',
+  fields: [
+    { name: 'image', label: 'Background Image', type: 'image', required: true },
+    {
+      type: 'object',
+      name: 'topRight',
+      label: 'Top Right Text (odd/even indent pattern)',
+      fields: [{ type: 'string', name: 'lines', label: 'Lines', list: true }],
+    },
+    {
+      type: 'object',
+      name: 'tagline',
+      label: 'Tagline',
+      fields: [{ type: 'string', name: 'lines', label: 'Lines', list: true }],
+    },
+    { name: 'taglineSub', label: 'Tagline Subtitle', type: 'string' },
+  ]
+};
+
+const homeAboutBlock: TinaField = {
+  name: 'homeAbout',
+  label: 'Home About',
+  type: 'object',
+  fields: [
+    { name: 'image', label: 'Image', type: 'image' },
+    { name: 'title', label: 'Title', type: 'string' },
+    { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' } },
+    { name: 'ctaText', label: 'CTA Button Text', type: 'string' },
+    { name: 'ctaLink', label: 'CTA Button Link', type: 'string' },
+  ]
+};
+
+const aboutHeroBlock: TinaField = {
+  name: 'aboutHero',
+  label: 'About Hero',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string', required: true },
+  ]
+};
+
+const behindNameBlock: TinaField = {
+  name: 'behindName',
+  label: 'Behind the Name',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' },
+    { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'footnote', label: 'Footnote', type: 'string' },
+  ]
+};
+
+const bannerImageBlock: TinaField = {
+  name: 'bannerImage',
+  label: 'Banner Image',
+  type: 'object',
+  fields: [
+    { name: 'image', label: 'Image', type: 'image' },
+    { name: 'alt', label: 'Alt Text', type: 'string' }
+  ]
+};
+
+const bioBlock: TinaField = {
+  name: 'bio',
+  label: 'Biography',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' },
+    { name: 'image', label: 'Photo', type: 'image' },
+    { name: 'paragraphs', label: 'Paragraphs', type: 'string', list: true, ui: { component: 'textarea' } },
+  ]
+};
+
+const awardsBlock: TinaField = {
+  name: 'awards',
+  label: 'Awards',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Section Title', type: 'string' },
+    {
+      name: 'items',
+      label: 'Awards List',
+      type: 'object',
+      list: true,
+      fields: [
+        { name: 'year', label: 'Year', type: 'string', required: true },
+        { name: 'project', label: 'Project', type: 'string', required: true },
+        { name: 'award', label: 'Award Name', type: 'string', required: true },
+        { name: 'link', label: 'Link', type: 'string' },
+      ],
+    },
+  ]
+};
+
+const missionBlock: TinaField = {
+  name: 'mission',
+  label: 'Mission',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' },
+    { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'quote', label: 'Quote', type: 'string', ui: { component: 'textarea' } },
+  ]
+};
+
+const servicesHeroBlock: TinaField = {
+  name: 'servicesHero',
+  label: 'Services Hero',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string', required: true },
+  ]
+};
+
+const servicesIntroBlock: TinaField = {
+  name: 'servicesIntro',
+  label: 'Services Introduction',
+  type: 'object',
+  fields: [
+    { name: 'text', label: 'Text', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'image', label: 'Image', type: 'image' },
+  ]
+};
+
+const serviceGroupsBlock: TinaField = {
+  name: 'serviceGroups',
+  label: 'Service Groups',
+  type: 'object',
+  fields: [
+    {
+      name: 'groups',
+      label: 'Groups',
+      type: 'object',
+      list: true,
+      fields: [
+        { name: 'title', label: 'Group Title', type: 'string', required: true },
+        {
+          name: 'items',
+          label: 'Services',
+          type: 'object',
+          list: true,
+          fields: [
+            { name: 'title', label: 'Service Title', type: 'string', required: true },
+            { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' }, required: true },
+          ],
+        },
+      ]
+    }
+  ]
+};
+
+const faqBlock: TinaField = {
+  name: 'faq',
+  label: 'FAQ Section',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Section Title', type: 'string' },
+    { name: 'image', label: 'Footer Image', type: 'image' },
+    {
+      name: 'items',
+      label: 'Questions',
+      type: 'object',
+      list: true,
+      fields: [
+        { name: 'question', label: 'Question', type: 'string', required: true },
+        { name: 'answer', label: 'Answer', type: 'string', ui: { component: 'textarea' }, required: true },
+      ],
+    },
+  ]
+};
+
+const workProcessBlock: TinaField = {
+  name: 'workProcess',
+  label: 'Work Process',
+  type: 'object',
+  fields: [
+    { name: 'title', label: 'Title', type: 'string' },
+    { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
+    { name: 'image', label: 'Image', type: 'image' },
+  ]
+};
+
+const projectBannerBlock: TinaField = {
+  name: 'projectBanner',
+  label: 'Project Banner',
+  type: 'object',
+  fields: [
+    { type: 'image', name: 'image', label: 'Cover Image', required: true },
+    { type: 'string', name: 'alt', label: 'Alt Text', required: true },
+  ]
+};
+
+const projectDetailsBlock: TinaField = {
+  name: 'projectDetails',
+  label: 'Project Details',
+  type: 'object',
+  fields: [
+    { type: 'string', name: 'title', label: 'Title', required: true },
+    { type: 'string', name: 'subtitle', label: 'Subtitle', required: true },
+    { type: 'image', name: 'image', label: 'Detail Image', required: true },
+    { type: 'string', name: 'services', label: 'Services', required: true },
+    { type: 'string', name: 'servicesLabel', label: 'Services Label', required: true },
+    { type: 'string', name: 'category', label: 'Category', required: true },
+    { type: 'string', name: 'categoryLabel', label: 'Category Label', required: true },
+    { type: 'string', name: 'area', label: 'Area', required: true },
+    { type: 'string', name: 'areaLabel', label: 'Area Label', required: true },
+    { type: 'string', name: 'location', label: 'Location', required: true },
+    { type: 'string', name: 'locationLabel', label: 'Location Label', required: true },
+  ]
+};
+
+const projectBriefBlock: TinaField = {
+  name: 'projectBrief',
+  label: 'Project Brief',
+  type: 'object',
+  fields: [
+    { type: 'string', name: 'title', label: 'Section Title', required: true },
+    { type: 'string', name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
+    {
+      type: 'object',
+      name: 'gallery',
+      label: 'Gallery',
+      fields: galleryFields,
+    },
+  ]
+};
+
+const projectConceptBlock: TinaField = {
+  name: 'projectConcept',
+  label: 'Project Concept',
+  type: 'object',
+  fields: [
+    { type: 'string', name: 'title', label: 'Section Title', required: true },
+    { type: 'string', name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
+    {
+      type: 'object',
+      name: 'gallery',
+      label: 'Gallery',
+      fields: galleryFields,
+    },
+  ]
+};
+
+const projectStrategyBlock: TinaField = {
+  name: 'projectStrategy',
+  label: 'Project Strategy',
+  type: 'object',
+  fields: [
+    { type: 'string', name: 'title', label: 'Section Title', required: true },
+    { type: 'string', name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
+    {
+      type: 'object',
+      name: 'carousel',
+      label: 'Carousel Slides',
+      list: true,
+      fields: imageFields,
+    },
+    {
+      type: 'object',
+      name: 'gallery',
+      label: 'Gallery',
+      fields: galleryFields,
+    },
+  ]
+};
+
+const projectCollaboratorsBlock: TinaField = {
+  name: 'projectCollaborators',
+  label: 'Project Collaborators',
+  type: 'object',
+  fields: [
+    { type: 'string', name: 'title', label: 'Section Title', required: true },
+    {
+      type: 'object',
+      name: 'list',
+      label: 'Collaborators',
+      list: true,
+      fields: [
+        { type: 'string', name: 'name', label: 'Name', required: true },
+        { type: 'string', name: 'role', label: 'Role', required: true },
+      ],
+    },
+  ]
+};
+
+const projectFinalImageBlock: TinaField = {
+  name: 'projectFinalImage',
+  label: 'Project Final Image',
+  type: 'object',
+  fields: imageFields
+};
+
+const pageBlocksField: TinaField = {
+  type: 'object',
+  name: 'blocks',
+  label: 'Page Blocks',
+  list: true,
+  templates: [
+    homeHeroBlock,
+    homeAboutBlock,
+    aboutHeroBlock,
+    behindNameBlock,
+    bannerImageBlock,
+    bioBlock,
+    awardsBlock,
+    missionBlock,
+    servicesHeroBlock,
+    servicesIntroBlock,
+    serviceGroupsBlock,
+    faqBlock,
+    workProcessBlock,
+  ],
+};
+
+const projectBlocksField: TinaField = {
+  type: 'object',
+  name: 'blocks',
+  label: 'Project Blocks',
+  list: true,
+  templates: [
+    projectBannerBlock,
+    projectDetailsBlock,
+    projectBriefBlock,
+    projectConceptBlock,
+    projectStrategyBlock,
+    projectCollaboratorsBlock,
+    projectFinalImageBlock,
+    bannerImageBlock,
+  ],
+};
 
 const homePageFields: TinaField[] = [
   { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
   { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
   { type: 'string' as const, name: 'headerStyle', label: 'Header Style', options: ['default', 'transparent'] },
-  {
-    type: 'object' as const,
-    name: 'hero',
-    label: 'Hero Section',
-    fields: [
-      { name: 'image', label: 'Background Image', type: 'image', required: true },
-      {
-        type: 'object' as const,
-        name: 'topRight',
-        label: 'Top Right Text (odd/even indent pattern)',
-        fields: [
-          { type: 'string' as const, name: 'lines', label: 'Lines', list: true },
-        ],
-      },
-      {
-        type: 'object' as const,
-        name: 'tagline',
-        label: 'Tagline',
-        fields: [
-          { type: 'string' as const, name: 'lines', label: 'Lines', list: true },
-        ],
-      },
-      { name: 'taglineSub', label: 'Tagline Subtitle', type: 'string' },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'about',
-    label: 'About Section',
-    fields: [
-      { name: 'image', label: 'Image', type: 'image' },
-      { name: 'title', label: 'Title', type: 'string' },
-      { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' } },
-      { name: 'ctaText', label: 'CTA Button Text', type: 'string' },
-      { name: 'ctaLink', label: 'CTA Button Link', type: 'string' },
-    ],
-  },
+  pageBlocksField,
 ];
 
 const aboutPageFields: TinaField[] = [
   { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
   { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
   { type: 'image' as const, name: 'heroImage', label: 'Hero Image' },
-  {
-    type: 'object' as const,
-    name: 'hero',
-    label: 'Hero Section',
-    fields: [
-      { name: 'title', label: 'Title', type: 'string', required: true },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'behindName',
-    label: 'Behind the Name',
-    fields: [
-      { name: 'title', label: 'Title', type: 'string' },
-      { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'footnote', label: 'Footnote', type: 'string' },
-    ],
-  },
-  { type: 'image' as const, name: 'bannerImage', label: 'Banner Image' },
-  {
-    type: 'object' as const,
-    name: 'bio',
-    label: 'Biography',
-    fields: [
-      { name: 'title', label: 'Title', type: 'string' },
-      { name: 'image', label: 'Photo', type: 'image' },
-      { name: 'paragraphs', label: 'Paragraphs', type: 'string', list: true, ui: { component: 'textarea' } },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'awards',
-    label: 'Awards',
-    fields: [
-      { name: 'title', label: 'Section Title', type: 'string' },
-      {
-        name: 'items',
-        label: 'Awards List',
-        type: 'object',
-        list: true,
-        fields: [
-          { name: 'year', label: 'Year', type: 'string', required: true },
-          { name: 'project', label: 'Project', type: 'string', required: true },
-          { name: 'award', label: 'Award Name', type: 'string', required: true },
-          { name: 'link', label: 'Link', type: 'string' },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'mission',
-    label: 'Mission',
-    fields: [
-      { name: 'title', label: 'Title', type: 'string' },
-      { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'quote', label: 'Quote', type: 'string', ui: { component: 'textarea' } },
-    ],
-  },
-  { type: 'image' as const, name: 'missionImage', label: 'Mission Banner Image' },
+  pageBlocksField,
 ];
 
 const servicesPageFields: TinaField[] = [
   { type: 'string' as const, name: 'title', label: 'Page Title', required: true, isTitle: true },
   { type: 'string' as const, name: 'description', label: 'Meta Description', required: true, ui: { component: 'textarea' } },
-  {
-    type: 'object' as const,
-    name: 'hero',
-    label: 'Hero Section',
-    fields: [
-      { name: 'title', label: 'Title', type: 'string', required: true },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'intro',
-    label: 'Introduction',
-    fields: [
-      { name: 'text', label: 'Text', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'image', label: 'Image', type: 'image' },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'serviceGroups',
-    label: 'Service Groups',
-    list: true,
-    fields: [
-      { name: 'title', label: 'Group Title', type: 'string', required: true },
-      {
-        name: 'items',
-        label: 'Services',
-        type: 'object',
-        list: true,
-        fields: [
-          { name: 'title', label: 'Service Title', type: 'string', required: true },
-          { name: 'description', label: 'Description', type: 'string', ui: { component: 'textarea' }, required: true },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'faq',
-    label: 'FAQ Section',
-    fields: [
-      { name: 'title', label: 'Section Title', type: 'string' },
-      { name: 'image', label: 'Footer Image', type: 'image' },
-      {
-        name: 'items',
-        label: 'Questions',
-        type: 'object',
-        list: true,
-        fields: [
-          { name: 'question', label: 'Question', type: 'string', required: true },
-          { name: 'answer', label: 'Answer', type: 'string', ui: { component: 'textarea' }, required: true },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'workProcess',
-    label: 'Work Process',
-    fields: [
-      { name: 'title', label: 'Title', type: 'string' },
-      { name: 'p1', label: 'Paragraph 1', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'p2', label: 'Paragraph 2', type: 'string', ui: { component: 'textarea' }, required: true },
-      { name: 'image', label: 'Image', type: 'image' },
-    ],
-  },
+  pageBlocksField,
 ];
 
 const contactPageFields: TinaField[] = [
@@ -310,6 +486,20 @@ const contactPageFields: TinaField[] = [
   { type: 'string' as const, name: 'heading', label: 'Heading', required: true },
   { type: 'string' as const, name: 'subheading', label: 'Subheading', required: true },
 ];
+
+const projectFields: TinaField[] = [
+  { type: 'string' as const, name: 'title', label: 'Title', required: true, isTitle: true },
+  { type: 'string' as const, name: 'description', label: 'Description', required: true, ui: { component: 'textarea' } },
+  { type: 'string' as const, name: 'slug', label: 'URL Slug', required: true },
+  { type: 'datetime' as const, name: 'publishDate', label: 'Publish Date', required: true },
+  { type: 'datetime' as const, name: 'completedDate', label: 'Completed Date' },
+  { type: 'string' as const, name: 'tags', label: 'Tags', list: true },
+  { type: 'boolean' as const, name: 'showTags', label: 'Show Tags on Projects List' },
+  { type: 'boolean' as const, name: 'featured', label: 'Featured' },
+  { type: 'boolean' as const, name: 'draft', label: 'Draft' },
+  projectBlocksField,
+];
+
 
 // ============================================================================
 // LEGAL PAGE FIELDS (MDX)
@@ -431,124 +621,7 @@ const translationFields: TinaField[] = [
   },
 ];
 
-// ============================================================================
-// PROJECT FIELDS (JSON - rigid layout)
-// ============================================================================
-
-const projectFields: TinaField[] = [
-  { type: 'string' as const, name: 'title', label: 'Title', required: true, isTitle: true },
-  { type: 'string' as const, name: 'description', label: 'Description', required: true, ui: { component: 'textarea' } },
-  { type: 'string' as const, name: 'slug', label: 'URL Slug', required: true },
-  { type: 'datetime' as const, name: 'publishDate', label: 'Publish Date', required: true },
-  { type: 'datetime' as const, name: 'completedDate', label: 'Completed Date' },
-  { type: 'string' as const, name: 'tags', label: 'Tags', list: true },
-  { type: 'boolean' as const, name: 'showTags', label: 'Show Tags on Projects List' },
-  { type: 'boolean' as const, name: 'featured', label: 'Featured' },
-  { type: 'boolean' as const, name: 'draft', label: 'Draft' },
-  {
-    type: 'object' as const,
-    name: 'banner',
-    label: 'Banner',
-    fields: [
-      { type: 'image' as const, name: 'image', label: 'Cover Image', required: true },
-      { type: 'string' as const, name: 'alt', label: 'Alt Text', required: true },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'details',
-    label: 'Project Details',
-    fields: [
-      { type: 'string' as const, name: 'title', label: 'Title', required: true },
-      { type: 'string' as const, name: 'subtitle', label: 'Subtitle', required: true },
-      { type: 'image' as const, name: 'image', label: 'Detail Image', required: true },
-      { type: 'string' as const, name: 'services', label: 'Services', required: true },
-      { type: 'string' as const, name: 'servicesLabel', label: 'Services Label', required: true },
-      { type: 'string' as const, name: 'category', label: 'Category', required: true },
-      { type: 'string' as const, name: 'categoryLabel', label: 'Category Label', required: true },
-      { type: 'string' as const, name: 'area', label: 'Area', required: true },
-      { type: 'string' as const, name: 'areaLabel', label: 'Area Label', required: true },
-      { type: 'string' as const, name: 'location', label: 'Location', required: true },
-      { type: 'string' as const, name: 'locationLabel', label: 'Location Label', required: true },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'brief',
-    label: 'Brief Section',
-    fields: [
-      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
-      { type: 'string' as const, name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
-      {
-        type: 'object' as const,
-        name: 'gallery',
-        label: 'Gallery',
-        fields: galleryFields,
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'concept',
-    label: 'Concept Section',
-    fields: [
-      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
-      { type: 'string' as const, name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
-      {
-        type: 'object' as const,
-        name: 'gallery',
-        label: 'Gallery',
-        fields: galleryFields,
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'strategy',
-    label: 'Strategy Section',
-    fields: [
-      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
-      { type: 'string' as const, name: 'text', label: 'Text', required: true, ui: { component: 'textarea' } },
-      {
-        type: 'object' as const,
-        name: 'carousel',
-        label: 'Carousel Slides',
-        list: true,
-        fields: imageFields,
-      },
-      {
-        type: 'object' as const,
-        name: 'gallery',
-        label: 'Gallery',
-        fields: galleryFields,
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'collaborators',
-    label: 'Collaborators Section',
-    fields: [
-      { type: 'string' as const, name: 'title', label: 'Section Title', required: true },
-      {
-        type: 'object' as const,
-        name: 'list',
-        label: 'Collaborators',
-        list: true,
-        fields: [
-          { type: 'string' as const, name: 'name', label: 'Name', required: true },
-          { type: 'string' as const, name: 'role', label: 'Role', required: true },
-        ],
-      },
-    ],
-  },
-  {
-    type: 'object' as const,
-    name: 'finalImage',
-    label: 'Final Image',
-    fields: imageFields,
-  },
-];
+// PROJECT FIELDS (Replaced with Blocks)
 
 function localeFromDocument(document: { _sys: { breadcrumbs?: string[]; path?: string } }) {
   return document._sys.breadcrumbs?.[0] || document._sys.path?.split('/').at(-2) || 'es';

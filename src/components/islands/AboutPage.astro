@@ -1,11 +1,7 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
 import type { AboutQuery } from '../../../tina/__generated__/types';
-import Banner from '../sections/common/Banner.astro';
-import Hero from '../sections/about/Hero.astro';
-import BehindName from '../sections/about/BehindName.astro';
-import Bio from '../sections/about/Bio.astro';
-import Mission from '../sections/about/Mission.astro';
+import BlocksRenderer from '../BlocksRenderer.astro';
 
 type AboutPageData = AboutQuery['about'];
 
@@ -14,122 +10,8 @@ interface Props {
 }
 
 const { data } = Astro.props;
-const hero = data?.hero;
-const behindName = data?.behindName;
-const bio = data?.bio;
-const awards = data?.awards;
-const mission = data?.mission;
-const awardItems = awards?.items?.filter((item) => item != null) ?? [];
-const bioParagraphs = bio?.paragraphs?.filter((paragraph) => paragraph != null) ?? [];
-
-function normalizeTinaImage(src?: string | null) {
-  if (!src) return '';
-
-  try {
-    const url = new URL(src);
-    if (url.hostname === 'assets.tina.io') {
-      return `/images${url.pathname.replace(/^\/[^/]+/, '')}`;
-    }
-  } catch {
-    // Relative paths are already usable by the local image optimizer.
-  }
-
-  return src;
-}
 ---
 
-{data && (
-  <>
-    {hero && (
-      <div data-tina-field={tinaField(data, 'hero')}>
-        <Hero title={hero.title} />
-      </div>
-    )}
-
-    {behindName && (
-      <div data-tina-field={tinaField(data, 'behindName')}>
-        <BehindName
-          title={behindName.title ?? undefined}
-          p1={behindName.p1}
-          p2={behindName.p2}
-          footnote={behindName.footnote ?? undefined}
-        />
-      </div>
-    )}
-
-    {data.bannerImage && (
-      <div data-tina-field={tinaField(data, 'bannerImage')}>
-        <Banner src={normalizeTinaImage(data.bannerImage)} alt="Behind the name" />
-      </div>
-    )}
-
-    {bio && (
-      <div data-tina-field={tinaField(data, 'bio')}>
-        <Bio
-          title={bio.title ?? undefined}
-          image={normalizeTinaImage(bio.image)}
-          paragraphs={bioParagraphs}
-        />
-      </div>
-    )}
-
-    {awards && (
-      <section class="py-16 md:py-24" data-tina-field={tinaField(data, 'awards')}>
-        <div class="container-content">
-          {awards.title && (
-            <h2 class="sinteca-small-title mb-8 md:mb-12" data-tina-field={tinaField(awards, 'title')}>
-              {awards.title.toUpperCase()}
-            </h2>
-          )}
-          <hr class="border-t border-neutral-300 mb-0" />
-          <div>
-            {awardItems.map((item) => (
-              <div class="border-b border-neutral-200 py-6 md:py-8" data-tina-field={tinaField(item, 'award')}>
-                <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-                  <span class="text-sm md:text-base text-neutral-500 w-12 md:w-16 shrink-0" data-tina-field={tinaField(item, 'year')}>
-                    {item.year}
-                  </span>
-                  <span class="text-sm md:text-base font-medium text-neutral-900 w-32 md:w-48 shrink-0" data-tina-field={tinaField(item, 'project')}>
-                    {item.project}
-                  </span>
-                  <span class="text-sm md:text-base text-neutral-700 flex-1 min-w-0" data-tina-field={tinaField(item, 'award')}>
-                    {item.award}
-                  </span>
-                  {item.link && (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="shrink-0 text-neutral-900 hover:text-neutral-600 transition-colors"
-                      aria-label={`Learn more about ${item.award}`}
-                      data-tina-field={tinaField(item, 'link')}
-                    >
-                      <span class="i-lucide-arrow-up-right w-5 h-5 md:w-6 md:h-6" aria-hidden="true" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
-
-    {mission && (
-      <div data-tina-field={tinaField(data, 'mission')}>
-        <Mission
-          title={mission.title ?? undefined}
-          p1={mission.p1}
-          p2={mission.p2}
-          quote={mission.quote ?? undefined}
-        />
-      </div>
-    )}
-
-    {data.missionImage && (
-      <div data-tina-field={tinaField(data, 'missionImage')}>
-        <Banner src={normalizeTinaImage(data.missionImage)} alt="Our mission" />
-      </div>
-    )}
-  </>
-)}
+{data && data.blocks && data.blocks.map((block: any, index: number) => (
+  <BlocksRenderer block={block} index={index} parentData={data} />
+))}

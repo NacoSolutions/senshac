@@ -2,21 +2,33 @@
   "title": "Sens*Hac - Interior Design Studio",
   "description": "We design branded spaces that inspire and connect. Specialized in commercial, gastronomy, and entertainment spaces.",
   "headerStyle": "transparent",
-  "hero": {
-    "image": "/images/home/hero.webp",
-    "topRight": {
-      "lines": ["interior", "design", "studio®"]
+  "blocks": [
+    {
+      "image": "/images/home/hero.webp",
+      "topRight": {
+        "lines": [
+          "interior",
+          "design",
+          "studio\u00ae"
+        ]
+      },
+      "tagline": {
+        "lines": [
+          "Communicate.",
+          "Captivate.",
+          "Connect."
+        ]
+      },
+      "taglineSub": "(Elevate your brand)",
+      "_template": "homeHero"
     },
-    "tagline": {
-      "lines": ["Communicate.", "Captivate.", "Connect."]
-    },
-    "taglineSub": "(Elevate your brand)"
-  },
-  "about": {
-    "image": "/images/home/about.webp",
-    "title": "WE DESIGN BRANDED SPACES THAT INSPIRE & CONNECT",
-    "description": "We deliver impactful, functional interiors that enhance workflow and drive profitability across commercial, gastronomy, and entertainment sectors.",
-    "ctaText": "about us",
-    "ctaLink": "/en/about"
-  }
+    {
+      "image": "/images/home/about.webp",
+      "title": "WE DESIGN BRANDED SPACES THAT INSPIRE & CONNECT",
+      "description": "We deliver impactful, functional interiors that enhance workflow and drive profitability across commercial, gastronomy, and entertainment sectors.",
+      "ctaText": "about us",
+      "ctaLink": "/en/about",
+      "_template": "homeAbout"
+    }
+  ]
 }
