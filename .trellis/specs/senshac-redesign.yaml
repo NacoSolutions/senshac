@@ -3,21 +3,23 @@ title: Revised Senshac website redesign
 seed: senshac-d737
 status: active
 createdAt: "2026-06-08T13:50:55.354Z"
-updatedAt: "2026-06-08T16:26:48.728Z"
-objective: "Implement the owner-approved redesign represented by WEB.pdf: Home has inline collapsed (page 1) and expanded (page 2) states, Methods has inline collapsed (page 3) and expanded (page 4) states, and Works follows page 5. Deliver these as editable Astro/Tina pages using structured content, R2 media, canonical multilingual routes, and production-safe integrations."
+updatedAt: "2026-06-08T16:28:10.946Z"
+objective: "Implement the owner-approved redesign represented by WEB.pdf: Home has inline collapsed (page 1) and expanded (page 2) states, Methods has inline collapsed (page 3) and expanded (page 4) states, and Works follows page 5. Deliver these as editable Astro/Tina pages using structured content, R2 media, canonical multilingual routes, and privacy-preserving production integrations."
 constraints:
   - WEB.pdf is a design/content reference only and is never served or parsed at runtime.
   - Home and Methods expand inline without changing URL, using accessible + and - controls matching the PDF and an ease-in-out transition.
-  - The initial state, persistence behavior, and whole-page versus per-section disclosure scope must be clarified in senshac-6b88.
+  - Home and Methods load collapsed on every visit; disclosure state is not persisted in cookies, browser storage, URL state, or server session.
+  - The site targets no non-essential cookies, browser storage, tracking pixels, or consent-requiring embeds; compliance must be verified by senshac-9124 and owner/legal review.
   - All production images, fonts, and HLS video are delivered from media.senshac.com via stable media IDs.
   - Novedades rendering consumes a curated tagged content model; the page must not depend directly on a live Instagram API response.
   - Keep Astro SSR and zero-JS-first behavior; use native disclosure/CSS where feasible and Alpine only where coordinated state or animation requires it.
 acceptance:
-  - Home matches PDF page 1 when collapsed and page 2 when expanded; + and - controls are keyboard accessible, expose state to assistive technology, and animate ease-in-out without layout overlap.
-  - Methods matches PDF page 3 when collapsed and page 4 when expanded; + and - controls are keyboard accessible, expose state to assistive technology, and animate ease-in-out without layout overlap.
+  - Home matches PDF page 1 when collapsed and page 2 when expanded; + and - controls are keyboard accessible, expose state to assistive technology, animate ease-in-out, and reset collapsed on reload.
+  - Methods matches PDF page 3 when collapsed and page 4 when expanded; + and - controls are keyboard accessible, expose state to assistive technology, animate ease-in-out, and reset collapsed on reload.
   - Works matches PDF page 5 with approved project content and media.
   - Canonical multilingual routes use studio, works, and methods with tested redirects from legacy routes.
   - Novedades displays one accessible carousel filtered from approved tagged posts with deterministic ordering and an empty state.
+  - Privacy audit confirms no unapproved cookies/storage/tracking and required GDPR/ePrivacy disclosures are present before release.
   - Tina editing, R2 media delivery, Astro check/build, contact flow, SEO endpoints, and production smoke tests pass.
 references:
   - .scratch/WEB.pdf
