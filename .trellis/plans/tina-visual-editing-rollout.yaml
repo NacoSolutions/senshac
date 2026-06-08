@@ -1,16 +1,14 @@
 id: tina-visual-editing-rollout
 title: Roll out TinaCMS visual editing
-seed: senshac-796f
+seed: senshac-3251
 spec: tina-visual-editing
-status: draft
+status: active
 createdAt: "2026-06-02T21:39:41.358Z"
-updatedAt: "2026-06-02T21:39:41.358Z"
-summary: Implement the @tinacms/astro visual editing path incrementally, beginning with the Spanish home page and then applying the renderer/marker pattern to reusable page templates.
+updatedAt: "2026-06-08T13:51:10.352Z"
+summary: The initial Astro/Tina rollout is implemented; current work stabilizes singleton-page editing and validates the redesigned mediaId-based block schema locally and in production.
 steps:
-  - Install and configure @tinacms/astro in the Flox/Bun project; update astro.config.mjs with the Tina integration.
-  - Add Tina data loader utilities using requestWithMetadata() for one home page route while preserving existing Astro content behavior outside edit mode.
-  - "Create the /tina-island/[name] endpoint and initial Astro island renderer for the home hero/content region."
-  - Wrap the Spanish home page editable regions with TinaIsland and add tinaField() data markers to headings, text, images, and repeatable content.
-  - Verify /admin preview on preview.senshac.com can route to /es/ and live-update fields without exposing token literals.
-  - Extend the pattern to project detail pages and shared page templates after the pilot page is stable.
-  - Run bun run check, bun run build, Betterleaks history scan, Betterleaks nonignored worktree scan, and a manual Tina save/preview test.
+  - Reproduce singleton visual-editing failures on home, studio, methods, contact, and legal pages.
+  - Fix query/route/island identity and data-marker behavior without reintroducing React rendering.
+  - Verify null optional Tina lists and mediaId fields render safely in local CMS preview.
+  - Verify click-to-edit, live updates, save, locale routing, and refresh behavior on representative singleton pages.
+  - Run Astro check/build, secret scans, and production admin smoke before closing senshac-3251.

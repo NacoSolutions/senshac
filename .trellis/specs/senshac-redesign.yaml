@@ -1,0 +1,22 @@
+id: senshac-redesign
+title: Revised Senshac website redesign
+seed: senshac-d737
+status: active
+createdAt: "2026-06-08T13:50:55.354Z"
+updatedAt: "2026-06-08T13:50:55.354Z"
+objective: Implement the owner-approved redesign represented by the revised WEB.pdf as an editable Astro/Tina site, preserving the reference visual language while using structured content, R2 media, canonical multilingual routes, and production-safe integrations.
+constraints:
+  - WEB.pdf is a design/content reference only and is never served or parsed at runtime.
+  - Ambiguous owner annotations and Novedades behavior must be clarified in senshac-6b88 before implementation.
+  - All production images, fonts, and HLS video are delivered from media.senshac.com via stable media IDs.
+  - Novedades rendering consumes a curated tagged content model; the page must not depend directly on a live Instagram API response.
+  - Keep Astro SSR and zero-JS-first behavior; client JavaScript is limited to necessary carousel and HLS interactions.
+acceptance:
+  - Homepage, methods, and works match the owner-approved content and visual structure at desktop and mobile viewports.
+  - Canonical multilingual routes use studio, works, and methods with tested redirects from legacy routes.
+  - Novedades displays one accessible carousel filtered from approved tagged posts with deterministic ordering and an empty state.
+  - Tina editing, R2 media delivery, Astro check/build, contact flow, SEO endpoints, and production smoke tests pass.
+references:
+  - .scratch/WEB.pdf
+  - "https://senshac.com"
+  - "https://media.senshac.com"

@@ -1,12 +1,14 @@
 id: production-readiness
 title: Production readiness closeout
-seed: senshac-b655
+seed: senshac-d737
 status: active
 createdAt: "2026-06-02T13:25:40.867Z"
-updatedAt: "2026-06-02T13:25:40.867Z"
-summary: Migrated from active-context and progress memory. TinaCMS Cloud integration is working; remaining work is production env configuration, contact-form production test, founder photo placeholder, and final QA.
+updatedAt: "2026-06-08T13:51:10.312Z"
+summary: Production closeout now covers the revised redesign, CMS stability, contact delivery, responsive QA, media automation, and verified Cloudflare Pages release.
 steps:
-  - Configure Cloudflare production env vars for Resend, contact email, Turnstile, and analytics.
-  - Run production contact form test after env vars are present.
-  - Run final QA across pages, SEO endpoints, redirects, admin, accessibility, and responsive states.
-  - Resolve or close founder photo placeholder follow-up.
+  - Confirm owner decisions for revised WEB.pdf and Novedades in senshac-6b88.
+  - Finish redesign implementation and responsive QA through senshac-redesign-rollout and senshac-5921.
+  - Complete R2 event/CI automation in senshac-7522.
+  - Resolve Tina singleton editing in senshac-3251 and verify admin editing in senshac-08df.
+  - Verify production contact form delivery in senshac-212f.
+  - Run final smoke suite senshac-08df, deploy senshac-6fea, and record rollback point.
