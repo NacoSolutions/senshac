@@ -3,12 +3,12 @@ title: Production readiness closeout
 seed: senshac-d737
 status: active
 createdAt: "2026-06-02T13:25:40.867Z"
-updatedAt: "2026-06-08T13:51:10.312Z"
-summary: Production closeout now covers the revised redesign, CMS stability, contact delivery, responsive QA, media automation, and verified Cloudflare Pages release.
+updatedAt: "2026-06-08T16:28:10.984Z"
+summary: Production closeout covers the revised redesign, CMS stability, cookie-free privacy audit, contact delivery, responsive QA, media automation, and verified Cloudflare Pages release.
 steps:
   - Confirm owner decisions for revised WEB.pdf and Novedades in senshac-6b88.
   - Finish redesign implementation and responsive QA through senshac-redesign-rollout and senshac-5921.
   - Complete R2 event/CI automation in senshac-7522.
   - Resolve Tina singleton editing in senshac-3251 and verify admin editing in senshac-08df.
-  - Verify production contact form delivery in senshac-212f.
+  - Complete cookie-free GDPR/ePrivacy audit senshac-9124 and verify production contact delivery senshac-212f.
   - Run final smoke suite senshac-08df, deploy senshac-6fea, and record rollback point.
