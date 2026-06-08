@@ -3,26 +3,27 @@ title: Revised Senshac website redesign
 seed: senshac-d737
 status: active
 createdAt: "2026-06-08T13:50:55.354Z"
-updatedAt: "2026-06-08T16:29:22.765Z"
-objective: "Implement the owner-approved redesign represented by WEB.pdf: Home has per-section inline collapsed (page 1) and expanded (page 2) states, Methods has per-section inline collapsed (page 3) and expanded (page 4) states, and Works follows page 5. Deliver these as editable Astro/Tina pages using structured content, R2 media, canonical multilingual routes, and privacy-preserving production integrations."
+updatedAt: "2026-06-08T16:33:34.065Z"
+objective: "Implement the owner-approved redesign represented by WEB.pdf: Home has per-section inline collapsed (page 1) and expanded (page 2) states, Methods has per-section inline collapsed (page 3) and expanded (page 4) states, Works follows page 5, and Novedades automatically reflects tagged posts from Senshac own Instagram account through a first-party server-side snapshot."
 constraints:
   - WEB.pdf is a design/content reference only and is never served or parsed at runtime.
   - Every expandable Home and Methods section has its own independent accessible + and - control, matching the current site iteration, without changing URL.
   - Disclosure transitions use ease-in-out motion and respect prefers-reduced-motion.
   - All disclosure sections load collapsed on every visit; state is not persisted in cookies, browser storage, URL state, or server session.
-  - The site targets no non-essential cookies, browser storage, tracking pixels, or consent-requiring embeds; compliance must be verified by senshac-9124 and owner/legal review.
-  - All production images, fonts, and HLS video are delivered from media.senshac.com via stable media IDs.
-  - Novedades rendering consumes a curated tagged content model; the page must not depend directly on a live Instagram API response.
+  - The site targets no non-essential cookies, browser storage, tracking pixels, Meta embeds, or consent-requiring third-party scripts; compliance must be verified by senshac-9124 and owner/legal review.
+  - All production images, fonts, HLS video, and synchronized Novedades snapshots are delivered as first-party assets from media.senshac.com via stable media IDs.
+  - Novedades sync runs server-side against Senshac own authorized professional Instagram account, filters captions by an approved marker hashtag, preserves a last-known-good snapshot, and exposes no Meta credential or SDK to visitors.
   - Keep Astro SSR and zero-JS-first behavior; use native disclosure/CSS where feasible and Alpine only where coordinated state or animation requires it.
 acceptance:
   - Home matches PDF page 1 when all sections are collapsed and page 2 when all are expanded; each + and - control operates only its section, is keyboard accessible, exposes aria-expanded/aria-controls, animates without overlap, and resets on reload.
   - Methods matches PDF page 3 when all sections are collapsed and page 4 when all are expanded; each + and - control operates only its section, is keyboard accessible, exposes aria-expanded/aria-controls, animates without overlap, and resets on reload.
   - Works matches PDF page 5 with approved project content and media.
   - Canonical multilingual routes use studio, works, and methods with tested redirects from legacy routes.
-  - Novedades displays one accessible carousel filtered from approved tagged posts with deterministic ordering and an empty state.
+  - Novedades automatically imports approved hashtag-marked Senshac posts into a deterministic accessible carousel without browser requests to Meta and continues serving its last valid snapshot during sync failures.
   - Privacy audit confirms no unapproved cookies/storage/tracking and required GDPR/ePrivacy disclosures are present before release.
   - Tina editing, R2 media delivery, Astro check/build, contact flow, SEO endpoints, and production smoke tests pass.
 references:
   - .scratch/WEB.pdf
   - "https://senshac.com"
   - "https://media.senshac.com"
+  - "https://developers.facebook.com/docs/instagram-platform/"

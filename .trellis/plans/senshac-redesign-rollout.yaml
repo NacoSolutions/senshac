@@ -4,14 +4,14 @@ seed: senshac-d737
 spec: senshac-redesign
 status: active
 createdAt: "2026-06-08T13:50:55.397Z"
-updatedAt: "2026-06-08T16:22:08.142Z"
-summary: Execute the owner-approved collapsed/expanded Home and Methods states plus the Works page through clarified interaction behavior, structured Tina models, responsive verification, automation, and production release.
+updatedAt: "2026-06-08T16:33:34.103Z"
+summary: Execute the owner-approved collapsed/expanded Home and Methods states, Works page, and automated tagged Instagram Novedades feed through clarified behavior, first-party content snapshots, responsive verification, automation, and production release.
 steps:
-  - Resolve remaining owner questions in senshac-6b88, including disclosure interaction and Novedades behavior; complete discrepancy audit senshac-1087.
+  - Resolve remaining owner questions in senshac-6b88, including Instagram account status, marker hashtag, sync policy, and content behavior; complete discrepancy audit senshac-1087.
   - Implement canonical studio/works/methods routing in senshac-c31e and assign approved R2 media in senshac-058e.
-  - Implement Home collapsed/expanded states in senshac-3af8 and hero parity in senshac-a700.
-  - Implement Methods collapsed/expanded states in senshac-c53b and Works page 5 in senshac-491c.
-  - Define tagged Novedades model senshac-0452, then build filtered carousel senshac-7a40.
+  - Implement Home per-section disclosures in senshac-3af8 and hero parity in senshac-a700.
+  - Implement Methods per-section disclosures in senshac-c53b and Works page 5 in senshac-491c.
+  - Configure Meta authorization senshac-7b27, build scheduled tagged-post sync senshac-272e, define Novedades model senshac-0452, build carousel senshac-7a40, and monitor token/sync health senshac-455a.
   - Resolve Tina singleton editing senshac-3251 and keep the completed CMS runtime regression senshac-0c4c from recurring.
   - Complete R2 dispatch senshac-fe92, GitHub workflow senshac-8345, and rootless Podman act verification senshac-ec6f.
-  - Run responsive QA senshac-5921, final smoke senshac-08df, contact delivery senshac-212f, then deploy senshac-6fea.
+  - Run privacy audit senshac-9124, responsive QA senshac-5921, final smoke senshac-08df, contact delivery senshac-212f, then deploy senshac-6fea.
