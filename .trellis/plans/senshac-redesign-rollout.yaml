@@ -4,10 +4,10 @@ seed: senshac-d737
 spec: senshac-redesign
 status: active
 createdAt: "2026-06-08T13:50:55.397Z"
-updatedAt: "2026-06-08T18:07:04.228Z"
+updatedAt: "2026-06-08T18:11:12.809Z"
 summary: Execute the owner-approved collapsed/expanded Home and Methods states, Works page, and automated tagged Instagram Novedades feed through clarified behavior, first-party content snapshots, responsive verification, automation, and production release.
 steps:
-  - Use the completed owner clarification senshac-6b88 and complete discrepancy audit senshac-1087; defer exact Houzz profile confirmation to senshac-0198 before release.
+  - Use the completed owner clarification senshac-6b88 and completed visual discrepancy audit senshac-1087 documented in docs/redesign-visual-audit.md; defer exact Houzz profile confirmation to senshac-0198 before release.
   - Implement canonical studio/works/methods routing in senshac-c31e and assign approved R2 media in senshac-058e.
   - Implement Home per-section disclosures in senshac-3af8 and hero parity in senshac-a700.
   - Implement Methods per-section disclosures in senshac-c53b and Works page 5 in senshac-491c, rendering the static Houzz callout with a non-linked logo until senshac-0198 is resolved.

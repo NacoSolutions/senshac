@@ -3,7 +3,7 @@ title: Revised Senshac website redesign
 seed: senshac-d737
 status: active
 createdAt: "2026-06-08T13:50:55.354Z"
-updatedAt: "2026-06-08T18:05:47.179Z"
+updatedAt: "2026-06-08T18:11:12.769Z"
 objective: "Implement the owner-approved redesign represented by WEB.pdf: Home has per-section inline collapsed (page 1) and expanded (page 2) states, Methods has per-section inline collapsed (page 3) and expanded (page 4) states, Works follows page 5, and Novedades automatically reflects all currently #novedades-tagged posts from Senshac own Instagram account through a first-party daily server-side snapshot."
 constraints:
   - WEB.pdf is a design/content reference only and is never served or parsed at runtime.
@@ -29,6 +29,7 @@ acceptance:
   - Tina editing, R2 media delivery, Astro check/build, contact flow, SEO endpoints, and production smoke tests pass.
 references:
   - .scratch/WEB.pdf
+  - docs/redesign-visual-audit.md
   - "https://senshac.com"
   - "https://www.houzz.es"
   - "https://media.senshac.com"
