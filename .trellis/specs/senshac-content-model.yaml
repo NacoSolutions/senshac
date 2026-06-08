@@ -2,11 +2,16 @@ id: senshac-content-model
 title: Senshac content and brand model
 status: active
 createdAt: "2026-06-02T13:25:40.836Z"
-updatedAt: "2026-06-02T13:25:40.836Z"
-objective: Migrated from .agent-memory content-migration and product-context. Preserve Sens*Hac brand identity, multilingual navigation, Ester Cobles founder story, services/process content, LA TROBADA project details, contact form fields, and WordPress reference assets while keeping the site high-performance and accessible.
+updatedAt: "2026-06-08T13:50:55.466Z"
+objective: Preserve and evolve the Sens*Hac multilingual brand and service content according to owner-approved WEB.pdf revisions, including homepage positioning, detailed method phases and service tiers, works/projects, founder story, contact content, and curated Novedades posts.
 constraints:
-  - Use Spanish, Catalan, and English content consistently.
-  - Keep question-based headings and semantic HTML for AI snippets.
+  - Use Spanish, Catalan, and English content consistently; owner approval is required before translating revised Spanish source copy.
+  - Keep question-based headings and semantic HTML where compatible with the approved editorial design.
+  - Novedades posts use structured tags, visibility, ordering, locale, destination, and R2 media fields rather than runtime Instagram scraping.
+  - WEB.pdf remains a reference artifact and is not a runtime content source.
 acceptance:
-  - Brand/contact/project/service facts are represented in content or tracked as Seeds follow-up work.
+  - Approved homepage, methods, works, founder, contact, and project facts are represented in Tina content or tracked by a specific Seed.
+  - Novedades filtering and ordering are deterministic and editor-controlled.
 references:
+  - .scratch/WEB.pdf
+  - "https://senshac.com"

@@ -2,13 +2,16 @@ id: senshac-architecture
 title: Senshac Astro portfolio architecture
 status: active
 createdAt: "2026-06-02T13:25:40.795Z"
-updatedAt: "2026-06-02T13:25:40.795Z"
-objective: Migrated from .agent-memory project-brief, system-patterns, and tech-context. Senshac is an Astro SSR portfolio on Cloudflare Pages using UnoCSS, Alpine.js for small UI islands, HTMX/Hyperscript for server interactions, Bun/Flox for development, multilingual routes, content collections, optimized images, and SEO/LLM structured data.
+updatedAt: "2026-06-08T13:50:55.434Z"
+objective: Senshac is an Astro SSR portfolio on Cloudflare Pages using UnoCSS, Alpine.js for local UI state, HTMX/Hyperscript for server interactions, TinaCMS structured editing, multilingual routes, and an external Cloudflare R2 media pipeline for responsive images, fonts, and HLS video.
 constraints:
   - "Zero-JS first: prefer HTML/CSS, then Alpine.js, then HTMX, then Hyperscript."
-  - "Use astro:assets Image for optimized project images and keep LCP hero priority explicit."
-  - "Maintain multilingual content under src/content/projects/{es,ca,en}/ and [lang] routes."
+  - Use stable R2 media IDs with AVIF/WebP 412/768/1200 variants and HLS manifests; repository media and build-time image optimization are retired.
+  - Keep media ingestion in senshac-media-raw and immutable public delivery in senshac-media-prod through media.senshac.com.
+  - Maintain multilingual content and canonical studio, works, and methods routes.
 acceptance:
-  - Astro check/build passes inside Flox with Bun.
+  - Astro check/build passes inside Flox with Bun without public/images or public/fonts.
+  - Images, fonts, and HLS media return correct MIME/cache headers from media.senshac.com.
   - Navigation, project pages, contact flow, SEO endpoints, and TinaCMS admin remain functional.
 references:
+  - docs/media-pipeline.md
