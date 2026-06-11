@@ -18,7 +18,7 @@ const items = itemList ?? [];
 
 <section class="editorial-section">
   <div class="editorial-shell">
-    {title && <h2 class="editorial-heading editorial-heading--compact">{title}</h2>}
+    {title && <h2 class="editorial-heading editorial-heading--compact" x-reveal>{title}</h2>}
     {intro && (
       <div class="editorial-body max-w-[52rem] mb-[clamp(2.5rem,5vw,5rem)] whitespace-normal">
         <RichText content={intro} />

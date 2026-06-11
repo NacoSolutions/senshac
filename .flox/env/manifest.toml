@@ -37,7 +37,7 @@ on-activate = '''
   cat <<'EOF'
 Senshac Development Environment
 
-Astro + Alpine.js + HTMX + Hyperscript + UnoCSS
+Astro + Alpine.js + HTMX + UnoCSS
 
 Quick Commands:
   dx <command>                          Run through direnv exec .

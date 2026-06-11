@@ -35,8 +35,8 @@ const site = await getSiteConfig();
       </div>
     )}
     {eyebrow && <p class="editorial-eyebrow">{eyebrow}</p>}
-    {title && headingLevel === 'h1' && <h1 class="editorial-heading editorial-heading--page max-w-none">{title}</h1>}
-    {title && headingLevel !== 'h1' && <h2 class="editorial-heading">{title}</h2>}
+    {title && headingLevel === 'h1' && <h1 class="editorial-heading editorial-heading--page max-w-none" x-reveal>{title}</h1>}
+    {title && headingLevel !== 'h1' && <h2 class="editorial-heading" x-reveal>{title}</h2>}
     {body && (
       <div class:list={['editorial-body max-w-[52rem] whitespace-normal', { 'col-span-full max-w-none': headingLevel === 'h1' }]}>
         <RichText content={body} />

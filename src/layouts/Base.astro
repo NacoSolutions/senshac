@@ -1,8 +1,8 @@
 ---
+import Cursor from "../components/Cursor.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 // src/layouts/Base.astro
-// Note: virtual:uno.css is auto-injected by @unocss/astro integration
 import SEO from "../components/SEO.astro";
 import "../styles/global.css";
 import TinaIsland from "@tinacms/astro/TinaIsland.astro";
@@ -116,80 +116,16 @@ const fontCss = `
       {tinaTranslationsData && tinaSiteData && <FooterIsland data={tinaTranslationsData as any} siteData={tinaSiteData as any} lang={lang} relativePath={translationsPath} />}
     </TinaIsland>
 
-    <!-- Custom cursor circle -->
-    <div id="cursor-circle"></div>
+    <Cursor />
 
-    <!-- Alpine.js -->
+    <!-- Alpine.js Initialization -->
     <script>
       import Alpine from 'alpinejs';
+      import { registerAlpineComponents } from '../utils/alpine';
+      
+      registerAlpineComponents(Alpine);
       window.Alpine = Alpine;
       Alpine.start();
-    </script>
-
-
-
-
-    <!-- Cursor -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const circle = document.getElementById('cursor-circle') as HTMLElement | null;
-        if (!circle) return;
-        const el = circle; // TypeScript narrowing helper
-
-        let mouseX = 0, mouseY = 0;
-        let circleX = 0, circleY = 0;
-        let scale = 1;
-        let hideTimeout: ReturnType<typeof setTimeout> | null = null;
-        const IDLE_HIDE_DELAY = 2000; // Hide after 2 seconds of no movement
-
-        const showCursor = () => {
-          el.style.opacity = '1';
-          // Reset hide timeout on any movement
-          if (hideTimeout) clearTimeout(hideTimeout);
-          hideTimeout = setTimeout(() => {
-            el.style.opacity = '0';
-          }, IDLE_HIDE_DELAY);
-        };
-
-        // Add hoverable effect to elements
-        document.querySelectorAll('a, button, .hoverable').forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            scale = 2;
-            showCursor();
-          });
-          el.addEventListener('mouseleave', () => {
-            scale = 1;
-          });
-        });
-
-        // Show cursor when entering document
-        document.addEventListener('mouseenter', () => {
-          showCursor();
-        });
-
-        // Hide cursor when leaving document
-        document.addEventListener('mouseleave', () => {
-          if (hideTimeout) clearTimeout(hideTimeout);
-          el.style.opacity = '0';
-        });
-
-        document.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-          showCursor();
-        });
-
-        // Smooth animation loop
-        function animate() {
-          circleX += (mouseX - circleX) * 0.15;
-          circleY += (mouseY - circleY) * 0.15;
-          el.style.left = circleX + 'px';
-          el.style.top = circleY + 'px';
-          el.style.transform = `translate(-50%, -50%) scale(${scale})`;
-          requestAnimationFrame(animate);
-        }
-        animate();
-      });
     </script>
     <script is:inline>
       // Allow click-through navigation in TinaCMS iframe by holding Alt or Meta/Ctrl
@@ -207,35 +143,6 @@ const fontCss = `
           }
         }
       }, true); // Use capture phase to run before Tina's listeners
-    </script>
-    <script>
-      // Intersection Observer for scroll animations
-      document.addEventListener('DOMContentLoaded', () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              // Optional: Stop observing once revealed
-              // observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        // Progressively enhance key typography with reveal animations
-        document.querySelectorAll('.editorial-display, .editorial-heading, .editorial-lede').forEach(el => {
-          el.classList.add('reveal-up');
-        });
-
-        document.querySelectorAll('.reveal-up').forEach(el => {
-          observer.observe(el);
-        });
-      });
     </script>
   </body>
 </html>

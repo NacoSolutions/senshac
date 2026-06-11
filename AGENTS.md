@@ -15,11 +15,11 @@ Interior design portfolio website migrating from WordPress to Astro with Islands
 
 ## Technical Stack
 
-- **Framework**: Astro 5.0+ with SSR (`output: 'server'`)
+- **Framework**: Astro 5.0+ with static-first rendering (`output: 'hybrid'`)
 - **Adapter**: @astrojs/cloudflare
 - **Styling**: UnoCSS (zero-runtime atomic CSS)
 - **UI State**: Alpine.js (modals, mobile menu, image gallery)
-- **Server Comms**: HTMX + Hyperscript (forms, filtering)
+- **Server Comms**: HTMX (forms, filtering)
 - **Deployment**: Cloudflare Pages
 
 ## Coding Rules
@@ -30,14 +30,13 @@ Decision hierarchy:
 1. Can HTML/CSS solve it? Use that
 2. Needs local UI state? Alpine.js
 3. Needs server communication? HTMX
-4. Complex client logic? Hyperscript
 
 ### Images
 
-- Use `<Image />` from `astro:assets` exclusively
-- Auto-conversion to AVIF/WebP
+- Use `<R2Picture />` or HLS media exclusively instead of `astro:assets` `<Image />`
+- Images are served directly from Cloudflare R2
 - `loading="lazy"` for below-fold images
-- `fetchpriority="high"` for LCP hero image
+- `eager={true}` for LCP hero image
 
 ### Accessibility
 
@@ -75,7 +74,9 @@ src/
 ├── pages/
 │   ├── [lang]/
 │   │   ├── index.astro
-│   │   ├── projects/
+│   │   ├── studio.astro
+│   │   ├── methods.astro
+│   │   ├── works/
 │   │   │   ├── index.astro
 │   │   │   └── [slug].astro
 │   │   └── contact.astro
@@ -91,10 +92,14 @@ src/
 ```typescript
 {
   title: string,
-  description: string,
-  publishDate: Date,
+  slug: string,
+  draft: boolean,
+  client: string,
   location: string,
-  coverImage: string,
+  year: string,
+  area: string,
+  scope: string,
+  featuredImage: string,
   gallery: string[]
 }
 ```
