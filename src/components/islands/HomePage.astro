@@ -1,12 +1,12 @@
 ---
-import { tinaField } from '@tinacms/astro/tina-field';
-import type { HomeQuery } from '../../../tina/__generated__/types';
-import BlocksRenderer from '../BlocksRenderer.astro';
+import { tinaField } from "@tinacms/astro/tina-field";
+import type { HomeQuery } from "../../../tina/__generated__/types";
+import BlocksRenderer from "../BlocksRenderer.astro";
 
-type HomePageData = HomeQuery['home'];
+type HomePageData = HomeQuery["home"];
 
 interface Props {
-  data?: HomePageData | null;
+	data?: HomePageData | null;
 }
 
 const { data } = Astro.props;

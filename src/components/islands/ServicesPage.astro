@@ -1,12 +1,12 @@
 ---
-import { tinaField } from '@tinacms/astro/tina-field';
-import type { ServicesQuery } from '../../../tina/__generated__/types';
-import BlocksRenderer from '../BlocksRenderer.astro';
+import { tinaField } from "@tinacms/astro/tina-field";
+import type { ServicesQuery } from "../../../tina/__generated__/types";
+import BlocksRenderer from "../BlocksRenderer.astro";
 
-type ServicesPageData = ServicesQuery['services'];
+type ServicesPageData = ServicesQuery["services"];
 
 interface Props {
-  data?: ServicesPageData | null;
+	data?: ServicesPageData | null;
 }
 
 const { data } = Astro.props;

@@ -1,46 +1,52 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import MediaPlaceholder from '../../../components/sections/editorial/MediaPlaceholder.astro';
-import { getEntry, getCollection } from 'astro:content';
+import { getCollection, getEntry } from "astro:content";
+import MediaPlaceholder from "../../../components/sections/editorial/MediaPlaceholder.astro";
+import Base from "../../../layouts/Base.astro";
 
-const { lang = 'es' } = Astro.params;
-const translations = await getEntry('translations', lang);
+const { lang = "es" } = Astro.params;
+const translations = await getEntry("translations", lang);
 const t = translations?.data.projects;
 
 if (!t) {
-  return Astro.redirect('/404');
+	return Astro.redirect("/404");
 }
 
-const allProjects = await getCollection('projects', ({ id, data }) => {
-  return id.startsWith(`${lang}/`) && !data.draft;
+const allProjects = await getCollection("projects", ({ id, data }) => {
+	return id.startsWith(`${lang}/`) && !data.draft;
 });
 
 // Sort by publishDate descending
 const sortedProjects = allProjects.sort((a, b) => {
-  const dateA = a.data.publishDate?.getTime() || 0;
-  const dateB = b.data.publishDate?.getTime() || 0;
-  return dateB - dateA;
+	const dateA = a.data.publishDate?.getTime() || 0;
+	const dateB = b.data.publishDate?.getTime() || 0;
+	return dateB - dateA;
 });
 
-const layouts = ['wide-right', 'portrait-left', 'wide-center', 'landscape-left', 'landscape-right'];
+const layouts = [
+	"wide-right",
+	"portrait-left",
+	"wide-center",
+	"landscape-left",
+	"landscape-right",
+];
 
 const works = sortedProjects.map((project, index) => {
-  const bannerBlock = project.data.blocks?.find((b: any) => b._template === 'projectBanner');
-  
-  return {
-    category: project.data.tags?.[0] || 'Proyecto',
-    title: project.data.title,
-    summary: project.data.description,
-    href: `/${lang}/works/${project.data.slug}`,
-    mediaId: bannerBlock?.mediaId,
-    alt: bannerBlock?.alt || project.data.title,
-    placeholderLabel: `${project.data.title}: imagen pendiente`,
-    layout: layouts[index % layouts.length],
-  };
+	const bannerBlock = project.data.blocks?.find(
+		(b: any) => b._template === "projectBanner",
+	);
+
+	return {
+		category: project.data.tags?.[0] || "Proyecto",
+		title: project.data.title,
+		summary: project.data.description,
+		href: `/${lang}/works/${project.data.slug}`,
+		mediaId: bannerBlock?.mediaId,
+		alt: bannerBlock?.alt || project.data.title,
+		placeholderLabel: `${project.data.title}: imagen pendiente`,
+		layout: layouts[index % layouts.length],
+	};
 });
-const breadcrumbs = [
-  { name: 'Works', url: `/${lang}/works` }
-];
+const breadcrumbs = [{ name: "Works", url: `/${lang}/works` }];
 ---
 
 <Base title={t.title} description={t.description} lang={lang} schema="BreadcrumbList" breadcrumbs={breadcrumbs}>

@@ -1,71 +1,78 @@
 ---
-import MediaPlaceholder from './MediaPlaceholder.astro';
-import R2Picture from '../../R2Picture.astro';
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
+import R2Picture from "../../R2Picture.astro";
+import MediaPlaceholder from "./MediaPlaceholder.astro";
 
 interface Item {
-  title?: string;
-  link?: string;
-  mediaId?: string;
-  imageAlt?: string;
-  placeholderLabel?: string;
+	title?: string;
+	link?: string;
+	mediaId?: string;
+	imageAlt?: string;
+	placeholderLabel?: string;
 }
 
 interface Props {
-  eyebrow?: string;
-  title?: string;
-  ctaText?: string;
-  ctaLink?: string;
-  mediaType?: 'image' | 'video';
-  mediaId?: string;
-  imageAlt?: string;
-  placeholderLabel?: string;
-  items?: Item[] | null;
+	eyebrow?: string;
+	title?: string;
+	ctaText?: string;
+	ctaLink?: string;
+	mediaType?: "image" | "video";
+	mediaId?: string;
+	imageAlt?: string;
+	placeholderLabel?: string;
+	items?: Item[] | null;
 }
 
 const {
-  eyebrow,
-  title,
-  ctaText,
-  ctaLink,
-  mediaType = 'image',
-  mediaId,
-  imageAlt,
-  placeholderLabel,
-  items: itemList,
+	eyebrow,
+	title,
+	ctaText,
+	ctaLink,
+	mediaType = "image",
+	mediaId,
+	imageAlt,
+	placeholderLabel,
+	items: itemList,
 } = Astro.props;
 const items = itemList ?? [];
 
 // Auto-populate from projects when no items and no media are provided
-const lang = Astro.url.pathname.split('/')[1] || 'es';
-let projectSlides: { title: string; href: string; mediaId: string; alt: string }[] = [];
+const lang = Astro.url.pathname.split("/")[1] || "es";
+let projectSlides: {
+	title: string;
+	href: string;
+	mediaId: string;
+	alt: string;
+}[] = [];
 
 if (items.length === 0 && !mediaId) {
-  const allProjects = await getCollection('projects', ({ id, data }) => {
-    return id.startsWith(`${lang}/`) && !data.draft;
-  });
-  const sorted = allProjects.sort((a, b) => {
-    const dateA = a.data.publishDate?.getTime() || 0;
-    const dateB = b.data.publishDate?.getTime() || 0;
-    return dateB - dateA;
-  });
-  projectSlides = sorted.map((project) => {
-    const bannerBlock = project.data.blocks?.find((b: any) => b._template === 'projectBanner');
-    return {
-      title: project.data.title,
-      href: `/${lang}/works/${project.data.slug}`,
-      mediaId: (bannerBlock?.mediaId || '')
-        .replace(/^https:\/\/media\.senshac\.com\/images\//, '')
-        .replace(/^\/?images\//, '')
-        .replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, '')
-        .replace(/\.[^.]+$/, ''),
-      alt: bannerBlock?.alt || project.data.title,
-    };
-  });
+	const allProjects = await getCollection("projects", ({ id, data }) => {
+		return id.startsWith(`${lang}/`) && !data.draft;
+	});
+	const sorted = allProjects.sort((a, b) => {
+		const dateA = a.data.publishDate?.getTime() || 0;
+		const dateB = b.data.publishDate?.getTime() || 0;
+		return dateB - dateA;
+	});
+	projectSlides = sorted.map((project) => {
+		const bannerBlock = project.data.blocks?.find(
+			(b: any) => b._template === "projectBanner",
+		);
+		return {
+			title: project.data.title,
+			href: `/${lang}/works/${project.data.slug}`,
+			mediaId: (bannerBlock?.mediaId || "")
+				.replace(/^https:\/\/media\.senshac\.com\/images\//, "")
+				.replace(/^\/?images\//, "")
+				.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+				.replace(/\.[^.]+$/, ""),
+			alt: bannerBlock?.alt || project.data.title,
+		};
+	});
 }
 
 const showProjectCarousel = projectSlides.length > 0;
-const carouselId = 'showcase-' + Math.random().toString(36).substring(2, 9);
+const carouselId = "showcase-" + Math.random().toString(36).substring(2, 9);
 ---
 
 <section class="editorial-section">

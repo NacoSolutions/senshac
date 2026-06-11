@@ -1,18 +1,22 @@
 ---
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import LegalPage from "../../components/islands/LegalPage.astro";
 // src/pages/[lang]/privacy-policy.astro
-import Base from '../../layouts/Base.astro';
-import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import LegalPage from '../../components/islands/LegalPage.astro';
-import { getLegal, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
-import { createIslands } from '../../lib/tina-islands';
+import Base from "../../layouts/Base.astro";
+import {
+	getLegal,
+	getTinaRuntimeEnv,
+	pageRelativePath,
+} from "../../lib/tina-data";
+import { createIslands } from "../../lib/tina-islands";
 
-const { lang = 'es' } = Astro.params;
+const { lang = "es" } = Astro.params;
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-const relativePath = pageRelativePath(lang, 'privacy-policy.mdx');
+const relativePath = pageRelativePath(lang, "privacy-policy.mdx");
 
 const res = await getLegal(relativePath, tinaEnv);
 if (!res.data.legal) {
-  return Astro.redirect('/404');
+	return Astro.redirect("/404");
 }
 
 const tinaData = res.data.legal;

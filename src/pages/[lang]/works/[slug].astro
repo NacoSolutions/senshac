@@ -1,19 +1,19 @@
 ---
+import { getEntry } from "astro:content";
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import BlocksRenderer from "../../../components/BlocksRenderer.astro";
+import ProjectPage from "../../../components/islands/ProjectPage.astro";
 // src/pages/[lang]/works/[slug].astro
-import Base from '../../../layouts/Base.astro';
-import { getEntry } from 'astro:content';
-import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import BlocksRenderer from '../../../components/BlocksRenderer.astro';
-import ProjectPage from '../../../components/islands/ProjectPage.astro';
-import { getProject, getTinaRuntimeEnv } from '../../../lib/tina-data';
-import { createIslands } from '../../../lib/tina-islands';
+import Base from "../../../layouts/Base.astro";
+import { getProject, getTinaRuntimeEnv } from "../../../lib/tina-data";
+import { createIslands } from "../../../lib/tina-islands";
 
 const { lang, slug } = Astro.params;
 
-const project = await getEntry('projects', `${lang}/${slug}`);
+const project = await getEntry("projects", `${lang}/${slug}`);
 
 if (!project) {
-  return Astro.redirect('/404');
+	return Astro.redirect("/404");
 }
 
 const { data } = project;
@@ -23,8 +23,8 @@ const islands = createIslands(tinaEnv);
 const tinaProject = await getProject(relativePath, tinaEnv);
 const tinaProjectData = tinaProject.data.projects;
 const breadcrumbs = [
-  { name: 'Works', url: `/${lang}/works` },
-  { name: data.title, url: `/${lang}/works/${slug}` },
+	{ name: "Works", url: `/${lang}/works` },
+	{ name: data.title, url: `/${lang}/works/${slug}` },
 ];
 ---
 

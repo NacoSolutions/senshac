@@ -25,7 +25,12 @@ var siteConfigFields = [
     fields: [
       { name: "name", label: "Name", type: "string" },
       { name: "legalName", label: "Legal Name", type: "string" },
-      { name: "description", label: "Description", type: "string", ui: { component: "textarea" } },
+      {
+        name: "description",
+        label: "Description",
+        type: "string",
+        ui: { component: "textarea" }
+      },
       { name: "tagline", label: "Tagline", type: "string" }
     ]
   },
@@ -52,9 +57,7 @@ var siteConfigFields = [
     type: "object",
     name: "founder",
     label: "Founder",
-    fields: [
-      { name: "name", label: "Name", type: "string" }
-    ]
+    fields: [{ name: "name", label: "Name", type: "string" }]
   },
   {
     type: "object",
@@ -98,9 +101,7 @@ var siteConfigFields = [
     type: "object",
     name: "seo",
     label: "SEO",
-    fields: [
-      { name: "priceRange", label: "Price Range", type: "string" }
-    ]
+    fields: [{ name: "priceRange", label: "Price Range", type: "string" }]
   }
 ];
 var contactFormBlock = {
@@ -118,15 +119,30 @@ var editorialHeroBlock = {
   label: "Editorial Hero",
   type: "object",
   fields: [
-    { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
+    {
+      name: "title",
+      label: "Title",
+      type: "string",
+      ui: { component: "textarea" }
+    },
     { name: "intro", label: "Introduction", type: "rich-text" },
     { name: "ctaText", label: "Link Text", type: "string" },
     { name: "ctaLink", label: "Link URL", type: "string" },
-    { name: "mediaType", label: "Media Type", type: "string", options: ["image", "video"] },
+    {
+      name: "mediaType",
+      label: "Media Type",
+      type: "string",
+      options: ["image", "video"]
+    },
     { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
     { name: "placeholderLabel", label: "Placeholder Label", type: "string" },
-    { name: "objectFit", label: "Image Fit", type: "string", options: ["cover", "contain"] }
+    {
+      name: "objectFit",
+      label: "Image Fit",
+      type: "string",
+      options: ["cover", "contain"]
+    }
   ]
 };
 var editorialBannerBlock = {
@@ -134,20 +150,28 @@ var editorialBannerBlock = {
   label: "Editorial Banner",
   type: "object",
   fields: [
-    { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
+    {
+      name: "title",
+      label: "Title",
+      type: "string",
+      ui: { component: "textarea" }
+    },
     { name: "subtitle", label: "Subtitle", type: "string" },
     {
       name: "topRight",
       label: "Top Right Slogan",
       type: "object",
-      fields: [
-        { name: "lines", label: "Lines", type: "string", list: true }
-      ]
+      fields: [{ name: "lines", label: "Lines", type: "string", list: true }]
     },
     { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
     { name: "placeholderLabel", label: "Placeholder Label", type: "string" },
-    { name: "objectFit", label: "Image Fit", type: "string", options: ["cover", "contain"] }
+    {
+      name: "objectFit",
+      label: "Image Fit",
+      type: "string",
+      options: ["cover", "contain"]
+    }
   ]
 };
 var editorialCopyBlock = {
@@ -156,8 +180,18 @@ var editorialCopyBlock = {
   type: "object",
   fields: [
     { name: "eyebrow", label: "Eyebrow", type: "string" },
-    { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
-    { name: "headingLevel", label: "Heading Level", type: "string", options: ["h1", "h2"] },
+    {
+      name: "title",
+      label: "Title",
+      type: "string",
+      ui: { component: "textarea" }
+    },
+    {
+      name: "headingLevel",
+      label: "Heading Level",
+      type: "string",
+      options: ["h1", "h2"]
+    },
     { name: "body", label: "Body", type: "rich-text" },
     { name: "showStar", label: "Show Star Graphic", type: "boolean" }
   ]
@@ -173,11 +207,20 @@ var editorialAccordionBlock = {
       label: "Accordion Items",
       type: "object",
       list: true,
-      ui: { itemProps: (item) => ({ label: `${item?.number || ""} ${item?.title || ""}`.trim() }) },
+      ui: {
+        itemProps: (item) => ({
+          label: `${item?.number || ""} ${item?.title || ""}`.trim()
+        })
+      },
       fields: [
         { name: "number", label: "Number", type: "string" },
         { name: "title", label: "Title", type: "string" },
-        { name: "summary", label: "Summary", type: "string", ui: { component: "textarea" } },
+        {
+          name: "summary",
+          label: "Summary",
+          type: "string",
+          ui: { component: "textarea" }
+        },
         { name: "open", label: "Open by Default", type: "boolean" },
         {
           name: "details",
@@ -199,7 +242,12 @@ var editorialRowsBlock = {
   label: "Editorial Rows",
   type: "object",
   fields: [
-    { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
+    {
+      name: "title",
+      label: "Title",
+      type: "string",
+      ui: { component: "textarea" }
+    },
     { name: "intro", label: "Introduction", type: "rich-text" },
     {
       name: "items",
@@ -229,8 +277,18 @@ var editorialShowcaseBlock = {
   type: "object",
   fields: [
     { name: "eyebrow", label: "Eyebrow", type: "string" },
-    { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
-    { name: "mediaType", label: "Media Type", type: "string", options: ["image", "video"] },
+    {
+      name: "title",
+      label: "Title",
+      type: "string",
+      ui: { component: "textarea" }
+    },
+    {
+      name: "mediaType",
+      label: "Media Type",
+      type: "string",
+      options: ["image", "video"]
+    },
     { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
     { name: "placeholderLabel", label: "Placeholder Label", type: "string" },
@@ -247,7 +305,11 @@ var editorialShowcaseBlock = {
         { name: "link", label: "URL", type: "string" },
         { name: "mediaId", label: "R2 Media Identifier", type: "image" },
         { name: "imageAlt", label: "Image Alt Text", type: "string" },
-        { name: "placeholderLabel", label: "Placeholder Label", type: "string" }
+        {
+          name: "placeholderLabel",
+          label: "Placeholder Label",
+          type: "string"
+        }
       ]
     }
   ]
@@ -259,7 +321,12 @@ var editorialMissionBlock = {
   fields: [
     { name: "label", label: "Label", type: "string" },
     { name: "content", label: "Content", type: "rich-text" },
-    { name: "statement", label: "Closing Statement", type: "string", ui: { component: "textarea" } },
+    {
+      name: "statement",
+      label: "Closing Statement",
+      type: "string",
+      ui: { component: "textarea" }
+    },
     { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
     { name: "placeholderLabel", label: "Placeholder Label", type: "string" }
@@ -290,9 +357,24 @@ var editorialInstagramBlock = {
   fields: [
     { name: "title", label: "Title", type: "string" },
     { name: "description", label: "Description", type: "rich-text" },
-    { name: "tag", label: "Instagram Tag (Optional)", type: "string", description: "Enter a tag to filter posts by (e.g. novedades, latrobada)" },
-    { name: "limit", label: "Total Limit", type: "number", description: "Maximum total number of posts to display" },
-    { name: "maxVisible", label: "Max Visible Posts", type: "number", description: "Show up to this many posts at once (e.g. 4). If more are available, a horizontal carousel is created." }
+    {
+      name: "tag",
+      label: "Instagram Tag (Optional)",
+      type: "string",
+      description: "Enter a tag to filter posts by (e.g. novedades, latrobada)"
+    },
+    {
+      name: "limit",
+      label: "Total Limit",
+      type: "number",
+      description: "Maximum total number of posts to display"
+    },
+    {
+      name: "maxVisible",
+      label: "Max Visible Posts",
+      type: "number",
+      description: "Show up to this many posts at once (e.g. 4). If more are available, a horizontal carousel is created."
+    }
   ]
 };
 var editorialGalleryBlock = {
@@ -418,41 +500,126 @@ var projectBlocksField = {
   ]
 };
 var homePageFields = [
-  { type: "string", name: "title", label: "Page Title", isTitle: true, required: true },
-  { type: "string", name: "description", label: "Meta Description", ui: { component: "textarea" } },
-  { type: "string", name: "headerStyle", label: "Header Style", options: ["default", "transparent"] },
+  {
+    type: "string",
+    name: "title",
+    label: "Page Title",
+    isTitle: true,
+    required: true
+  },
+  {
+    type: "string",
+    name: "description",
+    label: "Meta Description",
+    ui: { component: "textarea" }
+  },
+  {
+    type: "string",
+    name: "headerStyle",
+    label: "Header Style",
+    options: ["default", "transparent"]
+  },
   pageBlocksField
 ];
 var aboutPageFields = [
-  { type: "string", name: "title", label: "Page Title", isTitle: true, required: true },
-  { type: "string", name: "description", label: "Meta Description", ui: { component: "textarea" } },
+  {
+    type: "string",
+    name: "title",
+    label: "Page Title",
+    isTitle: true,
+    required: true
+  },
+  {
+    type: "string",
+    name: "description",
+    label: "Meta Description",
+    ui: { component: "textarea" }
+  },
   pageBlocksField
 ];
 var servicesPageFields = [
-  { type: "string", name: "title", label: "Page Title", isTitle: true, required: true },
-  { type: "string", name: "description", label: "Meta Description", ui: { component: "textarea" } },
+  {
+    type: "string",
+    name: "title",
+    label: "Page Title",
+    isTitle: true,
+    required: true
+  },
+  {
+    type: "string",
+    name: "description",
+    label: "Meta Description",
+    ui: { component: "textarea" }
+  },
   pageBlocksField
 ];
 var contactPageFields = [
-  { type: "string", name: "title", label: "Page Title", isTitle: true, required: true },
-  { type: "string", name: "description", label: "Meta Description", ui: { component: "textarea" } },
+  {
+    type: "string",
+    name: "title",
+    label: "Page Title",
+    isTitle: true,
+    required: true
+  },
+  {
+    type: "string",
+    name: "description",
+    label: "Meta Description",
+    ui: { component: "textarea" }
+  },
   pageBlocksField
 ];
 var projectFields = [
-  { type: "string", name: "title", label: "Title", isTitle: true, required: true },
-  { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
+  {
+    type: "string",
+    name: "title",
+    label: "Title",
+    isTitle: true,
+    required: true
+  },
+  {
+    type: "string",
+    name: "description",
+    label: "Description",
+    ui: { component: "textarea" }
+  },
   { type: "string", name: "slug", label: "URL Slug" },
-  { type: "datetime", name: "publishDate", label: "Publish Date", required: false },
-  { type: "datetime", name: "completedDate", label: "Completed Date", required: false },
+  {
+    type: "datetime",
+    name: "publishDate",
+    label: "Publish Date",
+    required: false
+  },
+  {
+    type: "datetime",
+    name: "completedDate",
+    label: "Completed Date",
+    required: false
+  },
   { type: "string", name: "tags", label: "Tags", list: true },
-  { type: "boolean", name: "showTags", label: "Show Tags on Projects List" },
+  {
+    type: "boolean",
+    name: "showTags",
+    label: "Show Tags on Projects List"
+  },
   { type: "boolean", name: "featured", label: "Featured" },
   { type: "boolean", name: "draft", label: "Draft" },
   projectBlocksField
 ];
 var legalPageFields = [
-  { type: "string", name: "title", label: "Title", isTitle: true, required: true },
-  { type: "string", name: "description", label: "Meta Description", ui: { component: "textarea" } },
+  {
+    type: "string",
+    name: "title",
+    label: "Title",
+    isTitle: true,
+    required: true
+  },
+  {
+    type: "string",
+    name: "description",
+    label: "Meta Description",
+    ui: { component: "textarea" }
+  },
   { type: "datetime", name: "lastUpdated", label: "Last Updated" },
   { type: "rich-text", name: "body", label: "Content", isBody: true }
 ];
@@ -475,7 +642,11 @@ var translationFields = [
         },
         fields: [
           { name: "label", label: "Label", type: "string" },
-          { name: "href", label: "URL Path (include lang prefix if needed, e.g. /es/studio)", type: "string" }
+          {
+            name: "href",
+            label: "URL Path (include lang prefix if needed, e.g. /es/studio)",
+            type: "string"
+          }
         ]
       }
     ]
@@ -497,7 +668,11 @@ var translationFields = [
         },
         fields: [
           { name: "label", label: "Label", type: "string" },
-          { name: "href", label: "URL Path (include lang prefix if needed, e.g. /es/studio)", type: "string" }
+          {
+            name: "href",
+            label: "URL Path (include lang prefix if needed, e.g. /es/studio)",
+            type: "string"
+          }
         ]
       }
     ]
@@ -541,9 +716,17 @@ var translationFields = [
       { name: "sending", label: "Sending Text", type: "string" },
       { name: "success", label: "Success Message", type: "string" },
       { name: "error", label: "Error Message", type: "string" },
-      { name: "turnstileFailed", label: "Turnstile Failed Message", type: "string" },
+      {
+        name: "turnstileFailed",
+        label: "Turnstile Failed Message",
+        type: "string"
+      },
       { name: "invalidEmail", label: "Invalid Email Message", type: "string" },
-      { name: "missingFields", label: "Missing Fields Message", type: "string" }
+      {
+        name: "missingFields",
+        label: "Missing Fields Message",
+        type: "string"
+      }
     ]
   },
   {
@@ -694,7 +877,11 @@ var config_default = defineConfig({
               { _template: "projectBrief", title: "BRIEF", text: "" },
               { _template: "projectConcept", title: "CONCEPTO", text: "" },
               { _template: "projectStrategy", title: "ESTRATEGIA", text: "" },
-              { _template: "projectCollaborators", title: "COLABORADORES", list: [] },
+              {
+                _template: "projectCollaborators",
+                title: "COLABORADORES",
+                list: []
+              },
               { _template: "projectFinalImage" }
             ]
           };

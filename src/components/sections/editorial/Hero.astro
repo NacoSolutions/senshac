@@ -1,29 +1,29 @@
 ---
-import MediaPlaceholder from './MediaPlaceholder.astro';
-import RichText from './RichText.astro';
+import MediaPlaceholder from "./MediaPlaceholder.astro";
+import RichText from "./RichText.astro";
 
 interface Props {
-  title?: string;
-  intro?: any;
-  ctaText?: string;
-  ctaLink?: string;
-  mediaId?: string;
-  imageAlt?: string;
-  mediaType?: 'image' | 'video';
-  placeholderLabel?: string;
-  objectFit?: 'cover' | 'contain';
+	title?: string;
+	intro?: any;
+	ctaText?: string;
+	ctaLink?: string;
+	mediaId?: string;
+	imageAlt?: string;
+	mediaType?: "image" | "video";
+	placeholderLabel?: string;
+	objectFit?: "cover" | "contain";
 }
 
 const {
-  title,
-  intro,
-  ctaText,
-  ctaLink,
-  mediaId,
-  imageAlt,
-  mediaType = 'image',
-  placeholderLabel,
-  objectFit = 'cover',
+	title,
+	intro,
+	ctaText,
+	ctaLink,
+	mediaId,
+	imageAlt,
+	mediaType = "image",
+	placeholderLabel,
+	objectFit = "cover",
 } = Astro.props;
 ---
 

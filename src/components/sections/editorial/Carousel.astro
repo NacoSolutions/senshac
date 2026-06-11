@@ -1,26 +1,26 @@
 ---
-import R2Picture from '../../R2Picture.astro';
+import R2Picture from "../../R2Picture.astro";
 
 interface CarouselItem {
-  mediaId: string;
-  alt?: string;
-  caption?: string;
+	mediaId: string;
+	alt?: string;
+	caption?: string;
 }
 
 interface Props {
-  items?: CarouselItem[];
+	items?: CarouselItem[];
 }
 
 const { items = [] } = Astro.props;
 
-const id = 'carousel-' + Math.random().toString(36).substring(2, 9);
+const id = "carousel-" + Math.random().toString(36).substring(2, 9);
 
 function extractMediaId(value?: string | null) {
-  return (value || '')
-    .replace(/^https:\/\/media\.senshac\.com\/images\//, '')
-    .replace(/^\/?images\//, '')
-    .replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, '')
-    .replace(/\.[^.]+$/, '');
+	return (value || "")
+		.replace(/^https:\/\/media\.senshac\.com\/images\//, "")
+		.replace(/^\/?images\//, "")
+		.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+		.replace(/\.[^.]+$/, "");
 }
 ---
 

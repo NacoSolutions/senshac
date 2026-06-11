@@ -1,17 +1,18 @@
 ---
-import MediaPlaceholder from './MediaPlaceholder.astro';
-import RichText from './RichText.astro';
+import MediaPlaceholder from "./MediaPlaceholder.astro";
+import RichText from "./RichText.astro";
 
 interface Props {
-  label?: string;
-  content?: any;
-  statement?: string;
-  mediaId?: string;
-  imageAlt?: string;
-  placeholderLabel?: string;
+	label?: string;
+	content?: any;
+	statement?: string;
+	mediaId?: string;
+	imageAlt?: string;
+	placeholderLabel?: string;
 }
 
-const { label, content, statement, mediaId, imageAlt, placeholderLabel } = Astro.props;
+const { label, content, statement, mediaId, imageAlt, placeholderLabel } =
+	Astro.props;
 ---
 
 <section class="editorial-section">

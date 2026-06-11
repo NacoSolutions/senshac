@@ -1,11 +1,11 @@
 ---
-import type { ContactQuery } from '../../../tina/__generated__/types';
-import BlocksRenderer from '../BlocksRenderer.astro';
+import type { ContactQuery } from "../../../tina/__generated__/types";
+import BlocksRenderer from "../BlocksRenderer.astro";
 
-type ContactPageData = ContactQuery['contact'];
+type ContactPageData = ContactQuery["contact"];
 
 interface Props {
-  data?: ContactPageData | null;
+	data?: ContactPageData | null;
 }
 
 const { data } = Astro.props;

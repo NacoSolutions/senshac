@@ -1,28 +1,47 @@
 ---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 // src/layouts/Base.astro
 // Note: virtual:uno.css is auto-injected by @unocss/astro integration
-import SEO from '../components/SEO.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import HeaderIsland from '../components/islands/HeaderIsland.astro';
-import FooterIsland from '../components/islands/FooterIsland.astro';
-import { getTinaRuntimeEnv, getTranslations, getSiteConfigTina } from '../lib/tina-data';
-import { createIslands } from '../lib/tina-islands';
+import SEO from "../components/SEO.astro";
+import "../styles/global.css";
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import FooterIsland from "../components/islands/FooterIsland.astro";
+import HeaderIsland from "../components/islands/HeaderIsland.astro";
+import {
+	getSiteConfigTina,
+	getTinaRuntimeEnv,
+	getTranslations,
+} from "../lib/tina-data";
+import { createIslands } from "../lib/tina-islands";
+
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  lang?: string;
-  schema?: 'LocalBusiness' | 'Article' | 'BreadcrumbList' | Array<'LocalBusiness' | 'Article' | 'BreadcrumbList'>;
-  publishDate?: Date;
-  breadcrumbs?: { name: string; url: string }[];
-  headerStyle?: 'default' | 'transparent';
-  preloadImage?: string;
+	title: string;
+	description: string;
+	image?: string;
+	lang?: string;
+	schema?:
+		| "LocalBusiness"
+		| "Article"
+		| "BreadcrumbList"
+		| Array<"LocalBusiness" | "Article" | "BreadcrumbList">;
+	publishDate?: Date;
+	breadcrumbs?: { name: string; url: string }[];
+	headerStyle?: "default" | "transparent";
+	preloadImage?: string;
 }
 
-const { title, description, image, lang = 'es', schema, publishDate, breadcrumbs, headerStyle = 'default', preloadImage } = Astro.props;
+const {
+	title,
+	description,
+	image,
+	lang = "es",
+	schema,
+	publishDate,
+	breadcrumbs,
+	headerStyle = "default",
+	preloadImage,
+} = Astro.props;
 
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const islands = createIslands(tinaEnv);
@@ -30,16 +49,18 @@ const translationsPath = `${lang}.json`;
 const tinaTranslationsRes = await getTranslations(translationsPath, tinaEnv);
 const tinaTranslationsData = tinaTranslationsRes.data.translations;
 
-const tinaSiteRes = await getSiteConfigTina('site.json', tinaEnv);
+const tinaSiteRes = await getSiteConfigTina("site.json", tinaEnv);
 const tinaSiteData = tinaSiteRes.data.siteConfig;
 
-const mediaBaseUrl = (import.meta.env.PUBLIC_MEDIA_BASE_URL || 'https://media.senshac.com').replace(/\/$/, '');
+const mediaBaseUrl = (
+	import.meta.env.PUBLIC_MEDIA_BASE_URL || "https://media.senshac.com"
+).replace(/\/$/, "");
 const fontUrl = (filename: string) => `${mediaBaseUrl}/fonts/${filename}`;
 const fonts = {
-  jozsikaLight: fontUrl('jozsika-light.woff2'),
-  sintecaRegular: fontUrl('sinteca-regular.woff2'),
-  sintecaMedium: fontUrl('sinteca-medium.woff2'),
-  sintecaSemibold: fontUrl('sinteca-semibold.woff2'),
+	jozsikaLight: fontUrl("jozsika-light.woff2"),
+	sintecaRegular: fontUrl("sinteca-regular.woff2"),
+	sintecaMedium: fontUrl("sinteca-medium.woff2"),
+	sintecaSemibold: fontUrl("sinteca-semibold.woff2"),
 };
 const fontCss = `
 @font-face{font-family:'Jozsika';src:url('${fonts.jozsikaLight}') format('woff2');font-weight:300;font-style:normal;font-display:swap}
@@ -105,11 +126,7 @@ const fontCss = `
       Alpine.start();
     </script>
 
-    <!-- HTMX -->
-    <script>
-      import htmx from 'htmx.org';
-      window.htmx = htmx;
-    </script>
+
 
 
     <!-- Cursor -->
