@@ -48,10 +48,17 @@ jobs:
               BEST_PRACTICES=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories["best-practices"].score * 100) else "null" end')
               SEO=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.seo.score * 100) else "null" end')
               
-              # If API failed, jq returns 'null', skip
+              # If API failed, jq returns 'null', log to seeds and skip
               if [ "$PERFORMANCE" == "null" ]; then
                 echo "Failed to fetch data for $URL ($STRATEGY)"
-                echo "$RESPONSE" | jq '.error.message' || echo "$RESPONSE"
+                ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message // empty')
+                bunx @os-eco/seeds-cli@latest create \
+                  --title "PageSpeed API Failure for $URL ($STRATEGY)" \
+                  --type bug \
+                  --priority 1 \
+                  --labels "bug,performance,lighthouse" \
+                  --body "The nightly PageSpeed audit failed to fetch data for $URL ($STRATEGY). Error: $ERROR_MSG\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                CHANGES_MADE=true
                 continue
               fi
 
@@ -87,3 +94,18 @@ jobs:
               git push
             fi
           fi
+
+      - name: Report workflow failure
+        if: failure()
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          bunx @os-eco/seeds-cli@latest create \
+            --title "PageSpeed Nightly Workflow Failed" \
+            --type bug \
+            --priority 1 \
+            --labels "bug,ci,lighthouse" \
+            --body "The nightly PageSpeed audit workflow encountered an unexpected failure.\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          git add .seeds/
+          git commit -m "chore(seeds): log pagespeed workflow failure [skip ci]" || true
+          git push || true
