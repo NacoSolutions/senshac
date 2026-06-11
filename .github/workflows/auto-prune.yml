@@ -1,0 +1,39 @@
+name: Auto-Prune Old Artifacts and Deployments
+
+on:
+  schedule:
+    - cron: '0 3 * * 0' # Run at 3 AM every Sunday
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  prune-github-runs:
+    name: Prune GitHub Workflow Runs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete old workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 14
+          keep_minimum_runs: 5
+
+  prune-cloudflare-pages:
+    name: Prune Cloudflare Pages Deployments
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+          
+      - name: Prune Old Pages Deployments
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: bun run scripts/ci/prune-pages.ts
