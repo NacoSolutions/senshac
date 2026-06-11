@@ -1,4 +1,5 @@
 // src/pages/[lang]/api/contact.ts
+export const prerender = false;
 
 import { getEntry } from "astro:content";
 import type { APIRoute } from "astro";

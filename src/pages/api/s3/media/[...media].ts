@@ -1,3 +1,4 @@
+export const prerender = false;
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import type { APIRoute } from "astro";
 import {

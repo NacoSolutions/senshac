@@ -87,11 +87,17 @@ export function getProject(relativePath: string, env?: TinaRuntimeEnv) {
 	);
 }
 
+const requestCache = new Map<string, Promise<any>>();
+
 export function getTranslations(relativePath: string, env?: TinaRuntimeEnv) {
-	return requestWithMetadata<TranslationsQuery>(
-		getClient(env).queries.translations({ relativePath }),
-		{ priority: "primary" },
-	);
+	const key = `translations-${relativePath}`;
+	if (!requestCache.has(key)) {
+		requestCache.set(key, requestWithMetadata<TranslationsQuery>(
+			getClient(env).queries.translations({ relativePath }),
+			{ priority: "primary" },
+		));
+	}
+	return requestCache.get(key)!;
 }
 
 export function getContact(relativePath: string, env?: TinaRuntimeEnv) {
@@ -109,8 +115,12 @@ export function getLegal(relativePath: string, env?: TinaRuntimeEnv) {
 }
 
 export function getSiteConfigTina(relativePath: string, env?: TinaRuntimeEnv) {
-	return requestWithMetadata<SiteConfigQuery>(
-		getClient(env).queries.siteConfig({ relativePath }),
-		{ priority: "primary" },
-	);
+	const key = `siteconfig-${relativePath}`;
+	if (!requestCache.has(key)) {
+		requestCache.set(key, requestWithMetadata<SiteConfigQuery>(
+			getClient(env).queries.siteConfig({ relativePath }),
+			{ priority: "primary" },
+		));
+	}
+	return requestCache.get(key)!;
 }
