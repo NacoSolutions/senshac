@@ -43,18 +43,19 @@ jobs:
               
               RESPONSE=$(curl -s "$API_URL")
               
-              PERFORMANCE=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.performance.score * 100')
-              ACCESSIBILITY=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.accessibility.score * 100')
-              BEST_PRACTICES=$(echo "$RESPONSE" | jq '.lighthouseResult.categories["best-practices"].score * 100')
-              SEO=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.seo.score * 100')
-              
-              echo "::notice title=Lighthouse Scores for $URL ($STRATEGY)::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
+              PERFORMANCE=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.performance.score * 100) else "null" end')
+              ACCESSIBILITY=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.accessibility.score * 100) else "null" end')
+              BEST_PRACTICES=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories["best-practices"].score * 100) else "null" end')
+              SEO=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.seo.score * 100) else "null" end')
               
               # If API failed, jq returns 'null', skip
               if [ "$PERFORMANCE" == "null" ]; then
                 echo "Failed to fetch data for $URL ($STRATEGY)"
+                echo "$RESPONSE" | jq '.error.message' || echo "$RESPONSE"
                 continue
               fi
+
+              echo "::notice title=Lighthouse Scores for $URL ($STRATEGY)::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
               
               # Log to Mulch
               bunx @os-eco/mulch-cli@latest record frontend \
