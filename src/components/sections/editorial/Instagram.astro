@@ -54,27 +54,25 @@ const isCarousel = displayPosts.length > maxVisible;
       class={`flex gap-4 pb-4 ${isCarousel ? 'overflow-x-auto snap-x snap-mandatory no-scrollbar flex-nowrap -mx-4 px-4 md:mx-0 md:px-0' : 'flex-wrap justify-center'}`}
       style={`--desktop-w: calc((100% - (${maxVisible} - 1) * 1rem) / ${maxVisible});`}
     >
-      {displayPosts.map((post) => (
-        <a 
-          href={post.permalink} 
-          target="_blank"
-          rel="noopener noreferrer"
-          class={`aspect-[4/5] bg-transparent flex items-center justify-center group relative overflow-hidden transition-transform hover:scale-[1.02] ${
-            isCarousel 
-              ? 'flex-none snap-start w-[85%] md:w-[var(--desktop-w)]' 
-              : 'w-[calc(50%-0.5rem)] md:w-[var(--desktop-w)]'
-          }`}
-          aria-label={post.caption?.slice(0, 50) || "Instagram post"}
-        >
+      {displayPosts.map((post, i) => (
+        <Fragment>
+          {i > 0 && !isCarousel && <div class="w-px bg-gray-200 hidden md:block"></div>}
+          <div 
+            class={`aspect-[4/5] bg-transparent flex items-center justify-center group relative overflow-hidden transition-transform hover:scale-[1.02] ${
+              isCarousel 
+                ? 'flex-none snap-start w-[85%] md:w-[var(--desktop-w)]' 
+                : 'w-[calc(50%-0.5rem)] md:w-[var(--desktop-w)]'
+            }`}
+          >
           {post.media_type === 'CAROUSEL_ALBUM' && post.children && post.children.length > 0 ? (
             <div 
               class="absolute inset-0 w-full h-full"
-              x-data={`{ active: 0, slides: [${post.children.map((c: string) => `'${c}'`).join(',')}] }`}
-              x-init="setInterval(() => { active = (active + 1) % slides.length }, 3000)"
+              x-data={`{ active: 0, playing: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, slides: [${post.children.map((c: string) => `'${c}'`).join(',')}] }`}
+              x-init="setInterval(() => { if(playing) active = (active + 1) % slides.length }, 5000)"
             >
               <template x-for="(slide, index) in slides" :key="index">
                 <div 
-                  class="absolute inset-0 w-full h-full transition-opacity duration-1000" 
+                  class="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out" 
                   :class="active === index ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'"
                 >
                   <template x-if="slide.endsWith('.m3u8')">
@@ -104,10 +102,28 @@ const isCarousel = displayPosts.length > maxVisible;
               loading="lazy"
             />
           )}
-          <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
-            <span class="i-lucide-instagram text-white w-8 h-8" />
+            <a href={post.permalink} target="_blank" rel="noopener noreferrer" class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10" aria-label={post.caption?.slice(0, 50) || "Instagram post"}>
+              <span class="i-lucide-instagram text-white w-8 h-8" />
+            </a>
+            {post.media_type === 'CAROUSEL_ALBUM' && (
+              <button 
+                class="absolute bottom-4 right-4 z-20 text-white opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-black/50 hover:bg-black/70 rounded-full" 
+                @click.prevent="playing = !playing" 
+                :aria-label="playing ? 'Pause' : 'Play'"
+              >
+                <span :class="playing ? 'i-lucide-pause' : 'i-lucide-play'" class="block w-4 h-4"></span>
+              </button>
+            )}
+            {post.media_type === 'VIDEO' && (
+              <button 
+                class="novedades-video-toggle absolute bottom-4 right-4 z-20 text-white opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-black/50 hover:bg-black/70 rounded-full" 
+                aria-label="Pause video"
+              >
+                <span class="i-lucide-pause block w-4 h-4"></span>
+              </button>
+            )}
           </div>
-        </a>
+        </Fragment>
       ))}
     </div>
     
@@ -123,7 +139,30 @@ const isCarousel = displayPosts.length > maxVisible;
 
     document.addEventListener("DOMContentLoaded", () => {
       const videos = document.querySelectorAll("video.hls-video") as NodeListOf<HTMLVideoElement>;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target as HTMLVideoElement;
+          const isPausedManually = video.dataset.pausedManually === 'true';
+
+          if (entry.isIntersecting) {
+            if (!prefersReducedMotion && !isPausedManually) {
+              video.play().catch(() => {});
+            }
+          } else {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+
       videos.forEach((video) => {
+        if (prefersReducedMotion) {
+          video.removeAttribute('autoplay');
+          video.pause();
+        }
+        observer.observe(video);
+
         const src = video.getAttribute("src");
         if (src && src.includes(".m3u8")) {
           if (Hls.isSupported()) {
@@ -134,6 +173,28 @@ const isCarousel = displayPosts.length > maxVisible;
             video.src = src;
           }
         }
+      });
+
+      document.querySelectorAll(".novedades-video-toggle").forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const container = btn.closest('.group');
+          const video = container?.querySelector('video');
+          if (!video) return;
+
+          const icon = btn.querySelector('span');
+          if (video.paused) {
+            video.play();
+            video.dataset.pausedManually = 'false';
+            icon?.classList.replace('i-lucide-play', 'i-lucide-pause');
+            btn.setAttribute('aria-label', 'Pause video');
+          } else {
+            video.pause();
+            video.dataset.pausedManually = 'true';
+            icon?.classList.replace('i-lucide-pause', 'i-lucide-play');
+            btn.setAttribute('aria-label', 'Play video');
+          }
+        });
       });
     });
   </script>
