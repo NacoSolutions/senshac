@@ -6,7 +6,13 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!!**/dist"]
+		"includes": [
+			"**",
+			"!!**/dist",
+			"!!**/tina/__generated__",
+			"!!**/tina-lock.json",
+			"!!**/.astro"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -15,7 +21,18 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noImplicitAnyLet": "off"
+			},
+			"correctness": {
+				"noUnusedVariables": "off",
+				"noUnusedImports": "off"
+			},
+			"style": {
+				"useConst": "off"
+			}
 		}
 	},
 	"javascript": {

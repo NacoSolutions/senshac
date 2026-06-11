@@ -1,12 +1,12 @@
 // src/utils/site-config.ts
-import { getEntry } from 'astro:content';
+import { getEntry } from "astro:content";
 
-export type SiteConfig = Awaited<ReturnType<typeof getSiteConfig>>;
+type SiteConfig = Awaited<ReturnType<typeof getSiteConfig>>;
 
 export async function getSiteConfig() {
-  const entry = await getEntry('site-config', 'site');
-  if (!entry) {
-    throw new Error('Site configuration not found');
-  }
-  return entry.data;
+	const entry = await getEntry("site-config", "site");
+	if (!entry) {
+		throw new Error("Site configuration not found");
+	}
+	return entry.data;
 }

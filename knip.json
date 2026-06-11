@@ -1,25 +1,29 @@
 {
-  "entry": [
-    "src/pages/**/*.astro",
-    "src/pages/**/*.ts",
-    "tina/config.ts",
-    "workers/media-dispatch/src/index.ts",
-    "scripts/build",
-    "scripts/act-media",
-    "scripts/media/*.ts",
-    "scripts/media/*.sh"
-  ],
-  "project": [
-    "src/**/*.astro",
-    "src/**/*.ts",
-    "tina/**/*.ts",
-    "workers/**/*.ts",
-    "scripts/**/*.ts"
-  ],
-  "ignore": [
-    "tina/__generated__/**"
-  ],
-  "astro": {
-    "entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]
-  }
+	"entry": [
+		"src/pages/**/*.astro",
+		"src/pages/**/*.ts",
+		"tina/config.ts",
+		"workers/media-dispatch/src/index.ts",
+		"scripts/build",
+		"scripts/act-media",
+		"scripts/media/*.ts",
+		"scripts/media/*.sh"
+	],
+	"project": [
+		"src/**/*.astro",
+		"src/**/*.ts",
+		"tina/**/*.ts",
+		"workers/**/*.ts",
+		"scripts/**/*.ts"
+	],
+	"ignore": ["tina/__generated__/**"],
+	"ignoreBinaries": [
+		"scripts/build",
+		"scripts/act-media",
+		"scripts/media/process-video.sh"
+	],
+	"ignoreExportsUsedInFile": true,
+	"astro": {
+		"entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]
+	}
 }
