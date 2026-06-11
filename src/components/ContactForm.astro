@@ -35,20 +35,24 @@ const error = Astro.url.searchParams.get("contact_error");
     <p class="text-lg font-medium">{f.success}</p>
   </div>
 ) : (
-<form
-  id="contact-form"
-  class="space-y-6"
-  action={`/${lang}/api/contact`}
-  method="POST"
-  hx-post={`/${lang}/api/contact`}
-  hx-swap="outerHTML"
-  hx-indicator="#form-indicator"
->
-  {error && (
-    <div class="p-4 bg-red-50 border border-red-200 text-red-800 rounded">
-      {f[error] || f.error}
-    </div>
-  )}
+<div id="contact-form-container">
+  <div id="form-feedback">
+    {error && (
+      <div class="p-4 bg-red-50 border border-red-200 text-red-800 rounded">
+        {f[error] || f.error}
+      </div>
+    )}
+  </div>
+  <form
+    id="contact-form"
+    class="space-y-6 mt-6"
+    action={`/${lang}/api/contact`}
+    method="POST"
+    hx-post={`/${lang}/api/contact`}
+    hx-target="#form-feedback"
+    hx-swap="innerHTML"
+    hx-indicator="#form-indicator"
+  >
   <!-- Name + Company row -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div>
@@ -172,6 +176,7 @@ const error = Astro.url.searchParams.get("contact_error");
     </button>
   </div>
 </form>
+</div>
 )}
 
 <style>
@@ -186,16 +191,50 @@ const error = Astro.url.searchParams.get("contact_error");
   }
 </style>
 
-<!-- Turnstile script -->
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script is:inline>
+  // HTMX validation interceptor for Turnstile
+  document.addEventListener('htmx:confirm', function(e) {
+    if (e.target.id === 'contact-form') {
+      const responseInput = document.querySelector('#contact-form [name="cf-turnstile-response"]');
+      if (responseInput && !responseInput.value) {
+        // Prevent HTMX from submitting
+        e.preventDefault();
+        
+        // Save the event to trigger later
+        window.pendingHtmxEvent = e;
+        
+        // Render and execute turnstile if not already rendered
+        const widgetContainer = document.querySelector('#contact-form-container .cf-turnstile');
+        let widgetId = widgetContainer.getAttribute('data-turnstile-id');
+        if (!widgetId) {
+          widgetId = turnstile.render(widgetContainer, {
+            sitekey: widgetContainer.getAttribute('data-sitekey'),
+            size: 'invisible',
+            callback: 'onTurnstileSuccess',
+            'error-callback': 'onTurnstileError'
+          });
+          widgetContainer.setAttribute('data-turnstile-id', widgetId);
+        }
+        turnstile.execute(widgetContainer.getAttribute('data-turnstile-id'));
+      }
+    }
+  });
+
   // Turnstile callbacks scoped to the form
   window.onTurnstileSuccess = function(token) {
     const responseInput = document.querySelector('#contact-form [name="cf-turnstile-response"]');
     if (responseInput) responseInput.value = token;
+    
+    // Resume HTMX submission
+    if (window.pendingHtmxEvent) {
+      window.pendingHtmxEvent.detail.issueRequest();
+      window.pendingHtmxEvent = null;
+    }
   };
   window.onTurnstileError = function() {
     console.error('Turnstile error');
+    // We could show an error here manually, or trigger a failure
   };
 </script>
 
