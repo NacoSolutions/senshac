@@ -13,10 +13,14 @@ async function verifyTurnstile(
 	// Fail closed if production secret is absent
 	if (!secretKey) {
 		if (import.meta.env.PROD) {
-			console.error("Turnstile: Missing secret key in production. Failing closed.");
+			console.error(
+				"Turnstile: Missing secret key in production. Failing closed.",
+			);
 			return false;
 		}
-		console.log("Turnstile: No secret key configured in dev, skipping verification");
+		console.log(
+			"Turnstile: No secret key configured in dev, skipping verification",
+		);
 		return true;
 	}
 
@@ -77,7 +81,7 @@ export const POST: APIRoute = async ({ request, params }) => {
 	) => {
 		if (isHtmx) {
 			return new Response(fragment, {
-				status,
+				status: 200, // Always 200 for HTMX to ensure it swaps the feedback
 				headers: { "Content-Type": "text/html" },
 			});
 		}
@@ -190,14 +194,15 @@ Idioma: ${lang}
 			});
 		}
 
-		// Return success HTML that HTMX will swap in, or redirect if no JS
+		// Return success HTML that HTMX will swap into feedback, and remove the form
 		return sendResponse(
 			`<div class="p-6 bg-green-50 border border-green-200 text-green-800 rounded text-center">
         <svg class="w-12 h-12 mx-auto mb-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
         </svg>
         <p class="text-lg font-medium">${t.success}</p>
-      </div>`,
+      </div>
+      <form id="contact-form" hx-swap-oob="outerHTML"></form>`,
 			200,
 			undefined,
 			true,
