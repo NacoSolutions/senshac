@@ -31,3 +31,18 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: senshac-media-raw
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Report workflow failure
+        if: failure()
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          npx -y @os-eco/seeds-cli@latest create \
+            --title "Workflow Failed: ${{ github.workflow }}" \
+            --type bug \
+            --priority 1 \
+            --labels "bug,ci" \
+            --body "The \`${{ github.workflow }}\` workflow encountered a failure.\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          git add .seeds/
+          git commit -m "chore(seeds): log ${{ github.workflow }} failure [skip ci]" || true
+          git push || true

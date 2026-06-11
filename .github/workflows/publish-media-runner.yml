@@ -53,3 +53,18 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Report workflow failure
+        if: failure()
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          npx -y @os-eco/seeds-cli@latest create \
+            --title "Workflow Failed: ${{ github.workflow }}" \
+            --type bug \
+            --priority 1 \
+            --labels "bug,ci" \
+            --body "The \`${{ github.workflow }}\` workflow encountered a failure.\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          git add .seeds/
+          git commit -m "chore(seeds): log ${{ github.workflow }} failure [skip ci]" || true
+          git push || true
