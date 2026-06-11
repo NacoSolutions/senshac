@@ -87,7 +87,7 @@
 		"privacy": "Acepto la política de privacidad",
 		"submit": "Enviar mensaje",
 		"sending": "Enviando...",
-		"success": "¡Mensaje enviado! Nos pondremos en contacto contigo pronto.",
+		"success": "¡Gracias por contarnos tu proyecto!<br />Pronto nos pondremos en contacto contigo.",
 		"error": "Ha ocurrido un error. Por favor, inténtalo de nuevo.",
 		"turnstileFailed": "Verificación de seguridad fallida. Por favor, inténtalo de nuevo.",
 		"invalidEmail": "Email inválido.",

@@ -43,6 +43,15 @@ const error = Astro.url.searchParams.get("contact_error");
       </div>
     )}
   </div>
+  
+  <div
+    class="cf-turnstile"
+    data-sitekey={TURNSTILE_SITE_KEY}
+    data-size="invisible"
+    data-callback="onTurnstileSuccess"
+    data-error-callback="onTurnstileError"
+  ></div>
+
   <form
     id="contact-form"
     class="space-y-6 mt-6"
@@ -154,14 +163,7 @@ const error = Astro.url.searchParams.get("contact_error");
     </label>
   </div>
 
-  <!-- Turnstile (invisible) -->
-  <div
-    class="cf-turnstile"
-    data-sitekey={TURNSTILE_SITE_KEY}
-    data-size="invisible"
-    data-callback="onTurnstileSuccess"
-    data-error-callback="onTurnstileError"
-  ></div>
+  <!-- Turnstile hidden input -->
   <input type="hidden" name="cf-turnstile-response" id="cf-turnstile-response" />
 
   <!-- Submit -->
@@ -208,7 +210,7 @@ const error = Astro.url.searchParams.get("contact_error");
         const widgetContainer = document.querySelector('#contact-form-container .cf-turnstile');
         let widgetId = widgetContainer.getAttribute('data-turnstile-id');
         if (!widgetId) {
-          widgetId = turnstile.render(widgetContainer, {
+          widgetId = window.turnstile.render(widgetContainer, {
             sitekey: widgetContainer.getAttribute('data-sitekey'),
             size: 'invisible',
             callback: 'onTurnstileSuccess',
@@ -216,7 +218,7 @@ const error = Astro.url.searchParams.get("contact_error");
           });
           widgetContainer.setAttribute('data-turnstile-id', widgetId);
         }
-        turnstile.execute(widgetContainer.getAttribute('data-turnstile-id'));
+        window.turnstile.execute(widgetContainer.getAttribute('data-turnstile-id'));
       }
     }
   });
