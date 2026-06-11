@@ -1,15 +1,17 @@
 ---
 import MediaPlaceholder from './MediaPlaceholder.astro';
+import RichText from './RichText.astro';
 
 interface Props {
   title?: string;
-  intro?: string;
+  intro?: any;
   ctaText?: string;
   ctaLink?: string;
-  image?: string;
+  mediaId?: string;
   imageAlt?: string;
   mediaType?: 'image' | 'video';
   placeholderLabel?: string;
+  objectFit?: 'cover' | 'contain';
 }
 
 const {
@@ -17,30 +19,33 @@ const {
   intro,
   ctaText,
   ctaLink,
-  image,
+  mediaId,
   imageAlt,
   mediaType = 'image',
   placeholderLabel,
+  objectFit = 'cover',
 } = Astro.props;
 ---
 
-<section class="editorial-section editorial-hero">
-  <div class="editorial-hero__media">
+<section class="editorial-section min-h-auto text-inherit">
+  <div class="editorial-shell grid gap-[clamp(2rem,6vw,6rem)]">
     <MediaPlaceholder
-      image={image}
+      mediaId={mediaId}
       alt={imageAlt}
-      kind={mediaType}
+      kind={mediaType || 'image'}
       label={placeholderLabel}
       aspect="wide"
+      objectFit={objectFit}
       eager
     />
-  </div>
-  <div class="editorial-hero__shade" aria-hidden="true"></div>
-  <div class="editorial-shell editorial-hero__content">
-    <div>
-      <h1 class="editorial-display">{title}</h1>
-      {intro && <p class="editorial-lede">{intro}</p>}
-      {ctaText && ctaLink && <a class="editorial-link" href={ctaLink}>+ {ctaText}</a>}
+    <div class="flex flex-col justify-between">
+      <h2 class="editorial-display">{title}</h2>
+      {intro && (
+        <div class="editorial-lede my-auto">
+          <RichText content={intro} />
+        </div>
+      )}
+      {ctaText && ctaLink && <a class="editorial-link mt-0" href={ctaLink}>{ctaText}</a>}
     </div>
   </div>
 </section>

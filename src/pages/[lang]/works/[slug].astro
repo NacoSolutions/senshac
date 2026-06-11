@@ -22,9 +22,21 @@ const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const islands = createIslands(tinaEnv);
 const tinaProject = await getProject(relativePath, tinaEnv);
 const tinaProjectData = tinaProject.data.projects;
+const breadcrumbs = [
+  { name: 'Works', url: `/${lang}/works` },
+  { name: data.title, url: `/${lang}/works/${slug}` },
+];
 ---
 
-<Base title={data.title} description={data.description} lang={lang} headerStyle="transparent">
+<Base 
+  title={data.title} 
+  description={data.description} 
+  lang={lang} 
+  headerStyle="transparent"
+  schema={['Article', 'BreadcrumbList']}
+  breadcrumbs={breadcrumbs}
+  publishDate={data.publishDate}
+>
   {tinaProjectData ? (
     <TinaIsland name="project" wrapper={islands.project.wrapper} params={{ relativePath }} primary>
       <ProjectPage data={tinaProjectData} />

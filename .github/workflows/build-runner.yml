@@ -1,0 +1,44 @@
+name: Build Media Runner
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/docker/Dockerfile.media-runner'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        id: build-image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: .github/docker/Dockerfile.media-runner
+          push: true
+          tags: ghcr.io/nacosolutions/senshac-media-runner:latest
+
+      - name: Generate and publish SBOM to Dependency Graph
+        uses: anchore/sbom-action@v0
+        with:
+          image: ghcr.io/nacosolutions/senshac-media-runner:latest
+          format: spdx-json
+          output-file: sbom.spdx.json
+          dependency-snapshot: true

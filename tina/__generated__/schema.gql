@@ -254,138 +254,49 @@ type SiteConfigConnection implements Connection {
   edges: [SiteConfigConnectionEdges]
 }
 
-type HomeBlocksHomeHeroTopRight {
-  lines: [String]
-}
-
-type HomeBlocksHomeHeroTagline {
-  lines: [String]
-}
-
-type HomeBlocksHomeHero {
-  image: String
-  topRight: HomeBlocksHomeHeroTopRight
-  tagline: HomeBlocksHomeHeroTagline
-  taglineSub: String
-}
-
-type HomeBlocksHomeAbout {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-type HomeBlocksAboutHero {
-  title: String
-}
-
-type HomeBlocksBehindName {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-type HomeBlocksBannerImage {
-  image: String
-  alt: String
-}
-
-type HomeBlocksBio {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-type HomeBlocksAwardsItems {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-type HomeBlocksAwards {
-  title: String
-  items: [HomeBlocksAwardsItems]
-}
-
-type HomeBlocksMission {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-type HomeBlocksServicesHero {
-  title: String
-}
-
-type HomeBlocksServicesIntro {
-  text: String
-  image: String
-}
-
-type HomeBlocksServiceGroupsGroupsItems {
-  title: String
-  description: String
-}
-
-type HomeBlocksServiceGroupsGroups {
-  title: String
-  items: [HomeBlocksServiceGroupsGroupsItems]
-}
-
-type HomeBlocksServiceGroups {
-  groups: [HomeBlocksServiceGroupsGroups]
-}
-
-type HomeBlocksFaqItems {
-  question: String
-  answer: String
-}
-
-type HomeBlocksFaq {
-  title: String
-  image: String
-  items: [HomeBlocksFaqItems]
-}
-
-type HomeBlocksWorkProcess {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 type HomeBlocksContactForm {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+type HomeBlocksEditorialBannerTopRight {
+  lines: [String]
+}
+
+type HomeBlocksEditorialBanner {
+  title: String
+  subtitle: String
+  topRight: HomeBlocksEditorialBannerTopRight
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 type HomeBlocksEditorialHero {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 type HomeBlocksEditorialCopy {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 type HomeBlocksEditorialAccordionItemsDetails {
   label: String
-  text: String
+  text: JSON
 }
 
 type HomeBlocksEditorialAccordionItems {
@@ -397,18 +308,18 @@ type HomeBlocksEditorialAccordionItems {
 }
 
 type HomeBlocksEditorialAccordion {
-  intro: String
+  intro: JSON
   items: [HomeBlocksEditorialAccordionItems]
 }
 
 type HomeBlocksEditorialRowsItems {
   title: String
-  text: String
+  text: JSON
 }
 
 type HomeBlocksEditorialRows {
   title: String
-  intro: String
+  intro: JSON
   items: [HomeBlocksEditorialRowsItems]
 }
 
@@ -420,7 +331,7 @@ type HomeBlocksEditorialCta {
 type HomeBlocksEditorialShowcaseItems {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -429,7 +340,7 @@ type HomeBlocksEditorialShowcase {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -439,14 +350,42 @@ type HomeBlocksEditorialShowcase {
 
 type HomeBlocksEditorialMission {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
-union HomeBlocks = HomeBlocksHomeHero | HomeBlocksHomeAbout | HomeBlocksAboutHero | HomeBlocksBehindName | HomeBlocksBannerImage | HomeBlocksBio | HomeBlocksAwards | HomeBlocksMission | HomeBlocksServicesHero | HomeBlocksServicesIntro | HomeBlocksServiceGroups | HomeBlocksFaq | HomeBlocksWorkProcess | HomeBlocksContactForm | HomeBlocksEditorialHero | HomeBlocksEditorialCopy | HomeBlocksEditorialAccordion | HomeBlocksEditorialRows | HomeBlocksEditorialCta | HomeBlocksEditorialShowcase | HomeBlocksEditorialMission
+type HomeBlocksEditorialCarouselItems {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+type HomeBlocksEditorialCarousel {
+  items: [HomeBlocksEditorialCarouselItems]
+}
+
+type HomeBlocksEditorialInstagram {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+type HomeBlocksEditorialGalleryImages {
+  mediaId: String
+  alt: String
+}
+
+type HomeBlocksEditorialGallery {
+  cols: Float
+  images: [HomeBlocksEditorialGalleryImages]
+}
+
+union HomeBlocks = HomeBlocksContactForm | HomeBlocksEditorialBanner | HomeBlocksEditorialHero | HomeBlocksEditorialCopy | HomeBlocksEditorialAccordion | HomeBlocksEditorialRows | HomeBlocksEditorialCta | HomeBlocksEditorialShowcase | HomeBlocksEditorialMission | HomeBlocksEditorialCarousel | HomeBlocksEditorialInstagram | HomeBlocksEditorialGallery
 
 type Home implements Node & Document {
   title: String!
@@ -458,133 +397,42 @@ type Home implements Node & Document {
   _values: JSON!
 }
 
-input HomeBlocksHomeHeroTopRightFilter {
-  lines: StringFilter
-}
-
-input HomeBlocksHomeHeroTaglineFilter {
-  lines: StringFilter
-}
-
-input HomeBlocksHomeHeroFilter {
-  image: ImageFilter
-  topRight: HomeBlocksHomeHeroTopRightFilter
-  tagline: HomeBlocksHomeHeroTaglineFilter
-  taglineSub: StringFilter
-}
-
-input HomeBlocksHomeAboutFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  ctaText: StringFilter
-  ctaLink: StringFilter
-}
-
-input HomeBlocksAboutHeroFilter {
-  title: StringFilter
-}
-
-input HomeBlocksBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input HomeBlocksBannerImageFilter {
-  image: ImageFilter
-  alt: StringFilter
-}
-
-input HomeBlocksBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input HomeBlocksAwardsItemsFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input HomeBlocksAwardsFilter {
-  title: StringFilter
-  items: HomeBlocksAwardsItemsFilter
-}
-
-input HomeBlocksMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input HomeBlocksServicesHeroFilter {
-  title: StringFilter
-}
-
-input HomeBlocksServicesIntroFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input HomeBlocksServiceGroupsGroupsItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input HomeBlocksServiceGroupsGroupsFilter {
-  title: StringFilter
-  items: HomeBlocksServiceGroupsGroupsItemsFilter
-}
-
-input HomeBlocksServiceGroupsFilter {
-  groups: HomeBlocksServiceGroupsGroupsFilter
-}
-
-input HomeBlocksFaqItemsFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input HomeBlocksFaqFilter {
-  title: StringFilter
-  image: ImageFilter
-  items: HomeBlocksFaqItemsFilter
-}
-
-input HomeBlocksWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
 input HomeBlocksContactFormFilter {
-  bannerImage: ImageFilter
+  mediaId: ImageFilter
   heading: StringFilter
   subheading: StringFilter
 }
 
+input HomeBlocksEditorialBannerTopRightFilter {
+  lines: StringFilter
+}
+
+input HomeBlocksEditorialBannerFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  topRight: HomeBlocksEditorialBannerTopRightFilter
+  mediaId: ImageFilter
+  imageAlt: StringFilter
+  placeholderLabel: StringFilter
+  objectFit: StringFilter
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
 input HomeBlocksEditorialHeroFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   ctaText: StringFilter
   ctaLink: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
-}
-
-input HomeBlocksEditorialCopyFilter {
-  eyebrow: StringFilter
-  title: StringFilter
-  headingLevel: StringFilter
-  body: StringFilter
+  objectFit: StringFilter
 }
 
 input BooleanFilter {
@@ -592,9 +440,17 @@ input BooleanFilter {
   exists: Boolean
 }
 
+input HomeBlocksEditorialCopyFilter {
+  eyebrow: StringFilter
+  title: StringFilter
+  headingLevel: StringFilter
+  body: RichTextFilter
+  showStar: BooleanFilter
+}
+
 input HomeBlocksEditorialAccordionItemsDetailsFilter {
   label: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input HomeBlocksEditorialAccordionItemsFilter {
@@ -606,18 +462,18 @@ input HomeBlocksEditorialAccordionItemsFilter {
 }
 
 input HomeBlocksEditorialAccordionFilter {
-  intro: StringFilter
+  intro: RichTextFilter
   items: HomeBlocksEditorialAccordionItemsFilter
 }
 
 input HomeBlocksEditorialRowsItemsFilter {
   title: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input HomeBlocksEditorialRowsFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   items: HomeBlocksEditorialRowsItemsFilter
 }
 
@@ -629,7 +485,7 @@ input HomeBlocksEditorialCtaFilter {
 input HomeBlocksEditorialShowcaseItemsFilter {
   title: StringFilter
   link: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
@@ -638,7 +494,7 @@ input HomeBlocksEditorialShowcaseFilter {
   eyebrow: StringFilter
   title: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
   ctaText: StringFilter
@@ -648,28 +504,54 @@ input HomeBlocksEditorialShowcaseFilter {
 
 input HomeBlocksEditorialMissionFilter {
   label: StringFilter
-  paragraphs: StringFilter
+  content: RichTextFilter
   statement: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
 
+input HomeBlocksEditorialCarouselItemsFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+}
+
+input HomeBlocksEditorialCarouselFilter {
+  items: HomeBlocksEditorialCarouselItemsFilter
+}
+
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input HomeBlocksEditorialInstagramFilter {
+  title: StringFilter
+  description: RichTextFilter
+  tag: StringFilter
+  limit: NumberFilter
+  maxVisible: NumberFilter
+}
+
+input HomeBlocksEditorialGalleryImagesFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+}
+
+input HomeBlocksEditorialGalleryFilter {
+  cols: NumberFilter
+  images: HomeBlocksEditorialGalleryImagesFilter
+}
+
 input HomeBlocksFilter {
-  homeHero: HomeBlocksHomeHeroFilter
-  homeAbout: HomeBlocksHomeAboutFilter
-  aboutHero: HomeBlocksAboutHeroFilter
-  behindName: HomeBlocksBehindNameFilter
-  bannerImage: HomeBlocksBannerImageFilter
-  bio: HomeBlocksBioFilter
-  awards: HomeBlocksAwardsFilter
-  mission: HomeBlocksMissionFilter
-  servicesHero: HomeBlocksServicesHeroFilter
-  servicesIntro: HomeBlocksServicesIntroFilter
-  serviceGroups: HomeBlocksServiceGroupsFilter
-  faq: HomeBlocksFaqFilter
-  workProcess: HomeBlocksWorkProcessFilter
   contactForm: HomeBlocksContactFormFilter
+  editorialBanner: HomeBlocksEditorialBannerFilter
   editorialHero: HomeBlocksEditorialHeroFilter
   editorialCopy: HomeBlocksEditorialCopyFilter
   editorialAccordion: HomeBlocksEditorialAccordionFilter
@@ -677,6 +559,9 @@ input HomeBlocksFilter {
   editorialCta: HomeBlocksEditorialCtaFilter
   editorialShowcase: HomeBlocksEditorialShowcaseFilter
   editorialMission: HomeBlocksEditorialMissionFilter
+  editorialCarousel: HomeBlocksEditorialCarouselFilter
+  editorialInstagram: HomeBlocksEditorialInstagramFilter
+  editorialGallery: HomeBlocksEditorialGalleryFilter
 }
 
 input HomeFilter {
@@ -697,138 +582,49 @@ type HomeConnection implements Connection {
   edges: [HomeConnectionEdges]
 }
 
-type AboutBlocksHomeHeroTopRight {
-  lines: [String]
-}
-
-type AboutBlocksHomeHeroTagline {
-  lines: [String]
-}
-
-type AboutBlocksHomeHero {
-  image: String
-  topRight: AboutBlocksHomeHeroTopRight
-  tagline: AboutBlocksHomeHeroTagline
-  taglineSub: String
-}
-
-type AboutBlocksHomeAbout {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-type AboutBlocksAboutHero {
-  title: String
-}
-
-type AboutBlocksBehindName {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-type AboutBlocksBannerImage {
-  image: String
-  alt: String
-}
-
-type AboutBlocksBio {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-type AboutBlocksAwardsItems {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-type AboutBlocksAwards {
-  title: String
-  items: [AboutBlocksAwardsItems]
-}
-
-type AboutBlocksMission {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-type AboutBlocksServicesHero {
-  title: String
-}
-
-type AboutBlocksServicesIntro {
-  text: String
-  image: String
-}
-
-type AboutBlocksServiceGroupsGroupsItems {
-  title: String
-  description: String
-}
-
-type AboutBlocksServiceGroupsGroups {
-  title: String
-  items: [AboutBlocksServiceGroupsGroupsItems]
-}
-
-type AboutBlocksServiceGroups {
-  groups: [AboutBlocksServiceGroupsGroups]
-}
-
-type AboutBlocksFaqItems {
-  question: String
-  answer: String
-}
-
-type AboutBlocksFaq {
-  title: String
-  image: String
-  items: [AboutBlocksFaqItems]
-}
-
-type AboutBlocksWorkProcess {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 type AboutBlocksContactForm {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+type AboutBlocksEditorialBannerTopRight {
+  lines: [String]
+}
+
+type AboutBlocksEditorialBanner {
+  title: String
+  subtitle: String
+  topRight: AboutBlocksEditorialBannerTopRight
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 type AboutBlocksEditorialHero {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 type AboutBlocksEditorialCopy {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 type AboutBlocksEditorialAccordionItemsDetails {
   label: String
-  text: String
+  text: JSON
 }
 
 type AboutBlocksEditorialAccordionItems {
@@ -840,18 +636,18 @@ type AboutBlocksEditorialAccordionItems {
 }
 
 type AboutBlocksEditorialAccordion {
-  intro: String
+  intro: JSON
   items: [AboutBlocksEditorialAccordionItems]
 }
 
 type AboutBlocksEditorialRowsItems {
   title: String
-  text: String
+  text: JSON
 }
 
 type AboutBlocksEditorialRows {
   title: String
-  intro: String
+  intro: JSON
   items: [AboutBlocksEditorialRowsItems]
 }
 
@@ -863,7 +659,7 @@ type AboutBlocksEditorialCta {
 type AboutBlocksEditorialShowcaseItems {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -872,7 +668,7 @@ type AboutBlocksEditorialShowcase {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -882,157 +678,95 @@ type AboutBlocksEditorialShowcase {
 
 type AboutBlocksEditorialMission {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
-union AboutBlocks = AboutBlocksHomeHero | AboutBlocksHomeAbout | AboutBlocksAboutHero | AboutBlocksBehindName | AboutBlocksBannerImage | AboutBlocksBio | AboutBlocksAwards | AboutBlocksMission | AboutBlocksServicesHero | AboutBlocksServicesIntro | AboutBlocksServiceGroups | AboutBlocksFaq | AboutBlocksWorkProcess | AboutBlocksContactForm | AboutBlocksEditorialHero | AboutBlocksEditorialCopy | AboutBlocksEditorialAccordion | AboutBlocksEditorialRows | AboutBlocksEditorialCta | AboutBlocksEditorialShowcase | AboutBlocksEditorialMission
+type AboutBlocksEditorialCarouselItems {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+type AboutBlocksEditorialCarousel {
+  items: [AboutBlocksEditorialCarouselItems]
+}
+
+type AboutBlocksEditorialInstagram {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+type AboutBlocksEditorialGalleryImages {
+  mediaId: String
+  alt: String
+}
+
+type AboutBlocksEditorialGallery {
+  cols: Float
+  images: [AboutBlocksEditorialGalleryImages]
+}
+
+union AboutBlocks = AboutBlocksContactForm | AboutBlocksEditorialBanner | AboutBlocksEditorialHero | AboutBlocksEditorialCopy | AboutBlocksEditorialAccordion | AboutBlocksEditorialRows | AboutBlocksEditorialCta | AboutBlocksEditorialShowcase | AboutBlocksEditorialMission | AboutBlocksEditorialCarousel | AboutBlocksEditorialInstagram | AboutBlocksEditorialGallery
 
 type About implements Node & Document {
   title: String!
   description: String
-  heroImage: String
   blocks: [AboutBlocks]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input AboutBlocksHomeHeroTopRightFilter {
-  lines: StringFilter
-}
-
-input AboutBlocksHomeHeroTaglineFilter {
-  lines: StringFilter
-}
-
-input AboutBlocksHomeHeroFilter {
-  image: ImageFilter
-  topRight: AboutBlocksHomeHeroTopRightFilter
-  tagline: AboutBlocksHomeHeroTaglineFilter
-  taglineSub: StringFilter
-}
-
-input AboutBlocksHomeAboutFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  ctaText: StringFilter
-  ctaLink: StringFilter
-}
-
-input AboutBlocksAboutHeroFilter {
-  title: StringFilter
-}
-
-input AboutBlocksBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input AboutBlocksBannerImageFilter {
-  image: ImageFilter
-  alt: StringFilter
-}
-
-input AboutBlocksBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input AboutBlocksAwardsItemsFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input AboutBlocksAwardsFilter {
-  title: StringFilter
-  items: AboutBlocksAwardsItemsFilter
-}
-
-input AboutBlocksMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input AboutBlocksServicesHeroFilter {
-  title: StringFilter
-}
-
-input AboutBlocksServicesIntroFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input AboutBlocksServiceGroupsGroupsItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input AboutBlocksServiceGroupsGroupsFilter {
-  title: StringFilter
-  items: AboutBlocksServiceGroupsGroupsItemsFilter
-}
-
-input AboutBlocksServiceGroupsFilter {
-  groups: AboutBlocksServiceGroupsGroupsFilter
-}
-
-input AboutBlocksFaqItemsFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input AboutBlocksFaqFilter {
-  title: StringFilter
-  image: ImageFilter
-  items: AboutBlocksFaqItemsFilter
-}
-
-input AboutBlocksWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
 input AboutBlocksContactFormFilter {
-  bannerImage: ImageFilter
+  mediaId: ImageFilter
   heading: StringFilter
   subheading: StringFilter
 }
 
+input AboutBlocksEditorialBannerTopRightFilter {
+  lines: StringFilter
+}
+
+input AboutBlocksEditorialBannerFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  topRight: AboutBlocksEditorialBannerTopRightFilter
+  mediaId: ImageFilter
+  imageAlt: StringFilter
+  placeholderLabel: StringFilter
+  objectFit: StringFilter
+}
+
 input AboutBlocksEditorialHeroFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   ctaText: StringFilter
   ctaLink: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
+  objectFit: StringFilter
 }
 
 input AboutBlocksEditorialCopyFilter {
   eyebrow: StringFilter
   title: StringFilter
   headingLevel: StringFilter
-  body: StringFilter
+  body: RichTextFilter
+  showStar: BooleanFilter
 }
 
 input AboutBlocksEditorialAccordionItemsDetailsFilter {
   label: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input AboutBlocksEditorialAccordionItemsFilter {
@@ -1044,18 +778,18 @@ input AboutBlocksEditorialAccordionItemsFilter {
 }
 
 input AboutBlocksEditorialAccordionFilter {
-  intro: StringFilter
+  intro: RichTextFilter
   items: AboutBlocksEditorialAccordionItemsFilter
 }
 
 input AboutBlocksEditorialRowsItemsFilter {
   title: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input AboutBlocksEditorialRowsFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   items: AboutBlocksEditorialRowsItemsFilter
 }
 
@@ -1067,7 +801,7 @@ input AboutBlocksEditorialCtaFilter {
 input AboutBlocksEditorialShowcaseItemsFilter {
   title: StringFilter
   link: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
@@ -1076,7 +810,7 @@ input AboutBlocksEditorialShowcaseFilter {
   eyebrow: StringFilter
   title: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
   ctaText: StringFilter
@@ -1086,28 +820,44 @@ input AboutBlocksEditorialShowcaseFilter {
 
 input AboutBlocksEditorialMissionFilter {
   label: StringFilter
-  paragraphs: StringFilter
+  content: RichTextFilter
   statement: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
 
+input AboutBlocksEditorialCarouselItemsFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+}
+
+input AboutBlocksEditorialCarouselFilter {
+  items: AboutBlocksEditorialCarouselItemsFilter
+}
+
+input AboutBlocksEditorialInstagramFilter {
+  title: StringFilter
+  description: RichTextFilter
+  tag: StringFilter
+  limit: NumberFilter
+  maxVisible: NumberFilter
+}
+
+input AboutBlocksEditorialGalleryImagesFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+}
+
+input AboutBlocksEditorialGalleryFilter {
+  cols: NumberFilter
+  images: AboutBlocksEditorialGalleryImagesFilter
+}
+
 input AboutBlocksFilter {
-  homeHero: AboutBlocksHomeHeroFilter
-  homeAbout: AboutBlocksHomeAboutFilter
-  aboutHero: AboutBlocksAboutHeroFilter
-  behindName: AboutBlocksBehindNameFilter
-  bannerImage: AboutBlocksBannerImageFilter
-  bio: AboutBlocksBioFilter
-  awards: AboutBlocksAwardsFilter
-  mission: AboutBlocksMissionFilter
-  servicesHero: AboutBlocksServicesHeroFilter
-  servicesIntro: AboutBlocksServicesIntroFilter
-  serviceGroups: AboutBlocksServiceGroupsFilter
-  faq: AboutBlocksFaqFilter
-  workProcess: AboutBlocksWorkProcessFilter
   contactForm: AboutBlocksContactFormFilter
+  editorialBanner: AboutBlocksEditorialBannerFilter
   editorialHero: AboutBlocksEditorialHeroFilter
   editorialCopy: AboutBlocksEditorialCopyFilter
   editorialAccordion: AboutBlocksEditorialAccordionFilter
@@ -1115,12 +865,14 @@ input AboutBlocksFilter {
   editorialCta: AboutBlocksEditorialCtaFilter
   editorialShowcase: AboutBlocksEditorialShowcaseFilter
   editorialMission: AboutBlocksEditorialMissionFilter
+  editorialCarousel: AboutBlocksEditorialCarouselFilter
+  editorialInstagram: AboutBlocksEditorialInstagramFilter
+  editorialGallery: AboutBlocksEditorialGalleryFilter
 }
 
 input AboutFilter {
   title: StringFilter
   description: StringFilter
-  heroImage: ImageFilter
   blocks: AboutBlocksFilter
 }
 
@@ -1135,138 +887,49 @@ type AboutConnection implements Connection {
   edges: [AboutConnectionEdges]
 }
 
-type ServicesBlocksHomeHeroTopRight {
-  lines: [String]
-}
-
-type ServicesBlocksHomeHeroTagline {
-  lines: [String]
-}
-
-type ServicesBlocksHomeHero {
-  image: String
-  topRight: ServicesBlocksHomeHeroTopRight
-  tagline: ServicesBlocksHomeHeroTagline
-  taglineSub: String
-}
-
-type ServicesBlocksHomeAbout {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-type ServicesBlocksAboutHero {
-  title: String
-}
-
-type ServicesBlocksBehindName {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-type ServicesBlocksBannerImage {
-  image: String
-  alt: String
-}
-
-type ServicesBlocksBio {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-type ServicesBlocksAwardsItems {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-type ServicesBlocksAwards {
-  title: String
-  items: [ServicesBlocksAwardsItems]
-}
-
-type ServicesBlocksMission {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-type ServicesBlocksServicesHero {
-  title: String
-}
-
-type ServicesBlocksServicesIntro {
-  text: String
-  image: String
-}
-
-type ServicesBlocksServiceGroupsGroupsItems {
-  title: String
-  description: String
-}
-
-type ServicesBlocksServiceGroupsGroups {
-  title: String
-  items: [ServicesBlocksServiceGroupsGroupsItems]
-}
-
-type ServicesBlocksServiceGroups {
-  groups: [ServicesBlocksServiceGroupsGroups]
-}
-
-type ServicesBlocksFaqItems {
-  question: String
-  answer: String
-}
-
-type ServicesBlocksFaq {
-  title: String
-  image: String
-  items: [ServicesBlocksFaqItems]
-}
-
-type ServicesBlocksWorkProcess {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 type ServicesBlocksContactForm {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+type ServicesBlocksEditorialBannerTopRight {
+  lines: [String]
+}
+
+type ServicesBlocksEditorialBanner {
+  title: String
+  subtitle: String
+  topRight: ServicesBlocksEditorialBannerTopRight
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 type ServicesBlocksEditorialHero {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 type ServicesBlocksEditorialCopy {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 type ServicesBlocksEditorialAccordionItemsDetails {
   label: String
-  text: String
+  text: JSON
 }
 
 type ServicesBlocksEditorialAccordionItems {
@@ -1278,18 +941,18 @@ type ServicesBlocksEditorialAccordionItems {
 }
 
 type ServicesBlocksEditorialAccordion {
-  intro: String
+  intro: JSON
   items: [ServicesBlocksEditorialAccordionItems]
 }
 
 type ServicesBlocksEditorialRowsItems {
   title: String
-  text: String
+  text: JSON
 }
 
 type ServicesBlocksEditorialRows {
   title: String
-  intro: String
+  intro: JSON
   items: [ServicesBlocksEditorialRowsItems]
 }
 
@@ -1301,7 +964,7 @@ type ServicesBlocksEditorialCta {
 type ServicesBlocksEditorialShowcaseItems {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -1310,7 +973,7 @@ type ServicesBlocksEditorialShowcase {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -1320,14 +983,42 @@ type ServicesBlocksEditorialShowcase {
 
 type ServicesBlocksEditorialMission {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
-union ServicesBlocks = ServicesBlocksHomeHero | ServicesBlocksHomeAbout | ServicesBlocksAboutHero | ServicesBlocksBehindName | ServicesBlocksBannerImage | ServicesBlocksBio | ServicesBlocksAwards | ServicesBlocksMission | ServicesBlocksServicesHero | ServicesBlocksServicesIntro | ServicesBlocksServiceGroups | ServicesBlocksFaq | ServicesBlocksWorkProcess | ServicesBlocksContactForm | ServicesBlocksEditorialHero | ServicesBlocksEditorialCopy | ServicesBlocksEditorialAccordion | ServicesBlocksEditorialRows | ServicesBlocksEditorialCta | ServicesBlocksEditorialShowcase | ServicesBlocksEditorialMission
+type ServicesBlocksEditorialCarouselItems {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+type ServicesBlocksEditorialCarousel {
+  items: [ServicesBlocksEditorialCarouselItems]
+}
+
+type ServicesBlocksEditorialInstagram {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+type ServicesBlocksEditorialGalleryImages {
+  mediaId: String
+  alt: String
+}
+
+type ServicesBlocksEditorialGallery {
+  cols: Float
+  images: [ServicesBlocksEditorialGalleryImages]
+}
+
+union ServicesBlocks = ServicesBlocksContactForm | ServicesBlocksEditorialBanner | ServicesBlocksEditorialHero | ServicesBlocksEditorialCopy | ServicesBlocksEditorialAccordion | ServicesBlocksEditorialRows | ServicesBlocksEditorialCta | ServicesBlocksEditorialShowcase | ServicesBlocksEditorialMission | ServicesBlocksEditorialCarousel | ServicesBlocksEditorialInstagram | ServicesBlocksEditorialGallery
 
 type Services implements Node & Document {
   title: String!
@@ -1338,138 +1029,49 @@ type Services implements Node & Document {
   _values: JSON!
 }
 
-input ServicesBlocksHomeHeroTopRightFilter {
-  lines: StringFilter
-}
-
-input ServicesBlocksHomeHeroTaglineFilter {
-  lines: StringFilter
-}
-
-input ServicesBlocksHomeHeroFilter {
-  image: ImageFilter
-  topRight: ServicesBlocksHomeHeroTopRightFilter
-  tagline: ServicesBlocksHomeHeroTaglineFilter
-  taglineSub: StringFilter
-}
-
-input ServicesBlocksHomeAboutFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  ctaText: StringFilter
-  ctaLink: StringFilter
-}
-
-input ServicesBlocksAboutHeroFilter {
-  title: StringFilter
-}
-
-input ServicesBlocksBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input ServicesBlocksBannerImageFilter {
-  image: ImageFilter
-  alt: StringFilter
-}
-
-input ServicesBlocksBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input ServicesBlocksAwardsItemsFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input ServicesBlocksAwardsFilter {
-  title: StringFilter
-  items: ServicesBlocksAwardsItemsFilter
-}
-
-input ServicesBlocksMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input ServicesBlocksServicesHeroFilter {
-  title: StringFilter
-}
-
-input ServicesBlocksServicesIntroFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input ServicesBlocksServiceGroupsGroupsItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input ServicesBlocksServiceGroupsGroupsFilter {
-  title: StringFilter
-  items: ServicesBlocksServiceGroupsGroupsItemsFilter
-}
-
-input ServicesBlocksServiceGroupsFilter {
-  groups: ServicesBlocksServiceGroupsGroupsFilter
-}
-
-input ServicesBlocksFaqItemsFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input ServicesBlocksFaqFilter {
-  title: StringFilter
-  image: ImageFilter
-  items: ServicesBlocksFaqItemsFilter
-}
-
-input ServicesBlocksWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
 input ServicesBlocksContactFormFilter {
-  bannerImage: ImageFilter
+  mediaId: ImageFilter
   heading: StringFilter
   subheading: StringFilter
 }
 
+input ServicesBlocksEditorialBannerTopRightFilter {
+  lines: StringFilter
+}
+
+input ServicesBlocksEditorialBannerFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  topRight: ServicesBlocksEditorialBannerTopRightFilter
+  mediaId: ImageFilter
+  imageAlt: StringFilter
+  placeholderLabel: StringFilter
+  objectFit: StringFilter
+}
+
 input ServicesBlocksEditorialHeroFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   ctaText: StringFilter
   ctaLink: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
+  objectFit: StringFilter
 }
 
 input ServicesBlocksEditorialCopyFilter {
   eyebrow: StringFilter
   title: StringFilter
   headingLevel: StringFilter
-  body: StringFilter
+  body: RichTextFilter
+  showStar: BooleanFilter
 }
 
 input ServicesBlocksEditorialAccordionItemsDetailsFilter {
   label: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input ServicesBlocksEditorialAccordionItemsFilter {
@@ -1481,18 +1083,18 @@ input ServicesBlocksEditorialAccordionItemsFilter {
 }
 
 input ServicesBlocksEditorialAccordionFilter {
-  intro: StringFilter
+  intro: RichTextFilter
   items: ServicesBlocksEditorialAccordionItemsFilter
 }
 
 input ServicesBlocksEditorialRowsItemsFilter {
   title: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input ServicesBlocksEditorialRowsFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   items: ServicesBlocksEditorialRowsItemsFilter
 }
 
@@ -1504,7 +1106,7 @@ input ServicesBlocksEditorialCtaFilter {
 input ServicesBlocksEditorialShowcaseItemsFilter {
   title: StringFilter
   link: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
@@ -1513,7 +1115,7 @@ input ServicesBlocksEditorialShowcaseFilter {
   eyebrow: StringFilter
   title: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
   ctaText: StringFilter
@@ -1523,28 +1125,44 @@ input ServicesBlocksEditorialShowcaseFilter {
 
 input ServicesBlocksEditorialMissionFilter {
   label: StringFilter
-  paragraphs: StringFilter
+  content: RichTextFilter
   statement: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
 
+input ServicesBlocksEditorialCarouselItemsFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+}
+
+input ServicesBlocksEditorialCarouselFilter {
+  items: ServicesBlocksEditorialCarouselItemsFilter
+}
+
+input ServicesBlocksEditorialInstagramFilter {
+  title: StringFilter
+  description: RichTextFilter
+  tag: StringFilter
+  limit: NumberFilter
+  maxVisible: NumberFilter
+}
+
+input ServicesBlocksEditorialGalleryImagesFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+}
+
+input ServicesBlocksEditorialGalleryFilter {
+  cols: NumberFilter
+  images: ServicesBlocksEditorialGalleryImagesFilter
+}
+
 input ServicesBlocksFilter {
-  homeHero: ServicesBlocksHomeHeroFilter
-  homeAbout: ServicesBlocksHomeAboutFilter
-  aboutHero: ServicesBlocksAboutHeroFilter
-  behindName: ServicesBlocksBehindNameFilter
-  bannerImage: ServicesBlocksBannerImageFilter
-  bio: ServicesBlocksBioFilter
-  awards: ServicesBlocksAwardsFilter
-  mission: ServicesBlocksMissionFilter
-  servicesHero: ServicesBlocksServicesHeroFilter
-  servicesIntro: ServicesBlocksServicesIntroFilter
-  serviceGroups: ServicesBlocksServiceGroupsFilter
-  faq: ServicesBlocksFaqFilter
-  workProcess: ServicesBlocksWorkProcessFilter
   contactForm: ServicesBlocksContactFormFilter
+  editorialBanner: ServicesBlocksEditorialBannerFilter
   editorialHero: ServicesBlocksEditorialHeroFilter
   editorialCopy: ServicesBlocksEditorialCopyFilter
   editorialAccordion: ServicesBlocksEditorialAccordionFilter
@@ -1552,6 +1170,9 @@ input ServicesBlocksFilter {
   editorialCta: ServicesBlocksEditorialCtaFilter
   editorialShowcase: ServicesBlocksEditorialShowcaseFilter
   editorialMission: ServicesBlocksEditorialMissionFilter
+  editorialCarousel: ServicesBlocksEditorialCarouselFilter
+  editorialInstagram: ServicesBlocksEditorialInstagramFilter
+  editorialGallery: ServicesBlocksEditorialGalleryFilter
 }
 
 input ServicesFilter {
@@ -1571,138 +1192,49 @@ type ServicesConnection implements Connection {
   edges: [ServicesConnectionEdges]
 }
 
-type ContactBlocksHomeHeroTopRight {
-  lines: [String]
-}
-
-type ContactBlocksHomeHeroTagline {
-  lines: [String]
-}
-
-type ContactBlocksHomeHero {
-  image: String
-  topRight: ContactBlocksHomeHeroTopRight
-  tagline: ContactBlocksHomeHeroTagline
-  taglineSub: String
-}
-
-type ContactBlocksHomeAbout {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-type ContactBlocksAboutHero {
-  title: String
-}
-
-type ContactBlocksBehindName {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-type ContactBlocksBannerImage {
-  image: String
-  alt: String
-}
-
-type ContactBlocksBio {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-type ContactBlocksAwardsItems {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-type ContactBlocksAwards {
-  title: String
-  items: [ContactBlocksAwardsItems]
-}
-
-type ContactBlocksMission {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-type ContactBlocksServicesHero {
-  title: String
-}
-
-type ContactBlocksServicesIntro {
-  text: String
-  image: String
-}
-
-type ContactBlocksServiceGroupsGroupsItems {
-  title: String
-  description: String
-}
-
-type ContactBlocksServiceGroupsGroups {
-  title: String
-  items: [ContactBlocksServiceGroupsGroupsItems]
-}
-
-type ContactBlocksServiceGroups {
-  groups: [ContactBlocksServiceGroupsGroups]
-}
-
-type ContactBlocksFaqItems {
-  question: String
-  answer: String
-}
-
-type ContactBlocksFaq {
-  title: String
-  image: String
-  items: [ContactBlocksFaqItems]
-}
-
-type ContactBlocksWorkProcess {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 type ContactBlocksContactForm {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+type ContactBlocksEditorialBannerTopRight {
+  lines: [String]
+}
+
+type ContactBlocksEditorialBanner {
+  title: String
+  subtitle: String
+  topRight: ContactBlocksEditorialBannerTopRight
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 type ContactBlocksEditorialHero {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 type ContactBlocksEditorialCopy {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 type ContactBlocksEditorialAccordionItemsDetails {
   label: String
-  text: String
+  text: JSON
 }
 
 type ContactBlocksEditorialAccordionItems {
@@ -1714,18 +1246,18 @@ type ContactBlocksEditorialAccordionItems {
 }
 
 type ContactBlocksEditorialAccordion {
-  intro: String
+  intro: JSON
   items: [ContactBlocksEditorialAccordionItems]
 }
 
 type ContactBlocksEditorialRowsItems {
   title: String
-  text: String
+  text: JSON
 }
 
 type ContactBlocksEditorialRows {
   title: String
-  intro: String
+  intro: JSON
   items: [ContactBlocksEditorialRowsItems]
 }
 
@@ -1737,7 +1269,7 @@ type ContactBlocksEditorialCta {
 type ContactBlocksEditorialShowcaseItems {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -1746,7 +1278,7 @@ type ContactBlocksEditorialShowcase {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -1756,14 +1288,42 @@ type ContactBlocksEditorialShowcase {
 
 type ContactBlocksEditorialMission {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
-union ContactBlocks = ContactBlocksHomeHero | ContactBlocksHomeAbout | ContactBlocksAboutHero | ContactBlocksBehindName | ContactBlocksBannerImage | ContactBlocksBio | ContactBlocksAwards | ContactBlocksMission | ContactBlocksServicesHero | ContactBlocksServicesIntro | ContactBlocksServiceGroups | ContactBlocksFaq | ContactBlocksWorkProcess | ContactBlocksContactForm | ContactBlocksEditorialHero | ContactBlocksEditorialCopy | ContactBlocksEditorialAccordion | ContactBlocksEditorialRows | ContactBlocksEditorialCta | ContactBlocksEditorialShowcase | ContactBlocksEditorialMission
+type ContactBlocksEditorialCarouselItems {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+type ContactBlocksEditorialCarousel {
+  items: [ContactBlocksEditorialCarouselItems]
+}
+
+type ContactBlocksEditorialInstagram {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+type ContactBlocksEditorialGalleryImages {
+  mediaId: String
+  alt: String
+}
+
+type ContactBlocksEditorialGallery {
+  cols: Float
+  images: [ContactBlocksEditorialGalleryImages]
+}
+
+union ContactBlocks = ContactBlocksContactForm | ContactBlocksEditorialBanner | ContactBlocksEditorialHero | ContactBlocksEditorialCopy | ContactBlocksEditorialAccordion | ContactBlocksEditorialRows | ContactBlocksEditorialCta | ContactBlocksEditorialShowcase | ContactBlocksEditorialMission | ContactBlocksEditorialCarousel | ContactBlocksEditorialInstagram | ContactBlocksEditorialGallery
 
 type Contact implements Node & Document {
   title: String!
@@ -1774,138 +1334,49 @@ type Contact implements Node & Document {
   _values: JSON!
 }
 
-input ContactBlocksHomeHeroTopRightFilter {
-  lines: StringFilter
-}
-
-input ContactBlocksHomeHeroTaglineFilter {
-  lines: StringFilter
-}
-
-input ContactBlocksHomeHeroFilter {
-  image: ImageFilter
-  topRight: ContactBlocksHomeHeroTopRightFilter
-  tagline: ContactBlocksHomeHeroTaglineFilter
-  taglineSub: StringFilter
-}
-
-input ContactBlocksHomeAboutFilter {
-  image: ImageFilter
-  title: StringFilter
-  description: StringFilter
-  ctaText: StringFilter
-  ctaLink: StringFilter
-}
-
-input ContactBlocksAboutHeroFilter {
-  title: StringFilter
-}
-
-input ContactBlocksBehindNameFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  footnote: StringFilter
-}
-
-input ContactBlocksBannerImageFilter {
-  image: ImageFilter
-  alt: StringFilter
-}
-
-input ContactBlocksBioFilter {
-  title: StringFilter
-  image: ImageFilter
-  paragraphs: StringFilter
-}
-
-input ContactBlocksAwardsItemsFilter {
-  year: StringFilter
-  project: StringFilter
-  award: StringFilter
-  link: StringFilter
-}
-
-input ContactBlocksAwardsFilter {
-  title: StringFilter
-  items: ContactBlocksAwardsItemsFilter
-}
-
-input ContactBlocksMissionFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  quote: StringFilter
-}
-
-input ContactBlocksServicesHeroFilter {
-  title: StringFilter
-}
-
-input ContactBlocksServicesIntroFilter {
-  text: StringFilter
-  image: ImageFilter
-}
-
-input ContactBlocksServiceGroupsGroupsItemsFilter {
-  title: StringFilter
-  description: StringFilter
-}
-
-input ContactBlocksServiceGroupsGroupsFilter {
-  title: StringFilter
-  items: ContactBlocksServiceGroupsGroupsItemsFilter
-}
-
-input ContactBlocksServiceGroupsFilter {
-  groups: ContactBlocksServiceGroupsGroupsFilter
-}
-
-input ContactBlocksFaqItemsFilter {
-  question: StringFilter
-  answer: StringFilter
-}
-
-input ContactBlocksFaqFilter {
-  title: StringFilter
-  image: ImageFilter
-  items: ContactBlocksFaqItemsFilter
-}
-
-input ContactBlocksWorkProcessFilter {
-  title: StringFilter
-  p1: StringFilter
-  p2: StringFilter
-  image: ImageFilter
-}
-
 input ContactBlocksContactFormFilter {
-  bannerImage: ImageFilter
+  mediaId: ImageFilter
   heading: StringFilter
   subheading: StringFilter
 }
 
+input ContactBlocksEditorialBannerTopRightFilter {
+  lines: StringFilter
+}
+
+input ContactBlocksEditorialBannerFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  topRight: ContactBlocksEditorialBannerTopRightFilter
+  mediaId: ImageFilter
+  imageAlt: StringFilter
+  placeholderLabel: StringFilter
+  objectFit: StringFilter
+}
+
 input ContactBlocksEditorialHeroFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   ctaText: StringFilter
   ctaLink: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
+  objectFit: StringFilter
 }
 
 input ContactBlocksEditorialCopyFilter {
   eyebrow: StringFilter
   title: StringFilter
   headingLevel: StringFilter
-  body: StringFilter
+  body: RichTextFilter
+  showStar: BooleanFilter
 }
 
 input ContactBlocksEditorialAccordionItemsDetailsFilter {
   label: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input ContactBlocksEditorialAccordionItemsFilter {
@@ -1917,18 +1388,18 @@ input ContactBlocksEditorialAccordionItemsFilter {
 }
 
 input ContactBlocksEditorialAccordionFilter {
-  intro: StringFilter
+  intro: RichTextFilter
   items: ContactBlocksEditorialAccordionItemsFilter
 }
 
 input ContactBlocksEditorialRowsItemsFilter {
   title: StringFilter
-  text: StringFilter
+  text: RichTextFilter
 }
 
 input ContactBlocksEditorialRowsFilter {
   title: StringFilter
-  intro: StringFilter
+  intro: RichTextFilter
   items: ContactBlocksEditorialRowsItemsFilter
 }
 
@@ -1940,7 +1411,7 @@ input ContactBlocksEditorialCtaFilter {
 input ContactBlocksEditorialShowcaseItemsFilter {
   title: StringFilter
   link: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
@@ -1949,7 +1420,7 @@ input ContactBlocksEditorialShowcaseFilter {
   eyebrow: StringFilter
   title: StringFilter
   mediaType: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
   ctaText: StringFilter
@@ -1959,28 +1430,44 @@ input ContactBlocksEditorialShowcaseFilter {
 
 input ContactBlocksEditorialMissionFilter {
   label: StringFilter
-  paragraphs: StringFilter
+  content: RichTextFilter
   statement: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   imageAlt: StringFilter
   placeholderLabel: StringFilter
 }
 
+input ContactBlocksEditorialCarouselItemsFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+}
+
+input ContactBlocksEditorialCarouselFilter {
+  items: ContactBlocksEditorialCarouselItemsFilter
+}
+
+input ContactBlocksEditorialInstagramFilter {
+  title: StringFilter
+  description: RichTextFilter
+  tag: StringFilter
+  limit: NumberFilter
+  maxVisible: NumberFilter
+}
+
+input ContactBlocksEditorialGalleryImagesFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+}
+
+input ContactBlocksEditorialGalleryFilter {
+  cols: NumberFilter
+  images: ContactBlocksEditorialGalleryImagesFilter
+}
+
 input ContactBlocksFilter {
-  homeHero: ContactBlocksHomeHeroFilter
-  homeAbout: ContactBlocksHomeAboutFilter
-  aboutHero: ContactBlocksAboutHeroFilter
-  behindName: ContactBlocksBehindNameFilter
-  bannerImage: ContactBlocksBannerImageFilter
-  bio: ContactBlocksBioFilter
-  awards: ContactBlocksAwardsFilter
-  mission: ContactBlocksMissionFilter
-  servicesHero: ContactBlocksServicesHeroFilter
-  servicesIntro: ContactBlocksServicesIntroFilter
-  serviceGroups: ContactBlocksServiceGroupsFilter
-  faq: ContactBlocksFaqFilter
-  workProcess: ContactBlocksWorkProcessFilter
   contactForm: ContactBlocksContactFormFilter
+  editorialBanner: ContactBlocksEditorialBannerFilter
   editorialHero: ContactBlocksEditorialHeroFilter
   editorialCopy: ContactBlocksEditorialCopyFilter
   editorialAccordion: ContactBlocksEditorialAccordionFilter
@@ -1988,6 +1475,9 @@ input ContactBlocksFilter {
   editorialCta: ContactBlocksEditorialCtaFilter
   editorialShowcase: ContactBlocksEditorialShowcaseFilter
   editorialMission: ContactBlocksEditorialMissionFilter
+  editorialCarousel: ContactBlocksEditorialCarouselFilter
+  editorialInstagram: ContactBlocksEditorialInstagramFilter
+  editorialGallery: ContactBlocksEditorialGalleryFilter
 }
 
 input ContactFilter {
@@ -2025,12 +1515,6 @@ input DatetimeFilter {
   in: [String]
 }
 
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-}
-
 input LegalFilter {
   title: StringFilter
   description: StringFilter
@@ -2050,14 +1534,14 @@ type LegalConnection implements Connection {
 }
 
 type ProjectsBlocksProjectBanner {
-  image: String
+  mediaId: String
   alt: String
 }
 
 type ProjectsBlocksProjectDetails {
   title: String
   subtitle: String
-  image: String
+  mediaId: String
   services: String
   servicesLabel: String
   category: String
@@ -2068,58 +1552,19 @@ type ProjectsBlocksProjectDetails {
   locationLabel: String
 }
 
-type ProjectsBlocksProjectBriefGalleryImages {
-  src: String
-  alt: String
-}
-
-type ProjectsBlocksProjectBriefGallery {
-  cols: Float
-  images: [ProjectsBlocksProjectBriefGalleryImages]
-}
-
 type ProjectsBlocksProjectBrief {
   title: String
-  text: String
-  gallery: ProjectsBlocksProjectBriefGallery
-}
-
-type ProjectsBlocksProjectConceptGalleryImages {
-  src: String
-  alt: String
-}
-
-type ProjectsBlocksProjectConceptGallery {
-  cols: Float
-  images: [ProjectsBlocksProjectConceptGalleryImages]
+  text: JSON
 }
 
 type ProjectsBlocksProjectConcept {
   title: String
-  text: String
-  gallery: ProjectsBlocksProjectConceptGallery
-}
-
-type ProjectsBlocksProjectStrategyCarousel {
-  src: String
-  alt: String
-}
-
-type ProjectsBlocksProjectStrategyGalleryImages {
-  src: String
-  alt: String
-}
-
-type ProjectsBlocksProjectStrategyGallery {
-  cols: Float
-  images: [ProjectsBlocksProjectStrategyGalleryImages]
+  text: JSON
 }
 
 type ProjectsBlocksProjectStrategy {
   title: String
-  text: String
-  carousel: [ProjectsBlocksProjectStrategyCarousel]
-  gallery: ProjectsBlocksProjectStrategyGallery
+  text: JSON
 }
 
 type ProjectsBlocksProjectCollaboratorsList {
@@ -2133,16 +1578,39 @@ type ProjectsBlocksProjectCollaborators {
 }
 
 type ProjectsBlocksProjectFinalImage {
-  src: String
+  mediaId: String
   alt: String
 }
 
-type ProjectsBlocksBannerImage {
-  image: String
+type ProjectsBlocksEditorialGalleryImages {
+  mediaId: String
   alt: String
 }
 
-union ProjectsBlocks = ProjectsBlocksProjectBanner | ProjectsBlocksProjectDetails | ProjectsBlocksProjectBrief | ProjectsBlocksProjectConcept | ProjectsBlocksProjectStrategy | ProjectsBlocksProjectCollaborators | ProjectsBlocksProjectFinalImage | ProjectsBlocksBannerImage
+type ProjectsBlocksEditorialGallery {
+  cols: Float
+  images: [ProjectsBlocksEditorialGalleryImages]
+}
+
+type ProjectsBlocksEditorialCarouselItems {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+type ProjectsBlocksEditorialCarousel {
+  items: [ProjectsBlocksEditorialCarouselItems]
+}
+
+type ProjectsBlocksEditorialInstagram {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+union ProjectsBlocks = ProjectsBlocksProjectBanner | ProjectsBlocksProjectDetails | ProjectsBlocksProjectBrief | ProjectsBlocksProjectConcept | ProjectsBlocksProjectStrategy | ProjectsBlocksProjectCollaborators | ProjectsBlocksProjectFinalImage | ProjectsBlocksEditorialGallery | ProjectsBlocksEditorialCarousel | ProjectsBlocksEditorialInstagram
 
 type Projects implements Node & Document {
   title: String!
@@ -2161,14 +1629,14 @@ type Projects implements Node & Document {
 }
 
 input ProjectsBlocksProjectBannerFilter {
-  image: ImageFilter
+  mediaId: ImageFilter
   alt: StringFilter
 }
 
 input ProjectsBlocksProjectDetailsFilter {
   title: StringFilter
   subtitle: StringFilter
-  image: ImageFilter
+  mediaId: ImageFilter
   services: StringFilter
   servicesLabel: StringFilter
   category: StringFilter
@@ -2179,68 +1647,19 @@ input ProjectsBlocksProjectDetailsFilter {
   locationLabel: StringFilter
 }
 
-input NumberFilter {
-  lt: Float
-  lte: Float
-  gte: Float
-  gt: Float
-  eq: Float
-  exists: Boolean
-  in: [Float]
-}
-
-input ProjectsBlocksProjectBriefGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input ProjectsBlocksProjectBriefGalleryFilter {
-  cols: NumberFilter
-  images: ProjectsBlocksProjectBriefGalleryImagesFilter
-}
-
 input ProjectsBlocksProjectBriefFilter {
   title: StringFilter
-  text: StringFilter
-  gallery: ProjectsBlocksProjectBriefGalleryFilter
-}
-
-input ProjectsBlocksProjectConceptGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input ProjectsBlocksProjectConceptGalleryFilter {
-  cols: NumberFilter
-  images: ProjectsBlocksProjectConceptGalleryImagesFilter
+  text: RichTextFilter
 }
 
 input ProjectsBlocksProjectConceptFilter {
   title: StringFilter
-  text: StringFilter
-  gallery: ProjectsBlocksProjectConceptGalleryFilter
-}
-
-input ProjectsBlocksProjectStrategyCarouselFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input ProjectsBlocksProjectStrategyGalleryImagesFilter {
-  src: ImageFilter
-  alt: StringFilter
-}
-
-input ProjectsBlocksProjectStrategyGalleryFilter {
-  cols: NumberFilter
-  images: ProjectsBlocksProjectStrategyGalleryImagesFilter
+  text: RichTextFilter
 }
 
 input ProjectsBlocksProjectStrategyFilter {
   title: StringFilter
-  text: StringFilter
-  carousel: ProjectsBlocksProjectStrategyCarouselFilter
-  gallery: ProjectsBlocksProjectStrategyGalleryFilter
+  text: RichTextFilter
 }
 
 input ProjectsBlocksProjectCollaboratorsListFilter {
@@ -2254,13 +1673,36 @@ input ProjectsBlocksProjectCollaboratorsFilter {
 }
 
 input ProjectsBlocksProjectFinalImageFilter {
-  src: ImageFilter
+  mediaId: ImageFilter
   alt: StringFilter
 }
 
-input ProjectsBlocksBannerImageFilter {
-  image: ImageFilter
+input ProjectsBlocksEditorialGalleryImagesFilter {
+  mediaId: ImageFilter
   alt: StringFilter
+}
+
+input ProjectsBlocksEditorialGalleryFilter {
+  cols: NumberFilter
+  images: ProjectsBlocksEditorialGalleryImagesFilter
+}
+
+input ProjectsBlocksEditorialCarouselItemsFilter {
+  mediaId: ImageFilter
+  alt: StringFilter
+  caption: StringFilter
+}
+
+input ProjectsBlocksEditorialCarouselFilter {
+  items: ProjectsBlocksEditorialCarouselItemsFilter
+}
+
+input ProjectsBlocksEditorialInstagramFilter {
+  title: StringFilter
+  description: RichTextFilter
+  tag: StringFilter
+  limit: NumberFilter
+  maxVisible: NumberFilter
 }
 
 input ProjectsBlocksFilter {
@@ -2271,7 +1713,9 @@ input ProjectsBlocksFilter {
   projectStrategy: ProjectsBlocksProjectStrategyFilter
   projectCollaborators: ProjectsBlocksProjectCollaboratorsFilter
   projectFinalImage: ProjectsBlocksProjectFinalImageFilter
-  bannerImage: ProjectsBlocksBannerImageFilter
+  editorialGallery: ProjectsBlocksEditorialGalleryFilter
+  editorialCarousel: ProjectsBlocksEditorialCarouselFilter
+  editorialInstagram: ProjectsBlocksEditorialInstagramFilter
 }
 
 input ProjectsFilter {
@@ -2572,138 +2016,49 @@ input SiteConfigMutation {
   seo: SiteConfigSeoMutation
 }
 
-input HomeBlocksHomeHeroTopRightMutation {
-  lines: [String]
-}
-
-input HomeBlocksHomeHeroTaglineMutation {
-  lines: [String]
-}
-
-input HomeBlocksHomeHeroMutation {
-  image: String
-  topRight: HomeBlocksHomeHeroTopRightMutation
-  tagline: HomeBlocksHomeHeroTaglineMutation
-  taglineSub: String
-}
-
-input HomeBlocksHomeAboutMutation {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-input HomeBlocksAboutHeroMutation {
-  title: String
-}
-
-input HomeBlocksBehindNameMutation {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-input HomeBlocksBannerImageMutation {
-  image: String
-  alt: String
-}
-
-input HomeBlocksBioMutation {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-input HomeBlocksAwardsItemsMutation {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-input HomeBlocksAwardsMutation {
-  title: String
-  items: [HomeBlocksAwardsItemsMutation]
-}
-
-input HomeBlocksMissionMutation {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-input HomeBlocksServicesHeroMutation {
-  title: String
-}
-
-input HomeBlocksServicesIntroMutation {
-  text: String
-  image: String
-}
-
-input HomeBlocksServiceGroupsGroupsItemsMutation {
-  title: String
-  description: String
-}
-
-input HomeBlocksServiceGroupsGroupsMutation {
-  title: String
-  items: [HomeBlocksServiceGroupsGroupsItemsMutation]
-}
-
-input HomeBlocksServiceGroupsMutation {
-  groups: [HomeBlocksServiceGroupsGroupsMutation]
-}
-
-input HomeBlocksFaqItemsMutation {
-  question: String
-  answer: String
-}
-
-input HomeBlocksFaqMutation {
-  title: String
-  image: String
-  items: [HomeBlocksFaqItemsMutation]
-}
-
-input HomeBlocksWorkProcessMutation {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 input HomeBlocksContactFormMutation {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+input HomeBlocksEditorialBannerTopRightMutation {
+  lines: [String]
+}
+
+input HomeBlocksEditorialBannerMutation {
+  title: String
+  subtitle: String
+  topRight: HomeBlocksEditorialBannerTopRightMutation
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 input HomeBlocksEditorialHeroMutation {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 input HomeBlocksEditorialCopyMutation {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 input HomeBlocksEditorialAccordionItemsDetailsMutation {
   label: String
-  text: String
+  text: JSON
 }
 
 input HomeBlocksEditorialAccordionItemsMutation {
@@ -2715,18 +2070,18 @@ input HomeBlocksEditorialAccordionItemsMutation {
 }
 
 input HomeBlocksEditorialAccordionMutation {
-  intro: String
+  intro: JSON
   items: [HomeBlocksEditorialAccordionItemsMutation]
 }
 
 input HomeBlocksEditorialRowsItemsMutation {
   title: String
-  text: String
+  text: JSON
 }
 
 input HomeBlocksEditorialRowsMutation {
   title: String
-  intro: String
+  intro: JSON
   items: [HomeBlocksEditorialRowsItemsMutation]
 }
 
@@ -2738,7 +2093,7 @@ input HomeBlocksEditorialCtaMutation {
 input HomeBlocksEditorialShowcaseItemsMutation {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -2747,7 +2102,7 @@ input HomeBlocksEditorialShowcaseMutation {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -2757,28 +2112,44 @@ input HomeBlocksEditorialShowcaseMutation {
 
 input HomeBlocksEditorialMissionMutation {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
+input HomeBlocksEditorialCarouselItemsMutation {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+input HomeBlocksEditorialCarouselMutation {
+  items: [HomeBlocksEditorialCarouselItemsMutation]
+}
+
+input HomeBlocksEditorialInstagramMutation {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+input HomeBlocksEditorialGalleryImagesMutation {
+  mediaId: String
+  alt: String
+}
+
+input HomeBlocksEditorialGalleryMutation {
+  cols: Float
+  images: [HomeBlocksEditorialGalleryImagesMutation]
+}
+
 input HomeBlocksMutation {
-  homeHero: HomeBlocksHomeHeroMutation
-  homeAbout: HomeBlocksHomeAboutMutation
-  aboutHero: HomeBlocksAboutHeroMutation
-  behindName: HomeBlocksBehindNameMutation
-  bannerImage: HomeBlocksBannerImageMutation
-  bio: HomeBlocksBioMutation
-  awards: HomeBlocksAwardsMutation
-  mission: HomeBlocksMissionMutation
-  servicesHero: HomeBlocksServicesHeroMutation
-  servicesIntro: HomeBlocksServicesIntroMutation
-  serviceGroups: HomeBlocksServiceGroupsMutation
-  faq: HomeBlocksFaqMutation
-  workProcess: HomeBlocksWorkProcessMutation
   contactForm: HomeBlocksContactFormMutation
+  editorialBanner: HomeBlocksEditorialBannerMutation
   editorialHero: HomeBlocksEditorialHeroMutation
   editorialCopy: HomeBlocksEditorialCopyMutation
   editorialAccordion: HomeBlocksEditorialAccordionMutation
@@ -2786,6 +2157,9 @@ input HomeBlocksMutation {
   editorialCta: HomeBlocksEditorialCtaMutation
   editorialShowcase: HomeBlocksEditorialShowcaseMutation
   editorialMission: HomeBlocksEditorialMissionMutation
+  editorialCarousel: HomeBlocksEditorialCarouselMutation
+  editorialInstagram: HomeBlocksEditorialInstagramMutation
+  editorialGallery: HomeBlocksEditorialGalleryMutation
 }
 
 input HomeMutation {
@@ -2795,138 +2169,49 @@ input HomeMutation {
   blocks: [HomeBlocksMutation]
 }
 
-input AboutBlocksHomeHeroTopRightMutation {
-  lines: [String]
-}
-
-input AboutBlocksHomeHeroTaglineMutation {
-  lines: [String]
-}
-
-input AboutBlocksHomeHeroMutation {
-  image: String
-  topRight: AboutBlocksHomeHeroTopRightMutation
-  tagline: AboutBlocksHomeHeroTaglineMutation
-  taglineSub: String
-}
-
-input AboutBlocksHomeAboutMutation {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-input AboutBlocksAboutHeroMutation {
-  title: String
-}
-
-input AboutBlocksBehindNameMutation {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-input AboutBlocksBannerImageMutation {
-  image: String
-  alt: String
-}
-
-input AboutBlocksBioMutation {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-input AboutBlocksAwardsItemsMutation {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-input AboutBlocksAwardsMutation {
-  title: String
-  items: [AboutBlocksAwardsItemsMutation]
-}
-
-input AboutBlocksMissionMutation {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-input AboutBlocksServicesHeroMutation {
-  title: String
-}
-
-input AboutBlocksServicesIntroMutation {
-  text: String
-  image: String
-}
-
-input AboutBlocksServiceGroupsGroupsItemsMutation {
-  title: String
-  description: String
-}
-
-input AboutBlocksServiceGroupsGroupsMutation {
-  title: String
-  items: [AboutBlocksServiceGroupsGroupsItemsMutation]
-}
-
-input AboutBlocksServiceGroupsMutation {
-  groups: [AboutBlocksServiceGroupsGroupsMutation]
-}
-
-input AboutBlocksFaqItemsMutation {
-  question: String
-  answer: String
-}
-
-input AboutBlocksFaqMutation {
-  title: String
-  image: String
-  items: [AboutBlocksFaqItemsMutation]
-}
-
-input AboutBlocksWorkProcessMutation {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 input AboutBlocksContactFormMutation {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+input AboutBlocksEditorialBannerTopRightMutation {
+  lines: [String]
+}
+
+input AboutBlocksEditorialBannerMutation {
+  title: String
+  subtitle: String
+  topRight: AboutBlocksEditorialBannerTopRightMutation
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 input AboutBlocksEditorialHeroMutation {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 input AboutBlocksEditorialCopyMutation {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 input AboutBlocksEditorialAccordionItemsDetailsMutation {
   label: String
-  text: String
+  text: JSON
 }
 
 input AboutBlocksEditorialAccordionItemsMutation {
@@ -2938,18 +2223,18 @@ input AboutBlocksEditorialAccordionItemsMutation {
 }
 
 input AboutBlocksEditorialAccordionMutation {
-  intro: String
+  intro: JSON
   items: [AboutBlocksEditorialAccordionItemsMutation]
 }
 
 input AboutBlocksEditorialRowsItemsMutation {
   title: String
-  text: String
+  text: JSON
 }
 
 input AboutBlocksEditorialRowsMutation {
   title: String
-  intro: String
+  intro: JSON
   items: [AboutBlocksEditorialRowsItemsMutation]
 }
 
@@ -2961,7 +2246,7 @@ input AboutBlocksEditorialCtaMutation {
 input AboutBlocksEditorialShowcaseItemsMutation {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -2970,7 +2255,7 @@ input AboutBlocksEditorialShowcaseMutation {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -2980,28 +2265,44 @@ input AboutBlocksEditorialShowcaseMutation {
 
 input AboutBlocksEditorialMissionMutation {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
+input AboutBlocksEditorialCarouselItemsMutation {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+input AboutBlocksEditorialCarouselMutation {
+  items: [AboutBlocksEditorialCarouselItemsMutation]
+}
+
+input AboutBlocksEditorialInstagramMutation {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+input AboutBlocksEditorialGalleryImagesMutation {
+  mediaId: String
+  alt: String
+}
+
+input AboutBlocksEditorialGalleryMutation {
+  cols: Float
+  images: [AboutBlocksEditorialGalleryImagesMutation]
+}
+
 input AboutBlocksMutation {
-  homeHero: AboutBlocksHomeHeroMutation
-  homeAbout: AboutBlocksHomeAboutMutation
-  aboutHero: AboutBlocksAboutHeroMutation
-  behindName: AboutBlocksBehindNameMutation
-  bannerImage: AboutBlocksBannerImageMutation
-  bio: AboutBlocksBioMutation
-  awards: AboutBlocksAwardsMutation
-  mission: AboutBlocksMissionMutation
-  servicesHero: AboutBlocksServicesHeroMutation
-  servicesIntro: AboutBlocksServicesIntroMutation
-  serviceGroups: AboutBlocksServiceGroupsMutation
-  faq: AboutBlocksFaqMutation
-  workProcess: AboutBlocksWorkProcessMutation
   contactForm: AboutBlocksContactFormMutation
+  editorialBanner: AboutBlocksEditorialBannerMutation
   editorialHero: AboutBlocksEditorialHeroMutation
   editorialCopy: AboutBlocksEditorialCopyMutation
   editorialAccordion: AboutBlocksEditorialAccordionMutation
@@ -3009,147 +2310,60 @@ input AboutBlocksMutation {
   editorialCta: AboutBlocksEditorialCtaMutation
   editorialShowcase: AboutBlocksEditorialShowcaseMutation
   editorialMission: AboutBlocksEditorialMissionMutation
+  editorialCarousel: AboutBlocksEditorialCarouselMutation
+  editorialInstagram: AboutBlocksEditorialInstagramMutation
+  editorialGallery: AboutBlocksEditorialGalleryMutation
 }
 
 input AboutMutation {
   title: String
   description: String
-  heroImage: String
   blocks: [AboutBlocksMutation]
 }
 
-input ServicesBlocksHomeHeroTopRightMutation {
-  lines: [String]
-}
-
-input ServicesBlocksHomeHeroTaglineMutation {
-  lines: [String]
-}
-
-input ServicesBlocksHomeHeroMutation {
-  image: String
-  topRight: ServicesBlocksHomeHeroTopRightMutation
-  tagline: ServicesBlocksHomeHeroTaglineMutation
-  taglineSub: String
-}
-
-input ServicesBlocksHomeAboutMutation {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-input ServicesBlocksAboutHeroMutation {
-  title: String
-}
-
-input ServicesBlocksBehindNameMutation {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-input ServicesBlocksBannerImageMutation {
-  image: String
-  alt: String
-}
-
-input ServicesBlocksBioMutation {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-input ServicesBlocksAwardsItemsMutation {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-input ServicesBlocksAwardsMutation {
-  title: String
-  items: [ServicesBlocksAwardsItemsMutation]
-}
-
-input ServicesBlocksMissionMutation {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-input ServicesBlocksServicesHeroMutation {
-  title: String
-}
-
-input ServicesBlocksServicesIntroMutation {
-  text: String
-  image: String
-}
-
-input ServicesBlocksServiceGroupsGroupsItemsMutation {
-  title: String
-  description: String
-}
-
-input ServicesBlocksServiceGroupsGroupsMutation {
-  title: String
-  items: [ServicesBlocksServiceGroupsGroupsItemsMutation]
-}
-
-input ServicesBlocksServiceGroupsMutation {
-  groups: [ServicesBlocksServiceGroupsGroupsMutation]
-}
-
-input ServicesBlocksFaqItemsMutation {
-  question: String
-  answer: String
-}
-
-input ServicesBlocksFaqMutation {
-  title: String
-  image: String
-  items: [ServicesBlocksFaqItemsMutation]
-}
-
-input ServicesBlocksWorkProcessMutation {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 input ServicesBlocksContactFormMutation {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+input ServicesBlocksEditorialBannerTopRightMutation {
+  lines: [String]
+}
+
+input ServicesBlocksEditorialBannerMutation {
+  title: String
+  subtitle: String
+  topRight: ServicesBlocksEditorialBannerTopRightMutation
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 input ServicesBlocksEditorialHeroMutation {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 input ServicesBlocksEditorialCopyMutation {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 input ServicesBlocksEditorialAccordionItemsDetailsMutation {
   label: String
-  text: String
+  text: JSON
 }
 
 input ServicesBlocksEditorialAccordionItemsMutation {
@@ -3161,18 +2375,18 @@ input ServicesBlocksEditorialAccordionItemsMutation {
 }
 
 input ServicesBlocksEditorialAccordionMutation {
-  intro: String
+  intro: JSON
   items: [ServicesBlocksEditorialAccordionItemsMutation]
 }
 
 input ServicesBlocksEditorialRowsItemsMutation {
   title: String
-  text: String
+  text: JSON
 }
 
 input ServicesBlocksEditorialRowsMutation {
   title: String
-  intro: String
+  intro: JSON
   items: [ServicesBlocksEditorialRowsItemsMutation]
 }
 
@@ -3184,7 +2398,7 @@ input ServicesBlocksEditorialCtaMutation {
 input ServicesBlocksEditorialShowcaseItemsMutation {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -3193,7 +2407,7 @@ input ServicesBlocksEditorialShowcaseMutation {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -3203,28 +2417,44 @@ input ServicesBlocksEditorialShowcaseMutation {
 
 input ServicesBlocksEditorialMissionMutation {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
+input ServicesBlocksEditorialCarouselItemsMutation {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+input ServicesBlocksEditorialCarouselMutation {
+  items: [ServicesBlocksEditorialCarouselItemsMutation]
+}
+
+input ServicesBlocksEditorialInstagramMutation {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+input ServicesBlocksEditorialGalleryImagesMutation {
+  mediaId: String
+  alt: String
+}
+
+input ServicesBlocksEditorialGalleryMutation {
+  cols: Float
+  images: [ServicesBlocksEditorialGalleryImagesMutation]
+}
+
 input ServicesBlocksMutation {
-  homeHero: ServicesBlocksHomeHeroMutation
-  homeAbout: ServicesBlocksHomeAboutMutation
-  aboutHero: ServicesBlocksAboutHeroMutation
-  behindName: ServicesBlocksBehindNameMutation
-  bannerImage: ServicesBlocksBannerImageMutation
-  bio: ServicesBlocksBioMutation
-  awards: ServicesBlocksAwardsMutation
-  mission: ServicesBlocksMissionMutation
-  servicesHero: ServicesBlocksServicesHeroMutation
-  servicesIntro: ServicesBlocksServicesIntroMutation
-  serviceGroups: ServicesBlocksServiceGroupsMutation
-  faq: ServicesBlocksFaqMutation
-  workProcess: ServicesBlocksWorkProcessMutation
   contactForm: ServicesBlocksContactFormMutation
+  editorialBanner: ServicesBlocksEditorialBannerMutation
   editorialHero: ServicesBlocksEditorialHeroMutation
   editorialCopy: ServicesBlocksEditorialCopyMutation
   editorialAccordion: ServicesBlocksEditorialAccordionMutation
@@ -3232,6 +2462,9 @@ input ServicesBlocksMutation {
   editorialCta: ServicesBlocksEditorialCtaMutation
   editorialShowcase: ServicesBlocksEditorialShowcaseMutation
   editorialMission: ServicesBlocksEditorialMissionMutation
+  editorialCarousel: ServicesBlocksEditorialCarouselMutation
+  editorialInstagram: ServicesBlocksEditorialInstagramMutation
+  editorialGallery: ServicesBlocksEditorialGalleryMutation
 }
 
 input ServicesMutation {
@@ -3240,138 +2473,49 @@ input ServicesMutation {
   blocks: [ServicesBlocksMutation]
 }
 
-input ContactBlocksHomeHeroTopRightMutation {
-  lines: [String]
-}
-
-input ContactBlocksHomeHeroTaglineMutation {
-  lines: [String]
-}
-
-input ContactBlocksHomeHeroMutation {
-  image: String
-  topRight: ContactBlocksHomeHeroTopRightMutation
-  tagline: ContactBlocksHomeHeroTaglineMutation
-  taglineSub: String
-}
-
-input ContactBlocksHomeAboutMutation {
-  image: String
-  title: String
-  description: String
-  ctaText: String
-  ctaLink: String
-}
-
-input ContactBlocksAboutHeroMutation {
-  title: String
-}
-
-input ContactBlocksBehindNameMutation {
-  title: String
-  p1: String
-  p2: String
-  footnote: String
-}
-
-input ContactBlocksBannerImageMutation {
-  image: String
-  alt: String
-}
-
-input ContactBlocksBioMutation {
-  title: String
-  image: String
-  paragraphs: [String]
-}
-
-input ContactBlocksAwardsItemsMutation {
-  year: String
-  project: String
-  award: String
-  link: String
-}
-
-input ContactBlocksAwardsMutation {
-  title: String
-  items: [ContactBlocksAwardsItemsMutation]
-}
-
-input ContactBlocksMissionMutation {
-  title: String
-  p1: String
-  p2: String
-  quote: String
-}
-
-input ContactBlocksServicesHeroMutation {
-  title: String
-}
-
-input ContactBlocksServicesIntroMutation {
-  text: String
-  image: String
-}
-
-input ContactBlocksServiceGroupsGroupsItemsMutation {
-  title: String
-  description: String
-}
-
-input ContactBlocksServiceGroupsGroupsMutation {
-  title: String
-  items: [ContactBlocksServiceGroupsGroupsItemsMutation]
-}
-
-input ContactBlocksServiceGroupsMutation {
-  groups: [ContactBlocksServiceGroupsGroupsMutation]
-}
-
-input ContactBlocksFaqItemsMutation {
-  question: String
-  answer: String
-}
-
-input ContactBlocksFaqMutation {
-  title: String
-  image: String
-  items: [ContactBlocksFaqItemsMutation]
-}
-
-input ContactBlocksWorkProcessMutation {
-  title: String
-  p1: String
-  p2: String
-  image: String
-}
-
 input ContactBlocksContactFormMutation {
-  bannerImage: String
+  mediaId: String
   heading: String
   subheading: String
 }
 
+input ContactBlocksEditorialBannerTopRightMutation {
+  lines: [String]
+}
+
+input ContactBlocksEditorialBannerMutation {
+  title: String
+  subtitle: String
+  topRight: ContactBlocksEditorialBannerTopRightMutation
+  mediaId: String
+  imageAlt: String
+  placeholderLabel: String
+  objectFit: String
+}
+
 input ContactBlocksEditorialHeroMutation {
   title: String
-  intro: String
+  intro: JSON
   ctaText: String
   ctaLink: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
+  objectFit: String
 }
 
 input ContactBlocksEditorialCopyMutation {
   eyebrow: String
   title: String
   headingLevel: String
-  body: String
+  body: JSON
+  showStar: Boolean
 }
 
 input ContactBlocksEditorialAccordionItemsDetailsMutation {
   label: String
-  text: String
+  text: JSON
 }
 
 input ContactBlocksEditorialAccordionItemsMutation {
@@ -3383,18 +2527,18 @@ input ContactBlocksEditorialAccordionItemsMutation {
 }
 
 input ContactBlocksEditorialAccordionMutation {
-  intro: String
+  intro: JSON
   items: [ContactBlocksEditorialAccordionItemsMutation]
 }
 
 input ContactBlocksEditorialRowsItemsMutation {
   title: String
-  text: String
+  text: JSON
 }
 
 input ContactBlocksEditorialRowsMutation {
   title: String
-  intro: String
+  intro: JSON
   items: [ContactBlocksEditorialRowsItemsMutation]
 }
 
@@ -3406,7 +2550,7 @@ input ContactBlocksEditorialCtaMutation {
 input ContactBlocksEditorialShowcaseItemsMutation {
   title: String
   link: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
@@ -3415,7 +2559,7 @@ input ContactBlocksEditorialShowcaseMutation {
   eyebrow: String
   title: String
   mediaType: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
   ctaText: String
@@ -3425,28 +2569,44 @@ input ContactBlocksEditorialShowcaseMutation {
 
 input ContactBlocksEditorialMissionMutation {
   label: String
-  paragraphs: [String]
+  content: JSON
   statement: String
-  image: String
+  mediaId: String
   imageAlt: String
   placeholderLabel: String
 }
 
+input ContactBlocksEditorialCarouselItemsMutation {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+input ContactBlocksEditorialCarouselMutation {
+  items: [ContactBlocksEditorialCarouselItemsMutation]
+}
+
+input ContactBlocksEditorialInstagramMutation {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
+}
+
+input ContactBlocksEditorialGalleryImagesMutation {
+  mediaId: String
+  alt: String
+}
+
+input ContactBlocksEditorialGalleryMutation {
+  cols: Float
+  images: [ContactBlocksEditorialGalleryImagesMutation]
+}
+
 input ContactBlocksMutation {
-  homeHero: ContactBlocksHomeHeroMutation
-  homeAbout: ContactBlocksHomeAboutMutation
-  aboutHero: ContactBlocksAboutHeroMutation
-  behindName: ContactBlocksBehindNameMutation
-  bannerImage: ContactBlocksBannerImageMutation
-  bio: ContactBlocksBioMutation
-  awards: ContactBlocksAwardsMutation
-  mission: ContactBlocksMissionMutation
-  servicesHero: ContactBlocksServicesHeroMutation
-  servicesIntro: ContactBlocksServicesIntroMutation
-  serviceGroups: ContactBlocksServiceGroupsMutation
-  faq: ContactBlocksFaqMutation
-  workProcess: ContactBlocksWorkProcessMutation
   contactForm: ContactBlocksContactFormMutation
+  editorialBanner: ContactBlocksEditorialBannerMutation
   editorialHero: ContactBlocksEditorialHeroMutation
   editorialCopy: ContactBlocksEditorialCopyMutation
   editorialAccordion: ContactBlocksEditorialAccordionMutation
@@ -3454,6 +2614,9 @@ input ContactBlocksMutation {
   editorialCta: ContactBlocksEditorialCtaMutation
   editorialShowcase: ContactBlocksEditorialShowcaseMutation
   editorialMission: ContactBlocksEditorialMissionMutation
+  editorialCarousel: ContactBlocksEditorialCarouselMutation
+  editorialInstagram: ContactBlocksEditorialInstagramMutation
+  editorialGallery: ContactBlocksEditorialGalleryMutation
 }
 
 input ContactMutation {
@@ -3470,14 +2633,14 @@ input LegalMutation {
 }
 
 input ProjectsBlocksProjectBannerMutation {
-  image: String
+  mediaId: String
   alt: String
 }
 
 input ProjectsBlocksProjectDetailsMutation {
   title: String
   subtitle: String
-  image: String
+  mediaId: String
   services: String
   servicesLabel: String
   category: String
@@ -3488,58 +2651,19 @@ input ProjectsBlocksProjectDetailsMutation {
   locationLabel: String
 }
 
-input ProjectsBlocksProjectBriefGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input ProjectsBlocksProjectBriefGalleryMutation {
-  cols: Float
-  images: [ProjectsBlocksProjectBriefGalleryImagesMutation]
-}
-
 input ProjectsBlocksProjectBriefMutation {
   title: String
-  text: String
-  gallery: ProjectsBlocksProjectBriefGalleryMutation
-}
-
-input ProjectsBlocksProjectConceptGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input ProjectsBlocksProjectConceptGalleryMutation {
-  cols: Float
-  images: [ProjectsBlocksProjectConceptGalleryImagesMutation]
+  text: JSON
 }
 
 input ProjectsBlocksProjectConceptMutation {
   title: String
-  text: String
-  gallery: ProjectsBlocksProjectConceptGalleryMutation
-}
-
-input ProjectsBlocksProjectStrategyCarouselMutation {
-  src: String
-  alt: String
-}
-
-input ProjectsBlocksProjectStrategyGalleryImagesMutation {
-  src: String
-  alt: String
-}
-
-input ProjectsBlocksProjectStrategyGalleryMutation {
-  cols: Float
-  images: [ProjectsBlocksProjectStrategyGalleryImagesMutation]
+  text: JSON
 }
 
 input ProjectsBlocksProjectStrategyMutation {
   title: String
-  text: String
-  carousel: [ProjectsBlocksProjectStrategyCarouselMutation]
-  gallery: ProjectsBlocksProjectStrategyGalleryMutation
+  text: JSON
 }
 
 input ProjectsBlocksProjectCollaboratorsListMutation {
@@ -3553,13 +2677,36 @@ input ProjectsBlocksProjectCollaboratorsMutation {
 }
 
 input ProjectsBlocksProjectFinalImageMutation {
-  src: String
+  mediaId: String
   alt: String
 }
 
-input ProjectsBlocksBannerImageMutation {
-  image: String
+input ProjectsBlocksEditorialGalleryImagesMutation {
+  mediaId: String
   alt: String
+}
+
+input ProjectsBlocksEditorialGalleryMutation {
+  cols: Float
+  images: [ProjectsBlocksEditorialGalleryImagesMutation]
+}
+
+input ProjectsBlocksEditorialCarouselItemsMutation {
+  mediaId: String
+  alt: String
+  caption: String
+}
+
+input ProjectsBlocksEditorialCarouselMutation {
+  items: [ProjectsBlocksEditorialCarouselItemsMutation]
+}
+
+input ProjectsBlocksEditorialInstagramMutation {
+  title: String
+  description: JSON
+  tag: String
+  limit: Float
+  maxVisible: Float
 }
 
 input ProjectsBlocksMutation {
@@ -3570,7 +2717,9 @@ input ProjectsBlocksMutation {
   projectStrategy: ProjectsBlocksProjectStrategyMutation
   projectCollaborators: ProjectsBlocksProjectCollaboratorsMutation
   projectFinalImage: ProjectsBlocksProjectFinalImageMutation
-  bannerImage: ProjectsBlocksBannerImageMutation
+  editorialGallery: ProjectsBlocksEditorialGalleryMutation
+  editorialCarousel: ProjectsBlocksEditorialCarouselMutation
+  editorialInstagram: ProjectsBlocksEditorialInstagramMutation
 }
 
 input ProjectsMutation {

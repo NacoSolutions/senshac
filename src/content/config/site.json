@@ -1,6 +1,10 @@
 {
-  "siteUrl": "https://preview.senshac.com",
-  "locales": ["es", "ca", "en"],
+  "siteUrl": "https://senshac.com",
+  "locales": [
+    "es",
+    "ca",
+    "en"
+  ],
   "defaultLocale": "es",
   "company": {
     "name": "Sens*Hac",
@@ -35,18 +39,23 @@
       "name": "Pinterest",
       "url": "https://www.pinterest.com/senshac_design/",
       "icon": "i-simple-icons-pinterest"
+    },
+    {
+      "name": "Houzz",
+      "url": "https://www.houzz.es/profesionales/pfvwes-pf~1011989421",
+      "icon": "i-simple-icons-houzz"
     }
   ],
   "attribution": {
-    "design": "©be mediàtic",
+    "design": "\u00a9be medi\u00e0tic",
     "development": "Naco Solutions"
   },
   "branding": {
-    "logo": "/images/brand/logo-senshac-optimized.webp",
-    "logoWhite": "/images/brand/logo-senshac-white-optimized.webp",
-    "symbol": "/images/brand/symbol-senshac-optimized.webp",
-    "symbolWhite": "/images/brand/symbol-senshac-white-optimized.webp",
-    "ogImage": "/images/brand/senshac-og.webp"
+    "logo": "brand/logo-senshac-optimized",
+    "logoWhite": "brand/logo-senshac-white-optimized",
+    "symbol": "brand/symbol-senshac-optimized",
+    "symbolWhite": "brand/symbol-senshac-white-optimized",
+    "ogImage": "home/hero"
   },
   "seo": {
     "priceRange": "$$"

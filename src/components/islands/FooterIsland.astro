@@ -8,6 +8,7 @@ interface Props {
   data?: Translations;
   siteData?: SiteConfigQuery['siteConfig'];
   lang: string;
+  relativePath?: string;
 }
 
 let { data, siteData, lang } = Astro.props;

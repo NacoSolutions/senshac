@@ -1,0 +1,142 @@
+---
+import RichText from './RichText.astro';
+
+interface Props {
+  title?: string;
+  description?: any;
+  tag?: string;
+  limit?: number;
+  maxVisible?: number;
+}
+
+const { 
+  title = "Instagram", 
+  description, 
+  tag
+} = Astro.props;
+
+const limit = Astro.props.limit || 12;
+const maxVisible = Astro.props.maxVisible || 4;
+
+let posts: any[] = [];
+
+try {
+  const res = await fetch("https://media.senshac.com/instagram/posts.json");
+  if (res.ok) {
+    const allPosts = (await res.json()) as any[];
+    
+    // Filter by tag if provided
+    if (tag) {
+      const tagLower = tag.replace(/^#/, '').toLowerCase(); // Normalize: remove leading # if any
+      posts = allPosts.filter((p: any) => p.caption?.toLowerCase().includes(`#${tagLower}`));
+    } else {
+      posts = allPosts;
+    }
+  }
+} catch (e) {
+  console.error("Failed to fetch Instagram posts from R2:", e);
+}
+
+const displayPosts = posts.slice(0, limit);
+const isCarousel = displayPosts.length > maxVisible;
+---
+
+{displayPosts.length > 0 && (
+  <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
+    <div class="mb-10 text-center md:text-left">
+      <h2 class="text-3xl font-bold mb-4">{title}</h2>
+      {description && (
+        <div class="text-lg text-gray-600 max-w-2xl prose-p:my-2">
+          <RichText content={description} />
+        </div>
+      )}
+    </div>
+
+    <div 
+      class={`flex gap-4 pb-4 ${isCarousel ? 'overflow-x-auto snap-x snap-mandatory no-scrollbar flex-nowrap -mx-4 px-4 md:mx-0 md:px-0' : 'flex-wrap justify-center'}`}
+      style={`--desktop-w: calc((100% - (${maxVisible} - 1) * 1rem) / ${maxVisible});`}
+    >
+      {displayPosts.map((post) => (
+        <a 
+          href={post.permalink} 
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`aspect-[4/5] bg-transparent flex items-center justify-center group relative overflow-hidden transition-transform hover:scale-[1.02] ${
+            isCarousel 
+              ? 'flex-none snap-start w-[85%] md:w-[var(--desktop-w)]' 
+              : 'w-[calc(50%-0.5rem)] md:w-[var(--desktop-w)]'
+          }`}
+          aria-label={post.caption?.slice(0, 50) || "Instagram post"}
+        >
+          {post.media_type === 'CAROUSEL_ALBUM' && post.children && post.children.length > 0 ? (
+            <div 
+              class="absolute inset-0 w-full h-full"
+              x-data={`{ active: 0, slides: [${post.children.map((c: string) => `'${c}'`).join(',')}] }`}
+              x-init="setInterval(() => { active = (active + 1) % slides.length }, 3000)"
+            >
+              <template x-for="(slide, index) in slides" :key="index">
+                <div 
+                  class="absolute inset-0 w-full h-full transition-opacity duration-1000" 
+                  :class="active === index ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'"
+                >
+                  <template x-if="slide.endsWith('.m3u8')">
+                    <video :src="slide" class="hls-video w-full h-full object-contain" autoplay muted loop playsinline></video>
+                  </template>
+                  <template x-if="!slide.endsWith('.m3u8')">
+                    <img :src="slide" class="w-full h-full object-contain" loading="lazy" />
+                  </template>
+                </div>
+              </template>
+            </div>
+          ) : post.media_type === 'VIDEO' ? (
+            <video
+              src={post.media_url}
+              poster={post.thumbnail_url}
+              class="hls-video absolute inset-0 w-full h-full object-contain"
+              autoplay
+              muted
+              loop
+              playsinline
+            />
+          ) : (
+            <img 
+              src={post.media_url} 
+              alt={post.caption?.slice(0, 100) || "Instagram post image"}
+              class="absolute inset-0 w-full h-full object-contain"
+              loading="lazy"
+            />
+          )}
+          <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+            <span class="i-lucide-instagram text-white w-8 h-8" />
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="mt-8 text-center">
+      <a href="https://instagram.com/senshac" target="_blank" rel="noopener noreferrer" class="editorial-link mt-0 text-sm tracking-wider">
+        SÍGUENOS EN INSTAGRAM
+      </a>
+    </div>
+  </section>
+
+  <script>
+    import Hls from "hls.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const videos = document.querySelectorAll("video.hls-video") as NodeListOf<HTMLVideoElement>;
+      videos.forEach((video) => {
+        const src = video.getAttribute("src");
+        if (src && src.includes(".m3u8")) {
+          if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(src);
+            hls.attachMedia(video);
+          } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = src;
+          }
+        }
+      });
+    });
+  </script>
+)}

@@ -66,96 +66,22 @@ export const HomePartsFragmentDoc = gql`
   headerStyle
   blocks {
     __typename
-    ... on HomeBlocksHomeHero {
-      image
+    ... on HomeBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on HomeBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on HomeBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on HomeBlocksAboutHero {
-      title
-    }
-    ... on HomeBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on HomeBlocksBannerImage {
-      image
-      alt
-    }
-    ... on HomeBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on HomeBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on HomeBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on HomeBlocksServicesHero {
-      title
-    }
-    ... on HomeBlocksServicesIntro {
-      text
-      image
-    }
-    ... on HomeBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on HomeBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on HomeBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on HomeBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on HomeBlocksEditorialHero {
       title
@@ -163,15 +89,17 @@ export const HomePartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on HomeBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on HomeBlocksEditorialAccordion {
       intro
@@ -205,7 +133,7 @@ export const HomePartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -214,18 +142,41 @@ export const HomePartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on HomeBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on HomeBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on HomeBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on HomeBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -235,99 +186,24 @@ export const AboutPartsFragmentDoc = gql`
   __typename
   title
   description
-  heroImage
   blocks {
     __typename
-    ... on AboutBlocksHomeHero {
-      image
+    ... on AboutBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on AboutBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on AboutBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on AboutBlocksAboutHero {
-      title
-    }
-    ... on AboutBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on AboutBlocksBannerImage {
-      image
-      alt
-    }
-    ... on AboutBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on AboutBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on AboutBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on AboutBlocksServicesHero {
-      title
-    }
-    ... on AboutBlocksServicesIntro {
-      text
-      image
-    }
-    ... on AboutBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on AboutBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on AboutBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on AboutBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on AboutBlocksEditorialHero {
       title
@@ -335,15 +211,17 @@ export const AboutPartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on AboutBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on AboutBlocksEditorialAccordion {
       intro
@@ -377,7 +255,7 @@ export const AboutPartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -386,18 +264,41 @@ export const AboutPartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on AboutBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on AboutBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on AboutBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on AboutBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -409,96 +310,22 @@ export const ServicesPartsFragmentDoc = gql`
   description
   blocks {
     __typename
-    ... on ServicesBlocksHomeHero {
-      image
+    ... on ServicesBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on ServicesBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on ServicesBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on ServicesBlocksAboutHero {
-      title
-    }
-    ... on ServicesBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on ServicesBlocksBannerImage {
-      image
-      alt
-    }
-    ... on ServicesBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on ServicesBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on ServicesBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on ServicesBlocksServicesHero {
-      title
-    }
-    ... on ServicesBlocksServicesIntro {
-      text
-      image
-    }
-    ... on ServicesBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on ServicesBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on ServicesBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on ServicesBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on ServicesBlocksEditorialHero {
       title
@@ -506,15 +333,17 @@ export const ServicesPartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on ServicesBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on ServicesBlocksEditorialAccordion {
       intro
@@ -548,7 +377,7 @@ export const ServicesPartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -557,18 +386,41 @@ export const ServicesPartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on ServicesBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on ServicesBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ServicesBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on ServicesBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -580,96 +432,22 @@ export const ContactPartsFragmentDoc = gql`
   description
   blocks {
     __typename
-    ... on ContactBlocksHomeHero {
-      image
+    ... on ContactBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on ContactBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on ContactBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on ContactBlocksAboutHero {
-      title
-    }
-    ... on ContactBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on ContactBlocksBannerImage {
-      image
-      alt
-    }
-    ... on ContactBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on ContactBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on ContactBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on ContactBlocksServicesHero {
-      title
-    }
-    ... on ContactBlocksServicesIntro {
-      text
-      image
-    }
-    ... on ContactBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on ContactBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on ContactBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on ContactBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on ContactBlocksEditorialHero {
       title
@@ -677,15 +455,17 @@ export const ContactPartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on ContactBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on ContactBlocksEditorialAccordion {
       intro
@@ -719,7 +499,7 @@ export const ContactPartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -728,18 +508,41 @@ export const ContactPartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on ContactBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on ContactBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ContactBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on ContactBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -768,13 +571,13 @@ export const ProjectsPartsFragmentDoc = gql`
   blocks {
     __typename
     ... on ProjectsBlocksProjectBanner {
-      image
+      mediaId
       alt
     }
     ... on ProjectsBlocksProjectDetails {
       title
       subtitle
-      image
+      mediaId
       services
       servicesLabel
       category
@@ -787,46 +590,14 @@ export const ProjectsPartsFragmentDoc = gql`
     ... on ProjectsBlocksProjectBrief {
       title
       text
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectConcept {
       title
       text
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectStrategy {
       title
       text
-      carousel {
-        __typename
-        src
-        alt
-      }
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectCollaborators {
       title
@@ -837,12 +608,31 @@ export const ProjectsPartsFragmentDoc = gql`
       }
     }
     ... on ProjectsBlocksProjectFinalImage {
-      src
+      mediaId
       alt
     }
-    ... on ProjectsBlocksBannerImage {
-      image
-      alt
+    ... on ProjectsBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
+    }
+    ... on ProjectsBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ProjectsBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
     }
   }
 }
@@ -1445,7 +1235,7 @@ const generateRequester = (client) => {
 export const ExperimentalGetTinaClient = () => getSdk(
   generateRequester(
     createClient({
-      url: "https://content.tinajs.io/2.4/content/7a1540b8-e9a1-493f-8cc5-83d85b2c335d/github/main",
+      url: "http://localhost:4001/graphql",
       queries
     })
   )

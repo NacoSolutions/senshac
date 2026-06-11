@@ -1,0 +1,22 @@
+diff --git a/dist/index.js b/dist/index.js
+index 5956f71f7748bde1e9044f51ec57ed5f86185c66..d2ff46d2455d883426febb1d0494300125300406 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1688,7 +1688,7 @@ import react from "@vitejs/plugin-react";
+ import fs6 from "fs-extra";
+ import normalizePath3 from "normalize-path";
+ import {
+-  splitVendorChunkPlugin
++
+ } from "vite";
+ 
+ // src/next/vite/cors.ts
+@@ -2209,7 +2209,7 @@ var createConfig = async ({
+         },
+         fastRefresh: false
+       }),
+-      splitVendorChunkPlugin(),
++ 
+       tinaTailwind(configManager.spaRootPath, configManager.prebuildFilePath),
+       ...plugins
+     ]

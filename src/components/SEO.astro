@@ -8,7 +8,7 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   publishDate?: Date;
-  schema?: 'LocalBusiness' | 'Article' | 'BreadcrumbList';
+  schema?: 'LocalBusiness' | 'Article' | 'BreadcrumbList' | Array<'LocalBusiness' | 'Article' | 'BreadcrumbList'>;
   breadcrumbs?: { name: string; url: string }[];
   lang?: string;
 }
@@ -25,6 +25,11 @@ const {
 } = Astro.props;
 
 const site = await getSiteConfig();
+const mediaBaseUrl = (
+  import.meta.env.PUBLIC_MEDIA_BASE_URL || 'https://media.senshac.com'
+).replace(/\/$/, '');
+const mediaUrl = (id: string) =>
+  `${mediaBaseUrl}/images/${id.replace(/^\/?images\//, '').replace(/\.[^.]+$/, '')}/1200.webp`;
 
 // Use locales from site config
 const locales = site.locales;
@@ -43,9 +48,10 @@ const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : Astro.url;
 
-const ogImage = Astro.site
-  ? new URL(image || site.branding.ogImage, Astro.site).toString()
-  : image || site.branding.ogImage;
+const requestedImage = image || site.branding.ogImage;
+const ogImage = /^https?:\/\//.test(requestedImage)
+  ? requestedImage
+  : mediaUrl(requestedImage);
 
 // Build sameAs array from social links
 const sameAs = site.socialLinks.map((link: { url: string }) => link.url);
@@ -91,7 +97,7 @@ const articleSchema = {
     name: site.company.name,
     logo: {
       '@type': 'ImageObject',
-      url: Astro.site ? new URL(site.branding.logo, Astro.site).toString() : site.branding.logo,
+      url: mediaUrl(site.branding.logo),
     },
   },
 };
@@ -110,8 +116,8 @@ const breadcrumbSchema = breadcrumbs
     }
   : null;
 
-const getSchema = () => {
-  switch (schema) {
+const getSchema = (type: string) => {
+  switch (type) {
     case 'LocalBusiness':
       return localBusinessSchema;
     case 'Article':
@@ -123,7 +129,9 @@ const getSchema = () => {
   }
 };
 
-const schemaData = getSchema();
+const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const schemaData = schemas.map(getSchema).filter(Boolean);
+const fullTitle = title.includes(site.company.name) ? title : `${title} | ${site.company.name}`;
 ---
 
 <meta name="generator" content={Astro.generator} />
@@ -136,7 +144,7 @@ const schemaData = getSchema();
 ))}
 <link rel="alternate" hreflang="x-default" href={alternateUrls.find(a => a.lang === 'es')?.url} />
 
-<title>{title}</title>
+<title>{fullTitle}</title>
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow" />
 <meta name="author" content={`${site.company.name} - ${site.founder.name}`} />
@@ -144,7 +152,7 @@ const schemaData = getSchema();
 <!-- Open Graph -->
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonicalURL} />
-<meta property="og:title" content={title} />
+<meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:site_name" content={site.company.name} />
@@ -155,11 +163,11 @@ const schemaData = getSchema();
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
 <!-- JSON-LD Structured Data -->
-{schemaData && (
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
-)}
+{schemaData.map(data => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />
+))}

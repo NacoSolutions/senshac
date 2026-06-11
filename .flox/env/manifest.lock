@@ -3,6 +3,9 @@
   "manifest": {
     "schema-version": "1.12.0",
     "install": {
+      "act": {
+        "pkg-path": "act"
+      },
       "betterleaks": {
         "pkg-path": "betterleaks"
       },
@@ -20,7 +23,7 @@
         "pkg-path": "fd"
       },
       "gcc": {
-        "pkg-path": "gcc-unwrapped"
+        "pkg-path": "gcc"
       },
       "gnugrep": {
         "pkg-path": "gnugrep"
@@ -63,7 +66,7 @@
       "NODE_ENV": "development"
     },
     "hook": {
-      "on-activate": "  export PATH=\"$FLOX_ENV_PROJECT/scripts:$PATH\"\n\n  if [ -f package.json ] && [ ! -d node_modules ]; then\n    echo \"Installing dependencies...\"\n    bun install\n  fi\n\n  cat <<'EOF'\nSenshac Development Environment\n\nAstro + Alpine.js + HTMX + Hyperscript + UnoCSS\n\nQuick Commands:\n  dx <command>                          Run through direnv exec .\n  fx <command>                          Project workflow shortcuts\n  dev [start|stop|restart|status|log]   Astro dev server\n  cms [start|stop|restart|status|log]   TinaCMS + Astro\n  bun run build                         Build for production\n  bun run preview                       Preview production build\n  bun run check                         Run Astro check\n  bun run deploy                        Deploy to Cloudflare Pages\n  sd, ml, cn, tl                        Seeds, Mulch, Canopy, Trellis\nEOF\n"
+      "on-activate": "  export PATH=\"$FLOX_ENV_PROJECT/scripts:$PATH\"\n  GCC_RUNTIME_LIB=\"$(dirname \"$(gcc -print-file-name=libstdc++.so.6)\")\"\n  export LD_LIBRARY_PATH=\"$GCC_RUNTIME_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n\n  if [ -f package.json ] && [ ! -d node_modules ]; then\n    echo \"Installing dependencies...\"\n    bun install\n  fi\n\n  cat <<'EOF'\nSenshac Development Environment\n\nAstro + Alpine.js + HTMX + Hyperscript + UnoCSS\n\nQuick Commands:\n  dx <command>                          Run through direnv exec .\n  fx <command>                          Project workflow shortcuts\n  dev [start|stop|restart|status|log]   Astro dev server\n  cms [start|stop|restart|status|log]   TinaCMS + Astro\n  bun run build                         Build for production\n  bun run preview                       Preview production build\n  bun run check                         Run Astro check\n  bun run deploy                        Deploy to Cloudflare Pages\n  sd, ml, cn, tl                        Seeds, Mulch, Canopy, Trellis\nEOF\n"
     },
     "profile": {},
     "options": {
@@ -74,30 +77,58 @@
   },
   "packages": [
     {
-      "attr_path": "betterleaks",
+      "attr_path": "act",
       "broken": false,
-      "derivation": "/nix/store/x97i7y25aq33lsqq8nnwl7n3rivs0dq0-betterleaks-1.3.0.drv",
-      "description": "Scan code for secrets",
-      "install_id": "betterleaks",
+      "derivation": "/nix/store/cj05rfyv8yka0xzpg2g6r08zg9y7jzs3-act-0.2.89.drv",
+      "description": "Run your GitHub Actions locally",
+      "install_id": "act",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "name": "betterleaks-1.3.0",
-      "pname": "betterleaks",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:32:50.945760Z",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "act-0.2.89",
+      "pname": "act",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:14.150758Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "1.3.0",
+      "version": "0.2.89",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/an60wkz0f7ij9jlnj1nzak7rb4syqvfl-betterleaks-1.3.0"
+        "out": "/nix/store/q9wh1f9ygjvwpa9k1lyb9jy05nynxdna-act-0.2.89"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "betterleaks",
+      "broken": false,
+      "derivation": "/nix/store/wrv3947k056dk8kdhmyx7mvvbkbv37wg-betterleaks-1.4.0.drv",
+      "description": "Scan code for secrets",
+      "install_id": "betterleaks",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "betterleaks-1.4.0",
+      "pname": "betterleaks",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:14.431201Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.4.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/g7sjawl1fnv9gdawah7fr80pn4rpxykm-betterleaks-1.4.0"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -106,19 +137,18 @@
     {
       "attr_path": "bun",
       "broken": false,
-      "derivation": "/nix/store/qnd4n683czmm44piqp95zz9jcnfbk055-bun-1.3.13.drv",
+      "derivation": "/nix/store/pymjz37lyh092z3r60q6h826rxqljfzz-bun-1.3.13.drv",
       "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",
       "install_id": "bun",
       "license": "[ MIT, LGPL-2.1-only ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
       "name": "bun-1.3.13",
       "pname": "bun",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:32:51.035042Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:14.523235Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -136,19 +166,18 @@
     {
       "attr_path": "fd",
       "broken": false,
-      "derivation": "/nix/store/jpsvs89a2p0z0ns25jxgwf6042qpqadr-fd-10.4.2.drv",
+      "derivation": "/nix/store/ac3jivgmd030p7bbscdcjcis0pb41qbp-fd-10.4.2.drv",
       "description": "Simple, fast and user-friendly alternative to find",
       "install_id": "fd",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
       "name": "fd-10.4.2",
       "pname": "fd",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:32:52.277364Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:15.797539Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -164,37 +193,35 @@
       "priority": 5
     },
     {
-      "attr_path": "gcc-unwrapped",
+      "attr_path": "gcc",
       "broken": false,
-      "derivation": "/nix/store/vp409v6lb83p243hmv8wgdmiaj7ivq6h-gcc-15.2.0.drv",
-      "description": "GNU Compiler Collection, version 15.2.0",
+      "derivation": "/nix/store/y7wnv3kycy9gpxzwmny1sppi7il9i31a-gcc-wrapper-15.2.0.drv",
+      "description": "GNU Compiler Collection, version 15.2.0 (wrapper script)",
       "install_id": "gcc",
       "license": "GPL-3.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "name": "gcc-15.2.0",
-      "pname": "gcc-unwrapped",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:32:52.651819Z",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "gcc-wrapper-15.2.0",
+      "pname": "gcc",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:16.181338Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
       "version": "15.2.0",
       "outputs_to_install": [
         "man",
+        "man",
+        "out",
         "out",
         "out"
       ],
       "outputs": {
-        "checksum": "/nix/store/x37x98ygrwmp439bf5ilmrvgzz7lpjzl-gcc-15.2.0-checksum",
-        "info": "/nix/store/ppv8h4xawrqpnqhrdimk8xg9wwlfxxp5-gcc-15.2.0-info",
-        "lib": "/nix/store/chqq8mpmpyfi9kgsngya71akv5xicn03-gcc-15.2.0-lib",
-        "libgcc": "/nix/store/xyikkpwkyxx6syba3kfrr0h67ig5hwmn-gcc-15.2.0-libgcc",
-        "man": "/nix/store/b1p9a901ds4wck8n1pd76vxnjm34sfap-gcc-15.2.0-man",
-        "out": "/nix/store/qxaq7jz61a6zkr2mq49i0zvqip2m2jj8-gcc-15.2.0"
+        "info": "/nix/store/5b0hplrl0n9g159mcis4jca1fjd4822a-gcc-wrapper-15.2.0-info",
+        "man": "/nix/store/r35yg8h1w630r3lmnyglwhv5nvk284mx-gcc-wrapper-15.2.0-man",
+        "out": "/nix/store/788mx070y81zjlg5ipcl0cra3afviw9k-gcc-wrapper-15.2.0"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -207,20 +234,20 @@
       "description": "GNU implementation of the Unix grep command",
       "install_id": "gnugrep",
       "license": "GPL-3.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
       "name": "gnugrep-3.12",
       "pname": "gnugrep",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:32:53.549629Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:17.117133Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
       "version": "3.12",
       "outputs_to_install": [
+        "out",
         "out",
         "out",
         "out",
@@ -238,28 +265,27 @@
     {
       "attr_path": "nixfmt-rfc-style",
       "broken": false,
-      "derivation": "/nix/store/wrag76m8k27yx61pc9kzi2g6h0wm8ybw-nixfmt-1.2.0.drv",
+      "derivation": "/nix/store/7ph3r341l8wq63x41pba7z0w68xzvr2v-nixfmt-1.3.1.drv",
       "description": "Official formatter for Nix code",
       "install_id": "nixfmt",
       "license": "MPL-2.0",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "name": "nixfmt-1.2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "nixfmt-1.3.1",
       "pname": "nixfmt-rfc-style",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:33:31.267110Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:58.172001Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "1.2.0",
+      "version": "1.3.1",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/01945jlqwsgq7a9nbw00y0p0x6027yy3-nixfmt-1.2.0"
+        "out": "/nix/store/sgijssgx5ylh2vhajwp98f9sbhsdwhjy-nixfmt-1.3.1"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -268,19 +294,18 @@
     {
       "attr_path": "procps",
       "broken": false,
-      "derivation": "/nix/store/1rsysr5i7nyp885ycr655zjfpkg7k5h3-procps-4.0.6.drv",
+      "derivation": "/nix/store/62srfi0dwnwa19s2dqj9agfxsykn63qp-procps-4.0.6.drv",
       "description": "Utilities that give information about processes using the /proc filesystem",
       "install_id": "procps",
       "license": "GPL-2.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
       "name": "procps-4.0.6",
       "pname": "procps",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:33:52.756083Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:54:21.966852Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -299,19 +324,18 @@
     {
       "attr_path": "ripgrep",
       "broken": false,
-      "derivation": "/nix/store/9j4lgb7xfazvlxy7qrsc39lflnk23zca-ripgrep-15.1.0.drv",
+      "derivation": "/nix/store/iqqcq02llqxrgbid7g8q56vqkdvs20ww-ripgrep-15.1.0.drv",
       "description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
       "install_id": "ripgrep",
       "license": "[ Unlicense, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
       "name": "ripgrep-15.1.0",
       "pname": "ripgrep",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:34:54.409829Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:55:31.640823Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -329,28 +353,27 @@
     {
       "attr_path": "typescript-language-server",
       "broken": false,
-      "derivation": "/nix/store/z3ycbdnhq2fi94g3bgxdiy6whgzx0vgg-typescript-language-server-5.2.0.drv",
+      "derivation": "/nix/store/31y2wzwdvzbcyl6acyfyqp1vr5l5ki22-typescript-language-server-5.3.0.drv",
       "description": "Language Server Protocol implementation for TypeScript using tsserver",
       "install_id": "typescript-language-server",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "name": "typescript-language-server-5.2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "typescript-language-server-5.3.0",
       "pname": "typescript-language-server",
-      "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-      "rev_count": 1004030,
-      "rev_date": "2026-05-23T18:24:25Z",
-      "scrape_date": "2026-05-26T08:35:57.965771Z",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:56:43.625735Z",
       "stabilities": [
-        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "5.2.0",
+      "version": "5.3.0",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/abqa10mc0ncawr5ynydndk98p565797n-typescript-language-server-5.2.0"
+        "out": "/nix/store/j5391wan9kq7kf16623zp161mchwrpfp-typescript-language-server-5.3.0"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -358,13 +381,13 @@
     },
     {
       "install_id": "canopy",
-      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-canopy?ref=refs/heads/main&rev=aa3642ac92da01156f71224596a0e15b2d2849ef",
+      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-canopy?ref=refs/heads/main&rev=afe8267b197fe9d29a80f4e9de8c3d55310dee47",
       "flake-description": "Nix packaging scaffold for @os-eco/canopy-cli",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/9psw9wn475ky528pa82394g35nk9xrsa-canopy-0.2.4-r1.drv",
+      "derivation": "/nix/store/dsqxqcggxvyv2894g9hwmsdfkqdzg5yd-canopy-0.2.4-r1.drv",
       "outputs": {
-        "cn": "/nix/store/ndz26gzb8m1d4n2l1klahqx1yzscdj63-canopy-0.2.4-r1-cn",
-        "out": "/nix/store/fa5xhlrk1fmx8v50v6hhddln4jaw1j6k-canopy-0.2.4-r1"
+        "cn": "/nix/store/570x7df0crjzk8hmhqx0igyv9lk283yi-canopy-0.2.4-r1-cn",
+        "out": "/nix/store/yikaxjkniccfqc8mygrz3ziwr40si21g-canopy-0.2.4-r1"
       },
       "output-names": [
         "out",
@@ -388,10 +411,10 @@
       "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-mulch",
       "flake-description": "Nix packaging scaffold for @os-eco/mulch-cli",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/j8s57x1s170rhlm75skm0fbnpy1hdvgp-mulch-0.10.6-r1.drv",
+      "derivation": "/nix/store/01wfywk2wikk1acd4hxlzymsildld8s0-mulch-0.10.7-r1.drv",
       "outputs": {
-        "ml": "/nix/store/aafq5wyk1vlc56d4l1ynx6n5z5fwbc01-mulch-0.10.6-r1-ml",
-        "out": "/nix/store/lbb3p2cvggpmhmc5qiv1gy6j543xqwr0-mulch-0.10.6-r1"
+        "ml": "/nix/store/239apvmzwpkshxlssh9z1ir6g0ivbckf-mulch-0.10.7-r1-ml",
+        "out": "/nix/store/b5cxw8iai73m9llb2niiq7rxjfl370wl-mulch-0.10.7-r1"
       },
       "output-names": [
         "out",
@@ -403,22 +426,22 @@
       "requested-outputs-to-install": [],
       "package-system": "x86_64-linux",
       "system": "x86_64-linux",
-      "name": "mulch-0.10.6-r1",
+      "name": "mulch-0.10.7-r1",
       "pname": "mulch",
-      "version": "0.10.6-r1",
+      "version": "0.10.7-r1",
       "broken": false,
       "unfree": false,
       "priority": 5
     },
     {
       "install_id": "seeds",
-      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-seeds?ref=refs/heads/main&rev=0e13e0ab2040c5a51371ecea554b3e1636c6ce7f",
+      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-seeds?ref=refs/heads/main&rev=873371b5859dde8b6d4dc5a89c3315647c9f8e05",
       "flake-description": "Nix packaging scaffold for @os-eco/seeds-cli",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/xwx1v00jcm0wba8wislfa0ybl6b9fxm5-seeds-0.2.5-r5.drv",
+      "derivation": "/nix/store/whh5x9i993n0x4psli2mz9x0fj2sclim-seeds-0.2.5-r5.drv",
       "outputs": {
-        "out": "/nix/store/nys4dv7h21fh6p8d4sljy4zf3sahi8w8-seeds-0.2.5-r5",
-        "sd": "/nix/store/hxmx37qlrfsanmscmgdia90gnv2qkr0a-seeds-0.2.5-r5-sd"
+        "out": "/nix/store/0wb5mmwqc06x0p0cp0zz3v5js9hf61m0-seeds-0.2.5-r5",
+        "sd": "/nix/store/ljmnmsbzi1l5a9qsx2jxm2zsl5l3pgld-seeds-0.2.5-r5-sd"
       },
       "output-names": [
         "out",
@@ -439,13 +462,13 @@
     },
     {
       "install_id": "trellis",
-      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-trellis?ref=refs/heads/main&rev=95e88fde49b77dab643f8546000c7e05422e2aec",
+      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-trellis?ref=refs/heads/main&rev=e643cfd1786daa2624df3ca5b0b8d9fd2cdf1d55",
       "flake-description": "Nix packaging scaffold for @os-eco/trellis-cli",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/96qnv23hjnwqi3g4iywc6byzl5qd4awh-trellis-0.2.1-r2.drv",
+      "derivation": "/nix/store/mhcj0g0vsmp7caiq3sfiv0033agqyqa5-trellis-0.2.1-r2.drv",
       "outputs": {
-        "out": "/nix/store/lp81rs0wk0gnnshh3jc7gjya3x6lc4p8-trellis-0.2.1-r2",
-        "tl": "/nix/store/w66yqrzv0i0s13w4dn2giv080bkw7ikz-trellis-0.2.1-r2-tl"
+        "out": "/nix/store/j5hs2raayv0rz7c5smsibyypzsnxpgss-trellis-0.2.1-r2",
+        "tl": "/nix/store/30yc46v5chs0qkgkz08fxj3gqil7knkv-trellis-0.2.1-r2-tl"
       },
       "output-names": [
         "out",

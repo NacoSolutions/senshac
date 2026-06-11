@@ -1,0 +1,189 @@
+---
+import R2Picture from '../../R2Picture.astro';
+
+interface CarouselItem {
+  mediaId: string;
+  alt?: string;
+  caption?: string;
+}
+
+interface Props {
+  items?: CarouselItem[];
+}
+
+const { items = [] } = Astro.props;
+
+const id = 'carousel-' + Math.random().toString(36).substring(2, 9);
+
+function extractMediaId(value?: string | null) {
+  return (value || '')
+    .replace(/^https:\/\/media\.senshac\.com\/images\//, '')
+    .replace(/^\/?images\//, '')
+    .replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, '')
+    .replace(/\.[^.]+$/, '');
+}
+---
+
+<div class="relative overflow-hidden w-full my-8 md:my-16" id={id}>
+  <div
+    class="carousel-track relative w-full h-[50vh] md:h-[70vh]"
+    data-carousel={id}
+  >
+    {items.map((slide, index) => (
+      <div class="carousel-slide w-full h-full bg-gray-100 hidden first:block">
+        {slide.mediaId ? (
+          <R2Picture
+            id={extractMediaId(slide.mediaId)}
+            alt={slide.alt || ''}
+            class="w-full h-full object-cover"
+            eager={index === 0}
+          />
+        ) : (
+          <div class="w-full h-full flex items-center justify-center text-gray-400">
+            [No Image Provided]
+          </div>
+        )}
+        {slide.caption && (
+          <div class="absolute bottom-8 left-8 right-8 text-white z-10">
+            <p class="text-sm md:text-base font-light bg-black/60 p-4 inline-block backdrop-blur-sm">{slide.caption}</p>
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  {items.length > 1 && (
+    <>
+      <button
+        class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white text-black rounded-full flex items-center justify-center shadow-lg transition-colors z-20"
+        aria-label="Previous slide"
+        data-carousel-prev={id}
+      >
+        <span class="i-lucide-chevron-left w-6 h-6" />
+      </button>
+      <button
+        class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white text-black rounded-full flex items-center justify-center shadow-lg transition-colors z-20"
+        aria-label="Next slide"
+        data-carousel-next={id}
+      >
+        <span class="i-lucide-chevron-right w-6 h-6" />
+      </button>
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {items.map((_, index) => (
+          <button
+            class={`w-2.5 h-2.5 rounded-full transition-colors ${index === 0 ? 'bg-white' : 'bg-white/50 hover:bg-white/80'}`}
+            aria-label={`Go to slide ${index + 1}`}
+            data-carousel-dot={id}
+            data-index={index}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</div>
+
+<script>
+  const initCarousels = () => {
+    document.querySelectorAll('[data-carousel]').forEach((track) => {
+      if (track.hasAttribute('data-initialized')) return;
+      track.setAttribute('data-initialized', 'true');
+
+      const id = track.getAttribute('data-carousel');
+      const container = track.parentElement;
+      const slides = Array.from(track.querySelectorAll('.carousel-slide')) as HTMLElement[];
+      const dots = container?.querySelectorAll(`[data-carousel-dot="${id}"]`);
+      const prevBtn = container?.querySelector(`[data-carousel-prev="${id}"]`);
+      const nextBtn = container?.querySelector(`[data-carousel-next="${id}"]`);
+
+      if (slides.length <= 1) return;
+
+      let current = 0;
+      let isAnimating = false;
+
+      // Initialize positions
+      slides.forEach((slide, i) => {
+        slide.style.position = 'absolute';
+        slide.style.top = '0';
+        slide.style.left = '0';
+        slide.style.width = '100%';
+        slide.style.height = '100%';
+        slide.classList.remove('hidden'); // Remove hidden class used for fallback
+        
+        if (i === 0) {
+          slide.style.transform = 'translateX(0)';
+          slide.style.zIndex = '10';
+        } else {
+          slide.style.transform = 'translateX(100%)';
+          slide.style.zIndex = '1';
+        }
+      });
+
+      const updateDots = () => {
+        dots?.forEach((dot, i) => {
+          dot.classList.toggle('bg-white', i === current);
+          dot.classList.toggle('bg-white/50', i !== current);
+        });
+      };
+
+      const goTo = (nextIndex: number, direction: 'right' | 'left') => {
+        if (isAnimating || nextIndex === current) return;
+        isAnimating = true;
+
+        const currentSlide = slides[current];
+        const nextSlide = slides[nextIndex];
+
+        // Prepare next slide position
+        nextSlide.style.transition = 'none';
+        nextSlide.style.transform = `translateX(${direction === 'right' ? '100%' : '-100%'})`;
+        nextSlide.style.zIndex = '20';
+        currentSlide.style.zIndex = '10';
+
+        // Force reflow
+        nextSlide.offsetHeight;
+
+        // Animate
+        nextSlide.style.transition = 'transform 0.5s ease-out';
+        currentSlide.style.transition = 'transform 0.5s ease-out';
+        
+        nextSlide.style.transform = 'translateX(0)';
+        currentSlide.style.transform = `translateX(${direction === 'right' ? '-100%' : '100%'})`;
+
+        current = nextIndex;
+        updateDots();
+
+        setTimeout(() => {
+          currentSlide.style.zIndex = '1';
+          nextSlide.style.zIndex = '10';
+          isAnimating = false;
+        }, 500);
+      };
+
+      nextBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const next = current === slides.length - 1 ? 0 : current + 1;
+        goTo(next, 'right');
+      });
+
+      prevBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const prev = current === 0 ? slides.length - 1 : current - 1;
+        goTo(prev, 'left');
+      });
+
+      dots?.forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = Number(dot.getAttribute('data-index'));
+          if (target > current) goTo(target, 'right');
+          else if (target < current) goTo(target, 'left');
+        });
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousels);
+  } else {
+    initCarousels();
+  }
+</script>

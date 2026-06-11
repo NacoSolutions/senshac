@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+socket="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/podman/podman.sock"
+
+if [[ ! -S "$socket" ]]; then
+  systemctl --user start podman.socket
+fi
+
+export DOCKER_HOST="unix://${socket}"
+
+secret_args=()
+if [[ -f .secrets.act ]]; then
+  secret_args=(--secret-file .secrets.act)
+fi
+
+act_args=(
+  workflow_dispatch
+  --workflows .github/workflows/process-media.yml
+  "${secret_args[@]}"
+  --job process
+  --platform ubuntu-latest=senshac-media-runner:latest
+  --container-daemon-socket -
+  --container-architecture linux/amd64
+  --pull=false
+  --bind
+  --network bridge
+)
+
+# Only add smoke test eventpath if no input is provided
+if [[ "$*" != *"--input"* ]]; then
+  act_args+=(--eventpath .github/act/media-smoke.json)
+fi
+
+exec act "${act_args[@]}" "$@"

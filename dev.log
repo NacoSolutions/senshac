@@ -1,0 +1,50 @@
+[0mdirenv: loading ~/Repositories/.ru/NacoSolutions/senshac/.envrc
+[0mdirenv: loading ~/Repositories/.envrc
+[0mdirenv: using flox --mode run
+[0mdirenv: using flox --mode run
+Senshac Development Environment
+
+Astro + Alpine.js + HTMX + Hyperscript + UnoCSS
+
+Quick Commands:
+  dx <command>                          Run through direnv exec .
+  fx <command>                          Project workflow shortcuts
+  dev [start|stop|restart|status|log]   Astro dev server
+  cms [start|stop|restart|status|log]   TinaCMS + Astro
+  bun run build                         Build for production
+  bun run preview                       Preview production build
+  bun run check                         Run Astro check
+  bun run deploy                        Deploy to Cloudflare Pages
+  sd, ml, cn, tl                        Seeds, Mulch, Canopy, Trellis
+$ astro dev
+11.13.25 [@astrojs/cloudflare] Enabling compile-time image optimization. Images will be pre-optimized at build time.
+11.13.25 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+11.13.25 [WARN] [vite] warning: `optimizeDeps.esbuildOptions` option was specified by "astro:dev-toolbar" plugin. This option is deprecated, please use `optimizeDeps.rolldownOptions` instead.
+11.13.25 [WARN] [vite] You or a plugin you are using have set `optimizeDeps.esbuildOptions` but this option is now deprecated. Vite now uses Rolldown to optimize the dependencies. Please use `optimizeDeps.rolldownOptions` instead.
+11.13.25 [WARN] [vite] You or a plugin you are using have set `optimizeDeps.esbuildOptions` but this option is now deprecated. Vite now uses Rolldown to optimize the dependencies. Please use `optimizeDeps.rolldownOptions` instead.
+11.13.25 [WARN] [vite] You or a plugin you are using have set `optimizeDeps.esbuildOptions` but this option is now deprecated. Vite now uses Rolldown to optimize the dependencies. Please use `optimizeDeps.rolldownOptions` instead.
+Using secrets defined in .env.local
+11.13.26 [vite] connected.
+11.13.26 [types] Generated 0ms
+11.13.26 [content] Syncing content
+11.13.27 [content] Synced content
+ astro  v6.4.6 ready in 1982 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+11.13.27 watching for file changes...
+▶ Vite 8.0.16 detected in your project.
+  Astro requires Vite 7. Add "overrides": { "vite": "^7" } to your package.json to avoid issues.
+
+`transformWithEsbuild` is deprecated and will be removed in the future. Please migrate to `transformWithOxc`.
+[unocss] unmatched utility "font-display" in shortcut "page-link"
+11.13.28 [ERROR] [vite] Internal server error: Astro.locals.runtime.env has been removed in Astro v6. Use 'import { env } from "cloudflare:workers"' instead.
+      at Object.get env [as env] (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/@astrojs_cloudflare_entrypoints_server.js?v=ff18371f:93:11)
+      at getTinaRuntimeEnv (/home/rona/Repositories/.ru/NacoSolutions/senshac/src/lib/tina-data.ts:13:61)
+      at null.<anonymous> (/home/rona/Repositories/.ru/NacoSolutions/senshac/src/pages/[lang]/index.astro:26:17)
+      at callComponentAsTemplateResultOrResponse (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/astro-l09I3qHh.js?v=ff18371f:544:24)
+      at renderToAsyncIterable (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/astro-l09I3qHh.js?v=ff18371f:564:25)
+      at renderPage (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/server-DecnemhY.js?v=ff18371f:543:47)
+      at PagesHandler.handle (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/handler-BGsxuHnM.js?v=ff18371f:783:17)
+      at null.<anonymous> (/home/rona/Repositories/.ru/NacoSolutions/senshac/src/middleware.ts:34:16)
+      at null.<anonymous> (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/@tinacms_astro_middleware.js?v=ff18371f:121:20)
+      at callMiddleware (/home/rona/Repositories/.ru/NacoSolutions/senshac/node_modules/.vite/deps_ssr/handler-BGsxuHnM.js?v=ff18371f:672:9)

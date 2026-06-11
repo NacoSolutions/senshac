@@ -1,0 +1,22 @@
+FROM ghcr.io/catthehacker/ubuntu:act-latest
+
+# Prevent interactive prompts during apt-get
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install ffmpeg and required utilities
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      ffmpeg \
+      curl \
+      ca-certificates \
+      unzip \
+      && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Bun globally
+ENV BUN_INSTALL=/usr/local
+RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.3.13"
+
+# Verify installations
+RUN ffmpeg -version && bun --version

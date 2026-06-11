@@ -1,7 +1,7 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 var imageFields = [
-  { type: "image", name: "src", label: "Image" },
+  { type: "image", name: "mediaId", label: "R2 Media Identifier" },
   { type: "string", name: "alt", label: "Alt Text" }
 ];
 var galleryFields = [
@@ -87,11 +87,11 @@ var siteConfigFields = [
     name: "branding",
     label: "Branding",
     fields: [
-      { name: "logo", label: "Logo", type: "image" },
-      { name: "logoWhite", label: "Logo (White)", type: "image" },
-      { name: "symbol", label: "Symbol", type: "image" },
-      { name: "symbolWhite", label: "Symbol (White)", type: "image" },
-      { name: "ogImage", label: "Default OG Image", type: "image" }
+      { name: "logo", label: "Logo Media ID", type: "image" },
+      { name: "logoWhite", label: "White Logo Media ID", type: "image" },
+      { name: "symbol", label: "Symbol Media ID", type: "image" },
+      { name: "symbolWhite", label: "White Symbol Media ID", type: "image" },
+      { name: "ogImage", label: "Default OG Media ID", type: "image" }
     ]
   },
   {
@@ -108,184 +108,9 @@ var contactFormBlock = {
   label: "Contact Form Layout",
   type: "object",
   fields: [
-    { type: "image", name: "bannerImage", label: "Banner Image" },
+    { type: "image", name: "mediaId", label: "R2 Media Identifier" },
     { type: "string", name: "heading", label: "Heading" },
     { type: "string", name: "subheading", label: "Subheading" }
-  ]
-};
-var homeHeroBlock = {
-  name: "homeHero",
-  label: "Home Hero",
-  type: "object",
-  fields: [
-    { name: "image", label: "Background Image", type: "image" },
-    {
-      type: "object",
-      name: "topRight",
-      label: "Top Right Text (odd/even indent pattern)",
-      fields: [{ type: "string", name: "lines", label: "Lines", list: true }]
-    },
-    {
-      type: "object",
-      name: "tagline",
-      label: "Tagline",
-      fields: [{ type: "string", name: "lines", label: "Lines", list: true }]
-    },
-    { name: "taglineSub", label: "Tagline Subtitle", type: "string" }
-  ]
-};
-var homeAboutBlock = {
-  name: "homeAbout",
-  label: "Home About",
-  type: "object",
-  fields: [
-    { name: "image", label: "Image", type: "image" },
-    { name: "title", label: "Title", type: "string" },
-    { name: "description", label: "Description", type: "string", ui: { component: "textarea" } },
-    { name: "ctaText", label: "CTA Button Text", type: "string" },
-    { name: "ctaLink", label: "CTA Button Link", type: "string" }
-  ]
-};
-var aboutHeroBlock = {
-  name: "aboutHero",
-  label: "About Hero",
-  type: "object",
-  fields: [
-    { name: "title", label: "Title", type: "string" }
-  ]
-};
-var behindNameBlock = {
-  name: "behindName",
-  label: "Behind the Name",
-  type: "object",
-  fields: [
-    { name: "title", label: "Title", type: "string" },
-    { name: "p1", label: "Paragraph 1", type: "string", ui: { component: "textarea" } },
-    { name: "p2", label: "Paragraph 2", type: "string", ui: { component: "textarea" } },
-    { name: "footnote", label: "Footnote", type: "string" }
-  ]
-};
-var bannerImageBlock = {
-  name: "bannerImage",
-  label: "Banner Image",
-  type: "object",
-  fields: [
-    { name: "image", label: "Image", type: "image" },
-    { name: "alt", label: "Alt Text", type: "string" }
-  ]
-};
-var bioBlock = {
-  name: "bio",
-  label: "Biography",
-  type: "object",
-  fields: [
-    { name: "title", label: "Title", type: "string" },
-    { name: "image", label: "Photo", type: "image" },
-    { name: "paragraphs", label: "Paragraphs", type: "string", list: true, ui: { component: "textarea" } }
-  ]
-};
-var awardsBlock = {
-  name: "awards",
-  label: "Awards",
-  type: "object",
-  fields: [
-    { name: "title", label: "Section Title", type: "string" },
-    {
-      name: "items",
-      label: "Awards List",
-      type: "object",
-      list: true,
-      fields: [
-        { name: "year", label: "Year", type: "string" },
-        { name: "project", label: "Project", type: "string" },
-        { name: "award", label: "Award Name", type: "string" },
-        { name: "link", label: "Link", type: "string" }
-      ]
-    }
-  ]
-};
-var missionBlock = {
-  name: "mission",
-  label: "Mission",
-  type: "object",
-  fields: [
-    { name: "title", label: "Title", type: "string" },
-    { name: "p1", label: "Paragraph 1", type: "string", ui: { component: "textarea" } },
-    { name: "p2", label: "Paragraph 2", type: "string", ui: { component: "textarea" } },
-    { name: "quote", label: "Quote", type: "string", ui: { component: "textarea" } }
-  ]
-};
-var servicesHeroBlock = {
-  name: "servicesHero",
-  label: "Services Hero",
-  type: "object",
-  fields: [
-    { name: "title", label: "Title", type: "string" }
-  ]
-};
-var servicesIntroBlock = {
-  name: "servicesIntro",
-  label: "Services Introduction",
-  type: "object",
-  fields: [
-    { name: "text", label: "Text", type: "string", ui: { component: "textarea" } },
-    { name: "image", label: "Image", type: "image" }
-  ]
-};
-var serviceGroupsBlock = {
-  name: "serviceGroups",
-  label: "Service Groups",
-  type: "object",
-  fields: [
-    {
-      name: "groups",
-      label: "Groups",
-      type: "object",
-      list: true,
-      fields: [
-        { name: "title", label: "Group Title", type: "string" },
-        {
-          name: "items",
-          label: "Services",
-          type: "object",
-          list: true,
-          fields: [
-            { name: "title", label: "Service Title", type: "string" },
-            { name: "description", label: "Description", type: "string", ui: { component: "textarea" } }
-          ]
-        }
-      ]
-    }
-  ]
-};
-var faqBlock = {
-  name: "faq",
-  label: "FAQ Section",
-  type: "object",
-  fields: [
-    { name: "title", label: "Section Title", type: "string" },
-    { name: "image", label: "Footer Image", type: "image" },
-    {
-      name: "items",
-      label: "Questions",
-      type: "object",
-      list: true,
-      fields: [
-        { name: "question", label: "Question", type: "string" },
-        { name: "answer", label: "Answer", type: "string", ui: { component: "textarea" } }
-      ]
-    }
-  ]
-};
-var workProcessBlock = {
-  name: "workProcess",
-  label: "Work Process",
-  type: "object",
-  fields: [
-    { name: "title", label: "Title", type: "string" },
-    { name: "p1", label: "Paragraph 1", type: "string", ui: { component: "textarea" } },
-    { name: "p2", label: "Paragraph 2", type: "string", ui: { component: "textarea" } },
-    { name: "image", label: "Image", type: "image" }
   ]
 };
 var editorialHeroBlock = {
@@ -294,13 +119,35 @@ var editorialHeroBlock = {
   type: "object",
   fields: [
     { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
-    { name: "intro", label: "Introduction", type: "string", ui: { component: "textarea" } },
+    { name: "intro", label: "Introduction", type: "rich-text" },
     { name: "ctaText", label: "Link Text", type: "string" },
     { name: "ctaLink", label: "Link URL", type: "string" },
     { name: "mediaType", label: "Media Type", type: "string", options: ["image", "video"] },
-    { name: "image", label: "Image", type: "image" },
+    { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
-    { name: "placeholderLabel", label: "Placeholder Label", type: "string" }
+    { name: "placeholderLabel", label: "Placeholder Label", type: "string" },
+    { name: "objectFit", label: "Image Fit", type: "string", options: ["cover", "contain"] }
+  ]
+};
+var editorialBannerBlock = {
+  name: "editorialBanner",
+  label: "Editorial Banner",
+  type: "object",
+  fields: [
+    { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
+    { name: "subtitle", label: "Subtitle", type: "string" },
+    {
+      name: "topRight",
+      label: "Top Right Slogan",
+      type: "object",
+      fields: [
+        { name: "lines", label: "Lines", type: "string", list: true }
+      ]
+    },
+    { name: "mediaId", label: "R2 Media Identifier", type: "image" },
+    { name: "imageAlt", label: "Image Alt Text", type: "string" },
+    { name: "placeholderLabel", label: "Placeholder Label", type: "string" },
+    { name: "objectFit", label: "Image Fit", type: "string", options: ["cover", "contain"] }
   ]
 };
 var editorialCopyBlock = {
@@ -311,7 +158,8 @@ var editorialCopyBlock = {
     { name: "eyebrow", label: "Eyebrow", type: "string" },
     { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
     { name: "headingLevel", label: "Heading Level", type: "string", options: ["h1", "h2"] },
-    { name: "body", label: "Body", type: "string", ui: { component: "textarea" } }
+    { name: "body", label: "Body", type: "rich-text" },
+    { name: "showStar", label: "Show Star Graphic", type: "boolean" }
   ]
 };
 var editorialAccordionBlock = {
@@ -319,7 +167,7 @@ var editorialAccordionBlock = {
   label: "Editorial Accordion",
   type: "object",
   fields: [
-    { name: "intro", label: "Introduction", type: "string", ui: { component: "textarea" } },
+    { name: "intro", label: "Introduction", type: "rich-text" },
     {
       name: "items",
       label: "Accordion Items",
@@ -339,7 +187,7 @@ var editorialAccordionBlock = {
           ui: { itemProps: (item) => ({ label: item?.label }) },
           fields: [
             { name: "label", label: "Label", type: "string" },
-            { name: "text", label: "Text", type: "string", ui: { component: "textarea" } }
+            { name: "text", label: "Text", type: "rich-text" }
           ]
         }
       ]
@@ -352,7 +200,7 @@ var editorialRowsBlock = {
   type: "object",
   fields: [
     { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
-    { name: "intro", label: "Introduction", type: "string", ui: { component: "textarea" } },
+    { name: "intro", label: "Introduction", type: "rich-text" },
     {
       name: "items",
       label: "Rows",
@@ -361,7 +209,7 @@ var editorialRowsBlock = {
       ui: { itemProps: (item) => ({ label: item?.title }) },
       fields: [
         { name: "title", label: "Title", type: "string" },
-        { name: "text", label: "Text", type: "string", ui: { component: "textarea" } }
+        { name: "text", label: "Text", type: "rich-text" }
       ]
     }
   ]
@@ -383,7 +231,7 @@ var editorialShowcaseBlock = {
     { name: "eyebrow", label: "Eyebrow", type: "string" },
     { name: "title", label: "Title", type: "string", ui: { component: "textarea" } },
     { name: "mediaType", label: "Media Type", type: "string", options: ["image", "video"] },
-    { name: "image", label: "Image", type: "image" },
+    { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
     { name: "placeholderLabel", label: "Placeholder Label", type: "string" },
     { name: "ctaText", label: "Link Text", type: "string" },
@@ -397,7 +245,7 @@ var editorialShowcaseBlock = {
       fields: [
         { name: "title", label: "Title", type: "string" },
         { name: "link", label: "URL", type: "string" },
-        { name: "image", label: "Image", type: "image" },
+        { name: "mediaId", label: "R2 Media Identifier", type: "image" },
         { name: "imageAlt", label: "Image Alt Text", type: "string" },
         { name: "placeholderLabel", label: "Placeholder Label", type: "string" }
       ]
@@ -410,19 +258,55 @@ var editorialMissionBlock = {
   type: "object",
   fields: [
     { name: "label", label: "Label", type: "string" },
-    { name: "paragraphs", label: "Paragraphs", type: "string", list: true, ui: { component: "textarea" } },
+    { name: "content", label: "Content", type: "rich-text" },
     { name: "statement", label: "Closing Statement", type: "string", ui: { component: "textarea" } },
-    { name: "image", label: "Image", type: "image" },
+    { name: "mediaId", label: "R2 Media Identifier", type: "image" },
     { name: "imageAlt", label: "Image Alt Text", type: "string" },
     { name: "placeholderLabel", label: "Placeholder Label", type: "string" }
   ]
+};
+var editorialCarouselBlock = {
+  name: "editorialCarousel",
+  label: "Carousel",
+  type: "object",
+  fields: [
+    {
+      type: "object",
+      name: "items",
+      label: "Carousel Items",
+      list: true,
+      fields: [
+        { type: "image", name: "mediaId", label: "R2 Media Identifier" },
+        { type: "string", name: "alt", label: "Alt Text" },
+        { type: "string", name: "caption", label: "Caption" }
+      ]
+    }
+  ]
+};
+var editorialInstagramBlock = {
+  name: "editorialInstagram",
+  label: "Instagram",
+  type: "object",
+  fields: [
+    { name: "title", label: "Title", type: "string" },
+    { name: "description", label: "Description", type: "rich-text" },
+    { name: "tag", label: "Instagram Tag (Optional)", type: "string", description: "Enter a tag to filter posts by (e.g. novedades, latrobada)" },
+    { name: "limit", label: "Total Limit", type: "number", description: "Maximum total number of posts to display" },
+    { name: "maxVisible", label: "Max Visible Posts", type: "number", description: "Show up to this many posts at once (e.g. 4). If more are available, a horizontal carousel is created." }
+  ]
+};
+var editorialGalleryBlock = {
+  name: "editorialGallery",
+  label: "Gallery",
+  type: "object",
+  fields: galleryFields
 };
 var projectBannerBlock = {
   name: "projectBanner",
   label: "Project Banner",
   type: "object",
   fields: [
-    { type: "image", name: "image", label: "Cover Image" },
+    { type: "image", name: "mediaId", label: "R2 Media Identifier" },
     { type: "string", name: "alt", label: "Alt Text" }
   ]
 };
@@ -433,7 +317,7 @@ var projectDetailsBlock = {
   fields: [
     { type: "string", name: "title", label: "Title" },
     { type: "string", name: "subtitle", label: "Subtitle" },
-    { type: "image", name: "image", label: "Detail Image" },
+    { type: "image", name: "mediaId", label: "R2 Media Identifier" },
     { type: "string", name: "services", label: "Services" },
     { type: "string", name: "servicesLabel", label: "Services Label" },
     { type: "string", name: "category", label: "Category" },
@@ -450,13 +334,7 @@ var projectBriefBlock = {
   type: "object",
   fields: [
     { type: "string", name: "title", label: "Section Title" },
-    { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
-    {
-      type: "object",
-      name: "gallery",
-      label: "Gallery",
-      fields: galleryFields
-    }
+    { type: "rich-text", name: "text", label: "Text" }
   ]
 };
 var projectConceptBlock = {
@@ -465,13 +343,7 @@ var projectConceptBlock = {
   type: "object",
   fields: [
     { type: "string", name: "title", label: "Section Title" },
-    { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
-    {
-      type: "object",
-      name: "gallery",
-      label: "Gallery",
-      fields: galleryFields
-    }
+    { type: "rich-text", name: "text", label: "Text" }
   ]
 };
 var projectStrategyBlock = {
@@ -480,20 +352,7 @@ var projectStrategyBlock = {
   type: "object",
   fields: [
     { type: "string", name: "title", label: "Section Title" },
-    { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
-    {
-      type: "object",
-      name: "carousel",
-      label: "Carousel Slides",
-      list: true,
-      fields: imageFields
-    },
-    {
-      type: "object",
-      name: "gallery",
-      label: "Gallery",
-      fields: galleryFields
-    }
+    { type: "rich-text", name: "text", label: "Text" }
   ]
 };
 var projectCollaboratorsBlock = {
@@ -526,27 +385,18 @@ var pageBlocksField = {
   label: "Page Blocks",
   list: true,
   templates: [
-    homeHeroBlock,
-    homeAboutBlock,
-    aboutHeroBlock,
-    behindNameBlock,
-    bannerImageBlock,
-    bioBlock,
-    awardsBlock,
-    missionBlock,
-    servicesHeroBlock,
-    servicesIntroBlock,
-    serviceGroupsBlock,
-    faqBlock,
-    workProcessBlock,
     contactFormBlock,
+    editorialBannerBlock,
     editorialHeroBlock,
     editorialCopyBlock,
     editorialAccordionBlock,
     editorialRowsBlock,
     editorialCtaBlock,
     editorialShowcaseBlock,
-    editorialMissionBlock
+    editorialMissionBlock,
+    editorialCarouselBlock,
+    editorialInstagramBlock,
+    editorialGalleryBlock
   ]
 };
 var projectBlocksField = {
@@ -562,7 +412,9 @@ var projectBlocksField = {
     projectStrategyBlock,
     projectCollaboratorsBlock,
     projectFinalImageBlock,
-    bannerImageBlock
+    editorialGalleryBlock,
+    editorialCarouselBlock,
+    editorialInstagramBlock
   ]
 };
 var homePageFields = [
@@ -574,7 +426,6 @@ var homePageFields = [
 var aboutPageFields = [
   { type: "string", name: "title", label: "Page Title", isTitle: true, required: true },
   { type: "string", name: "description", label: "Meta Description", ui: { component: "textarea" } },
-  { type: "image", name: "heroImage", label: "Hero Image" },
   pageBlocksField
 ];
 var servicesPageFields = [
@@ -591,8 +442,8 @@ var projectFields = [
   { type: "string", name: "title", label: "Title", isTitle: true, required: true },
   { type: "string", name: "description", label: "Description", ui: { component: "textarea" } },
   { type: "string", name: "slug", label: "URL Slug" },
-  { type: "datetime", name: "publishDate", label: "Publish Date" },
-  { type: "datetime", name: "completedDate", label: "Completed Date" },
+  { type: "datetime", name: "publishDate", label: "Publish Date", required: false },
+  { type: "datetime", name: "completedDate", label: "Completed Date", required: false },
   { type: "string", name: "tags", label: "Tags", list: true },
   { type: "boolean", name: "showTags", label: "Show Tags on Projects List" },
   { type: "boolean", name: "featured", label: "Featured" },
@@ -732,9 +583,9 @@ var config_default = defineConfig({
     publicFolder: "public"
   },
   media: {
-    tina: {
-      mediaRoot: "images",
-      publicFolder: "public"
+    loadCustomStore: async () => {
+      const { TinaCloudS3MediaStore } = await import("next-tinacms-s3");
+      return TinaCloudS3MediaStore;
     }
   },
   schema: {
@@ -827,6 +678,27 @@ var config_default = defineConfig({
         path: "src/content/projects",
         format: "json",
         fields: projectFields,
+        defaultItem: () => {
+          return {
+            title: "New Project",
+            description: "",
+            slug: "new-project",
+            publishDate: (/* @__PURE__ */ new Date()).toISOString(),
+            tags: [],
+            showTags: true,
+            featured: false,
+            draft: true,
+            blocks: [
+              { _template: "projectBanner" },
+              { _template: "projectDetails", title: "New Project" },
+              { _template: "projectBrief", title: "BRIEF", text: "" },
+              { _template: "projectConcept", title: "CONCEPTO", text: "" },
+              { _template: "projectStrategy", title: "ESTRATEGIA", text: "" },
+              { _template: "projectCollaborators", title: "COLABORADORES", list: [] },
+              { _template: "projectFinalImage" }
+            ]
+          };
+        },
         ui: {
           router: ({ document }) => `/${localeFromDocument(document)}/works/${document._sys.filename}`,
           filename: {

@@ -27,7 +27,7 @@ wait_for_port() {
 
   while [ "$elapsed" -lt "$timeout" ]; do
     port="$(get_port)"
-    if [ -n "$port" ]; then
+    if [ -n "$port" ] && curl -fsS "http://localhost:$port/" >/dev/null 2>&1; then
       echo "$port"
       return 0
     fi
@@ -36,6 +36,31 @@ wait_for_port() {
   done
 
   return 1
+}
+
+start_server() {
+  : >"$LOG_FILE"
+
+  if [ -n "${ZELLIJ:-}" ]; then
+    local tab_id
+    tab_id="$(
+      zellij action list-tabs |
+        awk '$3 == "senshac" { print $1; exit }'
+    )"
+    if [ -z "$tab_id" ]; then
+      red "Could not find the senshac zellij tab"
+      return 1
+    fi
+
+    zellij action new-pane \
+      --stacked \
+      --tab-id "$tab_id" \
+      --name senshac-cms \
+      --cwd "$PWD" \
+      -- bash -lc "set -o pipefail; dx bun run dev:cms 2>&1 | tee '$LOG_FILE'; status=\${PIPESTATUS[0]}; printf 'CMS process exited with status %s\\n' \"\$status\"; exec bash"
+  else
+    nohup bun run dev:cms >"$LOG_FILE" 2>&1 &
+  fi
 }
 
 is_running() {
@@ -56,8 +81,7 @@ case "$action" in
       exit 1
     fi
     green "Starting TinaCMS with Astro dev server..."
-    : >"$LOG_FILE"
-    nohup bun run dev:cms >"$LOG_FILE" 2>&1 &
+    start_server
     if port="$(wait_for_port)"; then
       green "CMS server started"
       echo "  Astro: http://localhost:$port/"
@@ -79,8 +103,7 @@ case "$action" in
     do_stop
     sleep 1
     green "Starting TinaCMS with Astro dev server..."
-    : >"$LOG_FILE"
-    nohup bun run dev:cms >"$LOG_FILE" 2>&1 &
+    start_server
     if port="$(wait_for_port)"; then
       green "CMS server started"
       echo "  Astro: http://localhost:$port/"

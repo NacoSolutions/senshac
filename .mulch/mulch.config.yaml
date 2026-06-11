@@ -8,6 +8,8 @@ domains:
   environment: {}
   frontend: {}
   tina: {}
+  media: {}
+  deployment: {}
 governance:
   max_entries: 100
   warn_entries: 150

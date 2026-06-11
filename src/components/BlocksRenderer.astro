@@ -1,46 +1,27 @@
 ---
 import { tinaField } from '@tinacms/astro/tina-field';
-
-// Home Sections
-import HomeHero from './sections/home/Hero.astro';
-import HomeAbout from './sections/home/About.astro';
-
-// About Sections
-import AboutHero from './sections/about/Hero.astro';
-import BehindName from './sections/about/BehindName.astro';
-import Bio from './sections/about/Bio.astro';
-import Awards from './sections/about/Awards.astro';
-import Award from './sections/about/Award.astro';
-import Mission from './sections/about/Mission.astro';
-
-// Services Sections
-import ServicesHero from './sections/services/Hero.astro';
-import ServicesIntro from './sections/services/Intro.astro';
-import ServiceGroups from './sections/services/Services.astro';
-import Service from './sections/services/Service.astro';
-import FAQ from './sections/services/FAQs.astro';
-import FAQItem from './sections/services/FAQ.astro';
-import WorkProcess from './sections/services/WorkProcess.astro';
+import RichText from './sections/editorial/RichText.astro';
 
 // Contact Sections
 import ContactFormBlock from './sections/contact/ContactBlock.astro';
 
 // Editorial Sections
 import EditorialHero from './sections/editorial/Hero.astro';
+import EditorialBanner from './sections/editorial/Banner.astro';
 import EditorialCopy from './sections/editorial/Copy.astro';
 import EditorialAccordion from './sections/editorial/Accordion.astro';
 import EditorialRows from './sections/editorial/Rows.astro';
 import EditorialCta from './sections/editorial/Cta.astro';
 import EditorialShowcase from './sections/editorial/Showcase.astro';
 import EditorialMission from './sections/editorial/Mission.astro';
+import EditorialCarousel from './sections/editorial/Carousel.astro';
+import EditorialInstagram from './sections/editorial/Instagram.astro';
 
 // Project Sections
 import ProjectDetails from './sections/projects/Details.astro';
 import ProjectCollaborators from './sections/projects/Collaborators.astro';
 
-// Common
-import Banner from './sections/common/Banner.astro';
-import OptimizedImage from './OptimizedImage.astro';
+import R2Picture from './R2Picture.astro';
 
 // Type definition for our block
 interface Props {
@@ -60,90 +41,19 @@ if (!template && block.__typename) {
   }
 }
 
-// Helper to normalize image paths for optimization
-function normalizeTinaImage(src?: string | null) {
-  if (!src) return '';
-  try {
-    const url = new URL(src);
-    if (url.hostname === 'assets.tina.io') {
-      return `/images${url.pathname.replace(/^\/[^/]+/, '')}`;
-    }
-  } catch {
-    // Relative paths are already usable by the local image optimizer.
-  }
-  return src;
+function mediaId(value?: string | null) {
+  return (value || '')
+    .replace(/^https:\/\/media\.senshac\.com\/images\//, '')
+    .replace(/^\/?images\//, '')
+    .replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, '')
+    .replace(/\.[^.]+$/, '');
 }
 
 ---
 
 <div data-tina-field={tinaField(parentData.blocks, index)}>
-  {template === 'homeHero' && <HomeHero {...block} />}
-  {template === 'homeAbout' && <HomeAbout {...block} cta={block.ctaText} />}
-  
-  {template === 'aboutHero' && <AboutHero title={block.title} />}
-  {template === 'behindName' && (
-    <BehindName
-      title={block.title}
-      p1={block.p1}
-      p2={block.p2}
-      footnote={block.footnote}
-    />
-  )}
-  {template === 'bannerImage' && <Banner src={normalizeTinaImage(block.image)} alt={block.alt || ''} />}
-  {template === 'bio' && (
-    <Bio
-      title={block.title}
-      image={normalizeTinaImage(block.image)}
-      paragraphs={block.paragraphs}
-    />
-  )}
-  {template === 'awards' && (
-    <Awards {...block}>
-      {block.items && block.items.map((item: any) => (
-        <Award {...item} />
-      ))}
-    </Awards>
-  )}
-  {template === 'mission' && (
-    <Mission
-      title={block.title}
-      p1={block.p1}
-      p2={block.p2}
-      quote={block.quote}
-    />
-  )}
-
-  {template === 'servicesHero' && <ServicesHero title={block.title} />}
-  {template === 'servicesIntro' && (
-    <ServicesIntro
-      text={block.text}
-      image={normalizeTinaImage(block.image)}
-    />
-  )}
-  {template === 'serviceGroups' && (
-    <ServiceGroups>
-      {block.groups && block.groups.map((group: any) => (
-        <Service title={group.title} items={group.items} />
-      ))}
-    </ServiceGroups>
-  )}
-  {template === 'faq' && (
-    <FAQ {...block}>
-      {block.items && block.items.map((item: any) => (
-        <FAQItem question={item.question} answer={item.answer} />
-      ))}
-    </FAQ>
-  )}
-  {template === 'workProcess' && (
-    <WorkProcess
-      title={block.title}
-      p1={block.p1}
-      p2={block.p2}
-      image={normalizeTinaImage(block.image)}
-    />
-  )}
-
-  {template === 'editorialHero' && <EditorialHero {...block} image={normalizeTinaImage(block.image)} />}
+  {template === 'editorialBanner' && <EditorialBanner {...block} />}
+  {template === 'editorialHero' && <EditorialHero {...block} />}
   {template === 'editorialCopy' && <EditorialCopy {...block} />}
   {template === 'editorialAccordion' && <EditorialAccordion {...block} />}
   {template === 'editorialRows' && <EditorialRows {...block} />}
@@ -151,19 +61,29 @@ function normalizeTinaImage(src?: string | null) {
   {template === 'editorialShowcase' && (
     <EditorialShowcase
       {...block}
-      image={normalizeTinaImage(block.image)}
-      items={block.items?.map((item: any) => ({ ...item, image: normalizeTinaImage(item.image) }))}
+      items={block.items}
     />
   )}
-  {template === 'editorialMission' && <EditorialMission {...block} image={normalizeTinaImage(block.image)} />}
+  {template === 'editorialMission' && <EditorialMission {...block} />}
+  {template === 'editorialCarousel' && <EditorialCarousel {...block} />}
+  {template === 'editorialInstagram' && <EditorialInstagram {...block} />}
+  {template === 'editorialGallery' && block.images && (
+    <section class="max-w-7xl mx-auto px-4 my-16">
+      <div class={`grid gap-4 grid-cols-1 md:grid-cols-${block.cols || 2}`}>
+        {block.images.map((img: any) => (
+          <R2Picture id={mediaId(img.mediaId)} alt={img.alt} class="w-full h-auto object-cover aspect-square md:aspect-auto" />
+        ))}
+      </div>
+    </section>
+  )}
 
   {template === 'projectBanner' && (
     <div class="w-full aspect-video overflow-hidden">
-      <OptimizedImage
-        src={normalizeTinaImage(block.image)}
+      <R2Picture
+        id={mediaId(block.mediaId)}
         alt={block.alt}
         class="w-full h-full object-cover"
-        loading="eager"
+        eager
       />
     </div>
   )}
@@ -172,49 +92,31 @@ function normalizeTinaImage(src?: string | null) {
   {template === 'projectBrief' && (
     <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
       <h2 class="text-3xl font-bold mb-6">{block.title}</h2>
-      <p class="text-lg text-gray-600 mb-12">{block.text}</p>
-      {block.gallery && block.gallery.images && (
-        <div class={`grid gap-4 grid-cols-${block.gallery.cols || 2}`}>
-          {block.gallery.images.map((img: any) => (
-            <OptimizedImage src={normalizeTinaImage(img.src)} alt={img.alt} class="w-full h-auto" />
-          ))}
-        </div>
-      )}
+      <div class="text-lg text-gray-600 mb-12 [[prose-p:my-2_p]:my-2_p]:my-2">
+        <RichText content={block.text} />
+      </div>
     </section>
   )}
   {template === 'projectConcept' && (
     <section class="py-16 md:py-24 max-w-7xl mx-auto px-4 bg-gray-50">
       <h2 class="text-3xl font-bold mb-6">{block.title}</h2>
-      <p class="text-lg text-gray-600 mb-12">{block.text}</p>
-      {block.gallery && block.gallery.images && (
-        <div class={`grid gap-4 grid-cols-${block.gallery.cols || 2}`}>
-          {block.gallery.images.map((img: any) => (
-            <OptimizedImage src={normalizeTinaImage(img.src)} alt={img.alt} class="w-full h-auto" />
-          ))}
-        </div>
-      )}
+      <div class="text-lg text-gray-600 mb-12 [[prose-p:my-2_p]:my-2_p]:my-2">
+        <RichText content={block.text} />
+      </div>
     </section>
   )}
   {template === 'projectStrategy' && (
     <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
       <h2 class="text-3xl font-bold mb-6">{block.title}</h2>
-      <p class="text-lg text-gray-600 mb-12">{block.text}</p>
-      {block.carousel && block.carousel.map((img: any) => (
-        <OptimizedImage src={normalizeTinaImage(img.src)} alt={img.alt} class="w-full h-auto mb-4" />
-      ))}
-      {block.gallery && block.gallery.images && (
-        <div class={`grid gap-4 grid-cols-${block.gallery.cols || 2}`}>
-          {block.gallery.images.map((img: any) => (
-            <OptimizedImage src={normalizeTinaImage(img.src)} alt={img.alt} class="w-full h-auto" />
-          ))}
-        </div>
-      )}
+      <div class="text-lg text-gray-600 mb-12 [[prose-p:my-2_p]:my-2_p]:my-2">
+        <RichText content={block.text} />
+      </div>
     </section>
   )}
   {template === 'projectCollaborators' && <ProjectCollaborators list={block.list} />}
   {template === 'projectFinalImage' && (
     <div class="w-full mt-16">
-      <OptimizedImage src={normalizeTinaImage(block.src)} alt={block.alt} class="w-full h-auto" />
+      <R2Picture id={mediaId(block.mediaId)} alt={block.alt} class="w-full h-auto" />
     </div>
   )}
 

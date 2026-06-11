@@ -1,0 +1,30 @@
+{
+  "entry": [
+    "src/env.d.ts",
+    "src/pages/**/*.astro",
+    "src/pages/**/*.ts",
+    "src/content/config.ts",
+    "tina/config.ts",
+    "workers/media-dispatch/src/index.ts",
+    "scripts/build",
+    "scripts/act-media",
+    "scripts/media/process-object.ts",
+    "scripts/media/process-video.sh",
+    "scripts/media/stage-wordpress-media.ts"
+  ],
+  "project": [
+    "src/**/*.astro",
+    "src/**/*.ts",
+    "tina/**/*.ts",
+    "workers/**/*.ts",
+    "scripts/**/*.ts"
+  ],
+  "ignore": [
+    "tina/__generated__/**",
+    "public/admin/assets/**"
+  ],
+  "ignoreBinaries": ["esbuild"],
+  "astro": {
+    "entry": ["src/pages/**/*.astro", "src/pages/**/*.ts", "src/content/config.ts"]
+  }
+}

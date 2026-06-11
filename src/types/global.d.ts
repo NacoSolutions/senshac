@@ -11,5 +11,3 @@ declare global {
   }
 }
 
-// Module declaration must be at file top-level (not in declare global)
-declare module '@alpinejs/collapse';

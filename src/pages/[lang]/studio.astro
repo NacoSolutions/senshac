@@ -29,7 +29,7 @@ const tinaAbout = await getAbout(relativePath, tinaEnv);
 const tinaAboutData = tinaAbout.data.about;
 ---
 
-<Base title={title} description={description} lang={lang}>
+<Base title={title} description={description} lang={lang} schema="LocalBusiness">
   {tinaAboutData ? (
     <TinaIsland name="about" wrapper={islands.about.wrapper} params={{ relativePath }} primary>
       <AboutPage data={tinaAboutData} />
