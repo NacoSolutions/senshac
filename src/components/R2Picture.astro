@@ -1,35 +1,35 @@
 ---
 interface Props {
-  id: string;
-  alt?: string;
-  class?: string;
-  eager?: boolean;
-  sizes?: string;
-  [attribute: string]: unknown;
+	id: string;
+	alt?: string;
+	class?: string;
+	eager?: boolean;
+	sizes?: string;
+	[attribute: string]: unknown;
 }
 
 const {
-  id,
-  alt = '',
-  class: className,
-  eager = false,
-  sizes = '(min-width: 768px) 60vw, 100vw',
-  ...attributes
+	id,
+	alt = "",
+	class: className,
+	eager = false,
+	sizes = "(min-width: 768px) 60vw, 100vw",
+	...attributes
 } = Astro.props;
 const baseUrl = (
-  import.meta.env.PUBLIC_MEDIA_BASE_URL || 'https://media.senshac.com'
-).replace(/\/$/, '');
+	import.meta.env.PUBLIC_MEDIA_BASE_URL || "https://media.senshac.com"
+).replace(/\/$/, "");
 const cleanId = id
-  .replace(new RegExp(`^${baseUrl}/images/`), '')
-  .replace(new RegExp(`^${baseUrl}/videos/`), '')
-  .replace(/^\/+|\/+$/g, '')
-  .replace(/^images\//, '')
-  .replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, '')
-  .replace(/\.[^.]+$/, '');
-const url = (width: number, format: 'avif' | 'webp') =>
-  `${baseUrl}/images/${cleanId}/${width}.${format}`;
-const srcset = (format: 'avif' | 'webp') =>
-  [412, 768, 1200].map((width) => `${url(width, format)} ${width}w`).join(', ');
+	.replace(new RegExp(`^${baseUrl}/images/`), "")
+	.replace(new RegExp(`^${baseUrl}/videos/`), "")
+	.replace(/^\/+|\/+$/g, "")
+	.replace(/^images\//, "")
+	.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+	.replace(/\.[^.]+$/, "");
+const url = (width: number, format: "avif" | "webp") =>
+	`${baseUrl}/images/${cleanId}/${width}.${format}`;
+const srcset = (format: "avif" | "webp") =>
+	[412, 768, 1200].map((width) => `${url(width, format)} ${width}w`).join(", ");
 ---
 
 <picture {...attributes}>

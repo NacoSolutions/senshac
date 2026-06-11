@@ -1,54 +1,50 @@
 ---
-import { tinaField } from '@tinacms/astro/tina-field';
-import RichText from './sections/editorial/RichText.astro';
+import { tinaField } from "@tinacms/astro/tina-field";
+import R2Picture from "./R2Picture.astro";
 
 // Contact Sections
-import ContactFormBlock from './sections/contact/ContactBlock.astro';
-
+import ContactFormBlock from "./sections/contact/ContactBlock.astro";
+import EditorialAccordion from "./sections/editorial/Accordion.astro";
+import EditorialBanner from "./sections/editorial/Banner.astro";
+import EditorialCarousel from "./sections/editorial/Carousel.astro";
+import EditorialCopy from "./sections/editorial/Copy.astro";
+import EditorialCta from "./sections/editorial/Cta.astro";
 // Editorial Sections
-import EditorialHero from './sections/editorial/Hero.astro';
-import EditorialBanner from './sections/editorial/Banner.astro';
-import EditorialCopy from './sections/editorial/Copy.astro';
-import EditorialAccordion from './sections/editorial/Accordion.astro';
-import EditorialRows from './sections/editorial/Rows.astro';
-import EditorialCta from './sections/editorial/Cta.astro';
-import EditorialShowcase from './sections/editorial/Showcase.astro';
-import EditorialMission from './sections/editorial/Mission.astro';
-import EditorialCarousel from './sections/editorial/Carousel.astro';
-import EditorialInstagram from './sections/editorial/Instagram.astro';
-
+import EditorialHero from "./sections/editorial/Hero.astro";
+import EditorialInstagram from "./sections/editorial/Instagram.astro";
+import EditorialMission from "./sections/editorial/Mission.astro";
+import RichText from "./sections/editorial/RichText.astro";
+import EditorialRows from "./sections/editorial/Rows.astro";
+import EditorialShowcase from "./sections/editorial/Showcase.astro";
+import ProjectCollaborators from "./sections/projects/Collaborators.astro";
 // Project Sections
-import ProjectDetails from './sections/projects/Details.astro';
-import ProjectCollaborators from './sections/projects/Collaborators.astro';
-
-import R2Picture from './R2Picture.astro';
+import ProjectDetails from "./sections/projects/Details.astro";
 
 // Type definition for our block
 interface Props {
-  block: any;
-  index: number;
-  parentData: any;
+	block: any;
+	index: number;
+	parentData: any;
 }
 
 const { block, index, parentData } = Astro.props;
 let template = block._template;
 
 if (!template && block.__typename) {
-  const match = block.__typename.match(/Blocks(.*)$/);
-  if (match) {
-    const pascal = match[1];
-    template = pascal.charAt(0).toLowerCase() + pascal.slice(1);
-  }
+	const match = block.__typename.match(/Blocks(.*)$/);
+	if (match) {
+		const pascal = match[1];
+		template = pascal.charAt(0).toLowerCase() + pascal.slice(1);
+	}
 }
 
 function mediaId(value?: string | null) {
-  return (value || '')
-    .replace(/^https:\/\/media\.senshac\.com\/images\//, '')
-    .replace(/^\/?images\//, '')
-    .replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, '')
-    .replace(/\.[^.]+$/, '');
+	return (value || "")
+		.replace(/^https:\/\/media\.senshac\.com\/images\//, "")
+		.replace(/^\/?images\//, "")
+		.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+		.replace(/\.[^.]+$/, "");
 }
-
 ---
 
 <div data-tina-field={tinaField(parentData.blocks, index)}>

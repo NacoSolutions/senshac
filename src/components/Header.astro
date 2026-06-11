@@ -1,29 +1,34 @@
 ---
+import { tinaField } from "@tinacms/astro";
+import type { SiteConfigQuery } from "../../tina/__generated__/types";
+import { getSiteConfig } from "../utils/site-config";
 // src/components/Header.astro
-import { getTranslations, type Translations } from '../utils/translations';
-import { getSiteConfig } from '../utils/site-config';
-import { tinaField } from '@tinacms/astro';
-import type { SiteConfigQuery } from '../../tina/__generated__/types';
-import R2Picture from './R2Picture.astro';
+import { getTranslations, type Translations } from "../utils/translations";
+import R2Picture from "./R2Picture.astro";
 
 interface Props {
-  lang: string;
-  headerStyle?: 'default' | 'transparent';
-  translations?: Translations;
-  siteData?: SiteConfigQuery['siteConfig'];
+	lang: string;
+	headerStyle?: "default" | "transparent";
+	translations?: Translations;
+	siteData?: SiteConfigQuery["siteConfig"];
 }
 
-const { lang, headerStyle = 'default', translations: propTranslations, siteData: propSiteData } = Astro.props;
+const {
+	lang,
+	headerStyle = "default",
+	translations: propTranslations,
+	siteData: propSiteData,
+} = Astro.props;
 const currentPath = Astro.url.pathname;
 
-const isTransparent = headerStyle === 'transparent';
+const isTransparent = headerStyle === "transparent";
 
-const t = propTranslations ?? await getTranslations(lang);
-const site = (propSiteData ?? await getSiteConfig()) as any;
+const t = propTranslations ?? (await getTranslations(lang));
+const site = (propSiteData ?? (await getSiteConfig())) as any;
 
 const navItems = (t.nav.links || []).map((item: any) => ({
-  href: item.href,
-  label: item.label,
+	href: item.href,
+	label: item.label,
 }));
 
 // Use social links from site config
@@ -31,12 +36,12 @@ const socialLinks = site.socialLinks;
 
 // Infer languages from locales config
 const languages = (site.locales || []).map((code: string | null) => ({
-  code,
-  label: code?.toUpperCase() || '',
+	code,
+	label: code?.toUpperCase() || "",
 }));
 
 const getLocalizedPath = (targetLang: string) => {
-  return currentPath.replace(`/${lang}`, `/${targetLang}`);
+	return currentPath.replace(`/${lang}`, `/${targetLang}`);
 };
 ---
 

@@ -1,12 +1,12 @@
 ---
-import { tinaField } from '@tinacms/astro/tina-field';
-import type { AboutQuery } from '../../../tina/__generated__/types';
-import BlocksRenderer from '../BlocksRenderer.astro';
+import { tinaField } from "@tinacms/astro/tina-field";
+import type { AboutQuery } from "../../../tina/__generated__/types";
+import BlocksRenderer from "../BlocksRenderer.astro";
 
-type AboutPageData = AboutQuery['about'];
+type AboutPageData = AboutQuery["about"];
 
 interface Props {
-  data?: AboutPageData | null;
+	data?: AboutPageData | null;
 }
 
 const { data } = Astro.props;

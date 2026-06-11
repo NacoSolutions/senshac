@@ -1,6 +1,6 @@
 ---
 // src/pages/index.astro
-import { getSiteConfig } from '../utils/site-config';
+import { getSiteConfig } from "../utils/site-config";
 
 const site = await getSiteConfig();
 return Astro.redirect(`/${site.defaultLocale}/`);

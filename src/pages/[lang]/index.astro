@@ -1,31 +1,35 @@
 ---
+import { getEntry } from "astro:content";
+import TinaIsland from "@tinacms/astro/TinaIsland.astro";
+import BlocksRenderer from "../../components/BlocksRenderer.astro";
+import HomePage from "../../components/islands/HomePage.astro";
 // src/pages/[lang]/index.astro
-import Base from '../../layouts/Base.astro';
-import { getEntry } from 'astro:content';
-import TinaIsland from '@tinacms/astro/TinaIsland.astro';
-import BlocksRenderer from '../../components/BlocksRenderer.astro';
-import HomePage from '../../components/islands/HomePage.astro';
-import { getHome, getTinaRuntimeEnv, pageRelativePath } from '../../lib/tina-data';
-import { createIslands } from '../../lib/tina-islands';
+import Base from "../../layouts/Base.astro";
+import {
+	getHome,
+	getTinaRuntimeEnv,
+	pageRelativePath,
+} from "../../lib/tina-data";
+import { createIslands } from "../../lib/tina-islands";
 
 const { lang } = Astro.params;
 
-const page = await getEntry('pages', `${lang}/home`);
+const page = await getEntry("pages", `${lang}/home`);
 
 if (!page) {
-  return Astro.redirect('/404');
+	return Astro.redirect("/404");
 }
 
 const { title, description, headerStyle, blocks } = page.data as {
-  title: string;
-  description: string;
-  headerStyle: 'default' | 'transparent';
-  blocks?: any[];
+	title: string;
+	description: string;
+	headerStyle: "default" | "transparent";
+	blocks?: any[];
 };
 
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const islands = createIslands(tinaEnv);
-const relativePath = pageRelativePath(lang, 'home.json');
+const relativePath = pageRelativePath(lang, "home.json");
 const tinaHome = await getHome(relativePath, tinaEnv);
 const tinaHomeData = tinaHome.data.home;
 ---

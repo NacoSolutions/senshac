@@ -1,12 +1,12 @@
 ---
-import { tinaField } from '@tinacms/astro/tina-field';
-import type { ProjectsQuery } from '../../../tina/__generated__/types';
-import BlocksRenderer from '../BlocksRenderer.astro';
+import { tinaField } from "@tinacms/astro/tina-field";
+import type { ProjectsQuery } from "../../../tina/__generated__/types";
+import BlocksRenderer from "../BlocksRenderer.astro";
 
-type ProjectPageData = ProjectsQuery['projects'];
+type ProjectPageData = ProjectsQuery["projects"];
 
 interface Props {
-  data?: ProjectPageData | null;
+	data?: ProjectPageData | null;
 }
 
 const { data } = Astro.props;

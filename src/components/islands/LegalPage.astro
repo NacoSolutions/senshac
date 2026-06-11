@@ -1,9 +1,9 @@
 ---
-import RichText from '../sections/editorial/RichText.astro';
-import type { LegalQuery } from '../../../tina/__generated__/types';
+import type { LegalQuery } from "../../../tina/__generated__/types";
+import RichText from "../sections/editorial/RichText.astro";
 
 interface Props {
-  data: LegalQuery['legal'];
+	data: LegalQuery["legal"];
 }
 
 const { data } = Astro.props;

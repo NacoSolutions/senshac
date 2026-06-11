@@ -1,33 +1,33 @@
 ---
 interface Props {
-  id: string;
-  class?: string;
-  poster?: string;
-  autoplay?: boolean;
-  controls?: boolean;
-  muted?: boolean;
-  loop?: boolean;
+	id: string;
+	class?: string;
+	poster?: string;
+	autoplay?: boolean;
+	controls?: boolean;
+	muted?: boolean;
+	loop?: boolean;
 }
 
 const {
-  id,
-  class: className,
-  poster,
-  autoplay = true,
-  controls = false,
-  muted = true,
-  loop = true,
+	id,
+	class: className,
+	poster,
+	autoplay = true,
+	controls = false,
+	muted = true,
+	loop = true,
 } = Astro.props;
 const baseUrl = (
-  import.meta.env.PUBLIC_MEDIA_BASE_URL || 'https://media.senshac.com'
-).replace(/\/$/, '');
+	import.meta.env.PUBLIC_MEDIA_BASE_URL || "https://media.senshac.com"
+).replace(/\/$/, "");
 const cleanId = id
-  .replace(new RegExp(`^${baseUrl}/images/`), '')
-  .replace(new RegExp(`^${baseUrl}/videos/`), '')
-  .replace(/^\/+|\/+$/g, '')
-  .replace(/^videos\//, '')
-  .replace(/\/master\.m3u8$/, '')
-  .replace(/\.[^.]+$/, '');
+	.replace(new RegExp(`^${baseUrl}/images/`), "")
+	.replace(new RegExp(`^${baseUrl}/videos/`), "")
+	.replace(/^\/+|\/+$/g, "")
+	.replace(/^videos\//, "")
+	.replace(/\/master\.m3u8$/, "")
+	.replace(/\.[^.]+$/, "");
 const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
 ---
 

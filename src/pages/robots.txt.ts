@@ -1,16 +1,17 @@
 // src/pages/robots.txt.ts
-import type { APIRoute } from 'astro';
-import { getEntry } from 'astro:content';
+
+import { getEntry } from "astro:content";
+import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
-  const siteConfig = await getEntry('site-config', 'site');
-  if (!siteConfig) {
-    return new Response('Site config not found', { status: 500 });
-  }
+	const siteConfig = await getEntry("site-config", "site");
+	if (!siteConfig) {
+		return new Response("Site config not found", { status: 500 });
+	}
 
-  const { siteUrl } = siteConfig.data;
+	const { siteUrl } = siteConfig.data;
 
-  const robotsTxt = `# robots.txt
+	const robotsTxt = `# robots.txt
 # AI bot access is enforced by Cloudflare AI Crawl Control at the WAF level.
 # Content Signals declare content usage preferences per https://contentsignals.org/
 
@@ -33,10 +34,10 @@ Sitemap: ${siteUrl}/sitemap.xml
 # See: ${siteUrl}/llms.txt
 `;
 
-  return new Response(robotsTxt, {
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400',
-    },
-  });
+	return new Response(robotsTxt, {
+		headers: {
+			"Content-Type": "text/plain; charset=utf-8",
+			"Cache-Control": "public, max-age=86400",
+		},
+	});
 };

@@ -1,18 +1,18 @@
 ---
+import { getSiteConfig } from "../../../utils/site-config";
 // src/components/sections/contact/ContactBlock.astro
-import ContactForm from '../../ContactForm.astro';
-import R2Picture from '../../R2Picture.astro';
-import { getSiteConfig } from '../../../utils/site-config';
+import ContactForm from "../../ContactForm.astro";
+import R2Picture from "../../R2Picture.astro";
 
 interface Props {
-  heading?: string;
-  subheading?: string;
-  mediaId?: string;
-  lang?: string;
+	heading?: string;
+	subheading?: string;
+	mediaId?: string;
+	lang?: string;
 }
 
 const { heading, subheading, mediaId } = Astro.props;
-const lang = Astro.params.lang || 'es';
+const lang = Astro.params.lang || "es";
 const site = await getSiteConfig();
 ---
 

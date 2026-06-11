@@ -1,19 +1,15 @@
 ---
-import RichText from './RichText.astro';
+import RichText from "./RichText.astro";
 
 interface Props {
-  title?: string;
-  description?: any;
-  tag?: string;
-  limit?: number;
-  maxVisible?: number;
+	title?: string;
+	description?: any;
+	tag?: string;
+	limit?: number;
+	maxVisible?: number;
 }
 
-const { 
-  title = "Instagram", 
-  description, 
-  tag
-} = Astro.props;
+const { title = "Instagram", description, tag } = Astro.props;
 
 const limit = Astro.props.limit || 12;
 const maxVisible = Astro.props.maxVisible || 4;
@@ -21,20 +17,22 @@ const maxVisible = Astro.props.maxVisible || 4;
 let posts: any[] = [];
 
 try {
-  const res = await fetch("https://media.senshac.com/instagram/posts.json");
-  if (res.ok) {
-    const allPosts = (await res.json()) as any[];
-    
-    // Filter by tag if provided
-    if (tag) {
-      const tagLower = tag.replace(/^#/, '').toLowerCase(); // Normalize: remove leading # if any
-      posts = allPosts.filter((p: any) => p.caption?.toLowerCase().includes(`#${tagLower}`));
-    } else {
-      posts = allPosts;
-    }
-  }
+	const res = await fetch("https://media.senshac.com/instagram/posts.json");
+	if (res.ok) {
+		const allPosts = (await res.json()) as any[];
+
+		// Filter by tag if provided
+		if (tag) {
+			const tagLower = tag.replace(/^#/, "").toLowerCase(); // Normalize: remove leading # if any
+			posts = allPosts.filter((p: any) =>
+				p.caption?.toLowerCase().includes(`#${tagLower}`),
+			);
+		} else {
+			posts = allPosts;
+		}
+	}
 } catch (e) {
-  console.error("Failed to fetch Instagram posts from R2:", e);
+	console.error("Failed to fetch Instagram posts from R2:", e);
 }
 
 const displayPosts = posts.slice(0, limit);

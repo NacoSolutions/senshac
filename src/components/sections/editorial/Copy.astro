@@ -1,17 +1,23 @@
 ---
-import RichText from './RichText.astro';
-import R2Picture from '../../R2Picture.astro';
-import { getSiteConfig } from '../../../utils/site-config';
+import { getSiteConfig } from "../../../utils/site-config";
+import R2Picture from "../../R2Picture.astro";
+import RichText from "./RichText.astro";
 
 interface Props {
-  title?: string;
-  body?: any;
-  eyebrow?: string;
-  headingLevel?: 'h1' | 'h2';
-  showStar?: boolean;
+	title?: string;
+	body?: any;
+	eyebrow?: string;
+	headingLevel?: "h1" | "h2";
+	showStar?: boolean;
 }
 
-const { title, body, eyebrow, headingLevel = 'h2', showStar = false } = Astro.props;
+const {
+	title,
+	body,
+	eyebrow,
+	headingLevel = "h2",
+	showStar = false,
+} = Astro.props;
 const site = await getSiteConfig();
 ---
 

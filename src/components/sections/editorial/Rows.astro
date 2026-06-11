@@ -1,15 +1,15 @@
 ---
-import RichText from './RichText.astro';
+import RichText from "./RichText.astro";
 
 interface Item {
-  title?: string;
-  text?: any;
+	title?: string;
+	text?: any;
 }
 
 interface Props {
-  title?: string;
-  intro?: any;
-  items?: Item[] | null;
+	title?: string;
+	intro?: any;
+	items?: Item[] | null;
 }
 
 const { title, intro, items: itemList } = Astro.props;

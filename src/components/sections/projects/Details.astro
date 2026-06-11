@@ -1,33 +1,33 @@
 ---
 // src/components/sections/projects/Details.astro
-import R2Picture from '../../R2Picture.astro';
+import R2Picture from "../../R2Picture.astro";
 
 interface Props {
-  title: string;
-  subtitle?: string;
-  services: string;
-  servicesLabel?: string;
-  category: string;
-  categoryLabel?: string;
-  area: string;
-  areaLabel?: string;
-  location: string;
-  locationLabel?: string;
-  mediaId?: string;
+	title: string;
+	subtitle?: string;
+	services: string;
+	servicesLabel?: string;
+	category: string;
+	categoryLabel?: string;
+	area: string;
+	areaLabel?: string;
+	location: string;
+	locationLabel?: string;
+	mediaId?: string;
 }
 
 const {
-  title,
-  subtitle,
-  services,
-  servicesLabel = 'SERVICES',
-  category,
-  categoryLabel = 'CATEGORY',
-  area,
-  areaLabel = 'AREA',
-  location,
-  locationLabel = 'LOCATION',
-  mediaId,
+	title,
+	subtitle,
+	services,
+	servicesLabel = "SERVICES",
+	category,
+	categoryLabel = "CATEGORY",
+	area,
+	areaLabel = "AREA",
+	location,
+	locationLabel = "LOCATION",
+	mediaId,
 } = Astro.props;
 ---
 
