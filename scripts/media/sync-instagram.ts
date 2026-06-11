@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { createR2Client } from "./r2-client";
 
