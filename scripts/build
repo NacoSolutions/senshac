@@ -26,3 +26,9 @@ perl -0pi -e 's/<script(?![^>]*data-cfasync)/<script data-cfasync="false"/g' pub
 
 astro build
 rm -f dist/server/wrangler.json
+rm -rf .wrangler
+
+# Repackage Astro Cloudflare Workers output for Cloudflare Pages
+cp -a dist/client/. dist/
+rm -rf dist/client
+mv dist/server dist/_worker.js
