@@ -1,0 +1,45 @@
+name: Nightly PageSpeed & Lighthouse Audit
+
+on:
+  schedule:
+    - cron: '30 0 * * *' # Run daily at 00:30 UTC
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  audit:
+    name: Run PageSpeed Insights
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: 
+          - "https://senshac.com"
+          - "https://senshac.com/es/projects"
+          - "https://senshac.com/es/about"
+        strategy: ["mobile", "desktop"]
+    steps:
+      - name: Fetch Lighthouse Scores
+        run: |
+          echo "Running Lighthouse for ${{ matrix.url }} on ${{ matrix.strategy }}..."
+          
+          # We use curl to hit the PageSpeed Insights API
+          API_URL="https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${{ matrix.url }}&strategy=${{ matrix.strategy }}"
+          
+          # If a PAGESPEED_API_KEY secret is provided, use it to avoid rate limits
+          if [ -n "${{ secrets.PAGESPEED_API_KEY }}" ]; then
+            API_URL="${API_URL}&key=${{ secrets.PAGESPEED_API_KEY }}"
+          fi
+          
+          # Fetch JSON and extract core metrics
+          RESPONSE=$(curl -s "$API_URL")
+          
+          PERFORMANCE=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.performance.score * 100')
+          ACCESSIBILITY=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.accessibility.score * 100')
+          BEST_PRACTICES=$(echo "$RESPONSE" | jq '.lighthouseResult.categories["best-practices"].score * 100')
+          SEO=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.seo.score * 100')
+          
+          echo "::notice title=Lighthouse Scores for ${{ matrix.url }} (${{ matrix.strategy }})::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
+          
+          echo "Performance: $PERFORMANCE"
+          echo "Accessibility: $ACCESSIBILITY"
+          echo "Best Practices: $BEST_PRACTICES"
+          echo "SEO: $SEO"
