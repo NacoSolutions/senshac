@@ -15,23 +15,23 @@ export const GET: APIRoute = async ({ request, locals }) => {
 	}
 
 	const env = mediaEnv(locals);
-	let client;
-	try {
-		client = getS3Client(env);
-	} catch (error) {
-		console.error("[S3 API Error]:", error);
-		return Response.json(
-			{ message: "S3 binding is not configured properly" },
-			{ status: 503 },
-		);
-	}
-
-	const bucket = env.S3_BUCKET;
 	const url = new URL(request.url);
 
-	// If a key is provided, generate an upload presigned URL
+	// 1. Upload URL generation (always requires S3 presigning)
 	const uploadKey = url.searchParams.get("key");
 	if (uploadKey) {
+		let client;
+		try {
+			client = getS3Client(env);
+		} catch (error) {
+			console.error("[S3 API Error]:", error);
+			return Response.json(
+				{ message: "S3 binding is not configured properly" },
+				{ status: 503 },
+			);
+		}
+		const bucket = env.S3_BUCKET;
+
 		const key = safeMediaKey(uploadKey);
 		const expiresIn = Number(url.searchParams.get("expiresIn")) || 3600;
 
@@ -50,20 +50,78 @@ export const GET: APIRoute = async ({ request, locals }) => {
 		}
 	}
 
-	// Otherwise, list directory contents
+	// 2. Listing directory contents
 	const directory = url.searchParams.get("directory") || "";
 	const prefix = directory
 		? `${safeMediaKey(directory).replace(/\/$/, "")}/`
 		: "";
+	const limit = Math.min(Number(url.searchParams.get("limit")) || 500, 1000);
+	const cursor = url.searchParams.get("offset") || undefined;
+	const maxKeys = directory && !cursor ? limit + 1 : limit;
 
 	try {
-		const limit = Math.min(Number(url.searchParams.get("limit")) || 500, 1000);
+		// Use native R2 binding if available
+		if (env.MEDIA_RAW) {
+			const list = await env.MEDIA_RAW.list({
+				prefix,
+				delimiter: "/",
+				limit: maxKeys,
+				cursor,
+			});
+
+			const directories = list.delimitedPrefixes.map((p: string) => {
+				const stripped = p.slice(prefix.length).replace(/\/$/, "");
+				return {
+					id: p,
+					type: "dir",
+					filename: stripped,
+					directory: directory || "/",
+				};
+			});
+
+			const objects = list.objects
+				.filter((o: any) => o.key !== prefix)
+				.map((o: any) => {
+					const filename = o.key.split("/").at(-1) || o.key;
+					const fullUrl = publicMediaUrl(o.key, env.PUBLIC_MEDIA_BASE_URL);
+					return {
+						id: o.key,
+						filename,
+						directory: `/${o.key.split("/").slice(0, -1).join("/")}`,
+						src: fullUrl,
+						thumbnails: {
+							"75x75": fullUrl,
+							"400x400": fullUrl,
+							"1000x1000": fullUrl,
+						},
+						type: "file",
+					};
+				});
+
+			return Response.json({
+				items: [...directories, ...objects],
+				offset: list.truncated ? list.cursor : undefined,
+			});
+		}
+
+		// Fallback to S3 client
+		let client;
+		try {
+			client = getS3Client(env);
+		} catch (error) {
+			console.error("[S3 API Error]:", error);
+			return Response.json(
+				{ message: "S3 binding is not configured properly" },
+				{ status: 503 },
+			);
+		}
+
 		const command = new ListObjectsCommand({
-			Bucket: bucket,
+			Bucket: env.S3_BUCKET,
 			Delimiter: "/",
 			Prefix: prefix,
-			Marker: url.searchParams.get("offset") || undefined,
-			MaxKeys: directory && !url.searchParams.get("offset") ? limit + 1 : limit,
+			Marker: cursor,
+			MaxKeys: maxKeys,
 		});
 
 		const result = await client.send(command);

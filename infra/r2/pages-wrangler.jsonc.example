@@ -9,5 +9,11 @@
       "binding": "MEDIA_RAW",
       "bucket_name": "senshac-media-raw"
     }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "placeholder-session-kv-id"
+    }
   ]
 }

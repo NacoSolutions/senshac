@@ -10,6 +10,7 @@ export interface RuntimeEnv {
 	PUBLIC_MEDIA_BASE_URL?: string;
 	// Fallback for old bindings if they exist
 	R2_UPLOAD_SIGNING_SECRET?: string;
+	MEDIA_RAW?: any;
 }
 
 export function mediaEnv(locals: App.Locals) {
@@ -47,6 +48,7 @@ export function mediaEnv(locals: App.Locals) {
 			cfEnv.R2_UPLOAD_SIGNING_SECRET ||
 			processEnv.R2_UPLOAD_SIGNING_SECRET ||
 			import.meta.env.R2_UPLOAD_SIGNING_SECRET,
+		MEDIA_RAW: cfEnv.MEDIA_RAW,
 	} as RuntimeEnv;
 }
 
