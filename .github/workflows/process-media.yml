@@ -34,7 +34,7 @@ jobs:
       MEDIA_KEY: ${{ github.event.client_payload.key || inputs.key }}
       MEDIA_DRY_RUN: ${{ inputs.dry_run || 'false' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - run: bun install --frozen-lockfile
 
