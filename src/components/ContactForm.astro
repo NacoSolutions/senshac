@@ -169,7 +169,8 @@ const error = Astro.url.searchParams.get("contact_error");
   <!-- Submit -->
   <div>
     <button
-      type="submit"
+      type="button"
+      onclick="executeTurnstile()"
       class="px-8 py-4 bg-black text-white tracking-wider text-sm hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       data-tina-field={tinaField(f, 'submit')}
     >
@@ -195,48 +196,53 @@ const error = Astro.url.searchParams.get("contact_error");
 
 <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script is:inline>
-  // HTMX validation interceptor for Turnstile
-  document.addEventListener('htmx:confirm', function(e) {
-    if (e.target.id === 'contact-form') {
-      const responseInput = document.querySelector('#contact-form [name="cf-turnstile-response"]');
-      if (responseInput && !responseInput.value) {
-        // Prevent HTMX from submitting
-        e.preventDefault();
-        
-        // Save the event to trigger later
-        window.pendingHtmxEvent = e;
-        
-        // Render and execute turnstile if not already rendered
-        const widgetContainer = document.querySelector('#contact-form-container .cf-turnstile');
-        let widgetId = widgetContainer.getAttribute('data-turnstile-id');
-        if (!widgetId) {
-          widgetId = window.turnstile.render(widgetContainer, {
-            sitekey: widgetContainer.getAttribute('data-sitekey'),
-            size: 'invisible',
-            callback: 'onTurnstileSuccess',
-            'error-callback': 'onTurnstileError'
-          });
-          widgetContainer.setAttribute('data-turnstile-id', widgetId);
-        }
-        window.turnstile.execute(widgetContainer.getAttribute('data-turnstile-id'));
-      }
-    }
-  });
+  let turnstileWidgetId = null;
 
-  // Turnstile callbacks scoped to the form
+  function executeTurnstile() {
+    const form = document.getElementById('contact-form');
+    if (form && !form.reportValidity()) return;
+
+    const container = document.querySelector('.cf-turnstile');
+    if (!container) return;
+    
+    // Disable button and show sending state
+    const btn = document.querySelector('#contact-form button');
+    if (btn) btn.disabled = true;
+    
+    if (!turnstileWidgetId) {
+      turnstileWidgetId = window.turnstile.render(container, {
+        sitekey: container.getAttribute('data-sitekey'),
+        size: 'invisible',
+        callback: 'onTurnstileSuccess',
+        'error-callback': 'onTurnstileError'
+      });
+      container.setAttribute('data-turnstile-id', turnstileWidgetId);
+    }
+    
+    window.turnstile.execute(turnstileWidgetId);
+  }
+
   window.onTurnstileSuccess = function(token) {
-    const responseInput = document.querySelector('#contact-form [name="cf-turnstile-response"]');
+    const responseInput = document.getElementById('cf-turnstile-response');
     if (responseInput) responseInput.value = token;
     
-    // Resume HTMX submission
-    if (window.pendingHtmxEvent) {
-      window.pendingHtmxEvent.detail.issueRequest();
-      window.pendingHtmxEvent = null;
+    // Trigger HTMX submission programmatically
+    const form = document.getElementById('contact-form');
+    if (window.htmx && form) {
+      window.htmx.trigger(form, 'submit');
+    } else if (form) {
+      form.submit();
     }
   };
+
   window.onTurnstileError = function() {
-    console.error('Turnstile error');
-    // We could show an error here manually, or trigger a failure
+    console.error('Turnstile verification failed.');
+    const feedback = document.getElementById('form-feedback');
+    if (feedback) {
+      feedback.innerHTML = '<div class="p-4 bg-red-50 border border-red-200 text-red-800 rounded">Verificación de seguridad fallida. Por favor, inténtalo de nuevo.</div>';
+    }
+    const btn = document.querySelector('#contact-form button');
+    if (btn) btn.disabled = false;
   };
 </script>
 
