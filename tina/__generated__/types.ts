@@ -448,147 +448,40 @@ export type SiteConfigConnection = Connection & {
   edges?: Maybe<Array<Maybe<SiteConfigConnectionEdges>>>;
 };
 
-export type HomeBlocksHomeHeroTopRight = {
-  __typename?: 'HomeBlocksHomeHeroTopRight';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type HomeBlocksHomeHeroTagline = {
-  __typename?: 'HomeBlocksHomeHeroTagline';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type HomeBlocksHomeHero = {
-  __typename?: 'HomeBlocksHomeHero';
-  image?: Maybe<Scalars['String']['output']>;
-  topRight?: Maybe<HomeBlocksHomeHeroTopRight>;
-  tagline?: Maybe<HomeBlocksHomeHeroTagline>;
-  taglineSub?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksHomeAbout = {
-  __typename?: 'HomeBlocksHomeAbout';
-  image?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  ctaText?: Maybe<Scalars['String']['output']>;
-  ctaLink?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksAboutHero = {
-  __typename?: 'HomeBlocksAboutHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksBehindName = {
-  __typename?: 'HomeBlocksBehindName';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  footnote?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksBannerImage = {
-  __typename?: 'HomeBlocksBannerImage';
-  image?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksBio = {
-  __typename?: 'HomeBlocksBio';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type HomeBlocksAwardsItems = {
-  __typename?: 'HomeBlocksAwardsItems';
-  year?: Maybe<Scalars['String']['output']>;
-  project?: Maybe<Scalars['String']['output']>;
-  award?: Maybe<Scalars['String']['output']>;
-  link?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksAwards = {
-  __typename?: 'HomeBlocksAwards';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<HomeBlocksAwardsItems>>>;
-};
-
-export type HomeBlocksMission = {
-  __typename?: 'HomeBlocksMission';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  quote?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksServicesHero = {
-  __typename?: 'HomeBlocksServicesHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksServicesIntro = {
-  __typename?: 'HomeBlocksServicesIntro';
-  text?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksServiceGroupsGroupsItems = {
-  __typename?: 'HomeBlocksServiceGroupsGroupsItems';
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksServiceGroupsGroups = {
-  __typename?: 'HomeBlocksServiceGroupsGroups';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<HomeBlocksServiceGroupsGroupsItems>>>;
-};
-
-export type HomeBlocksServiceGroups = {
-  __typename?: 'HomeBlocksServiceGroups';
-  groups?: Maybe<Array<Maybe<HomeBlocksServiceGroupsGroups>>>;
-};
-
-export type HomeBlocksFaqItems = {
-  __typename?: 'HomeBlocksFaqItems';
-  question?: Maybe<Scalars['String']['output']>;
-  answer?: Maybe<Scalars['String']['output']>;
-};
-
-export type HomeBlocksFaq = {
-  __typename?: 'HomeBlocksFaq';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<HomeBlocksFaqItems>>>;
-};
-
-export type HomeBlocksWorkProcess = {
-  __typename?: 'HomeBlocksWorkProcess';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
 export type HomeBlocksContactForm = {
   __typename?: 'HomeBlocksContactForm';
-  bannerImage?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeBlocksEditorialBannerTopRight = {
+  __typename?: 'HomeBlocksEditorialBannerTopRight';
+  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type HomeBlocksEditorialBanner = {
+  __typename?: 'HomeBlocksEditorialBanner';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  topRight?: Maybe<HomeBlocksEditorialBannerTopRight>;
+  mediaId?: Maybe<Scalars['String']['output']>;
+  imageAlt?: Maybe<Scalars['String']['output']>;
+  placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type HomeBlocksEditorialHero = {
   __typename?: 'HomeBlocksEditorialHero';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
   ctaLink?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type HomeBlocksEditorialCopy = {
@@ -596,13 +489,14 @@ export type HomeBlocksEditorialCopy = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   headingLevel?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  showStar?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type HomeBlocksEditorialAccordionItemsDetails = {
   __typename?: 'HomeBlocksEditorialAccordionItemsDetails';
   label?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type HomeBlocksEditorialAccordionItems = {
@@ -616,20 +510,20 @@ export type HomeBlocksEditorialAccordionItems = {
 
 export type HomeBlocksEditorialAccordion = {
   __typename?: 'HomeBlocksEditorialAccordion';
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<HomeBlocksEditorialAccordionItems>>>;
 };
 
 export type HomeBlocksEditorialRowsItems = {
   __typename?: 'HomeBlocksEditorialRowsItems';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type HomeBlocksEditorialRows = {
   __typename?: 'HomeBlocksEditorialRows';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<HomeBlocksEditorialRowsItems>>>;
 };
 
@@ -643,7 +537,7 @@ export type HomeBlocksEditorialShowcaseItems = {
   __typename?: 'HomeBlocksEditorialShowcaseItems';
   title?: Maybe<Scalars['String']['output']>;
   link?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
@@ -653,7 +547,7 @@ export type HomeBlocksEditorialShowcase = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
@@ -664,14 +558,47 @@ export type HomeBlocksEditorialShowcase = {
 export type HomeBlocksEditorialMission = {
   __typename?: 'HomeBlocksEditorialMission';
   label?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  content?: Maybe<Scalars['JSON']['output']>;
   statement?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
 
-export type HomeBlocks = HomeBlocksHomeHero | HomeBlocksHomeAbout | HomeBlocksAboutHero | HomeBlocksBehindName | HomeBlocksBannerImage | HomeBlocksBio | HomeBlocksAwards | HomeBlocksMission | HomeBlocksServicesHero | HomeBlocksServicesIntro | HomeBlocksServiceGroups | HomeBlocksFaq | HomeBlocksWorkProcess | HomeBlocksContactForm | HomeBlocksEditorialHero | HomeBlocksEditorialCopy | HomeBlocksEditorialAccordion | HomeBlocksEditorialRows | HomeBlocksEditorialCta | HomeBlocksEditorialShowcase | HomeBlocksEditorialMission;
+export type HomeBlocksEditorialCarouselItems = {
+  __typename?: 'HomeBlocksEditorialCarouselItems';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeBlocksEditorialCarousel = {
+  __typename?: 'HomeBlocksEditorialCarousel';
+  items?: Maybe<Array<Maybe<HomeBlocksEditorialCarouselItems>>>;
+};
+
+export type HomeBlocksEditorialInstagram = {
+  __typename?: 'HomeBlocksEditorialInstagram';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  limit?: Maybe<Scalars['Float']['output']>;
+  maxVisible?: Maybe<Scalars['Float']['output']>;
+};
+
+export type HomeBlocksEditorialGalleryImages = {
+  __typename?: 'HomeBlocksEditorialGalleryImages';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeBlocksEditorialGallery = {
+  __typename?: 'HomeBlocksEditorialGallery';
+  cols?: Maybe<Scalars['Float']['output']>;
+  images?: Maybe<Array<Maybe<HomeBlocksEditorialGalleryImages>>>;
+};
+
+export type HomeBlocks = HomeBlocksContactForm | HomeBlocksEditorialBanner | HomeBlocksEditorialHero | HomeBlocksEditorialCopy | HomeBlocksEditorialAccordion | HomeBlocksEditorialRows | HomeBlocksEditorialCta | HomeBlocksEditorialShowcase | HomeBlocksEditorialMission | HomeBlocksEditorialCarousel | HomeBlocksEditorialInstagram | HomeBlocksEditorialGallery;
 
 export type Home = Node & Document & {
   __typename?: 'Home';
@@ -684,133 +611,42 @@ export type Home = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type HomeBlocksHomeHeroTopRightFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksHomeHeroTaglineFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksHomeHeroFilter = {
-  image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<HomeBlocksHomeHeroTopRightFilter>;
-  tagline?: InputMaybe<HomeBlocksHomeHeroTaglineFilter>;
-  taglineSub?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksHomeAboutFilter = {
-  image?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  ctaText?: InputMaybe<StringFilter>;
-  ctaLink?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksAboutHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksBehindNameFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  footnote?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksBannerImageFilter = {
-  image?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksBioFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksAwardsItemsFilter = {
-  year?: InputMaybe<StringFilter>;
-  project?: InputMaybe<StringFilter>;
-  award?: InputMaybe<StringFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksAwardsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<HomeBlocksAwardsItemsFilter>;
-};
-
-export type HomeBlocksMissionFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksServicesHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksServicesIntroFilter = {
-  text?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type HomeBlocksServiceGroupsGroupsItemsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksServiceGroupsGroupsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<HomeBlocksServiceGroupsGroupsItemsFilter>;
-};
-
-export type HomeBlocksServiceGroupsFilter = {
-  groups?: InputMaybe<HomeBlocksServiceGroupsGroupsFilter>;
-};
-
-export type HomeBlocksFaqItemsFilter = {
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<HomeBlocksFaqItemsFilter>;
-};
-
-export type HomeBlocksWorkProcessFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
 export type HomeBlocksContactFormFilter = {
-  bannerImage?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   heading?: InputMaybe<StringFilter>;
   subheading?: InputMaybe<StringFilter>;
 };
 
+export type HomeBlocksEditorialBannerTopRightFilter = {
+  lines?: InputMaybe<StringFilter>;
+};
+
+export type HomeBlocksEditorialBannerFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  topRight?: InputMaybe<HomeBlocksEditorialBannerTopRightFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
+  imageAlt?: InputMaybe<StringFilter>;
+  placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type HomeBlocksEditorialHeroFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   ctaText?: InputMaybe<StringFilter>;
   ctaLink?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
-};
-
-export type HomeBlocksEditorialCopyFilter = {
-  eyebrow?: InputMaybe<StringFilter>;
-  title?: InputMaybe<StringFilter>;
-  headingLevel?: InputMaybe<StringFilter>;
-  body?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
 };
 
 export type BooleanFilter = {
@@ -818,9 +654,17 @@ export type BooleanFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type HomeBlocksEditorialCopyFilter = {
+  eyebrow?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  headingLevel?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  showStar?: InputMaybe<BooleanFilter>;
+};
+
 export type HomeBlocksEditorialAccordionItemsDetailsFilter = {
   label?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type HomeBlocksEditorialAccordionItemsFilter = {
@@ -832,18 +676,18 @@ export type HomeBlocksEditorialAccordionItemsFilter = {
 };
 
 export type HomeBlocksEditorialAccordionFilter = {
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<HomeBlocksEditorialAccordionItemsFilter>;
 };
 
 export type HomeBlocksEditorialRowsItemsFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type HomeBlocksEditorialRowsFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<HomeBlocksEditorialRowsItemsFilter>;
 };
 
@@ -855,7 +699,7 @@ export type HomeBlocksEditorialCtaFilter = {
 export type HomeBlocksEditorialShowcaseItemsFilter = {
   title?: InputMaybe<StringFilter>;
   link?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
@@ -864,7 +708,7 @@ export type HomeBlocksEditorialShowcaseFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
   ctaText?: InputMaybe<StringFilter>;
@@ -874,28 +718,54 @@ export type HomeBlocksEditorialShowcaseFilter = {
 
 export type HomeBlocksEditorialMissionFilter = {
   label?: InputMaybe<StringFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
+  content?: InputMaybe<RichTextFilter>;
   statement?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
 
+export type HomeBlocksEditorialCarouselItemsFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+  caption?: InputMaybe<StringFilter>;
+};
+
+export type HomeBlocksEditorialCarouselFilter = {
+  items?: InputMaybe<HomeBlocksEditorialCarouselItemsFilter>;
+};
+
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type HomeBlocksEditorialInstagramFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  tag?: InputMaybe<StringFilter>;
+  limit?: InputMaybe<NumberFilter>;
+  maxVisible?: InputMaybe<NumberFilter>;
+};
+
+export type HomeBlocksEditorialGalleryImagesFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type HomeBlocksEditorialGalleryFilter = {
+  cols?: InputMaybe<NumberFilter>;
+  images?: InputMaybe<HomeBlocksEditorialGalleryImagesFilter>;
+};
+
 export type HomeBlocksFilter = {
-  homeHero?: InputMaybe<HomeBlocksHomeHeroFilter>;
-  homeAbout?: InputMaybe<HomeBlocksHomeAboutFilter>;
-  aboutHero?: InputMaybe<HomeBlocksAboutHeroFilter>;
-  behindName?: InputMaybe<HomeBlocksBehindNameFilter>;
-  bannerImage?: InputMaybe<HomeBlocksBannerImageFilter>;
-  bio?: InputMaybe<HomeBlocksBioFilter>;
-  awards?: InputMaybe<HomeBlocksAwardsFilter>;
-  mission?: InputMaybe<HomeBlocksMissionFilter>;
-  servicesHero?: InputMaybe<HomeBlocksServicesHeroFilter>;
-  servicesIntro?: InputMaybe<HomeBlocksServicesIntroFilter>;
-  serviceGroups?: InputMaybe<HomeBlocksServiceGroupsFilter>;
-  faq?: InputMaybe<HomeBlocksFaqFilter>;
-  workProcess?: InputMaybe<HomeBlocksWorkProcessFilter>;
   contactForm?: InputMaybe<HomeBlocksContactFormFilter>;
+  editorialBanner?: InputMaybe<HomeBlocksEditorialBannerFilter>;
   editorialHero?: InputMaybe<HomeBlocksEditorialHeroFilter>;
   editorialCopy?: InputMaybe<HomeBlocksEditorialCopyFilter>;
   editorialAccordion?: InputMaybe<HomeBlocksEditorialAccordionFilter>;
@@ -903,6 +773,9 @@ export type HomeBlocksFilter = {
   editorialCta?: InputMaybe<HomeBlocksEditorialCtaFilter>;
   editorialShowcase?: InputMaybe<HomeBlocksEditorialShowcaseFilter>;
   editorialMission?: InputMaybe<HomeBlocksEditorialMissionFilter>;
+  editorialCarousel?: InputMaybe<HomeBlocksEditorialCarouselFilter>;
+  editorialInstagram?: InputMaybe<HomeBlocksEditorialInstagramFilter>;
+  editorialGallery?: InputMaybe<HomeBlocksEditorialGalleryFilter>;
 };
 
 export type HomeFilter = {
@@ -925,147 +798,40 @@ export type HomeConnection = Connection & {
   edges?: Maybe<Array<Maybe<HomeConnectionEdges>>>;
 };
 
-export type AboutBlocksHomeHeroTopRight = {
-  __typename?: 'AboutBlocksHomeHeroTopRight';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type AboutBlocksHomeHeroTagline = {
-  __typename?: 'AboutBlocksHomeHeroTagline';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type AboutBlocksHomeHero = {
-  __typename?: 'AboutBlocksHomeHero';
-  image?: Maybe<Scalars['String']['output']>;
-  topRight?: Maybe<AboutBlocksHomeHeroTopRight>;
-  tagline?: Maybe<AboutBlocksHomeHeroTagline>;
-  taglineSub?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksHomeAbout = {
-  __typename?: 'AboutBlocksHomeAbout';
-  image?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  ctaText?: Maybe<Scalars['String']['output']>;
-  ctaLink?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksAboutHero = {
-  __typename?: 'AboutBlocksAboutHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksBehindName = {
-  __typename?: 'AboutBlocksBehindName';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  footnote?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksBannerImage = {
-  __typename?: 'AboutBlocksBannerImage';
-  image?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksBio = {
-  __typename?: 'AboutBlocksBio';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type AboutBlocksAwardsItems = {
-  __typename?: 'AboutBlocksAwardsItems';
-  year?: Maybe<Scalars['String']['output']>;
-  project?: Maybe<Scalars['String']['output']>;
-  award?: Maybe<Scalars['String']['output']>;
-  link?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksAwards = {
-  __typename?: 'AboutBlocksAwards';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<AboutBlocksAwardsItems>>>;
-};
-
-export type AboutBlocksMission = {
-  __typename?: 'AboutBlocksMission';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  quote?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksServicesHero = {
-  __typename?: 'AboutBlocksServicesHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksServicesIntro = {
-  __typename?: 'AboutBlocksServicesIntro';
-  text?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksServiceGroupsGroupsItems = {
-  __typename?: 'AboutBlocksServiceGroupsGroupsItems';
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksServiceGroupsGroups = {
-  __typename?: 'AboutBlocksServiceGroupsGroups';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<AboutBlocksServiceGroupsGroupsItems>>>;
-};
-
-export type AboutBlocksServiceGroups = {
-  __typename?: 'AboutBlocksServiceGroups';
-  groups?: Maybe<Array<Maybe<AboutBlocksServiceGroupsGroups>>>;
-};
-
-export type AboutBlocksFaqItems = {
-  __typename?: 'AboutBlocksFaqItems';
-  question?: Maybe<Scalars['String']['output']>;
-  answer?: Maybe<Scalars['String']['output']>;
-};
-
-export type AboutBlocksFaq = {
-  __typename?: 'AboutBlocksFaq';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<AboutBlocksFaqItems>>>;
-};
-
-export type AboutBlocksWorkProcess = {
-  __typename?: 'AboutBlocksWorkProcess';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
 export type AboutBlocksContactForm = {
   __typename?: 'AboutBlocksContactForm';
-  bannerImage?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutBlocksEditorialBannerTopRight = {
+  __typename?: 'AboutBlocksEditorialBannerTopRight';
+  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type AboutBlocksEditorialBanner = {
+  __typename?: 'AboutBlocksEditorialBanner';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  topRight?: Maybe<AboutBlocksEditorialBannerTopRight>;
+  mediaId?: Maybe<Scalars['String']['output']>;
+  imageAlt?: Maybe<Scalars['String']['output']>;
+  placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type AboutBlocksEditorialHero = {
   __typename?: 'AboutBlocksEditorialHero';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
   ctaLink?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type AboutBlocksEditorialCopy = {
@@ -1073,13 +839,14 @@ export type AboutBlocksEditorialCopy = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   headingLevel?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  showStar?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type AboutBlocksEditorialAccordionItemsDetails = {
   __typename?: 'AboutBlocksEditorialAccordionItemsDetails';
   label?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type AboutBlocksEditorialAccordionItems = {
@@ -1093,20 +860,20 @@ export type AboutBlocksEditorialAccordionItems = {
 
 export type AboutBlocksEditorialAccordion = {
   __typename?: 'AboutBlocksEditorialAccordion';
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<AboutBlocksEditorialAccordionItems>>>;
 };
 
 export type AboutBlocksEditorialRowsItems = {
   __typename?: 'AboutBlocksEditorialRowsItems';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type AboutBlocksEditorialRows = {
   __typename?: 'AboutBlocksEditorialRows';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<AboutBlocksEditorialRowsItems>>>;
 };
 
@@ -1120,7 +887,7 @@ export type AboutBlocksEditorialShowcaseItems = {
   __typename?: 'AboutBlocksEditorialShowcaseItems';
   title?: Maybe<Scalars['String']['output']>;
   link?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
@@ -1130,7 +897,7 @@ export type AboutBlocksEditorialShowcase = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
@@ -1141,158 +908,101 @@ export type AboutBlocksEditorialShowcase = {
 export type AboutBlocksEditorialMission = {
   __typename?: 'AboutBlocksEditorialMission';
   label?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  content?: Maybe<Scalars['JSON']['output']>;
   statement?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
 
-export type AboutBlocks = AboutBlocksHomeHero | AboutBlocksHomeAbout | AboutBlocksAboutHero | AboutBlocksBehindName | AboutBlocksBannerImage | AboutBlocksBio | AboutBlocksAwards | AboutBlocksMission | AboutBlocksServicesHero | AboutBlocksServicesIntro | AboutBlocksServiceGroups | AboutBlocksFaq | AboutBlocksWorkProcess | AboutBlocksContactForm | AboutBlocksEditorialHero | AboutBlocksEditorialCopy | AboutBlocksEditorialAccordion | AboutBlocksEditorialRows | AboutBlocksEditorialCta | AboutBlocksEditorialShowcase | AboutBlocksEditorialMission;
+export type AboutBlocksEditorialCarouselItems = {
+  __typename?: 'AboutBlocksEditorialCarouselItems';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutBlocksEditorialCarousel = {
+  __typename?: 'AboutBlocksEditorialCarousel';
+  items?: Maybe<Array<Maybe<AboutBlocksEditorialCarouselItems>>>;
+};
+
+export type AboutBlocksEditorialInstagram = {
+  __typename?: 'AboutBlocksEditorialInstagram';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  limit?: Maybe<Scalars['Float']['output']>;
+  maxVisible?: Maybe<Scalars['Float']['output']>;
+};
+
+export type AboutBlocksEditorialGalleryImages = {
+  __typename?: 'AboutBlocksEditorialGalleryImages';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutBlocksEditorialGallery = {
+  __typename?: 'AboutBlocksEditorialGallery';
+  cols?: Maybe<Scalars['Float']['output']>;
+  images?: Maybe<Array<Maybe<AboutBlocksEditorialGalleryImages>>>;
+};
+
+export type AboutBlocks = AboutBlocksContactForm | AboutBlocksEditorialBanner | AboutBlocksEditorialHero | AboutBlocksEditorialCopy | AboutBlocksEditorialAccordion | AboutBlocksEditorialRows | AboutBlocksEditorialCta | AboutBlocksEditorialShowcase | AboutBlocksEditorialMission | AboutBlocksEditorialCarousel | AboutBlocksEditorialInstagram | AboutBlocksEditorialGallery;
 
 export type About = Node & Document & {
   __typename?: 'About';
   title: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
-  heroImage?: Maybe<Scalars['String']['output']>;
   blocks?: Maybe<Array<Maybe<AboutBlocks>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type AboutBlocksHomeHeroTopRightFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksHomeHeroTaglineFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksHomeHeroFilter = {
-  image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<AboutBlocksHomeHeroTopRightFilter>;
-  tagline?: InputMaybe<AboutBlocksHomeHeroTaglineFilter>;
-  taglineSub?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksHomeAboutFilter = {
-  image?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  ctaText?: InputMaybe<StringFilter>;
-  ctaLink?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksAboutHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksBehindNameFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  footnote?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksBannerImageFilter = {
-  image?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksBioFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksAwardsItemsFilter = {
-  year?: InputMaybe<StringFilter>;
-  project?: InputMaybe<StringFilter>;
-  award?: InputMaybe<StringFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksAwardsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<AboutBlocksAwardsItemsFilter>;
-};
-
-export type AboutBlocksMissionFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksServicesHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksServicesIntroFilter = {
-  text?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type AboutBlocksServiceGroupsGroupsItemsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksServiceGroupsGroupsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<AboutBlocksServiceGroupsGroupsItemsFilter>;
-};
-
-export type AboutBlocksServiceGroupsFilter = {
-  groups?: InputMaybe<AboutBlocksServiceGroupsGroupsFilter>;
-};
-
-export type AboutBlocksFaqItemsFilter = {
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<StringFilter>;
-};
-
-export type AboutBlocksFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<AboutBlocksFaqItemsFilter>;
-};
-
-export type AboutBlocksWorkProcessFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
 export type AboutBlocksContactFormFilter = {
-  bannerImage?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   heading?: InputMaybe<StringFilter>;
   subheading?: InputMaybe<StringFilter>;
 };
 
+export type AboutBlocksEditorialBannerTopRightFilter = {
+  lines?: InputMaybe<StringFilter>;
+};
+
+export type AboutBlocksEditorialBannerFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  topRight?: InputMaybe<AboutBlocksEditorialBannerTopRightFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
+  imageAlt?: InputMaybe<StringFilter>;
+  placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
+};
+
 export type AboutBlocksEditorialHeroFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   ctaText?: InputMaybe<StringFilter>;
   ctaLink?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
 };
 
 export type AboutBlocksEditorialCopyFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   headingLevel?: InputMaybe<StringFilter>;
-  body?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  showStar?: InputMaybe<BooleanFilter>;
 };
 
 export type AboutBlocksEditorialAccordionItemsDetailsFilter = {
   label?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type AboutBlocksEditorialAccordionItemsFilter = {
@@ -1304,18 +1014,18 @@ export type AboutBlocksEditorialAccordionItemsFilter = {
 };
 
 export type AboutBlocksEditorialAccordionFilter = {
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<AboutBlocksEditorialAccordionItemsFilter>;
 };
 
 export type AboutBlocksEditorialRowsItemsFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type AboutBlocksEditorialRowsFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<AboutBlocksEditorialRowsItemsFilter>;
 };
 
@@ -1327,7 +1037,7 @@ export type AboutBlocksEditorialCtaFilter = {
 export type AboutBlocksEditorialShowcaseItemsFilter = {
   title?: InputMaybe<StringFilter>;
   link?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
@@ -1336,7 +1046,7 @@ export type AboutBlocksEditorialShowcaseFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
   ctaText?: InputMaybe<StringFilter>;
@@ -1346,28 +1056,44 @@ export type AboutBlocksEditorialShowcaseFilter = {
 
 export type AboutBlocksEditorialMissionFilter = {
   label?: InputMaybe<StringFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
+  content?: InputMaybe<RichTextFilter>;
   statement?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
 
+export type AboutBlocksEditorialCarouselItemsFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+  caption?: InputMaybe<StringFilter>;
+};
+
+export type AboutBlocksEditorialCarouselFilter = {
+  items?: InputMaybe<AboutBlocksEditorialCarouselItemsFilter>;
+};
+
+export type AboutBlocksEditorialInstagramFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  tag?: InputMaybe<StringFilter>;
+  limit?: InputMaybe<NumberFilter>;
+  maxVisible?: InputMaybe<NumberFilter>;
+};
+
+export type AboutBlocksEditorialGalleryImagesFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type AboutBlocksEditorialGalleryFilter = {
+  cols?: InputMaybe<NumberFilter>;
+  images?: InputMaybe<AboutBlocksEditorialGalleryImagesFilter>;
+};
+
 export type AboutBlocksFilter = {
-  homeHero?: InputMaybe<AboutBlocksHomeHeroFilter>;
-  homeAbout?: InputMaybe<AboutBlocksHomeAboutFilter>;
-  aboutHero?: InputMaybe<AboutBlocksAboutHeroFilter>;
-  behindName?: InputMaybe<AboutBlocksBehindNameFilter>;
-  bannerImage?: InputMaybe<AboutBlocksBannerImageFilter>;
-  bio?: InputMaybe<AboutBlocksBioFilter>;
-  awards?: InputMaybe<AboutBlocksAwardsFilter>;
-  mission?: InputMaybe<AboutBlocksMissionFilter>;
-  servicesHero?: InputMaybe<AboutBlocksServicesHeroFilter>;
-  servicesIntro?: InputMaybe<AboutBlocksServicesIntroFilter>;
-  serviceGroups?: InputMaybe<AboutBlocksServiceGroupsFilter>;
-  faq?: InputMaybe<AboutBlocksFaqFilter>;
-  workProcess?: InputMaybe<AboutBlocksWorkProcessFilter>;
   contactForm?: InputMaybe<AboutBlocksContactFormFilter>;
+  editorialBanner?: InputMaybe<AboutBlocksEditorialBannerFilter>;
   editorialHero?: InputMaybe<AboutBlocksEditorialHeroFilter>;
   editorialCopy?: InputMaybe<AboutBlocksEditorialCopyFilter>;
   editorialAccordion?: InputMaybe<AboutBlocksEditorialAccordionFilter>;
@@ -1375,12 +1101,14 @@ export type AboutBlocksFilter = {
   editorialCta?: InputMaybe<AboutBlocksEditorialCtaFilter>;
   editorialShowcase?: InputMaybe<AboutBlocksEditorialShowcaseFilter>;
   editorialMission?: InputMaybe<AboutBlocksEditorialMissionFilter>;
+  editorialCarousel?: InputMaybe<AboutBlocksEditorialCarouselFilter>;
+  editorialInstagram?: InputMaybe<AboutBlocksEditorialInstagramFilter>;
+  editorialGallery?: InputMaybe<AboutBlocksEditorialGalleryFilter>;
 };
 
 export type AboutFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
-  heroImage?: InputMaybe<ImageFilter>;
   blocks?: InputMaybe<AboutBlocksFilter>;
 };
 
@@ -1397,147 +1125,40 @@ export type AboutConnection = Connection & {
   edges?: Maybe<Array<Maybe<AboutConnectionEdges>>>;
 };
 
-export type ServicesBlocksHomeHeroTopRight = {
-  __typename?: 'ServicesBlocksHomeHeroTopRight';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type ServicesBlocksHomeHeroTagline = {
-  __typename?: 'ServicesBlocksHomeHeroTagline';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type ServicesBlocksHomeHero = {
-  __typename?: 'ServicesBlocksHomeHero';
-  image?: Maybe<Scalars['String']['output']>;
-  topRight?: Maybe<ServicesBlocksHomeHeroTopRight>;
-  tagline?: Maybe<ServicesBlocksHomeHeroTagline>;
-  taglineSub?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksHomeAbout = {
-  __typename?: 'ServicesBlocksHomeAbout';
-  image?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  ctaText?: Maybe<Scalars['String']['output']>;
-  ctaLink?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksAboutHero = {
-  __typename?: 'ServicesBlocksAboutHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksBehindName = {
-  __typename?: 'ServicesBlocksBehindName';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  footnote?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksBannerImage = {
-  __typename?: 'ServicesBlocksBannerImage';
-  image?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksBio = {
-  __typename?: 'ServicesBlocksBio';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type ServicesBlocksAwardsItems = {
-  __typename?: 'ServicesBlocksAwardsItems';
-  year?: Maybe<Scalars['String']['output']>;
-  project?: Maybe<Scalars['String']['output']>;
-  award?: Maybe<Scalars['String']['output']>;
-  link?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksAwards = {
-  __typename?: 'ServicesBlocksAwards';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ServicesBlocksAwardsItems>>>;
-};
-
-export type ServicesBlocksMission = {
-  __typename?: 'ServicesBlocksMission';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  quote?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksServicesHero = {
-  __typename?: 'ServicesBlocksServicesHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksServicesIntro = {
-  __typename?: 'ServicesBlocksServicesIntro';
-  text?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksServiceGroupsGroupsItems = {
-  __typename?: 'ServicesBlocksServiceGroupsGroupsItems';
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksServiceGroupsGroups = {
-  __typename?: 'ServicesBlocksServiceGroupsGroups';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ServicesBlocksServiceGroupsGroupsItems>>>;
-};
-
-export type ServicesBlocksServiceGroups = {
-  __typename?: 'ServicesBlocksServiceGroups';
-  groups?: Maybe<Array<Maybe<ServicesBlocksServiceGroupsGroups>>>;
-};
-
-export type ServicesBlocksFaqItems = {
-  __typename?: 'ServicesBlocksFaqItems';
-  question?: Maybe<Scalars['String']['output']>;
-  answer?: Maybe<Scalars['String']['output']>;
-};
-
-export type ServicesBlocksFaq = {
-  __typename?: 'ServicesBlocksFaq';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ServicesBlocksFaqItems>>>;
-};
-
-export type ServicesBlocksWorkProcess = {
-  __typename?: 'ServicesBlocksWorkProcess';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
 export type ServicesBlocksContactForm = {
   __typename?: 'ServicesBlocksContactForm';
-  bannerImage?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServicesBlocksEditorialBannerTopRight = {
+  __typename?: 'ServicesBlocksEditorialBannerTopRight';
+  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type ServicesBlocksEditorialBanner = {
+  __typename?: 'ServicesBlocksEditorialBanner';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  topRight?: Maybe<ServicesBlocksEditorialBannerTopRight>;
+  mediaId?: Maybe<Scalars['String']['output']>;
+  imageAlt?: Maybe<Scalars['String']['output']>;
+  placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type ServicesBlocksEditorialHero = {
   __typename?: 'ServicesBlocksEditorialHero';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
   ctaLink?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type ServicesBlocksEditorialCopy = {
@@ -1545,13 +1166,14 @@ export type ServicesBlocksEditorialCopy = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   headingLevel?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  showStar?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type ServicesBlocksEditorialAccordionItemsDetails = {
   __typename?: 'ServicesBlocksEditorialAccordionItemsDetails';
   label?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ServicesBlocksEditorialAccordionItems = {
@@ -1565,20 +1187,20 @@ export type ServicesBlocksEditorialAccordionItems = {
 
 export type ServicesBlocksEditorialAccordion = {
   __typename?: 'ServicesBlocksEditorialAccordion';
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<ServicesBlocksEditorialAccordionItems>>>;
 };
 
 export type ServicesBlocksEditorialRowsItems = {
   __typename?: 'ServicesBlocksEditorialRowsItems';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ServicesBlocksEditorialRows = {
   __typename?: 'ServicesBlocksEditorialRows';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<ServicesBlocksEditorialRowsItems>>>;
 };
 
@@ -1592,7 +1214,7 @@ export type ServicesBlocksEditorialShowcaseItems = {
   __typename?: 'ServicesBlocksEditorialShowcaseItems';
   title?: Maybe<Scalars['String']['output']>;
   link?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
@@ -1602,7 +1224,7 @@ export type ServicesBlocksEditorialShowcase = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
@@ -1613,14 +1235,47 @@ export type ServicesBlocksEditorialShowcase = {
 export type ServicesBlocksEditorialMission = {
   __typename?: 'ServicesBlocksEditorialMission';
   label?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  content?: Maybe<Scalars['JSON']['output']>;
   statement?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
 
-export type ServicesBlocks = ServicesBlocksHomeHero | ServicesBlocksHomeAbout | ServicesBlocksAboutHero | ServicesBlocksBehindName | ServicesBlocksBannerImage | ServicesBlocksBio | ServicesBlocksAwards | ServicesBlocksMission | ServicesBlocksServicesHero | ServicesBlocksServicesIntro | ServicesBlocksServiceGroups | ServicesBlocksFaq | ServicesBlocksWorkProcess | ServicesBlocksContactForm | ServicesBlocksEditorialHero | ServicesBlocksEditorialCopy | ServicesBlocksEditorialAccordion | ServicesBlocksEditorialRows | ServicesBlocksEditorialCta | ServicesBlocksEditorialShowcase | ServicesBlocksEditorialMission;
+export type ServicesBlocksEditorialCarouselItems = {
+  __typename?: 'ServicesBlocksEditorialCarouselItems';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServicesBlocksEditorialCarousel = {
+  __typename?: 'ServicesBlocksEditorialCarousel';
+  items?: Maybe<Array<Maybe<ServicesBlocksEditorialCarouselItems>>>;
+};
+
+export type ServicesBlocksEditorialInstagram = {
+  __typename?: 'ServicesBlocksEditorialInstagram';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  limit?: Maybe<Scalars['Float']['output']>;
+  maxVisible?: Maybe<Scalars['Float']['output']>;
+};
+
+export type ServicesBlocksEditorialGalleryImages = {
+  __typename?: 'ServicesBlocksEditorialGalleryImages';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
+export type ServicesBlocksEditorialGallery = {
+  __typename?: 'ServicesBlocksEditorialGallery';
+  cols?: Maybe<Scalars['Float']['output']>;
+  images?: Maybe<Array<Maybe<ServicesBlocksEditorialGalleryImages>>>;
+};
+
+export type ServicesBlocks = ServicesBlocksContactForm | ServicesBlocksEditorialBanner | ServicesBlocksEditorialHero | ServicesBlocksEditorialCopy | ServicesBlocksEditorialAccordion | ServicesBlocksEditorialRows | ServicesBlocksEditorialCta | ServicesBlocksEditorialShowcase | ServicesBlocksEditorialMission | ServicesBlocksEditorialCarousel | ServicesBlocksEditorialInstagram | ServicesBlocksEditorialGallery;
 
 export type Services = Node & Document & {
   __typename?: 'Services';
@@ -1632,138 +1287,49 @@ export type Services = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type ServicesBlocksHomeHeroTopRightFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksHomeHeroTaglineFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksHomeHeroFilter = {
-  image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<ServicesBlocksHomeHeroTopRightFilter>;
-  tagline?: InputMaybe<ServicesBlocksHomeHeroTaglineFilter>;
-  taglineSub?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksHomeAboutFilter = {
-  image?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  ctaText?: InputMaybe<StringFilter>;
-  ctaLink?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksAboutHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksBehindNameFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  footnote?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksBannerImageFilter = {
-  image?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksBioFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksAwardsItemsFilter = {
-  year?: InputMaybe<StringFilter>;
-  project?: InputMaybe<StringFilter>;
-  award?: InputMaybe<StringFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksAwardsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<ServicesBlocksAwardsItemsFilter>;
-};
-
-export type ServicesBlocksMissionFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksServicesHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksServicesIntroFilter = {
-  text?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type ServicesBlocksServiceGroupsGroupsItemsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksServiceGroupsGroupsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<ServicesBlocksServiceGroupsGroupsItemsFilter>;
-};
-
-export type ServicesBlocksServiceGroupsFilter = {
-  groups?: InputMaybe<ServicesBlocksServiceGroupsGroupsFilter>;
-};
-
-export type ServicesBlocksFaqItemsFilter = {
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<StringFilter>;
-};
-
-export type ServicesBlocksFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<ServicesBlocksFaqItemsFilter>;
-};
-
-export type ServicesBlocksWorkProcessFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
 export type ServicesBlocksContactFormFilter = {
-  bannerImage?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   heading?: InputMaybe<StringFilter>;
   subheading?: InputMaybe<StringFilter>;
 };
 
+export type ServicesBlocksEditorialBannerTopRightFilter = {
+  lines?: InputMaybe<StringFilter>;
+};
+
+export type ServicesBlocksEditorialBannerFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  topRight?: InputMaybe<ServicesBlocksEditorialBannerTopRightFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
+  imageAlt?: InputMaybe<StringFilter>;
+  placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
+};
+
 export type ServicesBlocksEditorialHeroFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   ctaText?: InputMaybe<StringFilter>;
   ctaLink?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
 };
 
 export type ServicesBlocksEditorialCopyFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   headingLevel?: InputMaybe<StringFilter>;
-  body?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  showStar?: InputMaybe<BooleanFilter>;
 };
 
 export type ServicesBlocksEditorialAccordionItemsDetailsFilter = {
   label?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ServicesBlocksEditorialAccordionItemsFilter = {
@@ -1775,18 +1341,18 @@ export type ServicesBlocksEditorialAccordionItemsFilter = {
 };
 
 export type ServicesBlocksEditorialAccordionFilter = {
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<ServicesBlocksEditorialAccordionItemsFilter>;
 };
 
 export type ServicesBlocksEditorialRowsItemsFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ServicesBlocksEditorialRowsFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<ServicesBlocksEditorialRowsItemsFilter>;
 };
 
@@ -1798,7 +1364,7 @@ export type ServicesBlocksEditorialCtaFilter = {
 export type ServicesBlocksEditorialShowcaseItemsFilter = {
   title?: InputMaybe<StringFilter>;
   link?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
@@ -1807,7 +1373,7 @@ export type ServicesBlocksEditorialShowcaseFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
   ctaText?: InputMaybe<StringFilter>;
@@ -1817,28 +1383,44 @@ export type ServicesBlocksEditorialShowcaseFilter = {
 
 export type ServicesBlocksEditorialMissionFilter = {
   label?: InputMaybe<StringFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
+  content?: InputMaybe<RichTextFilter>;
   statement?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
 
+export type ServicesBlocksEditorialCarouselItemsFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+  caption?: InputMaybe<StringFilter>;
+};
+
+export type ServicesBlocksEditorialCarouselFilter = {
+  items?: InputMaybe<ServicesBlocksEditorialCarouselItemsFilter>;
+};
+
+export type ServicesBlocksEditorialInstagramFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  tag?: InputMaybe<StringFilter>;
+  limit?: InputMaybe<NumberFilter>;
+  maxVisible?: InputMaybe<NumberFilter>;
+};
+
+export type ServicesBlocksEditorialGalleryImagesFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type ServicesBlocksEditorialGalleryFilter = {
+  cols?: InputMaybe<NumberFilter>;
+  images?: InputMaybe<ServicesBlocksEditorialGalleryImagesFilter>;
+};
+
 export type ServicesBlocksFilter = {
-  homeHero?: InputMaybe<ServicesBlocksHomeHeroFilter>;
-  homeAbout?: InputMaybe<ServicesBlocksHomeAboutFilter>;
-  aboutHero?: InputMaybe<ServicesBlocksAboutHeroFilter>;
-  behindName?: InputMaybe<ServicesBlocksBehindNameFilter>;
-  bannerImage?: InputMaybe<ServicesBlocksBannerImageFilter>;
-  bio?: InputMaybe<ServicesBlocksBioFilter>;
-  awards?: InputMaybe<ServicesBlocksAwardsFilter>;
-  mission?: InputMaybe<ServicesBlocksMissionFilter>;
-  servicesHero?: InputMaybe<ServicesBlocksServicesHeroFilter>;
-  servicesIntro?: InputMaybe<ServicesBlocksServicesIntroFilter>;
-  serviceGroups?: InputMaybe<ServicesBlocksServiceGroupsFilter>;
-  faq?: InputMaybe<ServicesBlocksFaqFilter>;
-  workProcess?: InputMaybe<ServicesBlocksWorkProcessFilter>;
   contactForm?: InputMaybe<ServicesBlocksContactFormFilter>;
+  editorialBanner?: InputMaybe<ServicesBlocksEditorialBannerFilter>;
   editorialHero?: InputMaybe<ServicesBlocksEditorialHeroFilter>;
   editorialCopy?: InputMaybe<ServicesBlocksEditorialCopyFilter>;
   editorialAccordion?: InputMaybe<ServicesBlocksEditorialAccordionFilter>;
@@ -1846,6 +1428,9 @@ export type ServicesBlocksFilter = {
   editorialCta?: InputMaybe<ServicesBlocksEditorialCtaFilter>;
   editorialShowcase?: InputMaybe<ServicesBlocksEditorialShowcaseFilter>;
   editorialMission?: InputMaybe<ServicesBlocksEditorialMissionFilter>;
+  editorialCarousel?: InputMaybe<ServicesBlocksEditorialCarouselFilter>;
+  editorialInstagram?: InputMaybe<ServicesBlocksEditorialInstagramFilter>;
+  editorialGallery?: InputMaybe<ServicesBlocksEditorialGalleryFilter>;
 };
 
 export type ServicesFilter = {
@@ -1867,147 +1452,40 @@ export type ServicesConnection = Connection & {
   edges?: Maybe<Array<Maybe<ServicesConnectionEdges>>>;
 };
 
-export type ContactBlocksHomeHeroTopRight = {
-  __typename?: 'ContactBlocksHomeHeroTopRight';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type ContactBlocksHomeHeroTagline = {
-  __typename?: 'ContactBlocksHomeHeroTagline';
-  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type ContactBlocksHomeHero = {
-  __typename?: 'ContactBlocksHomeHero';
-  image?: Maybe<Scalars['String']['output']>;
-  topRight?: Maybe<ContactBlocksHomeHeroTopRight>;
-  tagline?: Maybe<ContactBlocksHomeHeroTagline>;
-  taglineSub?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksHomeAbout = {
-  __typename?: 'ContactBlocksHomeAbout';
-  image?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  ctaText?: Maybe<Scalars['String']['output']>;
-  ctaLink?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksAboutHero = {
-  __typename?: 'ContactBlocksAboutHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksBehindName = {
-  __typename?: 'ContactBlocksBehindName';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  footnote?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksBannerImage = {
-  __typename?: 'ContactBlocksBannerImage';
-  image?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksBio = {
-  __typename?: 'ContactBlocksBio';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type ContactBlocksAwardsItems = {
-  __typename?: 'ContactBlocksAwardsItems';
-  year?: Maybe<Scalars['String']['output']>;
-  project?: Maybe<Scalars['String']['output']>;
-  award?: Maybe<Scalars['String']['output']>;
-  link?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksAwards = {
-  __typename?: 'ContactBlocksAwards';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ContactBlocksAwardsItems>>>;
-};
-
-export type ContactBlocksMission = {
-  __typename?: 'ContactBlocksMission';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  quote?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksServicesHero = {
-  __typename?: 'ContactBlocksServicesHero';
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksServicesIntro = {
-  __typename?: 'ContactBlocksServicesIntro';
-  text?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksServiceGroupsGroupsItems = {
-  __typename?: 'ContactBlocksServiceGroupsGroupsItems';
-  title?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksServiceGroupsGroups = {
-  __typename?: 'ContactBlocksServiceGroupsGroups';
-  title?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ContactBlocksServiceGroupsGroupsItems>>>;
-};
-
-export type ContactBlocksServiceGroups = {
-  __typename?: 'ContactBlocksServiceGroups';
-  groups?: Maybe<Array<Maybe<ContactBlocksServiceGroupsGroups>>>;
-};
-
-export type ContactBlocksFaqItems = {
-  __typename?: 'ContactBlocksFaqItems';
-  question?: Maybe<Scalars['String']['output']>;
-  answer?: Maybe<Scalars['String']['output']>;
-};
-
-export type ContactBlocksFaq = {
-  __typename?: 'ContactBlocksFaq';
-  title?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-  items?: Maybe<Array<Maybe<ContactBlocksFaqItems>>>;
-};
-
-export type ContactBlocksWorkProcess = {
-  __typename?: 'ContactBlocksWorkProcess';
-  title?: Maybe<Scalars['String']['output']>;
-  p1?: Maybe<Scalars['String']['output']>;
-  p2?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
-};
-
 export type ContactBlocksContactForm = {
   __typename?: 'ContactBlocksContactForm';
-  bannerImage?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   heading?: Maybe<Scalars['String']['output']>;
   subheading?: Maybe<Scalars['String']['output']>;
+};
+
+export type ContactBlocksEditorialBannerTopRight = {
+  __typename?: 'ContactBlocksEditorialBannerTopRight';
+  lines?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type ContactBlocksEditorialBanner = {
+  __typename?: 'ContactBlocksEditorialBanner';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  topRight?: Maybe<ContactBlocksEditorialBannerTopRight>;
+  mediaId?: Maybe<Scalars['String']['output']>;
+  imageAlt?: Maybe<Scalars['String']['output']>;
+  placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type ContactBlocksEditorialHero = {
   __typename?: 'ContactBlocksEditorialHero';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
   ctaLink?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
+  objectFit?: Maybe<Scalars['String']['output']>;
 };
 
 export type ContactBlocksEditorialCopy = {
@@ -2015,13 +1493,14 @@ export type ContactBlocksEditorialCopy = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   headingLevel?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  showStar?: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type ContactBlocksEditorialAccordionItemsDetails = {
   __typename?: 'ContactBlocksEditorialAccordionItemsDetails';
   label?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ContactBlocksEditorialAccordionItems = {
@@ -2035,20 +1514,20 @@ export type ContactBlocksEditorialAccordionItems = {
 
 export type ContactBlocksEditorialAccordion = {
   __typename?: 'ContactBlocksEditorialAccordion';
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<ContactBlocksEditorialAccordionItems>>>;
 };
 
 export type ContactBlocksEditorialRowsItems = {
   __typename?: 'ContactBlocksEditorialRowsItems';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ContactBlocksEditorialRows = {
   __typename?: 'ContactBlocksEditorialRows';
   title?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['JSON']['output']>;
   items?: Maybe<Array<Maybe<ContactBlocksEditorialRowsItems>>>;
 };
 
@@ -2062,7 +1541,7 @@ export type ContactBlocksEditorialShowcaseItems = {
   __typename?: 'ContactBlocksEditorialShowcaseItems';
   title?: Maybe<Scalars['String']['output']>;
   link?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
@@ -2072,7 +1551,7 @@ export type ContactBlocksEditorialShowcase = {
   eyebrow?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   mediaType?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
   ctaText?: Maybe<Scalars['String']['output']>;
@@ -2083,14 +1562,47 @@ export type ContactBlocksEditorialShowcase = {
 export type ContactBlocksEditorialMission = {
   __typename?: 'ContactBlocksEditorialMission';
   label?: Maybe<Scalars['String']['output']>;
-  paragraphs?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  content?: Maybe<Scalars['JSON']['output']>;
   statement?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   imageAlt?: Maybe<Scalars['String']['output']>;
   placeholderLabel?: Maybe<Scalars['String']['output']>;
 };
 
-export type ContactBlocks = ContactBlocksHomeHero | ContactBlocksHomeAbout | ContactBlocksAboutHero | ContactBlocksBehindName | ContactBlocksBannerImage | ContactBlocksBio | ContactBlocksAwards | ContactBlocksMission | ContactBlocksServicesHero | ContactBlocksServicesIntro | ContactBlocksServiceGroups | ContactBlocksFaq | ContactBlocksWorkProcess | ContactBlocksContactForm | ContactBlocksEditorialHero | ContactBlocksEditorialCopy | ContactBlocksEditorialAccordion | ContactBlocksEditorialRows | ContactBlocksEditorialCta | ContactBlocksEditorialShowcase | ContactBlocksEditorialMission;
+export type ContactBlocksEditorialCarouselItems = {
+  __typename?: 'ContactBlocksEditorialCarouselItems';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+};
+
+export type ContactBlocksEditorialCarousel = {
+  __typename?: 'ContactBlocksEditorialCarousel';
+  items?: Maybe<Array<Maybe<ContactBlocksEditorialCarouselItems>>>;
+};
+
+export type ContactBlocksEditorialInstagram = {
+  __typename?: 'ContactBlocksEditorialInstagram';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  limit?: Maybe<Scalars['Float']['output']>;
+  maxVisible?: Maybe<Scalars['Float']['output']>;
+};
+
+export type ContactBlocksEditorialGalleryImages = {
+  __typename?: 'ContactBlocksEditorialGalleryImages';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
+export type ContactBlocksEditorialGallery = {
+  __typename?: 'ContactBlocksEditorialGallery';
+  cols?: Maybe<Scalars['Float']['output']>;
+  images?: Maybe<Array<Maybe<ContactBlocksEditorialGalleryImages>>>;
+};
+
+export type ContactBlocks = ContactBlocksContactForm | ContactBlocksEditorialBanner | ContactBlocksEditorialHero | ContactBlocksEditorialCopy | ContactBlocksEditorialAccordion | ContactBlocksEditorialRows | ContactBlocksEditorialCta | ContactBlocksEditorialShowcase | ContactBlocksEditorialMission | ContactBlocksEditorialCarousel | ContactBlocksEditorialInstagram | ContactBlocksEditorialGallery;
 
 export type Contact = Node & Document & {
   __typename?: 'Contact';
@@ -2102,138 +1614,49 @@ export type Contact = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
-export type ContactBlocksHomeHeroTopRightFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksHomeHeroTaglineFilter = {
-  lines?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksHomeHeroFilter = {
-  image?: InputMaybe<ImageFilter>;
-  topRight?: InputMaybe<ContactBlocksHomeHeroTopRightFilter>;
-  tagline?: InputMaybe<ContactBlocksHomeHeroTaglineFilter>;
-  taglineSub?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksHomeAboutFilter = {
-  image?: InputMaybe<ImageFilter>;
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-  ctaText?: InputMaybe<StringFilter>;
-  ctaLink?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksAboutHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksBehindNameFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  footnote?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksBannerImageFilter = {
-  image?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksBioFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksAwardsItemsFilter = {
-  year?: InputMaybe<StringFilter>;
-  project?: InputMaybe<StringFilter>;
-  award?: InputMaybe<StringFilter>;
-  link?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksAwardsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<ContactBlocksAwardsItemsFilter>;
-};
-
-export type ContactBlocksMissionFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  quote?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksServicesHeroFilter = {
-  title?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksServicesIntroFilter = {
-  text?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
-export type ContactBlocksServiceGroupsGroupsItemsFilter = {
-  title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksServiceGroupsGroupsFilter = {
-  title?: InputMaybe<StringFilter>;
-  items?: InputMaybe<ContactBlocksServiceGroupsGroupsItemsFilter>;
-};
-
-export type ContactBlocksServiceGroupsFilter = {
-  groups?: InputMaybe<ContactBlocksServiceGroupsGroupsFilter>;
-};
-
-export type ContactBlocksFaqItemsFilter = {
-  question?: InputMaybe<StringFilter>;
-  answer?: InputMaybe<StringFilter>;
-};
-
-export type ContactBlocksFaqFilter = {
-  title?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-  items?: InputMaybe<ContactBlocksFaqItemsFilter>;
-};
-
-export type ContactBlocksWorkProcessFilter = {
-  title?: InputMaybe<StringFilter>;
-  p1?: InputMaybe<StringFilter>;
-  p2?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
-};
-
 export type ContactBlocksContactFormFilter = {
-  bannerImage?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   heading?: InputMaybe<StringFilter>;
   subheading?: InputMaybe<StringFilter>;
 };
 
+export type ContactBlocksEditorialBannerTopRightFilter = {
+  lines?: InputMaybe<StringFilter>;
+};
+
+export type ContactBlocksEditorialBannerFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  topRight?: InputMaybe<ContactBlocksEditorialBannerTopRightFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
+  imageAlt?: InputMaybe<StringFilter>;
+  placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
+};
+
 export type ContactBlocksEditorialHeroFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   ctaText?: InputMaybe<StringFilter>;
   ctaLink?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
+  objectFit?: InputMaybe<StringFilter>;
 };
 
 export type ContactBlocksEditorialCopyFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   headingLevel?: InputMaybe<StringFilter>;
-  body?: InputMaybe<StringFilter>;
+  body?: InputMaybe<RichTextFilter>;
+  showStar?: InputMaybe<BooleanFilter>;
 };
 
 export type ContactBlocksEditorialAccordionItemsDetailsFilter = {
   label?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ContactBlocksEditorialAccordionItemsFilter = {
@@ -2245,18 +1668,18 @@ export type ContactBlocksEditorialAccordionItemsFilter = {
 };
 
 export type ContactBlocksEditorialAccordionFilter = {
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<ContactBlocksEditorialAccordionItemsFilter>;
 };
 
 export type ContactBlocksEditorialRowsItemsFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ContactBlocksEditorialRowsFilter = {
   title?: InputMaybe<StringFilter>;
-  intro?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<RichTextFilter>;
   items?: InputMaybe<ContactBlocksEditorialRowsItemsFilter>;
 };
 
@@ -2268,7 +1691,7 @@ export type ContactBlocksEditorialCtaFilter = {
 export type ContactBlocksEditorialShowcaseItemsFilter = {
   title?: InputMaybe<StringFilter>;
   link?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
@@ -2277,7 +1700,7 @@ export type ContactBlocksEditorialShowcaseFilter = {
   eyebrow?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   mediaType?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
   ctaText?: InputMaybe<StringFilter>;
@@ -2287,28 +1710,44 @@ export type ContactBlocksEditorialShowcaseFilter = {
 
 export type ContactBlocksEditorialMissionFilter = {
   label?: InputMaybe<StringFilter>;
-  paragraphs?: InputMaybe<StringFilter>;
+  content?: InputMaybe<RichTextFilter>;
   statement?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   imageAlt?: InputMaybe<StringFilter>;
   placeholderLabel?: InputMaybe<StringFilter>;
 };
 
+export type ContactBlocksEditorialCarouselItemsFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+  caption?: InputMaybe<StringFilter>;
+};
+
+export type ContactBlocksEditorialCarouselFilter = {
+  items?: InputMaybe<ContactBlocksEditorialCarouselItemsFilter>;
+};
+
+export type ContactBlocksEditorialInstagramFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  tag?: InputMaybe<StringFilter>;
+  limit?: InputMaybe<NumberFilter>;
+  maxVisible?: InputMaybe<NumberFilter>;
+};
+
+export type ContactBlocksEditorialGalleryImagesFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type ContactBlocksEditorialGalleryFilter = {
+  cols?: InputMaybe<NumberFilter>;
+  images?: InputMaybe<ContactBlocksEditorialGalleryImagesFilter>;
+};
+
 export type ContactBlocksFilter = {
-  homeHero?: InputMaybe<ContactBlocksHomeHeroFilter>;
-  homeAbout?: InputMaybe<ContactBlocksHomeAboutFilter>;
-  aboutHero?: InputMaybe<ContactBlocksAboutHeroFilter>;
-  behindName?: InputMaybe<ContactBlocksBehindNameFilter>;
-  bannerImage?: InputMaybe<ContactBlocksBannerImageFilter>;
-  bio?: InputMaybe<ContactBlocksBioFilter>;
-  awards?: InputMaybe<ContactBlocksAwardsFilter>;
-  mission?: InputMaybe<ContactBlocksMissionFilter>;
-  servicesHero?: InputMaybe<ContactBlocksServicesHeroFilter>;
-  servicesIntro?: InputMaybe<ContactBlocksServicesIntroFilter>;
-  serviceGroups?: InputMaybe<ContactBlocksServiceGroupsFilter>;
-  faq?: InputMaybe<ContactBlocksFaqFilter>;
-  workProcess?: InputMaybe<ContactBlocksWorkProcessFilter>;
   contactForm?: InputMaybe<ContactBlocksContactFormFilter>;
+  editorialBanner?: InputMaybe<ContactBlocksEditorialBannerFilter>;
   editorialHero?: InputMaybe<ContactBlocksEditorialHeroFilter>;
   editorialCopy?: InputMaybe<ContactBlocksEditorialCopyFilter>;
   editorialAccordion?: InputMaybe<ContactBlocksEditorialAccordionFilter>;
@@ -2316,6 +1755,9 @@ export type ContactBlocksFilter = {
   editorialCta?: InputMaybe<ContactBlocksEditorialCtaFilter>;
   editorialShowcase?: InputMaybe<ContactBlocksEditorialShowcaseFilter>;
   editorialMission?: InputMaybe<ContactBlocksEditorialMissionFilter>;
+  editorialCarousel?: InputMaybe<ContactBlocksEditorialCarouselFilter>;
+  editorialInstagram?: InputMaybe<ContactBlocksEditorialInstagramFilter>;
+  editorialGallery?: InputMaybe<ContactBlocksEditorialGalleryFilter>;
 };
 
 export type ContactFilter = {
@@ -2356,12 +1798,6 @@ export type DatetimeFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 export type LegalFilter = {
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
@@ -2384,7 +1820,7 @@ export type LegalConnection = Connection & {
 
 export type ProjectsBlocksProjectBanner = {
   __typename?: 'ProjectsBlocksProjectBanner';
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   alt?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2392,7 +1828,7 @@ export type ProjectsBlocksProjectDetails = {
   __typename?: 'ProjectsBlocksProjectDetails';
   title?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
-  image?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   services?: Maybe<Scalars['String']['output']>;
   servicesLabel?: Maybe<Scalars['String']['output']>;
   category?: Maybe<Scalars['String']['output']>;
@@ -2403,68 +1839,22 @@ export type ProjectsBlocksProjectDetails = {
   locationLabel?: Maybe<Scalars['String']['output']>;
 };
 
-export type ProjectsBlocksProjectBriefGalleryImages = {
-  __typename?: 'ProjectsBlocksProjectBriefGalleryImages';
-  src?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProjectsBlocksProjectBriefGallery = {
-  __typename?: 'ProjectsBlocksProjectBriefGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<ProjectsBlocksProjectBriefGalleryImages>>>;
-};
-
 export type ProjectsBlocksProjectBrief = {
   __typename?: 'ProjectsBlocksProjectBrief';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  gallery?: Maybe<ProjectsBlocksProjectBriefGallery>;
-};
-
-export type ProjectsBlocksProjectConceptGalleryImages = {
-  __typename?: 'ProjectsBlocksProjectConceptGalleryImages';
-  src?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProjectsBlocksProjectConceptGallery = {
-  __typename?: 'ProjectsBlocksProjectConceptGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<ProjectsBlocksProjectConceptGalleryImages>>>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ProjectsBlocksProjectConcept = {
   __typename?: 'ProjectsBlocksProjectConcept';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  gallery?: Maybe<ProjectsBlocksProjectConceptGallery>;
-};
-
-export type ProjectsBlocksProjectStrategyCarousel = {
-  __typename?: 'ProjectsBlocksProjectStrategyCarousel';
-  src?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProjectsBlocksProjectStrategyGalleryImages = {
-  __typename?: 'ProjectsBlocksProjectStrategyGalleryImages';
-  src?: Maybe<Scalars['String']['output']>;
-  alt?: Maybe<Scalars['String']['output']>;
-};
-
-export type ProjectsBlocksProjectStrategyGallery = {
-  __typename?: 'ProjectsBlocksProjectStrategyGallery';
-  cols?: Maybe<Scalars['Float']['output']>;
-  images?: Maybe<Array<Maybe<ProjectsBlocksProjectStrategyGalleryImages>>>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ProjectsBlocksProjectStrategy = {
   __typename?: 'ProjectsBlocksProjectStrategy';
   title?: Maybe<Scalars['String']['output']>;
-  text?: Maybe<Scalars['String']['output']>;
-  carousel?: Maybe<Array<Maybe<ProjectsBlocksProjectStrategyCarousel>>>;
-  gallery?: Maybe<ProjectsBlocksProjectStrategyGallery>;
+  text?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ProjectsBlocksProjectCollaboratorsList = {
@@ -2481,17 +1871,44 @@ export type ProjectsBlocksProjectCollaborators = {
 
 export type ProjectsBlocksProjectFinalImage = {
   __typename?: 'ProjectsBlocksProjectFinalImage';
-  src?: Maybe<Scalars['String']['output']>;
+  mediaId?: Maybe<Scalars['String']['output']>;
   alt?: Maybe<Scalars['String']['output']>;
 };
 
-export type ProjectsBlocksBannerImage = {
-  __typename?: 'ProjectsBlocksBannerImage';
-  image?: Maybe<Scalars['String']['output']>;
+export type ProjectsBlocksEditorialGalleryImages = {
+  __typename?: 'ProjectsBlocksEditorialGalleryImages';
+  mediaId?: Maybe<Scalars['String']['output']>;
   alt?: Maybe<Scalars['String']['output']>;
 };
 
-export type ProjectsBlocks = ProjectsBlocksProjectBanner | ProjectsBlocksProjectDetails | ProjectsBlocksProjectBrief | ProjectsBlocksProjectConcept | ProjectsBlocksProjectStrategy | ProjectsBlocksProjectCollaborators | ProjectsBlocksProjectFinalImage | ProjectsBlocksBannerImage;
+export type ProjectsBlocksEditorialGallery = {
+  __typename?: 'ProjectsBlocksEditorialGallery';
+  cols?: Maybe<Scalars['Float']['output']>;
+  images?: Maybe<Array<Maybe<ProjectsBlocksEditorialGalleryImages>>>;
+};
+
+export type ProjectsBlocksEditorialCarouselItems = {
+  __typename?: 'ProjectsBlocksEditorialCarouselItems';
+  mediaId?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+};
+
+export type ProjectsBlocksEditorialCarousel = {
+  __typename?: 'ProjectsBlocksEditorialCarousel';
+  items?: Maybe<Array<Maybe<ProjectsBlocksEditorialCarouselItems>>>;
+};
+
+export type ProjectsBlocksEditorialInstagram = {
+  __typename?: 'ProjectsBlocksEditorialInstagram';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['JSON']['output']>;
+  tag?: Maybe<Scalars['String']['output']>;
+  limit?: Maybe<Scalars['Float']['output']>;
+  maxVisible?: Maybe<Scalars['Float']['output']>;
+};
+
+export type ProjectsBlocks = ProjectsBlocksProjectBanner | ProjectsBlocksProjectDetails | ProjectsBlocksProjectBrief | ProjectsBlocksProjectConcept | ProjectsBlocksProjectStrategy | ProjectsBlocksProjectCollaborators | ProjectsBlocksProjectFinalImage | ProjectsBlocksEditorialGallery | ProjectsBlocksEditorialCarousel | ProjectsBlocksEditorialInstagram;
 
 export type Projects = Node & Document & {
   __typename?: 'Projects';
@@ -2511,14 +1928,14 @@ export type Projects = Node & Document & {
 };
 
 export type ProjectsBlocksProjectBannerFilter = {
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
 export type ProjectsBlocksProjectDetailsFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
-  image?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   services?: InputMaybe<StringFilter>;
   servicesLabel?: InputMaybe<StringFilter>;
   category?: InputMaybe<StringFilter>;
@@ -2529,68 +1946,19 @@ export type ProjectsBlocksProjectDetailsFilter = {
   locationLabel?: InputMaybe<StringFilter>;
 };
 
-export type NumberFilter = {
-  lt?: InputMaybe<Scalars['Float']['input']>;
-  lte?: InputMaybe<Scalars['Float']['input']>;
-  gte?: InputMaybe<Scalars['Float']['input']>;
-  gt?: InputMaybe<Scalars['Float']['input']>;
-  eq?: InputMaybe<Scalars['Float']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
-};
-
-export type ProjectsBlocksProjectBriefGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type ProjectsBlocksProjectBriefGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<ProjectsBlocksProjectBriefGalleryImagesFilter>;
-};
-
 export type ProjectsBlocksProjectBriefFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<ProjectsBlocksProjectBriefGalleryFilter>;
-};
-
-export type ProjectsBlocksProjectConceptGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type ProjectsBlocksProjectConceptGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<ProjectsBlocksProjectConceptGalleryImagesFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ProjectsBlocksProjectConceptFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  gallery?: InputMaybe<ProjectsBlocksProjectConceptGalleryFilter>;
-};
-
-export type ProjectsBlocksProjectStrategyCarouselFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type ProjectsBlocksProjectStrategyGalleryImagesFilter = {
-  src?: InputMaybe<ImageFilter>;
-  alt?: InputMaybe<StringFilter>;
-};
-
-export type ProjectsBlocksProjectStrategyGalleryFilter = {
-  cols?: InputMaybe<NumberFilter>;
-  images?: InputMaybe<ProjectsBlocksProjectStrategyGalleryImagesFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ProjectsBlocksProjectStrategyFilter = {
   title?: InputMaybe<StringFilter>;
-  text?: InputMaybe<StringFilter>;
-  carousel?: InputMaybe<ProjectsBlocksProjectStrategyCarouselFilter>;
-  gallery?: InputMaybe<ProjectsBlocksProjectStrategyGalleryFilter>;
+  text?: InputMaybe<RichTextFilter>;
 };
 
 export type ProjectsBlocksProjectCollaboratorsListFilter = {
@@ -2604,13 +1972,36 @@ export type ProjectsBlocksProjectCollaboratorsFilter = {
 };
 
 export type ProjectsBlocksProjectFinalImageFilter = {
-  src?: InputMaybe<ImageFilter>;
+  mediaId?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
 };
 
-export type ProjectsBlocksBannerImageFilter = {
-  image?: InputMaybe<ImageFilter>;
+export type ProjectsBlocksEditorialGalleryImagesFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
   alt?: InputMaybe<StringFilter>;
+};
+
+export type ProjectsBlocksEditorialGalleryFilter = {
+  cols?: InputMaybe<NumberFilter>;
+  images?: InputMaybe<ProjectsBlocksEditorialGalleryImagesFilter>;
+};
+
+export type ProjectsBlocksEditorialCarouselItemsFilter = {
+  mediaId?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+  caption?: InputMaybe<StringFilter>;
+};
+
+export type ProjectsBlocksEditorialCarouselFilter = {
+  items?: InputMaybe<ProjectsBlocksEditorialCarouselItemsFilter>;
+};
+
+export type ProjectsBlocksEditorialInstagramFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
+  tag?: InputMaybe<StringFilter>;
+  limit?: InputMaybe<NumberFilter>;
+  maxVisible?: InputMaybe<NumberFilter>;
 };
 
 export type ProjectsBlocksFilter = {
@@ -2621,7 +2012,9 @@ export type ProjectsBlocksFilter = {
   projectStrategy?: InputMaybe<ProjectsBlocksProjectStrategyFilter>;
   projectCollaborators?: InputMaybe<ProjectsBlocksProjectCollaboratorsFilter>;
   projectFinalImage?: InputMaybe<ProjectsBlocksProjectFinalImageFilter>;
-  bannerImage?: InputMaybe<ProjectsBlocksBannerImageFilter>;
+  editorialGallery?: InputMaybe<ProjectsBlocksEditorialGalleryFilter>;
+  editorialCarousel?: InputMaybe<ProjectsBlocksEditorialCarouselFilter>;
+  editorialInstagram?: InputMaybe<ProjectsBlocksEditorialInstagramFilter>;
 };
 
 export type ProjectsFilter = {
@@ -3066,138 +2459,49 @@ export type SiteConfigMutation = {
   seo?: InputMaybe<SiteConfigSeoMutation>;
 };
 
-export type HomeBlocksHomeHeroTopRightMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type HomeBlocksHomeHeroTaglineMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type HomeBlocksHomeHeroMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<HomeBlocksHomeHeroTopRightMutation>;
-  tagline?: InputMaybe<HomeBlocksHomeHeroTaglineMutation>;
-  taglineSub?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksHomeAboutMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  ctaText?: InputMaybe<Scalars['String']['input']>;
-  ctaLink?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksAboutHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksBehindNameMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  footnote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksBannerImageMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksBioMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type HomeBlocksAwardsItemsMutation = {
-  year?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<Scalars['String']['input']>;
-  award?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksAwardsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<HomeBlocksAwardsItemsMutation>>>;
-};
-
-export type HomeBlocksMissionMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksServicesHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksServicesIntroMutation = {
-  text?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksServiceGroupsGroupsItemsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksServiceGroupsGroupsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<HomeBlocksServiceGroupsGroupsItemsMutation>>>;
-};
-
-export type HomeBlocksServiceGroupsMutation = {
-  groups?: InputMaybe<Array<InputMaybe<HomeBlocksServiceGroupsGroupsMutation>>>;
-};
-
-export type HomeBlocksFaqItemsMutation = {
-  question?: InputMaybe<Scalars['String']['input']>;
-  answer?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type HomeBlocksFaqMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<HomeBlocksFaqItemsMutation>>>;
-};
-
-export type HomeBlocksWorkProcessMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type HomeBlocksContactFormMutation = {
-  bannerImage?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   subheading?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type HomeBlocksEditorialBannerTopRightMutation = {
+  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HomeBlocksEditorialBannerMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  topRight?: InputMaybe<HomeBlocksEditorialBannerTopRightMutation>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  imageAlt?: InputMaybe<Scalars['String']['input']>;
+  placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type HomeBlocksEditorialHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
   ctaLink?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type HomeBlocksEditorialCopyMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   headingLevel?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+  showStar?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type HomeBlocksEditorialAccordionItemsDetailsMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type HomeBlocksEditorialAccordionItemsMutation = {
@@ -3209,18 +2513,18 @@ export type HomeBlocksEditorialAccordionItemsMutation = {
 };
 
 export type HomeBlocksEditorialAccordionMutation = {
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<HomeBlocksEditorialAccordionItemsMutation>>>;
 };
 
 export type HomeBlocksEditorialRowsItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type HomeBlocksEditorialRowsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<HomeBlocksEditorialRowsItemsMutation>>>;
 };
 
@@ -3232,7 +2536,7 @@ export type HomeBlocksEditorialCtaMutation = {
 export type HomeBlocksEditorialShowcaseItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3241,7 +2545,7 @@ export type HomeBlocksEditorialShowcaseMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
@@ -3251,28 +2555,44 @@ export type HomeBlocksEditorialShowcaseMutation = {
 
 export type HomeBlocksEditorialMissionMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
   statement?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type HomeBlocksEditorialCarouselItemsMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeBlocksEditorialCarouselMutation = {
+  items?: InputMaybe<Array<InputMaybe<HomeBlocksEditorialCarouselItemsMutation>>>;
+};
+
+export type HomeBlocksEditorialInstagramMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  maxVisible?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type HomeBlocksEditorialGalleryImagesMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeBlocksEditorialGalleryMutation = {
+  cols?: InputMaybe<Scalars['Float']['input']>;
+  images?: InputMaybe<Array<InputMaybe<HomeBlocksEditorialGalleryImagesMutation>>>;
+};
+
 export type HomeBlocksMutation = {
-  homeHero?: InputMaybe<HomeBlocksHomeHeroMutation>;
-  homeAbout?: InputMaybe<HomeBlocksHomeAboutMutation>;
-  aboutHero?: InputMaybe<HomeBlocksAboutHeroMutation>;
-  behindName?: InputMaybe<HomeBlocksBehindNameMutation>;
-  bannerImage?: InputMaybe<HomeBlocksBannerImageMutation>;
-  bio?: InputMaybe<HomeBlocksBioMutation>;
-  awards?: InputMaybe<HomeBlocksAwardsMutation>;
-  mission?: InputMaybe<HomeBlocksMissionMutation>;
-  servicesHero?: InputMaybe<HomeBlocksServicesHeroMutation>;
-  servicesIntro?: InputMaybe<HomeBlocksServicesIntroMutation>;
-  serviceGroups?: InputMaybe<HomeBlocksServiceGroupsMutation>;
-  faq?: InputMaybe<HomeBlocksFaqMutation>;
-  workProcess?: InputMaybe<HomeBlocksWorkProcessMutation>;
   contactForm?: InputMaybe<HomeBlocksContactFormMutation>;
+  editorialBanner?: InputMaybe<HomeBlocksEditorialBannerMutation>;
   editorialHero?: InputMaybe<HomeBlocksEditorialHeroMutation>;
   editorialCopy?: InputMaybe<HomeBlocksEditorialCopyMutation>;
   editorialAccordion?: InputMaybe<HomeBlocksEditorialAccordionMutation>;
@@ -3280,6 +2600,9 @@ export type HomeBlocksMutation = {
   editorialCta?: InputMaybe<HomeBlocksEditorialCtaMutation>;
   editorialShowcase?: InputMaybe<HomeBlocksEditorialShowcaseMutation>;
   editorialMission?: InputMaybe<HomeBlocksEditorialMissionMutation>;
+  editorialCarousel?: InputMaybe<HomeBlocksEditorialCarouselMutation>;
+  editorialInstagram?: InputMaybe<HomeBlocksEditorialInstagramMutation>;
+  editorialGallery?: InputMaybe<HomeBlocksEditorialGalleryMutation>;
 };
 
 export type HomeMutation = {
@@ -3289,138 +2612,49 @@ export type HomeMutation = {
   blocks?: InputMaybe<Array<InputMaybe<HomeBlocksMutation>>>;
 };
 
-export type AboutBlocksHomeHeroTopRightMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type AboutBlocksHomeHeroTaglineMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type AboutBlocksHomeHeroMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<AboutBlocksHomeHeroTopRightMutation>;
-  tagline?: InputMaybe<AboutBlocksHomeHeroTaglineMutation>;
-  taglineSub?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksHomeAboutMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  ctaText?: InputMaybe<Scalars['String']['input']>;
-  ctaLink?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksAboutHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksBehindNameMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  footnote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksBannerImageMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksBioMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type AboutBlocksAwardsItemsMutation = {
-  year?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<Scalars['String']['input']>;
-  award?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksAwardsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<AboutBlocksAwardsItemsMutation>>>;
-};
-
-export type AboutBlocksMissionMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksServicesHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksServicesIntroMutation = {
-  text?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksServiceGroupsGroupsItemsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksServiceGroupsGroupsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<AboutBlocksServiceGroupsGroupsItemsMutation>>>;
-};
-
-export type AboutBlocksServiceGroupsMutation = {
-  groups?: InputMaybe<Array<InputMaybe<AboutBlocksServiceGroupsGroupsMutation>>>;
-};
-
-export type AboutBlocksFaqItemsMutation = {
-  question?: InputMaybe<Scalars['String']['input']>;
-  answer?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type AboutBlocksFaqMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<AboutBlocksFaqItemsMutation>>>;
-};
-
-export type AboutBlocksWorkProcessMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type AboutBlocksContactFormMutation = {
-  bannerImage?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   subheading?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AboutBlocksEditorialBannerTopRightMutation = {
+  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type AboutBlocksEditorialBannerMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  topRight?: InputMaybe<AboutBlocksEditorialBannerTopRightMutation>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  imageAlt?: InputMaybe<Scalars['String']['input']>;
+  placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type AboutBlocksEditorialHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
   ctaLink?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type AboutBlocksEditorialCopyMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   headingLevel?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+  showStar?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type AboutBlocksEditorialAccordionItemsDetailsMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type AboutBlocksEditorialAccordionItemsMutation = {
@@ -3432,18 +2666,18 @@ export type AboutBlocksEditorialAccordionItemsMutation = {
 };
 
 export type AboutBlocksEditorialAccordionMutation = {
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<AboutBlocksEditorialAccordionItemsMutation>>>;
 };
 
 export type AboutBlocksEditorialRowsItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type AboutBlocksEditorialRowsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<AboutBlocksEditorialRowsItemsMutation>>>;
 };
 
@@ -3455,7 +2689,7 @@ export type AboutBlocksEditorialCtaMutation = {
 export type AboutBlocksEditorialShowcaseItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3464,7 +2698,7 @@ export type AboutBlocksEditorialShowcaseMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
@@ -3474,28 +2708,44 @@ export type AboutBlocksEditorialShowcaseMutation = {
 
 export type AboutBlocksEditorialMissionMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
   statement?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AboutBlocksEditorialCarouselItemsMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutBlocksEditorialCarouselMutation = {
+  items?: InputMaybe<Array<InputMaybe<AboutBlocksEditorialCarouselItemsMutation>>>;
+};
+
+export type AboutBlocksEditorialInstagramMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  maxVisible?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type AboutBlocksEditorialGalleryImagesMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutBlocksEditorialGalleryMutation = {
+  cols?: InputMaybe<Scalars['Float']['input']>;
+  images?: InputMaybe<Array<InputMaybe<AboutBlocksEditorialGalleryImagesMutation>>>;
+};
+
 export type AboutBlocksMutation = {
-  homeHero?: InputMaybe<AboutBlocksHomeHeroMutation>;
-  homeAbout?: InputMaybe<AboutBlocksHomeAboutMutation>;
-  aboutHero?: InputMaybe<AboutBlocksAboutHeroMutation>;
-  behindName?: InputMaybe<AboutBlocksBehindNameMutation>;
-  bannerImage?: InputMaybe<AboutBlocksBannerImageMutation>;
-  bio?: InputMaybe<AboutBlocksBioMutation>;
-  awards?: InputMaybe<AboutBlocksAwardsMutation>;
-  mission?: InputMaybe<AboutBlocksMissionMutation>;
-  servicesHero?: InputMaybe<AboutBlocksServicesHeroMutation>;
-  servicesIntro?: InputMaybe<AboutBlocksServicesIntroMutation>;
-  serviceGroups?: InputMaybe<AboutBlocksServiceGroupsMutation>;
-  faq?: InputMaybe<AboutBlocksFaqMutation>;
-  workProcess?: InputMaybe<AboutBlocksWorkProcessMutation>;
   contactForm?: InputMaybe<AboutBlocksContactFormMutation>;
+  editorialBanner?: InputMaybe<AboutBlocksEditorialBannerMutation>;
   editorialHero?: InputMaybe<AboutBlocksEditorialHeroMutation>;
   editorialCopy?: InputMaybe<AboutBlocksEditorialCopyMutation>;
   editorialAccordion?: InputMaybe<AboutBlocksEditorialAccordionMutation>;
@@ -3503,147 +2753,60 @@ export type AboutBlocksMutation = {
   editorialCta?: InputMaybe<AboutBlocksEditorialCtaMutation>;
   editorialShowcase?: InputMaybe<AboutBlocksEditorialShowcaseMutation>;
   editorialMission?: InputMaybe<AboutBlocksEditorialMissionMutation>;
+  editorialCarousel?: InputMaybe<AboutBlocksEditorialCarouselMutation>;
+  editorialInstagram?: InputMaybe<AboutBlocksEditorialInstagramMutation>;
+  editorialGallery?: InputMaybe<AboutBlocksEditorialGalleryMutation>;
 };
 
 export type AboutMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  heroImage?: InputMaybe<Scalars['String']['input']>;
   blocks?: InputMaybe<Array<InputMaybe<AboutBlocksMutation>>>;
 };
 
-export type ServicesBlocksHomeHeroTopRightMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ServicesBlocksHomeHeroTaglineMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ServicesBlocksHomeHeroMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<ServicesBlocksHomeHeroTopRightMutation>;
-  tagline?: InputMaybe<ServicesBlocksHomeHeroTaglineMutation>;
-  taglineSub?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksHomeAboutMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  ctaText?: InputMaybe<Scalars['String']['input']>;
-  ctaLink?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksAboutHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksBehindNameMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  footnote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksBannerImageMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksBioMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ServicesBlocksAwardsItemsMutation = {
-  year?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<Scalars['String']['input']>;
-  award?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksAwardsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<ServicesBlocksAwardsItemsMutation>>>;
-};
-
-export type ServicesBlocksMissionMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksServicesHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksServicesIntroMutation = {
-  text?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksServiceGroupsGroupsItemsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksServiceGroupsGroupsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<ServicesBlocksServiceGroupsGroupsItemsMutation>>>;
-};
-
-export type ServicesBlocksServiceGroupsMutation = {
-  groups?: InputMaybe<Array<InputMaybe<ServicesBlocksServiceGroupsGroupsMutation>>>;
-};
-
-export type ServicesBlocksFaqItemsMutation = {
-  question?: InputMaybe<Scalars['String']['input']>;
-  answer?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ServicesBlocksFaqMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<ServicesBlocksFaqItemsMutation>>>;
-};
-
-export type ServicesBlocksWorkProcessMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type ServicesBlocksContactFormMutation = {
-  bannerImage?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   subheading?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ServicesBlocksEditorialBannerTopRightMutation = {
+  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ServicesBlocksEditorialBannerMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  topRight?: InputMaybe<ServicesBlocksEditorialBannerTopRightMutation>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  imageAlt?: InputMaybe<Scalars['String']['input']>;
+  placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ServicesBlocksEditorialHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
   ctaLink?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ServicesBlocksEditorialCopyMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   headingLevel?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+  showStar?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ServicesBlocksEditorialAccordionItemsDetailsMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ServicesBlocksEditorialAccordionItemsMutation = {
@@ -3655,18 +2818,18 @@ export type ServicesBlocksEditorialAccordionItemsMutation = {
 };
 
 export type ServicesBlocksEditorialAccordionMutation = {
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<ServicesBlocksEditorialAccordionItemsMutation>>>;
 };
 
 export type ServicesBlocksEditorialRowsItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ServicesBlocksEditorialRowsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<ServicesBlocksEditorialRowsItemsMutation>>>;
 };
 
@@ -3678,7 +2841,7 @@ export type ServicesBlocksEditorialCtaMutation = {
 export type ServicesBlocksEditorialShowcaseItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3687,7 +2850,7 @@ export type ServicesBlocksEditorialShowcaseMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
@@ -3697,28 +2860,44 @@ export type ServicesBlocksEditorialShowcaseMutation = {
 
 export type ServicesBlocksEditorialMissionMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
   statement?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ServicesBlocksEditorialCarouselItemsMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServicesBlocksEditorialCarouselMutation = {
+  items?: InputMaybe<Array<InputMaybe<ServicesBlocksEditorialCarouselItemsMutation>>>;
+};
+
+export type ServicesBlocksEditorialInstagramMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  maxVisible?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ServicesBlocksEditorialGalleryImagesMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServicesBlocksEditorialGalleryMutation = {
+  cols?: InputMaybe<Scalars['Float']['input']>;
+  images?: InputMaybe<Array<InputMaybe<ServicesBlocksEditorialGalleryImagesMutation>>>;
+};
+
 export type ServicesBlocksMutation = {
-  homeHero?: InputMaybe<ServicesBlocksHomeHeroMutation>;
-  homeAbout?: InputMaybe<ServicesBlocksHomeAboutMutation>;
-  aboutHero?: InputMaybe<ServicesBlocksAboutHeroMutation>;
-  behindName?: InputMaybe<ServicesBlocksBehindNameMutation>;
-  bannerImage?: InputMaybe<ServicesBlocksBannerImageMutation>;
-  bio?: InputMaybe<ServicesBlocksBioMutation>;
-  awards?: InputMaybe<ServicesBlocksAwardsMutation>;
-  mission?: InputMaybe<ServicesBlocksMissionMutation>;
-  servicesHero?: InputMaybe<ServicesBlocksServicesHeroMutation>;
-  servicesIntro?: InputMaybe<ServicesBlocksServicesIntroMutation>;
-  serviceGroups?: InputMaybe<ServicesBlocksServiceGroupsMutation>;
-  faq?: InputMaybe<ServicesBlocksFaqMutation>;
-  workProcess?: InputMaybe<ServicesBlocksWorkProcessMutation>;
   contactForm?: InputMaybe<ServicesBlocksContactFormMutation>;
+  editorialBanner?: InputMaybe<ServicesBlocksEditorialBannerMutation>;
   editorialHero?: InputMaybe<ServicesBlocksEditorialHeroMutation>;
   editorialCopy?: InputMaybe<ServicesBlocksEditorialCopyMutation>;
   editorialAccordion?: InputMaybe<ServicesBlocksEditorialAccordionMutation>;
@@ -3726,6 +2905,9 @@ export type ServicesBlocksMutation = {
   editorialCta?: InputMaybe<ServicesBlocksEditorialCtaMutation>;
   editorialShowcase?: InputMaybe<ServicesBlocksEditorialShowcaseMutation>;
   editorialMission?: InputMaybe<ServicesBlocksEditorialMissionMutation>;
+  editorialCarousel?: InputMaybe<ServicesBlocksEditorialCarouselMutation>;
+  editorialInstagram?: InputMaybe<ServicesBlocksEditorialInstagramMutation>;
+  editorialGallery?: InputMaybe<ServicesBlocksEditorialGalleryMutation>;
 };
 
 export type ServicesMutation = {
@@ -3734,138 +2916,49 @@ export type ServicesMutation = {
   blocks?: InputMaybe<Array<InputMaybe<ServicesBlocksMutation>>>;
 };
 
-export type ContactBlocksHomeHeroTopRightMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ContactBlocksHomeHeroTaglineMutation = {
-  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ContactBlocksHomeHeroMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  topRight?: InputMaybe<ContactBlocksHomeHeroTopRightMutation>;
-  tagline?: InputMaybe<ContactBlocksHomeHeroTaglineMutation>;
-  taglineSub?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksHomeAboutMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  ctaText?: InputMaybe<Scalars['String']['input']>;
-  ctaLink?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksAboutHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksBehindNameMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  footnote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksBannerImageMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksBioMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type ContactBlocksAwardsItemsMutation = {
-  year?: InputMaybe<Scalars['String']['input']>;
-  project?: InputMaybe<Scalars['String']['input']>;
-  award?: InputMaybe<Scalars['String']['input']>;
-  link?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksAwardsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<ContactBlocksAwardsItemsMutation>>>;
-};
-
-export type ContactBlocksMissionMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  quote?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksServicesHeroMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksServicesIntroMutation = {
-  text?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksServiceGroupsGroupsItemsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksServiceGroupsGroupsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<ContactBlocksServiceGroupsGroupsItemsMutation>>>;
-};
-
-export type ContactBlocksServiceGroupsMutation = {
-  groups?: InputMaybe<Array<InputMaybe<ContactBlocksServiceGroupsGroupsMutation>>>;
-};
-
-export type ContactBlocksFaqItemsMutation = {
-  question?: InputMaybe<Scalars['String']['input']>;
-  answer?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ContactBlocksFaqMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-  items?: InputMaybe<Array<InputMaybe<ContactBlocksFaqItemsMutation>>>;
-};
-
-export type ContactBlocksWorkProcessMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  p1?: InputMaybe<Scalars['String']['input']>;
-  p2?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type ContactBlocksContactFormMutation = {
-  bannerImage?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   heading?: InputMaybe<Scalars['String']['input']>;
   subheading?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ContactBlocksEditorialBannerTopRightMutation = {
+  lines?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ContactBlocksEditorialBannerMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  topRight?: InputMaybe<ContactBlocksEditorialBannerTopRightMutation>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  imageAlt?: InputMaybe<Scalars['String']['input']>;
+  placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ContactBlocksEditorialHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
   ctaLink?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
+  objectFit?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ContactBlocksEditorialCopyMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   headingLevel?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['String']['input']>;
+  body?: InputMaybe<Scalars['JSON']['input']>;
+  showStar?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ContactBlocksEditorialAccordionItemsDetailsMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ContactBlocksEditorialAccordionItemsMutation = {
@@ -3877,18 +2970,18 @@ export type ContactBlocksEditorialAccordionItemsMutation = {
 };
 
 export type ContactBlocksEditorialAccordionMutation = {
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<ContactBlocksEditorialAccordionItemsMutation>>>;
 };
 
 export type ContactBlocksEditorialRowsItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ContactBlocksEditorialRowsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  intro?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['JSON']['input']>;
   items?: InputMaybe<Array<InputMaybe<ContactBlocksEditorialRowsItemsMutation>>>;
 };
 
@@ -3900,7 +2993,7 @@ export type ContactBlocksEditorialCtaMutation = {
 export type ContactBlocksEditorialShowcaseItemsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
@@ -3909,7 +3002,7 @@ export type ContactBlocksEditorialShowcaseMutation = {
   eyebrow?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   mediaType?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
   ctaText?: InputMaybe<Scalars['String']['input']>;
@@ -3919,28 +3012,44 @@ export type ContactBlocksEditorialShowcaseMutation = {
 
 export type ContactBlocksEditorialMissionMutation = {
   label?: InputMaybe<Scalars['String']['input']>;
-  paragraphs?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
   statement?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   imageAlt?: InputMaybe<Scalars['String']['input']>;
   placeholderLabel?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ContactBlocksEditorialCarouselItemsMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactBlocksEditorialCarouselMutation = {
+  items?: InputMaybe<Array<InputMaybe<ContactBlocksEditorialCarouselItemsMutation>>>;
+};
+
+export type ContactBlocksEditorialInstagramMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  maxVisible?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ContactBlocksEditorialGalleryImagesMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactBlocksEditorialGalleryMutation = {
+  cols?: InputMaybe<Scalars['Float']['input']>;
+  images?: InputMaybe<Array<InputMaybe<ContactBlocksEditorialGalleryImagesMutation>>>;
+};
+
 export type ContactBlocksMutation = {
-  homeHero?: InputMaybe<ContactBlocksHomeHeroMutation>;
-  homeAbout?: InputMaybe<ContactBlocksHomeAboutMutation>;
-  aboutHero?: InputMaybe<ContactBlocksAboutHeroMutation>;
-  behindName?: InputMaybe<ContactBlocksBehindNameMutation>;
-  bannerImage?: InputMaybe<ContactBlocksBannerImageMutation>;
-  bio?: InputMaybe<ContactBlocksBioMutation>;
-  awards?: InputMaybe<ContactBlocksAwardsMutation>;
-  mission?: InputMaybe<ContactBlocksMissionMutation>;
-  servicesHero?: InputMaybe<ContactBlocksServicesHeroMutation>;
-  servicesIntro?: InputMaybe<ContactBlocksServicesIntroMutation>;
-  serviceGroups?: InputMaybe<ContactBlocksServiceGroupsMutation>;
-  faq?: InputMaybe<ContactBlocksFaqMutation>;
-  workProcess?: InputMaybe<ContactBlocksWorkProcessMutation>;
   contactForm?: InputMaybe<ContactBlocksContactFormMutation>;
+  editorialBanner?: InputMaybe<ContactBlocksEditorialBannerMutation>;
   editorialHero?: InputMaybe<ContactBlocksEditorialHeroMutation>;
   editorialCopy?: InputMaybe<ContactBlocksEditorialCopyMutation>;
   editorialAccordion?: InputMaybe<ContactBlocksEditorialAccordionMutation>;
@@ -3948,6 +3057,9 @@ export type ContactBlocksMutation = {
   editorialCta?: InputMaybe<ContactBlocksEditorialCtaMutation>;
   editorialShowcase?: InputMaybe<ContactBlocksEditorialShowcaseMutation>;
   editorialMission?: InputMaybe<ContactBlocksEditorialMissionMutation>;
+  editorialCarousel?: InputMaybe<ContactBlocksEditorialCarouselMutation>;
+  editorialInstagram?: InputMaybe<ContactBlocksEditorialInstagramMutation>;
+  editorialGallery?: InputMaybe<ContactBlocksEditorialGalleryMutation>;
 };
 
 export type ContactMutation = {
@@ -3964,14 +3076,14 @@ export type LegalMutation = {
 };
 
 export type ProjectsBlocksProjectBannerMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectsBlocksProjectDetailsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   services?: InputMaybe<Scalars['String']['input']>;
   servicesLabel?: InputMaybe<Scalars['String']['input']>;
   category?: InputMaybe<Scalars['String']['input']>;
@@ -3982,58 +3094,19 @@ export type ProjectsBlocksProjectDetailsMutation = {
   locationLabel?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ProjectsBlocksProjectBriefGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ProjectsBlocksProjectBriefGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<ProjectsBlocksProjectBriefGalleryImagesMutation>>>;
-};
-
 export type ProjectsBlocksProjectBriefMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<ProjectsBlocksProjectBriefGalleryMutation>;
-};
-
-export type ProjectsBlocksProjectConceptGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ProjectsBlocksProjectConceptGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<ProjectsBlocksProjectConceptGalleryImagesMutation>>>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ProjectsBlocksProjectConceptMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  gallery?: InputMaybe<ProjectsBlocksProjectConceptGalleryMutation>;
-};
-
-export type ProjectsBlocksProjectStrategyCarouselMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ProjectsBlocksProjectStrategyGalleryImagesMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
-  alt?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type ProjectsBlocksProjectStrategyGalleryMutation = {
-  cols?: InputMaybe<Scalars['Float']['input']>;
-  images?: InputMaybe<Array<InputMaybe<ProjectsBlocksProjectStrategyGalleryImagesMutation>>>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ProjectsBlocksProjectStrategyMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  text?: InputMaybe<Scalars['String']['input']>;
-  carousel?: InputMaybe<Array<InputMaybe<ProjectsBlocksProjectStrategyCarouselMutation>>>;
-  gallery?: InputMaybe<ProjectsBlocksProjectStrategyGalleryMutation>;
+  text?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type ProjectsBlocksProjectCollaboratorsListMutation = {
@@ -4047,13 +3120,36 @@ export type ProjectsBlocksProjectCollaboratorsMutation = {
 };
 
 export type ProjectsBlocksProjectFinalImageMutation = {
-  src?: InputMaybe<Scalars['String']['input']>;
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ProjectsBlocksBannerImageMutation = {
-  image?: InputMaybe<Scalars['String']['input']>;
+export type ProjectsBlocksEditorialGalleryImagesMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
   alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProjectsBlocksEditorialGalleryMutation = {
+  cols?: InputMaybe<Scalars['Float']['input']>;
+  images?: InputMaybe<Array<InputMaybe<ProjectsBlocksEditorialGalleryImagesMutation>>>;
+};
+
+export type ProjectsBlocksEditorialCarouselItemsMutation = {
+  mediaId?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProjectsBlocksEditorialCarouselMutation = {
+  items?: InputMaybe<Array<InputMaybe<ProjectsBlocksEditorialCarouselItemsMutation>>>;
+};
+
+export type ProjectsBlocksEditorialInstagramMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  tag?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  maxVisible?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type ProjectsBlocksMutation = {
@@ -4064,7 +3160,9 @@ export type ProjectsBlocksMutation = {
   projectStrategy?: InputMaybe<ProjectsBlocksProjectStrategyMutation>;
   projectCollaborators?: InputMaybe<ProjectsBlocksProjectCollaboratorsMutation>;
   projectFinalImage?: InputMaybe<ProjectsBlocksProjectFinalImageMutation>;
-  bannerImage?: InputMaybe<ProjectsBlocksBannerImageMutation>;
+  editorialGallery?: InputMaybe<ProjectsBlocksEditorialGalleryMutation>;
+  editorialCarousel?: InputMaybe<ProjectsBlocksEditorialCarouselMutation>;
+  editorialInstagram?: InputMaybe<ProjectsBlocksEditorialInstagramMutation>;
 };
 
 export type ProjectsMutation = {
@@ -4159,17 +3257,17 @@ export type TranslationsMutation = {
 
 export type SiteConfigPartsFragment = { __typename: 'SiteConfig', siteUrl?: string | null, locales?: Array<string | null> | null, defaultLocale?: string | null, company?: { __typename: 'SiteConfigCompany', name?: string | null, legalName?: string | null, description?: string | null, tagline?: string | null } | null, contact?: { __typename: 'SiteConfigContact', email?: string | null, phone?: string | null, phoneLink?: string | null, location?: { __typename: 'SiteConfigContactLocation', city?: string | null, country?: string | null } | null } | null, founder?: { __typename: 'SiteConfigFounder', name?: string | null } | null, socialLinks?: Array<{ __typename: 'SiteConfigSocialLinks', name?: string | null, url?: string | null, icon: string } | null> | null, attribution?: { __typename: 'SiteConfigAttribution', design?: string | null, development?: string | null } | null, branding?: { __typename: 'SiteConfigBranding', logo?: string | null, logoWhite?: string | null, symbol?: string | null, symbolWhite?: string | null, ogImage?: string | null } | null, seo?: { __typename: 'SiteConfigSeo', priceRange?: string | null } | null };
 
-export type HomePartsFragment = { __typename: 'Home', title: string, description?: string | null, headerStyle?: string | null, blocks?: Array<{ __typename: 'HomeBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'HomeBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'HomeBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'HomeBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'HomeBlocksAboutHero', title?: string | null } | { __typename: 'HomeBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'HomeBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'HomeBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'HomeBlocksAwards', title?: string | null, items?: Array<{ __typename: 'HomeBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'HomeBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'HomeBlocksServicesHero', title?: string | null } | { __typename: 'HomeBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'HomeBlocksServiceGroups', groups?: Array<{ __typename: 'HomeBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'HomeBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'HomeBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'HomeBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'HomeBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'HomeBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'HomeBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'HomeBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'HomeBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'HomeBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null };
+export type HomePartsFragment = { __typename: 'Home', title: string, description?: string | null, headerStyle?: string | null, blocks?: Array<{ __typename: 'HomeBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'HomeBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'HomeBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'HomeBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'HomeBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'HomeBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'HomeBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'HomeBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'HomeBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'HomeBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'HomeBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'HomeBlocksEditorialCarousel', items?: Array<{ __typename: 'HomeBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'HomeBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'HomeBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null };
 
-export type AboutPartsFragment = { __typename: 'About', title: string, description?: string | null, heroImage?: string | null, blocks?: Array<{ __typename: 'AboutBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'AboutBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'AboutBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'AboutBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'AboutBlocksAboutHero', title?: string | null } | { __typename: 'AboutBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'AboutBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'AboutBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'AboutBlocksAwards', title?: string | null, items?: Array<{ __typename: 'AboutBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'AboutBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'AboutBlocksServicesHero', title?: string | null } | { __typename: 'AboutBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'AboutBlocksServiceGroups', groups?: Array<{ __typename: 'AboutBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'AboutBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'AboutBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'AboutBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'AboutBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'AboutBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'AboutBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'AboutBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'AboutBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'AboutBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null };
+export type AboutPartsFragment = { __typename: 'About', title: string, description?: string | null, blocks?: Array<{ __typename: 'AboutBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'AboutBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'AboutBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'AboutBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'AboutBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'AboutBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'AboutBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'AboutBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'AboutBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'AboutBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'AboutBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'AboutBlocksEditorialCarousel', items?: Array<{ __typename: 'AboutBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'AboutBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'AboutBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null };
 
-export type ServicesPartsFragment = { __typename: 'Services', title: string, description?: string | null, blocks?: Array<{ __typename: 'ServicesBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'ServicesBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'ServicesBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'ServicesBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'ServicesBlocksAboutHero', title?: string | null } | { __typename: 'ServicesBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'ServicesBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'ServicesBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'ServicesBlocksAwards', title?: string | null, items?: Array<{ __typename: 'ServicesBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'ServicesBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'ServicesBlocksServicesHero', title?: string | null } | { __typename: 'ServicesBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'ServicesBlocksServiceGroups', groups?: Array<{ __typename: 'ServicesBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'ServicesBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'ServicesBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'ServicesBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ServicesBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ServicesBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'ServicesBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ServicesBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null };
+export type ServicesPartsFragment = { __typename: 'Services', title: string, description?: string | null, blocks?: Array<{ __typename: 'ServicesBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ServicesBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'ServicesBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'ServicesBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'ServicesBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'ServicesBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'ServicesBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'ServicesBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ServicesBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ServicesBlocksEditorialCarousel', items?: Array<{ __typename: 'ServicesBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'ServicesBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ServicesBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null };
 
-export type ContactPartsFragment = { __typename: 'Contact', title: string, description?: string | null, blocks?: Array<{ __typename: 'ContactBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'ContactBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'ContactBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'ContactBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'ContactBlocksAboutHero', title?: string | null } | { __typename: 'ContactBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'ContactBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'ContactBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'ContactBlocksAwards', title?: string | null, items?: Array<{ __typename: 'ContactBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'ContactBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'ContactBlocksServicesHero', title?: string | null } | { __typename: 'ContactBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'ContactBlocksServiceGroups', groups?: Array<{ __typename: 'ContactBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'ContactBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ContactBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'ContactBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'ContactBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ContactBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ContactBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'ContactBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ContactBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ContactBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null };
+export type ContactPartsFragment = { __typename: 'Contact', title: string, description?: string | null, blocks?: Array<{ __typename: 'ContactBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ContactBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'ContactBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'ContactBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'ContactBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'ContactBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'ContactBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ContactBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'ContactBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'ContactBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ContactBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ContactBlocksEditorialCarousel', items?: Array<{ __typename: 'ContactBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'ContactBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ContactBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null };
 
 export type LegalPartsFragment = { __typename: 'Legal', title: string, description?: string | null, lastUpdated?: string | null, body?: any | null };
 
-export type ProjectsPartsFragment = { __typename: 'Projects', title: string, description?: string | null, slug?: string | null, publishDate?: string | null, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, blocks?: Array<{ __typename: 'ProjectsBlocksProjectBanner', image?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksProjectDetails', title?: string | null, subtitle?: string | null, image?: string | null, services?: string | null, servicesLabel?: string | null, category?: string | null, categoryLabel?: string | null, area?: string | null, areaLabel?: string | null, location?: string | null, locationLabel?: string | null } | { __typename: 'ProjectsBlocksProjectBrief', title?: string | null, text?: string | null, gallery?: { __typename: 'ProjectsBlocksProjectBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectBriefGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectConcept', title?: string | null, text?: string | null, gallery?: { __typename: 'ProjectsBlocksProjectConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectConceptGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectStrategy', title?: string | null, text?: string | null, carousel?: Array<{ __typename: 'ProjectsBlocksProjectStrategyCarousel', src?: string | null, alt?: string | null } | null> | null, gallery?: { __typename: 'ProjectsBlocksProjectStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectStrategyGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectCollaborators', title?: string | null, list?: Array<{ __typename: 'ProjectsBlocksProjectCollaboratorsList', name?: string | null, role?: string | null } | null> | null } | { __typename: 'ProjectsBlocksProjectFinalImage', src?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksBannerImage', image?: string | null, alt?: string | null } | null> | null };
+export type ProjectsPartsFragment = { __typename: 'Projects', title: string, description?: string | null, slug?: string | null, publishDate?: string | null, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, blocks?: Array<{ __typename: 'ProjectsBlocksProjectBanner', mediaId?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksProjectDetails', title?: string | null, subtitle?: string | null, mediaId?: string | null, services?: string | null, servicesLabel?: string | null, category?: string | null, categoryLabel?: string | null, area?: string | null, areaLabel?: string | null, location?: string | null, locationLabel?: string | null } | { __typename: 'ProjectsBlocksProjectBrief', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectConcept', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectStrategy', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectCollaborators', title?: string | null, list?: Array<{ __typename: 'ProjectsBlocksProjectCollaboratorsList', name?: string | null, role?: string | null } | null> | null } | { __typename: 'ProjectsBlocksProjectFinalImage', mediaId?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | { __typename: 'ProjectsBlocksEditorialCarousel', items?: Array<{ __typename: 'ProjectsBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ProjectsBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | null> | null };
 
 export type TranslationsPartsFragment = { __typename: 'Translations', nav?: { __typename: 'TranslationsNav', social?: string | null, menu?: string | null, letsTalk?: string | null, links?: Array<{ __typename: 'TranslationsNavLinks', label?: string | null, href?: string | null } | null> | null } | null, footer?: { __typename: 'TranslationsFooter', privacy?: string | null, legal?: string | null, links?: Array<{ __typename: 'TranslationsFooterLinks', label?: string | null, href?: string | null } | null> | null } | null, contactForm?: { __typename: 'TranslationsContactForm', name?: string | null, company?: string | null, email?: string | null, phone?: string | null, projectType?: string | null, serviceType?: string | null, message?: string | null, privacy?: string | null, submit?: string | null, sending?: string | null, success?: string | null, error?: string | null, turnstileFailed?: string | null, invalidEmail?: string | null, missingFields?: string | null, projectTypes?: Array<{ __typename: 'TranslationsContactFormProjectTypes', value?: string | null, label?: string | null } | null> | null, serviceTypes?: Array<{ __typename: 'TranslationsContactFormServiceTypes', value?: string | null, label?: string | null } | null> | null } | null, projects?: { __typename: 'TranslationsProjects', title: string, description?: string | null, heading?: string | null } | null, accessibility?: { __typename: 'TranslationsAccessibility', skipToContent?: string | null, selectLanguage?: string | null, toggleMenu?: string | null, closeMenu?: string | null, previousSlide?: string | null, nextSlide?: string | null, goToSlide?: string | null } | null };
 
@@ -4197,7 +3295,7 @@ export type HomeQueryVariables = Exact<{
 }>;
 
 
-export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, title: string, description?: string | null, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'HomeBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'HomeBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'HomeBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'HomeBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'HomeBlocksAboutHero', title?: string | null } | { __typename: 'HomeBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'HomeBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'HomeBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'HomeBlocksAwards', title?: string | null, items?: Array<{ __typename: 'HomeBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'HomeBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'HomeBlocksServicesHero', title?: string | null } | { __typename: 'HomeBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'HomeBlocksServiceGroups', groups?: Array<{ __typename: 'HomeBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'HomeBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'HomeBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'HomeBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'HomeBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'HomeBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'HomeBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'HomeBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'HomeBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'HomeBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } };
+export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, title: string, description?: string | null, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'HomeBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'HomeBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'HomeBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'HomeBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'HomeBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'HomeBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'HomeBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'HomeBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'HomeBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'HomeBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'HomeBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'HomeBlocksEditorialCarousel', items?: Array<{ __typename: 'HomeBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'HomeBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'HomeBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } };
 
 export type HomeConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4209,14 +3307,14 @@ export type HomeConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, title: string, description?: string | null, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'HomeBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'HomeBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'HomeBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'HomeBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'HomeBlocksAboutHero', title?: string | null } | { __typename: 'HomeBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'HomeBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'HomeBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'HomeBlocksAwards', title?: string | null, items?: Array<{ __typename: 'HomeBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'HomeBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'HomeBlocksServicesHero', title?: string | null } | { __typename: 'HomeBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'HomeBlocksServiceGroups', groups?: Array<{ __typename: 'HomeBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'HomeBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'HomeBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'HomeBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'HomeBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'HomeBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'HomeBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'HomeBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'HomeBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'HomeBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | null } | null> | null } };
+export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, title: string, description?: string | null, headerStyle?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'HomeBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'HomeBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'HomeBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'HomeBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'HomeBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'HomeBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'HomeBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'HomeBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'HomeBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'HomeBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'HomeBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'HomeBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'HomeBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'HomeBlocksEditorialCarousel', items?: Array<{ __typename: 'HomeBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'HomeBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'HomeBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'HomeBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type AboutQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type AboutQuery = { __typename?: 'Query', about: { __typename: 'About', id: string, title: string, description?: string | null, heroImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'AboutBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'AboutBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'AboutBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'AboutBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'AboutBlocksAboutHero', title?: string | null } | { __typename: 'AboutBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'AboutBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'AboutBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'AboutBlocksAwards', title?: string | null, items?: Array<{ __typename: 'AboutBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'AboutBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'AboutBlocksServicesHero', title?: string | null } | { __typename: 'AboutBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'AboutBlocksServiceGroups', groups?: Array<{ __typename: 'AboutBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'AboutBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'AboutBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'AboutBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'AboutBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'AboutBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'AboutBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'AboutBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'AboutBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'AboutBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } };
+export type AboutQuery = { __typename?: 'Query', about: { __typename: 'About', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'AboutBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'AboutBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'AboutBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'AboutBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'AboutBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'AboutBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'AboutBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'AboutBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'AboutBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'AboutBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'AboutBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'AboutBlocksEditorialCarousel', items?: Array<{ __typename: 'AboutBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'AboutBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'AboutBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } };
 
 export type AboutConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4228,14 +3326,14 @@ export type AboutConnectionQueryVariables = Exact<{
 }>;
 
 
-export type AboutConnectionQuery = { __typename?: 'Query', aboutConnection: { __typename?: 'AboutConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutConnectionEdges', cursor: string, node?: { __typename: 'About', id: string, title: string, description?: string | null, heroImage?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'AboutBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'AboutBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'AboutBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'AboutBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'AboutBlocksAboutHero', title?: string | null } | { __typename: 'AboutBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'AboutBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'AboutBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'AboutBlocksAwards', title?: string | null, items?: Array<{ __typename: 'AboutBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'AboutBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'AboutBlocksServicesHero', title?: string | null } | { __typename: 'AboutBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'AboutBlocksServiceGroups', groups?: Array<{ __typename: 'AboutBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'AboutBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'AboutBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'AboutBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'AboutBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'AboutBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'AboutBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'AboutBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'AboutBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'AboutBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | null } | null> | null } };
+export type AboutConnectionQuery = { __typename?: 'Query', aboutConnection: { __typename?: 'AboutConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutConnectionEdges', cursor: string, node?: { __typename: 'About', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'AboutBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'AboutBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'AboutBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'AboutBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'AboutBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'AboutBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'AboutBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'AboutBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'AboutBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'AboutBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'AboutBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'AboutBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'AboutBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'AboutBlocksEditorialCarousel', items?: Array<{ __typename: 'AboutBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'AboutBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'AboutBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'AboutBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type ServicesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ServicesBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'ServicesBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'ServicesBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'ServicesBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'ServicesBlocksAboutHero', title?: string | null } | { __typename: 'ServicesBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'ServicesBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'ServicesBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'ServicesBlocksAwards', title?: string | null, items?: Array<{ __typename: 'ServicesBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'ServicesBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'ServicesBlocksServicesHero', title?: string | null } | { __typename: 'ServicesBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'ServicesBlocksServiceGroups', groups?: Array<{ __typename: 'ServicesBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'ServicesBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'ServicesBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'ServicesBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ServicesBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ServicesBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'ServicesBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ServicesBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } };
+export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ServicesBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ServicesBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'ServicesBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'ServicesBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'ServicesBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'ServicesBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'ServicesBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'ServicesBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ServicesBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ServicesBlocksEditorialCarousel', items?: Array<{ __typename: 'ServicesBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'ServicesBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ServicesBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } };
 
 export type ServicesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4247,14 +3345,14 @@ export type ServicesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ServicesBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'ServicesBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'ServicesBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'ServicesBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'ServicesBlocksAboutHero', title?: string | null } | { __typename: 'ServicesBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'ServicesBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'ServicesBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'ServicesBlocksAwards', title?: string | null, items?: Array<{ __typename: 'ServicesBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'ServicesBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'ServicesBlocksServicesHero', title?: string | null } | { __typename: 'ServicesBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'ServicesBlocksServiceGroups', groups?: Array<{ __typename: 'ServicesBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'ServicesBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ServicesBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'ServicesBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'ServicesBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ServicesBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ServicesBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'ServicesBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ServicesBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | null } | null> | null } };
+export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ServicesBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ServicesBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'ServicesBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'ServicesBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'ServicesBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'ServicesBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ServicesBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'ServicesBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'ServicesBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'ServicesBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ServicesBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ServicesBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ServicesBlocksEditorialCarousel', items?: Array<{ __typename: 'ServicesBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ServicesBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'ServicesBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ServicesBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type ContactQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ContactQuery = { __typename?: 'Query', contact: { __typename: 'Contact', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ContactBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'ContactBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'ContactBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'ContactBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'ContactBlocksAboutHero', title?: string | null } | { __typename: 'ContactBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'ContactBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'ContactBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'ContactBlocksAwards', title?: string | null, items?: Array<{ __typename: 'ContactBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'ContactBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'ContactBlocksServicesHero', title?: string | null } | { __typename: 'ContactBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'ContactBlocksServiceGroups', groups?: Array<{ __typename: 'ContactBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'ContactBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ContactBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'ContactBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'ContactBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ContactBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ContactBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'ContactBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ContactBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ContactBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } };
+export type ContactQuery = { __typename?: 'Query', contact: { __typename: 'Contact', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ContactBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ContactBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'ContactBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'ContactBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'ContactBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'ContactBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'ContactBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ContactBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'ContactBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'ContactBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ContactBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ContactBlocksEditorialCarousel', items?: Array<{ __typename: 'ContactBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'ContactBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ContactBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } };
 
 export type ContactConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4266,7 +3364,7 @@ export type ContactConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ContactConnectionQuery = { __typename?: 'Query', contactConnection: { __typename?: 'ContactConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactConnectionEdges', cursor: string, node?: { __typename: 'Contact', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ContactBlocksHomeHero', image?: string | null, taglineSub?: string | null, topRight?: { __typename: 'ContactBlocksHomeHeroTopRight', lines?: Array<string | null> | null } | null, tagline?: { __typename: 'ContactBlocksHomeHeroTagline', lines?: Array<string | null> | null } | null } | { __typename: 'ContactBlocksHomeAbout', image?: string | null, title?: string | null, description?: string | null, ctaText?: string | null, ctaLink?: string | null } | { __typename: 'ContactBlocksAboutHero', title?: string | null } | { __typename: 'ContactBlocksBehindName', title?: string | null, p1?: string | null, p2?: string | null, footnote?: string | null } | { __typename: 'ContactBlocksBannerImage', image?: string | null, alt?: string | null } | { __typename: 'ContactBlocksBio', title?: string | null, image?: string | null, paragraphs?: Array<string | null> | null } | { __typename: 'ContactBlocksAwards', title?: string | null, items?: Array<{ __typename: 'ContactBlocksAwardsItems', year?: string | null, project?: string | null, award?: string | null, link?: string | null } | null> | null } | { __typename: 'ContactBlocksMission', title?: string | null, p1?: string | null, p2?: string | null, quote?: string | null } | { __typename: 'ContactBlocksServicesHero', title?: string | null } | { __typename: 'ContactBlocksServicesIntro', text?: string | null, image?: string | null } | { __typename: 'ContactBlocksServiceGroups', groups?: Array<{ __typename: 'ContactBlocksServiceGroupsGroups', title?: string | null, items?: Array<{ __typename: 'ContactBlocksServiceGroupsGroupsItems', title?: string | null, description?: string | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksFaq', title?: string | null, image?: string | null, items?: Array<{ __typename: 'ContactBlocksFaqItems', question?: string | null, answer?: string | null } | null> | null } | { __typename: 'ContactBlocksWorkProcess', title?: string | null, p1?: string | null, p2?: string | null, image?: string | null } | { __typename: 'ContactBlocksContactForm', bannerImage?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ContactBlocksEditorialHero', title?: string | null, intro?: string | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ContactBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: string | null } | { __typename: 'ContactBlocksEditorialAccordion', intro?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ContactBlocksEditorialAccordionItemsDetails', label?: string | null, text?: string | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksEditorialRows', title?: string | null, intro?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialRowsItems', title?: string | null, text?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ContactBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialMission', label?: string | null, paragraphs?: Array<string | null> | null, statement?: string | null, image?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | null } | null> | null } };
+export type ContactConnectionQuery = { __typename?: 'Query', contactConnection: { __typename?: 'ContactConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactConnectionEdges', cursor: string, node?: { __typename: 'Contact', id: string, title: string, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ContactBlocksContactForm', mediaId?: string | null, heading?: string | null, subheading?: string | null } | { __typename: 'ContactBlocksEditorialBanner', title?: string | null, subtitle?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null, topRight?: { __typename: 'ContactBlocksEditorialBannerTopRight', lines?: Array<string | null> | null } | null } | { __typename: 'ContactBlocksEditorialHero', title?: string | null, intro?: any | null, ctaText?: string | null, ctaLink?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, objectFit?: string | null } | { __typename: 'ContactBlocksEditorialCopy', eyebrow?: string | null, title?: string | null, headingLevel?: string | null, body?: any | null, showStar?: boolean | null } | { __typename: 'ContactBlocksEditorialAccordion', intro?: any | null, items?: Array<{ __typename: 'ContactBlocksEditorialAccordionItems', number?: string | null, title?: string | null, summary?: string | null, open?: boolean | null, details?: Array<{ __typename: 'ContactBlocksEditorialAccordionItemsDetails', label?: string | null, text?: any | null } | null> | null } | null> | null } | { __typename: 'ContactBlocksEditorialRows', title?: string | null, intro?: any | null, items?: Array<{ __typename: 'ContactBlocksEditorialRowsItems', title?: string | null, text?: any | null } | null> | null } | { __typename: 'ContactBlocksEditorialCta', text?: string | null, link?: string | null } | { __typename: 'ContactBlocksEditorialShowcase', eyebrow?: string | null, title?: string | null, mediaType?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null, ctaText?: string | null, ctaLink?: string | null, items?: Array<{ __typename: 'ContactBlocksEditorialShowcaseItems', title?: string | null, link?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialMission', label?: string | null, content?: any | null, statement?: string | null, mediaId?: string | null, imageAlt?: string | null, placeholderLabel?: string | null } | { __typename: 'ContactBlocksEditorialCarousel', items?: Array<{ __typename: 'ContactBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ContactBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | { __typename: 'ContactBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ContactBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type LegalQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -4292,7 +3390,7 @@ export type ProjectsQueryVariables = Exact<{
 }>;
 
 
-export type ProjectsQuery = { __typename?: 'Query', projects: { __typename: 'Projects', id: string, title: string, description?: string | null, slug?: string | null, publishDate?: string | null, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ProjectsBlocksProjectBanner', image?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksProjectDetails', title?: string | null, subtitle?: string | null, image?: string | null, services?: string | null, servicesLabel?: string | null, category?: string | null, categoryLabel?: string | null, area?: string | null, areaLabel?: string | null, location?: string | null, locationLabel?: string | null } | { __typename: 'ProjectsBlocksProjectBrief', title?: string | null, text?: string | null, gallery?: { __typename: 'ProjectsBlocksProjectBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectBriefGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectConcept', title?: string | null, text?: string | null, gallery?: { __typename: 'ProjectsBlocksProjectConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectConceptGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectStrategy', title?: string | null, text?: string | null, carousel?: Array<{ __typename: 'ProjectsBlocksProjectStrategyCarousel', src?: string | null, alt?: string | null } | null> | null, gallery?: { __typename: 'ProjectsBlocksProjectStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectStrategyGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectCollaborators', title?: string | null, list?: Array<{ __typename: 'ProjectsBlocksProjectCollaboratorsList', name?: string | null, role?: string | null } | null> | null } | { __typename: 'ProjectsBlocksProjectFinalImage', src?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksBannerImage', image?: string | null, alt?: string | null } | null> | null } };
+export type ProjectsQuery = { __typename?: 'Query', projects: { __typename: 'Projects', id: string, title: string, description?: string | null, slug?: string | null, publishDate?: string | null, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ProjectsBlocksProjectBanner', mediaId?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksProjectDetails', title?: string | null, subtitle?: string | null, mediaId?: string | null, services?: string | null, servicesLabel?: string | null, category?: string | null, categoryLabel?: string | null, area?: string | null, areaLabel?: string | null, location?: string | null, locationLabel?: string | null } | { __typename: 'ProjectsBlocksProjectBrief', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectConcept', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectStrategy', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectCollaborators', title?: string | null, list?: Array<{ __typename: 'ProjectsBlocksProjectCollaboratorsList', name?: string | null, role?: string | null } | null> | null } | { __typename: 'ProjectsBlocksProjectFinalImage', mediaId?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | { __typename: 'ProjectsBlocksEditorialCarousel', items?: Array<{ __typename: 'ProjectsBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ProjectsBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | null> | null } };
 
 export type ProjectsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -4304,7 +3402,7 @@ export type ProjectsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ProjectsConnectionQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectsConnectionEdges', cursor: string, node?: { __typename: 'Projects', id: string, title: string, description?: string | null, slug?: string | null, publishDate?: string | null, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ProjectsBlocksProjectBanner', image?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksProjectDetails', title?: string | null, subtitle?: string | null, image?: string | null, services?: string | null, servicesLabel?: string | null, category?: string | null, categoryLabel?: string | null, area?: string | null, areaLabel?: string | null, location?: string | null, locationLabel?: string | null } | { __typename: 'ProjectsBlocksProjectBrief', title?: string | null, text?: string | null, gallery?: { __typename: 'ProjectsBlocksProjectBriefGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectBriefGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectConcept', title?: string | null, text?: string | null, gallery?: { __typename: 'ProjectsBlocksProjectConceptGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectConceptGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectStrategy', title?: string | null, text?: string | null, carousel?: Array<{ __typename: 'ProjectsBlocksProjectStrategyCarousel', src?: string | null, alt?: string | null } | null> | null, gallery?: { __typename: 'ProjectsBlocksProjectStrategyGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksProjectStrategyGalleryImages', src?: string | null, alt?: string | null } | null> | null } | null } | { __typename: 'ProjectsBlocksProjectCollaborators', title?: string | null, list?: Array<{ __typename: 'ProjectsBlocksProjectCollaboratorsList', name?: string | null, role?: string | null } | null> | null } | { __typename: 'ProjectsBlocksProjectFinalImage', src?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksBannerImage', image?: string | null, alt?: string | null } | null> | null } | null } | null> | null } };
+export type ProjectsConnectionQuery = { __typename?: 'Query', projectsConnection: { __typename?: 'ProjectsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectsConnectionEdges', cursor: string, node?: { __typename: 'Projects', id: string, title: string, description?: string | null, slug?: string | null, publishDate?: string | null, completedDate?: string | null, tags?: Array<string | null> | null, showTags?: boolean | null, featured?: boolean | null, draft?: boolean | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'ProjectsBlocksProjectBanner', mediaId?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksProjectDetails', title?: string | null, subtitle?: string | null, mediaId?: string | null, services?: string | null, servicesLabel?: string | null, category?: string | null, categoryLabel?: string | null, area?: string | null, areaLabel?: string | null, location?: string | null, locationLabel?: string | null } | { __typename: 'ProjectsBlocksProjectBrief', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectConcept', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectStrategy', title?: string | null, text?: any | null } | { __typename: 'ProjectsBlocksProjectCollaborators', title?: string | null, list?: Array<{ __typename: 'ProjectsBlocksProjectCollaboratorsList', name?: string | null, role?: string | null } | null> | null } | { __typename: 'ProjectsBlocksProjectFinalImage', mediaId?: string | null, alt?: string | null } | { __typename: 'ProjectsBlocksEditorialGallery', cols?: number | null, images?: Array<{ __typename: 'ProjectsBlocksEditorialGalleryImages', mediaId?: string | null, alt?: string | null } | null> | null } | { __typename: 'ProjectsBlocksEditorialCarousel', items?: Array<{ __typename: 'ProjectsBlocksEditorialCarouselItems', mediaId?: string | null, alt?: string | null, caption?: string | null } | null> | null } | { __typename: 'ProjectsBlocksEditorialInstagram', title?: string | null, description?: any | null, tag?: string | null, limit?: number | null, maxVisible?: number | null } | null> | null } | null } | null> | null } };
 
 export type TranslationsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -4386,96 +3484,22 @@ export const HomePartsFragmentDoc = gql`
   headerStyle
   blocks {
     __typename
-    ... on HomeBlocksHomeHero {
-      image
+    ... on HomeBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on HomeBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on HomeBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on HomeBlocksAboutHero {
-      title
-    }
-    ... on HomeBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on HomeBlocksBannerImage {
-      image
-      alt
-    }
-    ... on HomeBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on HomeBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on HomeBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on HomeBlocksServicesHero {
-      title
-    }
-    ... on HomeBlocksServicesIntro {
-      text
-      image
-    }
-    ... on HomeBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on HomeBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on HomeBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on HomeBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on HomeBlocksEditorialHero {
       title
@@ -4483,15 +3507,17 @@ export const HomePartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on HomeBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on HomeBlocksEditorialAccordion {
       intro
@@ -4525,7 +3551,7 @@ export const HomePartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -4534,18 +3560,41 @@ export const HomePartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on HomeBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on HomeBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on HomeBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on HomeBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -4555,99 +3604,24 @@ export const AboutPartsFragmentDoc = gql`
   __typename
   title
   description
-  heroImage
   blocks {
     __typename
-    ... on AboutBlocksHomeHero {
-      image
+    ... on AboutBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on AboutBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on AboutBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on AboutBlocksAboutHero {
-      title
-    }
-    ... on AboutBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on AboutBlocksBannerImage {
-      image
-      alt
-    }
-    ... on AboutBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on AboutBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on AboutBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on AboutBlocksServicesHero {
-      title
-    }
-    ... on AboutBlocksServicesIntro {
-      text
-      image
-    }
-    ... on AboutBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on AboutBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on AboutBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on AboutBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on AboutBlocksEditorialHero {
       title
@@ -4655,15 +3629,17 @@ export const AboutPartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on AboutBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on AboutBlocksEditorialAccordion {
       intro
@@ -4697,7 +3673,7 @@ export const AboutPartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -4706,18 +3682,41 @@ export const AboutPartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on AboutBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on AboutBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on AboutBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on AboutBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -4729,96 +3728,22 @@ export const ServicesPartsFragmentDoc = gql`
   description
   blocks {
     __typename
-    ... on ServicesBlocksHomeHero {
-      image
+    ... on ServicesBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on ServicesBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on ServicesBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on ServicesBlocksAboutHero {
-      title
-    }
-    ... on ServicesBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on ServicesBlocksBannerImage {
-      image
-      alt
-    }
-    ... on ServicesBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on ServicesBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on ServicesBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on ServicesBlocksServicesHero {
-      title
-    }
-    ... on ServicesBlocksServicesIntro {
-      text
-      image
-    }
-    ... on ServicesBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on ServicesBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on ServicesBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on ServicesBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on ServicesBlocksEditorialHero {
       title
@@ -4826,15 +3751,17 @@ export const ServicesPartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on ServicesBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on ServicesBlocksEditorialAccordion {
       intro
@@ -4868,7 +3795,7 @@ export const ServicesPartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -4877,18 +3804,41 @@ export const ServicesPartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on ServicesBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on ServicesBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ServicesBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on ServicesBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -4900,96 +3850,22 @@ export const ContactPartsFragmentDoc = gql`
   description
   blocks {
     __typename
-    ... on ContactBlocksHomeHero {
-      image
+    ... on ContactBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on ContactBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on ContactBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on ContactBlocksAboutHero {
-      title
-    }
-    ... on ContactBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on ContactBlocksBannerImage {
-      image
-      alt
-    }
-    ... on ContactBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on ContactBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on ContactBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on ContactBlocksServicesHero {
-      title
-    }
-    ... on ContactBlocksServicesIntro {
-      text
-      image
-    }
-    ... on ContactBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on ContactBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on ContactBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on ContactBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on ContactBlocksEditorialHero {
       title
@@ -4997,15 +3873,17 @@ export const ContactPartsFragmentDoc = gql`
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on ContactBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on ContactBlocksEditorialAccordion {
       intro
@@ -5039,7 +3917,7 @@ export const ContactPartsFragmentDoc = gql`
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -5048,18 +3926,41 @@ export const ContactPartsFragmentDoc = gql`
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on ContactBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on ContactBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ContactBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on ContactBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -5088,13 +3989,13 @@ export const ProjectsPartsFragmentDoc = gql`
   blocks {
     __typename
     ... on ProjectsBlocksProjectBanner {
-      image
+      mediaId
       alt
     }
     ... on ProjectsBlocksProjectDetails {
       title
       subtitle
-      image
+      mediaId
       services
       servicesLabel
       category
@@ -5107,46 +4008,14 @@ export const ProjectsPartsFragmentDoc = gql`
     ... on ProjectsBlocksProjectBrief {
       title
       text
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectConcept {
       title
       text
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectStrategy {
       title
       text
-      carousel {
-        __typename
-        src
-        alt
-      }
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectCollaborators {
       title
@@ -5157,12 +4026,31 @@ export const ProjectsPartsFragmentDoc = gql`
       }
     }
     ... on ProjectsBlocksProjectFinalImage {
-      src
+      mediaId
       alt
     }
-    ... on ProjectsBlocksBannerImage {
-      image
-      alt
+    ... on ProjectsBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
+    }
+    ... on ProjectsBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ProjectsBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
     }
   }
 }
@@ -5791,7 +4679,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/2.4/content/7a1540b8-e9a1-493f-8cc5-83d85b2c335d/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

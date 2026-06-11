@@ -1,6 +1,6 @@
 ---
 // src/components/sections/projects/Details.astro
-import OptimizedImage from '../../OptimizedImage.astro';
+import R2Picture from '../../R2Picture.astro';
 
 interface Props {
   title: string;
@@ -13,7 +13,7 @@ interface Props {
   areaLabel?: string;
   location: string;
   locationLabel?: string;
-  image?: string;
+  mediaId?: string;
 }
 
 const {
@@ -27,7 +27,7 @@ const {
   areaLabel = 'AREA',
   location,
   locationLabel = 'LOCATION',
-  image,
+  mediaId,
 } = Astro.props;
 ---
 
@@ -74,13 +74,13 @@ const {
     </div>
 
     <!-- Detail image -->
-    {image && (
+    {mediaId && (
       <div class="w-full">
-        <OptimizedImage
-          src={image}
+        <R2Picture
+          id={mediaId}
           alt={title}
           class="w-full h-auto object-cover"
-          loading="eager"
+          eager
           sizes="100vw"
         />
       </div>

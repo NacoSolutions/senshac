@@ -1,7 +1,5 @@
 ---
 // src/components/sections/Collaborators.astro
-import OptimizedImage from '../../OptimizedImage.astro';
-
 interface Collaborator {
   name: string;
   role: string;
@@ -11,10 +9,9 @@ interface Collaborator {
 interface Props {
   title?: string;
   list?: Collaborator[];
-  image?: string;
 }
 
-const { title = 'COLLABORATORS', list = [], image } = Astro.props;
+const { title = 'COLLABORATORS', list = [] } = Astro.props;
 ---
 
 <section class="py-16 md:py-24 bg-gray-50">
@@ -35,11 +32,5 @@ const { title = 'COLLABORATORS', list = [], image } = Astro.props;
         </div>
       ))}
     </div>
-
-    {image && (
-      <div class="mt-16">
-        <OptimizedImage src={image} alt={title} class="w-full" loading="lazy" sizes="(min-width: 768px) 1152px, 100vw" />
-      </div>
-    )}
   </div>
 </section>

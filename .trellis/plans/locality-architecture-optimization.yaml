@@ -1,0 +1,16 @@
+id: locality-architecture-optimization
+title: Optimize Astro, HTMX, Alpine, UnoCSS, Tina, and Cloudflare locality
+seed: senshac-f8fa
+spec: senshac-architecture
+status: active
+createdAt: "2026-06-10T11:12:05.427Z"
+updatedAt: "2026-06-10T11:12:05.427Z"
+summary: Remove hyperscript and reorganize behavior, presentation, content change, and edge delivery around explicit local ownership while preserving Tina visual editing and R2 media.
+steps:
+  - "Remove hyperscript and unused packages from package.json, bun.lock, Base.astro, type declarations, repository guidance, and environment messaging. Verify with repository search, frozen install, and Astro check. Seed: senshac-cac3."
+  - "Refactor Header.astro, Base.astro, HlsVideo.astro, Carousel.astro, and Showcase.astro so Alpine.data or component scripts own state and listeners locally; consolidate carousel behavior and honor keyboard/reduced-motion requirements. Verify with component interaction smoke tests. Seed: senshac-6706."
+  - "Refactor ContactForm.astro and [lang]/api/contact.ts for scoped HTMX loading, native action/method fallback, HX-Request fragment negotiation, error swapping, scoped Turnstile callbacks, and production fail-closed behavior. Verify HTMX and no-JS success/error cases. Seed: senshac-3354."
+  - "Update uno.config.ts, BlocksRenderer.astro, Tina icon fields, Alpine bindings, and server fragment sources so every utility is statically extractable or generated from one bounded token list. Verify generated CSS contains dynamic grids, state classes, and CMS icons. Seed: senshac-7e51."
+  - "Change Astro routing to static-first delivery, retain prerender=false only on contact/Tina/media APIs, and deduplicate or cache shared Tina header/footer data without breaking visual editing. Verify static route artifacts and Tina island refresh. Seed: senshac-6430."
+  - "Resolve Cloudflare SESSION KV expectations and clarify native R2 versus S3-compatible responsibilities across wrangler.jsonc, media APIs, Tina uploads, Workers, and deployment docs. Verify preview bindings and media operations. Seed: senshac-aa19."
+  - "Run Astro check/build, focused behavior tests, Cloudflare preview smoke tests, accessibility checks, and bundle/Worker-request comparison; close implementation seeds only after evidence is recorded. Seed: senshac-ff6d."

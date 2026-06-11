@@ -10,6 +10,7 @@ interface Props {
   siteData?: SiteConfigQuery['siteConfig'];
   lang: string;
   headerStyle?: 'default' | 'transparent';
+  relativePath?: string;
 }
 
 let { data, siteData, lang, headerStyle = 'default' } = Astro.props;

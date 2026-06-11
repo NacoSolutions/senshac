@@ -6,7 +6,20 @@
     {
       "_template": "editorialHero",
       "title": "DISSENYEM\nESPAIS AMB\nIDENTITAT DE\nMARCA",
-      "intro": "Som un estudi boutique d’interiorisme estratègic especialitzat a crear interiors d’alt impacte per a negocis.",
+      "intro": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "Som un estudi boutique d’interiorisme estratègic especialitzat a crear interiors d’alt impacte per a negocis."
+              }
+            ]
+          }
+        ]
+      },
       "ctaText": "sobre l’estudi",
       "ctaLink": "/ca/studio",
       "mediaType": "image",
@@ -15,7 +28,20 @@
     {
       "_template": "editorialCopy",
       "title": "Unim Espai, Identitat de Marca & Estratègia.",
-      "body": "Col·laborem estretament amb fundadors i emprenedors per construir una imatge cohesionada que alinea producte, percepció i experiència d’usuari. Creem espais identitaris amb un llenguatge visual propi."
+      "body": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "Col·laborem estretament amb fundadors i emprenedors per construir una imatge cohesionada que alinea producte, percepció i experiència d’usuari. Creem espais identitaris amb un llenguatge visual propi."
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "_template": "editorialShowcase",
@@ -24,7 +50,20 @@
     },
     {
       "_template": "editorialAccordion",
-      "intro": "Si tens un producte o servei que et fa diferent, no competeixis per preu. Dissenyem el teu espai per convertir-lo en el teu millor actiu estratègic:",
+      "intro": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "Si tens un producte o servei que et fa diferent, no competeixis per preu. Dissenyem el teu espai per convertir-lo en el teu millor actiu estratègic:"
+              }
+            ]
+          }
+        ]
+      },
       "items": [
         {
           "number": "01",
@@ -49,15 +88,54 @@
       "items": [
         {
           "title": "Optimitzar la rendibilitat",
-          "text": "El teu canal físic actual no rendeix com hauria i necessites que l’espai impulsi les vendes."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "El teu canal físic actual no rendeix com hauria i necessites que l’espai impulsi les vendes."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Fer el salt al canal físic",
-          "text": "Lideres un e-commerce o inauguraràs el teu primer local i necessites un impacte immediat."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Lideres un e-commerce o inauguraràs el teu primer local i necessites un impacte immediat."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Reposicionar la marca",
-          "text": "Vols que el teu espai reflecteixi la qualitat del producte i atregui un client de més valor."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Vols que el teu espai reflecteixi la qualitat del producte i atregui un client de més valor."
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },

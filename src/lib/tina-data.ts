@@ -10,7 +10,9 @@ export interface TinaRuntimeEnv {
 }
 
 export function getTinaRuntimeEnv(locals: App.Locals): TinaRuntimeEnv | undefined {
-  return (locals as { runtime?: { env?: TinaRuntimeEnv } }).runtime?.env;
+  // Astro 6 removed Astro.locals.runtime.env
+  // Variables are handled via import.meta.env fallbacks in getClient
+  return undefined;
 }
 
 function getClient(env?: TinaRuntimeEnv) {

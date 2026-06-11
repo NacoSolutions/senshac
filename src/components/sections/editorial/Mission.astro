@@ -1,30 +1,35 @@
 ---
 import MediaPlaceholder from './MediaPlaceholder.astro';
+import RichText from './RichText.astro';
 
 interface Props {
   label?: string;
-  paragraphs?: string[];
+  content?: any;
   statement?: string;
-  image?: string;
+  mediaId?: string;
   imageAlt?: string;
   placeholderLabel?: string;
 }
 
-const { label, paragraphs = [], statement, image, imageAlt, placeholderLabel } = Astro.props;
+const { label, content, statement, mediaId, imageAlt, placeholderLabel } = Astro.props;
 ---
 
-<section class="editorial-section editorial-mission">
-  <div class="editorial-shell editorial-mission__grid">
-    <h1 class="editorial-eyebrow">{label}</h1>
-    <div class="editorial-mission__copy">
-      {paragraphs.map((paragraph) => <p class="editorial-body">{paragraph}</p>)}
+<section class="editorial-section">
+  <div class="editorial-shell grid items-center gap-16 md:grid-cols-[minmax(20rem,1fr)_1fr] md:gap-[clamp(4rem,8vw,8rem)]">
+    <div class="max-w-[28rem] mx-auto md:m-0 w-full">
+      <MediaPlaceholder mediaId={mediaId} alt={imageAlt} label={placeholderLabel} aspect="portrait" />
+    </div>
+    <div class="grid gap-8 max-w-[42rem]">
+      <h1 class="editorial-eyebrow">{label}</h1>
+      <div class="editorial-body whitespace-normal columns-1 gap-10 md:columns-2">
+        <RichText content={content} />
+      </div>
     </div>
   </div>
 </section>
 
-<section class="editorial-section editorial-mission__statement">
+<section class="editorial-section bg-section-dark py-[clamp(6rem,12vw,12rem)]">
   <div class="editorial-shell">
-    <h2 class="editorial-display">{statement}</h2>
-    <MediaPlaceholder image={image} alt={imageAlt} label={placeholderLabel} aspect="wide" />
+    <h2 class="editorial-display max-w-[20ch]">{statement}</h2>
   </div>
 </section>

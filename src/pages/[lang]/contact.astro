@@ -31,7 +31,7 @@ const tinaContactData = tinaContact.data.contact;
 const islands = createIslands(tinaEnv);
 ---
 
-<Base title={title} description={description} lang={lang!} headerStyle="transparent">
+<Base title={title} description={description} lang={lang!} schema="LocalBusiness" headerStyle="default">
   {tinaEnv ? (
     <TinaIsland name="contact" wrapper={islands.contact.wrapper} params={{ relativePath, lang: lang! }} primary>
       <ContactPage data={tinaContactData} />

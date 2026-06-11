@@ -1,17 +1,23 @@
 id: senshac-architecture
 title: Senshac Astro portfolio architecture
+seed: senshac-f8fa
 status: active
 createdAt: "2026-06-02T13:25:40.795Z"
-updatedAt: "2026-06-08T13:50:55.434Z"
-objective: Senshac is an Astro SSR portfolio on Cloudflare Pages using UnoCSS, Alpine.js for local UI state, HTMX/Hyperscript for server interactions, TinaCMS structured editing, multilingual routes, and an external Cloudflare R2 media pipeline for responsive images, fonts, and HLS video.
+updatedAt: "2026-06-10T11:11:53.732Z"
+objective: Senshac is a static-first Astro portfolio on Cloudflare Pages using UnoCSS for colocated presentation, Alpine.js for local client state, HTMX for server interactions, TinaCMS plus GitHub for content change, and Cloudflare Workers/R2 for dynamic delivery and media.
 constraints:
-  - "Zero-JS first: prefer HTML/CSS, then Alpine.js, then HTMX, then Hyperscript."
+  - "Zero-JS first: prefer semantic HTML and CSS, then Alpine.js for component-local state, then HTMX for server interaction."
+  - Utility classes must be statically extractable by UnoCSS; CMS choices map to bounded semantic tokens and generated safelists.
+  - Public content routes are prerendered by default; only contact, Tina island, media, and other genuine API routes execute on Workers.
   - Use stable R2 media IDs with AVIF/WebP 412/768/1200 variants and HLS manifests; repository media and build-time image optimization are retired.
   - Keep media ingestion in senshac-media-raw and immutable public delivery in senshac-media-prod through media.senshac.com.
   - Maintain multilingual content and canonical studio, works, and methods routes.
 acceptance:
-  - Astro check/build passes inside Flox with Bun without public/images or public/fonts.
+  - Astro check/build passes inside Flox with Bun without hyperscript, unused Alpine plugins, or deprecated UnoCSS presets.
+  - Ordinary pages are delivered as static assets while Tina visual editing and dynamic API routes remain functional.
+  - HTMX contact submission works with and without JavaScript, renders validation errors, and enforces Turnstile in production.
+  - UnoCSS emits every Alpine state class, responsive content variant, and bounded Tina icon without a browser runtime.
   - Images, fonts, and HLS media return correct MIME/cache headers from media.senshac.com.
-  - Navigation, project pages, contact flow, SEO endpoints, and TinaCMS admin remain functional.
+  - Navigation, project pages, contact flow, SEO endpoints, and TinaCMS admin remain accessible and functional.
 references:
   - docs/media-pipeline.md

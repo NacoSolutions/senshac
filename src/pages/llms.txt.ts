@@ -61,6 +61,7 @@ ${socialLinks}
 
 ## Technical
 
+- Full LLMs Directory: ${site.siteUrl}/llms-full.txt
 - Sitemap: ${site.siteUrl}/sitemap.xml
 - Robots: ${site.siteUrl}/robots.txt
 `;

@@ -3,6 +3,7 @@
 import { getTranslations, type Translations } from '../utils/translations';
 import { getSiteConfig } from '../utils/site-config';
 import { tinaField } from '@tinacms/astro';
+import R2Picture from './R2Picture.astro';
 
 import type { SiteConfigQuery } from '../../tina/__generated__/types';
 
@@ -29,12 +30,10 @@ const socialLinks = site.socialLinks;
     <div class="flex flex-col-reverse sm:flex-row sm:justify-between gap-8 pt-16 pb-8">
       <!-- Logo -->
         <a href={`/${lang}/`} aria-label={site.company.name}>
-          <img
-            src={site.branding.symbolWhite}
+          <R2Picture
+            id={site.branding.symbolWhite}
             alt={site.company.name.toLowerCase()}
             class="h-12 w-auto"
-            width="48"
-            height="48"
             data-tina-field={tinaField(site.branding, 'symbolWhite')}
           />
         </a>
@@ -98,27 +97,27 @@ const socialLinks = site.socialLinks;
   <div class="max-w-7xl mx-auto px-4 md:px-8">
     <div class="flex flex-wrap justify-between gap-4 py-4">
       <!-- Attribution -->
-        <div class="text-sm text-white/70">
-          {site.attribution?.design && <p data-tina-field={tinaField(site.attribution, 'design')}>Design by {site.attribution.design}</p>}
-          {site.attribution?.development && <p data-tina-field={tinaField(site.attribution, 'development')}>Development by {site.attribution.development}</p>}
-        </div>
+      <div class="text-sm text-white/70">
+        {site.attribution?.design && <p data-tina-field={tinaField(site.attribution, 'design')}>Design by {site.attribution.design}</p>}
+        {site.attribution?.development && <p data-tina-field={tinaField(site.attribution, 'development')}>Development by {site.attribution.development}</p>}
+      </div>
 
       <!-- Legal Links -->
-      <div class="flex flex-col sm:flex-row gap-2 sm:gap-6 text-sm">
-        <a
+      <div class="text-sm text-white/70 ">
+        <p><a
           href={`/${lang}/privacy-policy`}
-          class="text-white/70 hover:text-white transition-colors py-1"
+          class="hover:text-white transition-colors py-1"
           data-tina-field={tinaField(t.footer, 'privacy')}
         >
           {t.footer.privacy}
-        </a>
-        <a
+        </a></p>
+        <p><a
           href={`/${lang}/legal-notice`}
-          class="text-white/70 hover:text-white transition-colors py-1"
+          class="hover:text-white transition-colors py-1"
           data-tina-field={tinaField(t.footer, 'legal')}
         >
           {t.footer.legal}
-        </a>
+        </a></p>
       </div>
     </div>
   </div>

@@ -1,17 +1,17 @@
 ---
 // src/components/sections/contact/ContactBlock.astro
 import ContactForm from '../../ContactForm.astro';
-import OptimizedImage from '../../OptimizedImage.astro';
+import R2Picture from '../../R2Picture.astro';
 import { getSiteConfig } from '../../../utils/site-config';
 
 interface Props {
   heading?: string;
   subheading?: string;
-  bannerImage?: string;
+  mediaId?: string;
   lang?: string;
 }
 
-const { heading, subheading, bannerImage } = Astro.props;
+const { heading, subheading, mediaId } = Astro.props;
 const lang = Astro.params.lang || 'es';
 const site = await getSiteConfig();
 ---
@@ -19,13 +19,13 @@ const site = await getSiteConfig();
 <section class="relative w-full">
   <div class="max-w-6xl mx-auto px-4">
     <div class="relative aspect-[16/7] overflow-hidden">
-      {bannerImage && (
+      {mediaId && (
         <div class="w-full h-full">
-          <OptimizedImage
-            src={bannerImage}
+          <R2Picture
+            id={mediaId}
             alt=""
             class="w-full h-full object-cover"
-            loading="eager"
+            eager
             sizes="(min-width: 768px) 1152px, 100vw"
           />
         </div>
@@ -33,8 +33,8 @@ const site = await getSiteConfig();
       <!-- White symbol overlay -->
       <div class="absolute inset-0 flex items-center justify-center">
         {site.branding?.symbolWhite && (
-          <img
-            src={site.branding.symbolWhite}
+          <R2Picture
+            id={site.branding.symbolWhite}
             alt=""
             class="w-24 md:w-32 h-auto"
           />

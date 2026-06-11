@@ -1,0 +1,7 @@
+{
+  "ref": "refs/heads/main",
+  "inputs": {
+    "key": "images/act-smoke.png",
+    "dry_run": "true"
+  }
+}

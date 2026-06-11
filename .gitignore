@@ -25,6 +25,8 @@ pnpm-debug.log*
 .env.development
 .env.production
 .env.*.local
+.secrets
+.secrets.act
 
 # macOS-specific files
 .DS_Store
@@ -36,5 +38,7 @@ pnpm-debug.log*
 
 # optimized images (generated at build)
 public/_optimized/
+media/processed/
+.media-input/
 
 .bak

@@ -54,8 +54,8 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       component: HeaderIsland,
       wrapper: { tag: 'div', className: 'relative z-50' },
       propsFromData: (data: any, params) => ({
-        data: data?.data?.translations,
-        siteData: data?.data?.siteConfig,
+        data: data?.translations?.data?.translations,
+        siteData: data?.site?.data?.siteConfig,
         lang: params?.get('lang') ?? 'es',
         headerStyle: params?.get('headerStyle') ?? 'default',
       }),
@@ -69,8 +69,8 @@ export function createIslands(env?: TinaRuntimeEnv): IslandRegistry {
       component: FooterIsland,
       wrapper: { tag: 'div' },
       propsFromData: (data: any, params) => ({
-        data: data?.data?.translations,
-        siteData: data?.data?.siteConfig,
+        data: data?.translations?.data?.translations,
+        siteData: data?.site?.data?.siteConfig,
         lang: params?.get('lang') ?? 'es',
       }),
     },

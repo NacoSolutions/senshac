@@ -11,35 +11,15 @@ export const GET: APIRoute = async () => {
   const { siteUrl } = siteConfig.data;
 
   const robotsTxt = `# robots.txt
+# AI bot access is enforced by Cloudflare AI Crawl Control at the WAF level.
+# Content Signals declare content usage preferences per https://contentsignals.org/
+
 User-agent: *
 Allow: /
+# Portfolio and design work: no AI training, yes search indexing, yes agent-assisted queries
+Content-Signal: ai-train=no, search=yes, ai-input=yes
 
-# Block AI training crawlers
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
-
-User-agent: FacebookBot
-Disallow: /
-
-# Block ad crawlers
+# Block ad crawlers (not covered by Cloudflare AI Crawl Control)
 User-agent: AdsBot-Google
 Disallow: /
 
@@ -49,7 +29,7 @@ Disallow: /
 # Sitemaps
 Sitemap: ${siteUrl}/sitemap.xml
 
-# LLMs.txt
+# LLMs.txt — machine-readable site index for AI agents
 # See: ${siteUrl}/llms.txt
 `;
 

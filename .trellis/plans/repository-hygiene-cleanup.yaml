@@ -1,0 +1,14 @@
+id: repository-hygiene-cleanup
+title: Clean dead, stale, redundant, and legacy repository artifacts
+seed: senshac-4b1b
+spec: senshac-architecture
+status: active
+createdAt: "2026-06-10T11:22:04.719Z"
+updatedAt: "2026-06-10T11:22:04.719Z"
+summary: "Reduce repository entropy after the WordPress, redesign, Tina, and R2 migrations while preserving generated/runtime entrypoints and active compatibility contracts. Non-goals: do not delete public/admin or tina/__generated__ build outputs solely from static-analysis reports; do not remove Workers/media tooling still used by deployment; do not remove permanent about/projects/services redirects; do not rewrite active content or redesign work."
+steps:
+  - "Delete confirmed dead application artifacts: scratch.js, unused HouzzCallout.astro, its commented imports, and empty legacy source directories. Review .scratch/WEB.pdf, dated handoff/audit documents, and one-time staging scripts against active Seeds before archiving. Verify with rg reference checks and Astro check. Seed: senshac-387b."
+  - "Complete existing frontend dependency pruning in senshac-cac3, then add @aws-sdk/s3-request-presigner, remove remaining confirmed unused dependencies, add a Knip configuration for Astro/Tina/Workers/generated outputs, and apply compatible security upgrades. Verify frozen Bun install, Knip, Bun audit, Astro check, and build. Seed: senshac-d017; dependency: senshac-cac3."
+  - "After senshac-cac3 and senshac-aa19 settle architecture and binding ownership, update AGENTS.md, README.md, Flox activation text, docs/media-pipeline.md, environment examples, and obsolete examples so repository guidance describes the actual stack and paths. Verify commands and references mechanically. Seed: senshac-5d1b."
+  - "Repair git-native metadata health through sd/tl/ml CLIs: Seeds dependency symmetry, Trellis templates/orphan/stale lifecycle, and Mulch migrated anchors with superseding records retained. Verify sd doctor, tl doctor plus audit commands, and ml doctor. Seed: senshac-5b42."
+  - "Review retained static-analysis exceptions and final diff, then run frozen install, configured Knip, Bun audit, Astro check/build, route/admin smoke, applicable media workflow smoke, and tracker health checks. Record ownership for generated/dynamic entrypoints before closing the epic. Seed: senshac-ef1f."

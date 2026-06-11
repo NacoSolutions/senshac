@@ -6,7 +6,20 @@
     {
       "_template": "editorialHero",
       "title": "WE DESIGN\nSPACES WITH\nA DISTINCT\nBRAND IDENTITY",
-      "intro": "We are a boutique strategic interior design studio creating high-impact interiors for businesses.",
+      "intro": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "We are a boutique strategic interior design studio creating high-impact interiors for businesses."
+              }
+            ]
+          }
+        ]
+      },
       "ctaText": "about the studio",
       "ctaLink": "/en/studio",
       "mediaType": "image",
@@ -15,7 +28,20 @@
     {
       "_template": "editorialCopy",
       "title": "We unite Space, Brand Identity & Strategy.",
-      "body": "We work closely with founders and entrepreneurs to build a cohesive image that aligns product, perception and user experience. We create distinctive spaces where interior architecture becomes a natural extension of your identity and values."
+      "body": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "We work closely with founders and entrepreneurs to build a cohesive image that aligns product, perception and user experience. We create distinctive spaces where interior architecture becomes a natural extension of your identity and values."
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "_template": "editorialShowcase",
@@ -24,7 +50,20 @@
     },
     {
       "_template": "editorialAccordion",
-      "intro": "If your product or service is different, do not compete on price. We turn your space into a strategic asset that raises the value of your business:",
+      "intro": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "If your product or service is different, do not compete on price. We turn your space into a strategic asset that raises the value of your business:"
+              }
+            ]
+          }
+        ]
+      },
       "items": [
         {
           "number": "01",
@@ -49,15 +88,54 @@
       "items": [
         {
           "title": "Improve profitability",
-          "text": "Your physical channel is underperforming and the space needs to support sales."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Your physical channel is underperforming and the space needs to support sales."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Move into a physical space",
-          "text": "You lead an established e-commerce brand or are opening your first location."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "You lead an established e-commerce brand or are opening your first location."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Reposition your brand",
-          "text": "Your current space does not reflect the quality of your offer or attract a higher-value customer."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Your current space does not reflect the quality of your offer or attract a higher-value customer."
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
@@ -83,6 +161,12 @@
       ],
       "ctaText": "View work",
       "ctaLink": "/en/works"
+    },
+    {
+      "_template": "editorialInstagram",
+      "title": "On Instagram",
+      "tag": "novedades",
+      "limit": 4
     }
   ]
 }

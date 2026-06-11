@@ -4,14 +4,13 @@ import cloudflare from '@astrojs/cloudflare';
 import UnoCSS from '@unocss/astro';
 import mdx from '@astrojs/mdx';
 import tina from '@tinacms/astro/integration';
-import optimizeImages from './src/integrations/optimize-images.ts';
 
 // https://astro.build/config
 export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-  site: 'https://preview.senshac.com',
+  site: 'https://senshac.com',
   output: 'server',
   adapter: cloudflare({
     imageService: 'compile',
@@ -21,7 +20,7 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
     },
   },
-  integrations: [tina(), UnoCSS({ injectReset: true }), mdx(), optimizeImages()],
+  integrations: [tina(), UnoCSS({ injectReset: true }), mdx()],
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'ca', 'en'],
@@ -36,6 +35,16 @@ export default defineConfig({
     '/ca/admin': '/admin/index.html'
   },
   vite: {
+    plugins: [
+      {
+        name: 'silence-esbuild-options-warning',
+        configResolved(config) {
+          if (config.optimizeDeps?.esbuildOptions) {
+            delete config.optimizeDeps.esbuildOptions;
+          }
+        }
+      }
+    ],
     build: {
       rollupOptions: {
         // Suppress HTMX eval warning - it's used safely for hx-on:* event handlers

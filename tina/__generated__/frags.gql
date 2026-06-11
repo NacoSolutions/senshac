@@ -57,96 +57,22 @@ fragment HomeParts on Home {
   headerStyle
   blocks {
     __typename
-    ... on HomeBlocksHomeHero {
-      image
+    ... on HomeBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on HomeBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on HomeBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on HomeBlocksAboutHero {
-      title
-    }
-    ... on HomeBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on HomeBlocksBannerImage {
-      image
-      alt
-    }
-    ... on HomeBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on HomeBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on HomeBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on HomeBlocksServicesHero {
-      title
-    }
-    ... on HomeBlocksServicesIntro {
-      text
-      image
-    }
-    ... on HomeBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on HomeBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on HomeBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on HomeBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on HomeBlocksEditorialHero {
       title
@@ -154,15 +80,17 @@ fragment HomeParts on Home {
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on HomeBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on HomeBlocksEditorialAccordion {
       intro
@@ -196,7 +124,7 @@ fragment HomeParts on Home {
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -205,18 +133,41 @@ fragment HomeParts on Home {
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on HomeBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on HomeBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on HomeBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on HomeBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -225,99 +176,24 @@ fragment AboutParts on About {
   __typename
   title
   description
-  heroImage
   blocks {
     __typename
-    ... on AboutBlocksHomeHero {
-      image
+    ... on AboutBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on AboutBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on AboutBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on AboutBlocksAboutHero {
-      title
-    }
-    ... on AboutBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on AboutBlocksBannerImage {
-      image
-      alt
-    }
-    ... on AboutBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on AboutBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on AboutBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on AboutBlocksServicesHero {
-      title
-    }
-    ... on AboutBlocksServicesIntro {
-      text
-      image
-    }
-    ... on AboutBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on AboutBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on AboutBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on AboutBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on AboutBlocksEditorialHero {
       title
@@ -325,15 +201,17 @@ fragment AboutParts on About {
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on AboutBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on AboutBlocksEditorialAccordion {
       intro
@@ -367,7 +245,7 @@ fragment AboutParts on About {
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -376,18 +254,41 @@ fragment AboutParts on About {
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on AboutBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on AboutBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on AboutBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on AboutBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -398,96 +299,22 @@ fragment ServicesParts on Services {
   description
   blocks {
     __typename
-    ... on ServicesBlocksHomeHero {
-      image
+    ... on ServicesBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on ServicesBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on ServicesBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on ServicesBlocksAboutHero {
-      title
-    }
-    ... on ServicesBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on ServicesBlocksBannerImage {
-      image
-      alt
-    }
-    ... on ServicesBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on ServicesBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on ServicesBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on ServicesBlocksServicesHero {
-      title
-    }
-    ... on ServicesBlocksServicesIntro {
-      text
-      image
-    }
-    ... on ServicesBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on ServicesBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on ServicesBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on ServicesBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on ServicesBlocksEditorialHero {
       title
@@ -495,15 +322,17 @@ fragment ServicesParts on Services {
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on ServicesBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on ServicesBlocksEditorialAccordion {
       intro
@@ -537,7 +366,7 @@ fragment ServicesParts on Services {
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -546,18 +375,41 @@ fragment ServicesParts on Services {
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on ServicesBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on ServicesBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ServicesBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on ServicesBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -568,96 +420,22 @@ fragment ContactParts on Contact {
   description
   blocks {
     __typename
-    ... on ContactBlocksHomeHero {
-      image
+    ... on ContactBlocksContactForm {
+      mediaId
+      heading
+      subheading
+    }
+    ... on ContactBlocksEditorialBanner {
+      title
+      subtitle
       topRight {
         __typename
         lines
       }
-      tagline {
-        __typename
-        lines
-      }
-      taglineSub
-    }
-    ... on ContactBlocksHomeAbout {
-      image
-      title
-      description
-      ctaText
-      ctaLink
-    }
-    ... on ContactBlocksAboutHero {
-      title
-    }
-    ... on ContactBlocksBehindName {
-      title
-      p1
-      p2
-      footnote
-    }
-    ... on ContactBlocksBannerImage {
-      image
-      alt
-    }
-    ... on ContactBlocksBio {
-      title
-      image
-      paragraphs
-    }
-    ... on ContactBlocksAwards {
-      title
-      items {
-        __typename
-        year
-        project
-        award
-        link
-      }
-    }
-    ... on ContactBlocksMission {
-      title
-      p1
-      p2
-      quote
-    }
-    ... on ContactBlocksServicesHero {
-      title
-    }
-    ... on ContactBlocksServicesIntro {
-      text
-      image
-    }
-    ... on ContactBlocksServiceGroups {
-      groups {
-        __typename
-        title
-        items {
-          __typename
-          title
-          description
-        }
-      }
-    }
-    ... on ContactBlocksFaq {
-      title
-      image
-      items {
-        __typename
-        question
-        answer
-      }
-    }
-    ... on ContactBlocksWorkProcess {
-      title
-      p1
-      p2
-      image
-    }
-    ... on ContactBlocksContactForm {
-      bannerImage
-      heading
-      subheading
+      mediaId
+      imageAlt
+      placeholderLabel
+      objectFit
     }
     ... on ContactBlocksEditorialHero {
       title
@@ -665,15 +443,17 @@ fragment ContactParts on Contact {
       ctaText
       ctaLink
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
+      objectFit
     }
     ... on ContactBlocksEditorialCopy {
       eyebrow
       title
       headingLevel
       body
+      showStar
     }
     ... on ContactBlocksEditorialAccordion {
       intro
@@ -707,7 +487,7 @@ fragment ContactParts on Contact {
       eyebrow
       title
       mediaType
-      image
+      mediaId
       imageAlt
       placeholderLabel
       ctaText
@@ -716,18 +496,41 @@ fragment ContactParts on Contact {
         __typename
         title
         link
-        image
+        mediaId
         imageAlt
         placeholderLabel
       }
     }
     ... on ContactBlocksEditorialMission {
       label
-      paragraphs
+      content
       statement
-      image
+      mediaId
       imageAlt
       placeholderLabel
+    }
+    ... on ContactBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ContactBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
+    }
+    ... on ContactBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
     }
   }
 }
@@ -754,13 +557,13 @@ fragment ProjectsParts on Projects {
   blocks {
     __typename
     ... on ProjectsBlocksProjectBanner {
-      image
+      mediaId
       alt
     }
     ... on ProjectsBlocksProjectDetails {
       title
       subtitle
-      image
+      mediaId
       services
       servicesLabel
       category
@@ -773,46 +576,14 @@ fragment ProjectsParts on Projects {
     ... on ProjectsBlocksProjectBrief {
       title
       text
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectConcept {
       title
       text
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectStrategy {
       title
       text
-      carousel {
-        __typename
-        src
-        alt
-      }
-      gallery {
-        __typename
-        cols
-        images {
-          __typename
-          src
-          alt
-        }
-      }
     }
     ... on ProjectsBlocksProjectCollaborators {
       title
@@ -823,12 +594,31 @@ fragment ProjectsParts on Projects {
       }
     }
     ... on ProjectsBlocksProjectFinalImage {
-      src
+      mediaId
       alt
     }
-    ... on ProjectsBlocksBannerImage {
-      image
-      alt
+    ... on ProjectsBlocksEditorialGallery {
+      cols
+      images {
+        __typename
+        mediaId
+        alt
+      }
+    }
+    ... on ProjectsBlocksEditorialCarousel {
+      items {
+        __typename
+        mediaId
+        alt
+        caption
+      }
+    }
+    ... on ProjectsBlocksEditorialInstagram {
+      title
+      description
+      tag
+      limit
+      maxVisible
     }
   }
 }

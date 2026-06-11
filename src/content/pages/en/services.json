@@ -5,7 +5,8 @@
     {
       "_template": "editorialCopy",
       "title": "OUR METHOD:\nFROM STRATEGY TO\nOPENING.",
-      "headingLevel": "h1"
+      "headingLevel": "h1",
+      "showStar": true
     },
     {
       "_template": "editorialAccordion",
@@ -17,11 +18,37 @@
           "details": [
             {
               "label": "Business audit",
-              "text": "We identify commercial challenges and growth goals."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We identify commercial challenges and growth goals."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Spatial feasibility",
-              "text": "We assess whether the location supports your business model."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We assess whether the location supports your business model."
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         },
@@ -32,19 +59,71 @@
           "details": [
             {
               "label": "Identity",
-              "text": "We apply your branding and values to the interior architecture."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We apply your branding and values to the interior architecture."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Flow design",
-              "text": "We plan operations, the sales journey and key zones."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We plan operations, the sales journey and key zones."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Bespoke design and FF&E",
-              "text": "We define furniture, lighting and materials."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We define furniture, lighting and materials."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "3D modelling",
-              "text": "High-fidelity visualisations for confident approval."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "High-fidelity visualisations for confident approval."
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         },
@@ -55,15 +134,54 @@
           "details": [
             {
               "label": "Technical drawings",
-              "text": "Detailed documentation for contractors and trades."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Detailed documentation for contractors and trades."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Budget development",
-              "text": "A clear economic breakdown of the project."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "A clear economic breakdown of the project."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Adapted technical design",
-              "text": "Alignment with the location’s technical and regulatory needs."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Alignment with the location’s technical and regulatory needs."
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         },
@@ -74,15 +192,54 @@
           "details": [
             {
               "label": "One point of contact",
-              "text": "We centralise communication across the project."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We centralise communication across the project."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Site supervision",
-              "text": "Periodic visits to review technical details and finishes."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "Periodic visits to review technical details and finishes."
+                      }
+                    ]
+                  }
+                ]
+              }
             },
             {
               "label": "Final quality control",
-              "text": "We verify quality and visual fidelity."
+              "text": {
+                "type": "root",
+                "children": [
+                  {
+                    "type": "p",
+                    "children": [
+                      {
+                        "type": "text",
+                        "text": "We verify quality and visual fidelity."
+                      }
+                    ]
+                  }
+                ]
+              }
             }
           ]
         }
@@ -95,19 +252,71 @@
     },
     {
       "_template": "editorialRows",
-      "intro": "Choose the level of support you need by commissioning the process in phases:",
+      "intro": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "Choose the level of support you need by commissioning the process in phases:"
+              }
+            ]
+          }
+        ]
+      },
       "items": [
         {
           "title": "Strategic consultation",
-          "text": "An intensive session to audit the location and define brand, layout and sales flow priorities."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "An intensive session to audit the location and define brand, layout and sales flow priorities."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Creative concept",
-          "text": "Phases I and II, including strategy, spatial layout and 3D visualisation."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "Phases I and II, including strategy, spatial layout and 3D visualisation."
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Full project",
-          "text": "The complete process, from initial strategy through execution."
+          "text": {
+            "type": "root",
+            "children": [
+              {
+                "type": "p",
+                "children": [
+                  {
+                    "type": "text",
+                    "text": "The complete process, from initial strategy through execution."
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },

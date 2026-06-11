@@ -1,0 +1,71 @@
+---
+interface Props {
+  id: string;
+  class?: string;
+  poster?: string;
+  autoplay?: boolean;
+  controls?: boolean;
+  muted?: boolean;
+  loop?: boolean;
+}
+
+const {
+  id,
+  class: className,
+  poster,
+  autoplay = true,
+  controls = false,
+  muted = true,
+  loop = true,
+} = Astro.props;
+const baseUrl = (
+  import.meta.env.PUBLIC_MEDIA_BASE_URL || 'https://media.senshac.com'
+).replace(/\/$/, '');
+const cleanId = id
+  .replace(new RegExp(`^${baseUrl}/images/`), '')
+  .replace(new RegExp(`^${baseUrl}/videos/`), '')
+  .replace(/^\/+|\/+$/g, '')
+  .replace(/^videos\//, '')
+  .replace(/\/master\.m3u8$/, '')
+  .replace(/\.[^.]+$/, '');
+const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
+---
+
+<div x-data={`senshacHlsPlayer(${JSON.stringify(manifest)})`} x-init="init()" class="h-full w-full">
+  <video
+    x-ref="video"
+    src={manifest}
+    class={className}
+    poster={poster}
+    autoplay={autoplay}
+    controls={controls}
+    muted={muted}
+    loop={loop}
+    playsinline
+    preload="metadata"
+  ></video>
+</div>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    window.Alpine.data('senshacHlsPlayer', (manifest: string) => ({
+      player: null as import('hls.js').default | null,
+      async init() {
+        const video = this.$refs.video as HTMLVideoElement;
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = manifest;
+          return;
+        }
+        const { default: Hls } = await import('hls.js');
+        if (!Hls.isSupported()) return;
+
+        this.player = new Hls({ enableWorker: true });
+        this.player.loadSource(manifest);
+        this.player.attachMedia(video);
+      },
+      destroy() {
+        this.player?.destroy();
+      },
+    }));
+  });
+</script>
