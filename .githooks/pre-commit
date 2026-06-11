@@ -12,3 +12,6 @@ fi
 
 echo "Running betterleaks on staged changes..."
 betterleaks git --staged --redact --no-banner --no-color --log-level warn .
+
+echo "Running code quality gate (check:all)..."
+bun run check:all

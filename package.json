@@ -17,7 +17,11 @@
     "test:workflow:media": "scripts/act-media",
     "preview": "astro preview",
     "check": "astro check",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "check:deps": "knip",
+    "check:all": "bun run check && bun run lint && bun run check:deps"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.7.0",
@@ -35,15 +39,11 @@
     "esbuild": "^0.28.0",
     "hls.js": "^1.6.16",
     "htmx.org": "^2.0.8",
-    "js-cookie": "^3.0.8",
-    "lodash": "^4.18.1",
     "next-tinacms-s3": "^23.0.1",
     "node-html-markdown": "^2.0.0",
     "sharp": "^0.35.0",
-    "undici": "^8.4.1",
     "unocss": "^66.5.10",
     "vite": "^8.0.16",
-    "ws": "^8.21.0",
     "yaml": "^2.9.0"
   },
   "trustedDependencies": [
@@ -53,8 +53,10 @@
   ],
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
+    "@biomejs/biome": "^2.4.16",
     "@tinacms/cli": "^2.4.4",
     "@types/alpinejs": "^3.13.11",
+    "knip": "^6.16.1",
     "tinacms": "^3.9.1",
     "typescript": "^6.0.3",
     "wrangler": "^4.99.0"
