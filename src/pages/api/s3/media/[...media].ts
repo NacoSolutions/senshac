@@ -13,21 +13,25 @@ export const DELETE: APIRoute = async ({ request, params, locals }) => {
 	}
 
 	const env = mediaEnv(locals);
-	let client;
-	try {
-		client = getS3Client(env);
-	} catch (error) {
-		console.error("[S3 API Error]:", error);
-		return Response.json(
-			{ message: "S3 binding is not configured properly" },
-			{ status: 503 },
-		);
-	}
-
-	const bucket = env.S3_BUCKET;
 	const key = safeMediaKey(params.media || "");
 
 	try {
+		if (env.MEDIA_RAW) {
+			await env.MEDIA_RAW.delete(key);
+			return Response.json({ deleted: key });
+		}
+
+		let client;
+		try {
+			client = getS3Client(env);
+		} catch (error) {
+			console.error("[S3 API Error]:", error);
+			return Response.json(
+				{ message: "S3 binding is not configured properly" },
+				{ status: 503 },
+			);
+		}
+		const bucket = env.S3_BUCKET;
 		const command = new DeleteObjectCommand({ Bucket: bucket, Key: key });
 		await client.send(command);
 		return Response.json({ deleted: key });
