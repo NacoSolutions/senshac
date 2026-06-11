@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { createR2Client } from "./r2-client";
 
@@ -7,6 +8,59 @@ const RAW_BUCKET =
 const PROD_BUCKET = "senshac-media-prod";
 const INSTAGRAM_ACCOUNT_ID = process.env.INSTAGRAM_ACCOUNT_ID;
 const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN;
+
+function logToMulch(
+	type: string,
+	name: string,
+	description: string,
+	tags: string,
+	data?: any,
+) {
+	try {
+		const args = [
+			"@os-eco/mulch-cli@latest",
+			"record",
+			"backend",
+			"--type",
+			type,
+			"--name",
+			name,
+			"--description",
+			description,
+			"--tags",
+			tags,
+		];
+		if (data) args.push("--data", JSON.stringify(data));
+		require("node:child_process").spawnSync("bunx", args, { stdio: "inherit" });
+	} catch (e) {
+		console.error("Failed to log to mulch:", e);
+	}
+}
+
+function createAlert(title: string, body: string) {
+	try {
+		require("node:child_process").spawnSync(
+			"bunx",
+			[
+				"@os-eco/seeds-cli@latest",
+				"create",
+				"--title",
+				title,
+				"--type",
+				"bug",
+				"--priority",
+				"1",
+				"--labels",
+				"bug,instagram,monitoring",
+				"--body",
+				body,
+			],
+			{ stdio: "inherit" },
+		);
+	} catch (e) {
+		console.error("Failed to create alert:", e);
+	}
+}
 
 async function main() {
 	if (!INSTAGRAM_ACCOUNT_ID || !INSTAGRAM_ACCESS_TOKEN) {
@@ -24,9 +78,19 @@ async function main() {
 
 	const response = await fetch(url);
 	if (!response.ok) {
-		throw new Error(
-			`Failed to fetch from Instagram API: ${await response.text()}`,
+		const errText = await response.text();
+		createAlert(
+			"Instagram API Auth/Rate-Limit Failure",
+			`Instagram Sync failed at initial fetch.\n\nStatus: ${response.status}\nError: ${errText}`,
 		);
+		logToMulch(
+			"alert",
+			"Instagram Sync Failure",
+			"Failed to fetch from Instagram API",
+			"instagram,sync,error",
+			{ error: errText, status: response.status },
+		);
+		throw new Error(`Failed to fetch from Instagram API: ${errText}`);
 	}
 
 	const data = await response.json();
@@ -73,6 +137,12 @@ async function main() {
 	const processedPosts = [];
 	const processedCounts = new Map<string, number>();
 
+	let importedCount = 0,
+		updatedCount = 0,
+		skippedCount = 0,
+		errorCount = 0;
+	const failedIds = new Set<string>();
+
 	// 4. Process each post: Download media and upload to R2
 	for (const post of posts) {
 		console.log(`Processing post ${post.id}...`);
@@ -92,6 +162,7 @@ async function main() {
 
 		if (tagLimits.size > 0 && matchedTags.length === 0) {
 			console.log(`Skipping ${post.id} (does not match active CMS tags)`);
+			skippedCount++;
 			continue;
 		}
 
@@ -110,6 +181,7 @@ async function main() {
 			console.log(
 				`Skipping ${post.id} (reached CMS limit for all matching tags)`,
 			);
+			skippedCount++;
 			continue;
 		}
 
@@ -128,6 +200,7 @@ async function main() {
 		if (shouldSkip) {
 			console.log(`Skipping ${post.id} (already synced)`);
 			processedPosts.push(existing);
+			skippedCount++;
 			continue;
 		}
 
@@ -135,6 +208,8 @@ async function main() {
 			let publicUrl = "";
 			let thumbnailUrl = "";
 			const childrenUrls: string[] = [];
+
+			const isUpdate = !!existing;
 
 			// Function to download and upload a single asset to RAW, then trigger AOT
 			const processAsset = async (
@@ -200,14 +275,14 @@ async function main() {
 					const sourcePath = `.media-input/source.${ext}`;
 
 					console.log(`- Downloading...`);
-					spawnSync(
+					require("node:child_process").spawnSync(
 						"bun",
 						["scripts/media/download-r2.ts", RAW_BUCKET, r2Key, sourcePath],
 						{ stdio: "inherit" },
 					);
 
 					console.log(`- Processing...`);
-					spawnSync(
+					require("node:child_process").spawnSync(
 						"bun",
 						[
 							"scripts/media/process-object.ts",
@@ -219,7 +294,7 @@ async function main() {
 					);
 
 					console.log(`- Uploading...`);
-					spawnSync(
+					require("node:child_process").spawnSync(
 						"bun",
 						["scripts/media/upload-r2.ts", "media/processed", PROD_BUCKET],
 						{ stdio: "inherit" },
@@ -282,14 +357,22 @@ async function main() {
 				thumbnail_url: thumbnailUrl,
 				children: childrenUrls,
 			});
+
+			if (isUpdate) updatedCount++;
+			else importedCount++;
 		} catch (err) {
 			console.error(`Error processing post ${post.id}:`, err);
+			errorCount++;
+			failedIds.add(post.id);
 		}
 	}
 
 	// 5. Delete orphaned posts from R2
 	const processedIdsNow = new Set(processedPosts.map((p) => p.id));
-	const orphanedPosts = existingPosts.filter((p) => !processedIdsNow.has(p.id));
+	const orphanedPosts = existingPosts.filter(
+		(p) => !processedIdsNow.has(p.id) && !failedIds.has(p.id),
+	);
+	const removedCount = orphanedPosts.length;
 
 	if (orphanedPosts.length > 0) {
 		const {
@@ -363,6 +446,32 @@ async function main() {
 
 	console.log(`Saved manifest to ${manifestKey}`);
 	console.log("Sync complete!");
+
+	// Log final metrics to Mulch
+	const metrics = {
+		imported: importedCount,
+		updated: updatedCount,
+		removed: removedCount,
+		skipped: skippedCount,
+		errors: errorCount,
+		totalPostsReturned: posts.length,
+		manifestSize: processedPosts.length,
+	};
+
+	logToMulch(
+		"observational",
+		"Instagram Sync Success",
+		`Sync completed. Imported: ${importedCount}, Updated: ${updatedCount}, Removed: ${removedCount}, Errors: ${errorCount}`,
+		"instagram,sync,metrics",
+		metrics,
+	);
+
+	if (errorCount > 0) {
+		createAlert(
+			"Instagram Sync Completed with Errors",
+			`Sync finished but ${errorCount} posts failed to process.\n\nMetrics:\n${JSON.stringify(metrics, null, 2)}`,
+		);
+	}
 }
 
 main().catch(console.error);
