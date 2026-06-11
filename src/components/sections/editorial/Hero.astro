@@ -39,9 +39,9 @@ const {
       eager
     />
     <div class="flex flex-col justify-between">
-      <h2 class="editorial-display">{title}</h2>
+      <h2 class="editorial-display" x-reveal>{title}</h2>
       {intro && (
-        <div class="editorial-lede my-auto">
+        <div class="editorial-lede my-auto" x-reveal>
           <RichText content={intro} />
         </div>
       )}

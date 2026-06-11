@@ -7,15 +7,13 @@ HLS video, and fonts are published from `senshac-media-prod`.
 
 1. Enable R2 in the Cloudflare dashboard for the project account.
 2. Run `infra/r2/provision.sh`.
-3. Bind `senshac-media-raw` to the Pages project as `MEDIA_RAW`.
+3. The native R2 binding for `senshac-media-raw` is configured in `wrangler.jsonc` at the repository root.
 4. Add `R2_UPLOAD_SIGNING_SECRET` to the Pages production and preview environments.
 5. Connect `senshac-media-prod` to `media.senshac.com`, then set
    `PUBLIC_MEDIA_BASE_URL=https://media.senshac.com`.
 6. Apply `infra/r2/cors.json` again whenever a production origin changes.
 
-`infra/r2/pages-wrangler.jsonc.example` contains the equivalent Pages binding. Do not move it
-to the repository root until the R2 bucket exists, because Wrangler validates resource bindings
-during deployment.
+
 
 ## Local Processing
 

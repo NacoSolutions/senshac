@@ -6,12 +6,12 @@ High-performance interior design portfolio website built with Astro 5.0+ and Isl
 
 | Component | Technology |
 |-----------|------------|
-| Framework | Astro 5.0+ (SSR) |
+| Framework | Astro 5.0+ (Static-First Hybrid) |
 | Adapter | @astrojs/cloudflare |
 | Package runner | Bun |
 | Styling | UnoCSS |
 | UI State | Alpine.js |
-| Server Comms | HTMX + Hyperscript |
+| Server Comms | HTMX |
 | Deployment | Cloudflare Pages |
 
 ## Development
