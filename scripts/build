@@ -25,3 +25,4 @@ perl -0pi -e 's/[ \t]+(\r?\n)/$1/g' public/admin/index.html tina/__generated__/c
 perl -0pi -e 's/<script(?![^>]*data-cfasync)/<script data-cfasync="false"/g' public/admin/index.html 2>/dev/null || true
 
 astro build
+rm -f dist/server/wrangler.json
