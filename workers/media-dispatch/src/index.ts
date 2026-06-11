@@ -23,6 +23,10 @@ async function dispatch(event: R2Event, env: Env) {
 	)
 		return;
 
+	console.log(
+		`Dispatching event to ${env.GITHUB_REPOSITORY} for key ${event.object.key}`,
+	);
+
 	const response = await fetch(
 		`https://api.github.com/repos/${env.GITHUB_REPOSITORY}/dispatches`,
 		{
@@ -45,6 +49,8 @@ async function dispatch(event: R2Event, env: Env) {
 			}),
 		},
 	);
+
+	console.log(`GitHub API Response Status: ${response.status}`);
 
 	if (!response.ok) {
 		throw new Error(
