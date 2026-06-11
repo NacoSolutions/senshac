@@ -242,4 +242,6 @@ const error = Astro.url.searchParams.get("contact_error");
   // Load HTMX only where the form is used
   import htmx from 'htmx.org';
   window.htmx = htmx;
+  // Initialize HTMX explicitly because this script is bundled and deferred
+  htmx.process(document.body);
 </script>

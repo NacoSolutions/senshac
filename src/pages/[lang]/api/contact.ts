@@ -193,7 +193,10 @@ Idioma: ${lang}
 			}
 		} else {
 			// Log to console if no email service configured
-			console.log("Contact form submission:", {
+			console.warn(
+				"Contact form received but EMAIL WAS NOT SENT because RESEND_API_KEY is missing. (Did you add it to the Preview environment variables in Cloudflare?)",
+			);
+			console.log("Contact form submission payload:", {
 				name,
 				company,
 				email,
