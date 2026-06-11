@@ -9,37 +9,80 @@ jobs:
   audit:
     name: Run PageSpeed Insights
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        url: 
-          - "https://senshac.com"
-          - "https://senshac.com/es/projects"
-          - "https://senshac.com/es/about"
-        strategy: ["mobile", "desktop"]
+    permissions:
+      contents: write
     steps:
-      - name: Fetch Lighthouse Scores
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Fetch Lighthouse Scores & Log to Mulch
         run: |
-          echo "Running Lighthouse for ${{ matrix.url }} on ${{ matrix.strategy }}..."
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
           
-          # We use curl to hit the PageSpeed Insights API
-          API_URL="https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${{ matrix.url }}&strategy=${{ matrix.strategy }}"
+          URLS=("https://senshac.com" "https://senshac.com/es/projects" "https://senshac.com/es/about")
+          STRATEGIES=("mobile" "desktop")
           
-          # If a PAGESPEED_API_KEY secret is provided, use it to avoid rate limits
-          if [ -n "${{ secrets.PAGESPEED_API_KEY }}" ]; then
-            API_URL="${API_URL}&key=${{ secrets.PAGESPEED_API_KEY }}"
+          CHANGES_MADE=false
+          
+          for URL in "${URLS[@]}"; do
+            for STRATEGY in "${STRATEGIES[@]}"; do
+              echo "Running Lighthouse for $URL on $STRATEGY..."
+              
+              API_URL="https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${URL}&strategy=${STRATEGY}"
+              if [ -n "${{ secrets.PAGESPEED_API_KEY }}" ]; then
+                API_URL="${API_URL}&key=${{ secrets.PAGESPEED_API_KEY }}"
+              fi
+              
+              RESPONSE=$(curl -s "$API_URL")
+              
+              PERFORMANCE=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.performance.score * 100')
+              ACCESSIBILITY=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.accessibility.score * 100')
+              BEST_PRACTICES=$(echo "$RESPONSE" | jq '.lighthouseResult.categories["best-practices"].score * 100')
+              SEO=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.seo.score * 100')
+              
+              echo "::notice title=Lighthouse Scores for $URL ($STRATEGY)::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
+              
+              # If API failed, jq returns 'null', skip
+              if [ "$PERFORMANCE" == "null" ]; then
+                echo "Failed to fetch data for $URL ($STRATEGY)"
+                continue
+              fi
+              
+              # Log to Mulch
+              bunx @os-eco/mulch-cli@latest record frontend \
+                --type observational \
+                --name "Lighthouse $STRATEGY Audit: $URL" \
+                --description "Nightly automated Lighthouse audit run. Perf: $PERFORMANCE, A11y: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO" \
+                --tags "performance,lighthouse,nightly"
+              CHANGES_MADE=true
+              
+              # Check threshold and open a seeds issue if below 90
+              if (( $(echo "$PERFORMANCE < 90" | bc -l) )); then
+                echo "Performance below 90, creating seeds issue..."
+                bunx @os-eco/seeds-cli@latest create \
+                  --title "Lighthouse Performance Drop on $URL ($STRATEGY)" \
+                  --type bug \
+                  --priority 1 \
+                  --labels "performance,lighthouse,automated" \
+                  --body "Automated nightly audit detected a performance drop on $URL ($STRATEGY). Score is $PERFORMANCE (Threshold: 90). Accessibility: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO."
+                CHANGES_MADE=true
+              fi
+            done
+          done
+          
+          if [ "$CHANGES_MADE" = true ]; then
+            git add .mulch/ .seeds/
+            # Check if there are actual changes before committing
+            if ! git diff --cached --quiet; then
+              git commit -m "chore(performance): nightly pagespeed audit logs & issue tracking [skip ci]"
+              git push
+            fi
           fi
-          
-          # Fetch JSON and extract core metrics
-          RESPONSE=$(curl -s "$API_URL")
-          
-          PERFORMANCE=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.performance.score * 100')
-          ACCESSIBILITY=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.accessibility.score * 100')
-          BEST_PRACTICES=$(echo "$RESPONSE" | jq '.lighthouseResult.categories["best-practices"].score * 100')
-          SEO=$(echo "$RESPONSE" | jq '.lighthouseResult.categories.seo.score * 100')
-          
-          echo "::notice title=Lighthouse Scores for ${{ matrix.url }} (${{ matrix.strategy }})::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
-          
-          echo "Performance: $PERFORMANCE"
-          echo "Accessibility: $ACCESSIBILITY"
-          echo "Best Practices: $BEST_PRACTICES"
-          echo "SEO: $SEO"
