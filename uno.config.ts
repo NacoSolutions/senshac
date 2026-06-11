@@ -54,17 +54,17 @@ export default defineConfig({
 			jozsika: ["Jozsika", "serif"],
 		},
 		fontSize: {
-			// Match WordPress theme sizes
+			// Match WordPress theme sizes but made fluid responsive with clamp()
 			// UnoCSS fontSize uses [size, lineHeight] tuple format
 			xs: ["0.875rem", "normal"], // 14px
-			sm: ["1rem", "normal"], // 16px
-			base: ["1.25rem", "normal"], // 20px - body default
-			lg: ["1.5rem", "normal"], // 24px
-			xl: ["2rem", "1"], // 32px
-			"2xl": ["2.25rem", "1"], // 36px - sinteca-small-title
-			"3xl": ["3.25rem", "1"], // 52px - sinteca-medium-title
-			"4xl": ["5rem", "1"], // 80px - sinteca-big-title
-			"5xl": ["6rem", "1.2"], // 96px - banner title
+			sm: ["clamp(0.875rem, 1vw + 0.5rem, 1rem)", "normal"], // 14-16px
+			base: ["clamp(1.125rem, 1.5vw + 0.5rem, 1.25rem)", "normal"], // 18-20px - body default
+			lg: ["clamp(1.25rem, 2vw + 0.5rem, 1.5rem)", "normal"], // 20-24px
+			xl: ["clamp(1.5rem, 3vw + 0.5rem, 2rem)", "1"], // 24-32px
+			"2xl": ["clamp(1.75rem, 3vw + 1rem, 2.25rem)", "1"], // 28-36px - sinteca-small-title
+			"3xl": ["clamp(2rem, 4vw + 1rem, 3.25rem)", "1"], // 32-52px - sinteca-medium-title
+			"4xl": ["clamp(2.5rem, 5vw + 1rem, 5rem)", "1"], // 40-80px - sinteca-big-title
+			"5xl": ["clamp(3rem, 6vw + 1rem, 6rem)", "1.1"], // 48-96px - banner title
 		},
 	},
 	shortcuts: {
@@ -111,5 +111,14 @@ export default defineConfig({
 		// Common patterns
 		"flex-center": "flex items-center justify-center",
 		"flex-between": "flex items-center justify-between",
+	},
+	content: {
+		pipeline: {
+			include: [
+				/\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+				"src/**/*.{js,ts}",
+				"tina/**/*.{ts,tsx}",
+			],
+		},
 	},
 });
