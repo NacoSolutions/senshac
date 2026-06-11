@@ -175,8 +175,18 @@ Idioma: ${lang}
 			if (!res.ok) {
 				const errorText = await res.text();
 				console.error("Resend API error:", errorText);
+				console.error("Failed submission data:", {
+					name,
+					company,
+					email,
+					phone,
+					projectType,
+					serviceType,
+					message,
+					lang,
+				});
 				return sendResponse(
-					`<div class="p-4 bg-red-50 border border-red-200 text-red-800 rounded"><strong>Error de Resend:</strong> ${errorText}</div>`,
+					`<div class="p-4 bg-red-50 border border-red-200 text-red-800 rounded">${t.error}</div>`,
 					500,
 					"error",
 				);
