@@ -1,4 +1,5 @@
 ---
 export { getProjectPaths as getStaticPaths } from "../../../lib/static-paths";
+
 return Astro.redirect(`/${Astro.params.lang}/works/${Astro.params.slug}`, 301);
 ---

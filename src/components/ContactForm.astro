@@ -17,7 +17,7 @@ if (!t) {
 	const transRes = await getTranslations(`${lang}.json`, tinaEnv);
 	t = transRes.data.translations;
 }
-const f = t?.contactForm as any || {};
+const f = (t?.contactForm as any) || {};
 
 // Turnstile site key - use test key for development
 const TURNSTILE_SITE_KEY =
