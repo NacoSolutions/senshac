@@ -92,10 +92,13 @@ const requestCache = new Map<string, Promise<any>>();
 export function getTranslations(relativePath: string, env?: TinaRuntimeEnv) {
 	const key = `translations-${relativePath}`;
 	if (!requestCache.has(key)) {
-		requestCache.set(key, requestWithMetadata<TranslationsQuery>(
-			getClient(env).queries.translations({ relativePath }),
-			{ priority: "primary" },
-		));
+		requestCache.set(
+			key,
+			requestWithMetadata<TranslationsQuery>(
+				getClient(env).queries.translations({ relativePath }),
+				{ priority: "primary" },
+			),
+		);
 	}
 	return requestCache.get(key)!;
 }
@@ -117,10 +120,13 @@ export function getLegal(relativePath: string, env?: TinaRuntimeEnv) {
 export function getSiteConfigTina(relativePath: string, env?: TinaRuntimeEnv) {
 	const key = `siteconfig-${relativePath}`;
 	if (!requestCache.has(key)) {
-		requestCache.set(key, requestWithMetadata<SiteConfigQuery>(
-			getClient(env).queries.siteConfig({ relativePath }),
-			{ priority: "primary" },
-		));
+		requestCache.set(
+			key,
+			requestWithMetadata<SiteConfigQuery>(
+				getClient(env).queries.siteConfig({ relativePath }),
+				{ priority: "primary" },
+			),
+		);
 	}
 	return requestCache.get(key)!;
 }
