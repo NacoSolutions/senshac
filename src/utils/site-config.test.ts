@@ -1,4 +1,4 @@
-import { test, expect, mock } from "bun:test";
+import { expect, mock, test } from "bun:test";
 
 mock.module("astro:content", () => {
 	return {
@@ -8,12 +8,12 @@ mock.module("astro:content", () => {
 			}
 			return null;
 		},
-    getCollection: async () => []
+		getCollection: async () => [],
 	};
 });
 
 test.skip("getSiteConfig returns site configuration", async () => {
 	const { getSiteConfig } = await import("./site-config");
 	const config = await getSiteConfig();
-	expect(config).toEqual({ siteName: "Test Site" });
+	expect(config as any).toEqual({ siteName: "Test Site" });
 });

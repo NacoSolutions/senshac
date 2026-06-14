@@ -42,3 +42,9 @@ media/processed/
 .media-input/
 
 .bak
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+

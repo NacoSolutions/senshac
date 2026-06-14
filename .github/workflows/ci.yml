@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - run: bun install
+      - run: bun run check:all
+      - run: bun test
+      - run: bun run acceptance
+
+      - name: Test timing summary
+        if: always()
+        run: bun run report:test-timing
+
+      - name: Code-quality metrics summary
+        if: always()
+        run: bun run report:quality-metrics
+
+      - name: Upload test timing artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bun-test-timing
+          path: .timing.json
+          if-no-files-found: ignore

@@ -4,7 +4,13 @@ import { NodeHtmlMarkdown } from "node-html-markdown";
 
 export const onRequest = defineMiddleware(async (context, next) => {
 	const url = new URL(context.request.url);
-	const acceptHeader = context.request.headers.get("Accept") || "";
+	const isBuild =
+		typeof process !== "undefined" &&
+		(process.env.npm_lifecycle_event === "build" ||
+			!!process.env.ASTRO_CONFIG_FILE);
+	const acceptHeader = !isBuild
+		? context.request.headers.get("Accept") || ""
+		: "";
 
 	let isMarkdownExt = false;
 	let originalPath = url.pathname;

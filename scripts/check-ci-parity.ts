@@ -131,7 +131,12 @@ type WorkflowStep = { run?: unknown };
 type WorkflowJob = { steps?: WorkflowStep[] };
 type WorkflowFile = { jobs?: Record<string, WorkflowJob> };
 
-export type CiInvocation = { workflow: string; job: string; step: number; script: string };
+export type CiInvocation = {
+	workflow: string;
+	job: string;
+	step: number;
+	script: string;
+};
 
 export function extractCiInvocations(filePath: string): CiInvocation[] {
 	const text = readFileSync(filePath, "utf8");
@@ -161,7 +166,10 @@ export function listWorkflows(dir: string = WORKFLOWS_DIR): string[] {
 		.sort();
 }
 
-export type ParityFailure = CiInvocation & { canonical: string; reason: string };
+export type ParityFailure = CiInvocation & {
+	canonical: string;
+	reason: string;
+};
 
 export function checkParity(): {
 	invocations: CiInvocation[];

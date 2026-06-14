@@ -57,11 +57,15 @@ describe("countComplexityOverrides", () => {
 			overrides: [
 				{
 					includes: ["a.ts", "b.ts"],
-					linter: { rules: { complexity: { noExcessiveLinesPerFunction: "off" } } },
+					linter: {
+						rules: { complexity: { noExcessiveLinesPerFunction: "off" } },
+					},
 				},
 				{
 					includes: ["c.ts", "d.ts", "e.ts"],
-					linter: { rules: { complexity: { noExcessiveCognitiveComplexity: "off" } } },
+					linter: {
+						rules: { complexity: { noExcessiveCognitiveComplexity: "off" } },
+					},
 				},
 				{
 					// Non-complexity override should be ignored.
@@ -75,7 +79,10 @@ describe("countComplexityOverrides", () => {
 	});
 
 	test("returns zeros when no overrides block is present", () => {
-		expect(countComplexityOverrides("{}")).toEqual({ cognitive: 0, linesPerFunction: 0 });
+		expect(countComplexityOverrides("{}")).toEqual({
+			cognitive: 0,
+			linesPerFunction: 0,
+		});
 	});
 });
 
@@ -93,7 +100,9 @@ describe("summariseFileSizes", () => {
 	});
 
 	test("handles empty budgets", () => {
-		expect(summariseFileSizes(JSON.stringify({ threshold: 500, budgets: {} }))).toEqual({
+		expect(
+			summariseFileSizes(JSON.stringify({ threshold: 500, budgets: {} })),
+		).toEqual({
 			threshold: 500,
 			grandfathered: 0,
 			largest: 0,
@@ -103,10 +112,14 @@ describe("summariseFileSizes", () => {
 
 describe("summariseDebt", () => {
 	test("counts allowlist entries", () => {
-		expect(summariseDebt(JSON.stringify({ allowlist: ["a:1", "b:2"] }))).toEqual({
+		expect(
+			summariseDebt(JSON.stringify({ allowlist: ["a:1", "b:2"] })),
+		).toEqual({
 			grandfathered: 2,
 		});
-		expect(summariseDebt(JSON.stringify({ allowlist: [] }))).toEqual({ grandfathered: 0 });
+		expect(summariseDebt(JSON.stringify({ allowlist: [] }))).toEqual({
+			grandfathered: 0,
+		});
 	});
 });
 
@@ -118,7 +131,9 @@ describe("formatReport", () => {
 			overrides: [
 				{
 					includes: ["a.ts"],
-					linter: { rules: { complexity: { noExcessiveCognitiveComplexity: "off" } } },
+					linter: {
+						rules: { complexity: { noExcessiveCognitiveComplexity: "off" } },
+					},
 				},
 			],
 		});
@@ -127,16 +142,25 @@ describe("formatReport", () => {
 			lcov,
 			coverageBudgets,
 			biomeJson,
-			fileSizeBudgets: JSON.stringify({ threshold: 500, budgets: { "x.ts": 700 } }),
+			fileSizeBudgets: JSON.stringify({
+				threshold: 500,
+				budgets: { "x.ts": 700 },
+			}),
 			debtAllowlist: JSON.stringify({ allowlist: [] }),
 			bundleSizes: undefined,
 		});
 		expect(report).toContain("## Code-quality metrics");
-		expect(report).toContain("Coverage — functions | 90.00% (floor 85.00%, +5.00pt)");
-		expect(report).toContain("Coverage — lines | 95.00% (floor 90.00%, +5.00pt)");
+		expect(report).toContain(
+			"Coverage — functions | 90.00% (floor 85.00%, +5.00pt)",
+		);
+		expect(report).toContain(
+			"Coverage — lines | 95.00% (floor 90.00%, +5.00pt)",
+		);
 		expect(report).toContain("cognitive-complexity ≤ 15 | 1");
 		expect(report).toContain("lines-per-function ≤ 500 | 0");
-		expect(report).toContain("grandfathered files | 1 (largest 700 lines vs 500 threshold)");
+		expect(report).toContain(
+			"grandfathered files | 1 (largest 700 lines vs 500 threshold)",
+		);
 		expect(report).toContain("Untracked debt markers — grandfathered | 0");
 		expect(report).toContain("Bundle sizes | — (src/ui/dist/assets/ missing");
 	});
@@ -151,7 +175,9 @@ describe("formatReport", () => {
 			debtAllowlist: undefined,
 			bundleSizes: undefined,
 		});
-		expect(report).toContain("| Coverage | — (summary.json/lcov.info or budgets missing) |");
+		expect(report).toContain(
+			"| Coverage | — (summary.json/lcov.info or budgets missing) |",
+		);
 	});
 
 	test("prefers summary.json over lcov for coverage numbers", () => {
@@ -164,8 +190,12 @@ describe("formatReport", () => {
 			debtAllowlist: undefined,
 			bundleSizes: undefined,
 		});
-		expect(report).toContain("Coverage — functions | 87.50% (floor 85.00%, +2.50pt)");
-		expect(report).toContain("Coverage — lines | 92.34% (floor 90.00%, +2.34pt)");
+		expect(report).toContain(
+			"Coverage — functions | 87.50% (floor 85.00%, +2.50pt)",
+		);
+		expect(report).toContain(
+			"Coverage — lines | 92.34% (floor 90.00%, +2.34pt)",
+		);
 	});
 
 	test("renders bundle-size rows with budget percentages", () => {
@@ -188,7 +218,11 @@ describe("formatReport", () => {
 			},
 		});
 		expect(report).toContain("Bundle — JS gzip");
-		expect(report).toMatch(/Bundle — JS gzip \| [\d.]+ KiB \/ [\d.]+ KiB \(50\.0%\)/);
-		expect(report).toMatch(/Bundle — CSS gzip \| [\d.]+ KiB \/ [\d.]+ KiB \(50\.0%\)/);
+		expect(report).toMatch(
+			/Bundle — JS gzip \| [\d.]+ KiB \/ [\d.]+ KiB \(50\.0%\)/,
+		);
+		expect(report).toMatch(
+			/Bundle — CSS gzip \| [\d.]+ KiB \/ [\d.]+ KiB \(50\.0%\)/,
+		);
 	});
 });

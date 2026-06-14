@@ -27,7 +27,13 @@
  *   bun run scripts/report-quality-metrics.ts --lcov path/to/lcov.info
  */
 
-import { appendFileSync, existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import {
+	appendFileSync,
+	existsSync,
+	readdirSync,
+	readFileSync,
+	statSync,
+} from "node:fs";
 import { join, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 
@@ -105,7 +111,9 @@ export interface ComplexityOverrides {
  * count. We don't try to dedupe across multiple blocks — by convention
  * each file appears in at most one override block per rule.
  */
-export function countComplexityOverrides(biomeJson: string): ComplexityOverrides {
+export function countComplexityOverrides(
+	biomeJson: string,
+): ComplexityOverrides {
 	const parsed = JSON.parse(biomeJson) as {
 		overrides?: Array<{
 			includes?: string[];
@@ -118,8 +126,10 @@ export function countComplexityOverrides(biomeJson: string): ComplexityOverrides
 		const rules = block.linter?.rules?.complexity;
 		if (!rules) continue;
 		const includes = block.includes ?? [];
-		if (rules.noExcessiveCognitiveComplexity === "off") cognitive += includes.length;
-		if (rules.noExcessiveLinesPerFunction === "off") linesPerFunction += includes.length;
+		if (rules.noExcessiveCognitiveComplexity === "off")
+			cognitive += includes.length;
+		if (rules.noExcessiveLinesPerFunction === "off")
+			linesPerFunction += includes.length;
 	}
 	return { cognitive, linesPerFunction };
 }
@@ -242,11 +252,18 @@ export interface ReportInputs {
  * exactly) and falling back to parsing lcov.info when the summary
  * artifact is absent.
  */
-function parseSummaryJson(summaryJson: string): { functions?: number; lines?: number } {
+function parseSummaryJson(summaryJson: string): {
+	functions?: number;
+	lines?: number;
+} {
 	try {
-		const parsed = JSON.parse(summaryJson) as { functions?: number; lines?: number };
+		const parsed = JSON.parse(summaryJson) as {
+			functions?: number;
+			lines?: number;
+		};
 		return {
-			functions: typeof parsed.functions === "number" ? parsed.functions : undefined,
+			functions:
+				typeof parsed.functions === "number" ? parsed.functions : undefined,
 			lines: typeof parsed.lines === "number" ? parsed.lines : undefined,
 		};
 	} catch {
@@ -271,7 +288,10 @@ function renderCoverageRows(inputs: ReportInputs): string[] {
 	if (!totals || !inputs.coverageBudgets) {
 		return ["| Coverage | — (summary.json/lcov.info or budgets missing) |"];
 	}
-	const floors = JSON.parse(inputs.coverageBudgets) as { functions: number; lines: number };
+	const floors = JSON.parse(inputs.coverageBudgets) as {
+		functions: number;
+		lines: number;
+	};
 	return [
 		`| Coverage — functions | ${fmtPct(totals.functions, floors.functions)} |`,
 		`| Coverage — lines | ${fmtPct(totals.lines, floors.lines)} |`,
@@ -297,14 +317,18 @@ function renderRatchetRows(inputs: ReportInputs): string[] {
 	}
 	if (inputs.debtAllowlist) {
 		const d = summariseDebt(inputs.debtAllowlist);
-		rows.push(`| Untracked debt markers — grandfathered | ${d.grandfathered} |`);
+		rows.push(
+			`| Untracked debt markers — grandfathered | ${d.grandfathered} |`,
+		);
 	}
 	return rows;
 }
 
 function renderBundleRows(bundleSizes: BundleSizes | undefined): string[] {
 	if (!bundleSizes) {
-		return ["| Bundle sizes | — (src/ui/dist/assets/ missing — run build:ui first) |"];
+		return [
+			"| Bundle sizes | — (src/ui/dist/assets/ missing — run build:ui first) |",
+		];
 	}
 	const b = bundleSizes;
 	return [
@@ -353,20 +377,32 @@ function parseArgs(argv: string[]): { lcovPath: string } {
 
 async function main(): Promise<void> {
 	const { lcovPath } = parseArgs(process.argv.slice(2));
-	const bundleBudgetsPath = resolve(REPO_ROOT, "scripts/bundle-size-budgets.json");
+	const bundleBudgetsPath = resolve(
+		REPO_ROOT,
+		"scripts/bundle-size-budgets.json",
+	);
 	const bundleBudgetsJson = readIfExists(bundleBudgetsPath);
 	const bundleSizes =
 		bundleBudgetsJson === undefined
 			? undefined
-			: measureBundleSizes(resolve(REPO_ROOT, "src/ui/dist/assets"), bundleBudgetsJson);
+			: measureBundleSizes(
+					resolve(REPO_ROOT, "src/ui/dist/assets"),
+					bundleBudgetsJson,
+				);
 
 	const formatted = formatReport({
 		summaryJson: readIfExists(resolve(REPO_ROOT, "coverage/summary.json")),
 		lcov: readIfExists(lcovPath),
-		coverageBudgets: readIfExists(resolve(REPO_ROOT, "scripts/coverage-budgets.json")),
+		coverageBudgets: readIfExists(
+			resolve(REPO_ROOT, "scripts/coverage-budgets.json"),
+		),
 		biomeJson: readIfExists(resolve(REPO_ROOT, "biome.json")),
-		fileSizeBudgets: readIfExists(resolve(REPO_ROOT, "scripts/file-size-budgets.json")),
-		debtAllowlist: readIfExists(resolve(REPO_ROOT, "scripts/debt-marker-allowlist.json")),
+		fileSizeBudgets: readIfExists(
+			resolve(REPO_ROOT, "scripts/file-size-budgets.json"),
+		),
+		debtAllowlist: readIfExists(
+			resolve(REPO_ROOT, "scripts/debt-marker-allowlist.json"),
+		),
 		bundleSizes,
 	});
 

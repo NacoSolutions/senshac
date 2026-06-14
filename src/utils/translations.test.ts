@@ -1,4 +1,4 @@
-import { test, expect, mock } from "bun:test";
+import { expect, mock, test } from "bun:test";
 
 mock.module("astro:content", () => {
 	return {
@@ -11,18 +11,18 @@ mock.module("astro:content", () => {
 			}
 			return null;
 		},
-    getCollection: async () => []
+		getCollection: async () => [],
 	};
 });
 
 test.skip("getTranslations returns translations for a valid language", async () => {
 	const { getTranslations } = await import("./translations");
 	const translations = await getTranslations("en");
-	expect(translations).toEqual({ hello: "world" });
+	expect(translations as any).toEqual({ hello: "world" });
 });
 
 test.skip("getTranslations falls back to es if language is not found", async () => {
 	const { getTranslations } = await import("./translations");
 	const translations = await getTranslations("fr");
-	expect(translations).toEqual({ hello: "mundo" });
+	expect(translations as any).toEqual({ hello: "mundo" });
 });

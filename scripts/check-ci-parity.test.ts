@@ -17,15 +17,18 @@ describe("check-ci-parity", () => {
 			"lint",
 			"typecheck",
 		]);
-		expect(extractBunRunTargets("bun run check:coverage")).toEqual(["check:coverage"]);
+		expect(extractBunRunTargets("bun run check:coverage")).toEqual([
+			"check:coverage",
+		]);
 		expect(extractBunRunTargets("bun run check:bundle-size:build")).toEqual([
 			"check:bundle-size:build",
 		]);
 		// Multi-line shell still works.
-		expect(extractBunRunTargets("set -euo pipefail\nbun run lint\nbun run typecheck\n")).toEqual([
-			"lint",
-			"typecheck",
-		]);
+		expect(
+			extractBunRunTargets(
+				"set -euo pipefail\nbun run lint\nbun run typecheck\n",
+			),
+		).toEqual(["lint", "typecheck"]);
 		// File invocations should NOT be treated as script names.
 		expect(extractBunRunTargets("bun run scripts/foo.ts")).toEqual([]);
 	});
@@ -46,7 +49,6 @@ describe("check-ci-parity", () => {
 	test("listWorkflows finds the repo's ci yamls", () => {
 		const found = listWorkflows().map((p) => p.split("/").pop());
 		expect(found).toContain("build-runner.yml");
-		
 	});
 
 	test("extractCiInvocations parses a synthetic workflow", () => {
@@ -86,7 +88,10 @@ describe("check-ci-parity", () => {
 		expect(invocations.length).toBeGreaterThanOrEqual(0);
 		if (failures.length > 0) {
 			const detail = failures
-				.map((f) => `  ${f.workflow} job=${f.job} step=${f.step}: ${f.script} — ${f.reason}`)
+				.map(
+					(f) =>
+						`  ${f.workflow} job=${f.job} step=${f.step}: ${f.script} — ${f.reason}`,
+				)
 				.join("\n");
 			throw new Error(`CI parity drift:\n${detail}`);
 		}

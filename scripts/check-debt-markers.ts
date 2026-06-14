@@ -46,7 +46,11 @@ const EXCLUDE_PATH_EXACT: ReadonlySet<string> = new Set([
 // X's), which is what we want — placeholder strings like `pl-XXXX` in
 // docstrings are not debt markers.
 const MARKER_RE = /\b(TODO|FIXME|HACK|XXX)\b/;
-const TRACKER_RES: RegExp[] = [/\b(?:warren|pl|mx)-[0-9a-f]+\b/i, /#\d+\b/, /https?:\/\/\S+/];
+const TRACKER_RES: RegExp[] = [
+	/\b(?:warren|pl|mx)-[0-9a-f]+\b/i,
+	/#\d+\b/,
+	/https?:\/\/\S+/,
+];
 
 type AllowlistFile = {
 	allowlist: string[];
@@ -56,26 +60,37 @@ type AllowlistEntry = { path: string; line: number };
 
 function loadAllowlist(): { entries: AllowlistEntry[]; raw: string[] } {
 	if (!existsSync(ALLOWLIST_PATH)) return { entries: [], raw: [] };
-	const raw = JSON.parse(readFileSync(ALLOWLIST_PATH, "utf8")) as Record<string, unknown>;
+	const raw = JSON.parse(readFileSync(ALLOWLIST_PATH, "utf8")) as Record<
+		string,
+		unknown
+	>;
 	const list = raw.allowlist;
 	if (!Array.isArray(list)) {
-		throw new Error(`${ALLOWLIST_PATH}: "allowlist" must be an array of "path:line" strings`);
+		throw new Error(
+			`${ALLOWLIST_PATH}: "allowlist" must be an array of "path:line" strings`,
+		);
 	}
 	const entries: AllowlistEntry[] = [];
 	const rawStrings: string[] = [];
 	for (const item of list) {
 		if (typeof item !== "string") {
-			throw new Error(`${ALLOWLIST_PATH}: allowlist entries must be strings ("path:line")`);
+			throw new Error(
+				`${ALLOWLIST_PATH}: allowlist entries must be strings ("path:line")`,
+			);
 		}
 		const idx = item.lastIndexOf(":");
 		if (idx < 0) {
-			throw new Error(`${ALLOWLIST_PATH}: "${item}" is not formatted as "path:line"`);
+			throw new Error(
+				`${ALLOWLIST_PATH}: "${item}" is not formatted as "path:line"`,
+			);
 		}
 		const path = item.slice(0, idx);
 		const lineStr = item.slice(idx + 1);
 		const line = Number.parseInt(lineStr, 10);
 		if (!path || !Number.isInteger(line) || line <= 0) {
-			throw new Error(`${ALLOWLIST_PATH}: "${item}" is not a valid "path:line" entry`);
+			throw new Error(
+				`${ALLOWLIST_PATH}: "${item}" is not a valid "path:line" entry`,
+			);
 		}
 		entries.push({ path, line });
 		rawStrings.push(item);
@@ -116,7 +131,12 @@ function lineHasTracker(line: string): boolean {
 	return false;
 }
 
-export type Marker = { path: string; line: number; marker: string; text: string };
+export type Marker = {
+	path: string;
+	line: number;
+	marker: string;
+	text: string;
+};
 
 export function scan(): {
 	untracked: Marker[];
