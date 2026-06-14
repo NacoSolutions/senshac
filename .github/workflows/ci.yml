@@ -25,7 +25,12 @@ jobs:
             tina/__generated__/client.ts \
             tina/__generated__/types.js \
             tina/__generated__/types.ts
+          rm -rf tina/__generated__/.cache
       - run: bun run check:all
+      - name: Verify no unexpected generated drift
+        run: |
+          git restore -- coverage/lcov.info coverage/summary.json
+          git diff --exit-code
       - run: bun test
       - run: bun run acceptance --skip-build
 
