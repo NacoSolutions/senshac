@@ -33,6 +33,7 @@ jobs:
           git diff --exit-code
       - run: bun test
       - run: bun run acceptance --skip-build
+      - run: bun run check:clean
 
       - name: Test timing summary
         if: always()
