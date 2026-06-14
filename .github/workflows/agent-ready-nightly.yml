@@ -52,14 +52,20 @@ jobs:
             if [ -n "$FAILED_CHECKS" ]; then
               while IFS='|' read -r CHECK_ID MESSAGE; do
                 if [ -n "$CHECK_ID" ]; then
-                  echo "Check failed: $CHECK_ID - $MESSAGE"
-                  bunx @os-eco/seeds-cli@latest create \
-                    --title "Agent Ready: $CHECK_ID failed on $URL" \
-                    --type bug \
-                    --priority 2 \
-                    --labels "agents,automated" \
-                    --body "Automated nightly scan detected a failure for $CHECK_ID on $URL.\n\nMessage: $MESSAGE\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-                  CHANGES_MADE=true
+                  ISSUE_TITLE="Agent Ready: $CHECK_ID failed on $URL"
+                  EXISTING=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
+                  if [ "$EXISTING" -eq 0 ]; then
+                    echo "Check failed: $CHECK_ID - $MESSAGE"
+                    bunx @os-eco/seeds-cli@latest create \
+                      --title "$ISSUE_TITLE" \
+                      --type bug \
+                      --priority 2 \
+                      --labels "agents,automated" \
+                      --body "Automated nightly scan detected a failure for $CHECK_ID on $URL.\n\nMessage: $MESSAGE\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                    CHANGES_MADE=true
+                  else
+                    echo "::notice title=Agent Readiness for $URL::Issue '$ISSUE_TITLE' already exists, skipping."
+                  fi
                 fi
               done <<< "$FAILED_CHECKS"
             else

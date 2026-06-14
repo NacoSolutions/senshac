@@ -74,14 +74,20 @@ jobs:
               
               # Check threshold and open a seeds issue if below 100
               if (( $(echo "$PERFORMANCE < 100" | bc -l) )) || (( $(echo "$ACCESSIBILITY < 100" | bc -l) )) || (( $(echo "$BEST_PRACTICES < 100" | bc -l) )) || (( $(echo "$SEO < 100" | bc -l) )); then
-                echo "Score(s) below 100, creating seeds issue..."
-                bunx @os-eco/seeds-cli@latest create \
-                  --title "Lighthouse Audit Failure on $URL ($STRATEGY)" \
-                  --type bug \
-                  --priority 1 \
-                  --labels "performance,accessibility,seo,lighthouse,automated" \
-                  --body "Automated nightly audit detected scores below 100 on $URL ($STRATEGY).\n\n- Performance: $PERFORMANCE\n- Accessibility: $ACCESSIBILITY\n- Best Practices: $BEST_PRACTICES\n- SEO: $SEO\n\nRun local Lighthouse to investigate further."
-                CHANGES_MADE=true
+                ISSUE_TITLE="Lighthouse Audit Failure on $URL ($STRATEGY)"
+                EXISTING=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
+                if [ "$EXISTING" -eq 0 ]; then
+                  echo "Score(s) below 100, creating seeds issue..."
+                  bunx @os-eco/seeds-cli@latest create \
+                    --title "$ISSUE_TITLE" \
+                    --type bug \
+                    --priority 1 \
+                    --labels "performance,accessibility,seo,lighthouse,automated" \
+                    --body "Automated nightly audit detected scores below 100 on $URL ($STRATEGY).\n\n- Performance: $PERFORMANCE\n- Accessibility: $ACCESSIBILITY\n- Best Practices: $BEST_PRACTICES\n- SEO: $SEO\n\nRun local Lighthouse to investigate further."
+                  CHANGES_MADE=true
+                else
+                  echo "::notice title=$ISSUE_TITLE::Issue already exists, skipping."
+                fi
               fi
             done
           done
