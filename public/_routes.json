@@ -1,0 +1,13 @@
+{
+	"version": 1,
+	"include": [
+		"/_image",
+		"/_server-islands/*",
+		"/api/s3/media",
+		"/api/s3/media/*",
+		"/tina-island/*",
+		"/*/api/contact",
+		"/*/contact"
+	],
+	"exclude": []
+}

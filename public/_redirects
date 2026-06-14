@@ -1,15 +1,14 @@
 # Cloudflare Pages redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
+# Default locale
+/ /es/ 302
+
 # TinaCMS admin - serve index.html for /admin route
 /admin /admin/index.html 200
-/admin/* /admin/index.html 200
 
 /es/admin /admin/index.html 200
-/es/admin/* /admin/index.html 200
 
 /en/admin /admin/index.html 200
-/en/admin/* /admin/index.html 200
 
 /ca/admin /admin/index.html 200
-/ca/admin/* /admin/index.html 200
