@@ -23,6 +23,7 @@ jobs:
           curl -fsSLO "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/$archive"
           echo "e2cb2b909baf64f48abaf2487c1a5874751196bd9d715e4fd68f7f94b0fbf601  $archive" | sha256sum --check
           tar -xzf "$archive"
+          mkdir -p "$HOME/.local/bin"
           install -m 0755 betterleaks "$HOME/.local/bin/betterleaks"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - run: bun run build
