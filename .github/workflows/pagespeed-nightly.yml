@@ -27,7 +27,7 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
           
-          URLS=("https://senshac.com" "https://senshac.com/es/projects" "https://senshac.com/es/about")
+          URLS=("https://preview.senshac.com")
           STRATEGIES=("mobile" "desktop")
           
           CHANGES_MADE=false
@@ -72,15 +72,15 @@ jobs:
                 --tags "performance,lighthouse,nightly"
               CHANGES_MADE=true
               
-              # Check threshold and open a seeds issue if below 90
-              if (( $(echo "$PERFORMANCE < 90" | bc -l) )); then
-                echo "Performance below 90, creating seeds issue..."
+              # Check threshold and open a seeds issue if below 100
+              if (( $(echo "$PERFORMANCE < 100" | bc -l) )) || (( $(echo "$ACCESSIBILITY < 100" | bc -l) )) || (( $(echo "$BEST_PRACTICES < 100" | bc -l) )) || (( $(echo "$SEO < 100" | bc -l) )); then
+                echo "Score(s) below 100, creating seeds issue..."
                 bunx @os-eco/seeds-cli@latest create \
-                  --title "Lighthouse Performance Drop on $URL ($STRATEGY)" \
+                  --title "Lighthouse Audit Failure on $URL ($STRATEGY)" \
                   --type bug \
                   --priority 1 \
-                  --labels "performance,lighthouse,automated" \
-                  --body "Automated nightly audit detected a performance drop on $URL ($STRATEGY). Score is $PERFORMANCE (Threshold: 90). Accessibility: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO."
+                  --labels "performance,accessibility,seo,lighthouse,automated" \
+                  --body "Automated nightly audit detected scores below 100 on $URL ($STRATEGY).\n\n- Performance: $PERFORMANCE\n- Accessibility: $ACCESSIBILITY\n- Best Practices: $BEST_PRACTICES\n- SEO: $SEO\n\nRun local Lighthouse to investigate further."
                 CHANGES_MADE=true
               fi
             done
