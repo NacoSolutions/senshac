@@ -21,7 +21,7 @@
 		"lint": "biome check .",
 		"lint:fix": "biome check --write .",
 		"check:deps": "knip",
-		"check:all": "bun run check && bun run lint && bun run check:deps && bun run check:coverage && bun run check:debt-markers && bun run check:file-sizes && bun run check:bundle-size && bun run check:pages-routing && bun run check:ci-parity && bun run check:clean && bun run check:leaks",
+		"check:all": "bun run check:clean && bun run check && bun run lint && bun run check:deps && bun run check:coverage && bun run check:debt-markers && bun run check:file-sizes && bun run check:bundle-size && bun run check:pages-routing && bun run check:ci-parity && bun run check:leaks",
 		"test": "bun test src/ scripts/",
 		"test:e2e": "playwright test",
 		"test:e2e:ui": "playwright test --ui",

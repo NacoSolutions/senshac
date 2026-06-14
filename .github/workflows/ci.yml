@@ -18,6 +18,13 @@ jobs:
 
       - run: bun install --frozen-lockfile
       - run: bun run build
+      - name: Restore committed Tina build outputs
+        run: |
+          git restore -- \
+            public/admin/index.html \
+            tina/__generated__/client.ts \
+            tina/__generated__/types.js \
+            tina/__generated__/types.ts
       - run: bun run check:all
       - run: bun test
       - run: bun run acceptance --skip-build
