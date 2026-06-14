@@ -1,5 +1,12 @@
-import * as cfWorkers from "cloudflare:workers";
 import { isUserAuthorized } from "@tinacms/auth";
+
+let cfWorkers: any = null;
+try {
+	// @ts-ignore
+	cfWorkers = await import("cloudflare:workers");
+} catch (err) {
+	// Ignore if cloudflare:workers is not available (e.g. outside CF/Wrangler)
+}
 
 export interface RuntimeEnv {
 	S3_ENDPOINT?: string;
@@ -15,12 +22,8 @@ export interface RuntimeEnv {
 
 export function mediaEnv(locals: App.Locals) {
 	let cfEnv = {} as RuntimeEnv;
-	try {
-		if (cfWorkers && cfWorkers.env) {
-			cfEnv = cfWorkers.env as RuntimeEnv;
-		}
-	} catch (err) {
-		// Ignore if cloudflare:workers is not available (e.g. outside CF/Wrangler)
+	if (cfWorkers && cfWorkers.env) {
+		cfEnv = cfWorkers.env as RuntimeEnv;
 	}
 	const processEnv = typeof process !== "undefined" ? process.env : {};
 

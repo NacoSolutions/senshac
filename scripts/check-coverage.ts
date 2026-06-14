@@ -208,6 +208,8 @@ function runBunTest(emitJUnit: boolean): {
 	mkdirSync(COVERAGE_DIR, { recursive: true });
 	const args = [
 		"test",
+		"src/",
+		"scripts/",
 		"--coverage",
 		"--coverage-reporter=text",
 		"--coverage-reporter=lcov",
