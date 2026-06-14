@@ -20,8 +20,10 @@
 	"ignoreBinaries": [
 		"scripts/build",
 		"scripts/act-media",
-		"scripts/media/process-video.sh"
+		"scripts/media/process-video.sh",
+		"betterleaks"
 	],
+	"ignoreDependencies": ["cloudflare"],
 	"ignoreExportsUsedInFile": true,
 	"astro": {
 		"entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]

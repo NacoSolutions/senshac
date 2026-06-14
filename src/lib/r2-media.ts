@@ -1,4 +1,4 @@
-import { S3Client } from "@aws-sdk/client-s3";
+import * as cfWorkers from "cloudflare:workers";
 import { isUserAuthorized } from "@tinacms/auth";
 
 export interface RuntimeEnv {
@@ -14,12 +14,18 @@ export interface RuntimeEnv {
 }
 
 export function mediaEnv(locals: App.Locals) {
-	const cfEnv = ((locals as { runtime?: { env?: RuntimeEnv } }).runtime?.env ||
-		{}) as RuntimeEnv;
+	let cfEnv = {} as RuntimeEnv;
+	try {
+		if (cfWorkers && cfWorkers.env) {
+			cfEnv = cfWorkers.env as RuntimeEnv;
+		}
+	} catch (err) {
+		// Ignore if cloudflare:workers is not available (e.g. outside CF/Wrangler)
+	}
 	const processEnv = typeof process !== "undefined" ? process.env : {};
 
 	// Fallback to process.env for local development (astro dev/bun)
-	return {
+	const resolvedEnv = {
 		S3_ENDPOINT:
 			cfEnv.S3_ENDPOINT ||
 			processEnv.S3_ENDPOINT ||
@@ -50,9 +56,14 @@ export function mediaEnv(locals: App.Locals) {
 			import.meta.env.R2_UPLOAD_SIGNING_SECRET,
 		MEDIA_RAW: cfEnv.MEDIA_RAW,
 	} as RuntimeEnv;
+	console.log(
+		"[S3 Mock Debug] Resolved Env:",
+		Object.keys(resolvedEnv).filter((k) => !!(resolvedEnv as any)[k]),
+	);
+	return resolvedEnv;
 }
 
-export function getS3Client(env: RuntimeEnv) {
+export async function getS3Client(env: RuntimeEnv) {
 	const missing = [];
 	if (!env.S3_ACCESS_KEY) missing.push("S3_ACCESS_KEY");
 	if (!env.S3_SECRET_KEY) missing.push("S3_SECRET_KEY");
@@ -63,14 +74,19 @@ export function getS3Client(env: RuntimeEnv) {
 			`S3 environment variables are missing: ${missing.join(", ")}`,
 		);
 	}
-	return new S3Client({
-		region: env.S3_REGION || "auto",
-		endpoint: env.S3_ENDPOINT,
-		credentials: {
-			accessKeyId: env.S3_ACCESS_KEY || "",
-			secretAccessKey: env.S3_SECRET_KEY || "",
-		},
-	});
+	const { S3Client } = await import("@aws-sdk/client-s3");
+	try {
+		return new S3Client({
+			region: env.S3_REGION || "auto",
+			endpoint: env.S3_ENDPOINT,
+			credentials: {
+				accessKeyId: env.S3_ACCESS_KEY || "",
+				secretAccessKey: env.S3_SECRET_KEY || "",
+			},
+		});
+	} catch (err: any) {
+		throw new Error(`S3Client constructor failed: ${err.message || err}`);
+	}
 }
 
 export async function authorized(request: Request) {

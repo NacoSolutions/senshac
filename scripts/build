@@ -2,11 +2,15 @@
 set -euo pipefail
 
 if [[ "${CF_PAGES_BRANCH:-}" == dependabot/* ]]; then
-  echo "Dependabot branch detected ($CF_PAGES_BRANCH). Skipping full build to prevent preview deployment failures due to missing secrets."
-  mkdir -p dist
-  echo "<h1>Dependabot Preview Build</h1>" > dist/index.html
-  exit 0
+  echo "Dependabot branch detected ($CF_PAGES_BRANCH). Injecting mock secrets to allow preview build to proceed..."
 fi
+
+# Inject mock secrets if not present (helps Dependabot, CI, and local test runs without .env)
+export TINA_CLIENT_ID="${TINA_CLIENT_ID:-mock-tina-client-id}"
+export TINA_TOKEN="${TINA_TOKEN:-mock-tina-token}"
+export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-mock-aws-key}"
+export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-mock-aws-secret}"
+export CONTACT_EMAIL_RESEND_TOKEN="${CONTACT_EMAIL_RESEND_TOKEN:-mock-resend-token}"
 
 export NODE_OPTIONS="${NODE_OPTIONS:---max-old-space-size=4096}"
 

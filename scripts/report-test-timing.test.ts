@@ -20,7 +20,10 @@ describe("parseJUnit", () => {
 		expect(report.totalTests).toBe(3);
 		expect(report.totalSeconds).toBeCloseTo(1.234567, 5);
 		expect(report.suites).toHaveLength(2);
-		expect(report.suites.map((s) => s.file).sort()).toEqual(["a.test.ts", "b.test.ts"]);
+		expect(report.suites.map((s) => s.file).sort()).toEqual([
+			"a.test.ts",
+			"b.test.ts",
+		]);
 		expect(report.cases).toHaveLength(3);
 		const slow = report.cases.find((c) => c.name === "slow case");
 		expect(slow?.timeSeconds).toBeCloseTo(0.4, 5);
@@ -28,7 +31,10 @@ describe("parseJUnit", () => {
 	});
 
 	test("falls back to suite sums when root time/tests are missing", () => {
-		const xml = SAMPLE_XML.replace(/tests="3"[^>]*time="1.234567"/, 'tests="0" time="0"');
+		const xml = SAMPLE_XML.replace(
+			/tests="3"[^>]*time="1.234567"/,
+			'tests="0" time="0"',
+		);
 		const report = parseJUnit(xml);
 		expect(report.totalTests).toBe(3);
 		// File totals are derived from per-case sums (suite.time is unreliable

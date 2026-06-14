@@ -38,19 +38,28 @@ type BudgetsFile = {
 };
 
 function loadBudgets(): BudgetsFile {
-	const raw = JSON.parse(readFileSync(BUDGETS_PATH, "utf8")) as Record<string, unknown>;
+	const raw = JSON.parse(readFileSync(BUDGETS_PATH, "utf8")) as Record<
+		string,
+		unknown
+	>;
 	const threshold = raw.threshold;
 	const budgets = raw.budgets;
 	if (typeof threshold !== "number" || threshold <= 0) {
 		throw new Error(`${BUDGETS_PATH}: "threshold" must be a positive number`);
 	}
-	if (budgets === null || typeof budgets !== "object" || Array.isArray(budgets)) {
+	if (
+		budgets === null ||
+		typeof budgets !== "object" ||
+		Array.isArray(budgets)
+	) {
 		throw new Error(`${BUDGETS_PATH}: "budgets" must be an object`);
 	}
 	const normalized: Record<string, number> = {};
 	for (const [path, value] of Object.entries(budgets)) {
 		if (typeof value !== "number" || value <= 0) {
-			throw new Error(`${BUDGETS_PATH}: budgets["${path}"] must be a positive number`);
+			throw new Error(
+				`${BUDGETS_PATH}: budgets["${path}"] must be a positive number`,
+			);
 		}
 		normalized[path] = value;
 	}
@@ -153,7 +162,9 @@ function main(): void {
 	const { failures, staleBudgetEntries } = scan();
 
 	if (staleBudgetEntries.length > 0) {
-		console.error("scripts/file-size-budgets.json has entries for files that no longer exist:");
+		console.error(
+			"scripts/file-size-budgets.json has entries for files that no longer exist:",
+		);
 		for (const p of staleBudgetEntries) console.error(`  - ${p}`);
 		console.error("Remove these entries to keep the budget honest.");
 		console.error("");

@@ -58,11 +58,25 @@ export function loadBudgets(raw: string): CoverageBudgets {
 	const parsed = JSON.parse(raw) as Record<string, unknown>;
 	const fns = parsed.functions;
 	const lines = parsed.lines;
-	if (typeof fns !== "number" || !Number.isFinite(fns) || fns < 0 || fns > 100) {
-		throw new Error(`${BUDGETS_PATH}: 'functions' must be a percentage in [0, 100]`);
+	if (
+		typeof fns !== "number" ||
+		!Number.isFinite(fns) ||
+		fns < 0 ||
+		fns > 100
+	) {
+		throw new Error(
+			`${BUDGETS_PATH}: 'functions' must be a percentage in [0, 100]`,
+		);
 	}
-	if (typeof lines !== "number" || !Number.isFinite(lines) || lines < 0 || lines > 100) {
-		throw new Error(`${BUDGETS_PATH}: 'lines' must be a percentage in [0, 100]`);
+	if (
+		typeof lines !== "number" ||
+		!Number.isFinite(lines) ||
+		lines < 0 ||
+		lines > 100
+	) {
+		throw new Error(
+			`${BUDGETS_PATH}: 'lines' must be a percentage in [0, 100]`,
+		);
 	}
 	return { functions: fns, lines };
 }
@@ -82,7 +96,9 @@ export function parseAllFilesRow(output: string): CoverageTotals | undefined {
 	// when stdout is a TTY but not in CI; be defensive either way.
 	// biome-ignore lint/suspicious/noControlCharactersInRegex: stripping ANSI CSI sequences
 	const plain = output.replace(/\x1B\[[0-9;]*m/g, "");
-	const match = plain.match(/^\s*All files\s*\|\s*([0-9.]+)\s*\|\s*([0-9.]+)\s*\|/m);
+	const match = plain.match(
+		/^\s*All files\s*\|\s*([0-9.]+)\s*\|\s*([0-9.]+)\s*\|/m,
+	);
 	if (!match) return undefined;
 	const functions = Number.parseFloat(match[1] ?? "");
 	const lines = Number.parseFloat(match[2] ?? "");
@@ -90,13 +106,24 @@ export function parseAllFilesRow(output: string): CoverageTotals | undefined {
 	return { functions, lines };
 }
 
-export function checkBudgets(totals: CoverageTotals, budgets: CoverageBudgets): CoverageFailure[] {
+export function checkBudgets(
+	totals: CoverageTotals,
+	budgets: CoverageBudgets,
+): CoverageFailure[] {
 	const failures: CoverageFailure[] = [];
 	if (totals.functions < budgets.functions) {
-		failures.push({ metric: "functions", actual: totals.functions, floor: budgets.functions });
+		failures.push({
+			metric: "functions",
+			actual: totals.functions,
+			floor: budgets.functions,
+		});
 	}
 	if (totals.lines < budgets.lines) {
-		failures.push({ metric: "lines", actual: totals.lines, floor: budgets.lines });
+		failures.push({
+			metric: "lines",
+			actual: totals.lines,
+			floor: budgets.lines,
+		});
 	}
 	return failures;
 }
@@ -105,14 +132,23 @@ function formatLine(totals: CoverageTotals, budgets: CoverageBudgets): string {
 	return `Coverage — functions ${totals.functions.toFixed(2)}% (floor ${budgets.functions.toFixed(2)}%), lines ${totals.lines.toFixed(2)}% (floor ${budgets.lines.toFixed(2)}%)`;
 }
 
-function printRatchetHint(totals: CoverageTotals, budgets: CoverageBudgets): void {
+function printRatchetHint(
+	totals: CoverageTotals,
+	budgets: CoverageBudgets,
+): void {
 	const fnSlack = totals.functions - budgets.functions;
 	const lineSlack = totals.lines - budgets.lines;
 	const RATCHET_HINT = 2.0;
 	if (fnSlack >= RATCHET_HINT || lineSlack >= RATCHET_HINT) {
 		const suggested = {
-			functions: Math.max(budgets.functions, Math.floor(totals.functions * 100) / 100 - 0.5),
-			lines: Math.max(budgets.lines, Math.floor(totals.lines * 100) / 100 - 0.5),
+			functions: Math.max(
+				budgets.functions,
+				Math.floor(totals.functions * 100) / 100 - 0.5,
+			),
+			lines: Math.max(
+				budgets.lines,
+				Math.floor(totals.lines * 100) / 100 - 0.5,
+			),
 		};
 		console.error(
 			`check-coverage: coverage exceeds floors by ≥${RATCHET_HINT}pt — consider ratcheting scripts/coverage-budgets.json up to e.g. {functions: ${suggested.functions.toFixed(2)}, lines: ${suggested.lines.toFixed(2)}}.`,
@@ -133,7 +169,9 @@ function writeSummaryArtifact(totals: CoverageTotals): void {
 			`${JSON.stringify({ functions: totals.functions, lines: totals.lines }, null, 2)}\n`,
 		);
 	} catch (err) {
-		console.error(`check-coverage: failed to write coverage/summary.json: ${err}`);
+		console.error(
+			`check-coverage: failed to write coverage/summary.json: ${err}`,
+		);
 	}
 }
 
@@ -163,7 +201,10 @@ function reportResult(
 	return testExitCode;
 }
 
-function runBunTest(emitJUnit: boolean): { exitCode: number; combined: string } {
+function runBunTest(emitJUnit: boolean): {
+	exitCode: number;
+	combined: string;
+} {
 	mkdirSync(COVERAGE_DIR, { recursive: true });
 	const args = [
 		"test",
@@ -198,7 +239,9 @@ async function main(): Promise<void> {
 	if (parseIdx !== -1) {
 		const file = argv[parseIdx + 1];
 		if (!file || !existsSync(file)) {
-			console.error(`check-coverage: --parse expected an existing file, got ${file ?? "<none>"}`);
+			console.error(
+				`check-coverage: --parse expected an existing file, got ${file ?? "<none>"}`,
+			);
 			process.exit(2);
 		}
 		const totals = parseAllFilesRow(readFileSync(file, "utf8"));

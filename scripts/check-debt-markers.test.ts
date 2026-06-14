@@ -15,7 +15,10 @@ describe("check-debt-markers", () => {
 
 	test("allowlist file is well-formed", () => {
 		const raw = JSON.parse(
-			readFileSync(resolve(REPO_ROOT, "scripts/debt-marker-allowlist.json"), "utf8"),
+			readFileSync(
+				resolve(REPO_ROOT, "scripts/debt-marker-allowlist.json"),
+				"utf8",
+			),
 		) as { allowlist: unknown };
 		expect(Array.isArray(raw.allowlist)).toBe(true);
 		for (const item of raw.allowlist as unknown[]) {
@@ -27,7 +30,11 @@ describe("check-debt-markers", () => {
 	test("untracked marker is flagged, tracked marker is not", () => {
 		// Spot-check the regex behaviour without depending on repo state.
 		const MARKER_RE = /\b(TODO|FIXME|HACK|XXX)\b/;
-		const TRACKER_RES: RegExp[] = [/\b(?:warren|pl|mx)-[0-9a-f]+\b/i, /#\d+\b/, /https?:\/\/\S+/];
+		const TRACKER_RES: RegExp[] = [
+			/\b(?:warren|pl|mx)-[0-9a-f]+\b/i,
+			/#\d+\b/,
+			/https?:\/\/\S+/,
+		];
 		const hasMarker = (s: string) => MARKER_RE.test(s);
 		const tracked = (s: string) => TRACKER_RES.some((re) => re.test(s));
 

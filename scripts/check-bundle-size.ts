@@ -47,7 +47,13 @@
  */
 
 import { spawnSync } from "node:child_process";
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import {
+	existsSync,
+	readdirSync,
+	readFileSync,
+	statSync,
+	writeFileSync,
+} from "node:fs";
 import { join, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 
@@ -74,7 +80,10 @@ const HEADROOM_GZIP = 400;
  * forces a human ack via WARREN_BUNDLE_SIZE_ALLOW_RAISE=1. Caps are absolute
  * bytes per bucket; raw tracks ~3x gzip. Tune here, not by padding budgets.
  */
-const AUTO_RAISE_CAP: { raw: Record<Bucket, number>; gzip: Record<Bucket, number> } = {
+const AUTO_RAISE_CAP: {
+	raw: Record<Bucket, number>;
+	gzip: Record<Bucket, number>;
+} = {
 	raw: { js: 24576, css: 6144 },
 	gzip: { js: 8192, css: 2048 },
 };
@@ -98,7 +107,12 @@ export type Measurement = {
 	files: Array<{ name: string; bucket: Bucket; raw: number; gzip: number }>;
 };
 
-export type Failure = { metric: string; bucket: Bucket; actual: number; budget: number };
+export type Failure = {
+	metric: string;
+	bucket: Bucket;
+	actual: number;
+	budget: number;
+};
 
 function assertPositiveInt(value: unknown, label: string): number {
 	if (
@@ -113,11 +127,20 @@ function assertPositiveInt(value: unknown, label: string): number {
 }
 
 export function loadBudgets(): Budgets {
-	const raw = JSON.parse(readFileSync(BUDGETS_PATH, "utf8")) as Record<string, unknown>;
-	const totals = raw.totals as Record<string, Record<string, unknown>> | undefined;
-	const largest = raw.largest as Record<string, Record<string, unknown>> | undefined;
+	const raw = JSON.parse(readFileSync(BUDGETS_PATH, "utf8")) as Record<
+		string,
+		unknown
+	>;
+	const totals = raw.totals as
+		| Record<string, Record<string, unknown>>
+		| undefined;
+	const largest = raw.largest as
+		| Record<string, Record<string, unknown>>
+		| undefined;
 	if (!totals?.raw || !totals.gzip || !largest?.gzip) {
-		throw new Error(`${BUDGETS_PATH}: missing totals.raw / totals.gzip / largest.gzip`);
+		throw new Error(
+			`${BUDGETS_PATH}: missing totals.raw / totals.gzip / largest.gzip`,
+		);
 	}
 	const out: Budgets = {
 		totals: { raw: { js: 0, css: 0 }, gzip: { js: 0, css: 0 } },
@@ -126,7 +149,10 @@ export function loadBudgets(): Budgets {
 	for (const b of BUCKETS) {
 		out.totals.raw[b] = assertPositiveInt(totals.raw[b], `totals.raw.${b}`);
 		out.totals.gzip[b] = assertPositiveInt(totals.gzip[b], `totals.gzip.${b}`);
-		out.largest.gzip[b] = assertPositiveInt(largest.gzip[b], `largest.gzip.${b}`);
+		out.largest.gzip[b] = assertPositiveInt(
+			largest.gzip[b],
+			`largest.gzip.${b}`,
+		);
 	}
 	return out;
 }
@@ -191,7 +217,11 @@ export function diff(measurement: Measurement, budgets: Budgets): Failure[] {
 	return failures;
 }
 
-export type UpdateResult = { wrote: boolean; raised: string[]; autoRaised: string[] };
+export type UpdateResult = {
+	wrote: boolean;
+	raised: string[];
+	autoRaised: string[];
+};
 
 /**
  * Re-baseline budgets from a measurement: budget = measured + headroom, written
@@ -208,7 +238,10 @@ export function updateBudgets(
 	budgetsPath = BUDGETS_PATH,
 	allowRaise = process.env.WARREN_BUNDLE_SIZE_ALLOW_RAISE === "1",
 ): UpdateResult {
-	const raw = JSON.parse(readFileSync(budgetsPath, "utf8")) as Record<string, unknown>;
+	const raw = JSON.parse(readFileSync(budgetsPath, "utf8")) as Record<
+		string,
+		unknown
+	>;
 	const totals = raw.totals as Budgets["totals"];
 	const largest = raw.largest as Budgets["largest"];
 	const raised: string[] = [];
@@ -226,10 +259,14 @@ export function updateBudgets(
 		if (allowRaise) return next;
 		const delta = next - current;
 		if (delta <= cap) {
-			autoRaised.push(`${label}: ${current} → ${next} (+${delta} B, within ${cap} B cap)`);
+			autoRaised.push(
+				`${label}: ${current} → ${next} (+${delta} B, within ${cap} B cap)`,
+			);
 			return next;
 		}
-		raised.push(`${label}: ${current} → ${next} (+${delta} B, exceeds ${cap} B cap)`);
+		raised.push(
+			`${label}: ${current} → ${next} (+${delta} B, exceeds ${cap} B cap)`,
+		);
 		return current;
 	};
 
@@ -286,7 +323,9 @@ function runUpdate(m: Measurement): void {
 	const { wrote, raised, autoRaised } = updateBudgets(m);
 	if (!wrote) {
 		console.error("");
-		console.error("Bundle-size --update refused to RAISE budgets beyond the auto-raise cap:");
+		console.error(
+			"Bundle-size --update refused to RAISE budgets beyond the auto-raise cap:",
+		);
 		for (const r of raised) console.error(`  ${r}`);
 		console.error("");
 		console.error(
@@ -294,13 +333,16 @@ function runUpdate(m: Measurement): void {
 		);
 		process.exit(1);
 	}
-	console.log(`Wrote re-baselined budgets to ${BUDGETS_PATH} (measured + headroom).`);
+	console.log(
+		`Wrote re-baselined budgets to ${BUDGETS_PATH} (measured + headroom).`,
+	);
 	for (const r of autoRaised) console.log(`  auto-raised ${r}`);
 }
 
 function main(): void {
 	const args = new Set(process.argv.slice(2));
-	const shouldBuild = args.has("--build") || process.env.WARREN_BUNDLE_SIZE_BUILD === "1";
+	const shouldBuild =
+		args.has("--build") || process.env.WARREN_BUNDLE_SIZE_BUILD === "1";
 	if (shouldBuild) runBuildUi();
 
 	if (!existsSync(ASSETS_DIR)) {
@@ -313,7 +355,9 @@ function main(): void {
 
 	console.log("Bundle-size measurement (dist/_astro/):");
 	for (const f of m.files) {
-		console.log(`  ${f.name}: raw ${fmtBytes(f.raw)}, gzip ${fmtBytes(f.gzip)}`);
+		console.log(
+			`  ${f.name}: raw ${fmtBytes(f.raw)}, gzip ${fmtBytes(f.gzip)}`,
+		);
 	}
 
 	if (args.has("--update")) {

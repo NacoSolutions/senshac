@@ -25,7 +25,7 @@ export const DELETE: APIRoute = async ({ request, params, locals }) => {
 
 		let client;
 		try {
-			client = getS3Client(env);
+			client = await getS3Client(env);
 		} catch (error) {
 			console.error("[S3 API Error]:", error);
 			return Response.json(

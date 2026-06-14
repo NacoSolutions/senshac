@@ -30,12 +30,7 @@ export default defineConfig({
 			prefixDefaultLocale: true,
 		},
 	},
-	redirects: {
-		"/admin": "/admin/index.html",
-		"/es/admin": "/admin/index.html",
-		"/en/admin": "/admin/index.html",
-		"/ca/admin": "/admin/index.html",
-	},
+
 	vite: {
 		plugins: [
 			{
@@ -55,6 +50,9 @@ export default defineConfig({
 					warn(warning);
 				},
 			},
+		},
+		ssr: {
+			noExternal: ["@aws-sdk/client-s3", "@aws-sdk/s3-request-presigner"],
 		},
 	},
 });

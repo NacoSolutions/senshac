@@ -44,9 +44,20 @@ function getClient(env?: TinaRuntimeEnv) {
 		env?.CF_PAGES_BRANCH ||
 		import.meta.env.TINA_BRANCH ||
 		import.meta.env.CF_PAGES_BRANCH ||
+		(typeof process !== "undefined"
+			? process.env.TINA_BRANCH || process.env.CF_PAGES_BRANCH
+			: undefined) ||
 		"main";
-	const clientId = env?.TINA_CLIENT_ID || import.meta.env.TINA_CLIENT_ID || "";
-	const token = env?.TINA_TOKEN || import.meta.env.TINA_TOKEN || "";
+	const clientId =
+		env?.TINA_CLIENT_ID ||
+		import.meta.env.TINA_CLIENT_ID ||
+		(typeof process !== "undefined" ? process.env.TINA_CLIENT_ID : undefined) ||
+		"";
+	const token =
+		env?.TINA_TOKEN ||
+		import.meta.env.TINA_TOKEN ||
+		(typeof process !== "undefined" ? process.env.TINA_TOKEN : undefined) ||
+		"";
 
 	return createClient({
 		url: `https://content.tinajs.io/2.4/content/${clientId}/github/${branch}`,

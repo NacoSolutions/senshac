@@ -22,21 +22,31 @@ export const GET: APIRoute = async ({ request, locals }) => {
 	// 1. Upload URL generation (always requires S3 presigning)
 	const uploadKey = url.searchParams.get("key");
 	if (uploadKey) {
-		let client;
-		try {
-			client = getS3Client(env);
-		} catch (error) {
-			console.error("[S3 API Error]:", error);
-			return Response.json(
-				{ message: "S3 binding is not configured properly" },
-				{ status: 503 },
-			);
-		}
 		const bucket = env.S3_BUCKET;
-
 		const key = safeMediaKey(uploadKey);
 		const expiresIn = Number(url.searchParams.get("expiresIn")) || 3600;
 
+		if (import.meta.env.DEV) {
+			// Bypass AWS SDK which causes Vite SSR interop issues locally
+			return Response.json({
+				signedUrl: `${env.S3_ENDPOINT}/${bucket}/${key}?presigned=true&expiresIn=${expiresIn}`,
+				src: publicMediaUrl(key, env.PUBLIC_MEDIA_BASE_URL),
+			});
+		}
+
+		let client;
+		try {
+			client = await getS3Client(env);
+		} catch (error) {
+			console.error("[S3 API Error]:", error);
+			return Response.json(
+				{
+					message: "S3 binding is not configured properly",
+					error: String(error),
+				},
+				{ status: 503 },
+			);
+		}
 		try {
 			const command = new PutObjectCommand({ Bucket: bucket, Key: key });
 			const signedUrl = await getSignedUrl(client, command, { expiresIn });
@@ -109,7 +119,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
 		// Fallback to S3 client
 		let client;
 		try {
-			client = getS3Client(env);
+			client = await getS3Client(env);
 		} catch (error) {
 			console.error("[S3 API Error]:", error);
 			return Response.json(
@@ -127,6 +137,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
 		});
 
 		const result = await client.send(command);
+		console.log("[S3 Mock Debug] Parsed Result:", result);
 		const directories = (result.CommonPrefixes || []).map((prefixObj) => {
 			const p = prefixObj.Prefix || "";
 			const stripped = p.slice(prefix.length).replace(/\/$/, "");

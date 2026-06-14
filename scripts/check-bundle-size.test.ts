@@ -14,7 +14,9 @@ import {
 const REPO_ROOT = resolve(import.meta.dir, "..");
 const BUDGETS_PATH = resolve(REPO_ROOT, "scripts/bundle-size-budgets.json");
 
-function makeAssetsDir(files: Array<{ name: string; bytes: Uint8Array }>): string {
+function makeAssetsDir(
+	files: Array<{ name: string; bytes: Uint8Array }>,
+): string {
 	const dir = mkdtempSync(join(tmpdir(), "warren-bundle-"));
 	const assets = join(dir, "assets");
 	mkdirSync(assets, { recursive: true });
@@ -108,13 +110,20 @@ describe("check-bundle-size", () => {
 
 	test("updateBudgets writes measured + headroom and preserves $comment", () => {
 		const path = writeTempBudgets({
-			totals: { raw: { js: 999999, css: 999999 }, gzip: { js: 999999, css: 999999 } },
+			totals: {
+				raw: { js: 999999, css: 999999 },
+				gzip: { js: 999999, css: 999999 },
+			},
 			largest: { gzip: { js: 999999, css: 999999 } },
 		});
 		// allowRaise=true so the down-only guard does not block this lowering anyway.
 		const res = updateBudgets(measurementOf(1000, 100), path, true);
 		expect(res.wrote).toBe(true);
-		const written = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown> & Budgets;
+		const written = JSON.parse(readFileSync(path, "utf8")) as Record<
+			string,
+			unknown
+		> &
+			Budgets;
 		// js headroom = 800 raw / 400 gzip; css headroom = half (400 / 200).
 		expect(written.totals.raw.js).toBe(1800);
 		expect(written.totals.raw.css).toBe(1400);
@@ -134,8 +143,14 @@ describe("check-bundle-size", () => {
 		const res = updateBudgets(measurementOf(5000, 500), path, false);
 		expect(res.wrote).toBe(true);
 		expect(res.raised).toEqual([]);
-		expect(res.autoRaised.some((r) => r.startsWith("totals.raw.js"))).toBe(true);
-		const written = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown> & Budgets;
+		expect(res.autoRaised.some((r) => r.startsWith("totals.raw.js"))).toBe(
+			true,
+		);
+		const written = JSON.parse(readFileSync(path, "utf8")) as Record<
+			string,
+			unknown
+		> &
+			Budgets;
 		expect(written.totals.raw.js).toBe(5800);
 		expect(written.totals.gzip.js).toBe(900);
 	});
