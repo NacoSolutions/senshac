@@ -120,6 +120,7 @@ try {
 	for (const directory of [
 		".wrangler/state/v3/workflows",
 		".wrangler/state/v3/do",
+		".wrangler/tmp",
 	]) {
 		try {
 			rmdirSync(directory);
