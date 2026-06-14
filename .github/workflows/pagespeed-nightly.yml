@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,6 +24,8 @@ jobs:
           bun-version: latest
 
       - name: Fetch Lighthouse Scores & Log to Mulch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
@@ -75,15 +78,21 @@ jobs:
               # Check threshold and open a seeds issue if below 100
               if (( $(echo "$PERFORMANCE < 100" | bc -l) )) || (( $(echo "$ACCESSIBILITY < 100" | bc -l) )) || (( $(echo "$BEST_PRACTICES < 100" | bc -l) )) || (( $(echo "$SEO < 100" | bc -l) )); then
                 ISSUE_TITLE="Lighthouse Audit Failure on $URL ($STRATEGY)"
-                EXISTING=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
-                if [ "$EXISTING" -eq 0 ]; then
-                  echo "Score(s) below 100, creating seeds issue..."
+                EXISTING_SEED=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
+                EXISTING_GH=$(gh issue list --state open --search "in:title \"$ISSUE_TITLE\"" --json number -q 'length' 2>/dev/null || echo 0)
+                
+                if [ "$EXISTING_SEED" -eq 0 ] && [ "$EXISTING_GH" -eq 0 ]; then
+                  echo "Score(s) below 100, creating GitHub issue and seed..."
+                  BODY_CONTENT="Automated nightly audit detected scores below 100 on $URL ($STRATEGY).\n\n- Performance: $PERFORMANCE\n- Accessibility: $ACCESSIBILITY\n- Best Practices: $BEST_PRACTICES\n- SEO: $SEO\n\nRun local Lighthouse to investigate further."
+                  
+                  GH_URL=$(gh issue create --title "$ISSUE_TITLE" --body "$(echo -e "$BODY_CONTENT")" --label "lighthouse,automated" | grep -o 'https://github.com/[^ ]*')
+                  
                   bunx @os-eco/seeds-cli@latest create \
                     --title "$ISSUE_TITLE" \
                     --type bug \
                     --priority 1 \
                     --labels "performance,accessibility,seo,lighthouse,automated" \
-                    --body "Automated nightly audit detected scores below 100 on $URL ($STRATEGY).\n\n- Performance: $PERFORMANCE\n- Accessibility: $ACCESSIBILITY\n- Best Practices: $BEST_PRACTICES\n- SEO: $SEO\n\nRun local Lighthouse to investigate further."
+                    --body "$(echo -e "$BODY_CONTENT")\n\n**GitHub Issue**: $GH_URL"
                   CHANGES_MADE=true
                 else
                   echo "::notice title=$ISSUE_TITLE::Issue already exists, skipping."

@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,6 +24,8 @@ jobs:
           bun-version: latest
 
       - name: Fetch Agent Readiness Scores & Log Seeds
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
@@ -53,15 +56,21 @@ jobs:
               while IFS='|' read -r CHECK_ID MESSAGE; do
                 if [ -n "$CHECK_ID" ]; then
                   ISSUE_TITLE="Agent Ready: $CHECK_ID failed on $URL"
-                  EXISTING=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
-                  if [ "$EXISTING" -eq 0 ]; then
+                  EXISTING_SEED=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
+                  EXISTING_GH=$(gh issue list --state open --search "in:title \"$ISSUE_TITLE\"" --json number -q 'length' 2>/dev/null || echo 0)
+                  
+                  if [ "$EXISTING_SEED" -eq 0 ] && [ "$EXISTING_GH" -eq 0 ]; then
                     echo "Check failed: $CHECK_ID - $MESSAGE"
+                    BODY_CONTENT="Automated nightly scan detected a failure for $CHECK_ID on $URL.\n\nMessage: $MESSAGE\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                    
+                    GH_URL=$(gh issue create --title "$ISSUE_TITLE" --body "$(echo -e "$BODY_CONTENT")" --label "agents,automated" | grep -o 'https://github.com/[^ ]*')
+                    
                     bunx @os-eco/seeds-cli@latest create \
                       --title "$ISSUE_TITLE" \
                       --type bug \
                       --priority 2 \
                       --labels "agents,automated" \
-                      --body "Automated nightly scan detected a failure for $CHECK_ID on $URL.\n\nMessage: $MESSAGE\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                      --body "$(echo -e "$BODY_CONTENT")\n\n**GitHub Issue**: $GH_URL"
                     CHANGES_MADE=true
                   else
                     echo "::notice title=Agent Readiness for $URL::Issue '$ISSUE_TITLE' already exists, skipping."
