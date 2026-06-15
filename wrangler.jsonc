@@ -18,5 +18,11 @@
 			"binding": "SESSION",
 			"id": "53173b2d82b04dc1955e55130691d430"
 		}
+	],
+	"send_email": [
+		{
+			"name": "EMAIL"
+		}
 	]
 }
+

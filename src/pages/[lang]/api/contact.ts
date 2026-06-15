@@ -60,7 +60,7 @@ function isValidEmail(email: string): boolean {
 	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-export const POST: APIRoute = async ({ request, params }) => {
+export const POST: APIRoute = async ({ request, params, locals }) => {
 	const lang = params.lang || "es";
 
 	// Get translations from content collection
@@ -140,12 +140,12 @@ export const POST: APIRoute = async ({ request, params }) => {
 			);
 		}
 
-		// Send email via Resend (if configured) or log for now
-		const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
+		// Send email via Cloudflare Email Routing
+		const EMAIL = (locals as any)?.runtime?.env?.EMAIL;
 		const CONTACT_EMAIL = import.meta.env.CONTACT_EMAIL || "info@senshac.com";
 
-		if (RESEND_API_KEY) {
-			const emailBody = `
+		if (EMAIL) {
+			const emailBodyText = `
 Nuevo mensaje de contacto desde senshac.com
 
 Nombre: ${name}
@@ -156,26 +156,34 @@ Tipo de proyecto: ${projectType}
 Tipo de servicio: ${serviceType}
 Mensaje: ${message || "Sin mensaje adicional"}
 Idioma: ${lang}
-      `.trim();
+			`.trim();
 
-			const res = await fetch("https://api.resend.com/emails", {
-				method: "POST",
-				headers: {
-					Authorization: `Bearer ${RESEND_API_KEY}`,
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					from: "Senshac Web <noreply@senshac.com>",
+			const emailBodyHtml = `
+<p>Nuevo mensaje de contacto desde senshac.com</p>
+<p>
+<strong>Nombre:</strong> ${name}<br>
+<strong>Empresa:</strong> ${company || "No especificada"}<br>
+<strong>Email:</strong> ${email}<br>
+<strong>Teléfono:</strong> ${phone || "No especificado"}<br>
+<strong>Tipo de proyecto:</strong> ${projectType}<br>
+<strong>Tipo de servicio:</strong> ${serviceType}<br>
+<strong>Mensaje:</strong><br>
+${message.replace(/\n/g, '<br>') || "Sin mensaje adicional"}<br>
+<strong>Idioma:</strong> ${lang}
+</p>
+			`.trim();
+
+			try {
+				await EMAIL.send({
 					to: CONTACT_EMAIL,
-					reply_to: email,
+					from: { email: "noreply@senshac.com", name: "Senshac Web" },
+					replyTo: email,
 					subject: `Nuevo contacto: ${name} - ${projectType}`,
-					text: emailBody,
-				}),
-			});
-
-			if (!res.ok) {
-				const errorText = await res.text();
-				console.error("Resend API error:", errorText);
+					text: emailBodyText,
+					html: emailBodyHtml,
+				});
+			} catch (error) {
+				console.error("Cloudflare Email API error:", error);
 				console.error("Failed submission data:", {
 					name,
 					company,
@@ -195,7 +203,7 @@ Idioma: ${lang}
 		} else {
 			// Log to console if no email service configured
 			console.warn(
-				"Contact form received but EMAIL WAS NOT SENT because RESEND_API_KEY is missing. (Did you add it to the Preview environment variables in Cloudflare?)",
+				"Contact form received but EMAIL WAS NOT SENT because Cloudflare EMAIL binding is missing. (Did you add it to wrangler.jsonc?)",
 			);
 			console.log("Contact form submission payload:", {
 				name,
