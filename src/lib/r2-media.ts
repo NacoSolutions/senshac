@@ -2,7 +2,7 @@ import { isUserAuthorized } from "@tinacms/auth";
 
 let cfWorkers: any = null;
 try {
-	// @ts-ignore
+	// @ts-expect-error
 	cfWorkers = await import("cloudflare:workers");
 } catch (err) {
 	// Ignore if cloudflare:workers is not available (e.g. outside CF/Wrangler)
