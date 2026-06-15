@@ -6,6 +6,9 @@ export function registerAlpineComponents(Alpine: AlpineType) {
 		total: 0,
 		isAnimating: false,
 
+		startX: 0,
+		currentX: 0,
+
 		init() {
 			this.total = this.$root.querySelectorAll(".carousel-slide").length;
 			if (this.total <= 1) return;
@@ -29,6 +32,30 @@ export function registerAlpineComponents(Alpine: AlpineType) {
 					slide.style.zIndex = "1";
 				}
 			});
+
+			this.$root.addEventListener("touchstart", this.onTouchStart.bind(this), { passive: true });
+			this.$root.addEventListener("touchmove", this.onTouchMove.bind(this), { passive: true });
+			this.$root.addEventListener("touchend", this.onTouchEnd.bind(this), { passive: true });
+		},
+
+		onTouchStart(e: TouchEvent) {
+			this.startX = e.touches[0].clientX;
+			this.currentX = this.startX;
+		},
+
+		onTouchMove(e: TouchEvent) {
+			this.currentX = e.touches[0].clientX;
+		},
+
+		onTouchEnd() {
+			const diff = this.startX - this.currentX;
+			if (Math.abs(diff) > 50) {
+				if (diff > 0) {
+					this.next();
+				} else {
+					this.prev();
+				}
+			}
 		},
 
 		next() {

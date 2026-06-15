@@ -109,7 +109,8 @@ const isCarousel = displayPosts.length > maxVisible;
               <button 
                 class="absolute bottom-4 right-4 z-20 text-white opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-black/50 hover:bg-black/70 rounded-full" 
                 @click.prevent="playing = !playing" 
-                :aria-label="playing ? 'Pause' : 'Play'"
+                aria-label="Pause video"
+                :aria-label="playing ? 'Pause video' : 'Play video'"
               >
                 <span :class="playing ? 'i-lucide-pause' : 'i-lucide-play'" class="block w-4 h-4"></span>
               </button>
