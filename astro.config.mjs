@@ -12,7 +12,7 @@ export default defineConfig({
 		enabled: false,
 	},
 	site: "https://senshac.com",
-	output: "static",
+	output: "server",
 	adapter: cloudflare({
 		imageService: "compile",
 		prerenderEnvironment: "node",
