@@ -105,7 +105,7 @@ describe("check-ci-parity", () => {
 		}
 	});
 
-	test("current CI workflows are in parity with check:all", () => {
+	test("current CI workflows are in parity with verify:ci", () => {
 		const { failures, invocations } = checkParity();
 		// Sanity: we should actually be checking something — empty
 		// invocations would silently pass.

@@ -28,23 +28,7 @@ jobs:
           mkdir -p "$HOME/.local/bin"
           install -m 0755 betterleaks "$HOME/.local/bin/betterleaks"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-      - run: bun run build
-      - name: Restore committed Tina build outputs
-        run: |
-          git restore -- \
-            public/admin/index.html \
-            tina/__generated__/client.ts \
-            tina/__generated__/types.js \
-            tina/__generated__/types.ts
-          rm -rf tina/__generated__/.cache
-      - run: bun run acceptance --skip-build
-      - run: bun run check:clean
-      - run: bun run check:all
-      - name: Verify no unexpected generated drift
-        run: |
-          git diff --exit-code
-      - run: bun run test
-      - run: bun run check:clean
+      - run: bun run verify:ci
 
       - name: Test timing summary
         if: always()
