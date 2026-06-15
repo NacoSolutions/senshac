@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+issues="$repo/.seeds/issues.jsonl"
+checker=(bun run "$repo/scripts/seeds-integrity.ts" "$issues")
+cli=(bunx @os-eco/seeds-cli@0.5.10)
+command="${1:-}"
+
+case "$command" in
+	""|-h|--help|--version|help|prime|ready|list|show|stats|doctor|search|blocked)
+		exec "${cli[@]}" "$@"
+		;;
+esac
+
+"${checker[@]}"
+backup="$(mktemp)"
+cp "$issues" "$backup"
+trap 'rm -f "$backup"' EXIT
+
+if ! "${cli[@]}" "$@"; then
+	cp "$backup" "$issues"
+	echo "Seeds command failed; restored $issues" >&2
+	exit 1
+fi
+
+if ! "${checker[@]}"; then
+	cp "$backup" "$issues"
+	echo "Seeds command violated tracker invariants; restored $issues" >&2
+	exit 1
+fi

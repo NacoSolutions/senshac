@@ -164,7 +164,12 @@ This injects session context: rules, command reference, and workflows.
 - `sd update <id> --status in_progress` — Claim work
 - `sd close <id>` — Complete work
 - `sd dep add <id> <depends-on>` — Add dependency between issues
-- `sd sync` — Sync with git (run before pushing)
+- `sd sync` — Validate, stage, and commit tracker changes before pushing
+
+The repository-owned `scripts/sd` wrapper pins Seeds to `0.5.10`, checks
+`.seeds/issues.jsonl` before and after mutations, and restores the tracker if a
+command violates its invariants. Always run Seeds through `dx sd`; never call a
+floating `bunx @os-eco/seeds-cli@latest` or edit the JSONL manually.
 
 ### Before You Finish
 1. Close completed issues: `sd close <id>`

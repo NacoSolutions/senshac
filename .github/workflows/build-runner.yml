@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Log in to the Container registry
         uses: docker/login-action@v4
@@ -48,7 +51,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          npx -y @os-eco/seeds-cli@latest create \
+          scripts/sd create \
             --title "Workflow Failed: ${{ github.workflow }}" \
             --type bug \
             --priority 1 \
