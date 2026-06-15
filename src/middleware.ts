@@ -40,6 +40,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		response = await next();
 	}
 
+	// Add Link headers for agent discovery (RFC 8288) to all responses
+	response.headers.append("Link", '</llms.txt>; rel="describedby"');
+
 	if (
 		shouldServeMarkdown &&
 		response.headers.get("Content-Type")?.includes("text/html")
@@ -85,6 +88,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 				"Content-Type": "text/markdown; charset=utf-8",
 				"Cache-Control":
 					response.headers.get("Cache-Control") || "public, max-age=60",
+				"Link": response.headers.get("Link") || '</llms.txt>; rel="describedby"',
 			},
 		});
 	}
