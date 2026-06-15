@@ -83,6 +83,7 @@ const isCarousel = displayPosts.length > maxVisible;
                       :src="slide" 
                       :srcset="`${slide.replace('1200.webp', '412.webp')} 412w, ${slide.replace('1200.webp', '768.webp')} 768w, ${slide} 1200w`"
                       sizes="(min-width: 768px) 33vw, 85vw"
+                      alt={post.caption?.slice(0, 100) || "Instagram post image"}
                       class="w-full h-full object-contain" 
                       loading="lazy" 
                     />
