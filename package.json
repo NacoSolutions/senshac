@@ -7,7 +7,7 @@
 		"dev": "astro dev",
 		"dev:cms": "tinacms dev -c \"astro dev\"",
 		"build": "scripts/build",
-		"deploy": "wrangler pages deploy dist --project-name senshac",
+		"deploy": "bash scripts/deploy",
 		"media:image": "bun scripts/media/process-images.ts",
 		"media:object": "bun scripts/media/process-object.ts",
 		"media:stage:redesign": "bun scripts/media/stage-redesign-media.ts",
