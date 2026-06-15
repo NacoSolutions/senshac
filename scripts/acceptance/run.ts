@@ -1,4 +1,5 @@
-import { existsSync, rmdirSync } from "node:fs";
+import { existsSync } from "node:fs";
+import { cleanupWranglerState } from "./cleanup";
 
 const mode = process.argv.includes("--mode")
 	? process.argv[process.argv.indexOf("--mode") + 1]
@@ -117,15 +118,7 @@ try {
 } finally {
 	wrangler.kill();
 	await wrangler.exited;
-	for (const directory of [
-		".wrangler/state/v3/workflows",
-		".wrangler/state/v3/do",
-		".wrangler/tmp",
-	]) {
-		try {
-			rmdirSync(directory);
-		} catch {}
-	}
+	cleanupWranglerState();
 }
 
 const runtimeLogs = `${await stdout}${await stderr}`.trim();
