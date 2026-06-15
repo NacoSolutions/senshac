@@ -9,9 +9,12 @@ fi
 
 export DOCKER_HOST="unix://${socket}"
 
+git_common_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
+secret_file="$(dirname "$git_common_dir")/.secrets.act"
+
 secret_args=()
-if [[ -f .secrets.act ]]; then
-  secret_args=(--secret-file .secrets.act)
+if [[ -f "$secret_file" ]]; then
+  secret_args=(--secret-file "$secret_file")
 fi
 
 act_args=(

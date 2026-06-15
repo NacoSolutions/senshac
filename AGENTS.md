@@ -123,16 +123,21 @@ Project memory has moved out of `.agent-memory/` into the git-native tool stores
 
 Run `sd prime`, `tl prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
 
-## Git Workspace Architecture (Bare Repo + Worktrees)
+## Git Workspace Architecture
 
-This project uses a **Bare Repository** structure with isolated worktrees to ensure agents and humans do not cause merge conflicts by working in the same directory:
-- The project root (`.../senshac/`) is simply a container. Its `.git` folder holds the bare database.
-- The `main` folder (`.../senshac/main/`) is an **isolated worktree**, NOT the default checkout.
-- **NEVER** write code or run tests directly in the `main` worktree. It must remain clean.
-- Always use the `wt` alias to orchestrate tasks:
-  1. `wt switch <branch-name>`: Spins up a disposable peer worktree directory next to `main`.
-  2. `cd ../<branch-name>`: Navigate into your isolated worktree to make edits and commit.
-  3. `wt merge main`: Merges your work back to `main` and cleans up the disposable worktree.
+This project uses a bare repository with isolated Worktrunk worktrees:
+
+- The wrapper (`.../senshac/`) contains the bare `.git/` database and shared
+  ignored environment files. Never run project commands from the wrapper.
+- `.../senshac/main/` is the clean integration worktree. Do not implement
+  features directly there.
+- Create independently mergeable work with
+  `wt switch --create <kind>/<seed>-<slug> --base main`.
+- Run project and tracker commands inside the resulting worktree through
+  `dx`.
+- Push branches and integrate them through protected pull requests. Use
+  `wt remove` after merge.
+- See `docs/worktree-workflow.md` for setup, naming, hooks, and cleanup.
 
 ## Environment Commands
 

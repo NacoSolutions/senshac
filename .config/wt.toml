@@ -1,0 +1,13 @@
+[[pre-start]]
+secrets = """
+for file in .env.local .env.pages .secrets.act; do
+  test -f "{{ repo_path }}/../$file"
+done
+"""
+direnv = "direnv allow ."
+
+[[pre-start]]
+dependencies = "direnv exec . bun install --frozen-lockfile"
+
+[[pre-merge]]
+verify = "direnv exec . bash -lc 'bun run build && bun run check:all && bun run test'"
