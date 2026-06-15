@@ -11,6 +11,19 @@
 
 import { spawnSync } from "node:child_process";
 
+export function statusViolations(output: string, allowStaged: boolean) {
+	return output
+		.split("\n")
+		.filter((line) => line.length > 0)
+		.filter((line) => {
+			if (!allowStaged) return true;
+			if (line.startsWith("??")) return true;
+
+			const worktreeStatus = line[1];
+			return worktreeStatus !== " ";
+		});
+}
+
 function main() {
 	// 1. Check for untracked or modified files using git status
 	const status = spawnSync("git", ["status", "--porcelain"], {
@@ -22,10 +35,8 @@ function main() {
 		process.exit(1);
 	}
 
-	const lines = status.stdout
-		.split("\n")
-		.map((l) => l.trim())
-		.filter((l) => l.length > 0);
+	const allowStaged = process.env.CHECK_CLEAN_ALLOW_STAGED === "1";
+	const lines = statusViolations(status.stdout, allowStaged);
 
 	if (lines.length > 0) {
 		console.error("❌ check-repo-cleanliness: The working tree is not clean!");
@@ -87,8 +98,10 @@ function main() {
 	}
 
 	console.log(
-		"✓ check-repo-cleanliness: Working tree is clean. No agent pollution detected.",
+		allowStaged
+			? "✓ check-repo-cleanliness: No unstaged or untracked agent pollution detected."
+			: "✓ check-repo-cleanliness: Working tree is clean. No agent pollution detected.",
 	);
 }
 
-main();
+if (import.meta.main) main();

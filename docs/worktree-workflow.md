@@ -23,7 +23,10 @@ Use `<kind>/<seed>-<slug>`:
 - `investigate/senshac-9012-pages-routing`
 - `chore/senshac-3456-repository-hygiene`
 
-The `main/` path is reserved for the clean integration worktree.
+The `main/` path is reserved for the clean integration worktree. Keep it
+available for fast-forwarding, comparisons, and final verification, but do not
+implement or commit routine work there. The repository pre-commit hook rejects
+commits on `main`.
 
 ## Environment Bootstrap
 
@@ -32,14 +35,20 @@ The blocking project Worktrunk hooks:
 1. Verify the wrapper's mode-0600 `.env.local`, `.env.pages`, and
    `.secrets.act` exist.
 2. Approve the tracked `.envrc`.
-3. Install the locked Bun dependencies.
-4. Run the production build, repository gates, and unit tests before an
+3. Configure the tracked `.githooks/` directory as Git's hooks path.
+4. Install the locked Bun dependencies.
+5. Run the production build, repository gates, and unit tests before an
    explicit local `wt merge`.
 
 The wrapper environment files are local-only and are loaded directly from the
 Git common-directory path. Worktrees contain no copies or symlinks. Never add
 the files to Git. Hook commands require one-time Worktrunk approval when their
 tracked definition changes.
+
+`AGENTS.md`, `.envrc`, `.flox/`, and `.config/wt.toml` stay tracked because
+every worktree needs the same agent rules, environment, and lifecycle hooks.
+Only ignored secrets and wrapper-level operator guidance live outside
+worktrees.
 
 ## Daily Commands
 
@@ -65,6 +74,21 @@ the strict `ci` status and disallows direct force pushes. Use `wt remove` after
 the remote branch is merged; do not use `wt merge main` as the normal
 integration path.
 
+For exceptional repository maintenance, a human may bypass the local
+`main`-branch commit guard for one command:
+
+```bash
+SENSHAC_ALLOW_MAIN_COMMIT=1 git commit ...
+```
+
+This override does not bypass branch protection or CI and must not be placed
+in `.envrc` or any persistent environment file.
+
+Commits from feature worktrees run `verify:ci`. During that hook only,
+`check:clean` permits staged files while continuing to reject unstaged and
+untracked files. This keeps the normal clean-tree gate strict without making
+staged commits impossible.
+
 For the normal completion path, run:
 
 ```bash
@@ -82,6 +106,7 @@ ordinary application changes do not need the slower Act container run.
 ```text
 senshac/                              bare repository wrapper
 ├── .git/                             shared Git database
+├── AGENTS.md                         local wrapper navigation rules
 ├── .env.local                        shared development secrets
 ├── .env.pages                        shared Pages deployment secrets
 ├── .secrets.act                      shared local Actions secrets
