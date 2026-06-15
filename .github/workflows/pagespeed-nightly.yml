@@ -52,7 +52,7 @@ jobs:
               if [ "$PERFORMANCE" == "null" ]; then
                 echo "Failed to fetch data for $URL ($STRATEGY)"
                 ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message // empty')
-                bunx @os-eco/seeds-cli@latest create \
+                scripts/sd create \
                   --title "PageSpeed API Failure for $URL ($STRATEGY)" \
                   --type bug \
                   --priority 1 \
@@ -75,7 +75,7 @@ jobs:
               # Check threshold and open a seeds issue if below 90
               if (( $(echo "$PERFORMANCE < 90" | bc -l) )); then
                 echo "Performance below 90, creating seeds issue..."
-                bunx @os-eco/seeds-cli@latest create \
+                scripts/sd create \
                   --title "Lighthouse Performance Drop on $URL ($STRATEGY)" \
                   --type bug \
                   --priority 1 \
@@ -100,7 +100,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          bunx @os-eco/seeds-cli@latest create \
+          scripts/sd create \
             --title "PageSpeed Nightly Workflow Failed" \
             --type bug \
             --priority 1 \

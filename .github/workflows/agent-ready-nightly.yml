@@ -41,7 +41,7 @@ jobs:
           if ! echo "$RESPONSE" | jq -e '.checks' > /dev/null; then
             echo "Failed to fetch Agent Readiness data for $URL"
             ERROR_MSG=$(echo "$RESPONSE" | jq -r '.message // "Unknown error"')
-            bunx @os-eco/seeds-cli@latest create \
+            scripts/sd create \
               --title "Agent Readiness API Failure for $URL" \
               --type bug \
               --priority 1 \
@@ -65,7 +65,7 @@ jobs:
                     
                     GH_URL=$(gh issue create --title "$ISSUE_TITLE" --body "$(echo -e "$BODY_CONTENT")" --label "agents,automated" | grep -o 'https://github.com/[^ ]*')
                     
-                    bunx @os-eco/seeds-cli@latest create \
+                    scripts/sd create \
                       --title "$ISSUE_TITLE" \
                       --type bug \
                       --priority 2 \
@@ -96,7 +96,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          bunx @os-eco/seeds-cli@latest create \
+          scripts/sd create \
             --title "Agent Readiness Nightly Workflow Failed" \
             --type bug \
             --priority 1 \

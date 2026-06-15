@@ -40,9 +40,8 @@ function logToMulch(
 function createAlert(title: string, body: string) {
 	try {
 		require("node:child_process").spawnSync(
-			"bunx",
+			"scripts/sd",
 			[
-				"@os-eco/seeds-cli@latest",
 				"create",
 				"--title",
 				title,
