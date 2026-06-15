@@ -36,9 +36,6 @@
           "out",
           "tl"
         ]
-      },
-      "typescript-language-server": {
-        "pkg-path": "typescript-language-server"
       }
     },
     "vars": {
@@ -62,14 +59,15 @@
       "description": "Run your GitHub Actions locally",
       "install_id": "act",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "act-0.2.89",
       "pname": "act",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:14.150758Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:47:35.039854Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -87,27 +85,28 @@
     {
       "attr_path": "betterleaks",
       "broken": false,
-      "derivation": "/nix/store/wrv3947k056dk8kdhmyx7mvvbkbv37wg-betterleaks-1.4.0.drv",
+      "derivation": "/nix/store/0da27wg2nygwdkj4ijsq0q9560illx52-betterleaks-1.4.1.drv",
       "description": "Scan code for secrets",
       "install_id": "betterleaks",
       "license": "MIT",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "name": "betterleaks-1.4.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "name": "betterleaks-1.4.1",
       "pname": "betterleaks",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:14.431201Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:47:35.401004Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
-      "version": "1.4.0",
+      "version": "1.4.1",
       "outputs_to_install": [
         "out"
       ],
       "outputs": {
-        "out": "/nix/store/g7sjawl1fnv9gdawah7fr80pn4rpxykm-betterleaks-1.4.0"
+        "out": "/nix/store/danyw69zf8ibg1zafxh08yw5333316yl-betterleaks-1.4.1"
       },
       "system": "x86_64-linux",
       "group": "toplevel",
@@ -120,14 +119,15 @@
       "description": "Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one",
       "install_id": "bun",
       "license": "[ MIT, LGPL-2.1-only ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "bun-1.3.13",
       "pname": "bun",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:14.523235Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:47:35.493232Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -149,19 +149,21 @@
       "description": "Simple, fast and user-friendly alternative to find",
       "install_id": "fd",
       "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "fd-10.4.2",
       "pname": "fd",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:15.797539Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:47:36.804096Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
       "version": "10.4.2",
       "outputs_to_install": [
+        "out",
         "out"
       ],
       "outputs": {
@@ -178,14 +180,15 @@
       "description": "GNU Compiler Collection, version 15.2.0 (wrapper script)",
       "install_id": "gcc",
       "license": "GPL-3.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "gcc-wrapper-15.2.0",
       "pname": "gcc",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:16.181338Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:47:37.217059Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -213,19 +216,21 @@
       "description": "GNU implementation of the Unix grep command",
       "install_id": "gnugrep",
       "license": "GPL-3.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "gnugrep-3.12",
       "pname": "gnugrep",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:17.117133Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:47:38.166043Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
       "version": "3.12",
       "outputs_to_install": [
+        "out",
         "out",
         "out",
         "out",
@@ -248,14 +253,15 @@
       "description": "Official formatter for Nix code",
       "install_id": "nixfmt",
       "license": "MPL-2.0",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "nixfmt-1.3.1",
       "pname": "nixfmt-rfc-style",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:53:58.172001Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:48:17.500203Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
@@ -277,19 +283,21 @@
       "description": "Utilities that give information about processes using the /proc filesystem",
       "install_id": "procps",
       "license": "GPL-2.0-or-later",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "procps-4.0.6",
       "pname": "procps",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:54:21.966852Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:48:39.837226Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
       "version": "4.0.6",
       "outputs_to_install": [
+        "out",
         "out",
         "out"
       ],
@@ -307,52 +315,25 @@
       "description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
       "install_id": "ripgrep",
       "license": "[ Unlicense, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=9ae611a455b90cf061d8f332b977e387bda8e1ca",
       "name": "ripgrep-15.1.0",
       "pname": "ripgrep",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:55:31.640823Z",
+      "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
+      "rev_count": 1014179,
+      "rev_date": "2026-06-10T06:56:03Z",
+      "scrape_date": "2026-06-12T04:49:43.220486Z",
       "stabilities": [
+        "staging",
         "unstable"
       ],
       "unfree": false,
       "version": "15.1.0",
       "outputs_to_install": [
+        "out",
         "out"
       ],
       "outputs": {
         "out": "/nix/store/ixsp81bia5w1fqd2d59vwbcfqk3n5231-ripgrep-15.1.0"
-      },
-      "system": "x86_64-linux",
-      "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "attr_path": "typescript-language-server",
-      "broken": false,
-      "derivation": "/nix/store/31y2wzwdvzbcyl6acyfyqp1vr5l5ki22-typescript-language-server-5.3.0.drv",
-      "description": "Language Server Protocol implementation for TypeScript using tsserver",
-      "install_id": "typescript-language-server",
-      "license": "[ Apache-2.0, MIT ]",
-      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "name": "typescript-language-server-5.3.0",
-      "pname": "typescript-language-server",
-      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
-      "rev_count": 1011622,
-      "rev_date": "2026-06-06T12:30:50Z",
-      "scrape_date": "2026-06-08T04:56:43.625735Z",
-      "stabilities": [
-        "unstable"
-      ],
-      "unfree": false,
-      "version": "5.3.0",
-      "outputs_to_install": [
-        "out"
-      ],
-      "outputs": {
-        "out": "/nix/store/j5391wan9kq7kf16623zp161mchwrpfp-typescript-language-server-5.3.0"
       },
       "system": "x86_64-linux",
       "group": "toplevel",

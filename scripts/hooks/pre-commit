@@ -1,7 +1,26 @@
 #!/usr/bin/env bash
-# Single source of truth for the pre-commit gate: run the same battery CI
-# runs (see warren-008a / pl-da5b). Diverging from `check:all` here would
-# recreate the gate-drift that warren-5797 was opened to kill. If a check
-# is too slow for the hook, fix the check — don't carve out a subset.
 set -euo pipefail
-exec bun run check:all
+
+branch="$(git branch --show-current)"
+if [[ "$branch" == "main" && "${SENSHAC_ALLOW_MAIN_COMMIT:-0}" != "1" ]]; then
+  echo "Direct commits on main are disabled." >&2
+  echo "Create a Seed worktree with:" >&2
+  echo "  wt switch --create <kind>/<seed>-<slug> --base main" >&2
+  echo "For exceptional repository maintenance only, set SENSHAC_ALLOW_MAIN_COMMIT=1." >&2
+  exit 1
+fi
+
+if ! command -v betterleaks >/dev/null 2>&1; then
+  echo "betterleaks is not on PATH. Run this commit from the Flox environment." >&2
+  exit 1
+fi
+
+if git diff --cached --quiet --exit-code; then
+  exit 0
+fi
+
+echo "Running betterleaks on staged changes..."
+betterleaks git --staged --redact --no-banner --no-color --log-level warn .
+
+echo "Running full verification gate (verify:ci)..."
+CHECK_CLEAN_ALLOW_STAGED=1 bun run verify:ci

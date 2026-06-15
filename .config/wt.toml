@@ -5,6 +5,7 @@ for file in .env.local .env.pages .secrets.act; do
 done
 """
 direnv = "direnv allow ."
+hooks = "git config core.hooksPath .githooks"
 
 [[pre-start]]
 dependencies = "direnv exec . bun install --frozen-lockfile"

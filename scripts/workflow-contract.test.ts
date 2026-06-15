@@ -52,6 +52,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(pkg.devDependencies["@os-eco/seeds-cli"]).toBe("0.5.10");
 	expect(pkg.devDependencies["@os-eco/mulch-cli"]).toBe("0.10.7");
 	expect(pkg.devDependencies["@os-eco/canopy-cli"]).toBe("0.2.6");
+	expect(pkg.devDependencies["typescript-language-server"]).toBe("5.3.0");
 
 	const knip = JSON.parse(read("knip.json")) as {
 		ignoreDependencies: string[];
@@ -61,6 +62,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 			"@os-eco/canopy-cli",
 			"@os-eco/mulch-cli",
 			"@os-eco/seeds-cli",
+			"typescript-language-server",
 		]),
 	);
 
@@ -69,11 +71,15 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(sd).toContain("scripts/seeds-integrity.ts");
 	expect(read("scripts/ml")).toContain("node_modules/.bin/ml");
 	expect(read("scripts/cn")).toContain("node_modules/.bin/cn");
+	expect(read("scripts/typescript-language-server")).toContain(
+		"node_modules/.bin/typescript-language-server",
+	);
 
 	const floxManifest = read(".flox/env/manifest.toml");
 	expect(floxManifest).not.toContain("seeds.flake");
 	expect(floxManifest).not.toContain("mulch.flake");
 	expect(floxManifest).not.toContain("canopy.flake");
+	expect(floxManifest).not.toContain("typescript-language-server.pkg-path");
 	expect(floxManifest).toContain("trellis.flake");
 
 	const workflowFiles = readdirSync(resolve(root, ".github/workflows"))
