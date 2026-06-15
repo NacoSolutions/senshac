@@ -29,6 +29,29 @@ test("CI and Worktrunk share the authoritative verification command", () => {
 	expect(worktrunk).toContain("bun run verify:ci");
 });
 
+test("nightly PageSpeed validates complete category responses", () => {
+	const workflow = read(".github/workflows/pagespeed-nightly.yml");
+	expect(() => yaml.load(workflow)).not.toThrow();
+	expect(workflow).toContain("scripts/pagespeed-result.ts");
+	expect(workflow).toContain("scripts/pagespeed-routes.ts");
+	expect(workflow).toContain("category=performance");
+	expect(workflow).toContain("category=accessibility");
+	expect(workflow).toContain("category=best-practices");
+	expect(workflow).toContain("category=seo");
+	expect(workflow).not.toContain("/es/projects");
+	expect(workflow).not.toContain("/es/about");
+	expect(workflow).not.toContain("bc -l");
+	expect(workflow).toContain("actions/upload-artifact@v4");
+	expect(workflow).toContain("dry_run:");
+	expect(workflow).toContain("issues: write");
+	expect(workflow).toContain("gh issue list");
+	expect(workflow).toContain("type/performance,priority/P1,area/build");
+	expect(workflow).toContain("type/bug,priority/P1,area/build");
+	expect(workflow).not.toContain("scripts/sd create");
+	expect(workflow).not.toContain("scripts/ml record");
+	expect(workflow).not.toContain("git push");
+});
+
 test("fx exposes verification, local Actions emulation, and shipping", () => {
 	const fx = read("scripts/fx");
 	expect(fx).toContain("verify)");

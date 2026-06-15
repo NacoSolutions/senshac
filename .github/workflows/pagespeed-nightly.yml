@@ -2,113 +2,193 @@ name: Nightly PageSpeed & Lighthouse Audit
 
 on:
   schedule:
-    - cron: '30 0 * * *' # Run daily at 00:30 UTC
-  workflow_dispatch: # Allow manual triggering
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Use fixture responses and skip issue mutations
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   audit:
     name: Run PageSpeed Insights
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RESULTS_FILE: /tmp/pagespeed-results-${{ github.run_id }}.jsonl
+      KNOWN_FAILURE_FILE: /tmp/pagespeed-known-failure-${{ github.run_id }}
+      DRY_RUN: ${{ inputs.dry_run || false }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: latest
+          bun-version: 1.3.13
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Fetch Lighthouse Scores & Log to Mulch
+      - name: Fetch Lighthouse scores
+        id: audit
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          
-          URLS=("https://senshac.com" "https://senshac.com/es/projects" "https://senshac.com/es/about")
+          set -euo pipefail
+
+          create_issue_once() {
+            local title="$1"
+            local labels="$2"
+            local body="$3"
+            local existing
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "Dry run: would report issue '$title' with labels '$labels'"
+              return
+            fi
+            existing=$(
+              gh issue list --state open --limit 100 --json number,title |
+                jq -r --arg title "$title" \
+                  '.[] | select(.title == $title) | .number' |
+                head -n 1
+            )
+            if [ -n "$existing" ]; then
+              gh issue comment "$existing" --body "$body"
+            else
+              gh issue create --title "$title" --label "$labels" --body "$body"
+            fi
+          }
+
+          mapfile -t URLS < <(
+            bun run scripts/pagespeed-routes.ts \
+              --base=https://senshac.com \
+              --lang=es
+          )
+          if [ "${#URLS[@]}" -eq 0 ]; then
+            echo "Generated route contract contains no PageSpeed routes." >&2
+            exit 1
+          fi
+
+          : > "$RESULTS_FILE"
+          KNOWN_FAILURE=false
           STRATEGIES=("mobile" "desktop")
-          
-          CHANGES_MADE=false
-          
+
           for URL in "${URLS[@]}"; do
             for STRATEGY in "${STRATEGIES[@]}"; do
               echo "Running Lighthouse for $URL on $STRATEGY..."
-              
-              API_URL="https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${URL}&strategy=${STRATEGY}"
+              CURL_ARGS=(
+                --fail-with-body
+                --silent
+                --show-error
+                --retry 3
+                --get
+                "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
+                --data-urlencode "url=${URL}"
+                --data-urlencode "strategy=${STRATEGY}"
+                --data-urlencode "category=performance"
+                --data-urlencode "category=accessibility"
+                --data-urlencode "category=best-practices"
+                --data-urlencode "category=seo"
+              )
               if [ -n "${{ secrets.PAGESPEED_API_KEY }}" ]; then
-                API_URL="${API_URL}&key=${{ secrets.PAGESPEED_API_KEY }}"
-              fi
-              
-              RESPONSE=$(curl -s "$API_URL")
-              
-              PERFORMANCE=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.performance.score * 100) else "null" end')
-              ACCESSIBILITY=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.accessibility.score * 100) else "null" end')
-              BEST_PRACTICES=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories["best-practices"].score * 100) else "null" end')
-              SEO=$(echo "$RESPONSE" | jq -r 'if .lighthouseResult then (.lighthouseResult.categories.seo.score * 100) else "null" end')
-              
-              # If API failed, jq returns 'null', log to seeds and skip
-              if [ "$PERFORMANCE" == "null" ]; then
-                echo "Failed to fetch data for $URL ($STRATEGY)"
-                ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message // empty')
-                scripts/sd create \
-                  --title "PageSpeed API Failure for $URL ($STRATEGY)" \
-                  --type bug \
-                  --priority 1 \
-                  --labels "bug,performance,lighthouse" \
-                  --body "The nightly PageSpeed audit failed to fetch data for $URL ($STRATEGY). Error: $ERROR_MSG\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-                CHANGES_MADE=true
-                continue
+                CURL_ARGS+=(--data-urlencode "key=${{ secrets.PAGESPEED_API_KEY }}")
               fi
 
+              RESPONSE_FILE=$(mktemp)
+              if [ "$DRY_RUN" = "true" ]; then
+                printf '%s' \
+                  '{"lighthouseResult":{"categories":{"performance":{"score":0.95},"accessibility":{"score":1},"best-practices":{"score":0.96},"seo":{"score":1}}}}' \
+                  > "$RESPONSE_FILE"
+              elif ! curl "${CURL_ARGS[@]}" --output "$RESPONSE_FILE"; then
+                echo "PageSpeed request failed for $URL ($STRATEGY)" >&2
+              fi
+
+              if ! SCORES=$(bun run scripts/pagespeed-result.ts < "$RESPONSE_FILE"); then
+                ERROR_MSG=$(
+                  jq -r '.error.message // "Incomplete PageSpeed response"' \
+                    "$RESPONSE_FILE" 2>/dev/null ||
+                    printf '%s' "PageSpeed returned an unreadable response"
+                )
+                TITLE="PageSpeed API Failure for $URL ($STRATEGY)"
+                printf -v BODY '%s\n\n%s' \
+                  "The nightly PageSpeed audit failed for $URL ($STRATEGY): $ERROR_MSG" \
+                  "[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                create_issue_once "$TITLE" "type/bug,priority/P1,area/build" "$BODY"
+                KNOWN_FAILURE=true
+                rm -f "$RESPONSE_FILE"
+                continue
+              fi
+              rm -f "$RESPONSE_FILE"
+
+              IFS=$'\t' read -r PERFORMANCE ACCESSIBILITY BEST_PRACTICES SEO <<< "$SCORES"
+              jq -cn \
+                --arg url "$URL" \
+                --arg strategy "$STRATEGY" \
+                --argjson performance "$PERFORMANCE" \
+                --argjson accessibility "$ACCESSIBILITY" \
+                --argjson bestPractices "$BEST_PRACTICES" \
+                --argjson seo "$SEO" \
+                '{
+                  url: $url,
+                  strategy: $strategy,
+                  performance: $performance,
+                  accessibility: $accessibility,
+                  bestPractices: $bestPractices,
+                  seo: $seo
+                }' >> "$RESULTS_FILE"
+
               echo "::notice title=Lighthouse Scores for $URL ($STRATEGY)::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
-              
-              # Log to Mulch
-              scripts/ml record frontend \
-                --type observational \
-                --name "Lighthouse $STRATEGY Audit: $URL" \
-                --description "Nightly automated Lighthouse audit run. Perf: $PERFORMANCE, A11y: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO" \
-                --tags "performance,lighthouse,nightly"
-              CHANGES_MADE=true
-              
-              # Check threshold and open a seeds issue if below 90
-              if (( $(echo "$PERFORMANCE < 90" | bc -l) )); then
-                echo "Performance below 90, creating seeds issue..."
-                scripts/sd create \
-                  --title "Lighthouse Performance Drop on $URL ($STRATEGY)" \
-                  --type bug \
-                  --priority 1 \
-                  --labels "performance,lighthouse,automated" \
-                  --body "Automated nightly audit detected a performance drop on $URL ($STRATEGY). Score is $PERFORMANCE (Threshold: 90). Accessibility: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO."
-                CHANGES_MADE=true
+
+              if (( PERFORMANCE < 90 )); then
+                TITLE="Lighthouse Performance Drop on $URL ($STRATEGY)"
+                printf -v BODY '%s\n\n%s' \
+                  "The nightly audit measured performance at $PERFORMANCE for $URL ($STRATEGY), below the threshold of 90. Accessibility: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO." \
+                  "[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                create_issue_once "$TITLE" "type/performance,priority/P1,area/build" "$BODY"
               fi
             done
           done
-          
-          if [ "$CHANGES_MADE" = true ]; then
-            git add .mulch/ .seeds/
-            # Check if there are actual changes before committing
-            if ! git diff --cached --quiet; then
-              git commit -m "chore(performance): nightly pagespeed audit logs & issue tracking [skip ci]"
-              git push
-            fi
+
+          if [ "$KNOWN_FAILURE" = true ]; then
+            touch "$KNOWN_FAILURE_FILE"
+            exit 1
           fi
 
-      - name: Report workflow failure
-        if: failure()
+      - name: Upload PageSpeed results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pagespeed-results-${{ github.run_id }}
+          path: ${{ env.RESULTS_FILE }}
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Report unexpected workflow failure
+        if: failure() && inputs.dry_run != true
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          scripts/sd create \
-            --title "PageSpeed Nightly Workflow Failed" \
-            --type bug \
-            --priority 1 \
-            --labels "bug,ci,lighthouse" \
-            --body "The nightly PageSpeed audit workflow encountered an unexpected failure.\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-          git add .seeds/
-          git commit -m "chore(seeds): log pagespeed workflow failure [skip ci]" || true
-          git push || true
+          set -euo pipefail
+          if [ -f "$KNOWN_FAILURE_FILE" ]; then
+            exit 0
+          fi
+
+          TITLE="PageSpeed Nightly Workflow Failed"
+          printf -v BODY '%s\n\n%s' \
+            "The nightly PageSpeed audit encountered an unexpected failure." \
+            "[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          EXISTING=$(
+            gh issue list --state open --limit 100 --json number,title |
+              jq -r --arg title "$TITLE" \
+                '.[] | select(.title == $title) | .number' |
+              head -n 1
+          )
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --label "type/bug,priority/P1,area/build" \
+              --body "$BODY"
+          fi
