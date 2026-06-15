@@ -23,7 +23,12 @@
 		"scripts/media/process-video.sh",
 		"betterleaks"
 	],
-	"ignoreDependencies": ["cloudflare"],
+	"ignoreDependencies": [
+		"@os-eco/canopy-cli",
+		"@os-eco/mulch-cli",
+		"@os-eco/seeds-cli",
+		"cloudflare"
+	],
 	"ignoreExportsUsedInFile": true,
 	"astro": {
 		"entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]

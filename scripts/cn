@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cli="$repo/node_modules/.bin/cn"
+
+if [ ! -x "$cli" ]; then
+	echo "Canopy CLI is not installed. Run: dx bun install --frozen-lockfile" >&2
+	exit 1
+fi
+
+exec "$cli" "$@"

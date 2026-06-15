@@ -42,22 +42,55 @@ test("fx exposes verification, local Actions emulation, and shipping", () => {
 	expect(actCi).toContain("git clone --no-hardlinks");
 });
 
-test("Seeds integrity is gated and every automation uses the pinned wrapper", () => {
+test("development tools have one pinned owner and automation uses locked binaries", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;
+		devDependencies: Record<string, string>;
 	};
 	expect(pkg.scripts["check:all"]).toContain("bun run check:seeds");
 	expect(pkg.scripts["check:seeds"]).toBe("bun run scripts/seeds-integrity.ts");
+	expect(pkg.devDependencies["@os-eco/seeds-cli"]).toBe("0.5.10");
+	expect(pkg.devDependencies["@os-eco/mulch-cli"]).toBe("0.10.7");
+	expect(pkg.devDependencies["@os-eco/canopy-cli"]).toBe("0.2.6");
+
+	const knip = JSON.parse(read("knip.json")) as {
+		ignoreDependencies: string[];
+	};
+	expect(knip.ignoreDependencies).toEqual(
+		expect.arrayContaining([
+			"@os-eco/canopy-cli",
+			"@os-eco/mulch-cli",
+			"@os-eco/seeds-cli",
+		]),
+	);
 
 	const sd = read("scripts/sd");
-	expect(sd).toContain("@os-eco/seeds-cli@0.5.10");
+	expect(sd).toContain("node_modules/.bin/sd");
 	expect(sd).toContain("scripts/seeds-integrity.ts");
+	expect(read("scripts/ml")).toContain("node_modules/.bin/ml");
+	expect(read("scripts/cn")).toContain("node_modules/.bin/cn");
+
+	const floxManifest = read(".flox/env/manifest.toml");
+	expect(floxManifest).not.toContain("seeds.flake");
+	expect(floxManifest).not.toContain("mulch.flake");
+	expect(floxManifest).not.toContain("canopy.flake");
+	expect(floxManifest).toContain("trellis.flake");
 
 	const workflowFiles = readdirSync(resolve(root, ".github/workflows"))
 		.filter((file) => file.endsWith(".yml"))
 		.map((file) => `.github/workflows/${file}`);
-	for (const path of [...workflowFiles, "scripts/media/sync-instagram.ts"]) {
-		expect(read(path)).not.toContain("@os-eco/seeds-cli@latest");
+	for (const path of [
+		...workflowFiles,
+		"scripts/media/sync-instagram.ts",
+		"infra/r2/provision.sh",
+		"playwright.config.ts",
+	]) {
+		const contents = read(path);
+		expect(contents).not.toContain("@os-eco/seeds-cli@latest");
+		expect(contents).not.toMatch(/\b(?:bunx|npx)\s+/);
+		if (contents.includes("scripts/sd create")) {
+			expect(contents).toContain("bun install --frozen-lockfile");
+		}
 	}
 
 	for (const path of [

@@ -12,13 +12,6 @@
       "bun": {
         "pkg-path": "bun"
       },
-      "canopy": {
-        "flake": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-canopy",
-        "outputs": [
-          "out",
-          "cn"
-        ]
-      },
       "fd": {
         "pkg-path": "fd"
       },
@@ -28,13 +21,6 @@
       "gnugrep": {
         "pkg-path": "gnugrep"
       },
-      "mulch": {
-        "flake": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-mulch",
-        "outputs": [
-          "out",
-          "ml"
-        ]
-      },
       "nixfmt": {
         "pkg-path": "nixfmt-rfc-style"
       },
@@ -43,13 +29,6 @@
       },
       "ripgrep": {
         "pkg-path": "ripgrep"
-      },
-      "seeds": {
-        "flake": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-seeds",
-        "outputs": [
-          "out",
-          "sd"
-        ]
       },
       "trellis": {
         "flake": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-trellis",
@@ -377,87 +356,6 @@
       },
       "system": "x86_64-linux",
       "group": "toplevel",
-      "priority": 5
-    },
-    {
-      "install_id": "canopy",
-      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-canopy?ref=refs/heads/main&rev=afe8267b197fe9d29a80f4e9de8c3d55310dee47",
-      "flake-description": "Nix packaging scaffold for @os-eco/canopy-cli",
-      "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/dsqxqcggxvyv2894g9hwmsdfkqdzg5yd-canopy-0.2.4-r1.drv",
-      "outputs": {
-        "cn": "/nix/store/570x7df0crjzk8hmhqx0igyv9lk283yi-canopy-0.2.4-r1-cn",
-        "out": "/nix/store/yikaxjkniccfqc8mygrz3ziwr40si21g-canopy-0.2.4-r1"
-      },
-      "output-names": [
-        "out",
-        "cn"
-      ],
-      "outputs-to-install": [
-        "out"
-      ],
-      "requested-outputs-to-install": [],
-      "package-system": "x86_64-linux",
-      "system": "x86_64-linux",
-      "name": "canopy-0.2.4-r1",
-      "pname": "canopy",
-      "version": "0.2.4-r1",
-      "broken": false,
-      "unfree": false,
-      "priority": 5
-    },
-    {
-      "install_id": "mulch",
-      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-mulch",
-      "flake-description": "Nix packaging scaffold for @os-eco/mulch-cli",
-      "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/01wfywk2wikk1acd4hxlzymsildld8s0-mulch-0.10.7-r1.drv",
-      "outputs": {
-        "ml": "/nix/store/239apvmzwpkshxlssh9z1ir6g0ivbckf-mulch-0.10.7-r1-ml",
-        "out": "/nix/store/b5cxw8iai73m9llb2niiq7rxjfl370wl-mulch-0.10.7-r1"
-      },
-      "output-names": [
-        "out",
-        "ml"
-      ],
-      "outputs-to-install": [
-        "out"
-      ],
-      "requested-outputs-to-install": [],
-      "package-system": "x86_64-linux",
-      "system": "x86_64-linux",
-      "name": "mulch-0.10.7-r1",
-      "pname": "mulch",
-      "version": "0.10.7-r1",
-      "broken": false,
-      "unfree": false,
-      "priority": 5
-    },
-    {
-      "install_id": "seeds",
-      "locked-url": "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-seeds?ref=refs/heads/main&rev=873371b5859dde8b6d4dc5a89c3315647c9f8e05",
-      "flake-description": "Nix packaging scaffold for @os-eco/seeds-cli",
-      "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/whh5x9i993n0x4psli2mz9x0fj2sclim-seeds-0.2.5-r5.drv",
-      "outputs": {
-        "out": "/nix/store/0wb5mmwqc06x0p0cp0zz3v5js9hf61m0-seeds-0.2.5-r5",
-        "sd": "/nix/store/ljmnmsbzi1l5a9qsx2jxm2zsl5l3pgld-seeds-0.2.5-r5-sd"
-      },
-      "output-names": [
-        "out",
-        "sd"
-      ],
-      "outputs-to-install": [
-        "out"
-      ],
-      "requested-outputs-to-install": [],
-      "package-system": "x86_64-linux",
-      "system": "x86_64-linux",
-      "name": "seeds-0.2.5-r5",
-      "pname": "seeds",
-      "version": "0.2.5-r5",
-      "broken": false,
-      "unfree": false,
       "priority": 5
     },
     {

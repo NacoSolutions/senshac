@@ -24,7 +24,7 @@ The current long-lived access token is valid for **60 days**. When it expires, t
 6. Copy the new long-lived token.
 7. Update the Cloudflare Pages secret via Wrangler:
    ```bash
-   dx bunx wrangler pages secret put INSTAGRAM_ACCESS_TOKEN --project-name senshac
+   dx bun run wrangler pages secret put INSTAGRAM_ACCESS_TOKEN --project-name senshac
    ```
    *(Paste the new token when prompted)*
 
