@@ -19,7 +19,7 @@ function extractMediaId(value?: string | null) {
 	return (value || "")
 		.replace(/^https:\/\/media\.senshac\.com\/images\//, "")
 		.replace(/^\/?images\//, "")
-		.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+		.replace(/\/(?:412|768|1024|1200)\.(?:avif|webp)$/, "")
 		.replace(/\.[^.]+$/, "");
 }
 ---

@@ -24,12 +24,14 @@ const cleanId = id
 	.replace(new RegExp(`^${baseUrl}/videos/`), "")
 	.replace(/^\/+|\/+$/g, "")
 	.replace(/^images\//, "")
-	.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+	.replace(/\/(?:412|768|1024|1200)\.(?:avif|webp)$/, "")
 	.replace(/\.[^.]+$/, "");
 const url = (width: number, format: "avif" | "webp") =>
 	`${baseUrl}/images/${cleanId}/${width}.${format}`;
 const srcset = (format: "avif" | "webp") =>
-	[412, 768, 1200].map((width) => `${url(width, format)} ${width}w`).join(", ");
+	[412, 768, 1024, 1200]
+		.map((width) => `${url(width, format)} ${width}w`)
+		.join(", ");
 ---
 
 <picture {...attributes}>
