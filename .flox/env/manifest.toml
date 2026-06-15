@@ -2,7 +2,6 @@ schema-version = "1.12.0"
 
 [install]
 bun.pkg-path = "bun"
-typescript-language-server.pkg-path = "typescript-language-server"
 nixfmt.pkg-path = "nixfmt-rfc-style"
 fd.pkg-path = "fd"
 ripgrep.pkg-path = "ripgrep"

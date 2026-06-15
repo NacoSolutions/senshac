@@ -27,7 +27,8 @@
 		"@os-eco/canopy-cli",
 		"@os-eco/mulch-cli",
 		"@os-eco/seeds-cli",
-		"cloudflare"
+		"cloudflare",
+		"typescript-language-server"
 	],
 	"ignoreExportsUsedInFile": true,
 	"astro": {
