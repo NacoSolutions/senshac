@@ -5,6 +5,7 @@ import { join } from "node:path";
 import {
 	checkParity,
 	computeReachable,
+	extractBareBunTests,
 	extractBunRunTargets,
 	extractCiInvocations,
 	listWorkflows,
@@ -76,6 +77,29 @@ describe("check-ci-parity", () => {
 			const invocations = extractCiInvocations(file);
 			const scripts = invocations.map((i) => i.script).sort();
 			expect(scripts).toEqual(["lint", "test:ci", "typecheck"]);
+		} finally {
+			rmSync(dir, { recursive: true, force: true });
+		}
+	});
+
+	test("rejects bare bun test workflow commands", () => {
+		const dir = mkdtempSync(join(tmpdir(), "ci-parity-"));
+		const file = join(dir, "ci.yml");
+		writeFileSync(
+			file,
+			[
+				"name: Synthetic",
+				"on: [push]",
+				"jobs:",
+				"  ci:",
+				"    steps:",
+				"      - run: bun test",
+				"      - run: bun run test",
+				"",
+			].join("\n"),
+		);
+		try {
+			expect(extractBareBunTests(file)).toHaveLength(1);
 		} finally {
 			rmSync(dir, { recursive: true, force: true });
 		}

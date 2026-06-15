@@ -44,7 +44,7 @@ jobs:
         run: |
           git restore -- coverage/lcov.info coverage/summary.json
           git diff --exit-code
-      - run: bun test
+      - run: bun run test
       - run: bun run check:clean
 
       - name: Test timing summary

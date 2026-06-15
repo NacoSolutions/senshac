@@ -65,6 +65,15 @@ const ALIASES: Record<string, string> = {
  * the :build variants embed them).
  */
 const CI_ONLY: ReadonlySet<string> = new Set<string>([
+	// Production-shaped build and Pages runtime acceptance are CI
+	// orchestration gates. They wrap check:all rather than running
+	// inside every local quality invocation.
+	"build",
+	"acceptance",
+	// Unit tests are an explicit CI gate after the production build.
+	// Bare `bun test` is still rejected; this must invoke the scoped
+	// package script so Playwright specs remain isolated.
+	"test",
 	// UI workspace install — local `bun install` at the repo root +
 	// `bun run build:ui` (embedded in check:bundle-size:build) already
 	// covers this for the gate path.
@@ -138,6 +147,27 @@ export type CiInvocation = {
 	script: string;
 };
 
+export type BareBunTest = Omit<CiInvocation, "script">;
+
+export function extractBareBunTests(filePath: string): BareBunTest[] {
+	const text = readFileSync(filePath, "utf8");
+	const doc = yaml.load(text) as WorkflowFile | null;
+	const workflow = relative(REPO_ROOT, filePath);
+	const out: BareBunTest[] = [];
+	if (!doc || typeof doc !== "object" || !doc.jobs) return out;
+	for (const [jobName, job] of Object.entries(doc.jobs)) {
+		job?.steps?.forEach((step, idx) => {
+			if (
+				typeof step?.run === "string" &&
+				/(?:^|[;&|\n]\s*)bun\s+test(?:\s|$)/m.test(step.run)
+			) {
+				out.push({ workflow, job: jobName, step: idx });
+			}
+		});
+	}
+	return out;
+}
+
 export function extractCiInvocations(filePath: string): CiInvocation[] {
 	const text = readFileSync(filePath, "utf8");
 	const doc = yaml.load(text) as WorkflowFile | null;
@@ -185,7 +215,15 @@ export function checkParity(): {
 		// changelog) is intentionally out-of-band from the per-PR gate.
 		// We only check the gate workflows (anything matching ci*.yml).
 		const base = wf.split("/").pop() ?? wf;
-		if (!base.startsWith("build")) continue;
+		if (!base.startsWith("build") && !base.startsWith("ci")) continue;
+		for (const bare of extractBareBunTests(wf)) {
+			failures.push({
+				...bare,
+				script: "test",
+				canonical: "test",
+				reason: 'bare "bun test" bypasses the scoped package test script',
+			});
+		}
 		invocations.push(...extractCiInvocations(wf));
 	}
 	for (const inv of invocations) {
