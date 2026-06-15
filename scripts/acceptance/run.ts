@@ -75,8 +75,6 @@ if (!skipBuild) {
 	await run(["bun", "run", "build"], "Production build");
 }
 
-
-
 const wrangler = Bun.spawn(
 	[
 		"bunx",

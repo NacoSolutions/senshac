@@ -33,9 +33,15 @@ export function registerAlpineComponents(Alpine: AlpineType) {
 				}
 			});
 
-			this.$root.addEventListener("touchstart", this.onTouchStart.bind(this), { passive: true });
-			this.$root.addEventListener("touchmove", this.onTouchMove.bind(this), { passive: true });
-			this.$root.addEventListener("touchend", this.onTouchEnd.bind(this), { passive: true });
+			this.$root.addEventListener("touchstart", this.onTouchStart.bind(this), {
+				passive: true,
+			});
+			this.$root.addEventListener("touchmove", this.onTouchMove.bind(this), {
+				passive: true,
+			});
+			this.$root.addEventListener("touchend", this.onTouchEnd.bind(this), {
+				passive: true,
+			});
 		},
 
 		onTouchStart(e: TouchEvent) {
