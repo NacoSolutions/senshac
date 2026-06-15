@@ -10,4 +10,4 @@ direnv = "direnv allow ."
 dependencies = "direnv exec . bun install --frozen-lockfile"
 
 [[pre-merge]]
-verify = "direnv exec . bash -lc 'bun run build && bun run check:all && bun run test'"
+verify = "direnv exec . bun run verify:ci"

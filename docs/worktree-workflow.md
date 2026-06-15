@@ -65,6 +65,18 @@ the strict `ci` status and disallows direct force pushes. Use `wt remove` after
 the remote branch is merged; do not use `wt merge main` as the normal
 integration path.
 
+For the normal completion path, run:
+
+```bash
+fx ship
+```
+
+This requires a clean, committed branch based on current `origin/main`, runs
+the same `verify:ci` command used by GitHub Actions, pushes the branch, creates
+or finds its pull request, and enables squash auto-merge. Use `fx ci-local`
+when changing workflow YAML, runner images, permissions, or event handling;
+ordinary application changes do not need the slower Act container run.
+
 ## Repository Layout
 
 ```text

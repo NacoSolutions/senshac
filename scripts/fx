@@ -11,6 +11,9 @@ Commands:
   run <command>   Run an arbitrary command through direnv exec .
   check           Run Astro check
   build           Run production build
+  verify          Run the authoritative local/CI verification gate
+  ci-local        Run the full GitHub CI job with act and rootless Podman
+  ship            Verify, push, open a PR, and enable protected auto-merge
   deploy          Deploy dist to Cloudflare Pages
   ready           Show ready Seeds work
   smoke [base]    Smoke test localized routes and Tina admin labels
@@ -37,6 +40,16 @@ case "$cmd" in
     ;;
   build)
     dx bun run build
+    ;;
+  verify)
+    dx bun run verify:ci
+    ;;
+  ci-local)
+    shift
+    dx bun run test:workflow:ci -- "$@"
+    ;;
+  ship)
+    dx bash scripts/ship
     ;;
   deploy)
     dx bun run deploy

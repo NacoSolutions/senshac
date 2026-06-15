@@ -50,6 +50,9 @@ For local Tina/contact-form configuration, copy `.env.example` to `.env.local` a
 | `fx ready` | Show ready Seeds work |
 | `fx check` | Run Astro check |
 | `fx build` | Run the production build |
+| `fx verify` | Run the same authoritative verification gate as GitHub CI |
+| `fx ci-local` | Emulate the full GitHub CI job with Act and rootless Podman |
+| `fx ship` | Verify, push, create/update a PR, and enable protected auto-merge |
 | `fx deploy` | Deploy `dist/` to Cloudflare Pages |
 | `fx smoke [base]` | Smoke-test localized routes and Tina admin labels |
 | `dev [action]` | Astro dev server (start/stop/restart/status/log) |

@@ -1,12 +1,12 @@
 #!/usr/bin/env bun
 /**
- * CI <-> `check:all` parity drift detector (warren-6296, plan pl-da5b step 3).
+ * CI <-> `verify:ci` parity drift detector (warren-6296, plan pl-da5b step 3).
  *
  * Parses the GitHub Actions workflows under `.github/workflows/` (today
  * `ci.yml` + `ci-postgres.yml`) and, for every `bun run <X>` invoked by
  * any `run:` step, verifies that `<X>` is transitively reachable from
- * the `check:all` script in `package.json` — i.e. running
- * `bun run check:all` locally exercises the same gate that CI does.
+ * the `verify:ci` script in `package.json` — i.e. running
+ * `bun run verify:ci` locally exercises the same gate that CI does.
  *
  * Two structured escape hatches keep the detector usable without
  * collapsing every CI step into `check:all` verbatim:
@@ -38,7 +38,7 @@ import yaml from "js-yaml";
 const REPO_ROOT = resolve(import.meta.dir, "..");
 const WORKFLOWS_DIR = resolve(REPO_ROOT, ".github/workflows");
 const PACKAGE_JSON = resolve(REPO_ROOT, "package.json");
-const ROOT_GATE = "check:all";
+const ROOT_GATE = "verify:ci";
 
 /**
  * CI-side script names whose semantics are covered (under a different
