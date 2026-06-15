@@ -79,7 +79,13 @@ const isCarousel = displayPosts.length > maxVisible;
                     <video :src="slide" class="hls-video w-full h-full object-contain" autoplay muted loop playsinline></video>
                   </template>
                   <template x-if="!slide.endsWith('.m3u8')">
-                    <img :src="slide" class="w-full h-full object-contain" loading="lazy" />
+                    <img 
+                      :src="slide" 
+                      :srcset="`${slide.replace('1200.webp', '412.webp')} 412w, ${slide.replace('1200.webp', '768.webp')} 768w, ${slide} 1200w`"
+                      sizes="(min-width: 768px) 33vw, 85vw"
+                      class="w-full h-full object-contain" 
+                      loading="lazy" 
+                    />
                   </template>
                 </div>
               </template>
@@ -97,6 +103,8 @@ const isCarousel = displayPosts.length > maxVisible;
           ) : (
             <img 
               src={post.media_url} 
+              srcset={`${post.media_url.replace('1200.webp', '412.webp')} 412w, ${post.media_url.replace('1200.webp', '768.webp')} 768w, ${post.media_url} 1200w`}
+              sizes="(min-width: 768px) 33vw, 85vw"
               alt={post.caption?.slice(0, 100) || "Instagram post image"}
               class="absolute inset-0 w-full h-full object-contain"
               loading="lazy"
@@ -109,7 +117,8 @@ const isCarousel = displayPosts.length > maxVisible;
               <button 
                 class="absolute bottom-4 right-4 z-20 text-white opacity-0 group-hover:opacity-100 transition-opacity p-2 bg-black/50 hover:bg-black/70 rounded-full" 
                 @click.prevent="playing = !playing" 
-                :aria-label="playing ? 'Pause' : 'Play'"
+                aria-label="Pause video"
+                :aria-label="playing ? 'Pause video' : 'Play video'"
               >
                 <span :class="playing ? 'i-lucide-pause' : 'i-lucide-play'" class="block w-4 h-4"></span>
               </button>

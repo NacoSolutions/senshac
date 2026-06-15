@@ -123,6 +123,17 @@ Project memory has moved out of `.agent-memory/` into the git-native tool stores
 
 Run `sd prime`, `tl prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
 
+## Git Workspace Architecture (Bare Repo + Worktrees)
+
+This project uses a **Bare Repository** structure with isolated worktrees to ensure agents and humans do not cause merge conflicts by working in the same directory:
+- The project root (`.../senshac/`) is simply a container. Its `.git` folder holds the bare database.
+- The `main` folder (`.../senshac/main/`) is an **isolated worktree**, NOT the default checkout.
+- **NEVER** write code or run tests directly in the `main` worktree. It must remain clean.
+- Always use the `wt` alias to orchestrate tasks:
+  1. `wt switch <branch-name>`: Spins up a disposable peer worktree directory next to `main`.
+  2. `cd ../<branch-name>`: Navigate into your isolated worktree to make edits and commit.
+  3. `wt merge main`: Merges your work back to `main` and cleans up the disposable worktree.
+
 ## Environment Commands
 
 - `dx <command>` — short wrapper for `direnv exec . <command>`.

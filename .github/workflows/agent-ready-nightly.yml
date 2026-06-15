@@ -1,0 +1,107 @@
+name: Nightly Agent Readiness Audit
+
+on:
+  schedule:
+    - cron: '45 0 * * *' # Run daily at 00:45 UTC
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  audit:
+    name: Run Agent Readiness Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Fetch Agent Readiness Scores & Log Seeds
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          
+          URL="https://preview.senshac.com"
+          echo "Running Agent Readiness Scan for $URL..."
+          
+          CHANGES_MADE=false
+          
+          RESPONSE=$(curl -s -X POST https://isitagentready.com/api/scan -H "Content-Type: application/json" -d "{\"url\":\"$URL\", \"profile\":\"content\"}")
+          
+          # Check if the API request itself failed
+          if ! echo "$RESPONSE" | jq -e '.checks' > /dev/null; then
+            echo "Failed to fetch Agent Readiness data for $URL"
+            ERROR_MSG=$(echo "$RESPONSE" | jq -r '.message // "Unknown error"')
+            bunx @os-eco/seeds-cli@latest create \
+              --title "Agent Readiness API Failure for $URL" \
+              --type bug \
+              --priority 1 \
+              --labels "bug,agents,automated" \
+              --body "The nightly Agent Readiness scan failed to fetch data for $URL. Error: $ERROR_MSG\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+            CHANGES_MADE=true
+          else
+            # Extract failed checks and create seeds
+            FAILED_CHECKS=$(echo "$RESPONSE" | jq -r '.checks | to_entries[] | .value as $category | $category | to_entries[] | select(.value.status == "fail" or .value.status == "warning") | "\(.key)|\(.value.message)"')
+            
+            if [ -n "$FAILED_CHECKS" ]; then
+              while IFS='|' read -r CHECK_ID MESSAGE; do
+                if [ -n "$CHECK_ID" ]; then
+                  ISSUE_TITLE="Agent Ready: $CHECK_ID failed on $URL"
+                  EXISTING_SEED=$(jq -s "map(select(.title == \"$ISSUE_TITLE\" and .status != \"closed\")) | length" .seeds/issues.jsonl 2>/dev/null || echo 0)
+                  EXISTING_GH=$(gh issue list --state open --search "in:title \"$ISSUE_TITLE\"" --json number -q 'length' 2>/dev/null || echo 0)
+                  
+                  if [ "$EXISTING_SEED" -eq 0 ] && [ "$EXISTING_GH" -eq 0 ]; then
+                    echo "Check failed: $CHECK_ID - $MESSAGE"
+                    BODY_CONTENT="Automated nightly scan detected a failure for $CHECK_ID on $URL.\n\nMessage: $MESSAGE\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+                    
+                    GH_URL=$(gh issue create --title "$ISSUE_TITLE" --body "$(echo -e "$BODY_CONTENT")" --label "agents,automated" | grep -o 'https://github.com/[^ ]*')
+                    
+                    bunx @os-eco/seeds-cli@latest create \
+                      --title "$ISSUE_TITLE" \
+                      --type bug \
+                      --priority 2 \
+                      --labels "agents,automated" \
+                      --body "$(echo -e "$BODY_CONTENT")\n\n**GitHub Issue**: $GH_URL"
+                    CHANGES_MADE=true
+                  else
+                    echo "::notice title=Agent Readiness for $URL::Issue '$ISSUE_TITLE' already exists, skipping."
+                  fi
+                fi
+              done <<< "$FAILED_CHECKS"
+            else
+              echo "::notice title=Agent Readiness for $URL::All checks passed!"
+            fi
+          fi
+          
+          if [ "$CHANGES_MADE" = true ]; then
+            git add .seeds/
+            # Check if there are actual changes before committing
+            if ! git diff --cached --quiet; then
+              git commit -m "chore(seeds): log nightly agent readiness findings [skip ci]" --no-verify
+              git push
+            fi
+          fi
+
+      - name: Report workflow failure
+        if: failure()
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          bunx @os-eco/seeds-cli@latest create \
+            --title "Agent Readiness Nightly Workflow Failed" \
+            --type bug \
+            --priority 1 \
+            --labels "bug,ci,agents" \
+            --body "The nightly Agent Readiness scan workflow encountered an unexpected failure.\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+          git add .seeds/
+          git commit -m "chore(seeds): log agent readiness workflow failure [skip ci]" --no-verify || true
+          git push || true

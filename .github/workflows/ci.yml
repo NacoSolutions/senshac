@@ -42,7 +42,6 @@ jobs:
       - run: bun run check:all
       - name: Verify no unexpected generated drift
         run: |
-          git restore -- coverage/lcov.info coverage/summary.json
           git diff --exit-code
       - run: bun run test
       - run: bun run check:clean

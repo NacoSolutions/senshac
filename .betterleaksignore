@@ -1,0 +1,6 @@
+# Ignore accidentally committed test keys
+e54710e45a091f8e06c02f75933277421f299171:.env.pages:generic-api-key:2
+e54710e45a091f8e06c02f75933277421f299171:.env.pages:generic-api-key:3
+e54710e45a091f8e06c02f75933277421f299171:.env.pages:generic-api-key:5
+7c658cc6b7bdcc1e7ef1a98fdee16936f30aea6a:tina/__generated__/client.ts:generic-api-key:3
+ee31a658d7ddef76103cb0b9e9ade8630807b565:tina/__generated__/client.ts:generic-api-key:3
