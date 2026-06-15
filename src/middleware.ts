@@ -88,7 +88,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 				"Content-Type": "text/markdown; charset=utf-8",
 				"Cache-Control":
 					response.headers.get("Cache-Control") || "public, max-age=60",
-				"Link": response.headers.get("Link") || '</llms.txt>; rel="describedby"',
+				Link: response.headers.get("Link") || '</llms.txt>; rel="describedby"',
 			},
 		});
 	}
