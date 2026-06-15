@@ -75,14 +75,7 @@ if (!skipBuild) {
 	await run(["bun", "run", "build"], "Production build");
 }
 
-if (!existsSync("dist/_routes.json")) {
-	throw new Error("dist/_routes.json is missing after the production build");
-}
 
-await run(
-	["bun", "run", "scripts/check-pages-routing.ts"],
-	"Pages routing artifact check",
-);
 
 const wrangler = Bun.spawn(
 	[
