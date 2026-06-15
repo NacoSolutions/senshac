@@ -75,6 +75,12 @@ test.describe("Contact Form & HTMX", () => {
 		// Find the contact form
 		const form = page.locator("form");
 		await expect(form).toBeVisible();
+		await expect(page.locator('select[name="projectType"] option')).toHaveCount(
+			5,
+		);
+		await expect(page.locator('select[name="serviceType"] option')).toHaveCount(
+			4,
+		);
 
 		// Fill out the form
 		await page.fill('input[name="name"]', "Test User");
@@ -108,6 +114,12 @@ test.describe("No JavaScript", () => {
 
 		const form = page.locator("form");
 		await expect(form).toBeVisible();
+		await expect(page.locator('select[name="projectType"] option')).toHaveCount(
+			5,
+		);
+		await expect(page.locator('select[name="serviceType"] option')).toHaveCount(
+			4,
+		);
 
 		await page.fill('input[name="name"]', "Test No-JS");
 		await page.fill('input[name="email"]', "nojs@example.com");

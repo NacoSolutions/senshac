@@ -34,7 +34,7 @@ function extractMediaId(value?: string | null) {
         {slide.mediaId ? (
           <R2Picture
             id={extractMediaId(slide.mediaId)}
-            alt={slide.alt || 'Carousel image'}
+            alt={slide.alt || ''}
             class="w-full h-full object-cover"
             eager={index === 0}
           />
@@ -71,15 +71,11 @@ function extractMediaId(value?: string | null) {
       <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {items.map((_, index) => (
           <button
-            class="w-11 h-11 flex items-center justify-center transition-colors"
+            class={`w-2.5 h-2.5 rounded-full transition-colors ${index === 0 ? 'bg-white' : 'bg-white/50 hover:bg-white/80'}`}
+            :class={`{ 'bg-white': current === ${index}, 'bg-white/50 hover:bg-white/80': current !== ${index} }`}
             aria-label={`Go to slide ${index + 1}`}
             @click.prevent={`goToTarget(${index})`}
-          >
-            <span 
-              class={`w-2.5 h-2.5 rounded-full ${index === 0 ? 'bg-white' : 'bg-white/50 hover:bg-white/80'}`}
-              :class={`{ 'bg-white': current === ${index}, 'bg-white/50 hover:bg-white/80': current !== ${index} }`}
-            ></span>
-          </button>
+          />
         ))}
       </div>
     </>

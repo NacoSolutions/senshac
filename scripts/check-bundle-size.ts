@@ -91,7 +91,7 @@ const AUTO_RAISE_CAP: {
 const REPO_ROOT = resolve(import.meta.dir, "..");
 const BUDGETS_PATH = resolve(REPO_ROOT, "scripts/bundle-size-budgets.json");
 const DIST_DIR = resolve(REPO_ROOT, "dist");
-const ASSETS_DIR = resolve(DIST_DIR, "assets");
+const ASSETS_DIR = resolve(DIST_DIR, "_astro");
 
 type Bucket = "js" | "css";
 const BUCKETS: readonly Bucket[] = ["js", "css"] as const;

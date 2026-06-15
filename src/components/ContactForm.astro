@@ -1,8 +1,10 @@
 ---
+import { getEntry } from "astro:content";
 import { tinaField } from "@tinacms/astro";
 import type { TranslationsQuery } from "../../tina/__generated__/types";
 // src/components/ContactForm.astro
 import { getTinaRuntimeEnv, getTranslations } from "../lib/tina-data";
+import { mergeContactFormTranslations } from "../utils/contact-form-translations";
 
 interface Props {
 	lang: string;
@@ -17,7 +19,11 @@ if (!t) {
 	const transRes = await getTranslations(`${lang}.json`, tinaEnv);
 	t = transRes.data.translations;
 }
-const f = (t?.contactForm as any) || {};
+const localTranslations = await getEntry("translations", lang);
+const f: any = mergeContactFormTranslations(
+	t?.contactForm as any,
+	localTranslations?.data.contactForm,
+);
 
 // Turnstile site key - use test key for development
 const TURNSTILE_SITE_KEY =
