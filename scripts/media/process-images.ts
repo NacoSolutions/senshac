@@ -3,7 +3,7 @@ import { basename, extname, join, relative, resolve } from "node:path";
 // @ts-expect-error
 import sharp from "sharp";
 
-const WIDTHS = [412, 768, 1200] as const;
+const WIDTHS = [412, 768, 1024, 1200] as const;
 const IMAGE_EXTENSIONS = new Set([
 	".avif",
 	".gif",
@@ -53,11 +53,11 @@ export async function processImages(input: string, output: string) {
 			await Promise.all([
 				source
 					.clone()
-					.avif({ quality: 58, effort: 5 })
+					.avif({ quality: 50, effort: 5 })
 					.toFile(join(destination, `${width}.avif`)),
 				source
 					.clone()
-					.webp({ quality: 76, effort: 5 })
+					.webp({ quality: 65, effort: 5 })
 					.toFile(join(destination, `${width}.webp`)),
 			]);
 		}

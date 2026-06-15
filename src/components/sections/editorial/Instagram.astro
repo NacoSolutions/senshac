@@ -81,7 +81,7 @@ const isCarousel = displayPosts.length > maxVisible;
                   <template x-if="!slide.endsWith('.m3u8')">
                     <img 
                       :src="slide" 
-                      :srcset="`${slide.replace('1200.webp', '412.webp')} 412w, ${slide.replace('1200.webp', '768.webp')} 768w, ${slide} 1200w`"
+                      :srcset="`${slide.replace('1200.webp', '412.webp')} 412w, ${slide.replace('1200.webp', '768.webp')} 768w, ${slide.replace('1200.webp', '1024.webp')} 1024w, ${slide} 1200w`"
                       sizes="(min-width: 768px) 33vw, 85vw"
                       alt={post.caption?.slice(0, 100) || "Instagram post image"}
                       class="w-full h-full object-contain" 
@@ -104,7 +104,7 @@ const isCarousel = displayPosts.length > maxVisible;
           ) : (
             <img 
               src={post.media_url} 
-              srcset={`${post.media_url.replace('1200.webp', '412.webp')} 412w, ${post.media_url.replace('1200.webp', '768.webp')} 768w, ${post.media_url} 1200w`}
+              srcset={`${post.media_url.replace('1200.webp', '412.webp')} 412w, ${post.media_url.replace('1200.webp', '768.webp')} 768w, ${post.media_url.replace('1200.webp', '1024.webp')} 1024w, ${post.media_url} 1200w`}
               sizes="(min-width: 768px) 33vw, 85vw"
               alt={post.caption?.slice(0, 100) || "Instagram post image"}
               class="absolute inset-0 w-full h-full object-contain"
