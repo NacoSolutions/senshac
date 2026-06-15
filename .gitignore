@@ -21,6 +21,7 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.pages
 .env.local
 .env.development
 .env.production
@@ -47,4 +48,3 @@ media/processed/
 coverage/
 playwright-report/
 test-results/
-
