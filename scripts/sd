@@ -4,8 +4,13 @@ set -euo pipefail
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 issues="$repo/.seeds/issues.jsonl"
 checker=(bun run "$repo/scripts/seeds-integrity.ts" "$issues")
-cli=(bunx @os-eco/seeds-cli@0.5.10)
+cli=("$repo/node_modules/.bin/sd")
 command="${1:-}"
+
+if [ ! -x "${cli[0]}" ]; then
+	echo "Seeds CLI is not installed. Run: dx bun install --frozen-lockfile" >&2
+	exit 1
+fi
 
 case "$command" in
 	""|-h|--help|--version|help|prime|ready|list|show|stats|doctor|search|blocked)

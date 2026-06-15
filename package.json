@@ -39,7 +39,6 @@
 		"gen:docs": "bun run scripts/generate-docs.ts",
 		"gen:openapi": "bun run scripts/generate-openapi.ts",
 		"check:ci-parity": "bun run scripts/check-ci-parity.ts",
-
 		"clean": "rm -rf coverage/ playwright-report/ test-results/ && find . -type d -empty -not -path \"./.git/*\" -not -path \"./node_modules/*\" -delete",
 		"check:clean": "bun run scripts/check-repo-cleanliness.ts",
 		"check:seeds": "bun run scripts/seeds-integrity.ts",
@@ -58,7 +57,7 @@
 		"@unocss/transformer-directives": "^66.5.10",
 		"alpinejs": "^3.15.3",
 		"astro": "^6.4.6",
-		"esbuild": "^0.28.0",
+		"esbuild": "^0.28.1",
 		"hls.js": "^1.6.16",
 		"htmx.org": "^2.0.8",
 		"next-tinacms-s3": "^23.0.1",
@@ -76,6 +75,9 @@
 	"devDependencies": {
 		"@astrojs/check": "^0.9.6",
 		"@biomejs/biome": "^2.4.16",
+		"@os-eco/canopy-cli": "0.2.6",
+		"@os-eco/mulch-cli": "0.10.7",
+		"@os-eco/seeds-cli": "0.5.10",
 		"@playwright/test": "^1.60.0",
 		"@tinacms/cli": "^2.4.4",
 		"@types/alpinejs": "^3.13.11",

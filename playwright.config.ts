@@ -21,7 +21,7 @@ export default defineConfig({
 		? undefined
 		: {
 				command:
-					"CI=true bun run build && CI=true bunx wrangler pages dev dist/ --port 4325",
+					"CI=true bun run build && CI=true bun run wrangler pages dev dist/ --port 4325",
 				url: "http://localhost:4325",
 				reuseExistingServer: !process.env.CI,
 				timeout: 120 * 1000,

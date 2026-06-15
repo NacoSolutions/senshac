@@ -19,7 +19,7 @@ jobs:
           bun-version: latest
 
       - name: Install Dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Run Instagram Sync
         run: bun run scripts/media/sync-instagram.ts

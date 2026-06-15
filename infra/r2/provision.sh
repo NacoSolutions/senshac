@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-bunx wrangler r2 bucket create senshac-media-raw
-bunx wrangler r2 bucket create senshac-media-prod
-bunx wrangler r2 bucket cors set senshac-media-prod --file infra/r2/cors.json
+bun run wrangler r2 bucket create senshac-media-raw
+bun run wrangler r2 bucket create senshac-media-prod
+bun run wrangler r2 bucket cors set senshac-media-prod --file infra/r2/cors.json
 
-bunx wrangler queues create senshac-media-events
-bunx wrangler queues create senshac-media-events-dlq
-bunx wrangler r2 bucket notification create senshac-media-raw \
+bun run wrangler queues create senshac-media-events
+bun run wrangler queues create senshac-media-events-dlq
+bun run wrangler r2 bucket notification create senshac-media-raw \
   --event-type object-create \
   --queue senshac-media-events
 

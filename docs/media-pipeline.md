@@ -43,9 +43,8 @@ R2 object-create notifications publish to `senshac-media-events`. The
 Configure before deployment:
 
 ```bash
-cd workers/media-dispatch
-dx bunx wrangler secret put GITHUB_TOKEN
-dx bunx wrangler deploy
+dx bun run wrangler secret put GITHUB_TOKEN
+dx bun run wrangler deploy
 ```
 
 The token requires permission to dispatch workflows for `NacoSolutions/senshac`. GitHub Actions

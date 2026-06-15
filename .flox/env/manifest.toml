@@ -9,14 +9,8 @@ ripgrep.pkg-path = "ripgrep"
 procps.pkg-path = "procps"
 gnugrep.pkg-path = "gnugrep"
 gcc.pkg-path = "gcc"
-mulch.flake = "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-mulch"
-mulch.outputs = ["out", "ml"]
-seeds.flake = "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-seeds"
-seeds.outputs = ["out", "sd"]
 trellis.flake = "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-trellis"
 trellis.outputs = ["out", "tl"]
-canopy.flake = "git+file:///home/rona/Repositories/.ru/RogerNavelsaker/nixpkg-canopy"
-canopy.outputs = ["out", "cn"]
 betterleaks.pkg-path = "betterleaks"
 act.pkg-path = "act"
 

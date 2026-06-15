@@ -169,7 +169,17 @@ This injects session context: rules, command reference, and workflows.
 The repository-owned `scripts/sd` wrapper pins Seeds to `0.5.10`, checks
 `.seeds/issues.jsonl` before and after mutations, and restores the tracker if a
 command violates its invariants. Always run Seeds through `dx sd`; never call a
-floating `bunx @os-eco/seeds-cli@latest` or edit the JSONL manually.
+floating package executor or edit the JSONL manually.
+
+Development dependency ownership is exclusive:
+
+- `package.json` and `bun.lock` own JavaScript CLIs and libraries, including
+  Seeds, Mulch, Canopy, Wrangler, Playwright, Biome, Tina, and Astro.
+- Flox owns Bun, system binaries, and tools without a published npm package,
+  currently including Trellis.
+- Run package-owned CLIs with `bun run <binary>`, their repository wrapper, or
+  the locked `node_modules/.bin` path in automation. Do not use ad hoc package
+  executors, because those can bypass the lockfile.
 
 ### Before You Finish
 1. Close completed issues: `sd close <id>`
