@@ -65,7 +65,7 @@ function main() {
 			"./.astro/*",
 			"-not",
 			"-path",
-			"./tina/__generated__/.cache/*",
+			"./tina/__generated__/.cache*",
 		],
 		{ encoding: "utf8" },
 	);
