@@ -116,12 +116,11 @@ Project memory has moved out of `.agent-memory/` into the git-native tool stores
 
 - `ml prime` - durable expertise migrated from the former memory-bank files
 - `sd ready` - pending production and migration follow-up work
-- `tl prime` - active specs, plans, and handoff context
 - `cn render senshac-project-context` - project/product/progress prompt context
 - `cn render senshac-technical-context` - architecture and technical prompt context
 - `cn render senshac-content-context` - content migration and changelog prompt context
 
-Run `sd prime`, `tl prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
+Run `sd prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
 
 ## Git Workspace Architecture
 
@@ -175,8 +174,7 @@ Development dependency ownership is exclusive:
 
 - `package.json` and `bun.lock` own JavaScript CLIs and libraries, including
   Seeds, Mulch, Canopy, Wrangler, Playwright, Biome, Tina, and Astro.
-- Flox owns Bun, system binaries, and tools without a published npm package,
-  currently including Trellis.
+- Flox owns Bun, system binaries, and tools without a published npm package.
 - Run package-owned CLIs with `bun run <binary>`, their repository wrapper, or
   the locked `node_modules/.bin` path in automation. Do not use ad hoc package
   executors, because those can bypass the lockfile.
@@ -186,20 +184,6 @@ Development dependency ownership is exclusive:
 2. File issues for remaining work: `sd create --title "..."`
 3. Sync and push: `sd sync && git push`
 <!-- seeds:end -->
-
-<!-- trellis:start -->
-## Trellis
-
-Trellis stores specs, plans, and handoffs as git-native artifacts under `.trellis/`.
-Never open the directory directly — use the CLI so events, locks, and validations stay consistent.
-
-- `tl init` — scaffold `.trellis/` in a repo
-- `tl prime` — load current specs, plans, and recent handoffs for an agent
-- `tl ready` — list unblocked work to pick up now
-- `tl spec create <id>` / `tl plan create <id>` — create durable intent and execution artifacts
-- `tl handoff append <plan> --from <role> --to <role> --summary "..."` — record transfer of control
-- `tl sync` — stage and commit changes under `.trellis/`
-<!-- trellis:end -->
 
 <!-- canopy:start -->
 ## Prompt Management (Canopy)
