@@ -1,4 +1,4 @@
-import { existsSync, rmdirSync } from "node:fs";
+import { rmdirSync } from "node:fs";
 
 const mode = process.argv.includes("--mode")
 	? process.argv[process.argv.indexOf("--mode") + 1]
@@ -74,6 +74,11 @@ if (!["local", "container"].includes(mode)) {
 if (!skipBuild) {
 	await run(["bun", "run", "build"], "Production build");
 }
+
+await run(
+	["bun", "run", "check:pages-routing"],
+	"Pages routing artifact check",
+);
 
 const wrangler = Bun.spawn(
 	[

@@ -32,6 +32,7 @@
 		"test:coverage": "bun test src/ scripts/ --coverage --coverage-reporter=text --coverage-reporter=lcov --coverage-dir=coverage",
 		"check:coverage": "bun run scripts/check-coverage.ts",
 		"check:bundle-size": "bun run scripts/check-bundle-size.ts",
+		"check:pages-routing": "bun run scripts/check-pages-routing.ts",
 		"check:file-sizes": "bun run scripts/check-file-sizes.ts",
 		"check:debt-markers": "bun run scripts/check-debt-markers.ts",
 		"report:test-timing": "bun run scripts/report-test-timing.ts",
