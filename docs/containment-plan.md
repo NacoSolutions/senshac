@@ -3,7 +3,7 @@
 ## Affected Services
 
 - Cloudflare Pages project `senshac`
-- Custom preview domain `preview.senshac.com`
+- WIP Pages domain `wip.senshac.com`
 - Production Pages deployment serving commit `0ec750c`
 
 ## Rollback Target
@@ -24,7 +24,7 @@ minimal forward hotfix.
 2. Add a Cloudflare Pages HTTP redirect from `/` to `/es/`.
 3. Verify the built artifact contains `_routes.json` and the expected redirect rule.
 4. Start the built artifact with the pinned Wrangler runtime and probe `/` and `/es/`.
-5. Deploy and repeat the probes against `preview.senshac.com`.
+5. Deploy and repeat the probes against `wip.senshac.com`.
 
 ## Communication
 

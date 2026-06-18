@@ -5,6 +5,8 @@ interface Props {
 	class?: string;
 	eager?: boolean;
 	sizes?: string;
+	width?: number | string;
+	height?: number | string;
 	[attribute: string]: unknown;
 }
 
@@ -14,6 +16,8 @@ const {
 	class: className,
 	eager = false,
 	sizes = "(min-width: 768px) 60vw, 100vw",
+	width = 1200,
+	height = 900,
 	...attributes
 } = Astro.props;
 const baseUrl = (
@@ -43,8 +47,8 @@ const srcset = (format: "avif" | "webp") =>
     sizes={sizes}
     alt={alt}
     class={className}
-    width="1200"
-    height="900"
+    width={width}
+    height={height}
     loading={eager ? 'eager' : 'lazy'}
     decoding={eager ? 'sync' : 'async'}
     fetchpriority={eager ? 'high' : 'auto'}

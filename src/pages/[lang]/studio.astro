@@ -37,15 +37,17 @@ const tinaAboutData = tinaAbout.data.about;
 ---
 
 <Base title={title} description={description} lang={lang} schema="LocalBusiness">
-  {tinaAboutData ? (
-    <TinaIsland name="about" wrapper={islands.about.wrapper} params={{ relativePath }} primary>
-      <AboutPage data={tinaAboutData} />
-    </TinaIsland>
-  ) : (
-    <main class="min-h-screen pt-24 pb-16">
-      {blocks && blocks.map((block: any, index: number) => (
-        <BlocksRenderer block={block} index={index} parentData={page.data} />
-      ))}
-    </main>
-  )}
+  <main id="main">
+    {tinaAboutData ? (
+      <TinaIsland name="about" wrapper={islands.about.wrapper} params={{ relativePath }} primary>
+        <AboutPage data={tinaAboutData} />
+      </TinaIsland>
+    ) : (
+      <div class="min-h-screen pt-24 pb-16">
+        {blocks && blocks.map((block: any, index: number) => (
+          <BlocksRenderer block={block} index={index} parentData={page.data} />
+        ))}
+      </div>
+    )}
+  </main>
 </Base>

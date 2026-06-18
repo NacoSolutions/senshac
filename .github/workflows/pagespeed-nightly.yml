@@ -20,6 +20,7 @@ jobs:
       issues: write
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      WIP_SITE_URL: ${{ vars.WIP_SITE_URL || 'https://wip.senshac.com' }}
       RESULTS_FILE: /tmp/pagespeed-results-${{ github.run_id }}.jsonl
       KNOWN_FAILURE_FILE: /tmp/pagespeed-known-failure-${{ github.run_id }}
       DRY_RUN: ${{ inputs.dry_run || false }}
@@ -64,7 +65,7 @@ jobs:
 
           mapfile -t URLS < <(
             bun run scripts/pagespeed-routes.ts \
-              --base=https://senshac.com \
+              --base="$WIP_SITE_URL" \
               --lang=es
           )
           if [ "${#URLS[@]}" -eq 0 ]; then
@@ -158,7 +159,7 @@ jobs:
           fi
 
       - name: Upload PageSpeed results
-        if: always()
+        if: always() && env.ACT != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: pagespeed-results-${{ github.run_id }}

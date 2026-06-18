@@ -99,7 +99,7 @@ async function main() {
 	);
 
 	// 2. Fetch active tags and limits from CMS
-	const fs = require("fs");
+	const fs = require("node:fs");
 	const tagLimits = new Map<string, number>();
 	try {
 		const glob = new (require("bun").Glob)("src/content/pages/**/*.json");
@@ -264,7 +264,7 @@ async function main() {
 					const { spawnSync } = require("node:child_process");
 
 					// Ensure directories are clean
-					const fs = require("fs");
+					const fs = require("node:fs");
 					if (fs.existsSync(".media-input"))
 						fs.rmSync(".media-input", { recursive: true, force: true });
 					if (fs.existsSync("media/processed"))

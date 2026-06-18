@@ -58,7 +58,7 @@ case "$cmd" in
     dx sd ready
     ;;
   smoke)
-    base="${2:-https://preview.senshac.com}"
+    base="${2:-${WIP_SITE_URL:-https://wip.senshac.com}}"
     dx bash -s -- "$base" <<'EOF'
 set -euo pipefail
 

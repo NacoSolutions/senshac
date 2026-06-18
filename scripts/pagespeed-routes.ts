@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { load } from "js-yaml";
+import { wipSiteUrl } from "./site-urls";
 
 type Operation = { "x-pagespeed-audit"?: boolean };
 type OpenApiDocument = {
@@ -23,7 +24,7 @@ if (import.meta.main) {
 		"es";
 	const base =
 		process.argv.find((argument) => argument.startsWith("--base="))?.slice(7) ??
-		"https://senshac.com";
+		wipSiteUrl();
 	const content = readFileSync(
 		resolve(import.meta.dir, "../docs/openapi.yaml"),
 		"utf8",

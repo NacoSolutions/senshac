@@ -160,7 +160,7 @@ export function registerAlpineComponents(Alpine: AlpineType) {
 			this.show();
 
 			const target = e.target as HTMLElement;
-			if (target && target.closest && target.closest("a, button, .hoverable")) {
+			if (target?.closest?.("a, button, .hoverable")) {
 				this.scale = 2;
 			} else {
 				this.scale = 1;
@@ -181,8 +181,8 @@ export function registerAlpineComponents(Alpine: AlpineType) {
 			this.circleY += (this.mouseY - this.circleY) * 0.15;
 
 			const el = this.$el;
-			el.style.left = this.circleX + "px";
-			el.style.top = this.circleY + "px";
+			el.style.left = `${this.circleX}px`;
+			el.style.top = `${this.circleY}px`;
 			el.style.transform = `translate(-50%, -50%) scale(${this.scale})`;
 			el.style.opacity = this.opacity.toString();
 

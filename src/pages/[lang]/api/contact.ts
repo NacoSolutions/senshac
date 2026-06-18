@@ -76,7 +76,7 @@ export const POST: APIRoute = async ({ request, params }) => {
 	// Helper to send either HTMX fragment or redirect for progressive enhancement
 	const sendResponse = (
 		fragment: string,
-		status: number,
+		_status: number,
 		errorKey?: string,
 		isSuccess = false,
 	) => {

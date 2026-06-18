@@ -20,7 +20,7 @@ export interface TinaRuntimeEnv {
 }
 
 export function getTinaRuntimeEnv(
-	locals: App.Locals,
+	_locals: App.Locals,
 ): TinaRuntimeEnv | undefined {
 	// Astro 6 removed Astro.locals.runtime.env
 	// Variables are handled via import.meta.env fallbacks in getClient
@@ -111,7 +111,11 @@ export function getTranslations(relativePath: string, env?: TinaRuntimeEnv) {
 			),
 		);
 	}
-	return requestCache.get(key)!;
+	const cached = requestCache.get(key);
+	if (!cached) {
+		throw new Error(`Missing Tina request cache entry: ${key}`);
+	}
+	return cached;
 }
 
 export function getContact(relativePath: string, env?: TinaRuntimeEnv) {
@@ -139,5 +143,9 @@ export function getSiteConfigTina(relativePath: string, env?: TinaRuntimeEnv) {
 			),
 		);
 	}
-	return requestCache.get(key)!;
+	const cached = requestCache.get(key);
+	if (!cached) {
+		throw new Error(`Missing Tina request cache entry: ${key}`);
+	}
+	return cached;
 }

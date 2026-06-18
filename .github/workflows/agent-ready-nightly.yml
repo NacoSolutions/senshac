@@ -29,11 +29,12 @@ jobs:
       - name: Fetch Agent Readiness Scores & Log Seeds
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WIP_SITE_URL: ${{ vars.WIP_SITE_URL || 'https://wip.senshac.com' }}
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
           
-          URL="https://preview.senshac.com"
+          URL="$WIP_SITE_URL"
           echo "Running Agent Readiness Scan for $URL..."
           
           CHANGES_MADE=false

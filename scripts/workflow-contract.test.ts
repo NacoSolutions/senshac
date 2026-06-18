@@ -34,6 +34,12 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(() => yaml.load(workflow)).not.toThrow();
 	expect(workflow).toContain("scripts/pagespeed-result.ts");
 	expect(workflow).toContain("scripts/pagespeed-routes.ts");
+	expect(workflow).toContain(
+		"WIP_SITE_URL: $" + "{{ vars.WIP_SITE_URL || 'https://wip.senshac.com' }}",
+	);
+	expect(workflow).toContain('--base="$WIP_SITE_URL"');
+	expect(workflow).not.toContain("--base=https://senshac.com");
+	expect(workflow).not.toContain("PAGESPEED_BASE_URL");
 	expect(workflow).toContain("category=performance");
 	expect(workflow).toContain("category=accessibility");
 	expect(workflow).toContain("category=best-practices");
@@ -42,6 +48,7 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(workflow).not.toContain("/es/about");
 	expect(workflow).not.toContain("bc -l");
 	expect(workflow).toContain("actions/upload-artifact@v4");
+	expect(workflow).toContain("env.ACT != 'true'");
 	expect(workflow).toContain("dry_run:");
 	expect(workflow).toContain("issues: write");
 	expect(workflow).toContain("gh issue list");
@@ -57,6 +64,7 @@ test("fx exposes verification, local Actions emulation, and shipping", () => {
 	expect(fx).toContain("verify)");
 	expect(fx).toContain("ci-local)");
 	expect(fx).toContain("ship)");
+	expect(fx).toContain("WIP_SITE_URL:-https://wip.senshac.com");
 
 	const actCi = read("scripts/act-ci");
 	expect(actCi).toContain(".github/workflows/ci.yml");

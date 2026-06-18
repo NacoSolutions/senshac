@@ -37,6 +37,7 @@ try {
 
 const displayPosts = posts.slice(0, limit);
 const isCarousel = displayPosts.length > maxVisible;
+const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
 ---
 
 {displayPosts.length > 0 && (
@@ -94,7 +95,7 @@ const isCarousel = displayPosts.length > maxVisible;
           ) : post.media_type === 'VIDEO' ? (
             <video
               src={post.media_url}
-              poster={post.thumbnail_url}
+              poster={smallPoster(post.thumbnail_url)}
               class="hls-video absolute inset-0 w-full h-full object-contain"
               autoplay
               muted

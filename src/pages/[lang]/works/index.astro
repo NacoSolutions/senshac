@@ -63,7 +63,7 @@ const breadcrumbs = [{ name: "Works", url: `/${lang}/works` }];
             <>
               <MediaPlaceholder
                 mediaId={work.mediaId}
-                alt={work.alt || ''}
+                alt={`${work.category}: ${work.title}`}
                 label={work.placeholderLabel}
                 aspect={work.layout === 'portrait-left' ? 'portrait' : 'landscape'}
               />
@@ -72,7 +72,7 @@ const breadcrumbs = [{ name: "Works", url: `/${lang}/works` }];
           return (
             <article class:list={['works-index__item', `works-index__item--${work.layout}`]}>
               {work.href ? (
-                <a href={work.href} class="works-index__media" aria-label={`${work.category}: ${work.title}`}>
+                <a href={work.href} class="works-index__media">
                   {content}
                 </a>
               ) : (

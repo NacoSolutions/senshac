@@ -37,15 +37,17 @@ const tinaServicesData = tinaServices.data.services;
 ---
 
 <Base title={title} description={description} lang={lang}>
-  {tinaServicesData ? (
-    <TinaIsland name="services" wrapper={islands.services.wrapper} params={{ relativePath }} primary>
-      <ServicesPage data={tinaServicesData} />
-    </TinaIsland>
-  ) : (
-    <main class="min-h-screen pt-24 pb-16">
-      {blocks && blocks.map((block: any, index: number) => (
-        <BlocksRenderer block={block} index={index} parentData={page.data} />
-      ))}
-    </main>
-  )}
+  <main id="main">
+    {tinaServicesData ? (
+      <TinaIsland name="services" wrapper={islands.services.wrapper} params={{ relativePath }} primary>
+        <ServicesPage data={tinaServicesData} />
+      </TinaIsland>
+    ) : (
+      <div class="min-h-screen pt-24 pb-16">
+        {blocks && blocks.map((block: any, index: number) => (
+          <BlocksRenderer block={block} index={index} parentData={page.data} />
+        ))}
+      </div>
+    )}
+  </main>
 </Base>

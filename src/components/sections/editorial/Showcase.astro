@@ -72,7 +72,7 @@ if (items.length === 0 && !mediaId) {
 }
 
 const showProjectCarousel = projectSlides.length > 0;
-const carouselId = "showcase-" + Math.random().toString(36).substring(2, 9);
+const carouselId = `showcase-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <section class="editorial-section">
@@ -164,4 +164,3 @@ const carouselId = "showcase-" + Math.random().toString(36).substring(2, 9);
     {ctaText && ctaLink && <a class="editorial-link mt-[clamp(2rem,5vw,4rem)]" href={ctaLink}>{ctaText}</a>}
   </div>
 </section>
-

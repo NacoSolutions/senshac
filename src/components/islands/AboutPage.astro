@@ -12,7 +12,7 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<div id="main">
+<div>
   {data && data.blocks && data.blocks.map((block: any, index: number) => (
     <BlocksRenderer block={block} index={index} parentData={data} />
   ))}

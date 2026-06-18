@@ -11,7 +11,7 @@ export default defineConfig({
 	devToolbar: {
 		enabled: false,
 	},
-	site: "https://senshac.com",
+	site: process.env.PUBLIC_SITE_URL || "https://senshac.com",
 	output: "server",
 	adapter: cloudflare({
 		imageService: "compile",

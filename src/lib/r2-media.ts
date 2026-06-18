@@ -19,9 +19,9 @@ export interface RuntimeEnv {
 	MEDIA_RAW?: any;
 }
 
-export function mediaEnv(locals: App.Locals) {
+export function mediaEnv(_locals: App.Locals) {
 	let cfEnv = {} as RuntimeEnv;
-	if (cfWorkers && cfWorkers.env) {
+	if (cfWorkers?.env) {
 		cfEnv = cfWorkers.env as RuntimeEnv;
 	}
 	const processEnv = typeof process !== "undefined" ? process.env : {};

@@ -8,5 +8,8 @@ export async function getSiteConfig() {
 	if (!entry) {
 		throw new Error("Site configuration not found");
 	}
-	return entry.data;
+	return {
+		...entry.data,
+		siteUrl: import.meta.env.PUBLIC_SITE_URL || entry.data.siteUrl,
+	};
 }
