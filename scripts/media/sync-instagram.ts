@@ -18,7 +18,6 @@ function logToMulch(
 ) {
 	try {
 		const args = [
-			"@os-eco/mulch-cli@latest",
 			"record",
 			"backend",
 			"--type",
@@ -31,7 +30,7 @@ function logToMulch(
 			tags,
 		];
 		if (data) args.push("--data", JSON.stringify(data));
-		require("node:child_process").spawnSync("bunx", args, { stdio: "inherit" });
+		require("node:child_process").spawnSync("ml", args, { stdio: "inherit" });
 	} catch (e) {
 		console.error("Failed to log to mulch:", e);
 	}
@@ -40,7 +39,7 @@ function logToMulch(
 function createAlert(title: string, body: string) {
 	try {
 		require("node:child_process").spawnSync(
-			"scripts/sd",
+			"sd",
 			[
 				"create",
 				"--title",

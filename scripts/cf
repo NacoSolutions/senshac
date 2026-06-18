@@ -1,3 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
-exec "$HOME/.bun/bin/cf" "$@"
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+search_path=":$PATH:"
+search_path="${search_path//:$script_dir:/:}"
+search_path="${search_path#:}"
+search_path="${search_path%:}"
+binary="$(PATH="$search_path" command -v cf || true)"
+
+if [ -z "$binary" ]; then
+  echo "Cloudflare cf CLI is not on PATH. Run through dx/flox." >&2
+  exit 1
+fi
+
+exec "$binary" "$@"

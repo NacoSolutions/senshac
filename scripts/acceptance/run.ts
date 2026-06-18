@@ -77,7 +77,6 @@ if (!skipBuild) {
 
 const wrangler = Bun.spawn(
 	[
-		"bunx",
 		"wrangler",
 		"pages",
 		"dev",

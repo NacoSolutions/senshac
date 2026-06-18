@@ -1,37 +1,61 @@
 {
 	"entry": [
+		"astro.config.mjs",
 		"src/pages/**/*.astro",
 		"src/pages/**/*.ts",
 		"tina/config.ts",
-		"workers/media-dispatch/src/index.ts",
+		"scripts/acceptance/run.ts",
 		"scripts/build",
 		"scripts/act-media",
+		"scripts/ci/prune-pages.ts",
 		"scripts/media/*.ts",
-		"scripts/media/*.sh"
+		"scripts/media/*.sh",
+		"scripts/with-timeout"
 	],
 	"project": [
+		"astro.config.mjs",
 		"src/**/*.astro",
 		"src/**/*.ts",
 		"tina/**/*.ts",
-		"workers/**/*.ts",
 		"scripts/**/*.ts"
 	],
-	"ignore": ["tina/__generated__/**"],
+	"ignore": [
+		"astro.config.mjs",
+		"tina/__generated__/**",
+		"tina/config.ts",
+		"scripts/acceptance/run.ts",
+		"scripts/ci/prune-pages.ts",
+		"scripts/media/stage-wordpress-media.ts",
+		"scripts/media/sync-instagram.ts",
+		"public/admin/**",
+		"src/content/legal/**/*.mdx"
+	],
 	"ignoreBinaries": [
 		"scripts/build",
 		"scripts/act-media",
 		"scripts/media/process-video.sh",
-		"betterleaks"
+		"scripts/with-timeout",
+		"betterleaks",
+		"biome",
+		"tinacms"
 	],
 	"ignoreDependencies": [
-		"@os-eco/canopy-cli",
-		"@os-eco/mulch-cli",
-		"@os-eco/seeds-cli",
+		"@astrojs/cloudflare",
+		"@astrojs/mdx",
 		"cloudflare",
-		"typescript-language-server"
+		"esbuild",
+		"next-tinacms-s3",
+		"vite",
+		"yaml"
 	],
 	"ignoreExportsUsedInFile": true,
 	"astro": {
 		"entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]
+	},
+	"workspaces": {
+		"workers/media-dispatch": {
+			"entry": ["src/index.ts"],
+			"project": ["src/**/*.ts"]
+		}
 	}
 }

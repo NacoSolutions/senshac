@@ -52,10 +52,6 @@ const TRACKER_RES: RegExp[] = [
 	/https?:\/\/\S+/,
 ];
 
-type AllowlistFile = {
-	allowlist: string[];
-};
-
 type AllowlistEntry = { path: string; line: number };
 
 function loadAllowlist(): { entries: AllowlistEntry[]; raw: string[] } {
@@ -226,8 +222,5 @@ function main(): void {
 
 	console.log("Debt-marker guard ok.");
 }
-
-// Re-export the file shape so tests can spot-check the schema.
-export type { AllowlistFile };
 
 if (import.meta.main) main();

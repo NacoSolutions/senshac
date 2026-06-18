@@ -4,11 +4,11 @@ set -euo pipefail
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 issues="$repo/.seeds/issues.jsonl"
 checker=(bun run "$repo/scripts/seeds-integrity.ts" "$issues")
-cli=("$repo/node_modules/.bin/sd")
+cli=(seeds)
 command="${1:-}"
 
-if [ ! -x "${cli[0]}" ]; then
-	echo "Seeds CLI is not installed. Run: dx bun install --frozen-lockfile" >&2
+if ! command -v "${cli[0]}" >/dev/null 2>&1; then
+	echo "Seeds CLI is not on PATH. Run through dx/flox." >&2
 	exit 1
 fi
 

@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-binary="$repo/node_modules/.bin/typescript-language-server"
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+search_path=":$PATH:"
+search_path="${search_path//:$script_dir:/:}"
+search_path="${search_path#:}"
+search_path="${search_path%:}"
+binary="$(PATH="$search_path" command -v typescript-language-server || true)"
 
-if [[ ! -x "$binary" ]]; then
-  echo "TypeScript language server is not installed. Run: dx bun install --frozen-lockfile" >&2
+if [ -z "$binary" ]; then
+  echo "TypeScript language server is not on PATH. Run through dx/flox." >&2
   exit 1
 fi
 

@@ -79,16 +79,21 @@ test("development tools have one pinned owner and automation uses locked binarie
 		devDependencies: Record<string, string>;
 	};
 	expect(pkg.scripts["check:all"]).toContain("bun run check:seeds");
+	expect(pkg.scripts["check:deps"]).toBe("scripts/with-timeout 120 knip");
 	expect(pkg.scripts["check:seeds"]).toBe("bun run scripts/seeds-integrity.ts");
-	expect(pkg.devDependencies["@os-eco/seeds-cli"]).toBe("0.5.10");
-	expect(pkg.devDependencies["@os-eco/mulch-cli"]).toBe("0.10.7");
-	expect(pkg.devDependencies["@os-eco/canopy-cli"]).toBe("0.2.6");
-	expect(pkg.devDependencies["typescript-language-server"]).toBe("5.3.0");
+	expect(pkg.devDependencies["@os-eco/seeds-cli"]).toBeUndefined();
+	expect(pkg.devDependencies["@os-eco/mulch-cli"]).toBeUndefined();
+	expect(pkg.devDependencies["@os-eco/canopy-cli"]).toBeUndefined();
+	expect(pkg.devDependencies["@biomejs/biome"]).toBeUndefined();
+	expect(pkg.devDependencies["@tinacms/cli"]).toBeUndefined();
+	expect(pkg.devDependencies.knip).toBeUndefined();
+	expect(pkg.devDependencies["typescript-language-server"]).toBeUndefined();
+	expect(pkg.devDependencies.wrangler).toBeUndefined();
 
 	const knip = JSON.parse(read("knip.json")) as {
 		ignoreDependencies: string[];
 	};
-	expect(knip.ignoreDependencies).toEqual(
+	expect(knip.ignoreDependencies).not.toEqual(
 		expect.arrayContaining([
 			"@os-eco/canopy-cli",
 			"@os-eco/mulch-cli",
@@ -98,20 +103,42 @@ test("development tools have one pinned owner and automation uses locked binarie
 	);
 
 	const sd = read("scripts/sd");
-	expect(sd).toContain("node_modules/.bin/sd");
+	expect(sd).toContain("cli=(seeds)");
 	expect(sd).toContain("scripts/seeds-integrity.ts");
-	expect(read("scripts/ml")).toContain("node_modules/.bin/ml");
-	expect(read("scripts/cn")).toContain("node_modules/.bin/cn");
-	expect(read("scripts/typescript-language-server")).toContain(
-		"node_modules/.bin/typescript-language-server",
-	);
+	expect(read("scripts/ml")).toContain("exec mulch");
+	expect(read("scripts/cn")).toContain("exec canopy");
+	expect(read("scripts/tr")).toContain("exec terrarium");
+	expect(read("scripts/tl")).toContain("exec trellis");
+	for (const path of [
+		"scripts/cf",
+		"scripts/knip",
+		"scripts/typescript-language-server",
+	]) {
+		expect(read(path)).toContain('search_path=":$PATH:"');
+		expect(read(path)).toContain("search_path//:$script_dir:/:");
+		expect(read(path)).not.toMatch(
+			/\nexec (?:cf|knip|typescript-language-server) "\$@"/,
+		);
+	}
+	expect(read("scripts/acceptance/run.ts")).not.toContain('"bunx"');
 
 	const floxManifest = read(".flox/env/manifest.toml");
-	expect(floxManifest).not.toContain("seeds.flake");
-	expect(floxManifest).not.toContain("mulch.flake");
-	expect(floxManifest).not.toContain("canopy.flake");
-	expect(floxManifest).not.toContain("typescript-language-server.pkg-path");
+	expect(floxManifest).toContain("seeds.flake");
+	expect(floxManifest).toContain('seeds.outputs = ["out", "sd"]');
+	expect(floxManifest).toContain("mulch.flake");
+	expect(floxManifest).toContain('mulch.outputs = ["out", "ml"]');
+	expect(floxManifest).toContain("canopy.flake");
+	expect(floxManifest).toContain('canopy.outputs = ["out", "cn"]');
+	expect(floxManifest).toContain("cloudflare-cli.flake");
+	expect(floxManifest).toContain("tinacms-cli.flake");
+	expect(floxManifest).toContain("knip.flake");
+	expect(floxManifest).toContain("biome.pkg-path");
+	expect(floxManifest).toContain("wrangler.pkg-path");
+	expect(floxManifest).toContain("typescript-language-server.pkg-path");
+	expect(floxManifest).toContain("terrarium.flake");
+	expect(floxManifest).toContain('terrarium.outputs = ["out", "tr"]');
 	expect(floxManifest).toContain("trellis.flake");
+	expect(floxManifest).toContain('trellis.outputs = ["out", "tl"]');
 
 	const workflowFiles = readdirSync(resolve(root, ".github/workflows"))
 		.filter((file) => file.endsWith(".yml"))
