@@ -7,7 +7,7 @@ import yaml from "js-yaml";
 const root = resolve(import.meta.dir, "..");
 const read = (path: string) => readFileSync(resolve(root, path), "utf8");
 
-test("CI and Worktrunk share the authoritative verification command", () => {
+test("CI and pre-push share the authoritative verification command", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;
 	};
@@ -15,6 +15,10 @@ test("CI and Worktrunk share the authoritative verification command", () => {
 	expect(pkg.scripts["verify:ci"]).toContain("bun run acceptance --skip-build");
 	expect(pkg.scripts["verify:ci"]).toContain("bun run check:all");
 	expect(pkg.scripts["verify:ci"]).not.toContain("bun run test");
+	expect(pkg.scripts["check:precommit"]).toContain("bun run lint");
+	expect(pkg.scripts["check:precommit"]).toContain("bun run check:seeds");
+	expect(pkg.scripts["check:precommit"]).not.toContain("verify:ci");
+	expect(pkg.scripts["check:prepush"]).toBe("bun run verify:ci");
 
 	const workflow = yaml.load(read(".github/workflows/ci.yml")) as {
 		jobs: { ci: { steps: Array<{ run?: string }> } };
@@ -27,7 +31,25 @@ test("CI and Worktrunk share the authoritative verification command", () => {
 	expect(commands).not.toContain("bun run test");
 
 	const worktrunk = read(".config/wt.toml");
-	expect(worktrunk).toContain("bun run verify:ci");
+	expect(worktrunk).toContain("bun run check:precommit");
+	expect(worktrunk).not.toContain("bun run verify:ci");
+
+	const preCommit = read("scripts/hooks/pre-commit");
+	expect(preCommit).toContain("betterleaks git --staged");
+	expect(preCommit).toContain("bun run check:precommit");
+	expect(preCommit).not.toContain("verify:ci");
+	expect(read(".githooks/pre-commit")).toContain("FLOX_ENV_PROJECT");
+	expect(read(".githooks/pre-commit")).toContain("direnv exec");
+
+	const prePush = read("scripts/hooks/pre-push");
+	expect(prePush).toContain("bun run check:prepush");
+	expect(read(".githooks/pre-push")).toContain("scripts/hooks/pre-push");
+	expect(read(".githooks/pre-push")).toContain("FLOX_ENV_PROJECT");
+	expect(read(".githooks/pre-push")).toContain("direnv exec");
+
+	const ship = read("scripts/ship");
+	expect(ship).toContain("git push --set-upstream origin HEAD");
+	expect(ship).not.toContain("bun run verify:ci");
 });
 
 test("nightly PageSpeed validates complete category responses", () => {

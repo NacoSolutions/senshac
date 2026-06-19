@@ -37,8 +37,9 @@ The blocking project Worktrunk hooks:
 2. Approve the tracked `.envrc`.
 3. Configure the tracked `.githooks/` directory as Git's hooks path.
 4. Install the locked Bun dependencies.
-5. Run the production build, repository gates, and unit tests before an
-   explicit local `wt merge`.
+5. Run the fast pre-commit gate before an explicit local `wt merge`; the
+   thorough production build and repository gates run from the Git pre-push
+   hook.
 
 The wrapper environment files are local-only and are loaded directly from the
 Git common-directory path. Worktrees contain no copies or symlinks. Never add
@@ -93,10 +94,14 @@ SENSHAC_ALLOW_MAIN_COMMIT=1 git commit ...
 This override does not bypass branch protection or CI and must not be placed
 in `.envrc` or any persistent environment file.
 
-Commits from feature worktrees run `verify:ci`. During that hook only,
-`check:clean` permits staged files while continuing to reject unstaged and
-untracked files. This keeps the normal clean-tree gate strict without making
-staged commits impossible.
+Commits from feature worktrees run staged `betterleaks` plus
+`bun run check:precommit`. That fast gate permits staged files while continuing
+to reject unstaged and untracked files through `check:clean`, and then runs
+cheap formatting/tracker guards.
+
+Pushes run `bun run check:prepush`, which delegates to `verify:ci`. This keeps
+the production build, acceptance, full checks, bundle-size guard, seed
+integrity, and repository leak scan in one thorough push-time gate.
 
 For the normal completion path, run:
 
@@ -104,9 +109,9 @@ For the normal completion path, run:
 bash scripts/ship
 ```
 
-This requires a clean, committed branch based on current `origin/main`, runs
-the same `verify:ci` command used by GitHub Actions, pushes the branch, creates
-or finds its pull request, and enables squash auto-merge. Use `dx bun run test:workflow:ci`
+This requires a clean, committed branch based on current `origin/main`, pushes
+the branch through the pre-push `verify:ci` gate, creates or finds its pull
+request, and enables squash auto-merge. Use `dx bun run test:workflow:ci`
 when changing workflow YAML, runner images, permissions, or event handling;
 ordinary application changes do not need the slower Act container run.
 

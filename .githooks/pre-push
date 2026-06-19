@@ -4,11 +4,11 @@ set -euo pipefail
 repo="$(git rev-parse --show-toplevel)"
 
 if [ "${FLOX_ENV_PROJECT:-}" = "$repo" ]; then
-  exec "$repo/scripts/hooks/pre-commit"
+  exec "$repo/scripts/hooks/pre-push"
 fi
 
 if command -v direnv >/dev/null 2>&1; then
-  exec direnv exec "$repo" "$repo/scripts/hooks/pre-commit"
+  exec direnv exec "$repo" "$repo/scripts/hooks/pre-push"
 fi
 
-exec "$repo/scripts/hooks/pre-commit"
+exec "$repo/scripts/hooks/pre-push"

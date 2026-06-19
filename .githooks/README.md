@@ -6,4 +6,8 @@ Enable the repo-local hooks in a checkout:
 git config core.hooksPath .githooks
 ```
 
-The pre-commit hook runs `betterleaks git --staged` and expects the Flox environment on `PATH`.
+The pre-commit hook runs staged `betterleaks` plus the fast
+`bun run check:precommit` gate. The pre-push hook runs the thorough
+`bun run check:prepush` gate, which delegates to `verify:ci`.
+
+Both hooks expect the Flox environment on `PATH`.

@@ -19,7 +19,6 @@ if ! git merge-base --is-ancestor origin/main HEAD; then
   exit 1
 fi
 
-bun run verify:ci
 git push --set-upstream origin HEAD
 
 if pr_url="$(gh pr view --json url --jq .url 2>/dev/null)"; then

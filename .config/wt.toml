@@ -11,4 +11,4 @@ hooks = "git config core.hooksPath .githooks"
 dependencies = "direnv exec . bun install --frozen-lockfile"
 
 [[pre-merge]]
-verify = "direnv exec . bun run verify:ci"
+verify = "direnv exec . bun run check:precommit"

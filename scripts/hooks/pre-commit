@@ -22,5 +22,5 @@ fi
 echo "Running betterleaks on staged changes..."
 betterleaks git --staged --redact --no-banner --no-color --log-level warn .
 
-echo "Running full verification gate (verify:ci)..."
-CHECK_CLEAN_ALLOW_STAGED=1 bun run verify:ci
+echo "Running fast pre-commit gate..."
+bun run check:precommit
