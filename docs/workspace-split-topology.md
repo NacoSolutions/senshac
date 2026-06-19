@@ -10,12 +10,20 @@ This plan defines the first migration step from one large Senshac repository wra
 - Keep Seeds as the issue mutation and integrity source: use `sd create`, `sd update`, `sd dep`, `sd close`, `sd sync`, and `sd doctor` when changing or debugging tracker state.
 - Separate high-churn web code, content/media operations, infrastructure, and runner image work into focused bare repositories once ownership boundaries are proven.
 - Preserve one-command activation for agents: `fx -d <repo-or-worktree> <command>` for Flox-scoped commands and `dx -d <repo-or-worktree> <command>` for direnv-scoped commands.
-- Keep secrets outside worktrees and outside Git.
+- Keep plaintext secrets outside worktrees and outside Git. Once the SOPS/age
+  workflow is functional, repo-owned encrypted secret files can be committed to
+  the meta repo or focused repos with private age keys kept outside Git.
+- Treat Tina's separate content repository guide as the CMS split baseline:
+  `senshac-web` is the generator repo and `senshac-content` is the content repo
+  candidate under one TinaCloud project, not a second Tina project.
 
 ## Non-Goals
 
 - Do not split the production website before a focused-repo prototype passes build, verification, and deployment smoke checks.
-- Do not move `.env.local`, `.env.pages`, `.secrets.act`, R2 credentials, Tina tokens, or Cloudflare tokens into tracked repos.
+- Do not move plaintext `.env.local`, `.env.pages`, `.secrets.act`, R2
+  credentials, Tina tokens, or Cloudflare tokens into tracked repos. Encrypted
+  SOPS/age equivalents are allowed only after decrypt, CI, rotation, and
+  recovery flows are proven.
 - Do not make each focused repo invent separate workflow conventions.
 - Do not replace `llms.txt`, Markdown content negotiation, Seeds, Mulch, Canopy, or Terrarium as part of this migration.
 - Do not migrate historical Trellis data back into active workflow state.
@@ -27,9 +35,10 @@ NacoSolutions/
 └── senshac-workspace/                  local or GitHub meta repository
     ├── AGENTS.md                       workspace-level agent routing
     ├── .config/workspace.toml          repo registry and default commands
-    ├── .env.local                      local-only shared dev secrets
-    ├── .env.pages                      local-only Pages deployment env
-    ├── .secrets.act                    local-only Act secrets
+    ├── .env.local                      local-only plaintext dev secrets
+    ├── .env.pages                      local-only plaintext Pages deployment env
+    ├── .secrets.act                    local-only plaintext Act secrets
+    ├── secrets/*.enc.env               optional committed SOPS/age env files
     ├── senshac-web/                    focused bare repo wrapper
     │   ├── main/
     │   └── <kind>-<seed>-<slug>/
@@ -47,14 +56,14 @@ NacoSolutions/
         └── <kind>-<seed>-<slug>/
 ```
 
-The meta repository can start local-only. Promote it to GitHub after the prototype proves that workspace bootstrap, secret placement, worktree creation, and cross-repo triage are understandable to both humans and agents. If promoted, the meta repo should contain only operator docs, repo registry config, bootstrap scripts, and ignored secret placeholders.
+The meta repository can start local-only. Promote it to GitHub after the prototype proves that workspace bootstrap, secret placement, worktree creation, and cross-repo triage are understandable to both humans and agents. If promoted before SOPS/age is ready, the meta repo should contain only operator docs, repo registry config, bootstrap scripts, and ignored secret placeholders. After SOPS/age is ready, it may also contain encrypted environment bundles such as `secrets/local.enc.env` or `secrets/pages.enc.env`.
 
 ## Focused Repository Boundaries
 
 | Repository | Owns | Does Not Own |
 | --- | --- | --- |
-| `senshac-web` | Astro app, Tina schema, generated API docs, visual tests, Lighthouse gates, Pages routing, site docs. | Raw media archive, R2 provisioning authority, runner images. |
-| `senshac-content` | Editorial source, owner-request PDFs as references, translation/content review workflows, Instagram content metadata if decoupled from app code. | Runtime app components, Cloudflare account secrets. |
+| `senshac-web` | Astro app, Tina schema, Tina generated artifacts, generated API docs, visual tests, Lighthouse gates, Pages routing, site docs. TinaCloud generator repo. | Raw media archive, R2 provisioning authority, runner images, editorial branches created by Tina UI after content split. |
+| `senshac-content` | Editorial source, owner-request PDFs as references, translation/content review workflows, Tina content files, repo-based media if Tina continues to manage media through Git. TinaCloud content repo. | Runtime app components, Tina schema, `tina/__generated__`, Cloudflare account secrets. |
 | `senshac-infra` | Cloudflare Pages/R2/Workers/IaC, DNS and environment variable runbooks, deployment smoke scripts. | Website UI implementation and Tina content modeling. |
 | `senshac-runner` | GitHub Actions runner image, Flox containerization, CI toolchain parity, Act/rootless Podman validation. | Site routes, content, R2 media transformations. |
 | `senshac-media-runner` | Sharp/ffmpeg processing scripts, R2 raw-to-prod pipeline, media smoke checks, Instagram ingest worker integration. | Editorial layout and non-media infrastructure. |
@@ -65,7 +74,18 @@ The meta repository can start local-only. Promote it to GitHub after the prototy
 
 - Every focused repository uses the same bare wrapper pattern: wrapper root for Git database and local ignored secrets, `main/` for clean integration, and one Worktrunk worktree per independently mergeable seed.
 - `AGENTS.md`, `.envrc`, `.flox/`, and `.config/wt.toml` stay tracked in each focused repo so every worktree activates consistently.
-- Shared workspace secrets live in the meta-repo wrapper root or a local operator secret directory, then are read by repo hooks through a documented path. Worktrees must not contain copies or symlinks to secrets.
+- During the plaintext phase, shared workspace secrets live in the meta-repo
+  wrapper root or a local operator secret directory, then are read by repo
+  hooks through a documented path. Worktrees must not contain copies or
+  symlinks to plaintext secrets.
+- During the encrypted phase, focused repos and/or the meta repo may commit
+  `secrets/*.enc.env` files managed by SOPS/age. Age private keys, decrypted
+  files, and one-off recovery material stay local-only.
+- For Tina's supported content split, configure the generator repo with
+  `localContentPath` in `tina/config.ts`; the path is resolved relative to the
+  `tina/` folder and should point to the sibling `senshac-content` checkout.
+  The content repo should not contain `tina/config.ts`, `tina/__generated__`,
+  or `tina/tina-lock.json`.
 - `fx -d <path> <command>` should run `flox activate -d <path> -- <command>` after preserving Flox management conveniences such as `fx install`.
 - `dx -d <path> <command>` should run `direnv exec <path> <command>`.
 - Command failures must fail loud. If direnv activation fails, wrappers must not fall through to host binaries such as GNU `tr`.
@@ -101,10 +121,10 @@ sd doctor
    Land this plan, update onboarding language, and keep `senshac-7bd8` as the umbrella epic. `senshac-9bab` owns the concrete `fx`/`dx` pass-through implementation.
 
 2. **Prototype one focused repo**  
-   Use `senshac-a790` to create a local-only focused bare repo, preferably `senshac-runner` or `senshac-media-runner`, because those boundaries are less entangled with the live Pages deployment. Prove Worktrunk creation, activation, CI checks, seed linkage, and branch cleanup.
+   Use `senshac-a790` to create a local-only focused bare repo, preferably `senshac-runner` or `senshac-media-runner`, because those boundaries are less entangled with the live Pages deployment. Prove Worktrunk creation, activation, CI checks, seed linkage, branch cleanup, and SOPS/age encrypted-secret handling.
 
 3. **Map existing seeds to target repos**  
-   Use `senshac-d2ed` to label or document which open seeds belong to `senshac-web`, `senshac-content`, `senshac-infra`, `senshac-runner`, or `senshac-media-runner`. Keep cross-repo blockers explicit.
+   Use `senshac-d2ed` to label or document which open seeds belong to `senshac-web`, `senshac-content`, `senshac-infra`, `senshac-runner`, or `senshac-media-runner`. Keep cross-repo blockers explicit. Use Tina's generator/content terminology when mapping CMS work.
 
 4. **Update agent onboarding**  
    Use `senshac-3a64` to update wrapper and repo `AGENTS.md`, `docs/worktree-workflow.md`, and workspace bootstrap docs after the prototype path is known.
@@ -127,8 +147,12 @@ sd doctor
 - Should the meta repo become `NacoSolutions/senshac-workspace` on GitHub, or stay local/operator-only?
 - Should canonical Seeds live in the meta repo, the web repo, or per focused repo with cross-repo links?
 - Which focused repo should be prototyped first: `senshac-runner` for CI/Flox work or `senshac-media-runner` for R2 media pipeline work?
-- How should shared local secrets be resolved when multiple focused repos are checked out on different machines?
+- How should shared local plaintext secrets be resolved before SOPS/age is
+  ready, and which encrypted bundles belong in the meta repo versus individual
+  focused repos after it is ready?
 - Should GitHub Issues mirror only the active focused repo or the meta-level seed graph?
+- Should `senshac-content` use Tina repo-based media, R2-only media
+  identifiers, or a hybrid where editorial JSON references R2 media IDs?
 
 ## Verification Commands
 
