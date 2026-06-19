@@ -59,15 +59,23 @@ wt list
 wt remove
 ```
 
-Run project and tracker tools from a worktree through its environment:
+Run project and tracker tools from a worktree through its environment. Use
+Terrarium for routine work selection and Seeds for tracker mutation or direct
+tracker debugging:
 
 ```bash
-dx sd prime
-dx tl prime
+dx tr triage
+dx tr blocked
+dx sd show senshac-1234
 dx cn prime
 dx ml prime
 dx bun run check
 ```
+
+The intended cross-worktree command forms are `dx -d <path> <command>` for
+`direnv exec <path> <command>` and `fx -d <path> <command>` for
+`flox activate -d <path> -- <command>`. Flox management conveniences such as
+`fx install <pkg>` remain valid.
 
 Push the branch and merge through a protected pull request. `main` requires
 the strict `ci` status and disallows direct force pushes. Use `wt remove` after
@@ -119,3 +127,6 @@ Verify the layout from any worktree:
 ```bash
 git worktree list
 ```
+
+See `docs/workspace-split-topology.md` for the planned meta-repo and focused
+bare-repo split.

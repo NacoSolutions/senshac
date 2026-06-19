@@ -115,12 +115,13 @@ Original WordPress site in `.reference/` directory for content and structure ana
 Project memory has moved out of `.agent-memory/` into the git-native tool stores:
 
 - `ml prime` - durable expertise migrated from the former memory-bank files
-- `sd ready` - pending production and migration follow-up work
+- `tr triage` - graph-ranked pending production and migration follow-up work
+- `sd show <id>` - inspect a tracker record before mutating it
 - `cn render senshac-project-context` - project/product/progress prompt context
 - `cn render senshac-technical-context` - architecture and technical prompt context
 - `cn render senshac-content-context` - content migration and changelog prompt context
 
-Run `sd prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
+Run `tr triage`, `sd prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
 
 ## Git Workspace Architecture
 
@@ -133,15 +134,15 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 - Create independently mergeable work with
   `wt switch --create <kind>/<seed>-<slug> --base main`.
 - Run project and tracker commands inside the resulting worktree through
-  `dx`.
+  `dx`; use `tr triage` for work selection and `sd` for issue mutation.
 - Push branches and integrate them through protected pull requests. Use
   `wt remove` after merge.
 - See `docs/worktree-workflow.md` for setup, naming, hooks, and cleanup.
 
 ## Environment Commands
 
-- `dx <command>` — short wrapper for `direnv exec . <command>`.
-- `fx <command>` — project workflow shortcut suite; start with `fx ready`, `fx check`, `fx build`, `fx deploy`, and `fx smoke [base]`.
+- `dx [-d <path>] <command>` — short wrapper for `direnv exec <path> <command>`.
+- `fx [-d <path>] <command>` — Flox-scoped command wrapper plus project workflow shortcuts; start with `fx check`, `fx build`, `fx deploy`, and `fx smoke [base]`.
 - Cloudflare Pages Git deployments use `bun install --frozen-lockfile && bun run build` so dependencies exist before Tina generation.
 
 <!-- seeds:start -->
@@ -150,7 +151,12 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 
 This project uses [Seeds](https://github.com/jayminwest/seeds) for git-native issue tracking.
 
-**At the start of every session**, run:
+**At the start of every session**, use Terrarium to choose work, then inspect or mutate Seeds as needed:
+```
+tr triage
+```
+
+Run Seeds when you need tracker context or changes:
 ```
 sd prime
 ```
@@ -158,7 +164,7 @@ sd prime
 This injects session context: rules, command reference, and workflows.
 
 **Quick reference:**
-- `sd ready` — Find unblocked work
+- `sd ready` — Tracker-level unblocked list, mostly for debugging; prefer `tr triage` for routine prioritization
 - `sd create --title "..." --type task --priority 2` — Create issue
 - `sd update <id> --status in_progress` — Claim work
 - `sd close <id>` — Complete work

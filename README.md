@@ -38,7 +38,7 @@ bun run dev
 ```
 
 The Flox environment also provides the project helper CLIs: `sd`, `ml`, `cn`, and `tl`.
-It also exposes `dx` for `direnv exec . <command>` and `fx` for common project workflows.
+It also exposes `dx` for `direnv exec <path> <command>` and `fx` for Flox-scoped commands plus common project workflows.
 
 For local Tina/contact-form configuration, copy `.env.example` to `.env.local` and fill in real values. `.env.local` is ignored by git and loaded by `.envrc` when direnv is enabled.
 
@@ -46,8 +46,8 @@ For local Tina/contact-form configuration, copy `.env.example` to `.env.local` a
 
 | Command | Description |
 |---------|-------------|
-| `dx <command>` | Run a command through the direnv-loaded repo environment |
-| `fx ready` | Show ready Seeds work |
+| `dx [-d <path>] <command>` | Run a command through the direnv-loaded repo environment |
+| `tr triage` | Show graph-ranked ready work |
 | `fx check` | Run Astro check |
 | `fx build` | Run the production build |
 | `fx verify` | Run the same authoritative verification gate as GitHub CI |
