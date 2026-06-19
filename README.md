@@ -52,7 +52,7 @@ For local Tina/contact-form configuration, copy `.env.example` to `.env.local` a
 | `fx install <pkg>` | Install a Flox package in the selected repo |
 | `bun run verify:ci` | Run the same authoritative verification gate as GitHub CI |
 | `bun run check:precommit` | Fast local commit gate |
-| `bun run check:prepush` | Thorough push gate |
+| `bun run check:prepush` | Install locked dependencies and run the thorough push gate |
 | `dev [action]` | Astro dev server (start/stop/restart/status/log) |
 | `cms [action]` | TinaCMS + Astro (start/stop/restart/status/log) |
 | `bun run build` | Run TinaCMS generation, scrub generated token literals, then build Astro for Cloudflare |

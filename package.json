@@ -24,7 +24,7 @@
 		"lint:fix": "biome check --write .",
 		"check:deps": "scripts/with-timeout 120 knip",
 		"check:precommit": "CHECK_CLEAN_ALLOW_STAGED=1 bun run check:clean && bun run lint && bun run check:seeds",
-		"check:prepush": "bun run verify:ci",
+		"check:prepush": "bun install --frozen-lockfile && bun run verify:ci",
 		"check:all": "bun run check:clean && bun run check && bun run lint && bun run check:deps && bun run check:coverage && bun run check:debt-markers && bun run check:file-sizes && bun run check:bundle-size && bun run check:ci-parity && bun run gen:docs:check && bun run gen:openapi:check && bun run check:seeds && bun run check:leaks",
 		"test": "bun test src/ scripts/",
 		"test:e2e": "playwright test",

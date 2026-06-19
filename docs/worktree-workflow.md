@@ -99,9 +99,10 @@ Commits from feature worktrees run staged `betterleaks` plus
 to reject unstaged and untracked files through `check:clean`, and then runs
 cheap formatting/tracker guards.
 
-Pushes run `bun run check:prepush`, which delegates to `verify:ci`. This keeps
-the production build, acceptance, full checks, bundle-size guard, seed
-integrity, and repository leak scan in one thorough push-time gate.
+Pushes run `bun run check:prepush`, which installs the frozen lockfile and then
+delegates to `verify:ci`. This keeps the production build, acceptance, full
+checks, bundle-size guard, seed integrity, and repository leak scan in one
+thorough push-time gate.
 
 For the normal completion path, run:
 
