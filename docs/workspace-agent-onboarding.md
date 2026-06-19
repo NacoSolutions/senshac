@@ -78,7 +78,7 @@ Flox management conveniences such as `fx install <pkg>` remain valid.
 
 ## Route Work During The Split
 
-Until the meta repository exists, canonical Seeds remain in
+Until a promoted meta repository exists, canonical Seeds remain in
 `NacoSolutions/senshac`. Use `docs/workspace-seed-routing.md` to decide where
 future ownership belongs:
 
@@ -115,4 +115,3 @@ Use `sd sync`, `ml sync`, or `cn sync` only when you deliberately want those
 tools to create their own tracker/prompt/expertise commits. Routine code,
 docs, and seed changes should use normal Git staging so the commit contains
 the full coherent change.
-

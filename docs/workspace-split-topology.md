@@ -149,17 +149,27 @@ sd doctor
 - If the meta repo adds friction, keep it local-only and move only its proven docs/scripts back into the focused repos.
 - If cross-repo Seeds synchronization becomes fragile, keep canonical Seeds in the live web repo and link focused-repo work back to canonical seed IDs until a dedicated tracker split is specified.
 
-## Open Questions
+## Current Decisions
 
-- Should the meta repo become `NacoSolutions/senshac-workspace` on GitHub, or stay local/operator-only?
-- Should canonical Seeds live in the meta repo, the web repo, or per focused repo with cross-repo links?
-- Which focused repo should be prototyped first: `senshac-runner` for CI/Flox work or `senshac-media-runner` for R2 media pipeline work?
-- How should shared local plaintext secrets be resolved before SOPS/age is
-  ready, and which encrypted bundles belong in the meta repo versus individual
-  focused repos after it is ready?
-- Should GitHub Issues mirror only the active focused repo or the meta-level seed graph?
-- Should `senshac-content` use Tina repo-based media, R2-only media
-  identifiers, or a hybrid where editorial JSON references R2 media IDs?
+- Keep canonical Seeds in `NacoSolutions/senshac` until a real
+  `senshac-workspace` repository exists and at least one focused repository has
+  proven routine work without increasing friction.
+- Treat `senshac-workspace` as a local/operator workspace first. Promote it to
+  GitHub only after `senshac-runner` work proves that bootstrap, encrypted
+  secrets, Worktrunk, and CI/Act operations are repeatable outside the live web
+  repo.
+- Use `senshac-runner` as the first real focused repository candidate. Runner
+  image, Flox containerization, Act/rootless Podman parity, and workflow CLI
+  concerns are low-risk compared with moving active website code.
+- Keep plaintext secrets wrapper-local and ignored. Committed secret bundles
+  must use plain SOPS CLI with age recipients as documented in
+  [SOPS Age Secret Bundles](secrets-sops-age.md).
+- Keep GitHub Issues and GitHub Actions attached to the active implementation
+  repo until a focused repository is promoted. Meta-level graph state remains
+  in Seeds/Terrarium here during the transition.
+- Defer the `senshac-content` media model until the Tina content split seed is
+  created. The current baseline is one TinaCloud project with `senshac-web` as
+  generator repo and `senshac-content` as a future content repo candidate.
 
 ## Verification Commands
 

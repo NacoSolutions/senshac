@@ -27,12 +27,12 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 
 | Seed | Target | Current Action | Rationale |
 | --- | --- | --- | --- |
-| `senshac-7bd8` | `senshac-workspace` | Keep in current repo until meta repo exists. | Umbrella epic for the split and cross-repo graph. |
+| `senshac-7bd8` | `senshac-workspace` | Closed after topology, prototype, routing, onboarding, command wrappers, and SOPS/age policy landed. | Umbrella epic for the split and cross-repo graph. |
 | `senshac-d2ed` | `senshac-workspace` | Close after this map lands. | Routing task itself. |
 | `senshac-3a64` | `senshac-workspace` | Remains blocked by `senshac-d2ed`; then update onboarding. | Agent docs span wrapper and focused repos. |
 | `senshac-9bab` | `senshac-runner` plus `senshac-workspace` | Do next or in parallel with SOPS policy. | `fx`/`dx` pass-through is shared developer experience; implementation lives with runner/tooling conventions. |
 | `senshac-8521` | `senshac-workspace` plus all focused repos | Do before committing encrypted secret files. | Shared SOPS/age policy and per-repo bundle placement. |
-| `senshac-50a2` | `senshac-runner` | Keep blocked by `senshac-7bd8`; unblock after command and secret policy are settled. | Flox-containerized CI runner image belongs in runner ownership. |
+| `senshac-50a2` | `senshac-runner` | Ready after `senshac-7bd8`; implement before promoting a real focused repo. | Flox-containerized CI runner image belongs in runner ownership. |
 | `senshac-3da6` | `senshac-runner` | Can run before full split if it blocks `fx`/container work. | Flox activation newline warning affects runner/tooling. |
 | `senshac-6482` | `senshac-runner` | Can be done in current repo, later owned by runner. | GitHub Actions runtime versions are runner/CI surface. |
 | `senshac-da6b` | `senshac-web` | Keep in current repo. | Runtime acceptance scenarios validate the live web app. |
@@ -46,7 +46,7 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 | `senshac-0198` | `senshac-content` | Track as owner-input content blocker. | Houzz profile URL is content, not app architecture. |
 | `senshac-2425` | `senshac-web` | Keep in current repo. | llms.txt, markdown negotiation, and OKF output are app routes/content rendering. |
 | `senshac-951a` | `senshac-workspace` plus current repo | Do in current repo before or during meta repo creation. | Labels are cross-repo taxonomy; current GitHub repo still needs cleanup. |
-| `senshac-ab7d` | `senshac-workspace` plus `senshac-web` | Keep blocked by `senshac-7bd8`. | AGENTS drift validation must reflect final workspace topology. |
+| `senshac-ab7d` | `senshac-workspace` plus `senshac-web` | Ready after `senshac-7bd8`. | AGENTS drift validation can now target the settled workspace docs. |
 | `senshac-1ce5` | `senshac-infra` plus `senshac-web` | Requires consolidation with `senshac-4a5b`. | Contact endpoint code is web; Cloudflare Email setup is infra. |
 | `senshac-4a5b` | `senshac-infra` plus `senshac-web` | Superseded or merged into `senshac-1ce5`; keep until email implementation seed is clarified. | Same Resend-to-Cloudflare migration intent at feature/task granularity. |
 
@@ -92,21 +92,23 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 
 ## Blocker Updates
 
-After this map lands:
+Current state after closing `senshac-7bd8`:
 
-- Remove `senshac-d2ed` as a blocker from `senshac-3a64`.
-- Remove `senshac-d2ed` as a blocker from `senshac-7bd8`.
-- Keep `senshac-7bd8` blocked by `senshac-3a64`, `senshac-9bab`, and `senshac-8521`.
-- Keep `senshac-50a2` and `senshac-ab7d` blocked by `senshac-7bd8`.
-- Do not block PageSpeed or redesign work on the repo split; those remain current-repo production work until a cutover seed exists.
+- `senshac-d2ed`, `senshac-3a64`, `senshac-9bab`, and `senshac-8521` are
+  closed.
+- `senshac-50a2` and `senshac-ab7d` are unblocked and can proceed as concrete
+  follow-up work.
+- PageSpeed and redesign work remain current-repo production work until a
+  cutover seed exists.
 
-## Open Decisions
+## Deferred Decisions
 
-- Whether `senshac-workspace` becomes a GitHub repo now or after `senshac-9bab` and `senshac-8521`.
-- Whether canonical Seeds move to `senshac-workspace` or remain in `senshac-web` until several focused repos exist.
-- Whether `senshac-content` stores files at repo root, under `src/content`, or in a Tina-specific content root with path rewrites.
-- Whether Tina-managed media should live in `senshac-content`, R2-only IDs, or a hybrid.
-- Whether duplicate email seeds `senshac-1ce5` and `senshac-4a5b` should be merged or one should be closed as superseded.
+- Exact GitHub promotion timing for `senshac-workspace`; decide after
+  `senshac-50a2` proves the runner/container path.
+- Exact `senshac-content` file layout and media model; decide in a future Tina
+  content split seed.
+- Whether duplicate email seeds `senshac-1ce5` and `senshac-4a5b` should be
+  merged or one should be closed as superseded.
 
 ## Verification
 

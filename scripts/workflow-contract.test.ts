@@ -363,3 +363,38 @@ test("secret bundle policy documents plain sops age paths", () => {
 	expect(smoke).toContain("SOPS_AGE_SSH_PRIVATE_KEY_FILE");
 	expect(smoke).toContain("not-a-real-secret");
 });
+
+test("workspace split epic is finalized into concrete follow-up work", () => {
+	const topology = read("docs/workspace-split-topology.md");
+	const routing = read("docs/workspace-seed-routing.md");
+	const onboarding = read("docs/workspace-agent-onboarding.md");
+	const seeds = read(".seeds/issues.jsonl")
+		.trim()
+		.split("\n")
+		.map(
+			(line) =>
+				JSON.parse(line) as {
+					id: string;
+					status: string;
+					blockedBy?: string[];
+				},
+		);
+	const byId = new Map(seeds.map((seed) => [seed.id, seed]));
+
+	expect(topology).toContain("## Current Decisions");
+	expect(topology).not.toContain("## Open Questions");
+	expect(topology).toContain(
+		"Use `senshac-runner` as the first real focused repository candidate",
+	);
+	expect(routing).toContain(
+		"`senshac-50a2` | `senshac-runner` | Ready after `senshac-7bd8`",
+	);
+	expect(routing).toContain(
+		"`senshac-ab7d` | `senshac-workspace` plus `senshac-web` | Ready after `senshac-7bd8`",
+	);
+	expect(routing).toContain("## Deferred Decisions");
+	expect(onboarding).toContain("Until a promoted meta repository exists");
+	expect(byId.get("senshac-7bd8")?.status).toBe("closed");
+	expect(byId.get("senshac-50a2")?.blockedBy).toBeUndefined();
+	expect(byId.get("senshac-ab7d")?.blockedBy).toBeUndefined();
+});
