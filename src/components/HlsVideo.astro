@@ -31,10 +31,10 @@ const cleanId = id
 const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
 ---
 
-<div x-data={`senshacHlsPlayer(${JSON.stringify(manifest)})`} x-init="init()" class="h-full w-full">
+<div x-data={`senshacHlsPlayer(${JSON.stringify(manifest)})`} x-init="observe()" class="h-full w-full">
   <video
     x-ref="video"
-    src={manifest}
+    data-src={manifest}
     class={className}
     poster={poster}
     autoplay={autoplay}
@@ -42,7 +42,7 @@ const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
     muted={muted}
     loop={loop}
     playsinline
-    preload="metadata"
+    preload="none"
   ></video>
 </div>
 
@@ -50,7 +50,24 @@ const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
   document.addEventListener('alpine:init', () => {
     window.Alpine.data('senshacHlsPlayer', (manifest: string) => ({
       player: null as import('hls.js').default | null,
+      observer: null as IntersectionObserver | null,
+      loaded: false,
+      observe() {
+        const video = this.$refs.video as HTMLVideoElement;
+        this.observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          this.observer?.disconnect();
+          this.init().then(() => {
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && video.autoplay) {
+              video.play().catch(() => {});
+            }
+          });
+        }, { rootMargin: '300px 0px', threshold: 0.01 });
+        this.observer.observe(video);
+      },
       async init() {
+        if (this.loaded) return;
+        this.loaded = true;
         const video = this.$refs.video as HTMLVideoElement;
         if (video.canPlayType('application/vnd.apple.mpegurl')) {
           video.src = manifest;
@@ -64,6 +81,7 @@ const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
         this.player.attachMedia(video);
       },
       destroy() {
+        this.observer?.disconnect();
         this.player?.destroy();
       },
     }));

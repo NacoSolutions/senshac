@@ -93,10 +93,9 @@ const fontCss = `
     />
 
     <style is:inline set:html={fontCss}></style>
+    <link rel="preconnect" href={mediaBaseUrl} crossorigin />
     <link rel="preload" href={fonts.jozsikaLight} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={fonts.sintecaRegular} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={fonts.sintecaMedium} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={fonts.sintecaSemibold} as="font" type="font/woff2" crossorigin />
 
     {preloadImage && <link rel="preload" href={preloadImage} as="image" type="image/webp" fetchpriority="high" />}
 

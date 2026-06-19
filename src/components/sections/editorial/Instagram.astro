@@ -38,6 +38,7 @@ try {
 const displayPosts = posts.slice(0, limit);
 const isCarousel = displayPosts.length > maxVisible;
 const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
+const jsString = (value: string) => JSON.stringify(value);
 ---
 
 {displayPosts.length > 0 && (
@@ -68,7 +69,7 @@ const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
           {post.media_type === 'CAROUSEL_ALBUM' && post.children && post.children.length > 0 ? (
             <div 
               class="absolute inset-0 w-full h-full"
-              x-data={`{ active: 0, playing: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, slides: [${post.children.map((c: string) => `'${c}'`).join(',')}] }`}
+              x-data={`{ active: 0, playing: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, slides: [${post.children.map((c: string) => jsString(c)).join(',')}] }`}
               x-init="setInterval(() => { if(playing) active = (active + 1) % slides.length }, 5000)"
             >
               <template x-for="(slide, index) in slides" :key="index">
@@ -94,13 +95,14 @@ const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
             </div>
           ) : post.media_type === 'VIDEO' ? (
             <video
-              src={post.media_url}
-              poster={smallPoster(post.thumbnail_url)}
+              data-src={post.media_url}
+              data-poster={smallPoster(post.thumbnail_url)}
               class="hls-video absolute inset-0 w-full h-full object-contain"
               autoplay
               muted
               loop
               playsinline
+              preload="none"
             />
           ) : (
             <img 
@@ -146,11 +148,38 @@ const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
   </section>
 
   <script>
-    import Hls from "hls.js";
-
     document.addEventListener("DOMContentLoaded", () => {
       const videos = document.querySelectorAll("video.hls-video") as NodeListOf<HTMLVideoElement>;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let hlsLoader: Promise<typeof import('hls.js')> | null = null;
+
+      const loadVideo = async (video: HTMLVideoElement) => {
+        if (video.dataset.loaded === 'true') return;
+        video.dataset.loaded = 'true';
+
+        if (video.dataset.poster) {
+          video.poster = video.dataset.poster;
+        }
+
+        const src = video.dataset.src || video.getAttribute("src");
+        if (!src) return;
+
+        if (src.includes(".m3u8")) {
+          if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = src;
+          } else {
+            hlsLoader ??= import("hls.js");
+            const { default: Hls } = await hlsLoader;
+            if (Hls.isSupported()) {
+              const hls = new Hls();
+              hls.loadSource(src);
+              hls.attachMedia(video);
+            }
+          }
+        } else {
+          video.src = src;
+        }
+      };
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -158,9 +187,11 @@ const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
           const isPausedManually = video.dataset.pausedManually === 'true';
 
           if (entry.isIntersecting) {
-            if (!prefersReducedMotion && !isPausedManually) {
-              video.play().catch(() => {});
-            }
+            loadVideo(video).then(() => {
+              if (!prefersReducedMotion && !isPausedManually) {
+                video.play().catch(() => {});
+              }
+            });
           } else {
             video.pause();
           }
@@ -173,17 +204,6 @@ const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
           video.pause();
         }
         observer.observe(video);
-
-        const src = video.getAttribute("src");
-        if (src && src.includes(".m3u8")) {
-          if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(src);
-            hls.attachMedia(video);
-          } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-            video.src = src;
-          }
-        }
       });
 
       document.querySelectorAll(".novedades-video-toggle").forEach(btn => {
