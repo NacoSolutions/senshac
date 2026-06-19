@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="$(git rev-parse --show-toplevel)"
+runtime="${CONTAINER_RUNTIME:-podman}"
+target="${1:-senshac-ci-runner:latest}"
+build_tag="ci-runner"
+
+flox containerize -d "$repo" --runtime "$runtime" --tag "$build_tag"
+exec "$runtime" tag "senshac:$build_tag" "$target"

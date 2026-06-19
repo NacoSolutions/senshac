@@ -902,12 +902,12 @@
     },
     {
       "install_id": "knip",
-      "locked-url": "github:RogerNavelsaker/nixpkg-knip/bddaa53424c210dc2fce047127de1873011b85ae?narHash=sha256-ElYBEk8e8x6HIYnugwydufm9zcLOYXEyB97uPEgG%2BKQ%3D",
+      "locked-url": "github:RogerNavelsaker/nixpkg-knip/9fb0e88487402113dfa79ed0b89c506e1a97fd4d?narHash=sha256-Jrt/bK2ChLbBex5H3MPy37r44jZCTofwp786xEo6QW8%3D",
       "flake-description": "Nix packaging scaffold for knip",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/mpphbhbz5ia5il5f4zsjanisml5fwk0i-knip-5.21.2.drv",
+      "derivation": "/nix/store/w30bkcq387qywmmvam0z7s5vdkd58mm8-knip-5.21.2.drv",
       "outputs": {
-        "out": "/nix/store/9h0rmvbrhrzy4x04fvll49ry03wxmd7y-knip-5.21.2"
+        "out": "/nix/store/kkxry79kq8pw4knhx2mwd6995ycccr1y-knip-5.21.2"
       },
       "output-names": [
         "out"
