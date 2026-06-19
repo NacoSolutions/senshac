@@ -136,7 +136,10 @@ export function computeReachable(
 	return { reachable, missing };
 }
 
-type WorkflowStep = { run?: unknown };
+type WorkflowStep = {
+	run?: unknown;
+	with?: { command?: unknown } | unknown;
+};
 type WorkflowJob = { steps?: WorkflowStep[] };
 type WorkflowFile = { jobs?: Record<string, WorkflowJob> };
 
@@ -157,15 +160,29 @@ export function extractBareBunTests(filePath: string): BareBunTest[] {
 	if (!doc || typeof doc !== "object" || !doc.jobs) return out;
 	for (const [jobName, job] of Object.entries(doc.jobs)) {
 		job?.steps?.forEach((step, idx) => {
-			if (
-				typeof step?.run === "string" &&
-				/(?:^|[;&|\n]\s*)bun\s+test(?:\s|$)/m.test(step.run)
-			) {
-				out.push({ workflow, job: jobName, step: idx });
+			for (const command of stepCommands(step)) {
+				if (/(?:^|[;&|\n]\s*)bun\s+test(?:\s|$)/m.test(command)) {
+					out.push({ workflow, job: jobName, step: idx });
+				}
 			}
 		});
 	}
 	return out;
+}
+
+function stepCommands(step: WorkflowStep): string[] {
+	const commands: string[] = [];
+	if (typeof step?.run === "string") commands.push(step.run);
+	const withBlock = step?.with;
+	if (
+		withBlock &&
+		typeof withBlock === "object" &&
+		"command" in withBlock &&
+		typeof withBlock.command === "string"
+	) {
+		commands.push(withBlock.command);
+	}
+	return commands;
 }
 
 export function extractCiInvocations(filePath: string): CiInvocation[] {
@@ -178,10 +195,10 @@ export function extractCiInvocations(filePath: string): CiInvocation[] {
 		const steps = job?.steps;
 		if (!Array.isArray(steps)) continue;
 		steps.forEach((step, idx) => {
-			const run = step?.run;
-			if (typeof run !== "string") return;
-			for (const script of extractBunRunTargets(run)) {
-				out.push({ workflow, job: jobName, step: idx, script });
+			for (const command of stepCommands(step)) {
+				for (const script of extractBunRunTargets(command)) {
+					out.push({ workflow, job: jobName, step: idx, script });
+				}
 			}
 		});
 	}

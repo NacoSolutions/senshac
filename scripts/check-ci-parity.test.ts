@@ -67,6 +67,9 @@ describe("check-ci-parity", () => {
 				"      - uses: actions/checkout@v6",
 				"      - run: bun install",
 				"      - run: bun run lint && bun run typecheck",
+				"      - uses: flox/activate-action@v1",
+				"        with:",
+				"          command: bun run verify:ci",
 				"      - name: tests",
 				"        run: |",
 				"          bun run test:ci",
@@ -76,7 +79,7 @@ describe("check-ci-parity", () => {
 		try {
 			const invocations = extractCiInvocations(file);
 			const scripts = invocations.map((i) => i.script).sort();
-			expect(scripts).toEqual(["lint", "test:ci", "typecheck"]);
+			expect(scripts).toEqual(["lint", "test:ci", "typecheck", "verify:ci"]);
 		} finally {
 			rmSync(dir, { recursive: true, force: true });
 		}

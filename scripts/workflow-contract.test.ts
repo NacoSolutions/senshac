@@ -25,12 +25,25 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(pkg.scripts["test:secrets:sops"]).toBe("bash scripts/sops-age-smoke");
 
 	const workflow = yaml.load(read(".github/workflows/ci.yml")) as {
-		jobs: { ci: { steps: Array<{ run?: string }> } };
+		jobs: {
+			ci: {
+				steps: Array<{
+					run?: string;
+					uses?: string;
+					with?: { command?: string };
+				}>;
+			};
+		};
 	};
 	const commands = workflow.jobs.ci.steps
-		.map((step) => step.run)
+		.flatMap((step) => [step.run, step.with?.command])
 		.filter((command): command is string => Boolean(command));
+	const uses = workflow.jobs.ci.steps
+		.map((step) => step.uses)
+		.filter((action): action is string => Boolean(action));
 	expect(commands).toContain("bun run verify:ci");
+	expect(uses).toContain("flox/install-flox-action@v2");
+	expect(uses).toContain("flox/activate-action@v1");
 	expect(commands).not.toContain("bun run check:all");
 	expect(commands).not.toContain("bun run test");
 
@@ -53,6 +66,7 @@ test("CI and pre-push share the authoritative verification command", () => {
 
 	const build = read("scripts/build");
 	expect(build).toContain("flox_tinacms=");
+	expect(build).toContain("TinaCMS CLI not found");
 	expect(build).toContain('"$tinacms_bin" build --skip-cloud-checks');
 
 	const ship = read("scripts/ship");

@@ -29,6 +29,11 @@ if [ -n "${FLOX_ENV_PROJECT:-}" ]; then
   fi
 fi
 
+if [ ! -x "$tinacms_bin" ] && ! command -v "$tinacms_bin" >/dev/null 2>&1; then
+  echo "TinaCMS CLI not found. Run this command inside the Flox environment." >&2
+  exit 127
+fi
+
 "$tinacms_bin" build --skip-cloud-checks
 
 if [ -n "${TINA_TOKEN:-}" ]; then
