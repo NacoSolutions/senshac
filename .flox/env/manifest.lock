@@ -1012,10 +1012,10 @@
     },
     {
       "install_id": "tinacms-cli",
-      "locked-url": "github:RogerNavelsaker/nixpkg-tinacms-cli/3d930d277b8a4423a5af3e5c6f27b2c46e7aa4b2?narHash=sha256-jLbrCZo8cqiarP83b4evczbDgqoivJc1Hy6LkGEqqbo%3D",
+      "locked-url": "github:RogerNavelsaker/nixpkg-tinacms-cli/df2329c9bc7664dc5b68810096fdca9dcf8e4855?narHash=sha256-jl%2BKeBMWiOipqow9oRDTNSITLqFvLI1ozygImRl2mqk%3D",
       "flake-description": "Nix packaging scaffold for tinacms-cli",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/d2h22hqrzq7sj3c63bin9x2xln1mih7a-tinacms-cli-2.5.1.drv",
+      "derivation": "/nix/store/ybcx2l8w0b0fm11qsxpjmmr7ppvfv4q0-tinacms-cli-2.5.1.drv",
       "outputs": {
         "out": "/nix/store/gywwcwb6m637ajcv1ypany2vpvjh9ri0-tinacms-cli-2.5.1"
       },
