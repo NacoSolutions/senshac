@@ -105,7 +105,16 @@ The Cloudflare adapter may also require a `SESSION` KV binding when sessions are
 
 ## Secret Handling
 
-Do not commit Tina tokens, Turnstile secrets, Cloudflare API tokens, or `.env` files. Keep secrets in local shell environment, Flox/direnv private configuration, or Cloudflare Pages environment variables.
+Do not commit Tina tokens, Turnstile secrets, Cloudflare API tokens, or
+plaintext `.env` files. Keep plaintext secrets in local shell environment,
+Flox/direnv private configuration, ignored wrapper files, or Cloudflare Pages
+environment variables.
+
+The workspace split will use committed SOPS/age bundles only after the
+decrypt, CI, rotation, and recovery paths are proven. See
+[docs/secrets-sops-age.md](docs/secrets-sops-age.md). Interactive editing may
+use the existing YubiKey/GPG-backed `nix-keys` flow; automation should use a CI
+age identity stored as a GitHub or Act secret.
 
 Tina generates `tina/__generated__/client.ts` during builds. Always run production builds through `bun run build`; the wrapper removes literal Tina token values before Astro bundles the Cloudflare worker.
 
@@ -116,6 +125,12 @@ git ls-files --cached --others --exclude-standard \
   | while IFS= read -r file; do [ -e "$file" ] && printf '%s\0' "$file"; done \
   | xargs -0 flox activate -- betterleaks dir --redact=100 --no-banner --no-color
 flox activate -- betterleaks git --redact=100 --no-banner --no-color .
+```
+
+Run the lightweight policy guard before pushing:
+
+```bash
+bun run check:secrets-policy
 ```
 
 ## Languages

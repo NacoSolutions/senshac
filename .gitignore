@@ -28,6 +28,13 @@ pnpm-debug.log*
 .env.*.local
 .secrets
 .secrets.act
+.sops-age-key.txt
+*.agekey
+secrets/**/*.dec.env
+secrets/**/*.plain.env
+secrets/**/*.local.env
+secrets/**/*.key
+secrets/**/*.pem
 
 # macOS-specific files
 .DS_Store

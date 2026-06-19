@@ -25,7 +25,7 @@
 		"check:deps": "scripts/with-timeout 120 knip",
 		"check:precommit": "CHECK_CLEAN_ALLOW_STAGED=1 bun run check:clean && bun run lint && bun run check:seeds",
 		"check:prepush": "rm -rf node_modules && bun install --frozen-lockfile && bun run verify:ci",
-		"check:all": "bun run check:clean && bun run check && bun run lint && bun run check:deps && bun run check:coverage && bun run check:debt-markers && bun run check:file-sizes && bun run check:bundle-size && bun run check:ci-parity && bun run gen:docs:check && bun run gen:openapi:check && bun run check:seeds && bun run check:leaks",
+		"check:all": "bun run check:clean && bun run check && bun run lint && bun run check:deps && bun run check:coverage && bun run check:debt-markers && bun run check:file-sizes && bun run check:bundle-size && bun run check:ci-parity && bun run gen:docs:check && bun run gen:openapi:check && bun run check:secrets-policy && bun run check:seeds && bun run check:leaks",
 		"test": "bun test src/ scripts/",
 		"test:e2e": "playwright test",
 		"test:e2e:ui": "playwright test --ui",
@@ -47,6 +47,8 @@
 		"clean": "rm -rf coverage/ playwright-report/ test-results/ && find . -type d -empty -not -path \"./.git/*\" -not -path \"./node_modules/*\" -delete",
 		"check:clean": "bun run scripts/check-repo-cleanliness.ts",
 		"check:seeds": "bun run scripts/seeds-integrity.ts",
+		"check:secrets-policy": "bun run scripts/check-secret-policy.ts",
+		"test:secrets:sops": "bash scripts/sops-age-smoke",
 		"check:leaks": "betterleaks git --redact --no-banner --no-color ."
 	},
 	"dependencies": {

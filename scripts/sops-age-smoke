@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+for tool in sops age-keygen ssh-keygen rg; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "missing required tool: $tool" >&2
+    exit 1
+  fi
+done
+
+tmp="$(mktemp -d)"
+cleanup() {
+  rm -rf "$tmp"
+}
+trap cleanup EXIT
+
+age_key="$tmp/ci.agekey"
+ssh_key="$tmp/id_ed25519"
+plain="$tmp/plain.env"
+encrypted="$tmp/dummy.enc.env"
+
+age-keygen -o "$age_key" >/dev/null
+age_recipient="$(sed -n 's/^# public key: //p' "$age_key")"
+
+ssh-keygen -q -t ed25519 -N "" -f "$ssh_key" >/dev/null
+ssh_recipient="$(cat "$ssh_key.pub")"
+
+printf 'DUMMY_TOKEN=not-a-real-secret\n' > "$plain"
+
+sops --encrypt \
+  --age "$age_recipient,$ssh_recipient" \
+  --input-type dotenv \
+  --output-type dotenv \
+  "$plain" > "$encrypted"
+
+if rg -q "not-a-real-secret" "$encrypted"; then
+  echo "encrypted output contains plaintext" >&2
+  exit 1
+fi
+
+ci_decrypted="$(
+  SOPS_AGE_KEY_FILE="$age_key" \
+    sops --decrypt --input-type dotenv --output-type dotenv "$encrypted"
+)"
+ssh_decrypted="$(
+  SOPS_AGE_SSH_PRIVATE_KEY_FILE="$ssh_key" \
+    sops --decrypt --input-type dotenv --output-type dotenv "$encrypted"
+)"
+
+expected='DUMMY_TOKEN=not-a-real-secret'
+if [ "$ci_decrypted" != "$expected" ]; then
+  echo "CI age decrypt produced unexpected output" >&2
+  exit 1
+fi
+if [ "$ssh_decrypted" != "$expected" ]; then
+  echo "SSH age decrypt produced unexpected output" >&2
+  exit 1
+fi
+
+echo "SOPS age smoke passed"

@@ -21,6 +21,8 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(pkg.scripts["check:prepush"]).toBe(
 		"rm -rf node_modules && bun install --frozen-lockfile && bun run verify:ci",
 	);
+	expect(pkg.scripts["check:all"]).toContain("bun run check:secrets-policy");
+	expect(pkg.scripts["test:secrets:sops"]).toBe("bash scripts/sops-age-smoke");
 
 	const workflow = yaml.load(read(".github/workflows/ci.yml")) as {
 		jobs: { ci: { steps: Array<{ run?: string }> } };
@@ -215,8 +217,12 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(pkg.devDependencies.wrangler).toBeUndefined();
 
 	const knip = JSON.parse(read("knip.json")) as {
+		entry: string[];
+		ignore: string[];
 		ignoreDependencies: string[];
 	};
+	expect(knip.entry).toContain("scripts/check-secret-policy.ts");
+	expect(knip.ignore).toContain("scripts/check-secret-policy.ts");
 	expect(knip.ignoreDependencies).not.toEqual(
 		expect.arrayContaining([
 			"@os-eco/canopy-cli",
@@ -310,4 +316,47 @@ test("agent onboarding documents the workspace split workflow", () => {
 	expect(onboarding).toContain("senshac-workspace");
 	expect(workflow).toContain("docs/workspace-agent-onboarding.md");
 	expect(topology).toContain("docs/workspace-agent-onboarding.md");
+});
+
+test("secret bundle policy documents sops age and yubikey gpg paths", () => {
+	const pkg = JSON.parse(read("package.json")) as {
+		scripts: Record<string, string>;
+	};
+	expect(pkg.scripts["check:all"]).toContain("bun run check:secrets-policy");
+	expect(pkg.scripts["check:secrets-policy"]).toBe(
+		"bun run scripts/check-secret-policy.ts",
+	);
+	expect(pkg.scripts["test:secrets:sops"]).toBe("bash scripts/sops-age-smoke");
+
+	const policy = read("docs/secrets-sops-age.md");
+	expect(policy).toContain("Seed: `senshac-8521`");
+	expect(policy).toContain("YubiKey/GPG");
+	expect(policy).toContain("nix-keys");
+	expect(policy).toContain("SOPS_AGE_SSH_PRIVATE_KEY_FILE");
+	expect(policy).toContain("SOPS_AGE_KEY");
+	expect(policy).toContain("secrets/local.enc.env");
+	expect(policy).toContain("senshac-workspace");
+	expect(policy).toContain("senshac-web");
+
+	const gitignore = read(".gitignore");
+	for (const pattern of [
+		".sops-age-key.txt",
+		"*.agekey",
+		"secrets/**/*.dec.env",
+		"secrets/**/*.plain.env",
+		"secrets/**/*.local.env",
+		"secrets/**/*.key",
+		"secrets/**/*.pem",
+	]) {
+		expect(gitignore).toContain(pattern);
+	}
+
+	const policyCheck = read("scripts/check-secret-policy.ts");
+	expect(policyCheck).toContain("check failed");
+	expect(policyCheck).toContain(".enc.");
+
+	const smoke = read("scripts/sops-age-smoke");
+	expect(smoke).toContain("SOPS_AGE_KEY_FILE");
+	expect(smoke).toContain("SOPS_AGE_SSH_PRIVATE_KEY_FILE");
+	expect(smoke).toContain("not-a-real-secret");
 });
