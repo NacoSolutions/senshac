@@ -19,7 +19,7 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(pkg.scripts["check:precommit"]).toContain("bun run check:seeds");
 	expect(pkg.scripts["check:precommit"]).not.toContain("verify:ci");
 	expect(pkg.scripts["check:prepush"]).toBe(
-		"bun install --frozen-lockfile && bun run verify:ci",
+		"rm -rf node_modules && bun install --frozen-lockfile && bun run verify:ci",
 	);
 
 	const workflow = yaml.load(read(".github/workflows/ci.yml")) as {
