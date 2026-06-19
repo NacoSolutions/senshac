@@ -48,13 +48,9 @@ For local Tina/contact-form configuration, copy `.env.example` to `.env.local` a
 |---------|-------------|
 | `dx [-d <path>] <command>` | Run a command through the direnv-loaded repo environment |
 | `tr triage` | Show graph-ranked ready work |
-| `fx check` | Run Astro check |
-| `fx build` | Run the production build |
-| `fx verify` | Run the same authoritative verification gate as GitHub CI |
-| `fx ci-local` | Emulate the full GitHub CI job with Act and rootless Podman |
-| `fx ship` | Verify, push, create/update a PR, and enable protected auto-merge |
-| `fx deploy` | Deploy `dist/` to Cloudflare Pages |
-| `fx smoke [base]` | Smoke-test localized routes and Tina admin labels |
+| `fx [-d <path>] <command>` | Run a command through `flox activate -d <path> --` |
+| `fx install <pkg>` | Install a Flox package in the selected repo |
+| `bun run verify:ci` | Run the same authoritative verification gate as GitHub CI |
 | `dev [action]` | Astro dev server (start/stop/restart/status/log) |
 | `cms [action]` | TinaCMS + Astro (start/stop/restart/status/log) |
 | `bun run build` | Run TinaCMS generation, scrub generated token literals, then build Astro for Cloudflare |
@@ -69,9 +65,9 @@ Production builds use Bun, Astro, and Wrangler:
 ```bash
 flox activate
 bun install
-fx check
-fx build
-fx deploy
+bun run check
+bun run build
+bun run deploy
 ```
 
 Cloudflare Pages Git deployments must use this build command:

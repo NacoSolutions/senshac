@@ -111,14 +111,13 @@ The previous plan said secrets stay outside Git. That remains true for plaintext
 - `flox activate -- bash -lc ...` printed `error: unknown command '\n'` at the start of the multi-line command even though the prototype continued. This matches existing activation-newline friction and belongs with the Flox activation follow-up.
 - Seeds bootstrap cannot be hand-written by only creating `.seeds/issues.jsonl`; use `sd init` first.
 - Worktrunk needs project-specific `worktree-path` config for clean sibling worktree placement in focused bare repos.
-- The current `fx -d <path> <command>` pass-through is still not implemented, so the prototype used direct `flox activate -d` and `wt -C` forms.
+- `fx -d <path> <command>` and `dx -d <path> <command>` now provide the intended cross-worktree pass-through forms; future prototypes should use those wrappers.
 
 ## Recommendation
 
 Continue the split, but do the next implementation in this order:
 
-1. Implement `senshac-9bab` so `fx -d <path> <command>` and `dx -d <path> <command>` are reliable and fail loud.
-2. Define a focused-repo bootstrap script that runs `sd init`, initializes Mulch/Canopy as needed, writes `.config/wt.toml`, and configures Worktrunk worktree placement.
-3. Keep `senshac-runner` as the first real focused repo candidate.
-4. Treat `senshac-content` as a Tina-supported separate content repo, but do not move content until `senshac-d2ed` maps the active seeds and the TinaCloud content-repo toggle/localContentPath plan is explicit.
-5. Add a SOPS/age seed if one does not already exist, covering encrypted env bundles, key ownership, CI/Act decrypt, and rotation.
+1. Define a focused-repo bootstrap script that runs `sd init`, initializes Mulch/Canopy as needed, writes `.config/wt.toml`, and configures Worktrunk worktree placement.
+2. Keep `senshac-runner` as the first real focused repo candidate.
+3. Treat `senshac-content` as a Tina-supported separate content repo, but do not move content until the TinaCloud content-repo toggle/localContentPath plan is explicit.
+4. Complete the SOPS/age seed covering encrypted env bundles, key ownership, CI/Act decrypt, and rotation.

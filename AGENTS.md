@@ -142,7 +142,7 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 ## Environment Commands
 
 - `dx [-d <path>] <command>` — short wrapper for `direnv exec <path> <command>`.
-- `fx [-d <path>] <command>` — Flox-scoped command wrapper plus project workflow shortcuts; start with `fx check`, `fx build`, `fx deploy`, and `fx smoke [base]`.
+- `fx [-d <path>] <command>` — short wrapper for `flox activate -d <path> -- <command>`; Flox management verbs such as `fx install <pkg>` remain available.
 - Cloudflare Pages Git deployments use `bun install --frozen-lockfile && bun run build` so dependencies exist before Tina generation.
 
 <!-- seeds:start -->
@@ -171,10 +171,11 @@ This injects session context: rules, command reference, and workflows.
 - `sd dep add <id> <depends-on>` — Add dependency between issues
 - `sd sync` — Validate, stage, and commit tracker changes before pushing
 
-The repository-owned `scripts/sd` wrapper pins Seeds to `0.5.10`, checks
-`.seeds/issues.jsonl` before and after mutations, and restores the tracker if a
-command violates its invariants. Always run Seeds through `dx sd`; never call a
-floating package executor or edit the JSONL manually.
+The repository-owned `scripts/sd` wrapper delegates to the pinned Seeds binary
+from Flox. Tracker integrity is enforced by explicit checks such as
+`bun run check:seeds`, `bun run check:all`, and the commit/push gates. Always
+run Seeds through `dx sd`; never call a floating package executor or edit the
+JSONL manually.
 
 Development dependency ownership is exclusive:
 

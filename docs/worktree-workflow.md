@@ -75,7 +75,8 @@ dx bun run check
 The intended cross-worktree command forms are `dx -d <path> <command>` for
 `direnv exec <path> <command>` and `fx -d <path> <command>` for
 `flox activate -d <path> -- <command>`. Flox management conveniences such as
-`fx install <pkg>` remain valid.
+`fx install <pkg>` remain valid. Package scripts stay in `package.json`; run
+them as `fx -d <path> bun run <script>` or `dx -d <path> bun run <script>`.
 
 Push the branch and merge through a protected pull request. `main` requires
 the strict `ci` status and disallows direct force pushes. Use `wt remove` after
@@ -100,12 +101,12 @@ staged commits impossible.
 For the normal completion path, run:
 
 ```bash
-fx ship
+bash scripts/ship
 ```
 
 This requires a clean, committed branch based on current `origin/main`, runs
 the same `verify:ci` command used by GitHub Actions, pushes the branch, creates
-or finds its pull request, and enables squash auto-merge. Use `fx ci-local`
+or finds its pull request, and enables squash auto-merge. Use `dx bun run test:workflow:ci`
 when changing workflow YAML, runner images, permissions, or event handling;
 ordinary application changes do not need the slower Act container run.
 

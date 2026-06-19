@@ -1,6 +1,7 @@
 import { expect, test } from "bun:test";
-import { readdirSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
 import yaml from "js-yaml";
 
 const root = resolve(import.meta.dir, "..");
@@ -59,12 +60,107 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(workflow).not.toContain("git push");
 });
 
-test("fx exposes verification, local Actions emulation, and shipping", () => {
+test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 	const fx = read("scripts/fx");
-	expect(fx).toContain("verify)");
-	expect(fx).toContain("ci-local)");
-	expect(fx).toContain("ship)");
-	expect(fx).toContain("WIP_SITE_URL:-https://wip.senshac.com");
+	expect(fx).toContain('exec flox activate -d "$repo" -- "$@"');
+	expect(fx).not.toContain("bun run check");
+	expect(fx).not.toContain("bun run build");
+	expect(fx).not.toContain("bun run verify:ci");
+	expect(fx).not.toContain("smoke)");
+
+	const dx = read("scripts/dx");
+	expect(dx).toContain('exec "$real_direnv" exec "$repo" "$@"');
+
+	const tmp = mkdtempSync(join(tmpdir(), "senshac-wrapper-test-"));
+	const bin = join(tmp, "bin");
+	const repoWithSpace = join(tmp, "repo with space");
+	const calls = join(tmp, "calls.jsonl");
+	Bun.spawnSync(["mkdir", "-p", bin, repoWithSpace]);
+	writeFileSync(
+		join(bin, "flox"),
+		`#!/usr/bin/env bash\nprintf '%s\\n' "$(printf '%s\\0' "$@" | bun -e 'const input=await new Response(Bun.stdin.stream()).arrayBuffer(); console.log(JSON.stringify([...new Uint8Array(input)].reduce((parts, byte) => { if (byte === 0) parts.push(""); else parts[parts.length - 1] += String.fromCharCode(byte); return parts; }, [""]).slice(0, -1)))')" >> "${calls}"\nif [ "\${FAIL_FAKE_FLOX:-}" = "1" ]; then exit 37; fi\n`,
+		{ mode: 0o755 },
+	);
+	writeFileSync(
+		join(bin, "direnv"),
+		`#!/usr/bin/env bash\nprintf '%s\\n' "$(printf '%s\\0' "$@" | bun -e 'const input=await new Response(Bun.stdin.stream()).arrayBuffer(); console.log(JSON.stringify([...new Uint8Array(input)].reduce((parts, byte) => { if (byte === 0) parts.push(""); else parts[parts.length - 1] += String.fromCharCode(byte); return parts; }, [""]).slice(0, -1)))')" >> "${calls}"\nif [ "\${FAIL_FAKE_DIRENV:-}" = "1" ]; then exit 38; fi\n`,
+		{ mode: 0o755 },
+	);
+	const env = {
+		...process.env,
+		PATH: `${bin}:${process.env.PATH}`,
+		FLOX_ENV_PROJECT: "/unexpected/inherited/flox/project",
+	};
+	const fxScript = resolve(root, "scripts/fx");
+	const dxScript = resolve(root, "scripts/dx");
+
+	let result = Bun.spawnSync(
+		[
+			"bash",
+			fxScript,
+			"-d",
+			repoWithSpace,
+			"sd",
+			"create",
+			"--title",
+			"spaced title",
+		],
+		{ cwd: tmp, env },
+	);
+	expect(result.exitCode).toBe(0);
+
+	result = Bun.spawnSync(
+		["bash", fxScript, "-d", repoWithSpace, "install", "ripgrep"],
+		{
+			cwd: tmp,
+			env,
+		},
+	);
+	expect(result.exitCode).toBe(0);
+
+	result = Bun.spawnSync(
+		["bash", dxScript, "-d", repoWithSpace, "tr", "triage"],
+		{
+			cwd: tmp,
+			env,
+		},
+	);
+	expect(result.exitCode).toBe(0);
+
+	result = Bun.spawnSync(
+		["bash", fxScript, "-d", repoWithSpace, "tr", "triage"],
+		{
+			cwd: tmp,
+			env: { ...env, FAIL_FAKE_FLOX: "1" },
+		},
+	);
+	expect(result.exitCode).toBe(37);
+
+	result = Bun.spawnSync(
+		["bash", dxScript, "-d", repoWithSpace, "tr", "triage"],
+		{
+			cwd: tmp,
+			env: { ...env, FAIL_FAKE_DIRENV: "1" },
+		},
+	);
+	expect(result.exitCode).toBe(38);
+
+	const recorded = readFileSync(calls, "utf8")
+		.trim()
+		.split("\n")
+		.map((line) => JSON.parse(line));
+	expect(recorded[0]).toEqual([
+		"activate",
+		"-d",
+		repoWithSpace,
+		"--",
+		"sd",
+		"create",
+		"--title",
+		"spaced title",
+	]);
+	expect(recorded[1]).toEqual(["install", "-d", repoWithSpace, "ripgrep"]);
+	expect(recorded[2]).toEqual(["exec", repoWithSpace, "tr", "triage"]);
 
 	const actCi = read("scripts/act-ci");
 	expect(actCi).toContain(".github/workflows/ci.yml");
@@ -103,8 +199,10 @@ test("development tools have one pinned owner and automation uses locked binarie
 	);
 
 	const sd = read("scripts/sd");
-	expect(sd).toContain("cli=(seeds)");
-	expect(sd).toContain("scripts/seeds-integrity.ts");
+	expect(sd).not.toContain("scripts/seeds-integrity.ts");
+	expect(sd).not.toContain("mktemp");
+	expect(sd).not.toContain("restored");
+	expect(sd).toContain('exec seeds "$@"');
 	expect(read("scripts/ml")).toContain("exec mulch");
 	expect(read("scripts/cn")).toContain("exec canopy");
 	expect(read("scripts/tr")).toContain("exec terrarium");

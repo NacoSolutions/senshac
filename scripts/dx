@@ -5,7 +5,7 @@ export DIRENV_LOG_FORMAT=""
 export QUIET=1
 
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-repo="${FLOX_ENV_PROJECT:-$(git -C "$script_dir" rev-parse --show-toplevel)}"
+repo="$(git -C "$script_dir" rev-parse --show-toplevel 2>/dev/null || git rev-parse --show-toplevel 2>/dev/null || pwd)"
 
 if [ "${1:-}" = "-d" ] && [ -n "${2:-}" ]; then
   repo="$(realpath "$2")"
