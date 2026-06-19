@@ -131,13 +131,19 @@ This project uses a bare repository with isolated Worktrunk worktrees:
   ignored environment files. Never run project commands from the wrapper.
 - `.../senshac/main/` is the clean integration worktree. Do not implement
   features directly there.
+- The current repository remains the live `senshac-web` implementation until a
+  deliberate workspace cutover seed changes that. Future focused repositories
+  are documented in `docs/workspace-split-topology.md` and
+  `docs/workspace-seed-routing.md`.
 - Create independently mergeable work with
   `wt switch --create <kind>/<seed>-<slug> --base main`.
 - Run project and tracker commands inside the resulting worktree through
-  `dx`; use `tr triage` for work selection and `sd` for issue mutation.
+  `dx`; use `tr triage` for routine work selection and `sd` for issue mutation
+  or tracker debugging.
 - Push branches and integrate them through protected pull requests. Use
   `wt remove` after merge.
-- See `docs/worktree-workflow.md` for setup, naming, hooks, and cleanup.
+- See `docs/workspace-agent-onboarding.md` and `docs/worktree-workflow.md` for
+  setup, naming, hooks, routing, and cleanup.
 
 ## Environment Commands
 
@@ -169,7 +175,7 @@ This injects session context: rules, command reference, and workflows.
 - `sd update <id> --status in_progress` — Claim work
 - `sd close <id>` — Complete work
 - `sd dep add <id> <depends-on>` — Add dependency between issues
-- `sd sync` — Validate, stage, and commit tracker changes before pushing
+- `sd sync` — Validate, stage, and commit tracker-only changes when a dedicated tracker commit is intentional
 
 The repository-owned `scripts/sd` wrapper delegates to the pinned Seeds binary
 from Flox. Tracker integrity is enforced by explicit checks such as
@@ -189,7 +195,8 @@ Development dependency ownership is exclusive:
 ### Before You Finish
 1. Close completed issues: `sd close <id>`
 2. File issues for remaining work: `sd create --title "..."`
-3. Sync and push: `sd sync && git push`
+3. Run the relevant package gate, stage all related files with Git, commit, and
+   let the pre-push hook run the thorough gate
 <!-- seeds:end -->
 
 <!-- canopy:start -->

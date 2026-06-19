@@ -127,7 +127,9 @@ sd doctor
    Use `senshac-d2ed` to label or document which open seeds belong to `senshac-web`, `senshac-content`, `senshac-infra`, `senshac-runner`, or `senshac-media-runner`. Keep cross-repo blockers explicit. Use Tina's generator/content terminology when mapping CMS work.
 
 4. **Update agent onboarding**  
-   Use `senshac-3a64` to update wrapper and repo `AGENTS.md`, `docs/worktree-workflow.md`, and workspace bootstrap docs after the prototype path is known.
+   Use `senshac-3a64` to update wrapper and repo `AGENTS.md`,
+   `docs/worktree-workflow.md`, and `docs/workspace-agent-onboarding.md` after
+   the prototype path is known.
 
 5. **Move low-risk ownership first**  
    Start with runner/media-runner work. Keep active website code in `NacoSolutions/senshac` until deployment, preview URL routing, docs generation, and acceptance gates are proven in the split setup.

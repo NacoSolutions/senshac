@@ -136,4 +136,5 @@ git worktree list
 ```
 
 See `docs/workspace-split-topology.md` for the planned meta-repo and focused
-bare-repo split.
+bare-repo split, and `docs/workspace-agent-onboarding.md` for the current
+agent entry workflow.

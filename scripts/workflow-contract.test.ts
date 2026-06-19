@@ -291,3 +291,23 @@ test("development tools have one pinned owner and automation uses locked binarie
 		expect(read(path)).toContain("contents: write");
 	}
 });
+
+test("agent onboarding documents the workspace split workflow", () => {
+	const agents = read("AGENTS.md");
+	const onboarding = read("docs/workspace-agent-onboarding.md");
+	const workflow = read("docs/worktree-workflow.md");
+	const topology = read("docs/workspace-split-topology.md");
+
+	expect(agents).toContain("docs/workspace-agent-onboarding.md");
+	expect(agents).toContain("tr triage");
+	expect(agents).toContain("sd sync");
+	expect(agents).not.toContain("sd sync && git push");
+	expect(onboarding).toContain("dx tr triage");
+	expect(onboarding).toContain("dx sd doctor");
+	expect(onboarding).toContain("fx -d /path/to/worktree bun run check:prepush");
+	expect(onboarding).toContain("Use `sd sync`, `ml sync`, or `cn sync` only");
+	expect(onboarding).toContain("senshac-web");
+	expect(onboarding).toContain("senshac-workspace");
+	expect(workflow).toContain("docs/workspace-agent-onboarding.md");
+	expect(topology).toContain("docs/workspace-agent-onboarding.md");
+});

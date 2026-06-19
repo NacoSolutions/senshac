@@ -39,6 +39,8 @@ bun run dev
 
 The Flox environment also provides the project helper CLIs: `sd`, `ml`, `cn`, and `tl`.
 It also exposes `dx` for `direnv exec <path> <command>` and `fx` for Flox-scoped commands plus common project workflows.
+Agents should start with `docs/workspace-agent-onboarding.md` for the current
+bare-wrapper, Worktrunk, Terrarium, and focused-repo routing rules.
 
 For local Tina/contact-form configuration, copy `.env.example` to `.env.local` and fill in real values. `.env.local` is ignored by git and loaded by `.envrc` when direnv is enabled.
 
