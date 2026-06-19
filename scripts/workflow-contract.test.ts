@@ -49,6 +49,10 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(read(".githooks/pre-push")).toContain("FLOX_ENV_PROJECT");
 	expect(read(".githooks/pre-push")).toContain("direnv exec");
 
+	const build = read("scripts/build");
+	expect(build).toContain("flox_tinacms=");
+	expect(build).toContain('"$tinacms_bin" build --skip-cloud-checks');
+
 	const ship = read("scripts/ship");
 	expect(ship).toContain("git push --set-upstream origin HEAD");
 	expect(ship).not.toContain("bun run verify:ci");
