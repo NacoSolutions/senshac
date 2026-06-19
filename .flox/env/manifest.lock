@@ -23,6 +23,9 @@
         "pkg-path": "bun",
         "pkg-group": "bun"
       },
+      "cacert": {
+        "pkg-path": "cacert"
+      },
       "canopy": {
         "flake": "github:RogerNavelsaker/nixpkg-canopy",
         "outputs": [
@@ -74,6 +77,9 @@
       "nixfmt": {
         "pkg-path": "nixfmt-rfc-style",
         "pkg-group": "nixfmt"
+      },
+      "nodejs_24": {
+        "pkg-path": "nodejs_24"
       },
       "perl": {
         "pkg-path": "perl",
@@ -140,7 +146,7 @@
       "NODE_ENV": "development"
     },
     "hook": {
-      "on-activate": "  export PATH=\"$FLOX_ENV_PROJECT/scripts:$PATH\"\n  GCC_RUNTIME_LIB=\"$(dirname \"$(gcc -print-file-name=libstdc++.so.6)\")\"\n  export LD_LIBRARY_PATH=\"$GCC_RUNTIME_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n\n  if [ -f package.json ] && [ ! -d node_modules ]; then\n    echo \"Installing dependencies...\"\n    bun install\n  fi\n\n  if [ -z \"${QUIET:-}\" ]; then\n    cat <<'EOF'\nSenshac Development Environment\n\nAstro + Alpine.js + HTMX + UnoCSS\n\nQuick Commands:\n  dx <command>                          Run through direnv exec .\n  fx <command>                          Run through flox activate -d .\n  dev [start|stop|restart|status|log]   Astro dev server\n  cms [start|stop|restart|status|log]   TinaCMS + Astro\n  bun run build                         Build for production\n  bun run preview                       Preview production build\n  bun run check                         Run Astro check\n  bun run deploy                        Deploy to Cloudflare Pages\n  sd, ml, cn, tr, tl                    Seeds, Mulch, Canopy, Terrarium, Trellis\nEOF\n  fi\n"
+      "on-activate": "  export PATH=\"$FLOX_ENV_PROJECT/scripts:$PATH\"\n  GCC_RUNTIME_LIB=\"$(dirname \"$(gcc -print-file-name=libstdc++.so.6)\")\"\n  export LD_LIBRARY_PATH=\"$GCC_RUNTIME_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n  FLOX_CERT_FILE=\"$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.run/etc/ssl/certs/ca-bundle.crt\"\n  if [ ! -f \"$FLOX_CERT_FILE\" ]; then\n    FLOX_CERT_FILE=\"$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.dev/etc/ssl/certs/ca-bundle.crt\"\n  fi\n  if [ -f \"$FLOX_CERT_FILE\" ]; then\n    export SSL_CERT_FILE=\"$FLOX_CERT_FILE\"\n    export NIX_SSL_CERT_FILE=\"$FLOX_CERT_FILE\"\n    export NODE_EXTRA_CA_CERTS=\"$FLOX_CERT_FILE\"\n  fi\n\n  if [ -f package.json ] && [ ! -d node_modules ]; then\n    echo \"Installing dependencies...\"\n    bun install\n  fi\n\n  if [ -z \"${QUIET:-}\" ]; then\n    cat <<'EOF'\nSenshac Development Environment\n\nAstro + Alpine.js + HTMX + UnoCSS\n\nQuick Commands:\n  dx <command>                          Run through direnv exec .\n  fx <command>                          Run through flox activate -d .\n  dev [start|stop|restart|status|log]   Astro dev server\n  cms [start|stop|restart|status|log]   TinaCMS + Astro\n  bun run build                         Build for production\n  bun run preview                       Preview production build\n  bun run check                         Run Astro check\n  bun run deploy                        Deploy to Cloudflare Pages\n  sd, ml, cn, tr, tl                    Seeds, Mulch, Canopy, Terrarium, Trellis\nEOF\n  fi\n"
     },
     "options": {
       "systems": [
@@ -696,6 +702,71 @@
       },
       "system": "x86_64-linux",
       "group": "sops",
+      "priority": 5
+    },
+    {
+      "attr_path": "cacert",
+      "broken": false,
+      "derivation": "/nix/store/303zvxqv6azsb8iiblqm4ligbiwiin2i-nss-cacert-3.123.drv",
+      "description": "Bundle of X.509 certificates of public Certificate Authorities (CA)",
+      "install_id": "cacert",
+      "license": "MPL-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=567a49d1913ce81ac6e9582e3553dd90a955875f",
+      "name": "nss-cacert-3.123",
+      "pname": "cacert",
+      "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
+      "rev_count": 1017464,
+      "rev_date": "2026-06-16T02:33:49Z",
+      "scrape_date": "2026-06-17T04:47:04.093937Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.123",
+      "outputs_to_install": [
+        "out",
+        "out",
+        "out",
+        "out",
+        "out"
+      ],
+      "outputs": {
+        "hashed": "/nix/store/xdh7nr550vh5q5rqjas1d5y5fhcp4v5a-nss-cacert-3.123-hashed",
+        "out": "/nix/store/6snfrwakqanqp7c21nnzmz183fkhnzv1-nss-cacert-3.123",
+        "p11kit": "/nix/store/g64cqi02bajwcp8qbw3d6nhz4kdcjg71-nss-cacert-3.123-p11kit",
+        "unbundled": "/nix/store/8ylfzdcp1l289jl1fv4hds1j35jla7cd-nss-cacert-3.123-unbundled"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "nodejs_24",
+      "broken": false,
+      "derivation": "/nix/store/f8i8jydaqs0ngxm97c091zna2mnjb43f-nodejs-24.15.0.drv",
+      "description": "Event-driven I/O framework for the V8 JavaScript engine",
+      "install_id": "nodejs_24",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=567a49d1913ce81ac6e9582e3553dd90a955875f",
+      "name": "nodejs-24.15.0",
+      "pname": "nodejs_24",
+      "rev": "567a49d1913ce81ac6e9582e3553dd90a955875f",
+      "rev_count": 1017464,
+      "rev_date": "2026-06-16T02:33:49Z",
+      "scrape_date": "2026-06-17T04:47:47.934763Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "24.15.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/5a8ysg1jnj8jmzzyfcfw7rvpvnp5rfpa-nodejs-24.15.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
       "priority": 5
     },
     {

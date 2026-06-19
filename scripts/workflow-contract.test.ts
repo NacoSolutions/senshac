@@ -219,7 +219,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 		devDependencies: Record<string, string>;
 	};
 	expect(pkg.scripts["check:all"]).toContain("bun run check:seeds");
-	expect(pkg.scripts["check:deps"]).toBe("scripts/with-timeout 120 knip");
+	expect(pkg.scripts["check:deps"]).toBe("bash scripts/with-timeout 120 knip");
 	expect(pkg.scripts["check:seeds"]).toBe("bun run scripts/seeds-integrity.ts");
 	expect(pkg.devDependencies["@os-eco/seeds-cli"]).toBeUndefined();
 	expect(pkg.devDependencies["@os-eco/mulch-cli"]).toBeUndefined();
@@ -279,6 +279,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(floxManifest).toContain("tinacms-cli.flake");
 	expect(floxManifest).toContain("knip.flake");
 	expect(floxManifest).toContain("biome.pkg-path");
+	expect(floxManifest).toContain("nodejs_24.pkg-path");
 	expect(floxManifest).toContain("wrangler.pkg-path");
 	expect(floxManifest).toContain("typescript-language-server.pkg-path");
 	expect(floxManifest).toContain("terrarium.flake");

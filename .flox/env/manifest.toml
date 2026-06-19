@@ -58,6 +58,8 @@ yq.pkg-path = "yq"
 yq.pkg-group = "yq"
 zellij.pkg-path = "zellij"
 zellij.pkg-group = "zellij"
+cacert.pkg-path = "cacert"
+nodejs_24.pkg-path = "nodejs_24"
 
 [vars]
 NODE_ENV = "development"
@@ -67,6 +69,15 @@ on-activate = '''
   export PATH="$FLOX_ENV_PROJECT/scripts:$PATH"
   GCC_RUNTIME_LIB="$(dirname "$(gcc -print-file-name=libstdc++.so.6)")"
   export LD_LIBRARY_PATH="$GCC_RUNTIME_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+  FLOX_CERT_FILE="$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.run/etc/ssl/certs/ca-bundle.crt"
+  if [ ! -f "$FLOX_CERT_FILE" ]; then
+    FLOX_CERT_FILE="$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.dev/etc/ssl/certs/ca-bundle.crt"
+  fi
+  if [ -f "$FLOX_CERT_FILE" ]; then
+    export SSL_CERT_FILE="$FLOX_CERT_FILE"
+    export NIX_SSL_CERT_FILE="$FLOX_CERT_FILE"
+    export NODE_EXTRA_CA_CERTS="$FLOX_CERT_FILE"
+  fi
 
   if [ -f package.json ] && [ ! -d node_modules ]; then
     echo "Installing dependencies..."
