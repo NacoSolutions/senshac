@@ -112,9 +112,9 @@ environment variables.
 
 The workspace split will use committed SOPS/age bundles only after the
 decrypt, CI, rotation, and recovery paths are proven. See
-[docs/secrets-sops-age.md](docs/secrets-sops-age.md). Interactive editing may
-use the existing YubiKey/GPG-backed `nix-keys` flow; automation should use a CI
-age identity stored as a GitHub or Act secret.
+[docs/secrets-sops-age.md](docs/secrets-sops-age.md). Interactive editing uses
+plain SOPS CLI plus the user's local age, SSH, or hardware-backed identity;
+automation should use a CI age identity stored as a GitHub or Act secret.
 
 Tina generates `tina/__generated__/client.ts` during builds. Always run production builds through `bun run build`; the wrapper removes literal Tina token values before Astro bundles the Cloudflare worker.
 

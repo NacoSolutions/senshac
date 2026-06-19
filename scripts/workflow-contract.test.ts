@@ -318,7 +318,7 @@ test("agent onboarding documents the workspace split workflow", () => {
 	expect(topology).toContain("docs/workspace-agent-onboarding.md");
 });
 
-test("secret bundle policy documents sops age and yubikey gpg paths", () => {
+test("secret bundle policy documents plain sops age paths", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;
 	};
@@ -330,8 +330,11 @@ test("secret bundle policy documents sops age and yubikey gpg paths", () => {
 
 	const policy = read("docs/secrets-sops-age.md");
 	expect(policy).toContain("Seed: `senshac-8521`");
-	expect(policy).toContain("YubiKey/GPG");
-	expect(policy).toContain("nix-keys");
+	expect(policy).toContain("Senshac uses plain");
+	expect(policy).toContain("SOPS CLI with age recipients");
+	expect(policy).toContain("does not require NixOS, `sops-nix`");
+	expect(policy).not.toContain("nix-keys");
+	expect(policy).not.toContain("sops-nix workflow");
 	expect(policy).toContain("SOPS_AGE_SSH_PRIVATE_KEY_FILE");
 	expect(policy).toContain("SOPS_AGE_KEY");
 	expect(policy).toContain("secrets/local.enc.env");

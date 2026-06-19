@@ -13,9 +13,9 @@ This plan defines the first migration step from one large Senshac repository wra
 - Keep plaintext secrets outside worktrees and outside Git. Once the SOPS/age
   workflow in [SOPS Age Secret Bundles](secrets-sops-age.md) is functional,
   repo-owned encrypted secret files can be committed to the meta repo or
-  focused repos. Operator key material stays in the existing YubiKey/GPG
-  `nix-keys` flow or local age identity files; CI key material stays in GitHub
-  or Act secrets.
+  focused repos. Operator key material stays in local SOPS-supported identity
+  files or local hardware-backed tooling; CI key material stays in GitHub or
+  Act secrets.
 - Treat Tina's separate content repository guide as the CMS split baseline:
   `senshac-web` is the generator repo and `senshac-content` is the content repo
   candidate under one TinaCloud project, not a second Tina project.
@@ -84,8 +84,8 @@ The meta repository can start local-only. Promote it to GitHub after the prototy
 - During the encrypted phase, focused repos and/or the meta repo may commit
   `secrets/*.enc.env` files managed by SOPS/age. Age private keys, decrypted
   files, GPG private material, and one-off recovery material stay local-only.
-  VS Code editing uses the local SOPS extension plus the user's YubiKey/GPG or
-  age decrypt path; agents do not open plaintext secret files.
+  VS Code editing uses the local SOPS extension plus the user's local age, SSH,
+  or hardware-backed decrypt path; agents do not open plaintext secret files.
 - For Tina's supported content split, configure the generator repo with
   `localContentPath` in `tina/config.ts`; the path is resolved relative to the
   `tina/` folder and should point to the sibling `senshac-content` checkout.

@@ -20,7 +20,7 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 - While `NacoSolutions/senshac` is the live deployment repo, production-impacting site work stays there even if its future home is `senshac-web`.
 - The meta repo owns the canonical cross-repo task graph once created. Until then, canonical Seeds remain in `NacoSolutions/senshac`.
 - Tina content split uses one TinaCloud project with generator/content repo bindings. Do not create a second Tina project for `senshac-content`.
-- Plaintext secrets remain ignored and local-only. SOPS/age encrypted bundles can move into the meta repo or focused repos only after `senshac-8521` proves decrypt, rotation, recovery, and CI/Act behavior. Interactive editing follows the existing YubiKey/GPG-backed `nix-keys` model; CI uses an age identity stored as a GitHub or Act secret.
+- Plaintext secrets remain ignored and local-only. SOPS/age encrypted bundles can move into the meta repo or focused repos only after `senshac-8521` proves decrypt, rotation, recovery, and CI/Act behavior. Interactive editing uses plain SOPS CLI with a local age, SSH, or hardware-backed identity; CI uses an age identity stored as a GitHub or Act secret.
 - `tr triage` remains the priority view. Use direct `sd` commands for tracker mutation, integrity checks, and debugging.
 
 ## Current Open Seed Map

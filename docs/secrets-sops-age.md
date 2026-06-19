@@ -3,15 +3,17 @@
 Seed: `senshac-8521`
 
 This policy defines how Senshac moves from local ignored plaintext secret files
-to committed encrypted bundles during the workspace split. It follows the
-existing `nix-secrets` and `nix-keys` model:
+to committed encrypted bundles during the workspace split. Senshac uses plain
+SOPS CLI with age recipients. It does not require NixOS, `sops-nix`, or any
+external key-management repository.
 
-- `nix-secrets` uses SOPS with age recipients for repo-safe encrypted secret
-  files.
-- `nix-keys` stores SSH private key material in a pass store encrypted by GPG
-  and unlocked with a YubiKey.
-- VS Code opens SOPS files through the configured SOPS extension and the local
-  GPG/YubiKey or age identity setup. Agents must not handle plaintext secrets.
+- SOPS stores repo-safe encrypted dotenv bundles.
+- Age identities decrypt those bundles locally, in Act, and in CI.
+- VS Code can open SOPS files through a SOPS extension when the user has local
+  `sops` and the required identity available. That identity may be an age key,
+  an SSH key accepted by SOPS, or a local hardware/GPG-backed setup owned by the
+  user. This repo does not prescribe or store that private-key workflow.
+- Agents must not handle plaintext secrets.
 
 ## Rules
 
@@ -32,15 +34,16 @@ existing `nix-secrets` and `nix-keys` model:
 
 | Recipient | Purpose | Private Material Location |
 | --- | --- | --- |
-| Operator YubiKey/GPG path | Interactive editing in VS Code and terminal. SSH private keys may be stored in the `nix-keys` pass store and unlocked by GPG/YubiKey before SOPS use. | YubiKey-backed GPG/pass store, never in this repo. |
+| Operator age recipient | Interactive editing in VS Code and terminal. | `SOPS_AGE_KEY_FILE`, `SOPS_AGE_KEY`, or another local SOPS-supported identity owned by the user. |
 | Host SSH-derived age recipient | Local host or operator decrypt path using an SSH key as an age recipient. | Use `SOPS_AGE_SSH_PRIVATE_KEY_FILE=/path/to/id_ed25519` for explicit SOPS decrypt. |
 | CI age recipient | GitHub Actions, Act, and future Flox-containerized runner decrypt path. | Store the private identity only as a GitHub secret such as `SOPS_AGE_KEY` or as an Act secret. |
 | Recovery age recipient | Offline break-glass decrypt path. | Offline password manager or hardware-backed store, not CI. |
 
-SOPS can encrypt directly to SSH public keys. If `ssh-to-age` is present, it can
-also convert SSH public keys to age recipients, matching the `nix-secrets`
-workflow. Senshac's Flox env currently provides `sops` and `age`; add
-`ssh-to-age` later only if the workflow standardizes on converted recipients.
+SOPS can encrypt directly to age public keys and SSH public keys. Senshac's
+Flox env currently provides `sops` and `age`; that is enough to create age keys,
+encrypt bundles, decrypt bundles, and run the smoke test. Add `ssh-to-age` only
+if the workflow later standardizes on converted SSH public keys instead of SOPS'
+native SSH recipient support.
 
 ## Bundle Placement
 
@@ -88,10 +91,10 @@ SOPS_AGE_SSH_PRIVATE_KEY_FILE="$HOME/.ssh/id_ed25519" \
   sops --decrypt --input-type dotenv --output-type dotenv secrets/local.enc.env > .env.local
 ```
 
-If the SSH key is stored in `nix-keys`, unlock it through the YubiKey-backed
-GPG/pass workflow first and write the decrypted key to a temporary file outside
-the repo. Point `SOPS_AGE_SSH_PRIVATE_KEY_FILE` at that temporary file, then
-delete it after use.
+If the SSH key is protected by a hardware key, GPG, an agent, or another local
+tool, unlock it outside this repo and expose only the temporary private key file
+or SOPS-supported identity needed for the current edit/decrypt operation. Delete
+temporary key material after use.
 
 For CI:
 
