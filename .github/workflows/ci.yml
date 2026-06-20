@@ -18,12 +18,14 @@ jobs:
       contents: read
       packages: read
     steps:
-      - uses: actions/checkout@v4
-
       - name: Prepare POSIX shims
         run: |
           mkdir -p /usr/bin
           ln -sf "$(command -v env)" /usr/bin/env
+          for node_version in node20 node24; do
+            mkdir -p "/__e/$node_version/bin"
+            ln -sf "$(command -v node)" "/__e/$node_version/bin/node"
+          done
           cert_file=""
           for candidate in /nix/store/*/etc/ssl/certs/ca-bundle.crt; do
             if [ -f "$candidate" ]; then
@@ -38,6 +40,8 @@ jobs:
               echo "NODE_EXTRA_CA_CERTS=$cert_file"
             } >> "$GITHUB_ENV"
           fi
+
+      - uses: actions/checkout@v4
 
       - run: bun install --frozen-lockfile
       - run: bun run verify:ci
