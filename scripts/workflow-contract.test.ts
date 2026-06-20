@@ -27,7 +27,6 @@ test("CI and pre-push share the authoritative verification command", () => {
 	const workflow = yaml.load(read(".github/workflows/ci.yml")) as {
 		jobs: {
 			ci: {
-				container?: { image?: string };
 				steps: Array<{
 					run?: string;
 					uses?: string;
@@ -43,21 +42,11 @@ test("CI and pre-push share the authoritative verification command", () => {
 		.map((step) => step.uses)
 		.filter((action): action is string => Boolean(action));
 	expect(commands).toContain("bun run verify:ci");
-	const joinedCommands = commands.join("\n");
-	expect(joinedCommands).toContain('ln -sf "$(command -v env)" /usr/bin/env');
-	expect(joinedCommands).toContain(
-		"https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git",
-	);
-	expect(joinedCommands).toContain("git checkout --detach FETCH_HEAD");
-	expect(joinedCommands).toContain("NODE_EXTRA_CA_CERTS=$cert_file");
-	expect(workflow.jobs.ci.container?.image).toBe(
-		"ghcr.io/nacosolutions/senshac-ci-runner:latest",
-	);
-	expect(uses).not.toContain("flox/install-flox-action@v2");
-	expect(uses).not.toContain("flox/activate-action@v1");
-	expect(uses).not.toContain("actions/checkout@v4");
-	expect(uses).not.toContain("actions/upload-artifact@v4");
-	expect(joinedCommands).not.toContain("/__e/");
+	expect(uses).toContain("actions/checkout@v4");
+	expect(uses).toContain("oven-sh/setup-bun@v1");
+	expect(uses).toContain("flox/install-flox-action@v2");
+	expect(uses).toContain("flox/activate-action@v1");
+	expect(uses).toContain("actions/upload-artifact@v4");
 	expect(commands).not.toContain("bun run check:all");
 	expect(commands).not.toContain("bun run test");
 
@@ -332,6 +321,11 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(read(".github/workflows/publish-ci-runner.yml")).toContain(
 		"scripts/build-ci-runner",
 	);
+	const ciRunnerBuild = read("scripts/build-ci-runner");
+	expect(ciRunnerBuild).toContain("flox containerize");
+	expect(ciRunnerBuild).toContain(
+		'RUN ["/bin/ln", "-sf", "/bin/env", "/usr/bin/env"]',
+	);
 });
 
 test("agent onboarding documents the workspace split workflow", () => {
@@ -355,6 +349,7 @@ test("agent onboarding documents the workspace split workflow", () => {
 	expect(topology).toContain("docs/workspace-agent-onboarding.md");
 	expect(ciRunner).toContain("flox containerize");
 	expect(ciRunner).toContain("ghcr.io/nacosolutions/senshac-ci-runner");
+	expect(ciRunner).toContain("/usr/bin/env");
 });
 
 test("secret bundle policy documents plain sops age paths", () => {
