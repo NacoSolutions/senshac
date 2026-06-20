@@ -45,13 +45,16 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(commands).toContain("bun run verify:ci");
 	const joinedCommands = commands.join("\n");
 	expect(joinedCommands).toContain('ln -sf "$(command -v env)" /usr/bin/env');
-	expect(joinedCommands).toContain('"/__e/$node_version/bin/node"');
+	expect(joinedCommands).toContain("git checkout --detach FETCH_HEAD");
 	expect(joinedCommands).toContain("NODE_EXTRA_CA_CERTS=$cert_file");
 	expect(workflow.jobs.ci.container?.image).toBe(
 		"ghcr.io/nacosolutions/senshac-ci-runner:latest",
 	);
 	expect(uses).not.toContain("flox/install-flox-action@v2");
 	expect(uses).not.toContain("flox/activate-action@v1");
+	expect(uses).not.toContain("actions/checkout@v4");
+	expect(uses).not.toContain("actions/upload-artifact@v4");
+	expect(joinedCommands).not.toContain("/__e/");
 	expect(commands).not.toContain("bun run check:all");
 	expect(commands).not.toContain("bun run test");
 
