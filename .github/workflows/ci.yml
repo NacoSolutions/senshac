@@ -39,13 +39,13 @@ jobs:
 
       - name: Checkout
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git init "$GITHUB_WORKSPACE"
           cd "$GITHUB_WORKSPACE"
-          git remote add origin "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
-          git -c http.extraheader="AUTHORIZATION: bearer $GITHUB_TOKEN" fetch --depth=1 origin "$GITHUB_REF"
+          git remote add origin "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          git fetch --depth=1 origin "$GITHUB_REF"
           git checkout --detach FETCH_HEAD
 
       - run: bun install --frozen-lockfile
@@ -53,8 +53,14 @@ jobs:
 
       - name: Test timing summary
         if: always()
-        run: bun run report:test-timing
+        run: |
+          if [ -f package.json ]; then
+            bun run report:test-timing
+          fi
 
       - name: Code-quality metrics summary
         if: always()
-        run: bun run report:quality-metrics
+        run: |
+          if [ -f package.json ]; then
+            bun run report:quality-metrics
+          fi
