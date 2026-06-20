@@ -27,6 +27,7 @@ test("CI and pre-push share the authoritative verification command", () => {
 	const workflow = yaml.load(read(".github/workflows/ci.yml")) as {
 		jobs: {
 			ci: {
+				container?: { image?: string };
 				steps: Array<{
 					run?: string;
 					uses?: string;
@@ -42,8 +43,14 @@ test("CI and pre-push share the authoritative verification command", () => {
 		.map((step) => step.uses)
 		.filter((action): action is string => Boolean(action));
 	expect(commands).toContain("bun run verify:ci");
-	expect(uses).toContain("flox/install-flox-action@v2");
-	expect(uses).toContain("flox/activate-action@v1");
+	const joinedCommands = commands.join("\n");
+	expect(joinedCommands).toContain('ln -sf "$(command -v env)" /usr/bin/env');
+	expect(joinedCommands).toContain("NODE_EXTRA_CA_CERTS=$cert_file");
+	expect(workflow.jobs.ci.container?.image).toBe(
+		"ghcr.io/nacosolutions/senshac-ci-runner:latest",
+	);
+	expect(uses).not.toContain("flox/install-flox-action@v2");
+	expect(uses).not.toContain("flox/activate-action@v1");
 	expect(commands).not.toContain("bun run check:all");
 	expect(commands).not.toContain("bun run test");
 
@@ -211,6 +218,7 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 	expect(actCi).toContain("podman.sock");
 	expect(actCi).not.toContain("--bind");
 	expect(actCi).toContain("git clone --no-hardlinks");
+	expect(actCi).toContain("ghcr.io/nacosolutions/senshac-ci-runner:latest");
 });
 
 test("development tools have one pinned owner and automation uses locked binaries", () => {
@@ -311,6 +319,12 @@ test("development tools have one pinned owner and automation uses locked binarie
 		expect(read(path)).toContain("oven-sh/setup-bun@");
 		expect(read(path)).toContain("contents: write");
 	}
+	expect(read(".github/workflows/publish-ci-runner.yml")).toContain(
+		"flox/install-flox-action@v2",
+	);
+	expect(read(".github/workflows/publish-ci-runner.yml")).toContain(
+		"scripts/build-ci-runner",
+	);
 });
 
 test("agent onboarding documents the workspace split workflow", () => {
@@ -318,6 +332,7 @@ test("agent onboarding documents the workspace split workflow", () => {
 	const onboarding = read("docs/workspace-agent-onboarding.md");
 	const workflow = read("docs/worktree-workflow.md");
 	const topology = read("docs/workspace-split-topology.md");
+	const ciRunner = read("docs/ci-runner-image.md");
 
 	expect(agents).toContain("docs/workspace-agent-onboarding.md");
 	expect(agents).toContain("tr triage");
@@ -331,6 +346,8 @@ test("agent onboarding documents the workspace split workflow", () => {
 	expect(onboarding).toContain("senshac-workspace");
 	expect(workflow).toContain("docs/workspace-agent-onboarding.md");
 	expect(topology).toContain("docs/workspace-agent-onboarding.md");
+	expect(ciRunner).toContain("flox containerize");
+	expect(ciRunner).toContain("ghcr.io/nacosolutions/senshac-ci-runner");
 });
 
 test("secret bundle policy documents plain sops age paths", () => {
