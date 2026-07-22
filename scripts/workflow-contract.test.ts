@@ -326,6 +326,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(ciRunnerBuild).toContain(
 		'RUN ["/bin/ln", "-sf", "/bin/env", "/usr/bin/env"]',
 	);
+	expect(ciRunnerBuild).toContain("ENV HOME=/tmp XDG_CONFIG_HOME=/tmp/.config");
 });
 
 test("agent onboarding documents the workspace split workflow", () => {
