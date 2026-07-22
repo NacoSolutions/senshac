@@ -1035,35 +1035,6 @@
       "priority": 5
     },
     {
-      "install_id": "cloudflare-cli",
-      "locked-url": "github:RogerNavelsaker/nixpkg-cloudflare-cli/7e9f6370aa6f20abeb4086254d73831218b4f09e?narHash=sha256-k4QApWYgVaZRQC9221thlaX12gF5KbZRlyEsQQzRsuY%3D",
-      "flake-description": "Nix package for cf (The Cloudflare CLI)",
-      "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/100ihakjqb34m16axy536rcdmgf90hg8-cf-0.0.6.drv",
-      "outputs": {
-        "out": "/nix/store/i73bzyvdisx7l6n21wf3a7v7d2lria0q-cf-0.0.6"
-      },
-      "output-names": [
-        "out"
-      ],
-      "outputs-to-install": [
-        "out"
-      ],
-      "requested-outputs-to-install": [],
-      "package-system": "x86_64-linux",
-      "system": "x86_64-linux",
-      "name": "cf-0.0.6",
-      "pname": "cf",
-      "version": "0.0.6",
-      "description": "The Cloudflare CLI — unified CLI for the entire Cloudflare platform",
-      "licenses": [
-        "MIT"
-      ],
-      "broken": false,
-      "unfree": false,
-      "priority": 5
-    },
-    {
       "install_id": "knip",
       "locked-url": "github:RogerNavelsaker/nixpkg-knip/a8fc8851bce19e7f89045e9507b77a2f10cad477?narHash=sha256-qaYUwtRo/cB%2BaMJQgs9a3nW7MJL/f6MtaPdGEBoTLf4%3D",
       "flake-description": "Nix packaging scaffold for knip",
@@ -1225,6 +1196,35 @@
       "name": "trellis-0.2.1-r2",
       "pname": "trellis",
       "version": "0.2.1-r2",
+      "broken": false,
+      "unfree": false,
+      "priority": 5
+    },
+    {
+      "install_id": "cloudflare-cli",
+      "locked-url": "github:RogerNavelsaker/nixpkg-cloudflare-cli/7632e59932a6fc9964c8b41160dbea9bf74050ff?narHash=sha256-LNPdEWDfu9lwws3O02OCEFtyloYqlXNHezRQ4R8kmGI%3D",
+      "flake-description": "Nix package for cf (The Cloudflare CLI)",
+      "locked-flake-attr-path": "packages.x86_64-linux.default",
+      "derivation": "/nix/store/4r98zb6qm0j4f5brbixy6iykacadbwhg-cf-0.0.6.drv",
+      "outputs": {
+        "out": "/nix/store/y49dsdl8hzxpc9cc9xz0j0k1r87shhxw-cf-0.0.6"
+      },
+      "output-names": [
+        "out"
+      ],
+      "outputs-to-install": [
+        "out"
+      ],
+      "requested-outputs-to-install": [],
+      "package-system": "x86_64-linux",
+      "system": "x86_64-linux",
+      "name": "cf-0.0.6",
+      "pname": "cf",
+      "version": "0.0.6",
+      "description": "The Cloudflare CLI — unified CLI for the entire Cloudflare platform",
+      "licenses": [
+        "MIT"
+      ],
       "broken": false,
       "unfree": false,
       "priority": 5
