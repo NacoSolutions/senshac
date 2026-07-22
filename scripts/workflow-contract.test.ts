@@ -226,6 +226,10 @@ test("development tools have one pinned owner and automation uses locked binarie
 		devDependencies: Record<string, string>;
 	};
 	expect(pkg.scripts["check:all"]).toContain("bun run check:seeds");
+	expect(pkg.scripts["check:all"]).toContain("bun run check:agents");
+	expect(pkg.scripts["check:agents"]).toBe(
+		"bun run scripts/validate-agents-md.ts",
+	);
 	expect(pkg.scripts["check:deps"]).toBe("bash scripts/with-timeout 120 knip");
 	expect(pkg.scripts["check:seeds"]).toBe("bun run scripts/seeds-integrity.ts");
 	expect(pkg.devDependencies["@os-eco/seeds-cli"]).toBeUndefined();
