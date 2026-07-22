@@ -42,7 +42,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.2
         with:
-          token: ${{ secrets.AUTO_MERGE_PAT }}
+          # workflow_run may not expose the optional PAT; checkout still needs
+          # an explicit token with checkout v6.
+          token: ${{ secrets.AUTO_MERGE_PAT || github.token }}
           ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
 
