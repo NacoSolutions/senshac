@@ -283,6 +283,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(floxManifest).toContain("tinacms-cli.flake");
 	expect(floxManifest).toContain("knip.flake");
 	expect(floxManifest).toContain("biome.pkg-path");
+	expect(floxManifest).toContain("glibc.pkg-path");
 	expect(floxManifest).toContain("nodejs_24.pkg-path");
 	expect(floxManifest).toContain("wrangler.pkg-path");
 	expect(floxManifest).toContain("typescript-language-server.pkg-path");
@@ -326,6 +327,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(ciRunnerBuild).toContain(
 		'RUN ["/bin/ln", "-sf", "/bin/env", "/usr/bin/env"]',
 	);
+	expect(ciRunnerBuild).toContain("ld-linux-x86-64.so.2");
 	expect(ciRunnerBuild).toContain("ENV HOME=/tmp XDG_CONFIG_HOME=/tmp/.config");
 });
 
