@@ -48,8 +48,8 @@ function mediaId(value?: string | null) {
 ---
 
 <div data-tina-field={tinaField(parentData.blocks, index)}>
-  {template === 'editorialBanner' && <EditorialBanner {...block} />}
-  {template === 'editorialHero' && <EditorialHero {...block} />}
+  {template === 'editorialBanner' && <EditorialBanner {...block} eager={index === 0} />}
+  {template === 'editorialHero' && <EditorialHero {...block} eager={index === 0} />}
   {template === 'editorialCopy' && <EditorialCopy {...block} />}
   {template === 'editorialAccordion' && <EditorialAccordion {...block} />}
   {template === 'editorialRows' && <EditorialRows {...block} />}
