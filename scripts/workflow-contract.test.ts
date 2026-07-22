@@ -283,6 +283,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(floxManifest).toContain("tinacms-cli.flake");
 	expect(floxManifest).toContain("knip.flake");
 	expect(floxManifest).toContain("biome.pkg-path");
+	expect(floxManifest).toContain("findutils.pkg-path");
 	expect(floxManifest).toContain("glibc.pkg-path");
 	expect(floxManifest).toContain("nodejs_24.pkg-path");
 	expect(floxManifest).toContain("wrangler.pkg-path");

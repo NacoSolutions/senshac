@@ -80,6 +80,12 @@ function main() {
 		],
 		{ encoding: "utf8" },
 	);
+	if (find.error || find.status !== 0) {
+		console.error("Failed to scan the repository for empty directories.");
+		if (find.error) console.error(find.error.message);
+		if (find.stderr) console.error(find.stderr.trim());
+		process.exit(1);
+	}
 
 	const emptyDirs = (find.stdout || "")
 		.split("\n")
