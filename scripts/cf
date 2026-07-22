@@ -9,8 +9,13 @@ search_path="${search_path%:}"
 binary="$(PATH="$search_path" command -v cf || true)"
 
 if [ -z "$binary" ]; then
-  echo "Cloudflare cf CLI is not on PATH. Run through dx/flox." >&2
-  exit 1
+	for candidate in "$script_dir/../.flox/run/"*/bin/cf; do
+		if [ -x "$candidate" ] && [ "$candidate" != "$script_dir/cf" ]; then
+			exec "$candidate" "$@"
+		fi
+	done
+	echo "Cloudflare cf CLI is not on PATH. Run through dx/flox." >&2
+	exit 1
 fi
 
 exec "$binary" "$@"
