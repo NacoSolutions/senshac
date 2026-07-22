@@ -119,7 +119,10 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 	expect(fx).not.toContain("smoke)");
 
 	const dx = read("scripts/dx");
-	expect(dx).toContain('exec "$real_direnv" exec "$repo" "$@"');
+	expect(dx).toContain('command_path="$1"');
+	expect(dx).toContain(
+		'exec "$real_direnv" exec "$repo" "$command_path" "${' + "@:2}" + '"',
+	);
 
 	const tmp = mkdtempSync(join(tmpdir(), "senshac-wrapper-test-"));
 	const bin = join(tmp, "bin");
@@ -287,6 +290,10 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(floxManifest).toContain("canopy.flake");
 	expect(floxManifest).toContain('canopy.outputs = ["out", "cn"]');
 	expect(floxManifest).toContain("cloudflare-cli.flake");
+	const cfWrapper = read("scripts/cf");
+	expect(cfWrapper).toContain(
+		'for candidate in "$script_dir/../.flox/run/"*/bin/cf',
+	);
 	expect(floxManifest).toContain("tinacms-cli.flake");
 	expect(floxManifest).toContain("knip.flake");
 	expect(floxManifest).toContain("biome.pkg-path");
