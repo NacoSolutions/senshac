@@ -11,6 +11,7 @@ interface Props {
 	imageAlt?: string;
 	placeholderLabel?: string;
 	objectFit?: "cover" | "contain";
+	eager?: boolean;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
 	imageAlt,
 	placeholderLabel,
 	objectFit = "cover",
+	eager = false,
 } = Astro.props;
 ---
 
@@ -32,7 +34,7 @@ const {
       label={placeholderLabel}
       aspect="wide"
       objectFit={objectFit}
-      eager
+      eager={eager}
       variant="banner"
     />
   </div>

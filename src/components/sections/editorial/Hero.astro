@@ -12,6 +12,7 @@ interface Props {
 	mediaType?: "image" | "video";
 	placeholderLabel?: string;
 	objectFit?: "cover" | "contain";
+	eager?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
 	mediaType = "image",
 	placeholderLabel,
 	objectFit = "cover",
+	eager = false,
 } = Astro.props;
 ---
 
@@ -36,7 +38,7 @@ const {
       label={placeholderLabel}
       aspect="wide"
       objectFit={objectFit}
-      eager
+      eager={eager}
     />
     <div class="flex flex-col justify-between">
       <h2 class="editorial-display" x-reveal>{title}</h2>
