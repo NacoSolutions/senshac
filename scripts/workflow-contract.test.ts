@@ -108,6 +108,9 @@ test("nightly PageSpeed validates complete category responses", () => {
 });
 
 test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
+	const envrc = read(".envrc");
+	expect(envrc).toContain("PATH_add scripts");
+
 	const fx = read("scripts/fx");
 	expect(fx).toContain('exec flox activate -d "$repo" -- "$@"');
 	expect(fx).not.toContain("bun run check");
