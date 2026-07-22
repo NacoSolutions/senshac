@@ -30,3 +30,12 @@ test("base layout preloads only fonts needed for first paint", () => {
 	expect(base).not.toContain('href={fonts.sintecaMedium} as="font"');
 	expect(base).not.toContain('href={fonts.sintecaSemibold} as="font"');
 });
+
+test("the custom cursor does not run an animation loop on touch devices", () => {
+	const alpine = read("src/utils/alpine.ts");
+
+	expect(alpine).toContain('window.matchMedia("(hover: hover)").matches');
+	expect(alpine).toContain(
+		"if (prefersReducedMotion || !supportsHover) return;",
+	);
+});

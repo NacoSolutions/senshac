@@ -136,7 +136,8 @@ export function registerAlpineComponents(Alpine: AlpineType) {
 			const prefersReducedMotion = window.matchMedia(
 				"(prefers-reduced-motion: reduce)",
 			).matches;
-			if (prefersReducedMotion) return;
+			const supportsHover = window.matchMedia("(hover: hover)").matches;
+			if (prefersReducedMotion || !supportsHover) return;
 
 			this.reqId = requestAnimationFrame(this.animate.bind(this));
 		},
