@@ -93,5 +93,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		});
 	}
 
+	const isPublicHtmlGet =
+		context.request.method === "GET" &&
+		response.headers.get("Content-Type")?.includes("text/html") &&
+		!url.pathname.startsWith("/api/") &&
+		!url.pathname.startsWith("/admin") &&
+		!url.pathname.startsWith("/tina");
+	if (isPublicHtmlGet && !response.headers.has("Cache-Control")) {
+		response.headers.set(
+			"Cache-Control",
+			"public, max-age=0, s-maxage=300, stale-while-revalidate=86400",
+		);
+	}
+
 	return response;
 });
