@@ -1,10 +1,16 @@
 // @ts-check
 
+import { execFileSync } from "node:child_process";
 import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import tina from "@tinacms/astro/integration";
 import UnoCSS from "@unocss/astro";
 import { defineConfig } from "astro/config";
+
+const deploymentVersion =
+	process.env.CF_PAGES_COMMIT_SHA ||
+	process.env.GITHUB_SHA ||
+	execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,6 +38,10 @@ export default defineConfig({
 	},
 
 	vite: {
+		define: {
+			"import.meta.env.SENSHAC_DEPLOYMENT_VERSION":
+				JSON.stringify(deploymentVersion),
+		},
 		plugins: [
 			{
 				name: "silence-esbuild-options-warning",

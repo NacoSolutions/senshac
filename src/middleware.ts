@@ -16,9 +16,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	const edgeCache = (
 		globalThis as typeof globalThis & { caches?: { default?: any } }
 	).caches?.default;
+	const edgeCacheUrl = new URL(context.request.url);
+	edgeCacheUrl.searchParams.set(
+		"__senshac_deployment",
+		import.meta.env.SENSHAC_DEPLOYMENT_VERSION ?? "development",
+	);
+	const edgeCacheKey = new Request(edgeCacheUrl, context.request);
 
 	if (canUseEdgeCache && edgeCache) {
-		const cached = await edgeCache.match(context.request);
+		const cached = await edgeCache.match(edgeCacheKey);
 		if (cached) {
 			const headers = new Headers(cached.headers);
 			headers.set("X-Senshac-Cache", "HIT");
@@ -141,7 +147,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			"Cache-Control",
 			"public, max-age=0, s-maxage=300, stale-while-revalidate=86400",
 		);
-		await edgeCache.put(context.request, cacheResponse);
+		await edgeCache.put(edgeCacheKey, cacheResponse);
 		response.headers.set("X-Senshac-Cache", "MISS");
 	}
 
