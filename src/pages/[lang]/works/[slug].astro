@@ -2,13 +2,9 @@
 export { getProjectPaths as getStaticPaths } from "../../../lib/static-paths";
 
 import { getEntry } from "astro:content";
-import TinaIsland from "@tinacms/astro/TinaIsland.astro";
 import BlocksRenderer from "../../../components/BlocksRenderer.astro";
-import ProjectPage from "../../../components/islands/ProjectPage.astro";
 // src/pages/[lang]/works/[slug].astro
 import Base from "../../../layouts/Base.astro";
-import { getProject, getTinaRuntimeEnv } from "../../../lib/tina-data";
-import { createIslands } from "../../../lib/tina-islands";
 
 const { lang, slug } = Astro.params;
 
@@ -19,11 +15,6 @@ if (!project) {
 }
 
 const { data } = project;
-const relativePath = `${lang}/${slug}.json`;
-const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-const islands = createIslands(tinaEnv);
-const tinaProject = await getProject(relativePath, tinaEnv);
-const tinaProjectData = tinaProject.data.projects;
 const breadcrumbs = [
 	{ name: "Works", url: `/${lang}/works` },
 	{ name: data.title, url: `/${lang}/works/${slug}` },
@@ -38,16 +29,11 @@ const breadcrumbs = [
   schema={['Article', 'BreadcrumbList']}
   breadcrumbs={breadcrumbs}
   publishDate={data.publishDate}
+  aot
 >
-  {tinaProjectData ? (
-    <TinaIsland name="project" wrapper={islands.project.wrapper} params={{ relativePath }} primary>
-      <ProjectPage data={tinaProjectData} />
-    </TinaIsland>
-  ) : (
-    <main class="min-h-screen pt-24 pb-16">
-      {data.blocks && data.blocks.map((block: any, index: number) => (
-        <BlocksRenderer block={block} index={index} parentData={data} />
-      ))}
-    </main>
-  )}
+  <main class="min-h-screen pt-24 pb-16">
+    {data.blocks && data.blocks.map((block: any, index: number) => (
+      <BlocksRenderer block={block} index={index} parentData={data} />
+    ))}
+  </main>
 </Base>

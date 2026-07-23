@@ -3,17 +3,9 @@
 export { getLanguagePaths as getStaticPaths } from "../../lib/static-paths";
 
 import { getEntry } from "astro:content";
-import TinaIsland from "@tinacms/astro/TinaIsland.astro";
 import BlocksRenderer from "../../components/BlocksRenderer.astro";
-import AboutPage from "../../components/islands/AboutPage.astro";
 // src/pages/[lang]/studio.astro
 import Base from "../../layouts/Base.astro";
-import {
-	getAbout,
-	getTinaRuntimeEnv,
-	pageRelativePath,
-} from "../../lib/tina-data";
-import { createIslands } from "../../lib/tina-islands";
 
 const { lang } = Astro.params;
 
@@ -28,26 +20,14 @@ const { title, description, blocks } = page.data as {
 	description: string;
 	blocks?: any[];
 };
-
-const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-const islands = createIslands(tinaEnv);
-const relativePath = pageRelativePath(lang, "about.json");
-const tinaAbout = await getAbout(relativePath, tinaEnv);
-const tinaAboutData = tinaAbout.data.about;
 ---
 
-<Base title={title} description={description} lang={lang} schema="LocalBusiness">
+<Base title={title} description={description} lang={lang} schema="LocalBusiness" aot>
   <main id="main">
-    {tinaAboutData ? (
-      <TinaIsland name="about" wrapper={islands.about.wrapper} params={{ relativePath }} primary>
-        <AboutPage data={tinaAboutData} />
-      </TinaIsland>
-    ) : (
-      <div class="min-h-screen pt-24 pb-16">
-        {blocks && blocks.map((block: any, index: number) => (
-          <BlocksRenderer block={block} index={index} parentData={page.data} />
-        ))}
-      </div>
-    )}
+    <div class="min-h-screen pt-24 pb-16">
+      {blocks && blocks.map((block: any, index: number) => (
+        <BlocksRenderer block={block} index={index} parentData={page.data} />
+      ))}
+    </div>
   </main>
 </Base>

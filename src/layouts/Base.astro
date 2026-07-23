@@ -14,6 +14,8 @@ import {
 } from "../lib/tina-data";
 import { createIslands } from "../lib/tina-islands";
 import globalStyles from "../styles/global.css?url";
+import { getSiteConfig } from "../utils/site-config";
+import { getTranslations as getPublicTranslations } from "../utils/translations";
 
 interface Props {
 	title: string;
@@ -52,12 +54,17 @@ const {
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const islands = createIslands(tinaEnv);
 const translationsPath = `${lang}.json`;
+const publicTranslations =
+	aot && !providedTranslationsData
+		? await getPublicTranslations(lang)
+		: undefined;
+const publicSite = aot && !providedSiteData ? await getSiteConfig() : undefined;
 const [tinaTranslationsRes, tinaSiteRes] = await Promise.all([
-	providedTranslationsData
-		? { data: { translations: providedTranslationsData } }
+	providedTranslationsData || publicTranslations
+		? { data: { translations: providedTranslationsData || publicTranslations } }
 		: getTranslations(translationsPath, tinaEnv),
-	providedSiteData
-		? { data: { siteConfig: providedSiteData } }
+	providedSiteData || publicSite
+		? { data: { siteConfig: providedSiteData || publicSite } }
 		: getSiteConfigTina("site.json", tinaEnv),
 ]);
 const tinaTranslationsData = tinaTranslationsRes.data.translations;
