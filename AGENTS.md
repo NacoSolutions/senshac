@@ -141,7 +141,18 @@ This project uses a bare repository with isolated Worktrunk worktrees:
   `dx`; use `tr triage` for routine work selection and `sd` for issue mutation
   or tracker debugging.
 - Push branches and integrate them through protected pull requests. Use
-  `wt remove` after merge.
+  `bun run wt:merge` from the feature worktree for local integration. This
+  command verifies that the feature commit is an ancestor of `main` and that
+  both the feature branch and worktree are gone before it succeeds. Do not
+  report a merge complete from the Worktrunk progress message alone.
+- If the command fails, inspect `git -C main status --short --branch` and
+  `wt list --full`; repair the state explicitly before continuing. Never use
+  `git branch -D` or manually delete a worktree as a substitute for
+  `wt remove`.
+- Worktrunk's shell integration must be installed for the active shell with
+  `wt config shell install <bash|fish|zsh|nu> --yes`, then the shell must be
+  restarted. Non-interactive agents must use explicit worktree paths and must
+  not rely on Worktrunk changing the caller's directory.
 - See `docs/workspace-agent-onboarding.md` and `docs/worktree-workflow.md` for
   setup, naming, hooks, routing, and cleanup.
 

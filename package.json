@@ -9,6 +9,7 @@
 		"build": "bash scripts/build",
 		"verify:ci": "bun run build && bash scripts/normalize-tina-build && bun run acceptance --skip-build && bun run check:all && git diff --exit-code",
 		"deploy": "bash scripts/deploy",
+		"wt:merge": "bash scripts/wt-merge",
 		"media:image": "bun scripts/media/process-images.ts",
 		"media:object": "bun scripts/media/process-object.ts",
 		"media:stage:redesign": "bun scripts/media/stage-redesign-media.ts",

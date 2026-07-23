@@ -370,6 +370,22 @@ test("agent onboarding documents the workspace split workflow", () => {
 	expect(ciRunner).toContain("/usr/bin/env");
 });
 
+test("worktree merge protocol verifies integration and cleanup", () => {
+	const agents = read("AGENTS.md");
+	const merge = read("scripts/wt-merge");
+	const pkg = JSON.parse(read("package.json")) as {
+		scripts: Record<string, string>;
+	};
+
+	expect(pkg.scripts["wt:merge"]).toBe("bash scripts/wt-merge");
+	expect(agents).toContain("bun run wt:merge");
+	expect(agents).toContain("feature commit is an ancestor of `main`");
+	expect(agents).toContain("must be installed for the active shell");
+	expect(merge).toContain("merge-base --is-ancestor");
+	expect(merge).toContain("refs/heads/$branch");
+	expect(merge).toContain("git worktree list --porcelain");
+});
+
 test("secret bundle policy documents plain sops age paths", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;
