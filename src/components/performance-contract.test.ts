@@ -91,6 +91,7 @@ test("R2 pictures use the complete layout-slot image ladder", () => {
 	const header = read("src/components/Header.astro");
 	const hero = read("src/components/sections/editorial/Hero.astro");
 	const instagram = read("src/components/sections/editorial/Instagram.astro");
+	const showcase = read("src/components/sections/editorial/Showcase.astro");
 
 	for (const width of [320, 480, 640, 768, 1024, 1280, 1920]) {
 		expect(picture).toContain(`${width}`);
@@ -103,6 +104,9 @@ test("R2 pictures use the complete layout-slot image ladder", () => {
 	expect(hero).toContain('mediaSlot="full"');
 	expect(header).not.toContain('slot="logo"');
 	expect(hero).not.toContain('slot="full"');
+	expect(showcase).toContain(
+		'sizes="(min-width: 1280px) 1280px, calc(100vw - 3rem)"',
+	);
 	expect(instagram).toContain("carouselSlides(post.children)");
 	expect(instagram).toContain(':srcset="slide.srcset"');
 	expect(instagram).not.toContain("slide.replace(");

@@ -51,7 +51,7 @@ export async function processImages(input: string, output: string) {
 			await Promise.all([
 				source
 					.clone()
-					.avif({ quality: 50, effort: 5 })
+					.avif({ quality: 45, effort: 5 })
 					.toFile(join(destination, `${width}.avif`)),
 				source
 					.clone()

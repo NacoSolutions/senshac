@@ -15,5 +15,6 @@ test("generated filenames always match their srcset width descriptors", () => {
 		"utf8",
 	);
 	expect(source).toContain(".resize({ width })");
+	expect(source).toContain(".avif({ quality: 45, effort: 5 })");
 	expect(source).not.toContain("withoutEnlargement");
 });

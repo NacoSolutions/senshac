@@ -42,7 +42,7 @@ const cleanId = id
 	.replace(/\/(?:320|412|480|640|768|1024|1200|1280|1920)\.(?:avif|webp)$/, "")
 	.replace(/\.[^.]+$/, "");
 const url = (width: number, format: "avif" | "webp") =>
-	`${baseUrl}/images/${cleanId}/${width}.${format}?v=${import.meta.env.PUBLIC_MEDIA_ASSET_VERSION || "2026-07-23-slot-ladder"}`;
+	`${baseUrl}/images/${cleanId}/${width}.${format}?v=${import.meta.env.PUBLIC_MEDIA_ASSET_VERSION || "2026-07-23-slot-ladder-q45"}`;
 const srcset = (format: "avif" | "webp") =>
 	IMAGE_WIDTHS.map((width) => `${url(width, format)} ${width}w`).join(", ");
 ---
