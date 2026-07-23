@@ -1,5 +1,8 @@
 import { expect, test } from "bun:test";
-import { parsePageSpeedScores } from "./pagespeed-result";
+import {
+	findBelowTargetScores,
+	parsePageSpeedScores,
+} from "./pagespeed-result";
 
 test("parsePageSpeedScores returns integer category percentages", () => {
 	expect(
@@ -33,4 +36,15 @@ test("parsePageSpeedScores surfaces API errors", () => {
 	expect(() =>
 		parsePageSpeedScores({ error: { message: "Quota exceeded" } }),
 	).toThrow("Quota exceeded");
+});
+
+test("findBelowTargetScores reports every category below the target", () => {
+	expect(findBelowTargetScores([99, 100, 96, 100], 100)).toEqual([
+		{ category: "performance", score: 99, target: 100 },
+		{ category: "best-practices", score: 96, target: 100 },
+	]);
+});
+
+test("findBelowTargetScores accepts a perfect result", () => {
+	expect(findBelowTargetScores([100, 100, 100, 100], 100)).toEqual([]);
 });

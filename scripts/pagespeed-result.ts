@@ -14,7 +14,11 @@ const categoryNames = [
 	"seo",
 ] as const;
 
-export function parsePageSpeedScores(response: PageSpeedResponse) {
+export type PageSpeedScores = [number, number, number, number];
+
+export function parsePageSpeedScores(
+	response: PageSpeedResponse,
+): PageSpeedScores {
 	if (response.error?.message) {
 		throw new Error(response.error.message);
 	}
@@ -30,6 +34,13 @@ export function parsePageSpeedScores(response: PageSpeedResponse) {
 			throw new Error(`PageSpeed response is missing the ${name} score`);
 		}
 		return Math.round(score * 100);
+	}) as PageSpeedScores;
+}
+
+export function findBelowTargetScores(scores: PageSpeedScores, target: number) {
+	return categoryNames.flatMap((category, index) => {
+		const score = scores[index];
+		return score < target ? [{ category, score, target }] : [];
 	});
 }
 

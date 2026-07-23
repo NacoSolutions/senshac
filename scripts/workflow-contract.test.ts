@@ -82,6 +82,8 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(() => yaml.load(workflow)).not.toThrow();
 	expect(workflow).toContain("scripts/pagespeed-result.ts");
 	expect(workflow).toContain("scripts/pagespeed-routes.ts");
+	expect(workflow).toContain("scripts/pagespeed-threshold.ts");
+	expect(workflow).toContain("TARGET_SCORE: 100");
 	expect(workflow).toContain(
 		"WIP_SITE_URL: $" + "{{ vars.WIP_SITE_URL || 'https://wip.senshac.com' }}",
 	);
@@ -97,11 +99,12 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(workflow).not.toContain("bc -l");
 	expect(workflow).toContain("actions/upload-artifact@v4");
 	expect(workflow).toContain("env.ACT != 'true'");
+	expect(workflow).toMatch(/- name: Setup Bun\n\s+if: env\.ACT != 'true'/);
 	expect(workflow).toContain("dry_run:");
 	expect(workflow).toContain("issues: write");
 	expect(workflow).toContain("gh issue list");
-	expect(workflow).toContain("type/performance,priority/P1,area/build");
 	expect(workflow).toContain("type/bug,priority/P1,area/build");
+	expect(workflow).not.toContain("type/performance,priority/P1,area/build");
 	expect(workflow).not.toContain("scripts/sd create");
 	expect(workflow).not.toContain("scripts/ml record");
 	expect(workflow).not.toContain("git push");

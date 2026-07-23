@@ -24,11 +24,13 @@ jobs:
       RESULTS_FILE: /tmp/pagespeed-results-${{ github.run_id }}.jsonl
       KNOWN_FAILURE_FILE: /tmp/pagespeed-known-failure-${{ github.run_id }}
       DRY_RUN: ${{ inputs.dry_run || false }}
+      TARGET_SCORE: 100
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Bun
+        if: env.ACT != 'true'
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: 1.3.13
@@ -143,12 +145,22 @@ jobs:
 
               echo "::notice title=Lighthouse Scores for $URL ($STRATEGY)::Performance: ${PERFORMANCE} | Accessibility: ${ACCESSIBILITY} | Best Practices: ${BEST_PRACTICES} | SEO: ${SEO}"
 
-              if (( PERFORMANCE < 90 )); then
-                TITLE="Lighthouse Performance Drop on $URL ($STRATEGY)"
+              if ! THRESHOLD_REPORT=$(
+                bun run scripts/pagespeed-threshold.ts \
+                  --url "$URL" \
+                  --strategy "$STRATEGY" \
+                  --target "$TARGET_SCORE" \
+                  "$PERFORMANCE" \
+                  "$ACCESSIBILITY" \
+                  "$BEST_PRACTICES" \
+                  "$SEO"
+              ); then
+                TITLE="Lighthouse target missed for $URL ($STRATEGY)"
                 printf -v BODY '%s\n\n%s' \
-                  "The nightly audit measured performance at $PERFORMANCE for $URL ($STRATEGY), below the threshold of 90. Accessibility: $ACCESSIBILITY, Best Practices: $BEST_PRACTICES, SEO: $SEO." \
+                  "$THRESHOLD_REPORT" \
                   "[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-                create_issue_once "$TITLE" "type/performance,priority/P1,area/build" "$BODY"
+                create_issue_once "$TITLE" "type/bug,priority/P1,area/build" "$BODY"
+                KNOWN_FAILURE=true
               fi
             done
           done
