@@ -51,3 +51,11 @@ test("the custom cursor does not run an animation loop on touch devices", () => 
 		"if (prefersReducedMotion || !supportsHover) return;",
 	);
 });
+
+test("Astro bundles the Alpine bootstrap instead of serving bare imports", () => {
+	const base = read("src/layouts/Base.astro");
+
+	expect(base).toContain("import Alpine from 'alpinejs'");
+	expect(base).not.toContain('<script type="module" data-cfasync="false">');
+	expect(base).not.toContain("<script data-cfasync");
+});
