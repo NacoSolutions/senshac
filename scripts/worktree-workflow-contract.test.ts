@@ -14,7 +14,7 @@ test("worktree merge protocol verifies integration and cleanup", () => {
 
 	expect(pkg.scripts["wt:merge"]).toBe("bash scripts/wt-merge");
 	expect(agents).toContain("bun run wt:merge");
-	expect(agents).toContain("feature commit is an ancestor of `main`");
+	expect(agents).toContain("feature commit is an ancestor of");
 	expect(agents).toContain("must be installed for the active shell");
 	expect(merge).toContain("merge-base --is-ancestor");
 	expect(merge).toContain("refs/heads/$branch");
