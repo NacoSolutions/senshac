@@ -23,6 +23,9 @@ export default defineConfig({
 		imageService: "compile",
 		prerenderEnvironment: "node",
 	}),
+	build: {
+		inlineStylesheets: "always",
+	},
 	image: {
 		service: {
 			entrypoint: "astro/assets/services/sharp",

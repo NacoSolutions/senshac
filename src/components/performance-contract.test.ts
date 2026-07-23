@@ -52,6 +52,12 @@ test("the custom cursor does not run an animation loop on touch devices", () => 
 	);
 });
 
+test("Astro inlines generated page styles to avoid a render-blocking request", () => {
+	const config = read("astro.config.mjs");
+
+	expect(config).toContain('inlineStylesheets: "always"');
+});
+
 test("Astro bundles the Alpine bootstrap instead of serving bare imports", () => {
 	const base = read("src/layouts/Base.astro");
 
