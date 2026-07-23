@@ -146,7 +146,7 @@ const fontCss = `
     <Cursor />
 
     <!-- Alpine.js Initialization -->
-    <script>
+    <script data-cfasync="false">
       import Alpine from 'alpinejs';
       import { registerAlpineComponents } from '../utils/alpine';
       
@@ -154,7 +154,7 @@ const fontCss = `
       window.Alpine = Alpine;
       Alpine.start();
     </script>
-    <script is:inline>
+    <script is:inline data-cfasync="false">
       // Allow click-through navigation in TinaCMS iframe by holding Alt or Meta/Ctrl
       document.addEventListener('click', function(e) {
         if (e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) {
