@@ -39,6 +39,9 @@ export default defineConfig({
 			prefixDefaultLocale: true,
 		},
 	},
+	markdown: {
+		syntaxHighlight: false,
+	},
 
 	vite: {
 		define: {

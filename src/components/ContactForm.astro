@@ -1,9 +1,8 @@
 ---
 import { getEntry } from "astro:content";
-import { tinaField } from "@tinacms/astro";
+import { tinaField } from "@tinacms/astro/tina-field";
 import type { TranslationsQuery } from "../../tina/__generated__/types";
 // src/components/ContactForm.astro
-import { getTinaRuntimeEnv, getTranslations } from "../lib/tina-data";
 import { mergeContactFormTranslations } from "../utils/contact-form-translations";
 
 interface Props {
@@ -13,13 +12,8 @@ interface Props {
 
 const { lang, translations: propTranslations } = Astro.props;
 
-let t = propTranslations;
-if (!t) {
-	const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-	const transRes = await getTranslations(`${lang}.json`, tinaEnv);
-	t = transRes.data.translations;
-}
 const localTranslations = await getEntry("translations", lang);
+const t = propTranslations ?? localTranslations?.data;
 const f: any = mergeContactFormTranslations(
 	t?.contactForm as any,
 	localTranslations?.data.contactForm,

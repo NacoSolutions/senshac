@@ -58,6 +58,25 @@ test("Astro inlines generated page styles to avoid a render-blocking request", (
 	expect(config).toContain('inlineStylesheets: "always"');
 });
 
+test("production markdown does not bundle unused syntax highlighters", () => {
+	const config = read("astro.config.mjs");
+
+	expect(config).toContain("syntaxHighlight: false");
+});
+
+test("public rendering does not import Tina server-island runtime", () => {
+	const base = read("src/layouts/Base.astro");
+	const contact = read("src/components/ContactForm.astro");
+	const islandRoute = read("src/pages/tina-island/[name].ts");
+
+	expect(base).not.toContain("@tinacms/astro/TinaIsland.astro");
+	expect(base).not.toContain("../lib/tina-data");
+	expect(base).not.toContain("../lib/tina-islands");
+	expect(contact).not.toContain("../lib/tina-data");
+	expect(islandRoute).not.toContain("@tinacms/astro/experimental");
+	expect(islandRoute).toContain("status: 404");
+});
+
 test("Astro bundles the Alpine bootstrap instead of serving bare imports", () => {
 	const base = read("src/layouts/Base.astro");
 
