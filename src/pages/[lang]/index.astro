@@ -10,7 +10,9 @@ import HomePage from "../../components/islands/HomePage.astro";
 import Base from "../../layouts/Base.astro";
 import {
 	getHome,
+	getSiteConfigTina,
 	getTinaRuntimeEnv,
+	getTranslations,
 	pageRelativePath,
 } from "../../lib/tina-data";
 import { createIslands } from "../../lib/tina-islands";
@@ -33,11 +35,23 @@ const { title, description, headerStyle, blocks } = page.data as {
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const islands = createIslands(tinaEnv);
 const relativePath = pageRelativePath(lang, "home.json");
-const tinaHome = await getHome(relativePath, tinaEnv);
+const [tinaHome, tinaTranslations, tinaSite] = await Promise.all([
+	getHome(relativePath, tinaEnv),
+	getTranslations(`${lang}.json`, tinaEnv),
+	getSiteConfigTina("site.json", tinaEnv),
+]);
 const tinaHomeData = tinaHome.data.home;
 ---
 
-<Base title={title} description={description} lang={lang} schema="LocalBusiness" headerStyle={headerStyle}>
+<Base
+  title={title}
+  description={description}
+  lang={lang}
+  schema="LocalBusiness"
+  headerStyle={headerStyle}
+  translationsData={tinaTranslations.data.translations}
+  siteData={tinaSite.data.siteConfig}
+>
   {tinaHomeData ? (
     <TinaIsland name="home" wrapper={islands.home.wrapper} params={{ relativePath }} primary>
       <HomePage data={tinaHomeData} />

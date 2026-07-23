@@ -29,6 +29,8 @@ interface Props {
 	breadcrumbs?: { name: string; url: string }[];
 	headerStyle?: "default" | "transparent";
 	preloadImage?: string;
+	translationsData?: unknown;
+	siteData?: unknown;
 }
 
 const {
@@ -41,15 +43,22 @@ const {
 	breadcrumbs,
 	headerStyle = "default",
 	preloadImage,
+	translationsData: providedTranslationsData,
+	siteData: providedSiteData,
 } = Astro.props;
 
 const tinaEnv = getTinaRuntimeEnv(Astro.locals);
 const islands = createIslands(tinaEnv);
 const translationsPath = `${lang}.json`;
-const tinaTranslationsRes = await getTranslations(translationsPath, tinaEnv);
+const [tinaTranslationsRes, tinaSiteRes] = await Promise.all([
+	providedTranslationsData
+		? { data: { translations: providedTranslationsData } }
+		: getTranslations(translationsPath, tinaEnv),
+	providedSiteData
+		? { data: { siteConfig: providedSiteData } }
+		: getSiteConfigTina("site.json", tinaEnv),
+]);
 const tinaTranslationsData = tinaTranslationsRes.data.translations;
-
-const tinaSiteRes = await getSiteConfigTina("site.json", tinaEnv);
 const tinaSiteData = tinaSiteRes.data.siteConfig;
 
 const mediaBaseUrl = (
