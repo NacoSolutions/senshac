@@ -70,11 +70,20 @@ export function pageRelativePath(lang: string | undefined, filename: string) {
 	return `${lang || "es"}/${filename}`;
 }
 
+const requestCache = new Map<string, Promise<any>>();
+
 export function getHome(relativePath: string, env?: TinaRuntimeEnv) {
-	return requestWithMetadata<HomeQuery>(
-		getClient(env).queries.home({ relativePath }),
-		{ priority: "primary" },
-	);
+	const key = `home-${relativePath}`;
+	if (!requestCache.has(key)) {
+		requestCache.set(
+			key,
+			requestWithMetadata<HomeQuery>(
+				getClient(env).queries.home({ relativePath }),
+				{ priority: "primary" },
+			),
+		);
+	}
+	return requestCache.get(key)!;
 }
 
 export function getAbout(relativePath: string, env?: TinaRuntimeEnv) {
@@ -97,8 +106,6 @@ export function getProject(relativePath: string, env?: TinaRuntimeEnv) {
 		{ priority: "primary" },
 	);
 }
-
-const requestCache = new Map<string, Promise<any>>();
 
 export function getTranslations(relativePath: string, env?: TinaRuntimeEnv) {
 	const key = `translations-${relativePath}`;
