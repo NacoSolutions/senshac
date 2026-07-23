@@ -12,6 +12,7 @@
 		"wt:merge": "bash scripts/wt-merge",
 		"wt:doctor": "bash scripts/wt-doctor",
 		"wt:cleanup": "bash scripts/wt-cleanup",
+		"maintenance:prune": "bun run scripts/ci/prune-pages.ts",
 		"media:image": "bun scripts/media/process-images.ts",
 		"media:object": "bun scripts/media/process-object.ts",
 		"media:stage:redesign": "bun scripts/media/stage-redesign-media.ts",

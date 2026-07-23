@@ -41,6 +41,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: bun run scripts/ci/prune-pages.ts
 
+      - name: Publish cleanup summary
+        if: always()
+        run: |
+          echo "GitHub workflow runs are retained for 14 days with a minimum of 5 runs." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Report workflow failure
         if: failure()
         run: |
