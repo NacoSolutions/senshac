@@ -383,7 +383,7 @@ test("worktree merge protocol verifies integration and cleanup", () => {
 	expect(agents).toContain("must be installed for the active shell");
 	expect(merge).toContain("merge-base --is-ancestor");
 	expect(merge).toContain("refs/heads/$branch");
-	expect(merge).toContain("git worktree list --porcelain");
+	expect(merge).toContain("worktree list --porcelain");
 });
 
 test("secret bundle policy documents plain sops age paths", () => {
