@@ -19,6 +19,18 @@ if ! git merge-base --is-ancestor origin/main HEAD; then
   exit 1
 fi
 
+repo="$(gh repo view --json nameWithOwner --jq .nameWithOwner)"
+protection="$(gh api "repos/$repo/branches/main/protection" 2>/dev/null || true)"
+if [[ -z "$protection" ]] || ! jq -e '
+  .required_status_checks != null and
+  .required_pull_request_reviews != null and
+  .enforce_admins.enabled == true
+' >/dev/null <<<"$protection"; then
+  echo "GitHub main protection is missing or incomplete; refusing auto-merge." >&2
+  echo "Require status checks, pull-request reviews, and admin enforcement before shipping." >&2
+  exit 1
+fi
+
 git push --set-upstream origin HEAD
 
 if pr_url="$(gh pr view --json url --jq .url 2>/dev/null)"; then

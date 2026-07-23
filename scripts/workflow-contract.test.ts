@@ -405,6 +405,16 @@ test("worktree doctor and cleanup separate merge verification", () => {
 	expect(cleanup).toContain("git merge-base --is-ancestor HEAD origin/main");
 });
 
+test("ship refuses auto-merge without enforced GitHub main protection", () => {
+	const ship = read("scripts/ship");
+
+	expect(ship).toContain('gh api "repos/$repo/branches/main/protection"');
+	expect(ship).toContain("required_status_checks != null");
+	expect(ship).toContain("required_pull_request_reviews != null");
+	expect(ship).toContain("enforce_admins.enabled == true");
+	expect(ship).toContain("refusing auto-merge");
+});
+
 test("secret bundle policy documents plain sops age paths", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;
