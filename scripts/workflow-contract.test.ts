@@ -386,6 +386,25 @@ test("worktree merge protocol verifies integration and cleanup", () => {
 	expect(merge).toContain("worktree list --porcelain");
 });
 
+test("worktree doctor and cleanup separate merge verification", () => {
+	const agents = read("AGENTS.md");
+	const doctor = read("scripts/wt-doctor");
+	const cleanup = read("scripts/wt-cleanup");
+	const pkg = JSON.parse(read("package.json")) as {
+		scripts: Record<string, string>;
+	};
+
+	expect(pkg.scripts["wt:doctor"]).toBe("bash scripts/wt-doctor");
+	expect(pkg.scripts["wt:cleanup"]).toBe("bash scripts/wt-cleanup");
+	expect(agents).toContain(
+		"GitHub merge and Cloudflare deployment are separate",
+	);
+	expect(doctor).toContain("git fetch origin --prune");
+	expect(doctor).toContain("already merged into");
+	expect(cleanup).toContain("Refusing cleanup: worktree is dirty.");
+	expect(cleanup).toContain("git merge-base --is-ancestor HEAD origin/main");
+});
+
 test("secret bundle policy documents plain sops age paths", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;

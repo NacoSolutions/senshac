@@ -153,6 +153,14 @@ This project uses a bare repository with isolated Worktrunk worktrees:
   `wt config shell install <bash|fish|zsh|nu> --yes`, then the shell must be
   restarted. Non-interactive agents must use explicit worktree paths and must
   not rely on Worktrunk changing the caller's directory.
+- GitHub merge and Cloudflare deployment are separate completion gates. For a
+  remote merge, run `bun run wt:cleanup` only after `origin/main` contains the
+  branch. For deploy-affecting work, then verify the Pages deployment is
+  `active` and run the deployed HTTP smoke checks; either GitHub or Cloudflare
+  can fail independently.
+- Run `bun run wt:doctor` when resuming work or before creating a worktree. It
+  fails on dirty or stale `main`, divergence from `origin/main`, or merged
+  feature worktrees left behind.
 - See `docs/workspace-agent-onboarding.md` and `docs/worktree-workflow.md` for
   setup, naming, hooks, routing, and cleanup.
 
