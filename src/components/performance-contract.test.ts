@@ -43,6 +43,15 @@ test("base layout defers the global stylesheet from the critical rendering path"
 	expect(base).not.toContain('import "../styles/global.css"');
 });
 
+test("the home hero heading remains immediately paintable", () => {
+	const hero = read("src/components/sections/editorial/Hero.astro");
+
+	expect(hero).toContain('<h2 class="editorial-display">{title}</h2>');
+	expect(hero).not.toContain(
+		'<h2 class="editorial-display" x-reveal>{title}</h2>',
+	);
+});
+
 test("the custom cursor does not run an animation loop on touch devices", () => {
 	const alpine = read("src/utils/alpine.ts");
 
