@@ -415,6 +415,20 @@ test("ship refuses auto-merge without enforced GitHub main protection", () => {
 	expect(ship).toContain("refusing auto-merge");
 });
 
+test("ship waits for an actual merge and origin update", () => {
+	const ship = read("scripts/ship");
+
+	expect(ship).toContain("waiting for GitHub to merge");
+	expect(ship).toContain(
+		'state="$(gh pr view "$pr_url" --json state --jq .state)"',
+	);
+	expect(ship).toContain('[[ "$state" == "MERGED" ]]');
+	expect(ship).toContain(
+		'merge-base --is-ancestor "$merge_commit" origin/main',
+	);
+	expect(ship).toContain("Timed out waiting for GitHub merge");
+});
+
 test("secret bundle policy documents plain sops age paths", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;

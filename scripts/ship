@@ -41,4 +41,28 @@ else
 fi
 
 gh pr merge "$pr_url" --auto --squash --delete-branch
-echo "Auto-merge enabled: $pr_url"
+echo "Auto-merge enabled; waiting for GitHub to merge: $pr_url"
+
+timeout_seconds="${SHIP_MERGE_TIMEOUT_SECONDS:-1800}"
+deadline=$((SECONDS + timeout_seconds))
+while (( SECONDS < deadline )); do
+  state="$(gh pr view "$pr_url" --json state --jq .state)"
+  if [[ "$state" == "MERGED" ]]; then
+    merge_commit="$(gh pr view "$pr_url" --json mergeCommit --jq '.mergeCommit.oid // empty')"
+    git fetch origin --prune
+    if [[ -n "$merge_commit" ]] && git merge-base --is-ancestor "$merge_commit" origin/main; then
+      echo "Verified GitHub merge and origin/main update: $merge_commit"
+      exit 0
+    fi
+    echo "PR is merged; waiting for origin/main to update..."
+  elif [[ "$state" == "CLOSED" ]]; then
+    echo "PR closed without merging: $pr_url" >&2
+    exit 1
+  else
+    echo "PR state: $state; waiting..."
+  fi
+  sleep 15
+done
+
+echo "Timed out waiting for GitHub merge or origin/main update: $pr_url" >&2
+exit 1
