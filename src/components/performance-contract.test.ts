@@ -31,6 +31,18 @@ test("base layout preloads only fonts needed for first paint", () => {
 	expect(base).not.toContain('href={fonts.sintecaSemibold} as="font"');
 });
 
+test("base layout defers the global stylesheet from the critical rendering path", () => {
+	const base = read("src/layouts/Base.astro");
+
+	expect(base).toContain('import globalStyles from "../styles/global.css?url"');
+	expect(base).toContain('<link rel="preload" href={globalStyles} as="style"');
+	expect(base).toContain("this.rel='stylesheet'");
+	expect(base).toContain(
+		'<noscript><link rel="stylesheet" href={globalStyles} /></noscript>',
+	);
+	expect(base).not.toContain('import "../styles/global.css"');
+});
+
 test("the custom cursor does not run an animation loop on touch devices", () => {
 	const alpine = read("src/utils/alpine.ts");
 
