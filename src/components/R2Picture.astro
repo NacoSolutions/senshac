@@ -31,7 +31,7 @@ const cleanId = id
 	.replace(/\/(?:412|768|1024|1200)\.(?:avif|webp)$/, "")
 	.replace(/\.[^.]+$/, "");
 const url = (width: number, format: "avif" | "webp") =>
-	`${baseUrl}/images/${cleanId}/${width}.${format}`;
+	`${baseUrl}/images/${cleanId}/${width}.${format}?v=${import.meta.env.PUBLIC_MEDIA_ASSET_VERSION || "2026-07-23"}`;
 const srcset = (format: "avif" | "webp") =>
 	[412, 768, 1024, 1200]
 		.map((width) => `${url(width, format)} ${width}w`)
