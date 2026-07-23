@@ -174,6 +174,16 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 - `fx [-d <path>] <command>` — short wrapper for `flox activate -d <path> -- <command>`; Flox management verbs such as `fx install <pkg>` remain available.
 - Cloudflare Pages Git deployments use `bun install --frozen-lockfile && bun run build` so dependencies exist before Tina generation.
 
+### PageSpeed Queries
+
+- Run interactive PageSpeed Insights audits with `dx pagespeed`. Use
+  `--strategy desktop` for desktop or `--url <url>` for another WIP route.
+- Do not construct PageSpeed API URLs with `dx curl`. The calling shell expands
+  `$PAGESPEED_API_KEY` before `dx` loads `.env.local`, which can silently send
+  an anonymous request against an unrelated quota project.
+- Pipe the command's JSON response to `jq` when inspecting individual audits;
+  the command owns API-key injection, URL encoding, categories, and HTTP errors.
+
 <!-- seeds:start -->
 ## Issue Tracking (Seeds)
 <!-- seeds-onboard-v:1 -->
