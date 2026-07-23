@@ -3,19 +3,11 @@
 export { getLanguagePaths as getStaticPaths } from "../../lib/static-paths";
 
 import { getEntry } from "astro:content";
-import TinaIsland from "@tinacms/astro/TinaIsland.astro";
 import BlocksRenderer from "../../components/BlocksRenderer.astro";
-import HomePage from "../../components/islands/HomePage.astro";
 // src/pages/[lang]/index.astro
 import Base from "../../layouts/Base.astro";
-import {
-	getHome,
-	getSiteConfigTina,
-	getTinaRuntimeEnv,
-	getTranslations,
-	pageRelativePath,
-} from "../../lib/tina-data";
-import { createIslands } from "../../lib/tina-islands";
+import { getSiteConfig } from "../../utils/site-config";
+import { getTranslations as getPublicTranslations } from "../../utils/translations";
 
 const { lang } = Astro.params;
 
@@ -32,15 +24,8 @@ const { title, description, headerStyle, blocks } = page.data as {
 	blocks?: any[];
 };
 
-const tinaEnv = getTinaRuntimeEnv(Astro.locals);
-const islands = createIslands(tinaEnv);
-const relativePath = pageRelativePath(lang, "home.json");
-const [tinaHome, tinaTranslations, tinaSite] = await Promise.all([
-	getHome(relativePath, tinaEnv),
-	getTranslations(`${lang}.json`, tinaEnv),
-	getSiteConfigTina("site.json", tinaEnv),
-]);
-const tinaHomeData = tinaHome.data.home;
+const translations = await getPublicTranslations(lang ?? "es");
+const site = await getSiteConfig();
 ---
 
 <Base
@@ -49,18 +34,13 @@ const tinaHomeData = tinaHome.data.home;
   lang={lang}
   schema="LocalBusiness"
   headerStyle={headerStyle}
-  translationsData={tinaTranslations.data.translations}
-  siteData={tinaSite.data.siteConfig}
+  translationsData={translations}
+  siteData={site}
+  aot
 >
-  {tinaHomeData ? (
-    <TinaIsland name="home" wrapper={islands.home.wrapper} params={{ relativePath }} primary>
-      <HomePage data={tinaHomeData} />
-    </TinaIsland>
-  ) : (
-    <main id="main">
-      {blocks && blocks.map((block: any, index: number) => (
-        <BlocksRenderer block={block} index={index} parentData={page.data} />
-      ))}
-    </main>
-  )}
+  <main id="main">
+    {blocks && blocks.map((block: any, index: number) => (
+      <BlocksRenderer block={block} index={index} parentData={page.data} />
+    ))}
+  </main>
 </Base>
