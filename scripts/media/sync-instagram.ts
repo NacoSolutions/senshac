@@ -309,7 +309,7 @@ async function main() {
 				if (isVideo) {
 					return `https://media.senshac.com/videos/instagram/${id}/master.m3u8`;
 				} else {
-					return `https://media.senshac.com/images/instagram/${id}/1200.webp`;
+					return `https://media.senshac.com/images/instagram/${id}/1280.webp`;
 				}
 			};
 

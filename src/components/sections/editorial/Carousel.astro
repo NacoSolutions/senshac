@@ -19,7 +19,10 @@ function extractMediaId(value?: string | null) {
 	return (value || "")
 		.replace(/^https:\/\/media\.senshac\.com\/images\//, "")
 		.replace(/^\/?images\//, "")
-		.replace(/\/(?:412|768|1024|1200)\.(?:avif|webp)$/, "")
+		.replace(
+			/\/(?:320|412|480|640|768|1024|1200|1280|1920)\.(?:avif|webp)$/,
+			"",
+		)
 		.replace(/\.[^.]+$/, "");
 }
 ---
@@ -35,8 +38,9 @@ function extractMediaId(value?: string | null) {
           <R2Picture
             id={extractMediaId(slide.mediaId)}
             alt={slide.alt || ''}
-            class="w-full h-full object-cover"
-            eager={index === 0}
+			class="w-full h-full object-cover"
+			eager={index === 0}
+			mediaSlot="full"
           />
         ) : (
           <div class="w-full h-full flex items-center justify-center text-gray-400">

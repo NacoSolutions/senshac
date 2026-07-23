@@ -33,7 +33,7 @@ const mediaBaseUrl = (
 	import.meta.env.PUBLIC_MEDIA_BASE_URL || "https://media.senshac.com"
 ).replace(/\/$/, "");
 const mediaUrl = (id: string) =>
-	`${mediaBaseUrl}/images/${id.replace(/^\/?images\//, "").replace(/\.[^.]+$/, "")}/1200.webp`;
+	`${mediaBaseUrl}/images/${id.replace(/^\/?images\//, "").replace(/\.[^.]+$/, "")}/1280.webp`;
 
 // Use locales from site config
 const locales = site.locales;

@@ -3,7 +3,7 @@ import { basename, extname, join, relative, resolve } from "node:path";
 // @ts-expect-error
 import sharp from "sharp";
 
-const WIDTHS = [412, 768, 1024, 1200] as const;
+export const IMAGE_WIDTHS = [320, 480, 640, 768, 1024, 1280, 1920] as const;
 const IMAGE_EXTENSIONS = new Set([
 	".avif",
 	".gif",
@@ -46,10 +46,8 @@ export async function processImages(input: string, output: string) {
 		const destination = join(outputRoot, "images", id);
 		await mkdir(destination, { recursive: true });
 
-		for (const width of WIDTHS) {
-			const source = sharp(file)
-				.rotate()
-				.resize({ width, withoutEnlargement: true });
+		for (const width of IMAGE_WIDTHS) {
+			const source = sharp(file).rotate().resize({ width });
 			await Promise.all([
 				source
 					.clone()

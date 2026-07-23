@@ -24,9 +24,9 @@ const site = await getSiteConfig();
           <R2Picture
             id={mediaId}
             alt=""
-            class="w-full h-full object-cover"
-            eager
-            sizes="(min-width: 768px) 1152px, 100vw"
+			class="w-full h-full object-cover"
+			eager
+			mediaSlot="content"
           />
         </div>
       )}
@@ -35,8 +35,9 @@ const site = await getSiteConfig();
         {site.branding?.symbolWhite && (
           <R2Picture
             id={site.branding.symbolWhite}
-            alt=""
-            class="w-24 md:w-32 h-auto"
+			alt=""
+			class="w-24 md:w-32 h-auto"
+			mediaSlot="logo"
           />
         )}
       </div>

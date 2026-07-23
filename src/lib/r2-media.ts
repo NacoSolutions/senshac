@@ -127,7 +127,7 @@ export function publicMediaUrl(key: string, baseUrl?: string) {
 			: `/videos/${extensionless}/master.m3u8`;
 	}
 	return base
-		? `${base}/images/${extensionless}/1200.webp`
+		? `${base}/images/${extensionless}/1280.webp`
 		: `/images/${extensionless}`;
 }
 

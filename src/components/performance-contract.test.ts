@@ -84,3 +84,26 @@ test("Astro bundles the Alpine bootstrap instead of serving bare imports", () =>
 	expect(base).not.toContain('<script type="module" data-cfasync="false">');
 	expect(base).not.toContain("<script data-cfasync");
 });
+
+test("R2 pictures use the complete layout-slot image ladder", () => {
+	const picture = read("src/components/R2Picture.astro");
+	const pipeline = read("scripts/media/process-images.ts");
+	const header = read("src/components/Header.astro");
+	const hero = read("src/components/sections/editorial/Hero.astro");
+	const instagram = read("src/components/sections/editorial/Instagram.astro");
+
+	for (const width of [320, 480, 640, 768, 1024, 1280, 1920]) {
+		expect(picture).toContain(`${width}`);
+		expect(pipeline).toContain(`${width}`);
+	}
+	expect(picture).toContain('mediaSlot?: "full" | "content" | "grid" | "logo"');
+	expect(picture).toContain('grid: "(max-width: 639px) 100vw');
+	expect(picture).not.toContain("[412, 768, 1200]");
+	expect(header).toContain('mediaSlot="logo"');
+	expect(hero).toContain('mediaSlot="full"');
+	expect(header).not.toContain('slot="logo"');
+	expect(hero).not.toContain('slot="full"');
+	expect(instagram).toContain("carouselSlides(post.children)");
+	expect(instagram).toContain(':srcset="slide.srcset"');
+	expect(instagram).not.toContain("slide.replace(");
+});

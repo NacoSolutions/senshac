@@ -37,8 +37,23 @@ try {
 
 const displayPosts = posts.slice(0, limit);
 const isCarousel = displayPosts.length > maxVisible;
-const smallPoster = (url?: string) => url?.replace("1200.webp", "412.webp");
-const jsString = (value: string) => JSON.stringify(value);
+const imageVariant = (url: string | undefined, width: number) =>
+	url?.replace(
+		/\/(?:320|412|480|640|768|1024|1200|1280|1920)\.webp$/,
+		`/${width}.webp`,
+	);
+const imageSrcset = (url?: string) =>
+	[320, 480, 640, 768, 1024, 1280, 1920]
+		.map((width) => `${imageVariant(url, width)} ${width}w`)
+		.join(", ");
+const smallPoster = (url?: string) => imageVariant(url, 320);
+const carouselSlides = (urls: string[]) =>
+	JSON.stringify(
+		urls.map((url) => ({
+			src: url.endsWith(".m3u8") ? url : imageVariant(url, 1280),
+			srcset: url.endsWith(".m3u8") ? "" : imageSrcset(url),
+		})),
+	);
 ---
 
 {displayPosts.length > 0 && (
@@ -69,7 +84,7 @@ const jsString = (value: string) => JSON.stringify(value);
           {post.media_type === 'CAROUSEL_ALBUM' && post.children && post.children.length > 0 ? (
             <div 
               class="absolute inset-0 w-full h-full"
-              x-data={`{ active: 0, playing: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, slides: [${post.children.map((c: string) => jsString(c)).join(',')}] }`}
+              x-data={`{ active: 0, playing: !window.matchMedia('(prefers-reduced-motion: reduce)').matches, slides: ${carouselSlides(post.children)} }`}
               x-init="setInterval(() => { if(playing) active = (active + 1) % slides.length }, 5000)"
             >
               <template x-for="(slide, index) in slides" :key="index">
@@ -77,13 +92,13 @@ const jsString = (value: string) => JSON.stringify(value);
                   class="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out" 
                   :class="active === index ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'"
                 >
-                  <template x-if="slide.endsWith('.m3u8')">
-                    <video :src="slide" class="hls-video w-full h-full object-contain" autoplay muted loop playsinline></video>
+                  <template x-if="slide.src.endsWith('.m3u8')">
+                    <video :src="slide.src" class="hls-video w-full h-full object-contain" autoplay muted loop playsinline></video>
                   </template>
-                  <template x-if="!slide.endsWith('.m3u8')">
+                  <template x-if="!slide.src.endsWith('.m3u8')">
                     <img 
-                      :src="slide" 
-                      :srcset="`${slide.replace('1200.webp', '412.webp')} 412w, ${slide.replace('1200.webp', '768.webp')} 768w, ${slide.replace('1200.webp', '1024.webp')} 1024w, ${slide} 1200w`"
+                      :src="slide.src"
+                      :srcset="slide.srcset"
                       sizes="(min-width: 768px) 33vw, 85vw"
                       alt={post.caption?.slice(0, 100) || "Instagram post image"}
                       class="w-full h-full object-contain" 
@@ -106,8 +121,8 @@ const jsString = (value: string) => JSON.stringify(value);
             />
           ) : (
             <img 
-              src={post.media_url} 
-              srcset={`${post.media_url.replace('1200.webp', '412.webp')} 412w, ${post.media_url.replace('1200.webp', '768.webp')} 768w, ${post.media_url.replace('1200.webp', '1024.webp')} 1024w, ${post.media_url} 1200w`}
+              src={imageVariant(post.media_url, 1280)}
+              srcset={imageSrcset(post.media_url)}
               sizes="(min-width: 768px) 33vw, 85vw"
               alt={post.caption?.slice(0, 100) || "Instagram post image"}
               class="absolute inset-0 w-full h-full object-contain"

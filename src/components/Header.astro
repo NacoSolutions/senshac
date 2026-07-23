@@ -67,6 +67,7 @@ const getLocalizedPath = (targetLang: string) => {
           id={site.branding?.logoWhite || ''}
           alt={site.company?.name?.toLowerCase() || ''}
           class="h-8 w-auto"
+          mediaSlot="logo"
           width="768"
           height="142"
           data-tina-field={tinaField(site.branding, 'logoWhite')}
@@ -76,6 +77,7 @@ const getLocalizedPath = (targetLang: string) => {
           id={site.branding?.logo || ''}
           alt={site.company?.name?.toLowerCase() || ''}
           class="h-8 w-auto"
+          mediaSlot="logo"
           width="768"
           height="142"
           x-cloak={isTransparent}
@@ -230,6 +232,7 @@ const getLocalizedPath = (targetLang: string) => {
                 id={site.branding.symbol}
                 alt={site.company.name.toLowerCase()}
                 class="h-10 w-auto mb-4"
+                mediaSlot="logo"
                 width="900"
                 height="900"
                 data-tina-field={tinaField(site.branding, 'symbol')}

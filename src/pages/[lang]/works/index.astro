@@ -64,8 +64,9 @@ const breadcrumbs = [{ name: "Works", url: `/${lang}/works` }];
               <MediaPlaceholder
                 mediaId={work.mediaId}
                 alt={`${work.category}: ${work.title}`}
-                label={work.placeholderLabel}
-                aspect={work.layout === 'portrait-left' ? 'portrait' : 'landscape'}
+				label={work.placeholderLabel}
+				aspect={work.layout === 'portrait-left' ? 'portrait' : 'landscape'}
+				mediaSlot="content"
               />
             </>
           );

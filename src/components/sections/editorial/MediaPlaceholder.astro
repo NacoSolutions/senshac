@@ -11,6 +11,7 @@ interface Props {
 	objectFit?: "cover" | "contain";
 	eager?: boolean;
 	variant?: "default" | "banner";
+	mediaSlot?: "full" | "content" | "grid" | "logo";
 }
 
 const {
@@ -22,6 +23,7 @@ const {
 	objectFit = "cover",
 	eager = false,
 	variant = "default",
+	mediaSlot = variant === "banner" ? "full" : "content",
 } = Astro.props;
 
 const hasR2Media = Boolean(mediaId);
@@ -45,7 +47,7 @@ const fitClass = objectFit === "contain" ? "object-contain" : "object-cover";
       alt={alt}
       class={`h-full w-full ${fitClass}`}
       eager={eager}
-      sizes="(min-width: 768px) 60vw, 100vw"
+      mediaSlot={mediaSlot}
     />
   ) : hasR2Media && kind === 'video' ? (
     <HlsVideo id={mediaId!} class={`h-full w-full ${fitClass}`} />

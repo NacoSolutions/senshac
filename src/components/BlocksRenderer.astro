@@ -42,7 +42,10 @@ function mediaId(value?: string | null) {
 	return (value || "")
 		.replace(/^https:\/\/media\.senshac\.com\/images\//, "")
 		.replace(/^\/?images\//, "")
-		.replace(/\/(?:412|768|1200)\.(?:avif|webp)$/, "")
+		.replace(
+			/\/(?:320|412|480|640|768|1024|1200|1280|1920)\.(?:avif|webp)$/,
+			"",
+		)
 		.replace(/\.[^.]+$/, "");
 }
 ---
@@ -67,7 +70,7 @@ function mediaId(value?: string | null) {
     <section class="max-w-7xl mx-auto px-4 my-16">
       <div class={`grid gap-4 grid-cols-1 md:grid-cols-${block.cols || 2}`}>
         {block.images.map((img: any) => (
-          <R2Picture id={mediaId(img.mediaId)} alt={img.alt} class="w-full h-auto object-cover aspect-square md:aspect-auto" />
+          <R2Picture id={mediaId(img.mediaId)} alt={img.alt} class="w-full h-auto object-cover aspect-square md:aspect-auto" mediaSlot="grid" />
         ))}
       </div>
     </section>
@@ -78,8 +81,9 @@ function mediaId(value?: string | null) {
       <R2Picture
         id={mediaId(block.mediaId)}
         alt={block.alt}
-        class="w-full h-full object-cover"
-        eager
+		class="w-full h-full object-cover"
+		eager
+		mediaSlot="full"
       />
     </div>
   )}
@@ -112,7 +116,7 @@ function mediaId(value?: string | null) {
   {template === 'projectCollaborators' && <ProjectCollaborators list={block.list} />}
   {template === 'projectFinalImage' && (
     <div class="w-full mt-16">
-      <R2Picture id={mediaId(block.mediaId)} alt={block.alt} class="w-full h-auto" />
+      <R2Picture id={mediaId(block.mediaId)} alt={block.alt} class="w-full h-auto" mediaSlot="full" />
     </div>
   )}
 
