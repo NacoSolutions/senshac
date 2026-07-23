@@ -4,6 +4,31 @@ import { NodeHtmlMarkdown } from "node-html-markdown";
 
 export const onRequest = defineMiddleware(async (context, next) => {
 	const url = new URL(context.request.url);
+	const acceptsMarkdown =
+		context.request.headers.get("Accept")?.includes("text/markdown") ?? false;
+	const canUseEdgeCache =
+		context.request.method === "GET" &&
+		!context.request.headers.has("cookie") &&
+		!acceptsMarkdown &&
+		!url.pathname.startsWith("/api/") &&
+		!url.pathname.startsWith("/admin") &&
+		!url.pathname.startsWith("/tina");
+	const edgeCache = (
+		globalThis as typeof globalThis & { caches?: { default?: any } }
+	).caches?.default;
+
+	if (canUseEdgeCache && edgeCache) {
+		const cached = await edgeCache.match(context.request);
+		if (cached) {
+			const headers = new Headers(cached.headers);
+			headers.set("X-Senshac-Cache", "HIT");
+			return new Response(cached.body, {
+				status: cached.status,
+				statusText: cached.statusText,
+				headers,
+			});
+		}
+	}
 	const isBuild =
 		typeof process !== "undefined" &&
 		(process.env.npm_lifecycle_event === "build" ||
@@ -104,6 +129,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			"Cache-Control",
 			"public, max-age=0, s-maxage=300, stale-while-revalidate=86400",
 		);
+	}
+	if (
+		canUseEdgeCache &&
+		edgeCache &&
+		response.status === 200 &&
+		isPublicHtmlGet
+	) {
+		const cacheResponse = response.clone();
+		cacheResponse.headers.set(
+			"Cache-Control",
+			"public, max-age=0, s-maxage=300, stale-while-revalidate=86400",
+		);
+		await edgeCache.put(context.request, cacheResponse);
+		response.headers.set("X-Senshac-Cache", "MISS");
 	}
 
 	return response;
