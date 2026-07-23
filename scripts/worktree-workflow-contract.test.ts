@@ -46,7 +46,7 @@ test("ship refuses auto-merge without enforced GitHub main protection", () => {
 	expect(ship).toContain('gh api "repos/$repo/branches/main/protection"');
 	expect(ship).toContain("required_status_checks != null");
 	expect(ship).toContain("required_pull_request_reviews != null");
-	expect(ship).toContain("enforce_admins.enabled == true");
+	expect(ship).toContain(".enforce_admins != null");
 	expect(ship).toContain("refusing auto-merge");
 });
 

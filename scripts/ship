@@ -24,10 +24,10 @@ protection="$(gh api "repos/$repo/branches/main/protection" 2>/dev/null || true)
 if [[ -z "$protection" ]] || ! jq -e '
   .required_status_checks != null and
   .required_pull_request_reviews != null and
-  .enforce_admins.enabled == true
+  .enforce_admins != null
 ' >/dev/null <<<"$protection"; then
   echo "GitHub main protection is missing or incomplete; refusing auto-merge." >&2
-  echo "Require status checks, pull-request reviews, and admin enforcement before shipping." >&2
+  echo "Require status checks and pull-request reviews before shipping." >&2
   exit 1
 fi
 

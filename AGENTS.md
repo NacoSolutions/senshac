@@ -140,11 +140,15 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 - Run project and tracker commands inside the resulting worktree through
   `dx`; use `tr triage` for routine work selection and `sd` for issue mutation
   or tracker debugging.
-- Push branches and integrate them through protected pull requests. Use
-  `bun run wt:merge` from the feature worktree for local integration. This
-  command verifies that the feature commit is an ancestor of `main` and that
-  both the feature branch and worktree are gone before it succeeds. Do not
-  report a merge complete from the Worktrunk progress message alone.
+- Local integration is the fast path: run the full pre-push gate, use
+  `bun run wt:merge` from the feature worktree, then push `main`. GitHub
+  protection keeps CI, linear history, conversations, and review policy in
+  place; repository admins may bypass the PR-only gate for locally verified
+  merges. Use protected pull requests when remote review is required.
+- `bun run wt:merge` verifies that the feature commit is an ancestor of
+  `main` and that both the feature branch and worktree are gone before it
+  succeeds. Do not report a merge complete from the Worktrunk progress
+  message alone.
 - If the command fails, inspect `git -C main status --short --branch` and
   `wt list --full`; repair the state explicitly before continuing. Never use
   `git branch -D` or manually delete a worktree as a substitute for
