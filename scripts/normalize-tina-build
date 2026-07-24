@@ -4,7 +4,8 @@ set -euo pipefail
 # Tina hashes its admin bundle during generation. Normalize the generated
 # outputs so local and hosted verification compare only meaningful drift.
 git restore -- \
-  public/admin/index.html \
+	public/admin/.gitignore \
+	public/admin/index.html \
   tina/__generated__/client.ts \
   tina/__generated__/types.js \
   tina/__generated__/types.ts
