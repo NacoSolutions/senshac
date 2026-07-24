@@ -16,3 +16,12 @@
 
 /ca/
   Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/(es|en|ca)/methods
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/(es|en|ca)/studio
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/(es|en|ca)/works
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400

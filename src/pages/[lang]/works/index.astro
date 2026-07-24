@@ -1,6 +1,7 @@
 ---
 // @route-contract pagespeed
 export { getLanguagePaths as getStaticPaths } from "../../../lib/static-paths";
+export const prerender = true;
 
 import { getCollection, getEntry } from "astro:content";
 import MediaPlaceholder from "../../../components/sections/editorial/MediaPlaceholder.astro";
