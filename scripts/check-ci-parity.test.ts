@@ -49,7 +49,8 @@ describe("check-ci-parity", () => {
 
 	test("listWorkflows finds the repo's ci yamls", () => {
 		const found = listWorkflows().map((p) => p.split("/").pop());
-		expect(found).toContain("build-runner.yml");
+		expect(found).toContain("ci.yml");
+		expect(found).toContain("process-media.yml");
 	});
 
 	test("extractCiInvocations parses a synthetic workflow", () => {

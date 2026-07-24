@@ -13,7 +13,7 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 | `senshac-content` | Tina content repo candidate. Same TinaCloud project as `senshac-web`, using Tina's supported separate content repo model. | Editorial JSON/MDX content, owner reference PDFs, translations, Houzz URL/content decisions, repo-based media if chosen. |
 | `senshac-infra` | Cloudflare infrastructure repo candidate. | Pages/R2/Workers/DNS/email infrastructure, environment runbooks, Cloudflare Email Service, cache/CORS rules. |
 | `senshac-runner` | Active focused CI/local runner repo at `NacoSolutions/senshac-runner`. | Flox containerization, GitHub Actions runner image, Act/rootless Podman parity, development CLI wrappers, GitHub Actions runtime updates. |
-| `senshac-media-runner` | Media automation repo candidate. | Sharp/ffmpeg pipeline, R2 raw-to-prod processing, Instagram/Novedades ingest, media sizing pipeline. |
+| `senshac-media-runner` | Active focused media automation repo at `NacoSolutions/senshac-media-runner`. | Sharp/ffmpeg pipeline, R2 raw-to-prod processing, Instagram/Novedades ingest, media sizing pipeline. |
 
 ## Routing Rules
 
@@ -42,7 +42,8 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 | `senshac-9315` | `senshac-web` | Keep in current repo. | WIP Lighthouse target is web delivery. |
 | `senshac-55c7` | `senshac-web` | Keep in current repo. | Home mobile LCP/render delay is web frontend. |
 | `senshac-111f` | `senshac-infra` plus `senshac-web` | Keep in current repo; coordinate with infra rules. | CORS/cache/Rocket Loader findings touch Cloudflare config and app behavior. |
-| `senshac-1437` | `senshac-media-runner` plus `senshac-web` | Implement in current repo until media runner exists. | Media pipeline sizes belong to media runner; component `sizes` usage belongs to web. |
+| `senshac-1437` | `senshac-media-runner` plus `senshac-web` | Keep processor sizing in the focused repo and component `sizes` usage in web. | The focused runner and its immutable consumer contract now exist. |
+| `senshac-10fe` | `senshac-media-runner` plus `senshac-web` | Close after focused publication and web consumer verification. | Extracts media processing and publication without coupling web releases to mutable image tags. |
 | `senshac-d737` | `senshac-web` plus `senshac-content` | Keep in current repo until redesign is released. | Active redesign delivery is production web/content work. |
 | `senshac-0198` | `senshac-content` | Track as owner-input content blocker. | Houzz profile URL is content, not app architecture. |
 | `senshac-2425` | `senshac-web` | Keep in current repo. | llms.txt, markdown negotiation, and OKF output are app routes/content rendering. |
@@ -89,7 +90,8 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 ### `senshac-media-runner`
 
 - Pipeline-side parts of `senshac-1437`.
-- Future R2 media pipeline and Instagram/Novedades automation extraction seeds, not yet created.
+- `senshac-10fe` - focused runner extraction and immutable web consumer.
+- Future Instagram/Novedades ingest ownership migration.
 
 ## Blocker Updates
 

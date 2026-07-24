@@ -87,27 +87,26 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(deploy).not.toContain("wrangler pages deploy");
 });
 
-test("media runner provides reproducible WOFF2 font subsetting", () => {
+test("media commands consume the focused immutable runner", () => {
 	const pkg = JSON.parse(read("package.json")) as {
 		scripts: Record<string, string>;
 	};
-	const mediaRunner = read(".github/docker/Dockerfile.media-runner");
+	const consumer = read("scripts/media-container");
+	const workflow = read(".github/workflows/process-media.yml");
+	const digest =
+		"ghcr.io/nacosolutions/senshac-media-processor@sha256:d070c3f6f98acb99d9f6f05060ffd69463c71e2ae1e422acafe0294580083dfe";
 
-	expect(pkg.scripts["media:font"]).toBe(
-		"bash scripts/media/process-font-container",
-	);
-	expect(mediaRunner).toContain("fonttools");
-	const fontRunner = read("scripts/media/process-font-container");
-	expect(fontRunner).toContain("podman");
-	expect(fontRunner).toContain("--userns=keep-id");
-});
-
-test("processed HLS playlists use a useful cache lifetime", () => {
-	const upload = read("scripts/media/upload-r2.ts");
-
-	expect(upload).toContain('"public, max-age=86400"');
-	expect(upload).not.toContain('"public, max-age=300"');
-	expect(upload).toContain('"public, max-age=31536000, immutable"');
+	expect(pkg.scripts["media:font"]).toBe("bash scripts/media-container font");
+	expect(consumer).toContain("--userns=keep-id");
+	expect(consumer).toContain(digest);
+	expect(workflow).toContain(digest);
+	expect(workflow).not.toContain("bun install");
+	expect(
+		existsSync(resolve(root, ".github/docker/Dockerfile.media-runner")),
+	).toBe(false);
+	expect(
+		existsSync(resolve(root, ".github/workflows/publish-media-runner.yml")),
+	).toBe(false);
 });
 
 test("nightly PageSpeed validates complete category responses", () => {
@@ -370,13 +369,9 @@ test("development tools have one pinned owner and automation uses locked binarie
 		}
 	}
 
-	for (const path of [
-		".github/workflows/build-runner.yml",
-		".github/workflows/publish-media-runner.yml",
-	]) {
-		expect(read(path)).toContain("oven-sh/setup-bun@");
-		expect(read(path)).toContain("contents: write");
-	}
+	expect(existsSync(resolve(root, ".github/workflows/build-runner.yml"))).toBe(
+		false,
+	);
 	expect(
 		existsSync(resolve(root, ".github/workflows/publish-ci-runner.yml")),
 	).toBe(false);

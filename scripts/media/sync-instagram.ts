@@ -274,16 +274,23 @@ async function main() {
 
 					console.log(`- Downloading...`);
 					require("node:child_process").spawnSync(
-						"bun",
-						["scripts/media/download-r2.ts", RAW_BUCKET, r2Key, sourcePath],
+						"bash",
+						[
+							"scripts/media-container",
+							"download",
+							RAW_BUCKET,
+							r2Key,
+							sourcePath,
+						],
 						{ stdio: "inherit" },
 					);
 
 					console.log(`- Processing...`);
 					require("node:child_process").spawnSync(
-						"bun",
+						"bash",
 						[
-							"scripts/media/process-object.ts",
+							"scripts/media-container",
+							"object",
 							sourcePath,
 							"media/processed",
 							r2Key,
@@ -293,8 +300,13 @@ async function main() {
 
 					console.log(`- Uploading...`);
 					require("node:child_process").spawnSync(
-						"bun",
-						["scripts/media/upload-r2.ts", "media/processed", PROD_BUCKET],
+						"bash",
+						[
+							"scripts/media-container",
+							"upload",
+							"media/processed",
+							PROD_BUCKET,
+						],
 						{ stdio: "inherit" },
 					);
 

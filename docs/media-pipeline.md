@@ -17,6 +17,12 @@ HLS video, and fonts are published from `senshac-media-prod`.
 
 ## Local Processing
 
+The web repository consumes the focused
+[`NacoSolutions/senshac-media-runner`](https://github.com/NacoSolutions/senshac-media-runner)
+image by immutable digest. `scripts/media-container` is a thin rootless Podman
+wrapper; processing code and image publication are owned by the focused
+repository.
+
 ```bash
 dx bun run media:image media/raw/images media/processed
 dx bun run media:video media/raw/videos/brand.mp4 media/processed brand
@@ -37,7 +43,7 @@ while assets are pending.
 
 ### Font Subsets
 
-`media:font` uses the rootless Podman media runner to create WOFF2 files with FontTools from TTF
+`media:font` uses the focused rootless Podman media runner to create WOFF2 files with FontTools from TTF
 or OTF sources. The current Unicode range covers Basic Latin, Latin-1, Latin Extended-A,
 combining diacritics, General Punctuation, euro, and trademark characters for English, Spanish,
 and Catalan. Keep the original source in private raw storage.

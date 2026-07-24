@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo="$(git rev-parse --show-toplevel)"
+runtime="${CONTAINER_RUNTIME:-podman}"
+image="${MEDIA_RUNNER_IMAGE:-ghcr.io/nacosolutions/senshac-media-processor@sha256:d070c3f6f98acb99d9f6f05060ffd69463c71e2ae1e422acafe0294580083dfe}"
+
+env_args=()
+for name in CLOUDFLARE_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY; do
+  if [[ -n "${!name:-}" ]]; then
+    env_args+=(--env "$name")
+  fi
+done
+
+exec "$runtime" run --rm --userns=keep-id \
+  "${env_args[@]}" \
+  -v "$repo:/repo:Z" \
+  -w /repo \
+  "$image" \
+  "$@"

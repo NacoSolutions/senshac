@@ -89,8 +89,9 @@ future ownership belongs:
 - `senshac-infra`: future Cloudflare infrastructure repository candidate.
 - `senshac-runner`: active CI/Flox/Act runner repository at
   `NacoSolutions/senshac-runner`.
-- `senshac-media-runner`: future media pipeline and Instagram ingest
-  repository candidate.
+- `senshac-media-runner`: active media pipeline repository at
+  `NacoSolutions/senshac-media-runner`; it publishes the immutable processor
+  consumed by web workflows and local Podman commands.
 
 Do production-impacting website work in the current repo until a seed
 explicitly targets a focused prototype or cutover.

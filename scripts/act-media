@@ -22,12 +22,11 @@ act_args=(
   --workflows .github/workflows/process-media.yml
   "${secret_args[@]}"
   --job process
-  --platform ubuntu-latest=senshac-media-runner:latest
+  --platform ubuntu-latest=ghcr.io/nacosolutions/senshac-media-processor@sha256:d070c3f6f98acb99d9f6f05060ffd69463c71e2ae1e422acafe0294580083dfe
   --container-daemon-socket -
   --container-architecture linux/amd64
   --pull=false
   --bind
-  --network bridge
 )
 
 # Only add smoke test eventpath if no input is provided

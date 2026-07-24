@@ -71,7 +71,7 @@ The meta repository can start local-only. Promote it to GitHub after the prototy
 | `senshac-runner` | GitHub Actions runner image, Flox containerization, CI toolchain parity, Act/rootless Podman validation. | Site routes, content, R2 media transformations. |
 | `senshac-media-runner` | Sharp/ffmpeg processing scripts, R2 raw-to-prod pipeline, media smoke checks, Instagram ingest worker integration. | Editorial layout and non-media infrastructure. |
 
-`NacoSolutions/senshac` remains the live web repository until the split reaches a deliberate cutover seed. During transition, new production website changes continue in this repo unless a seed explicitly targets a focused prototype.
+`NacoSolutions/senshac` remains the live web repository until the split reaches a deliberate cutover seed. `NacoSolutions/senshac-runner` and `NacoSolutions/senshac-media-runner` are active focused repositories with immutable OCI consumer contracts. During transition, new production website changes continue in this repo unless a seed explicitly targets a focused repository.
 
 ## Shared Conventions
 

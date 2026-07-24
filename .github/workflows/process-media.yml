@@ -16,9 +16,8 @@ on:
         type: boolean
 
 permissions:
-  contents: write
+  contents: read
   packages: read
-  issues: write
 
 concurrency:
   group: media-${{ github.event.client_payload.key || inputs.key }}
@@ -28,7 +27,7 @@ jobs:
   process:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/nacosolutions/senshac-media-runner:latest
+      image: ghcr.io/nacosolutions/senshac-media-processor@sha256:d070c3f6f98acb99d9f6f05060ffd69463c71e2ae1e422acafe0294580083dfe
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
@@ -38,24 +37,23 @@ jobs:
       R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       MEDIA_KEY: ${{ github.event.client_payload.key || inputs.key }}
       MEDIA_DRY_RUN: ${{ inputs.dry_run || 'false' }}
+      MEDIA_RUNNER: /opt/senshac-media-runner/scripts/media-runner
     steps:
-      - uses: actions/checkout@v6
-
-      - run: bun install --frozen-lockfile
+      - name: Prepare workspace
+        run: mkdir -p /work/input /work/output
 
       - name: Download raw object
         if: env.MEDIA_DRY_RUN != 'true'
         run: |
-          bun scripts/media/download-r2.ts \
-            senshac-media-raw \
-            "$MEDIA_KEY" \
-            ".media-input/source.${MEDIA_KEY##*.}"
+          extension="${MEDIA_KEY##*.}"
+          "$MEDIA_RUNNER" download senshac-media-raw "$MEDIA_KEY" "/work/input/source.${extension}"
 
       - name: Create local image fixture
         if: env.MEDIA_DRY_RUN == 'true'
         run: |
-          mkdir -p .media-input
-          cat > .media-input/source.png <<'EOF'
+          MEDIA_KEY=images/act-smoke.png
+          echo "MEDIA_KEY=$MEDIA_KEY" >> "$GITHUB_ENV"
+          cat > /work/input/source.png <<'EOF'
           <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900">
             <rect width="1200" height="900" fill="#111"/>
             <rect x="300" y="225" width="600" height="450" fill="#ef6b2e"/>
@@ -63,27 +61,15 @@ jobs:
           EOF
 
       - name: Process object
-        run: bun scripts/media/process-object.ts ".media-input/source.${MEDIA_KEY##*.}" media/processed "$MEDIA_KEY"
+        run: |
+          extension="${MEDIA_KEY##*.}"
+          "$MEDIA_RUNNER" object "/work/input/source.${extension}" /work/output "$MEDIA_KEY"
+
+      - name: Verify generated assets
+        run: |
+          "$MEDIA_RUNNER" verify /work/output
 
       - name: Upload processed assets
         if: env.MEDIA_DRY_RUN != 'true'
-        run: bun scripts/media/upload-r2.ts media/processed senshac-media-prod
-
-      - name: Verify processed fixture
-        if: env.MEDIA_DRY_RUN == 'true'
-        run: test -f media/processed/images/act-smoke/1200.avif
-
-      - name: Report failure
-        if: failure() && env.MEDIA_DRY_RUN != 'true'
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          scripts/sd create \
-            --title "Media processing failed for $MEDIA_KEY" \
-            --type bug \
-            --priority 1 \
-            --labels "bug,media-pipeline" \
-            --body "The media processing workflow failed for key \`$MEDIA_KEY\`.\n\n[View run log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-          git add .seeds/
-          git commit -m "chore(seeds): log media processing failure [skip ci]" || true
-          git push || true
+          "$MEDIA_RUNNER" upload /work/output senshac-media-prod
