@@ -41,3 +41,12 @@
 
 /ca/works/
   Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/es/works/*/
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/en/works/*/
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/ca/works/*/
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
