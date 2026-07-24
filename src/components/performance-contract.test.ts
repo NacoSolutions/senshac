@@ -33,6 +33,9 @@ test("base layout preloads only fonts needed for first paint", () => {
 	expect(base).toContain("{fonts.sintecaRegular}");
 	expect(base).not.toContain('href={fonts.sintecaMedium} as="font"');
 	expect(base).not.toContain('href={fonts.sintecaSemibold} as="font"');
+	expect(base).toContain("window.addEventListener('load'");
+	expect(base).toContain("fonts.sintecaMedium");
+	expect(base).toContain("fonts.sintecaSemibold");
 });
 
 test("base layout defers the global stylesheet from the critical rendering path", () => {

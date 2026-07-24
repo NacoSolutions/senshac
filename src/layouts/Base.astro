@@ -60,9 +60,12 @@ const fonts = {
 const fontCss = `
 @font-face{font-family:'Jozsika';src:url('${fonts.jozsikaLight}') format('woff2');font-weight:300;font-style:normal;font-display:swap}
 @font-face{font-family:'Sinteca';src:url('${fonts.sintecaRegular}') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+`;
+const deferredFontCss = `
 @font-face{font-family:'Sinteca';src:url('${fonts.sintecaMedium}') format('woff2');font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:'Sinteca';src:url('${fonts.sintecaSemibold}') format('woff2');font-weight:600;font-style:normal;font-display:swap}
 `;
+const deferredFontScript = `window.addEventListener('load',()=>{const style=document.createElement('style');style.textContent=${JSON.stringify(deferredFontCss)};document.head.append(style)},{once:true});`;
 ---
 
 <!doctype html>
@@ -88,6 +91,7 @@ const fontCss = `
     />
 
     <style is:inline set:html={fontCss}></style>
+    <script is:inline set:html={deferredFontScript}></script>
     <link rel="preload" href={globalStyles} as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href={globalStyles} /></noscript>
     <link rel="preconnect" href={mediaBaseUrl} crossorigin />
