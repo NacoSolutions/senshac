@@ -7,3 +7,8 @@
 
 /*
   Link: </llms.txt>; rel="describedby", </sitemap.xml>; rel="sitemap"
+
+/es/
+/en/
+/ca/
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
