@@ -105,6 +105,7 @@ test("Astro bundles the Alpine bootstrap instead of serving bare imports", () =>
 	const base = read("src/layouts/Base.astro");
 
 	expect(base).toContain("import Alpine from 'alpinejs'");
+	expect(base).toContain("requestIdleCallback(startAlpine, { timeout: 1000 })");
 	expect(base).not.toContain('<script type="module" data-cfasync="false">');
 	expect(base).not.toContain("<script data-cfasync");
 });
