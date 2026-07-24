@@ -77,6 +77,21 @@ test("CI and pre-push share the authoritative verification command", () => {
 	expect(ship).not.toContain("bun run verify:ci");
 });
 
+test("media runner provides reproducible WOFF2 font subsetting", () => {
+	const pkg = JSON.parse(read("package.json")) as {
+		scripts: Record<string, string>;
+	};
+	const mediaRunner = read(".github/docker/Dockerfile.media-runner");
+
+	expect(pkg.scripts["media:font"]).toBe(
+		"bash scripts/media/process-font-container",
+	);
+	expect(mediaRunner).toContain("fonttools");
+	const fontRunner = read("scripts/media/process-font-container");
+	expect(fontRunner).toContain("podman");
+	expect(fontRunner).toContain("--userns=keep-id");
+});
+
 test("nightly PageSpeed validates complete category responses", () => {
 	const workflow = read(".github/workflows/pagespeed-nightly.yml");
 	expect(() => yaml.load(workflow)).not.toThrow();

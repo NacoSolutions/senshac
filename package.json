@@ -14,6 +14,7 @@
 		"wt:cleanup": "bash scripts/wt-cleanup",
 		"maintenance:prune": "bun run scripts/ci/prune-pages.ts",
 		"media:image": "bun scripts/media/process-images.ts",
+		"media:font": "bash scripts/media/process-font-container",
 		"media:object": "bun scripts/media/process-object.ts",
 		"media:stage:redesign": "bun scripts/media/stage-redesign-media.ts",
 		"media:upload": "bun scripts/media/upload-r2.ts",

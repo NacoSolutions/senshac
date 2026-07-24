@@ -20,19 +20,33 @@ HLS video, and fonts are published from `senshac-media-prod`.
 ```bash
 dx bun run media:image media/raw/images media/processed
 dx bun run media:video media/raw/videos/brand.mp4 media/processed brand
+dx bun run media:font media/raw/fonts/jozsikalight.ttf media/processed/fonts/jozsika-light.woff2
 dx bun run media:object media/raw/images/home/hero.jpg media/processed images/home/hero.jpg
 dx bun run media:upload media/processed senshac-media-prod
 ```
 
 Output paths are stable:
 
-- `images/<media-id>/{412,768,1200}.{avif,webp}`
+- `images/<media-id>/{320,480,640,768,1024,1280,1920}.{avif,webp}`
 - `videos/<media-id>/master.m3u8`
 - `videos/<media-id>/v{360p,720p,1080p}/...`
 - `fonts/<filename>.woff2`
 
 Astro blocks use only the media identifier. Existing image fields and placeholders remain valid
 while assets are pending.
+
+### Font Subsets
+
+`media:font` uses the rootless Podman media runner to create WOFF2 files with FontTools from TTF
+or OTF sources. The current Unicode range covers Basic Latin, Latin-1, Latin Extended-A,
+combining diacritics, General Punctuation, euro, and trademark characters for English, Spanish,
+and Catalan. Keep the original source in private raw storage.
+
+Jozsika's [source repository](https://github.com/nilcons/jozsika) identifies it as an Iosevka
+derivative distributed under the
+[SIL Open Font License 1.1](https://openfontlicense.org/). The three Sinteca WOFF2 files in R2
+are byte-identical to the licensed production files supplied by web designer Bemediatic in the
+legacy WordPress theme. Retain Bemediatic's license record with the production handoff.
 
 ## Automation
 
