@@ -17,11 +17,27 @@
 /ca/
   Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
 
-/(es|en|ca)/methods
+/es/methods
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+/en/methods
   Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
 
-/(es|en|ca)/studio
+/ca/methods
   Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
 
-/(es|en|ca)/works
+/es/studio
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+/en/studio
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/ca/studio
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/es/works
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/en/works
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
+
+/ca/works
   Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=86400
