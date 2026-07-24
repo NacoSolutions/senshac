@@ -73,6 +73,11 @@ The meta repository can start local-only. Promote it to GitHub after the prototy
 
 `NacoSolutions/senshac` remains the live web repository until the split reaches a deliberate cutover seed. `NacoSolutions/senshac-runner` and `NacoSolutions/senshac-media-runner` are active focused repositories with immutable OCI consumer contracts. During transition, new production website changes continue in this repo unless a seed explicitly targets a focused repository.
 
+The read-only [Cloudflare infrastructure inventory](infra-inventory.md) defines
+the initial `senshac-infra` resource and access boundary. It remains a
+deliberate extraction: `senshac-web` continues to deploy the Pages application
+from GitHub while infra owns account-level resource policy.
+
 ## Shared Conventions
 
 - Every focused repository uses the same bare wrapper pattern: wrapper root for Git database and local ignored secrets, `main/` for clean integration, and one Worktrunk worktree per independently mergeable seed.
