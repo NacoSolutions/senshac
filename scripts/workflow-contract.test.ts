@@ -169,12 +169,12 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 	Bun.spawnSync(["mkdir", "-p", bin, repoWithSpace]);
 	writeFileSync(
 		join(bin, "flox"),
-		`#!/usr/bin/env bash\nprintf '%s\\n' "$(printf '%s\\0' "$@" | bun -e 'const input=await new Response(Bun.stdin.stream()).arrayBuffer(); console.log(JSON.stringify([...new Uint8Array(input)].reduce((parts, byte) => { if (byte === 0) parts.push(""); else parts[parts.length - 1] += String.fromCharCode(byte); return parts; }, [""]).slice(0, -1)))')" >> "${calls}"\nif [ "\${FAIL_FAKE_FLOX:-}" = "1" ]; then exit 37; fi\n`,
+		`#!/usr/bin/env bash\nprintf '%s\\n' "$PWD" >> "${calls}.cwd"\nprintf '%s\\n' "$(printf '%s\\0' "$@" | bun -e 'const input=await new Response(Bun.stdin.stream()).arrayBuffer(); console.log(JSON.stringify([...new Uint8Array(input)].reduce((parts, byte) => { if (byte === 0) parts.push(""); else parts[parts.length - 1] += String.fromCharCode(byte); return parts; }, [""]).slice(0, -1)))')" >> "${calls}"\nif [ "\${FAIL_FAKE_FLOX:-}" = "1" ]; then exit 37; fi\n`,
 		{ mode: 0o755 },
 	);
 	writeFileSync(
 		join(bin, "direnv"),
-		`#!/usr/bin/env bash\nprintf '%s\\n' "$(printf '%s\\0' "$@" | bun -e 'const input=await new Response(Bun.stdin.stream()).arrayBuffer(); console.log(JSON.stringify([...new Uint8Array(input)].reduce((parts, byte) => { if (byte === 0) parts.push(""); else parts[parts.length - 1] += String.fromCharCode(byte); return parts; }, [""]).slice(0, -1)))')" >> "${calls}"\nif [ "\${FAIL_FAKE_DIRENV:-}" = "1" ]; then exit 38; fi\n`,
+		`#!/usr/bin/env bash\nprintf '%s\\n' "$PWD" >> "${calls}.cwd"\nprintf '%s\\n' "$(printf '%s\\0' "$@" | bun -e 'const input=await new Response(Bun.stdin.stream()).arrayBuffer(); console.log(JSON.stringify([...new Uint8Array(input)].reduce((parts, byte) => { if (byte === 0) parts.push(""); else parts[parts.length - 1] += String.fromCharCode(byte); return parts; }, [""]).slice(0, -1)))')" >> "${calls}"\nif [ "\${FAIL_FAKE_DIRENV:-}" = "1" ]; then exit 38; fi\n`,
 		{ mode: 0o755 },
 	);
 	const env = {
@@ -252,6 +252,14 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 	]);
 	expect(recorded[1]).toEqual(["install", "-d", repoWithSpace, "ripgrep"]);
 	expect(recorded[2]).toEqual(["exec", repoWithSpace, "tr", "triage"]);
+	const recordedCwds = readFileSync(`${calls}.cwd`, "utf8").trim().split("\n");
+	expect(recordedCwds).toEqual([
+		repoWithSpace,
+		tmp,
+		repoWithSpace,
+		repoWithSpace,
+		repoWithSpace,
+	]);
 
 	const actCi = read("scripts/act-ci");
 	expect(actCi).toContain(".github/workflows/ci.yml");
