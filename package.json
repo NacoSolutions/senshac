@@ -7,7 +7,7 @@
 		"dev": "astro dev",
 		"dev:cms": "tinacms dev -c \"astro dev\"",
 		"build": "bash scripts/build",
-		"verify:ci": "bun run build && bash scripts/normalize-tina-build && bun run acceptance --skip-build && bun run check:all && git diff --exit-code",
+		"verify:ci": "CF_PAGES=1 bun run build && bash scripts/normalize-tina-build && bun run acceptance --skip-build && bun run check:all && git diff --exit-code",
 		"deploy": "bash scripts/deploy",
 		"wt:merge": "bash scripts/wt-merge",
 		"wt:doctor": "bash scripts/wt-doctor",
