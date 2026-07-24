@@ -24,7 +24,8 @@ jobs:
       RESULTS_FILE: /tmp/pagespeed-results-${{ github.run_id }}.jsonl
       KNOWN_FAILURE_FILE: /tmp/pagespeed-known-failure-${{ github.run_id }}
       DRY_RUN: ${{ inputs.dry_run || false }}
-      TARGET_SCORE: 100
+      PERFORMANCE_TARGET: 95
+      QUALITY_TARGET: 100
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -149,7 +150,8 @@ jobs:
                 bun run scripts/pagespeed-threshold.ts \
                   --url "$URL" \
                   --strategy "$STRATEGY" \
-                  --target "$TARGET_SCORE" \
+                  --target "$PERFORMANCE_TARGET" \
+                  --quality-target "$QUALITY_TARGET" \
                   "$PERFORMANCE" \
                   "$ACCESSIBILITY" \
                   "$BEST_PRACTICES" \

@@ -7,6 +7,7 @@ type ThresholdOptions = {
 	url: string;
 	strategy: "mobile" | "desktop";
 	target: number;
+	qualityTarget: number;
 	scores: PageSpeedScores;
 };
 
@@ -25,6 +26,9 @@ export function parseThresholdArguments(args: string[]): ThresholdOptions {
 	const url = readOption("--url");
 	const strategy = readOption("--strategy");
 	const target = Number(readOption("--target"));
+	const qualityTarget = values.includes("--quality-target")
+		? Number(readOption("--quality-target"))
+		: target;
 	if (strategy !== "mobile" && strategy !== "desktop") {
 		throw new Error("--strategy must be mobile or desktop");
 	}
@@ -44,12 +48,21 @@ export function parseThresholdArguments(args: string[]): ThresholdOptions {
 		url,
 		strategy,
 		target,
+		qualityTarget,
 		scores: scores as PageSpeedScores,
 	};
 }
 
 export function formatThresholdFailure(options: ThresholdOptions) {
-	const failures = findBelowTargetScores(options.scores, options.target);
+	const failures = [
+		...findBelowTargetScores(
+			[options.scores[0], 100, 100, 100],
+			options.target,
+		).map((failure) => ({ ...failure, category: "performance" as const })),
+		...findBelowTargetScores(options.scores, options.qualityTarget).filter(
+			({ category }) => category !== "performance",
+		),
+	];
 	if (failures.length === 0) return "";
 
 	return [

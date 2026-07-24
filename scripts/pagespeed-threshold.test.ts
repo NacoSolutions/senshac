@@ -22,6 +22,7 @@ test("parseThresholdArguments keeps route and strategy with all scores", () => {
 		url: "https://wip.senshac.com/es/",
 		strategy: "mobile",
 		target: 100,
+		qualityTarget: 100,
 		scores: [99, 100, 96, 100],
 	});
 });
@@ -32,6 +33,7 @@ test("formatThresholdFailure includes category, score, target, route, and strate
 			url: "https://wip.senshac.com/es/",
 			strategy: "mobile",
 			target: 100,
+			qualityTarget: 100,
 			scores: [99, 100, 96, 100],
 		}),
 	).toBe(
@@ -49,7 +51,30 @@ test("formatThresholdFailure returns nothing for perfect scores", () => {
 			url: "https://wip.senshac.com/es/",
 			strategy: "desktop",
 			target: 100,
+			qualityTarget: 100,
 			scores: [100, 100, 100, 100],
 		}),
 	).toBe("");
+});
+
+test("performance may use a 95 floor while quality remains strict", () => {
+	const options = parseThresholdArguments([
+		"--url",
+		"https://wip.senshac.com/es/",
+		"--strategy",
+		"mobile",
+		"--target",
+		"95",
+		"--quality-target",
+		"100",
+		"95",
+		"100",
+		"99",
+		"100",
+	]);
+
+	expect(formatThresholdFailure(options)).toContain(
+		"best-practices: 99 (target: 100)",
+	);
+	expect(formatThresholdFailure(options)).not.toContain("performance");
 });
