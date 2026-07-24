@@ -37,7 +37,7 @@ for (const file of await files(inputRoot)) {
 	const contentType =
 		CONTENT_TYPES[extname(file).toLowerCase()] || "application/octet-stream";
 	const cacheControl = key.endsWith(".m3u8")
-		? "public, max-age=300"
+		? "public, max-age=86400"
 		: "public, max-age=31536000, immutable";
 	await new Upload({
 		client: r2,

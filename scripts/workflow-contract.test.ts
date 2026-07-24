@@ -96,6 +96,14 @@ test("media runner provides reproducible WOFF2 font subsetting", () => {
 	expect(fontRunner).toContain("--userns=keep-id");
 });
 
+test("processed HLS playlists use a useful cache lifetime", () => {
+	const upload = read("scripts/media/upload-r2.ts");
+
+	expect(upload).toContain('"public, max-age=86400"');
+	expect(upload).not.toContain('"public, max-age=300"');
+	expect(upload).toContain('"public, max-age=31536000, immutable"');
+});
+
 test("nightly PageSpeed validates complete category responses", () => {
 	const workflow = read(".github/workflows/pagespeed-nightly.yml");
 	expect(() => yaml.load(workflow)).not.toThrow();
