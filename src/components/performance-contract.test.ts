@@ -67,6 +67,12 @@ test("the home hero heading remains immediately paintable", () => {
 	);
 });
 
+test("localized home pages remain AOT-prerendered", () => {
+	const home = read("src/pages/[lang]/index.astro");
+
+	expect(home).toContain("export const prerender = true;");
+});
+
 test("the custom cursor does not run an animation loop on touch devices", () => {
 	const alpine = read("src/utils/alpine.ts");
 
