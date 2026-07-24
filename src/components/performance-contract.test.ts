@@ -13,6 +13,7 @@ test("media-heavy video components defer HLS until near viewport", () => {
 	expect(hlsVideo).toContain('preload="none"');
 	expect(hlsVideo).toContain("IntersectionObserver");
 	expect(hlsVideo).toContain("rootMargin: '0px'");
+	expect(hlsVideo).toContain('x-init="setTimeout(() => observe(), 1000)"');
 	expect(hlsVideo).toContain("await import('hls.js')");
 
 	expect(instagram).not.toContain('import Hls from "hls.js"');

@@ -31,7 +31,7 @@ const cleanId = id
 const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
 ---
 
-<div x-data={`senshacHlsPlayer(${JSON.stringify(manifest)})`} x-init="observe()" class="h-full w-full">
+  <div x-data={`senshacHlsPlayer(${JSON.stringify(manifest)})`} x-init="setTimeout(() => observe(), 1000)" class="h-full w-full">
   <video
     x-ref="video"
     data-src={manifest}
