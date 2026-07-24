@@ -40,7 +40,7 @@ jobs:
     env:
       HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.1
         with:
           # workflow_run may not expose the optional PAT; checkout still needs
           # an explicit token with checkout v6.
@@ -48,7 +48,7 @@ jobs:
           ref: ${{ github.event.workflow_run.head_branch }}
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v2.2.0
         with:
           bun-version: latest
 

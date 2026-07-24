@@ -48,11 +48,11 @@ test("CI and pre-push share the authoritative verification command", () => {
 		.map((step) => step.uses)
 		.filter((action): action is string => Boolean(action));
 	expect(commands).toContain("bun run verify:ci");
-	expect(uses).toContain("actions/checkout@v4");
-	expect(uses).toContain("oven-sh/setup-bun@v1");
-	expect(uses).toContain("flox/install-flox-action@v2");
+	expect(uses).toContain("actions/checkout@v7.0.1");
+	expect(uses).toContain("oven-sh/setup-bun@v2.2.0");
+	expect(uses).toContain("flox/install-flox-action@v2.5.3");
 	expect(uses).toContain("flox/activate-action@v1");
-	expect(uses).toContain("actions/upload-artifact@v4");
+	expect(uses).toContain("actions/upload-artifact@v7.0.1");
 	expect(commands).not.toContain("bun run check:all");
 	expect(commands).not.toContain("bun run test");
 
@@ -130,7 +130,7 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(workflow).not.toContain("/es/projects");
 	expect(workflow).not.toContain("/es/about");
 	expect(workflow).not.toContain("bc -l");
-	expect(workflow).toContain("actions/upload-artifact@v4");
+	expect(workflow).toContain("actions/upload-artifact@v7.0.1");
 	expect(workflow).toContain("env.ACT != 'true'");
 	expect(workflow).toMatch(/- name: Setup Bun\n\s+if: env\.ACT != 'true'/);
 	expect(workflow).toContain("dry_run:");
