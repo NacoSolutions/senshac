@@ -73,6 +73,12 @@ test("localized home pages remain AOT-prerendered", () => {
 	expect(home).toContain("export const prerender = true;");
 });
 
+test("project detail pages provide the global skip-link target", () => {
+	const project = read("src/pages/[lang]/works/[slug].astro");
+
+	expect(project).toContain('<main id="main"');
+});
+
 test("the custom cursor does not run an animation loop on touch devices", () => {
 	const alpine = read("src/utils/alpine.ts");
 

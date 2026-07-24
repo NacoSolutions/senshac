@@ -32,7 +32,7 @@ const breadcrumbs = [
   publishDate={data.publishDate}
   aot
 >
-  <main class="min-h-screen pt-24 pb-16">
+  <main id="main" class="min-h-screen pt-24 pb-16">
     {data.blocks && data.blocks.map((block: any, index: number) => (
       <BlocksRenderer block={block} index={index} parentData={data} />
     ))}
