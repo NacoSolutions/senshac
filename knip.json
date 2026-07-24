@@ -1,57 +1,55 @@
 {
-	"entry": [
-		"astro.config.mjs",
-		"src/pages/**/*.astro",
-		"src/pages/**/*.ts",
-		"tina/config.ts",
-		"scripts/acceptance/run.ts",
-		"scripts/check-secret-policy.ts",
-		"scripts/validate-agents-md.ts",
-		"scripts/check-pages-routing.ts",
-		"scripts/build",
-		"scripts/act-media",
-		"scripts/ci/prune-pages.ts",
-		"scripts/media/*.ts",
-		"scripts/media/*.sh",
-		"scripts/with-timeout"
-	],
-	"project": [
-		"astro.config.mjs",
-		"src/**/*.astro",
-		"src/**/*.ts",
-		"tina/**/*.ts",
-		"scripts/**/*.ts"
-	],
-	"ignore": [
-		"astro.config.mjs",
-		"tina/__generated__/**",
-		"tina/config.ts",
-		"scripts/acceptance/run.ts",
-		"scripts/check-secret-policy.ts",
-		"scripts/validate-agents-md.ts",
-		"scripts/check-pages-routing.ts",
-		"scripts/ci/prune-pages.ts",
-		"scripts/media/stage-wordpress-media.ts",
-		"scripts/media/sync-instagram.ts",
-		"public/admin/**",
-		"src/content/legal/**/*.mdx"
-	],
 	"ignoreBinaries": ["betterleaks", "biome", "tinacms"],
-	"ignoreDependencies": [
-		"@astrojs/cloudflare",
-		"@astrojs/mdx",
-		"cloudflare",
-		"esbuild",
-		"next-tinacms-s3",
-		"virtual:uno.css",
-		"vite",
-		"yaml"
-	],
+	"ignoreDependencies": ["cloudflare", "esbuild", "virtual:uno.css", "yaml"],
 	"ignoreExportsUsedInFile": true,
-	"astro": {
-		"entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]
-	},
 	"workspaces": {
+		".": {
+			"entry": [
+				"astro.config.mjs",
+				"src/content.config.ts",
+				"src/middleware.ts",
+				"src/**/*.test.ts",
+				"src/components/islands/*.astro",
+				"src/pages/**/*.astro",
+				"src/pages/**/*.ts",
+				"tina/config.ts",
+				"scripts/**/*.ts",
+				"scripts/acceptance/run.ts",
+				"scripts/check-secret-policy.ts",
+				"scripts/validate-agents-md.ts",
+				"scripts/check-pages-routing.ts",
+				"scripts/build",
+				"scripts/act-media",
+				"scripts/ci/prune-pages.ts",
+				"scripts/media/*.ts",
+				"scripts/media/*.sh",
+				"scripts/with-timeout"
+			],
+			"project": [
+				"astro.config.mjs",
+				"src/**/*.astro",
+				"src/**/*.ts",
+				"tina/**/*.ts",
+				"scripts/**/*.ts"
+			],
+			"ignore": [
+				"astro.config.mjs",
+				"tina/__generated__/**",
+				"tina/config.ts",
+				"scripts/acceptance/run.ts",
+				"scripts/check-secret-policy.ts",
+				"scripts/validate-agents-md.ts",
+				"scripts/check-pages-routing.ts",
+				"scripts/ci/prune-pages.ts",
+				"scripts/media/stage-wordpress-media.ts",
+				"scripts/media/sync-instagram.ts",
+				"public/admin/**",
+				"src/content/legal/**/*.mdx"
+			],
+			"astro": {
+				"entry": ["src/pages/**/*.astro", "src/pages/**/*.ts"]
+			}
+		},
 		"workers/media-dispatch": {
 			"entry": ["src/index.ts"],
 			"project": ["src/**/*.ts"]

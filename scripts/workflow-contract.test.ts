@@ -278,12 +278,15 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(pkg.devDependencies.wrangler).toBeUndefined();
 
 	const knip = JSON.parse(read("knip.json")) as {
-		entry: string[];
-		ignore: string[];
 		ignoreDependencies: string[];
+		workspaces: Record<string, { entry: string[]; ignore: string[] }>;
 	};
-	expect(knip.entry).toContain("scripts/check-secret-policy.ts");
-	expect(knip.ignore).toContain("scripts/check-secret-policy.ts");
+	expect(knip.workspaces["."]?.entry).toContain(
+		"scripts/check-secret-policy.ts",
+	);
+	expect(knip.workspaces["."]?.ignore).toContain(
+		"scripts/check-secret-policy.ts",
+	);
 	expect(knip.ignoreDependencies).not.toEqual(
 		expect.arrayContaining([
 			"@os-eco/canopy-cli",
