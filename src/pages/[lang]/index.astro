@@ -1,6 +1,7 @@
 ---
 // @route-contract pagespeed
 export { getLanguagePaths as getStaticPaths } from "../../lib/static-paths";
+export const prerender = true;
 
 import { getEntry } from "astro:content";
 import BlocksRenderer from "../../components/BlocksRenderer.astro";
