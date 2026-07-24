@@ -28,6 +28,8 @@ test("base layout preloads only fonts needed for first paint", () => {
 
 	expect(base).toContain('rel="preconnect"');
 	expect(base).toContain("{fonts.jozsikaLight}");
+	expect(base).toContain('fontUrl("jozsika-light-cb357743.woff2")');
+	expect(base).not.toContain('fontUrl("jozsika-light.woff2")');
 	expect(base).toContain("{fonts.sintecaRegular}");
 	expect(base).not.toContain('href={fonts.sintecaMedium} as="font"');
 	expect(base).not.toContain('href={fonts.sintecaSemibold} as="font"');
