@@ -69,8 +69,8 @@ function mediaId(value?: string | null) {
   {template === 'editorialGallery' && block.images && (
     <section class="max-w-7xl mx-auto px-4 my-16">
       <div class={`grid gap-4 grid-cols-1 md:grid-cols-${block.cols || 2}`}>
-        {block.images.map((img: any) => (
-          <R2Picture id={mediaId(img.mediaId)} alt={img.alt} class="w-full h-auto object-cover aspect-square md:aspect-auto" mediaSlot="grid" />
+        {block.images.map((img: any, imageIndex: number) => (
+          <R2Picture id={mediaId(img.mediaId)} alt={img.alt} class="w-full h-auto object-cover aspect-square md:aspect-auto" eager={index === 0 && imageIndex === 0} mediaSlot="grid" />
         ))}
       </div>
     </section>
@@ -82,13 +82,13 @@ function mediaId(value?: string | null) {
         id={mediaId(block.mediaId)}
         alt={block.alt}
 		class="w-full h-full object-cover"
-		eager
+		eager={index === 0}
 		mediaSlot="full"
       />
     </div>
   )}
   {template === 'contactForm' && <ContactFormBlock {...block} />}
-  {template === 'projectDetails' && <ProjectDetails {...block} />}
+  {template === 'projectDetails' && <ProjectDetails {...block} eager={index === 0} />}
   {template === 'projectBrief' && (
     <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
       <h2 class="text-3xl font-bold mb-6">{block.title}</h2>

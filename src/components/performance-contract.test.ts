@@ -142,3 +142,13 @@ test("R2 pictures use the complete layout-slot image ladder", () => {
 	expect(instagram).toContain(':srcset="slide.srcset"');
 	expect(instagram).not.toContain("slide.replace(");
 });
+
+test("block order controls eager media loading", () => {
+	const blocks = read("src/components/BlocksRenderer.astro");
+	const details = read("src/components/sections/projects/Details.astro");
+
+	expect(blocks).toContain("eager={index === 0 && imageIndex === 0}");
+	expect(blocks).toContain("eager={index === 0}");
+	expect(details).toContain("eager?: boolean;");
+	expect(details).toContain("eager={eager}");
+});

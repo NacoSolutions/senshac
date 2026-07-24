@@ -14,6 +14,7 @@ interface Props {
 	location: string;
 	locationLabel?: string;
 	mediaId?: string;
+	eager?: boolean;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
 	location,
 	locationLabel = "LOCATION",
 	mediaId,
+	eager = false,
 } = Astro.props;
 ---
 
@@ -80,7 +82,7 @@ const {
           id={mediaId}
           alt={title}
 			class="w-full h-auto object-cover"
-			eager
+			eager={eager}
 			mediaSlot="content"
         />
       </div>
