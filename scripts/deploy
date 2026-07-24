@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-git_common_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
-env_file="$(dirname "$git_common_dir")/.env.pages"
+cat >&2 <<'EOF'
+Direct Cloudflare Pages deployment is disabled.
 
-if [[ ! -f "$env_file" ]]; then
-  echo "Missing centralized Pages environment: $env_file" >&2
-  exit 1
-fi
-
-set -a
-source "$env_file"
-set +a
-
-exec wrangler pages deploy dist --project-name senshac "$@"
+Push the verified commit to GitHub and let the repository's GitHub/Cloudflare
+Pages integration deploy it. Do not use Wrangler or the cf wrapper locally.
+EOF
+exit 2

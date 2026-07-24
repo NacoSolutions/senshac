@@ -75,6 +75,10 @@ test("CI and pre-push share the authoritative verification command", () => {
 	const ship = read("scripts/ship");
 	expect(ship).toContain("git push --set-upstream origin HEAD");
 	expect(ship).not.toContain("bun run verify:ci");
+
+	const deploy = read("scripts/deploy");
+	expect(deploy).toContain("Direct Cloudflare Pages deployment is disabled.");
+	expect(deploy).not.toContain("wrangler pages deploy");
 });
 
 test("media runner provides reproducible WOFF2 font subsetting", () => {

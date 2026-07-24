@@ -31,9 +31,7 @@ test("worktree doctor and cleanup separate merge verification", () => {
 
 	expect(pkg.scripts["wt:doctor"]).toBe("bash scripts/wt-doctor");
 	expect(pkg.scripts["wt:cleanup"]).toBe("bash scripts/wt-cleanup");
-	expect(agents).toContain(
-		"GitHub merge and Cloudflare deployment are separate",
-	);
+	expect(agents).toContain("GitHub merge and deployment are separate");
 	expect(doctor).toContain("git fetch origin --prune");
 	expect(doctor).toContain("already merged into");
 	expect(cleanup).toContain("Refusing cleanup: worktree is dirty.");

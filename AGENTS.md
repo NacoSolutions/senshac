@@ -157,11 +157,12 @@ This project uses a bare repository with isolated Worktrunk worktrees:
   `wt config shell install <bash|fish|zsh|nu> --yes`, then the shell must be
   restarted. Non-interactive agents must use explicit worktree paths and must
   not rely on Worktrunk changing the caller's directory.
-- GitHub merge and Cloudflare deployment are separate completion gates. For a
-  remote merge, run `bun run wt:cleanup` only after `origin/main` contains the
-  branch. For deploy-affecting work, then verify the Pages deployment is
-  `active` and run the deployed HTTP smoke checks; either GitHub or Cloudflare
-  can fail independently.
+- GitHub merge and deployment are separate completion gates. Production deploys
+  are triggered by pushing verified commits to GitHub `main` through the
+  repository's GitHub/Cloudflare Pages integration. Never deploy locally with
+  Wrangler or `cf`; `bun run deploy` intentionally fails with the same
+  instruction. After the GitHub workflow and Pages deployment complete, verify
+  the deployment is `active` and run the deployed HTTP smoke checks.
 - Run `bun run wt:doctor` when resuming work or before creating a worktree. It
   fails on dirty or stale `main`, divergence from `origin/main`, or merged
   feature worktrees left behind.
@@ -172,7 +173,7 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 
 - `dx [-d <path>] <command>` — short wrapper for `direnv exec <path> <command>`.
 - `fx [-d <path>] <command>` — short wrapper for `flox activate -d <path> -- <command>`; Flox management verbs such as `fx install <pkg>` remain available.
-- Cloudflare Pages Git deployments use `bun install --frozen-lockfile && bun run build` so dependencies exist before Tina generation.
+- Cloudflare Pages Git deployments use `bun install --frozen-lockfile && bun run build` so dependencies exist before Tina generation. The GitHub push is the only production deployment command.
 
 ### PageSpeed Queries
 
