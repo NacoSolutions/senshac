@@ -130,7 +130,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		!url.pathname.startsWith("/api/") &&
 		!url.pathname.startsWith("/admin") &&
 		!url.pathname.startsWith("/tina");
-	if (isPublicHtmlGet && !response.headers.has("Cache-Control")) {
+	const isPrerenderedHome = /^\/(?:es|en|ca)\/$/.test(url.pathname);
+	if (
+		isPublicHtmlGet &&
+		(isPrerenderedHome || !response.headers.has("Cache-Control"))
+	) {
 		response.headers.set(
 			"Cache-Control",
 			"public, max-age=0, s-maxage=300, stale-while-revalidate=86400",
