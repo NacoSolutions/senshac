@@ -35,6 +35,7 @@ case "$cmd" in
 	      command_path="$repo/scripts/$command_path"
 	    fi
 	    cd -- "$repo"
+	    export FLOX_ENV_PROJECT="$repo"
 	    exec "$real_direnv" exec "$repo" "$command_path" "${@:2}"
     ;;
 esac

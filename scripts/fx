@@ -41,6 +41,7 @@ case "$cmd" in
     ;;
   *)
     cd -- "$repo"
+    export FLOX_ENV_PROJECT="$repo"
     exec flox activate -d "$repo" -- "$@"
     ;;
 esac
