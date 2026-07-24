@@ -64,7 +64,7 @@ function mediaId(value?: string | null) {
     />
   )}
   {template === 'editorialMission' && <EditorialMission {...block} />}
-  {template === 'editorialCarousel' && <EditorialCarousel {...block} />}
+  {template === 'editorialCarousel' && <EditorialCarousel {...block} eagerFirst={index === 0} />}
   {template === 'editorialInstagram' && <EditorialInstagram {...block} />}
   {template === 'editorialGallery' && block.images && (
     <section class="max-w-7xl mx-auto px-4 my-16">

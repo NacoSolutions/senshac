@@ -9,9 +9,10 @@ interface CarouselItem {
 
 interface Props {
 	items?: CarouselItem[];
+	eagerFirst?: boolean;
 }
 
-const { items = [] } = Astro.props;
+const { items = [], eagerFirst = true } = Astro.props;
 
 const id = `carousel-${Math.random().toString(36).substring(2, 9)}`;
 
@@ -39,7 +40,7 @@ function extractMediaId(value?: string | null) {
             id={extractMediaId(slide.mediaId)}
             alt={slide.alt || ''}
 			class="w-full h-full object-cover"
-			eager={index === 0}
+			eager={eagerFirst && index === 0}
 			mediaSlot="full"
           />
         ) : (
