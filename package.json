@@ -70,7 +70,7 @@
 		"@unocss/preset-wind4": "^66.7.0",
 		"@unocss/transformer-directives": "^66.5.10",
 		"alpinejs": "^3.15.3",
-		"astro": "^6.4.6",
+		"astro": "^7.0.3",
 		"esbuild": "^0.28.1",
 		"hls.js": "^1.6.16",
 		"htmx.org": "^2.0.8",
