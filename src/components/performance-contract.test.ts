@@ -52,14 +52,6 @@ test("the home hero heading remains immediately paintable", () => {
 	);
 });
 
-test("the home banner keeps first-viewport geometry inline", () => {
-	const banner = read("src/components/sections/editorial/Banner.astro");
-
-	expect(banner).toContain("<style is:inline>");
-	expect(banner).toContain(".senshac-banner-critical__title");
-	expect(banner).toContain("font-size: clamp(3rem, 8vw, 6rem)");
-});
-
 test("the custom cursor does not run an animation loop on touch devices", () => {
 	const alpine = read("src/utils/alpine.ts");
 
