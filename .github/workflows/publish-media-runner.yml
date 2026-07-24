@@ -24,6 +24,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Grant focused repository package access
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --method PUT \
+            /orgs/NacoSolutions/packages/container/senshac-media-runner/repositories/1311466820
+
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
 
