@@ -62,7 +62,7 @@ const manifest = `${baseUrl}/videos/${cleanId}/master.m3u8`;
               video.play().catch(() => {});
             }
           });
-        }, { rootMargin: '300px 0px', threshold: 0.01 });
+        }, { rootMargin: '0px', threshold: 0.01 });
         this.observer.observe(video);
       },
       async init() {
