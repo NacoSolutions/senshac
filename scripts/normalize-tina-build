@@ -3,6 +3,7 @@ set -euo pipefail
 
 # Tina hashes its admin bundle during generation. Normalize the generated
 # outputs so local and hosted verification compare only meaningful drift.
+sleep 2
 git restore -- \
 	public/admin/.gitignore \
 	public/admin/index.html \
