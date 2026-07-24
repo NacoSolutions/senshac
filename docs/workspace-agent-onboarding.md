@@ -87,7 +87,8 @@ future ownership belongs:
 - `senshac-web`: the current repo and live Astro/Tina/Pages implementation.
 - `senshac-content`: future Tina content repository candidate.
 - `senshac-infra`: future Cloudflare infrastructure repository candidate.
-- `senshac-runner`: future CI/Flox/Act runner repository candidate.
+- `senshac-runner`: active CI/Flox/Act runner repository at
+  `NacoSolutions/senshac-runner`.
 - `senshac-media-runner`: future media pipeline and Instagram ingest
   repository candidate.
 

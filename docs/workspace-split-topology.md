@@ -158,9 +158,9 @@ sd doctor
   GitHub only after `senshac-runner` work proves that bootstrap, encrypted
   secrets, Worktrunk, and CI/Act operations are repeatable outside the live web
   repo.
-- Use `senshac-runner` as the first real focused repository candidate. Runner
-  image, Flox containerization, Act/rootless Podman parity, and workflow CLI
-  concerns are low-risk compared with moving active website code.
+- `NacoSolutions/senshac-runner` is the first promoted focused repository. It
+  owns the runner image, Flox containerization, Act/rootless Podman parity, and
+  image publication. The web repository consumes a verified immutable digest.
 - Keep plaintext secrets wrapper-local and ignored. Committed secret bundles
   must use plain SOPS CLI with age recipients as documented in
   [SOPS Age Secret Bundles](secrets-sops-age.md).

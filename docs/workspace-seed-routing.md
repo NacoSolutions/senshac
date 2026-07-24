@@ -12,7 +12,7 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 | `senshac-web` | Tina generator and live Astro website repo. This is the current `NacoSolutions/senshac` repo until cutover. | Astro app, Tina schema, Tina generated files, page routes, visual behavior, PageSpeed fixes, generated route docs/OpenAPI, Cloudflare Pages artifact. |
 | `senshac-content` | Tina content repo candidate. Same TinaCloud project as `senshac-web`, using Tina's supported separate content repo model. | Editorial JSON/MDX content, owner reference PDFs, translations, Houzz URL/content decisions, repo-based media if chosen. |
 | `senshac-infra` | Cloudflare infrastructure repo candidate. | Pages/R2/Workers/DNS/email infrastructure, environment runbooks, Cloudflare Email Service, cache/CORS rules. |
-| `senshac-runner` | CI/local runner repo candidate. | Flox containerization, GitHub Actions runner image, Act/rootless Podman parity, development CLI wrappers, GitHub Actions runtime updates. |
+| `senshac-runner` | Active focused CI/local runner repo at `NacoSolutions/senshac-runner`. | Flox containerization, GitHub Actions runner image, Act/rootless Podman parity, development CLI wrappers, GitHub Actions runtime updates. |
 | `senshac-media-runner` | Media automation repo candidate. | Sharp/ffmpeg pipeline, R2 raw-to-prod processing, Instagram/Novedades ingest, media sizing pipeline. |
 
 ## Routing Rules
@@ -33,6 +33,7 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 | `senshac-9bab` | `senshac-runner` plus `senshac-workspace` | Do next or in parallel with SOPS policy. | `fx`/`dx` pass-through is shared developer experience; implementation lives with runner/tooling conventions. |
 | `senshac-8521` | `senshac-workspace` plus all focused repos | Do before committing encrypted secret files. | Shared SOPS/age policy and per-repo bundle placement. |
 | `senshac-50a2` | `senshac-runner` | Ready after `senshac-7bd8`; implement before promoting a real focused repo. | Flox-containerized CI runner image belongs in runner ownership. |
+| `senshac-bc05` | `senshac-runner` plus `senshac-web` | Close after the focused image is published and the web consumer is pinned to its verified digest. | Extracts runner ownership without coupling the web release to mutable image tags. |
 | `senshac-3da6` | `senshac-runner` | Can run before full split if it blocks `fx`/container work. | Flox activation newline warning affects runner/tooling. |
 | `senshac-6482` | `senshac-runner` | Can be done in current repo, later owned by runner. | GitHub Actions runtime versions are runner/CI surface. |
 | `senshac-da6b` | `senshac-web` | Keep in current repo. | Runtime acceptance scenarios validate the live web app. |

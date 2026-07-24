@@ -9,6 +9,7 @@ fi
 
 export DOCKER_HOST="unix://${socket}"
 
+runner_image="${SENSHAC_RUNNER_IMAGE:-ghcr.io/nacosolutions/senshac-runner@sha256:e090a4d4aabe4573839584394f501c73a87ed36172690ca56a9a6f9edafa3f63}"
 common_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
 head="$(git rev-parse HEAD)"
 tmp="$(mktemp -d)"
@@ -21,8 +22,8 @@ cd "$tmp/repo"
 act pull_request \
   --workflows .github/workflows/ci.yml \
   --job ci \
-  --platform ubuntu-latest=ghcr.io/nacosolutions/senshac-ci-runner:latest \
+  --platform "ubuntu-latest=${runner_image}" \
   --container-daemon-socket - \
   --container-architecture linux/amd64 \
-  --pull=false \
+  --pull=true \
   "$@"

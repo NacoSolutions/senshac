@@ -1,5 +1,11 @@
 import { expect, test } from "bun:test";
-import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+	existsSync,
+	mkdtempSync,
+	readdirSync,
+	readFileSync,
+	writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import yaml from "js-yaml";
@@ -253,7 +259,11 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 	expect(actCi).toContain("podman.sock");
 	expect(actCi).not.toContain("--bind");
 	expect(actCi).toContain("git clone --no-hardlinks");
-	expect(actCi).toContain("ghcr.io/nacosolutions/senshac-ci-runner:latest");
+	expect(actCi).toContain("SENSHAC_RUNNER_IMAGE");
+	expect(actCi).toContain(
+		"ghcr.io/nacosolutions/senshac-runner@sha256:e090a4d4aabe4573839584394f501c73a87ed36172690ca56a9a6f9edafa3f63",
+	);
+	expect(actCi).toContain("--pull=true");
 });
 
 test("development tools have one pinned owner and automation uses locked binaries", () => {
@@ -367,19 +377,10 @@ test("development tools have one pinned owner and automation uses locked binarie
 		expect(read(path)).toContain("oven-sh/setup-bun@");
 		expect(read(path)).toContain("contents: write");
 	}
-	expect(read(".github/workflows/publish-ci-runner.yml")).toContain(
-		"flox/install-flox-action@v2",
-	);
-	expect(read(".github/workflows/publish-ci-runner.yml")).toContain(
-		"scripts/build-ci-runner",
-	);
-	const ciRunnerBuild = read("scripts/build-ci-runner");
-	expect(ciRunnerBuild).toContain("flox containerize");
-	expect(ciRunnerBuild).toContain(
-		'RUN ["/bin/ln", "-sf", "/bin/env", "/usr/bin/env"]',
-	);
-	expect(ciRunnerBuild).toContain("ld-linux-x86-64.so.2");
-	expect(ciRunnerBuild).toContain("ENV HOME=/tmp XDG_CONFIG_HOME=/tmp/.config");
+	expect(
+		existsSync(resolve(root, ".github/workflows/publish-ci-runner.yml")),
+	).toBe(false);
+	expect(existsSync(resolve(root, "scripts/build-ci-runner"))).toBe(false);
 });
 
 test("agent onboarding documents the workspace split workflow", () => {
@@ -401,9 +402,11 @@ test("agent onboarding documents the workspace split workflow", () => {
 	expect(onboarding).toContain("senshac-workspace");
 	expect(workflow).toContain("docs/workspace-agent-onboarding.md");
 	expect(topology).toContain("docs/workspace-agent-onboarding.md");
-	expect(ciRunner).toContain("flox containerize");
-	expect(ciRunner).toContain("ghcr.io/nacosolutions/senshac-ci-runner");
-	expect(ciRunner).toContain("/usr/bin/env");
+	expect(ciRunner).toContain("NacoSolutions/senshac-runner");
+	expect(ciRunner).toContain(
+		"ghcr.io/nacosolutions/senshac-runner@sha256:e090a4d4aabe4573839584394f501c73a87ed36172690ca56a9a6f9edafa3f63",
+	);
+	expect(ciRunner).toContain("SENSHAC_RUNNER_IMAGE");
 });
 
 test("secret bundle policy documents plain sops age paths", () => {
@@ -472,7 +475,10 @@ test("workspace split epic is finalized into concrete follow-up work", () => {
 	expect(topology).toContain("## Current Decisions");
 	expect(topology).not.toContain("## Open Questions");
 	expect(topology).toContain(
-		"Use `senshac-runner` as the first real focused repository candidate",
+		"`NacoSolutions/senshac-runner` is the first promoted focused repository",
+	);
+	expect(routing).toContain(
+		"`senshac-bc05` | `senshac-runner` plus `senshac-web`",
 	);
 	expect(routing).toContain(
 		"`senshac-50a2` | `senshac-runner` | Ready after `senshac-7bd8`",

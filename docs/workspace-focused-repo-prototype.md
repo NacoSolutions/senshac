@@ -118,6 +118,7 @@ The previous plan said secrets stay outside Git. That remains true for plaintext
 Continue the split, but do the next implementation in this order:
 
 1. Define a focused-repo bootstrap script that runs `sd init`, initializes Mulch/Canopy as needed, writes `.config/wt.toml`, and configures Worktrunk worktree placement.
-2. Keep `senshac-runner` as the first real focused repo candidate.
+2. Use the promoted `NacoSolutions/senshac-runner` repository as the reference
+   implementation for subsequent focused repositories.
 3. Treat `senshac-content` as a Tina-supported separate content repo, but do not move content until the TinaCloud content-repo toggle/localContentPath plan is explicit.
 4. Complete the SOPS/age seed covering encrypted env bundles, key ownership, CI/Act decrypt, and rotation.
