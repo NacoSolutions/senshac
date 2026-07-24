@@ -38,6 +38,7 @@ test("base layout preloads only fonts needed for first paint", () => {
 test("base layout defers the global stylesheet from the critical rendering path", () => {
 	const base = read("src/layouts/Base.astro");
 
+	expect(base).toContain('import "virtual:uno.css"');
 	expect(base).toContain('import globalStyles from "../styles/global.css?url"');
 	expect(base).toContain('<link rel="preload" href={globalStyles} as="style"');
 	expect(base).toContain("this.rel='stylesheet'");
@@ -45,6 +46,13 @@ test("base layout defers the global stylesheet from the critical rendering path"
 		'<noscript><link rel="stylesheet" href={globalStyles} /></noscript>',
 	);
 	expect(base).not.toContain('import "../styles/global.css"');
+});
+
+test("Uno font utilities resolve to the licensed site fonts", () => {
+	const global = read("src/styles/global.css");
+
+	expect(global).toContain('--font-sans: "Sinteca", system-ui, sans-serif');
+	expect(global).toContain('--font-jozsika: "Jozsika", serif');
 });
 
 test("the home hero heading remains immediately paintable", () => {

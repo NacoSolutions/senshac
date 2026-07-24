@@ -36,21 +36,14 @@
 		"public/admin/**",
 		"src/content/legal/**/*.mdx"
 	],
-	"ignoreBinaries": [
-		"scripts/build",
-		"scripts/act-media",
-		"scripts/media/process-video.sh",
-		"scripts/with-timeout",
-		"betterleaks",
-		"biome",
-		"tinacms"
-	],
+	"ignoreBinaries": ["betterleaks", "biome", "tinacms"],
 	"ignoreDependencies": [
 		"@astrojs/cloudflare",
 		"@astrojs/mdx",
 		"cloudflare",
 		"esbuild",
 		"next-tinacms-s3",
+		"virtual:uno.css",
 		"vite",
 		"yaml"
 	],
