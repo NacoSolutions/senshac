@@ -1,6 +1,6 @@
 /* src/styles/global.css — global resets only; all component styles live in their component files */
 
-:root {
+html:root {
 	--font-sans: "Sinteca", system-ui, sans-serif;
 	--font-jozsika: "Jozsika", serif;
 }
