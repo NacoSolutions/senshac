@@ -110,7 +110,8 @@ test("nightly PageSpeed validates complete category responses", () => {
 	expect(workflow).toContain("scripts/pagespeed-result.ts");
 	expect(workflow).toContain("scripts/pagespeed-routes.ts");
 	expect(workflow).toContain("scripts/pagespeed-threshold.ts");
-	expect(workflow).toContain("TARGET_SCORE: 100");
+	expect(workflow).toContain("PERFORMANCE_TARGET: 95");
+	expect(workflow).toContain("QUALITY_TARGET: 100");
 	expect(workflow).toContain(
 		"WIP_SITE_URL: $" + "{{ vars.WIP_SITE_URL || 'https://wip.senshac.com' }}",
 	);
