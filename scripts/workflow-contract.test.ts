@@ -144,6 +144,7 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 
 	const fx = read("scripts/fx");
 	expect(fx).toContain('exec flox activate -d "$repo" -- "$@"');
+	expect(fx).toContain('cd -- "$repo"');
 	expect(fx).not.toContain("bun run check");
 	expect(fx).not.toContain("bun run build");
 	expect(fx).not.toContain("bun run verify:ci");
@@ -151,6 +152,7 @@ test("fx and dx are thin repo-scoped command pass-through wrappers", () => {
 
 	const dx = read("scripts/dx");
 	expect(dx).toContain('command_path="$1"');
+	expect(dx).toContain('cd -- "$repo"');
 	expect(dx).toContain(
 		'exec "$real_direnv" exec "$repo" "$command_path" "${' + "@:2}" + '"',
 	);

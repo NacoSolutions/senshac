@@ -34,6 +34,7 @@ case "$cmd" in
 	    if [ -x "$repo/scripts/$command_path" ]; then
 	      command_path="$repo/scripts/$command_path"
 	    fi
+	    cd -- "$repo"
 	    exec "$real_direnv" exec "$repo" "$command_path" "${@:2}"
     ;;
 esac
