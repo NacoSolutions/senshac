@@ -6,7 +6,7 @@ This plan defines the first migration step from one large Senshac repository wra
 
 ## Goals
 
-- Make agent work selection tracker-first: use Seeds for planning, dependency analysis, and prioritization.
+- Make agent work selection graph-first: use `tr triage` and related Terrarium commands for planning, dependency analysis, and prioritization.
 - Keep Seeds as the issue mutation and integrity source: use `sd create`, `sd update`, `sd dep`, `sd close`, `sd sync`, and `sd doctor` when changing or debugging tracker state.
 - Separate high-churn web code, content/media operations, infrastructure, and runner image work into focused bare repositories once ownership boundaries are proven.
 - Preserve one-command activation for agents: `fx -d <repo-or-worktree> <command>` for Flox-scoped commands and `dx -d <repo-or-worktree> <command>` for direnv-scoped commands.
@@ -28,7 +28,7 @@ This plan defines the first migration step from one large Senshac repository wra
   SOPS/age equivalents are allowed only after decrypt, CI, rotation, and
   recovery flows are proven.
 - Do not make each focused repo invent separate workflow conventions.
-- Do not replace `llms.txt`, Markdown content negotiation, Seeds, Mulch, Canopy, or Trellis as part of this migration.
+- Do not replace `llms.txt`, Markdown content negotiation, Seeds, Mulch, Canopy, or Terrarium as part of this migration.
 - Do not migrate historical Trellis data back into active workflow state.
 
 ## Target Workspace
@@ -102,17 +102,14 @@ from GitHub while infra owns account-level resource policy.
 
 ## Task Selection
 
-Default work selection is Seeds-first:
+Default work selection is Terrarium-first:
 
 ```bash
-sd ready
-sd show <seed-id>
-sd dep list <seed-id>
+tr triage
+tr blocked
+tr graph
+tr show <seed-id>
 ```
-
-Use Trellis for agent-readiness audits and Plot for explicit cross-agent
-coordination objects. Neither is required for ordinary single-repo website
-work, and neither should introduce a second issue store.
 
 Use Seeds for tracker mutation and direct tracker debugging:
 
@@ -174,7 +171,7 @@ sd doctor
   [SOPS Age Secret Bundles](secrets-sops-age.md).
 - Keep GitHub Issues and GitHub Actions attached to the active implementation
   repo until a focused repository is promoted. Meta-level graph state remains
-  in Seeds here during the transition.
+  in Seeds/Terrarium here during the transition.
 - Defer the `senshac-content` media model until the Tina content split seed is
   created. The current baseline is one TinaCloud project with `senshac-web` as
   generator repo and `senshac-content` as a future content repo candidate.
@@ -184,7 +181,7 @@ sd doctor
 Run these from the active worktree unless noted:
 
 ```bash
-sd ready
+tr triage
 sd show senshac-6af9
 bun run check:seeds
 git status --short
@@ -195,5 +192,5 @@ For command-wrapper changes in later seeds:
 
 ```bash
 fx -d /path/to/worktree sd create --help
-dx -d /path/to/worktree sd ready
+dx -d /path/to/worktree tr triage
 ```
