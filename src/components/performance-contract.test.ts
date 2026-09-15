@@ -12,8 +12,8 @@ test("media-heavy video components defer HLS until near viewport", () => {
 	expect(hlsVideo).toContain("data-src={manifest}");
 	expect(hlsVideo).toContain('preload="none"');
 	expect(hlsVideo).toContain("IntersectionObserver");
-	expect(hlsVideo).toContain("rootMargin: '0px'");
-	expect(hlsVideo).toContain('x-init="setTimeout(() => observe(), 1000)"');
+	expect(hlsVideo).toContain("rootMargin: '300px 0px'");
+	expect(hlsVideo).toContain('x-init="observe()"');
 	expect(hlsVideo).toContain("await import('hls.js')");
 
 	expect(instagram).not.toContain('import Hls from "hls.js"');
@@ -21,6 +21,9 @@ test("media-heavy video components defer HLS until near viewport", () => {
 	expect(instagram).toContain("data-src={post.media_url}");
 	expect(instagram).toContain("data-poster={smallPoster(post.thumbnail_url)}");
 	expect(instagram).toContain('preload="none"');
+	expect(instagram).toContain('data-lazy-media');
+	expect(instagram).toContain("rootMargin: '300px 0px'");
+	expect(instagram).toContain('window.senshacObserveMedia');
 });
 
 test("base layout preloads only fonts needed for first paint", () => {

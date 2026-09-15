@@ -93,7 +93,17 @@ const carouselSlides = (urls: string[]) =>
                   :class="active === index ? 'opacity-100 z-0' : 'opacity-0 z-[-1]'"
                 >
                   <template x-if="slide.src.endsWith('.m3u8')">
-                    <video :src="slide.src" class="hls-video w-full h-full object-contain" autoplay muted loop playsinline></video>
+                    <video
+                      :data-src="slide.src"
+                      data-lazy-media
+                      class="hls-video w-full h-full object-contain"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="none"
+                      x-init="$nextTick(() => window.senshacObserveMedia?.($el))"
+                    ></video>
                   </template>
                   <template x-if="!slide.src.endsWith('.m3u8')">
                     <img 
@@ -118,6 +128,7 @@ const carouselSlides = (urls: string[]) =>
               loop
               playsinline
               preload="none"
+              data-lazy-media
             />
           ) : (
             <img 
@@ -164,18 +175,15 @@ const carouselSlides = (urls: string[]) =>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const videos = document.querySelectorAll("video.hls-video") as NodeListOf<HTMLVideoElement>;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       let hlsLoader: Promise<typeof import('hls.js')> | null = null;
+      const observers = new WeakMap<HTMLVideoElement, IntersectionObserver>();
 
       const loadVideo = async (video: HTMLVideoElement) => {
         if (video.dataset.loaded === 'true') return;
         video.dataset.loaded = 'true';
 
-        if (video.dataset.poster) {
-          video.poster = video.dataset.poster;
-        }
-
+        if (video.dataset.poster) video.poster = video.dataset.poster;
         const src = video.dataset.src || video.getAttribute("src");
         if (!src) return;
 
@@ -196,38 +204,44 @@ const carouselSlides = (urls: string[]) =>
         }
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const video = entry.target as HTMLVideoElement;
-          const isPausedManually = video.dataset.pausedManually === 'true';
+      window.senshacObserveMedia = (video: HTMLVideoElement) => {
+        if (observers.has(video)) return;
+        if (prefersReducedMotion) video.removeAttribute('autoplay');
 
-          if (entry.isIntersecting) {
-            loadVideo(video).then(() => {
-              if (!prefersReducedMotion && !isPausedManually) {
-                video.play().catch(() => {});
-              }
-            });
-          } else {
-            video.pause();
+        const observer = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            const isPausedManually = video.dataset.pausedManually === 'true';
+            if (entry.isIntersecting) {
+              loadVideo(video).then(() => {
+                if (!prefersReducedMotion && !isPausedManually) video.play().catch(() => {});
+              });
+            } else {
+              video.pause();
+            }
           }
-        });
-      }, { threshold: 0.1 });
-
-      videos.forEach((video) => {
-        if (prefersReducedMotion) {
-          video.removeAttribute('autoplay');
-          video.pause();
-        }
+        }, { rootMargin: '300px 0px', threshold: 0.01 });
+        observers.set(video, observer);
         observer.observe(video);
+      };
+
+      const observeLazyVideos = () => {
+        const observe = window.senshacObserveMedia;
+        if (!observe) return;
+        document.querySelectorAll("video[data-lazy-media]").forEach((video) => {
+          observe(video as HTMLVideoElement);
+        });
+      };
+      observeLazyVideos();
+      new MutationObserver(observeLazyVideos).observe(document.body, {
+        childList: true,
+        subtree: true,
       });
 
       document.querySelectorAll(".novedades-video-toggle").forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
-          const container = btn.closest('.group');
-          const video = container?.querySelector('video');
+          const video = btn.closest('.group')?.querySelector('video');
           if (!video) return;
-
           const icon = btn.querySelector('span');
           if (video.paused) {
             video.play();

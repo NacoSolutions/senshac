@@ -8,5 +8,6 @@ declare global {
 	interface Window {
 		Alpine: AlpineType;
 		htmx: typeof htmxType;
+		senshacObserveMedia?: (video: HTMLVideoElement) => void;
 	}
 }
