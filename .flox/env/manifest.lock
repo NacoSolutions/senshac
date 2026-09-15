@@ -1204,13 +1204,13 @@
     },
     {
       "install_id": "trellis",
-      "locked-url": "github:RogerNavelsaker/nixpkg-trellis/b6c1bb617e1c4f5552af9af86bc70405eb4fa01b?narHash=sha256-bo2UVKPmAsnijGtFZhfupauHJjaQv5Wh8qKS4NkBuRk%3D",
+      "locked-url": "github:RogerNavelsaker/nixpkg-trellis/318dfe958ead7adce51c32260a7d8f4c4481e17a?narHash=sha256-oh90OlDucfk7vsv9%2BDq2FqjEjaCmu9ylGoIFc3pWZSk%3D",
       "flake-description": "Nix packaging scaffold for @os-eco/trellis-cli",
       "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/mhcj0g0vsmp7caiq3sfiv0033agqyqa5-trellis-0.2.1-r2.drv",
+      "derivation": "/nix/store/j7xfhp23z6xlbwhf5jl5rr9f0b97qjyl-trellis-0.1.0-r2.drv",
       "outputs": {
-        "out": "/nix/store/j5hs2raayv0rz7c5smsibyypzsnxpgss-trellis-0.2.1-r2",
-        "tl": "/nix/store/30yc46v5chs0qkgkz08fxj3gqil7knkv-trellis-0.2.1-r2-tl"
+        "out": "/nix/store/135brd2rg3xlmqp00wif55h5a3misxm0-trellis-0.1.0-r2",
+        "tl": "/nix/store/3dkyl260s2sfjhjsll6hczr71ygf7amn-trellis-0.1.0-r2-tl"
       },
       "output-names": [
         "out",
@@ -1222,9 +1222,9 @@
       "requested-outputs-to-install": [],
       "package-system": "x86_64-linux",
       "system": "x86_64-linux",
-      "name": "trellis-0.2.1-r2",
+      "name": "trellis-0.1.0-r2",
       "pname": "trellis",
-      "version": "0.2.1-r2",
+      "version": "0.1.0-r2",
       "broken": false,
       "unfree": false,
       "priority": 5
