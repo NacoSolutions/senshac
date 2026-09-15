@@ -68,7 +68,7 @@ wt -C /tmp/senshac-workspace-prototype/senshac-runner/main \
 DUMMY_TOKEN=prototype-only
 ```
 
-- `tr triage` read the minimal `.seeds/issues.jsonl` and ranked the prototype issue.
+- `sd ready` read the minimal `.seeds/issues.jsonl` and listed the prototype issue.
 - `sd show runner-0001` failed until a real Seeds project was initialized.
 - Running `sd init` after hand-writing `.seeds/issues.jsonl` overwrote the hand-written issue state. Bootstrap must run `sd init` first, then create/import issues through `sd`.
 - Worktrunk worked, but the default worktree path for a bare repo at `senshac-runner/.git` was awkward:

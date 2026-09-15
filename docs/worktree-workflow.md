@@ -61,12 +61,12 @@ wt remove
 ```
 
 Run project and tracker tools from a worktree through its environment. Use
-Terrarium for routine work selection and Seeds for tracker mutation or direct
-tracker debugging:
+Seeds for routine work selection and tracker mutation or direct tracker
+debugging. Use Trellis for readiness audits and Plot only for explicit
+cross-agent coordination:
 
 ```bash
-dx tr triage
-dx tr blocked
+dx sd ready
 dx sd show senshac-1234
 dx cn prime
 dx ml prime

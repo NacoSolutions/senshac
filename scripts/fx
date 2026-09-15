@@ -21,7 +21,7 @@ Flox management conveniences:
   install, remove, uninstall, upgrade, list, search, show
 
 Examples:
-  fx -d ../main tr triage
+  fx -d ../main sd ready
   fx -d ../main sd create --help
   fx install ripgrep
 EOF

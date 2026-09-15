@@ -115,13 +115,13 @@ Original WordPress site in `.reference/` directory for content and structure ana
 Project memory has moved out of `.agent-memory/` into the git-native tool stores:
 
 - `ml prime` - durable expertise migrated from the former memory-bank files
-- `tr triage` - graph-ranked pending production and migration follow-up work
+- `sd ready` - pending production and migration follow-up work
 - `sd show <id>` - inspect a tracker record before mutating it
 - `cn render senshac-project-context` - project/product/progress prompt context
 - `cn render senshac-technical-context` - architecture and technical prompt context
 - `cn render senshac-content-context` - content migration and changelog prompt context
 
-Run `tr triage`, `sd prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
+Run `sd prime`, `cn prime`, and `ml prime` at session start instead of reading `.agent-memory/`.
 
 ## Git Workspace Architecture
 
@@ -138,7 +138,7 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 - Create independently mergeable work with
   `wt switch --create <kind>/<seed>-<slug> --base main`.
 - Run project and tracker commands inside the resulting worktree through
-  `dx`; use `tr triage` for routine work selection and `sd` for issue mutation
+  `dx`; use `sd ready` for routine work selection and `sd` for issue mutation
   or tracker debugging.
 - Local integration is the fast path: run the full pre-push gate, use
   `bun run wt:merge` from the feature worktree, then push `main`. GitHub
@@ -191,12 +191,12 @@ This project uses a bare repository with isolated Worktrunk worktrees:
 
 This project uses [Seeds](https://github.com/jayminwest/seeds) for git-native issue tracking.
 
-**At the start of every session**, use Terrarium to choose work, then inspect or mutate Seeds as needed:
+**At the start of every session**, use Seeds to inspect unblocked work, then inspect or mutate tracker records as needed:
 ```
-tr triage
+sd ready
 ```
 
-Run Seeds when you need tracker context or changes:
+Run Seeds when you need tracker context or changes. Use Trellis for repository-readiness audits and Plot only when a cross-agent coordination object is needed; neither replaces the local Seeds/Mulch/Canopy workflow:
 ```
 sd prime
 ```
@@ -204,7 +204,7 @@ sd prime
 This injects session context: rules, command reference, and workflows.
 
 **Quick reference:**
-- `sd ready` — Tracker-level unblocked list, mostly for debugging; prefer `tr triage` for routine prioritization
+- `sd ready` — Unblocked work list and routine local prioritization
 - `sd create --title "..." --type task --priority 2` — Create issue
 - `sd update <id> --status in_progress` — Claim work
 - `sd close <id>` — Complete work

@@ -23,7 +23,7 @@ verification:
 
 ```bash
 cd /home/rona/Repositories/.ru/NacoSolutions/senshac/main
-dx tr triage
+dx sd ready
 dx ml prime
 ```
 
@@ -36,15 +36,16 @@ wt switch --create docs/senshac-3a64-agent-onboarding --base main
 
 Run implementation commands inside the new worktree, not in `main/`.
 
-## Choose Work With Terrarium
+## Choose Work With Seeds
 
-Use Terrarium as the routine planning and prioritization surface:
+Use Seeds as the routine local work queue. Use direct tracker commands for
+mutation and integrity checks. Trellis is the readiness-audit layer; Plot is
+only appropriate when work needs a durable cross-agent coordination object.
 
 ```bash
-dx tr triage
-dx tr blocked
-dx tr graph
-dx tr show senshac-3a64
+dx sd ready
+dx sd blocked
+dx sd show senshac-3a64
 ```
 
 Use Seeds when changing or debugging tracker records:
@@ -59,14 +60,14 @@ dx sd close senshac-3a64
 ```
 
 `sd ready` and `sd list` are tracker diagnostics. Do not use them as the
-normal priority view when `tr triage` is available.
+normal priority view; use `sd ready` for the local unblocked queue.
 
 ## Use The Environment Wrappers
 
 Run commands through the target worktree environment:
 
 ```bash
-dx -d /path/to/worktree tr triage
+dx -d /path/to/worktree sd ready
 dx -d /path/to/worktree bun run check:precommit
 fx -d /path/to/worktree bun run check:prepush
 fx -d /path/to/worktree sd create --help
