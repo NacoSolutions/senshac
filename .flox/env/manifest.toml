@@ -45,6 +45,8 @@ seeds.flake = "github:RogerNavelsaker/nixpkg-seeds"
 seeds.outputs = ["out", "sd"]
 sops.pkg-path = "sops"
 sops.pkg-group = "sops"
+terrarium.flake = "github:RogerNavelsaker/nixpkg-terrarium"
+terrarium.outputs = ["out", "tr"]
 tinacms-cli.flake = "github:RogerNavelsaker/nixpkg-tinacms-cli"
 trellis.flake = "github:RogerNavelsaker/nixpkg-trellis"
 trellis.outputs = ["out", "tl"]
@@ -99,7 +101,7 @@ Quick Commands:
   bun run preview                       Preview production build
   bun run check                         Run Astro check
   bun run deploy                        Deploy to Cloudflare Pages
-  sd, ml, cn, tl                         Seeds, Mulch, Canopy, Trellis
+  sd, ml, cn, tr, tl                    Seeds, Mulch, Canopy, Terrarium, Trellis
 EOF
   fi
 '''

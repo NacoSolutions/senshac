@@ -6,7 +6,7 @@ const agentsPath = resolve(root, "AGENTS.md");
 const agents = readFileSync(agentsPath, "utf8");
 
 const requiredText = [
-	"sd ready",
+	"tr triage",
 	"fx [-d <path>]",
 	"dx [-d <path>]",
 	"wt switch --create <kind>/<seed>-<slug> --base main",

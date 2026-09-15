@@ -2,7 +2,7 @@
 
 Seed: `senshac-d2ed`
 
-This map assigns the current open Senshac seeds to the proposed workspace split. It follows the `jayminwest/os-eco` pattern: a meta repository owns cross-cutting ecosystem coordination, while focused repositories own code, CI, and release surfaces with independent histories. Seeds remains the canonical tracker here; Mulch and Canopy provide expertise and prompts, Trellis audits readiness, and Plot is reserved for explicit cross-agent coordination.
+This map assigns the current open Senshac seeds to the proposed workspace split. It follows the `jayminwest/os-eco` pattern: a meta repository owns cross-cutting ecosystem coordination, while focused repositories own code, CI, and release surfaces with independent histories.
 
 ## Repository Roles
 
@@ -21,7 +21,7 @@ This map assigns the current open Senshac seeds to the proposed workspace split.
 - The meta repo owns the canonical cross-repo task graph once created. Until then, canonical Seeds remain in `NacoSolutions/senshac`.
 - Tina content split uses one TinaCloud project with generator/content repo bindings. Do not create a second Tina project for `senshac-content`.
 - Plaintext secrets remain ignored and local-only. SOPS/age encrypted bundles can move into the meta repo or focused repos only after `senshac-8521` proves decrypt, rotation, recovery, and CI/Act behavior. Interactive editing uses plain SOPS CLI with a local age, SSH, or hardware-backed identity; CI uses an age identity stored as a GitHub or Act secret.
-- `sd ready` is the local priority view. Use direct `sd` commands for tracker mutation, integrity checks, and debugging.
+- `tr triage` remains the priority view. Use direct `sd` commands for tracker mutation, integrity checks, and debugging.
 
 ## Current Open Seed Map
 
@@ -118,7 +118,7 @@ Current state after closing `senshac-7bd8`:
 Use these after updating the tracker:
 
 ```bash
-sd ready
+tr triage
 sd show senshac-d2ed
 bun run check:seeds
 git status --short
