@@ -40,7 +40,10 @@ bun run dev
 The Flox environment also provides the project helper CLIs: `sd`, `ml`, `cn`, and `tl`.
 It also exposes `dx` for `direnv exec <path> <command>` and `fx` for Flox-scoped commands plus common project workflows.
 Agents should start with `docs/workspace-agent-onboarding.md` for the current
-bare-wrapper, Worktrunk, Terrarium, and focused-repo routing rules.
+bare-wrapper, Worktrunk, and focused-repo routing rules. This repository uses
+Seeds for work tracking, Mulch for expertise, Canopy for prompts, and Trellis
+for readiness audits. Plot is reserved for future cross-agent coordination; it
+is not needed for ordinary website changes.
 
 For local Tina/contact-form configuration, copy `.env.example` to `.env.local` and fill in real values. `.env.local` is ignored by git and loaded by `.envrc` when direnv is enabled.
 
@@ -49,7 +52,7 @@ For local Tina/contact-form configuration, copy `.env.example` to `.env.local` a
 | Command | Description |
 |---------|-------------|
 | `dx [-d <path>] <command>` | Run a command through the direnv-loaded repo environment |
-| `tr triage` | Show graph-ranked ready work |
+| `sd ready` | Show unblocked work |
 | `fx [-d <path>] <command>` | Run a command through `flox activate -d <path> --` |
 | `fx install <pkg>` | Install a Flox package in the selected repo |
 | `bun run verify:ci` | Run the same authoritative verification gate as GitHub CI |

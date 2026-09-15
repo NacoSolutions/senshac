@@ -320,7 +320,7 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(sd).toContain('exec seeds "$@"');
 	expect(read("scripts/ml")).toContain("exec mulch");
 	expect(read("scripts/cn")).toContain("exec canopy");
-	expect(read("scripts/tr")).toContain("exec terrarium");
+	expect(existsSync(resolve(root, "scripts/tr"))).toBe(false);
 	expect(read("scripts/tl")).toContain("exec trellis");
 	for (const path of [
 		"scripts/cf",
@@ -355,8 +355,8 @@ test("development tools have one pinned owner and automation uses locked binarie
 	expect(floxManifest).toContain("nodejs_24.pkg-path");
 	expect(floxManifest).toContain("wrangler.pkg-path");
 	expect(floxManifest).toContain("typescript-language-server.pkg-path");
-	expect(floxManifest).toContain("terrarium.flake");
-	expect(floxManifest).toContain('terrarium.outputs = ["out", "tr"]');
+	expect(floxManifest).not.toContain("terrarium.flake");
+	expect(floxManifest).not.toContain('terrarium.outputs = ["out", "tr"]');
 	expect(floxManifest).toContain("trellis.flake");
 	expect(floxManifest).toContain('trellis.outputs = ["out", "tl"]');
 
@@ -394,10 +394,10 @@ test("agent onboarding documents the workspace split workflow", () => {
 	const ciRunner = read("docs/ci-runner-image.md");
 
 	expect(agents).toContain("docs/workspace-agent-onboarding.md");
-	expect(agents).toContain("tr triage");
+	expect(agents).toContain("sd ready");
 	expect(agents).toContain("sd sync");
 	expect(agents).not.toContain("sd sync && git push");
-	expect(onboarding).toContain("dx tr triage");
+	expect(onboarding).toContain("dx sd ready");
 	expect(onboarding).toContain("dx sd doctor");
 	expect(onboarding).toContain("fx -d /path/to/worktree bun run check:prepush");
 	expect(onboarding).toContain("Use `sd sync`, `ml sync`, or `cn sync` only");

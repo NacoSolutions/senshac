@@ -110,13 +110,6 @@
         "pkg-path": "sops",
         "pkg-group": "sops"
       },
-      "terrarium": {
-        "flake": "github:RogerNavelsaker/nixpkg-terrarium",
-        "outputs": [
-          "out",
-          "tr"
-        ]
-      },
       "tinacms-cli": {
         "flake": "github:RogerNavelsaker/nixpkg-tinacms-cli"
       },
@@ -152,7 +145,7 @@
       "NODE_ENV": "development"
     },
     "hook": {
-      "on-activate": "  export PATH=\"$FLOX_ENV_PROJECT/scripts:$PATH\"\n  GCC_RUNTIME_LIB=\"$(dirname \"$(gcc -print-file-name=libstdc++.so.6)\")\"\n  export LD_LIBRARY_PATH=\"$GCC_RUNTIME_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n  FLOX_CERT_FILE=\"$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.run/etc/ssl/certs/ca-bundle.crt\"\n  if [ ! -f \"$FLOX_CERT_FILE\" ]; then\n    FLOX_CERT_FILE=\"$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.dev/etc/ssl/certs/ca-bundle.crt\"\n  fi\n  if [ -f \"$FLOX_CERT_FILE\" ]; then\n    export SSL_CERT_FILE=\"$FLOX_CERT_FILE\"\n    export NIX_SSL_CERT_FILE=\"$FLOX_CERT_FILE\"\n    export NODE_EXTRA_CA_CERTS=\"$FLOX_CERT_FILE\"\n  fi\n\n  if [ -f package.json ] && [ ! -d node_modules ]; then\n    echo \"Installing dependencies...\"\n    bun install\n  fi\n\n  if [ -z \"${QUIET:-}\" ]; then\n    cat <<'EOF'\nSenshac Development Environment\n\nAstro + Alpine.js + HTMX + UnoCSS\n\nQuick Commands:\n  dx <command>                          Run through direnv exec .\n  fx <command>                          Run through flox activate -d .\n  dev [start|stop|restart|status|log]   Astro dev server\n  cms [start|stop|restart|status|log]   TinaCMS + Astro\n  bun run build                         Build for production\n  bun run preview                       Preview production build\n  bun run check                         Run Astro check\n  bun run deploy                        Deploy to Cloudflare Pages\n  sd, ml, cn, tr, tl                    Seeds, Mulch, Canopy, Terrarium, Trellis\nEOF\n  fi\n"
+      "on-activate": "  export PATH=\"$FLOX_ENV_PROJECT/scripts:$PATH\"\n  GCC_RUNTIME_LIB=\"$(dirname \"$(gcc -print-file-name=libstdc++.so.6)\")\"\n  export LD_LIBRARY_PATH=\"$GCC_RUNTIME_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}\"\n  FLOX_CERT_FILE=\"$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.run/etc/ssl/certs/ca-bundle.crt\"\n  if [ ! -f \"$FLOX_CERT_FILE\" ]; then\n    FLOX_CERT_FILE=\"$FLOX_ENV_PROJECT/.flox/run/x86_64-linux.senshac.dev/etc/ssl/certs/ca-bundle.crt\"\n  fi\n  if [ -f \"$FLOX_CERT_FILE\" ]; then\n    export SSL_CERT_FILE=\"$FLOX_CERT_FILE\"\n    export NIX_SSL_CERT_FILE=\"$FLOX_CERT_FILE\"\n    export NODE_EXTRA_CA_CERTS=\"$FLOX_CERT_FILE\"\n  fi\n\n  if [ -f package.json ] && [ ! -d node_modules ]; then\n    echo \"Installing dependencies...\"\n    bun install\n  fi\n\n  if [ -z \"${QUIET:-}\" ]; then\n    cat <<'EOF'\nSenshac Development Environment\n\nAstro + Alpine.js + HTMX + UnoCSS\n\nQuick Commands:\n  dx <command>                          Run through direnv exec .\n  fx <command>                          Run through flox activate -d .\n  dev [start|stop|restart|status|log]   Astro dev server\n  cms [start|stop|restart|status|log]   TinaCMS + Astro\n  bun run build                         Build for production\n  bun run preview                       Preview production build\n  bun run check                         Run Astro check\n  bun run deploy                        Deploy to Cloudflare Pages\n  sd, ml, cn, tl                         Seeds, Mulch, Canopy, Trellis\nEOF\n  fi\n"
     },
     "options": {
       "systems": [
@@ -1142,33 +1135,6 @@
       "name": "seeds-0.5.12-r1",
       "pname": "seeds",
       "version": "0.5.12-r1",
-      "broken": false,
-      "unfree": false,
-      "priority": 5
-    },
-    {
-      "install_id": "terrarium",
-      "locked-url": "github:RogerNavelsaker/nixpkg-terrarium/ba0a29ee81eb151cf6135dcbb77886cdde4f3349?narHash=sha256-SutsDs4EedMdpKj3za8WH1kOcLfuCsaURmHbrgTk%2Bwo%3D",
-      "flake-description": "Nix packaging scaffold for terrarium",
-      "locked-flake-attr-path": "packages.x86_64-linux.default",
-      "derivation": "/nix/store/mnniihzsaz7whicrg4rla1nx2qxw5k73-terrarium-0.1.0-r1.drv",
-      "outputs": {
-        "out": "/nix/store/0l1awm49anmasfxzigi0yn2x9qzc7pdg-terrarium-0.1.0-r1",
-        "tr": "/nix/store/95fh5r5if0dyb55410h3mf9dwfjaxlj5-terrarium-0.1.0-r1-tr"
-      },
-      "output-names": [
-        "out",
-        "tr"
-      ],
-      "outputs-to-install": [
-        "out"
-      ],
-      "requested-outputs-to-install": [],
-      "package-system": "x86_64-linux",
-      "system": "x86_64-linux",
-      "name": "terrarium-0.1.0-r1",
-      "pname": "terrarium",
-      "version": "0.1.0-r1",
       "broken": false,
       "unfree": false,
       "priority": 5
