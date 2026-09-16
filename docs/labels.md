@@ -66,7 +66,7 @@ concerns. Multiple `area/*` labels are fine when work spans subsystems.
 | `area/acceptance`  | End-to-end acceptance harness (`scripts/acceptance/`)                       |
 | `area/build`       | Build, CI, lint, type-check, ratchets, tooling (`.github/`, `scripts/`)     |
 | `area/docs`        | Documentation (`README`, `SPEC`, `AGENTS.md`, `docs/`)                      |
-| `area/deps`        | Dependency updates (Dependabot, `bun.lock`, `package.json`)                 |
+| `area/deps`        | Dependency updates (Warren, `bun.lock`, `package.json`)                    |
 
 ### `status/*` — workflow state
 
@@ -106,7 +106,7 @@ so it can decide whether to plan-decompose before starting.
 The original GitHub defaults (`bug`, `enhancement`, `documentation`,
 `dependencies`, `javascript`, `question`, `invalid`, `duplicate`,
 `wontfix`) are kept for backward compatibility with existing issues and
-the Dependabot configuration. New issues should prefer the namespaced
+the dependency-maintenance policy. New issues should prefer the namespaced
 equivalents:
 
 | Legacy            | Canonical                            |
